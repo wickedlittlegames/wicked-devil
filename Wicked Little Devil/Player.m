@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, velocity, stats;
+@synthesize health, damage, velocity, stats;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -19,6 +19,7 @@
         //self.health = [self.stats floatForKey:@"health"];
         
         self.health = 100.0;
+        self.damage = 1.0; 
         self.velocity = ccp ( 0 , 0 );
     }
     return self;

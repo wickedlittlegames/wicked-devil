@@ -41,19 +41,19 @@
         
         CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(startButtonTapped:)];
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
-        menu.position = ccp ( 150, 10 );
+        menu.position = ccp ( 150, 50 );
         [self addChild:menu];
         
-        NSString *highscore = [NSString stringWithFormat:@"%d", user.highscore];
+        NSString *highscore = [NSString stringWithFormat:@"Highscore: %d", user.highscore];
         CCLabelTTF *score_label = [CCLabelTTF labelWithString:highscore fontName:@"Arial" fontSize:14];
 		score_label.color = ccc3(255,255,255);
-		score_label.position = ccp(100, 300);
+		score_label.position = ccp(250, 470);
 		[self addChild:score_label];
         
-        NSString *collectedscore = [NSString stringWithFormat:@"%d", user.collected];
+        NSString *collectedscore = [NSString stringWithFormat:@"Collected: %d", user.collected];
         CCLabelTTF *collectedscore_label = [CCLabelTTF labelWithString:collectedscore fontName:@"Arial" fontSize:14];
 		collectedscore_label.color = ccc3(255,255,255);
-		collectedscore_label.position = ccp(100, 300);
+		collectedscore_label.position = ccp(100, 470);
 		[self addChild:collectedscore_label];        
     }
 	return self;    

@@ -9,6 +9,7 @@
 #import "Platform.h"
 
 @implementation Platform
+@synthesize health;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -21,8 +22,13 @@
 
 -(BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) )
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.health > 0 )
     {
+        self.health = self.health - player.damage;
+        if (self.health == 0)
+        {
+            self.visible = FALSE;
+        }
         return TRUE;
     }
     return FALSE;
@@ -33,6 +39,14 @@
     if (levelThreshold <= 0)
     {
         self.position = ccp(self.position.x, self.position.y + levelThreshold);
+    }
+}
+
+- (void) offScreenCleanup
+{
+    if ( self.position.y < 0 ) 
+    {
+        [self.parent removeChild:self cleanup:YES];        
     }
 }
 

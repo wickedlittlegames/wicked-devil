@@ -10,6 +10,7 @@
 #import "Player.h"
 
 @interface Platform : CCSprite {}
+@property (nonatomic, assign) float health;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (void) movementWithThreshold:(float)levelThreshold;

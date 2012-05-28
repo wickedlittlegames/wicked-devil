@@ -64,13 +64,14 @@
         for (int i = 0; i < 100; i++) {
             Platform *platform = [Platform spriteWithFile:@"Icon-Small.png"];
             platform.position = ccp ( random() % 320, y );
+            platform.health = 2.0;
             y += random() % 200;
             [self addChild:platform];
             [platforms addObject:platform];            
         }
         
         // Instanciate Player
-        player = [Player spriteWithFile:@"Icon.png"];
+        player = [Player spriteWithFile:@"Icon-Small.png"];
         player.position = ccp(150,300);        
         touchLocation.x = player.position.x;
         [self addChild:player];
@@ -114,14 +115,13 @@
                 [platform movementWithThreshold:levelThreshold];
             }
             
-            
             // Finally move the player down
             player.velocity = ccp( player.velocity.x, player.velocity.y - gravity );
             if (levelThreshold <= 0) 
             {
                 player.position = ccp(player.position.x + player.velocity.x, player.position.y + player.velocity.y + levelThreshold);
             }
-            else 
+            else
             {
                 player.position = ccp(player.position.x + player.velocity.x, player.position.y + player.velocity.y);
             }
@@ -139,10 +139,6 @@
     }
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{   
-
-}
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for( UITouch *touch in touches ) {
@@ -150,8 +146,5 @@
         touchLocation = location;    
     }
 }
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-}
+
 @end

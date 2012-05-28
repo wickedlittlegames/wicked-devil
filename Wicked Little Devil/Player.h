@@ -10,7 +10,7 @@
 
 @interface Player : CCSprite {}
 
-@property (nonatomic, assign) float health;
+@property (nonatomic, assign) float health, damage;
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
 

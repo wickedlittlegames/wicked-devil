@@ -35,7 +35,9 @@
 
 - (id)initWithLevelNum:(int)levelNum
 {
-	if( (self=[super init]) ) {      
+	if( (self=[super init]) ) {    
+        self.isTouchEnabled = YES;
+        
         // Get level data
         //NSString *level_data_file = [NSString stringWithFormat:@"level_%@.plist",levelNum];
         //[self buildWorld:[NSDictionary dictionaryWithContentsOfFile:level_data_file]];
@@ -56,10 +58,13 @@
         // Load platforms array
         platforms = [NSMutableArray arrayWithCapacity:100];
         
+        int y = 100;
+        
         // Load platform
-        for (int i = 0; i < 10; i++) {
-            Platform *platform = [Platform spriteWithFile:@"Icon-Small-50.png"];
-            platform.position = ccp ( 150, ( 100 + (i*10)));
+        for (int i = 0; i < 100; i++) {
+            Platform *platform = [Platform spriteWithFile:@"Icon-Small.png"];
+            platform.position = ccp ( random() % 320, y );
+            y += random() % 200;
             [self addChild:platform];
             [platforms addObject:platform];            
         }
@@ -67,6 +72,7 @@
         // Instanciate Player
         player = [Player spriteWithFile:@"Icon.png"];
         player.position = ccp(150,300);        
+        touchLocation.x = player.position.x;
         [self addChild:player];
         
         // Start Game loop
@@ -94,7 +100,7 @@
             // Move background down
             if ( levelThreshold <= 0 )
             {
-                background.position = ccp(background.position.x, background.position.y + levelThreshold/10);
+                background.position = ccp(background.position.x, background.position.y + levelThreshold/20);
             }
             
             // Platform Stuff
@@ -102,11 +108,12 @@
             {
                 if ( [platform isIntersectingPlayer:player] )
                 {
-                    player.velocity = ccp ( player.velocity.x, player.velocity.y - (player.velocity.y *3) );
+                    player.velocity = ccp ( player.velocity.x, 8.5 );
                 }
                 
                 [platform movementWithThreshold:levelThreshold];
             }
+            
             
             // Finally move the player down
             player.velocity = ccp( player.velocity.x, player.velocity.y - gravity );
@@ -118,6 +125,12 @@
             {
                 player.position = ccp(player.position.x + player.velocity.x, player.position.y + player.velocity.y);
             }
+            
+            float diff = touchLocation.x - player.position.x;
+            if (diff > 4)  diff = 4;
+            if (diff < -4) diff = -4;
+            CGPoint new_player_location = CGPointMake(player.position.x + diff, player.position.y);
+            player.position = new_player_location;
         }
         else 
         {
@@ -126,20 +139,19 @@
     }
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{   
 
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event 
-{
-	return YES;
 }
-
-- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event 
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint location = [touch locationInView: [touch view]];
-    touchLocation = location; 
+    for( UITouch *touch in touches ) {
+        CGPoint location = [touch locationInView: [touch view]];
+        touchLocation = location;    
+    }
 }
-
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event 
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
+    
 }
 @end

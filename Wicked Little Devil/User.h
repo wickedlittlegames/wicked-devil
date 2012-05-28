@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
+@interface User : NSObject {}
+
 @property (nonatomic, retain) NSUserDefaults *data;
 @property (nonatomic, assign) int highscore, collected, levelprogress;
 

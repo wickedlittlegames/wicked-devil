@@ -49,6 +49,12 @@
 		score_label.color = ccc3(255,255,255);
 		score_label.position = ccp(100, 300);
 		[self addChild:score_label];
+        
+        NSString *collectedscore = [NSString stringWithFormat:@"%d", user.collected];
+        CCLabelTTF *collectedscore_label = [CCLabelTTF labelWithString:collectedscore fontName:@"Arial" fontSize:14];
+		collectedscore_label.color = ccc3(255,255,255);
+		collectedscore_label.position = ccp(100, 300);
+		[self addChild:collectedscore_label];        
     }
 	return self;    
 }

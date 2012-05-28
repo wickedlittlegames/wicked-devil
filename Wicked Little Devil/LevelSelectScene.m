@@ -38,10 +38,12 @@
         CCLayer *pageOne = [CCLayer node];
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Page 1" fontName:@"Arial Rounded MT Bold" fontSize:20];
         label.position =  ccp( screenSize.width /2 , screenSize.height/2 );
-        CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(levelButtonTapped:)];
+        CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" disabledImage:@"Icon-Small.png" target:self selector:@selector(levelButtonTapped:)];
+        startButton.isEnabled = TRUE;
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
         menu.position = ccp ( 150, 150 );
         [pageOne addChild:menu];
+        
         [pageOne addChild:label];
 
         CCLayer *pageTwo = [CCLayer node];

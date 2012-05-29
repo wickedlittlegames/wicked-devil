@@ -24,7 +24,6 @@
     CCMenu *menu;
 }
 @property (nonatomic, assign) int level;
-@property (nonatomic, assign) NSString *world;
 @property (nonatomic, assign) float gravity;
 @property (nonatomic, assign) bool started;
 

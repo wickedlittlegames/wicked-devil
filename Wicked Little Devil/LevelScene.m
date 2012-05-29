@@ -11,7 +11,7 @@
 
 
 @implementation LevelScene
-@synthesize world, gravity, level, started;
+@synthesize gravity, level, started;
 
 +(CCScene *) sceneWithLevelNum:(int)levelNum
 {
@@ -39,6 +39,7 @@
         self.isTouchEnabled = YES;
         self.scaleY = -1;
         self.gravity = 0.225;
+        self.level = levelNum;
         self.started = FALSE;
         
         // Get level data

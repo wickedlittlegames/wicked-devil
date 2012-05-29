@@ -24,7 +24,6 @@
     UILayer *ui = [UILayer node];
 	StartScene *current = [StartScene node];
     
-    
     // Fill the scene
     [scene addChild:ui z:100];
 	[scene addChild:current z:10];
@@ -36,12 +35,12 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        // Set up and start a user
+
         user = [[User alloc] init];
         
         CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(startButtonTapped:)];
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
-        menu.position = ccp ( 150, 50 );
+        menu.position = ccp ( 120, 80 );
         [self addChild:menu];
         
         NSString *highscore = [NSString stringWithFormat:@"Highscore: %d", user.highscore];
@@ -54,7 +53,8 @@
         CCLabelTTF *collectedscore_label = [CCLabelTTF labelWithString:collectedscore fontName:@"Arial" fontSize:14];
 		collectedscore_label.color = ccc3(255,255,255);
 		collectedscore_label.position = ccp(100, 470);
-		[self addChild:collectedscore_label];        
+		[self addChild:collectedscore_label];     
+        
     }
 	return self;    
 }

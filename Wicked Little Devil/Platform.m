@@ -9,26 +9,24 @@
 #import "Platform.h"
 
 @implementation Platform
-@synthesize health;
+@synthesize health, type;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-
+        self.scaleY = -1;
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.health > 0 )
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.health > 0 && player.velocity.y > 0 ) 
     {
         self.health = self.health - player.damage;
-        if (self.health == 0)
-        {
-            self.visible = FALSE;
-        }
+        if (self.health == 0) self.visible = FALSE;
+        
         return TRUE;
     }
     return FALSE;
@@ -36,7 +34,7 @@
 
 - (void) movementWithThreshold:(float)levelThreshold 
 {
-    if (levelThreshold <= 0)
+    if (levelThreshold >= 0)
     {
         self.position = ccp(self.position.x, self.position.y + levelThreshold);
     }
@@ -44,7 +42,7 @@
 
 - (void) offScreenCleanup
 {
-    if ( self.position.y < 0 ) 
+    if ( self.position.y > 700 ) 
     {
         [self.parent removeChild:self cleanup:YES];        
     }

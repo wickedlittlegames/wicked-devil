@@ -11,9 +11,11 @@
 
 @interface Platform : CCSprite {}
 @property (nonatomic, assign) float health;
+@property (nonatomic, assign) NSString *type;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (void) movementWithThreshold:(float)levelThreshold;
+- (void) offScreenCleanup;
 
 @end
 

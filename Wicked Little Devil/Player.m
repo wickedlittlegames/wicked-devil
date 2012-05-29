@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats;
+@synthesize health, damage, velocity, stats,collected;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -21,13 +21,38 @@
         self.health = 100.0;
         self.damage = 1.0; 
         self.velocity = ccp ( 0 , 0 );
+        self.scaleY = -1;        
+        self.collected = 0;
     }
     return self;
+}
+
+- (void) update:(float)levelThreshold withGravity:(float)gravity
+{
+    self.velocity = ccp( self.velocity.x, self.velocity.y + gravity );
+    if (levelThreshold >= 0)
+    {
+        self.position = ccp(self.position.x + self.velocity.x, self.position.y + self.velocity.y + levelThreshold);
+    }
+    else 
+    {
+        self.position = ccp(self.position.x + self.velocity.x, self.position.y + self.velocity.y);
+    }
 }
 
 - (BOOL) isAlive 
 {
     return ( self.health > 0.0 ? TRUE : FALSE );
+}
+
+- (void) bounce
+{
+    self.velocity = ccp (self.velocity.x, -8.5);
+}
+
+- (void) halt
+{
+    self.velocity = ccp (self.velocity.x, 0);
 }
 
 @end

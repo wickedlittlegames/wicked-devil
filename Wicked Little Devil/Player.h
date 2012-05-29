@@ -13,7 +13,11 @@
 @property (nonatomic, assign) float health, damage;
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
+@property (nonatomic, assign) int collected;
 
 - (BOOL) isAlive;
+- (void) bounce;
+- (void) halt;
+- (void) update:(float)threshhold withGravity:(float)gravity;
 
 @end

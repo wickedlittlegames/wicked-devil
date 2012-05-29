@@ -11,7 +11,7 @@
 
 
 @implementation LevelScene
-@synthesize world, gravity, level;
+@synthesize world, gravity, level, started;
 
 +(CCScene *) sceneWithLevelNum:(int)levelNum
 {
@@ -37,44 +37,23 @@
 {
 	if( (self=[super init]) ) {    
         self.isTouchEnabled = YES;
+        self.scaleY = -1;
+        self.gravity = 0.225;
+        self.started = FALSE;
         
         // Get level data
-        //NSString *level_data_file = [NSString stringWithFormat:@"level_%@.plist",levelNum];
-        //[self buildWorld:[NSDictionary dictionaryWithContentsOfFile:level_data_file]];
-        self.gravity = 0.225;
-        
-        // Load Background
-        background = [CCLayer node];
-        CCSprite *bg_image = [CCSprite spriteWithFile:@"bg0.png"];
-        bg_image.position = ccp ( (320/2), (480/2) );
-        [background addChild:bg_image];
-        [self addChild:background z:-1];
-        
-        // Load floor
-        floor = [Platform spriteWithFile:@"Default.png"];
-        floor.position = ccp ( 160, -200 );
-        [self addChild:floor];
-        
-        // Load platforms array
-        platforms = [NSMutableArray arrayWithCapacity:100];
-        
-        int y = 100;
-        
-        // Load platform
-        for (int i = 0; i < 100; i++) {
-            Platform *platform = [Platform spriteWithFile:@"Icon-Small.png"];
-            platform.position = ccp ( random() % 320, y );
-            platform.health = 2.0;
-            y += random() % 200;
-            [self addChild:platform];
-            [platforms addObject:platform];            
-        }
+        [self buildWorld:levelNum];
         
         // Instanciate Player
-        player = [Player spriteWithFile:@"Icon-Small.png"];
-        player.position = ccp(150,300);        
+        player = [Player spriteWithFile:@"devil.png"];
+        player.position = ccp(110,375);
         touchLocation.x = player.position.x;
         [self addChild:player];
+        
+        // Start button
+        menu = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"launch.png" selectedImage:@"launch.png" target:self selector:@selector(launch:)], nil];
+        menu.position = ccp ( 320/2, 440 );
+        [self addChild:menu z:100];
         
         // Start Game loop
         [self schedule:@selector(update:)];
@@ -82,61 +61,127 @@
 	return self;
 }
 
-- (void) buildWorld:(NSDictionary*)levelData
+- (void)launch:(id)sender
 {
-    // Load in the level helper file and maninpualte crazy  
-    self.world      = [levelData valueForKey:@"world"];
-    self.gravity    = [[levelData valueForKey:@"gravity"] floatValue];
+    player.velocity = ccp ( player.velocity.x, -15.5 );
+    menu.visible = NO;
+    started = TRUE;
+}
+
+- (void) buildWorld:(int)levelNum
+{    
+    platforms       = [NSMutableArray arrayWithCapacity:100];
+    collectables    = [NSMutableArray arrayWithCapacity:100];
+    enemies         = [NSMutableArray arrayWithCapacity:100]; 
+
+    NSString *level_string = [NSString stringWithFormat:@"level%d.plhs",levelNum];
+    NSString *finalPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:level_string];
+    NSDictionary *plistData = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+    NSMutableArray *plistSpriteArray = [NSArray arrayWithObject:[plistData objectForKey:@"SPRITES_INFO"]];
+    
+    for (NSDictionary *dict in plistSpriteArray)
+    {
+        for (NSDictionary *dict2 in dict)
+        {
+            NSDictionary *object_properties = [dict2 objectForKey:@"GeneralProperties"];
+            NSString *tagcheck = [NSString stringWithFormat:@"%@", [object_properties valueForKey:@"TagName"]];
+            NSString *image = [NSString stringWithFormat:@"%@.png",[object_properties valueForKey:@"SHName"]];            
+            NSArray *stringArray = [[object_properties valueForKey:@"Position"] componentsSeparatedByString:@","];
+            float x = [[[stringArray objectAtIndex:0] stringByReplacingOccurrencesOfString:@"{" withString:@""] floatValue];
+            float y = [[[stringArray objectAtIndex:1] stringByReplacingOccurrencesOfString:@"}" withString:@""] floatValue];
+            
+            if ( [tagcheck isEqualToString:@"PLATFORM"] )
+            {
+                Platform *platform = [Platform spriteWithFile:image];
+                platform.position = ccp ( x, y );
+                platform.type = [object_properties valueForKey:@"SHName"];
+                platform.health = [[object_properties valueForKey:@"Opactiy"] floatValue]; // opactiy is used for health
+                
+                [self addChild:platform];
+                [platforms addObject:platform];
+            }
+            else if ( [tagcheck isEqualToString:@"COLLECTABLE"] )
+            {
+                Collectable *collectable = [Collectable spriteWithFile:image];
+                collectable.position = ccp ( x, y );
+                [self addChild:collectable];
+                [collectables addObject:collectable];
+            }
+            else if ( [tagcheck isEqualToString:@"ENEMY"] )
+            {
+                
+            }
+            else if ( [tagcheck isEqualToString:@"BACKGROUND"] )
+            {
+                NSString *bg_name = [NSString stringWithFormat:@"bg-%@.png",[[dict2 objectForKey:@"GeneralProperties"] valueForKey:@"SHName"]];
+                
+                background = [CCLayer node];
+                CCSprite *bg_image = [CCSprite spriteWithFile:bg_name];
+                bg_image.position = ccp ( (320/2), (480/2) );
+                [background addChild:bg_image];
+                
+                [self addChild:background z:-1];
+            }
+        }
+    }
+    
+    floor = [CCSprite spriteWithFile:@"floor.png"];
+    floor.position = ccp(320/2,470);
+    floor.scaleY = -1;
+    [self addChild:floor];
 }
 
 - (void)update:(ccTime)dt 
 {
-    if ( ![[CCDirector sharedDirector] isPaused] )
+    if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
         {   
-            // Stop the player from going up too high
-            levelThreshold = 300 - player.position.y;
+            levelThreshold = 50 - player.position.y;
             
-            // Move background down
-            if ( levelThreshold <= 0 )
+            if ( levelThreshold >= 0 )
             {
-                background.position = ccp(background.position.x, background.position.y + levelThreshold/20);
+                background.position = ccp(background.position.x, background.position.y + levelThreshold/40);
+                floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
             }
             
-            // Platform Stuff
             for (Platform *platform in platforms)
-            {
-                if ( [platform isIntersectingPlayer:player] )
+            {                
+                if ( [platform isIntersectingPlayer:player] ) 
                 {
-                    player.velocity = ccp ( player.velocity.x, 8.5 );
+                    [player bounce];
                 }
                 
                 [platform movementWithThreshold:levelThreshold];
+                [platform offScreenCleanup];
             }
             
-            // Finally move the player down
-            player.velocity = ccp( player.velocity.x, player.velocity.y - gravity );
-            if (levelThreshold <= 0) 
+            for (Collectable *collectable in collectables)
             {
-                player.position = ccp(player.position.x + player.velocity.x, player.position.y + player.velocity.y + levelThreshold);
-            }
-            else
-            {
-                player.position = ccp(player.position.x + player.velocity.x, player.position.y + player.velocity.y);
+                if ( [collectable isIntersectingPlayer:player] ) 
+                {
+                    player.collected++;
+                }
             }
             
-            float diff = touchLocation.x - player.position.x;
-            if (diff > 4)  diff = 4;
-            if (diff < -4) diff = -4;
-            CGPoint new_player_location = CGPointMake(player.position.x + diff, player.position.y);
-            player.position = new_player_location;
+            [self playerMovementChecks];
+
+            [player update:levelThreshold withGravity:self.gravity];
         }
         else 
         {
             NSLog(@"Dead");
         }
     }
+}
+
+- (void) playerMovementChecks
+{
+    float diff = touchLocation.x - player.position.x;
+    if (diff > 4)  diff = 4;
+    if (diff < -4) diff = -4;
+    CGPoint new_player_location = CGPointMake(player.position.x + diff, player.position.y);
+    player.position = new_player_location;
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

@@ -12,6 +12,11 @@
 		9C08ADCA157396C200AE0693 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C08ADC9157396C200AE0693 /* User.m */; };
 		9C08ADCE1573A59800AE0693 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C08ADCD1573A59800AE0693 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C08ADD01573A7CE00AE0693 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08ADCF1573A7CE00AE0693 /* bg4.png */; };
+		9C08AF7A1574099400AE0693 /* devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF751574099300AE0693 /* devil.png */; };
+		9C08AF7B1574099400AE0693 /* hell-platform-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF761574099300AE0693 /* hell-platform-broken.png */; };
+		9C08AF7C1574099400AE0693 /* hell-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF771574099300AE0693 /* hell-platform.png */; };
+		9C08AF7D1574099400AE0693 /* hell-platform2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF781574099400AE0693 /* hell-platform2.png */; };
+		9C08AF7E1574099400AE0693 /* mainmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF791574099400AE0693 /* mainmenu.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -264,6 +269,10 @@
 		9CBF4821156F9B5A00896EBF /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4820156F9B5A00896EBF /* StartScene.m */; };
 		9CBF4825156F9E1D00896EBF /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4824156F9E1D00896EBF /* LevelSelectScene.m */; };
 		9CBF4828156FA0C200896EBF /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4827156FA0C200896EBF /* LevelScene.m */; };
+		9CC26EB31574392A00F58A47 /* level1.plhs in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB21574392A00F58A47 /* level1.plhs */; };
+		9CC26EB61575043C00F58A47 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB51575043C00F58A47 /* floor.png */; };
+		9CC26EB81575054000F58A47 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB71575054000F58A47 /* launch.png */; };
+		9CC26EBE157513AF00F58A47 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC26EBD157513AF00F58A47 /* Collectable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -275,6 +284,11 @@
 		9C08ADCC1573A59800AE0693 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C08ADCD1573A59800AE0693 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C08ADCF1573A7CE00AE0693 /* bg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg4.png; sourceTree = "<group>"; };
+		9C08AF751574099300AE0693 /* devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil.png; sourceTree = "<group>"; };
+		9C08AF761574099300AE0693 /* hell-platform-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform-broken.png"; sourceTree = "<group>"; };
+		9C08AF771574099300AE0693 /* hell-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform.png"; sourceTree = "<group>"; };
+		9C08AF781574099400AE0693 /* hell-platform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform2.png"; sourceTree = "<group>"; };
+		9C08AF791574099400AE0693 /* mainmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenu.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Little Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Little Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -540,6 +554,11 @@
 		9CBF4824156F9E1D00896EBF /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
 		9CBF4826156FA0C200896EBF /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
 		9CBF4827156FA0C200896EBF /* LevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelScene.m; sourceTree = "<group>"; };
+		9CC26EB21574392A00F58A47 /* level1.plhs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level1.plhs; sourceTree = "<group>"; };
+		9CC26EB51575043C00F58A47 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
+		9CC26EB71575054000F58A47 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		9CC26EBC157513AF00F58A47 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collectable.h; sourceTree = "<group>"; };
+		9CC26EBD157513AF00F58A47 /* Collectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collectable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -633,6 +652,14 @@
 		9C142179156E68560011C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9CC26EB71575054000F58A47 /* launch.png */,
+				9CC26EB51575043C00F58A47 /* floor.png */,
+				9CC26EB21574392A00F58A47 /* level1.plhs */,
+				9C08AF751574099300AE0693 /* devil.png */,
+				9C08AF761574099300AE0693 /* hell-platform-broken.png */,
+				9C08AF771574099300AE0693 /* hell-platform.png */,
+				9C08AF781574099400AE0693 /* hell-platform2.png */,
+				9C08AF791574099400AE0693 /* mainmenu.png */,
 				9C08ADCF1573A7CE00AE0693 /* bg4.png */,
 				9C08ADBF1573919400AE0693 /* bg0.png */,
 				9C14217A156E68560011C992 /* Default.png */,
@@ -1001,6 +1028,8 @@
 				9C08ADB815737EA200AE0693 /* Platform.m */,
 				9C08ADC8157396C200AE0693 /* User.h */,
 				9C08ADC9157396C200AE0693 /* User.m */,
+				9CC26EBC157513AF00F58A47 /* Collectable.h */,
+				9CC26EBD157513AF00F58A47 /* Collectable.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1244,6 +1273,14 @@
 				9C142190156E68560011C992 /* iTunesArtwork in Resources */,
 				9C08ADC01573919400AE0693 /* bg0.png in Resources */,
 				9C08ADD01573A7CE00AE0693 /* bg4.png in Resources */,
+				9C08AF7A1574099400AE0693 /* devil.png in Resources */,
+				9C08AF7B1574099400AE0693 /* hell-platform-broken.png in Resources */,
+				9C08AF7C1574099400AE0693 /* hell-platform.png in Resources */,
+				9C08AF7D1574099400AE0693 /* hell-platform2.png in Resources */,
+				9C08AF7E1574099400AE0693 /* mainmenu.png in Resources */,
+				9CC26EB31574392A00F58A47 /* level1.plhs in Resources */,
+				9CC26EB61575043C00F58A47 /* floor.png in Resources */,
+				9CC26EB81575054000F58A47 /* launch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,6 +1301,7 @@
 				9C08ADB915737EA200AE0693 /* Platform.m in Sources */,
 				9C08ADCA157396C200AE0693 /* User.m in Sources */,
 				9C08ADCE1573A59800AE0693 /* CCScrollLayer.m in Sources */,
+				9CC26EBE157513AF00F58A47 /* Collectable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,6 @@
 @interface User : NSObject {}
 
 @property (nonatomic, retain) NSUserDefaults *data;
-@property (nonatomic, assign) int highscore, collected, levelprogress;
+@property (nonatomic, assign) int highscore, collected, levelprogress, worldprogress;
 
 @end

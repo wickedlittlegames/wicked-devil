@@ -40,7 +40,7 @@
         
         CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(startButtonTapped:)];
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
-        menu.position = ccp ( 120, 80 );
+        menu.position = ccp ( 120, 300 );
         [self addChild:menu];
         
         NSString *highscore = [NSString stringWithFormat:@"Highscore: %d", user.highscore];

@@ -16,6 +16,9 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.scaleY = -1;
+        
+        // defaults
+        self.health = 1.0;
     }
     return self;
 }

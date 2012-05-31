@@ -9,7 +9,6 @@
 #import "UILayer.h"
 #import "LevelScene.h"
 
-
 @implementation LevelScene
 @synthesize gravity, level, started;
 
@@ -20,28 +19,29 @@
     
     // Grab the layers
     UILayer *ui = [UILayer node];
-	LevelScene *current = [LevelScene node];
+	LevelScene* current = (LevelScene*) [CCBReader nodeGraphFromFile:@"level1.ccbi" owner:self];
     
     // UI options (label example of ads)
     ui.label.visible = NO;
     
     // Fill the scene
     [scene addChild:ui z:100];
-	[scene addChild:[current initWithLevelNum:1] z:10];
+    [scene addChild:current];
     
-    // Show the scene
 	return scene;
 }
-
-- (id)initWithLevelNum:(int)levelNum
+- (id) init
+//- (id)initWithLevelNum:(int)levelNum
 {
-	if( (self=[super init]) ) {    
-        self.isTouchEnabled = YES;
-        self.scaleY = -1;
-        self.gravity = 0.225;
-        self.level = levelNum;
-        self.started = FALSE;
+	if( (self=[super init]) ) {  
+        //self.isTouchEnabled = YES;
         
+        //self.scaleY = -1;
+        self.gravity = 0.225;
+        self.started = TRUE;
+        //self.level = levelNum;
+        //self.started = FALSE;
+        /*
         // Get level data
         [self buildWorld:levelNum];
         
@@ -57,6 +57,7 @@
         [self addChild:menu z:100];
         
         // Start Game loop
+         */
         [self schedule:@selector(update:)];
     }
 	return self;
@@ -64,7 +65,7 @@
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, -15.5 );
+    player.velocity = ccp ( player.velocity.x, -18.5 );
     menu.visible = NO;
     started = TRUE;
 }
@@ -73,7 +74,7 @@
 {    
     platforms       = [NSMutableArray arrayWithCapacity:100];
     collectables    = [NSMutableArray arrayWithCapacity:100];
-    enemies         = [NSMutableArray arrayWithCapacity:100]; 
+    enemies         = [NSMutableArray arrayWithCapacity:100];
 
     NSString *level_string = [NSString stringWithFormat:@"level%d.plhs",levelNum];
     NSString *finalPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:level_string];
@@ -96,7 +97,7 @@
                 Platform *platform = [Platform spriteWithFile:image];
                 platform.position = ccp ( x, y );
                 platform.type = [object_properties valueForKey:@"SHName"];
-                platform.health = [[object_properties valueForKey:@"Opactiy"] floatValue]; // opactiy is used for health
+                //platform.health = [[object_properties valueForKey:@"Opactiy"] floatValue]; // opactiy is used for health
                 
                 [self addChild:platform];
                 [platforms addObject:platform];
@@ -110,7 +111,12 @@
             }
             else if ( [tagcheck isEqualToString:@"ENEMY"] )
             {
-                
+                Enemy *enemy = [Enemy spriteWithFile:image];
+                enemy.position = ccp ( x , y );
+                enemy.type = @"";
+                enemy.health = 1.0;
+                [self addChild:enemy];
+                [enemies addObject:enemy];
             }
             else if ( [tagcheck isEqualToString:@"BACKGROUND"] )
             {
@@ -136,21 +142,21 @@
 {
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
-        if (player.isAlive)
-        {   
+        //if (player.isAlive)
+        //{   
             levelThreshold = 50 - player.position.y;
-            
+        
             if ( levelThreshold >= 0 )
             {
                 background.position = ccp(background.position.x, background.position.y + levelThreshold/40);
                 floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
             }
-            
+        
             for (Platform *platform in platforms)
             {                
                 if ( [platform isIntersectingPlayer:player] ) 
                 {
-                    [player bounce];
+                    [player bounce]; // TODO: Test
                 }
                 
                 [platform movementWithThreshold:levelThreshold];
@@ -165,14 +171,21 @@
                 }
             }
             
+            for (Enemy *enemy in enemies)
+            {
+                [enemy activateNearPlayerPoint:player];
+                [enemy isIntersectingPlayer:player];
+                [enemy movementWithThreshold:levelThreshold];
+            }
+            
             [self playerMovementChecks];
 
-            [player update:levelThreshold withGravity:self.gravity];
-        }
-        else 
-        {
-            NSLog(@"Dead");
-        }
+            [player movement:levelThreshold withGravity:self.gravity];
+        //}
+        //else 
+        //{
+        //    NSLog(@"Dead");
+        //}
     }
 }
 

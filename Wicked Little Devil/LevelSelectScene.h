@@ -8,9 +8,10 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
+#import "User.h"
 
 @interface LevelSelectScene : CCLayer {
-    
+    User *user;
 }
 +(CCScene *) scene;
 @end

@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize data, highscore, collected, levelprogress;
+@synthesize data, highscore, collected, levelprogress, worldprogress;
 
 -(id) init
 {
@@ -23,6 +23,7 @@
                 - item1
                 - item2
                 - levelprogress
+                - worldprogress
         */
         data = [NSUserDefaults standardUserDefaults];
         if ( [data boolForKey:@"created"] == FALSE )
@@ -33,6 +34,7 @@
         self.highscore = [data integerForKey:@"highscore"];
         self.collected = [data integerForKey:@"collected"];
         self.levelprogress = [data integerForKey:@"levelprogress"];
+        self.worldprogress = [data integerForKey:@"worldprogress"];
     }
     return self;
 }
@@ -43,6 +45,9 @@
     [data setInteger:0 forKey:@"highscore"];
     [data setInteger:0 forKey:@"collected"];
     [data setInteger:1 forKey:@"levelprogress"];
+    [data setInteger:1 forKey:@"worldprogress"];    
+    
+    [data synchronize];
 }
 
 - (void) resetUser
@@ -51,6 +56,9 @@
     [data setInteger:0 forKey:@"highscore"];
     [data setInteger:0 forKey:@"collected"];
     [data setInteger:1 forKey:@"levelprogress"];
+    [data setInteger:1 forKey:@"worldprogress"];    
+    
+    [data synchronize];    
 }
 
 @end

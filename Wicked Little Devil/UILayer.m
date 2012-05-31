@@ -15,10 +15,10 @@
 - (id) init {
     self = [super init];
     if (self != nil) {
-        label = [CCLabelTTF labelWithString:@"Menu" fontName:@"Arial" fontSize:32];
-		label.color = ccc3(255,255,255);
-		label.position = ccp(200, 300);
-		[self addChild:label];
+        //label = [CCLabelTTF labelWithString:@"Menu" fontName:@"Arial" fontSize:32];
+		//label.color = ccc3(255,255,255);
+		//label.position = ccp(200, 300);
+		//[self addChild:label];
     }
     return self;
 }

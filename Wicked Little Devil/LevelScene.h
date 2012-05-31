@@ -6,10 +6,12 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
+#import "CCBReader.h"
 #import "cocos2d.h"
 #import "Player.h"
 #import "Platform.h"
 #import "Collectable.h"
+#import "Enemy.h"
 
 @interface LevelScene : CCLayer {
     Player *player;
@@ -28,6 +30,6 @@
 @property (nonatomic, assign) bool started;
 
 +(CCScene *) sceneWithLevelNum:(int)levelNum;
-- (id)initWithLevelNum:(int)levelNum;
+//- (id)initWithLevelNum:(int)levelNum;
 
 @end

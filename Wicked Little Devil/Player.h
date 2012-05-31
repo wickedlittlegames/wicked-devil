@@ -18,6 +18,6 @@
 - (BOOL) isAlive;
 - (void) bounce;
 - (void) halt;
-- (void) update:(float)threshhold withGravity:(float)gravity;
+- (void) movement:(float)threshhold withGravity:(float)gravity;
 
 @end

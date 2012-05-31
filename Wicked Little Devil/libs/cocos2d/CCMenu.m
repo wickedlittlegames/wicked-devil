@@ -513,11 +513,11 @@ enum {
 		[item setPosition:ccp(x + [(NSNumber *) [columnWidths objectAtIndex:column] unsignedIntegerValue] / 2,
 							  y - winSize.height / 2)];
 
-		y -= itemSize.height + 10;
+		y -= itemSize.height + 50;
 		++rowsOccupied;
 
 		if(rowsOccupied >= columnRows) {
-			x += columnWidth + 5;
+			x += columnWidth + 30;
 
 			rowsOccupied = 0;
 			columnRows = 0;

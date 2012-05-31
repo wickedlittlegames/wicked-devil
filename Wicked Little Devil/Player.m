@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void) update:(float)levelThreshold withGravity:(float)gravity
+- (void) movement:(float)levelThreshold withGravity:(float)gravity
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y + gravity );
     if (levelThreshold >= 0)

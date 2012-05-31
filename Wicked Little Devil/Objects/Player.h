@@ -10,14 +10,13 @@
 
 @interface Player : CCSprite {}
 
-@property (nonatomic, assign) float health, damage;
+@property (nonatomic, assign) float health, damage, jumpspeed;
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected;
 
 - (BOOL) isAlive;
-- (void) bounce;
-- (void) halt;
+- (void) jump;
 - (void) movement:(float)threshhold withGravity:(float)gravity;
 
 @end

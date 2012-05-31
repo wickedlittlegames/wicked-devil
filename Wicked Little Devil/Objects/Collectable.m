@@ -11,15 +11,6 @@
 
 @implementation Collectable
 
--(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
-{
-    if( (self=[super initWithTexture:texture rect:rect]))
-    {
-        self.scaleY = -1;
-    }
-    return self;
-}
-
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
     if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE ) 

@@ -15,17 +15,15 @@
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        self.scaleY = -1;
-        
         // defaults
-        self.health = 1.0;
+        self.health = 5.0;
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.health > 0 && player.velocity.y > 0 ) 
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE) 
     {
         self.health = self.health - player.damage;
         if (self.health == 0) self.visible = FALSE;
@@ -37,7 +35,7 @@
 
 - (void) movementWithThreshold:(float)levelThreshold 
 {
-    if (levelThreshold >= 0)
+    if (levelThreshold < 0)
     {
         self.position = ccp(self.position.x, self.position.y + levelThreshold);
     }

@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C08ADB915737EA200AE0693 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C08ADB815737EA200AE0693 /* Platform.m */; };
-		9C08ADC01573919400AE0693 /* bg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08ADBF1573919400AE0693 /* bg0.png */; };
-		9C08ADCA157396C200AE0693 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C08ADC9157396C200AE0693 /* User.m */; };
-		9C08ADCE1573A59800AE0693 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C08ADCD1573A59800AE0693 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9C08ADD01573A7CE00AE0693 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08ADCF1573A7CE00AE0693 /* bg4.png */; };
-		9C08AF7A1574099400AE0693 /* devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF751574099300AE0693 /* devil.png */; };
-		9C08AF7B1574099400AE0693 /* hell-platform-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF761574099300AE0693 /* hell-platform-broken.png */; };
-		9C08AF7C1574099400AE0693 /* hell-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF771574099300AE0693 /* hell-platform.png */; };
-		9C08AF7D1574099400AE0693 /* hell-platform2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF781574099400AE0693 /* hell-platform2.png */; };
-		9C08AF7E1574099400AE0693 /* mainmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C08AF791574099400AE0693 /* mainmenu.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -264,35 +254,20 @@
 		9C1424D1156E69540011C992 /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423EF156E69540011C992 /* vec2.c */; };
 		9C1424D2156E69540011C992 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F0156E69540011C992 /* vec3.c */; };
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
-		9C1424E5156E86FB0011C992 /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1424E4156E86FB0011C992 /* UILayer.m */; };
-		9CBF4816156F8F9500896EBF /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4815156F8F9500896EBF /* Player.m */; };
-		9CBF4821156F9B5A00896EBF /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4820156F9B5A00896EBF /* StartScene.m */; };
-		9CBF4825156F9E1D00896EBF /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF4824156F9E1D00896EBF /* LevelSelectScene.m */; };
-		9CC26EB31574392A00F58A47 /* level1.plhs in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB21574392A00F58A47 /* level1.plhs */; };
-		9CC26EB61575043C00F58A47 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB51575043C00F58A47 /* floor.png */; };
-		9CC26EB81575054000F58A47 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC26EB71575054000F58A47 /* launch.png */; };
-		9CC26EBE157513AF00F58A47 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC26EBD157513AF00F58A47 /* Collectable.m */; };
-		9CC4153515762C90009B0694 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4153415762C90009B0694 /* Enemy.m */; };
-		9CC4153E15764A9F009B0694 /* Icon-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC4153D15764A9F009B0694 /* Icon-locked.png */; };
-		9CC4154415765E74009B0694 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4154315765E74009B0694 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CC4154C15766681009B0694 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4154B15766681009B0694 /* LevelScene.m */; };
-		9CC415891576686B009B0694 /* level1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CC415721576686B009B0694 /* level1.ccbi */; };
+		9C6149561577AF6100A6FF33 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149531577AF6100A6FF33 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C6149621577B08600A6FF33 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149591577B08600A6FF33 /* Collectable.m */; };
+		9C6149631577B08600A6FF33 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61495B1577B08600A6FF33 /* Enemy.m */; };
+		9C6149641577B08600A6FF33 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61495D1577B08600A6FF33 /* Platform.m */; };
+		9C6149651577B08600A6FF33 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61495F1577B08600A6FF33 /* Player.m */; };
+		9C6149661577B08600A6FF33 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149611577B08600A6FF33 /* User.m */; };
+		9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149681577B09600A6FF33 /* LevelScene.m */; };
+		9C61496E1577B09600A6FF33 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496A1577B09600A6FF33 /* LevelSelectScene.m */; };
+		9C61496F1577B09600A6FF33 /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496C1577B09600A6FF33 /* StartScene.m */; };
+		9C6149721577B0A300A6FF33 /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149711577B0A300A6FF33 /* UILayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9C08ADB715737EA200AE0693 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
-		9C08ADB815737EA200AE0693 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Platform.m; sourceTree = "<group>"; };
-		9C08ADBF1573919400AE0693 /* bg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg0.png; sourceTree = "<group>"; };
-		9C08ADC8157396C200AE0693 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		9C08ADC9157396C200AE0693 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		9C08ADCC1573A59800AE0693 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
-		9C08ADCD1573A59800AE0693 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
-		9C08ADCF1573A7CE00AE0693 /* bg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg4.png; sourceTree = "<group>"; };
-		9C08AF751574099300AE0693 /* devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil.png; sourceTree = "<group>"; };
-		9C08AF761574099300AE0693 /* hell-platform-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform-broken.png"; sourceTree = "<group>"; };
-		9C08AF771574099300AE0693 /* hell-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform.png"; sourceTree = "<group>"; };
-		9C08AF781574099400AE0693 /* hell-platform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform2.png"; sourceTree = "<group>"; };
-		9C08AF791574099400AE0693 /* mainmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenu.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Little Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Little Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -548,27 +523,28 @@
 		9C1423F2156E69540011C992 /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_cocos2d.txt; sourceTree = "<group>"; };
 		9C1423F3156E69540011C992 /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
 		9C1423F4156E69540011C992 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_Kazmath.txt; sourceTree = "<group>"; };
-		9C1424E3156E86FB0011C992 /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayer.h; sourceTree = "<group>"; };
-		9C1424E4156E86FB0011C992 /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILayer.m; sourceTree = "<group>"; };
-		9CBF4814156F8F9500896EBF /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		9CBF4815156F8F9500896EBF /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		9CBF481F156F9B5A00896EBF /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScene.h; sourceTree = "<group>"; };
-		9CBF4820156F9B5A00896EBF /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScene.m; sourceTree = "<group>"; };
-		9CBF4823156F9E1D00896EBF /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
-		9CBF4824156F9E1D00896EBF /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
-		9CBF4826156FA0C200896EBF /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
-		9CC26EB21574392A00F58A47 /* level1.plhs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level1.plhs; sourceTree = "<group>"; };
-		9CC26EB51575043C00F58A47 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
-		9CC26EB71575054000F58A47 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
-		9CC26EBC157513AF00F58A47 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collectable.h; sourceTree = "<group>"; };
-		9CC26EBD157513AF00F58A47 /* Collectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collectable.m; sourceTree = "<group>"; };
-		9CC4153315762C90009B0694 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
-		9CC4153415762C90009B0694 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
-		9CC4153D15764A9F009B0694 /* Icon-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-locked.png"; path = "Resources/Icon-locked.png"; sourceTree = "<group>"; };
-		9CC4154215765E74009B0694 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
-		9CC4154315765E74009B0694 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
-		9CC4154B15766681009B0694 /* LevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelScene.m; sourceTree = "<group>"; };
-		9CC415721576686B009B0694 /* level1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = level1.ccbi; path = ccb/Resources/level1.ccbi; sourceTree = "<group>"; };
+		9C6149521577AF6100A6FF33 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
+		9C6149531577AF6100A6FF33 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
+		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
+		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
+		9C6149581577B08600A6FF33 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collectable.h; path = Objects/Collectable.h; sourceTree = "<group>"; };
+		9C6149591577B08600A6FF33 /* Collectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Collectable.m; path = Objects/Collectable.m; sourceTree = "<group>"; };
+		9C61495A1577B08600A6FF33 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = Objects/Enemy.h; sourceTree = "<group>"; };
+		9C61495B1577B08600A6FF33 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = Objects/Enemy.m; sourceTree = "<group>"; };
+		9C61495C1577B08600A6FF33 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
+		9C61495D1577B08600A6FF33 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
+		9C61495E1577B08600A6FF33 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Objects/Player.h; sourceTree = "<group>"; };
+		9C61495F1577B08600A6FF33 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Objects/Player.m; sourceTree = "<group>"; };
+		9C6149601577B08600A6FF33 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Objects/User.h; sourceTree = "<group>"; };
+		9C6149611577B08600A6FF33 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Objects/User.m; sourceTree = "<group>"; };
+		9C6149671577B09600A6FF33 /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelScene.h; path = Scenes/LevelScene.h; sourceTree = "<group>"; };
+		9C6149681577B09600A6FF33 /* LevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelScene.m; path = Scenes/LevelScene.m; sourceTree = "<group>"; };
+		9C6149691577B09600A6FF33 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = Scenes/LevelSelectScene.h; sourceTree = "<group>"; };
+		9C61496A1577B09600A6FF33 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectScene.m; path = Scenes/LevelSelectScene.m; sourceTree = "<group>"; };
+		9C61496B1577B09600A6FF33 /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartScene.h; path = Scenes/StartScene.h; sourceTree = "<group>"; };
+		9C61496C1577B09600A6FF33 /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartScene.m; path = Scenes/StartScene.m; sourceTree = "<group>"; };
+		9C6149701577B0A300A6FF33 /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILayer.h; path = "Global Layers/UILayer.h"; sourceTree = "<group>"; };
+		9C6149711577B0A300A6FF33 /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayer.m; path = "Global Layers/UILayer.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,17 +576,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9C08ADCB1573A58600AE0693 /* External Classes */ = {
-			isa = PBXGroup;
-			children = (
-				9CC4154215765E74009B0694 /* CCBReader.h */,
-				9CC4154315765E74009B0694 /* CCBReader.m */,
-				9C08ADCC1573A59800AE0693 /* CCScrollLayer.h */,
-				9C08ADCD1573A59800AE0693 /* CCScrollLayer.m */,
-			);
-			name = "External Classes";
-			sourceTree = "<group>";
-		};
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
@@ -649,7 +614,6 @@
 		9C142178156E68560011C992 /* Wicked Little Devil */ = {
 			isa = PBXGroup;
 			children = (
-				9C08ADCB1573A58600AE0693 /* External Classes */,
 				9CBF4822156F9C6200896EBF /* Global Layers */,
 				9CBF4817156F927F00896EBF /* Scenes */,
 				9CBF4813156F8F8600896EBF /* Objects */,
@@ -664,18 +628,10 @@
 		9C142179156E68560011C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9CC4153D15764A9F009B0694 /* Icon-locked.png */,
-				9CC415721576686B009B0694 /* level1.ccbi */,
-				9CC26EB71575054000F58A47 /* launch.png */,
-				9CC26EB51575043C00F58A47 /* floor.png */,
-				9CC26EB21574392A00F58A47 /* level1.plhs */,
-				9C08AF751574099300AE0693 /* devil.png */,
-				9C08AF761574099300AE0693 /* hell-platform-broken.png */,
-				9C08AF771574099300AE0693 /* hell-platform.png */,
-				9C08AF781574099400AE0693 /* hell-platform2.png */,
-				9C08AF791574099400AE0693 /* mainmenu.png */,
-				9C08ADCF1573A7CE00AE0693 /* bg4.png */,
-				9C08ADBF1573919400AE0693 /* bg0.png */,
+				9C6149731577B0D700A6FF33 /* Global Audio */,
+				9C6149741577B0D800A6FF33 /* Global Images */,
+				9C6149751577B0D800A6FF33 /* Global SFX */,
+				9C6149761577B0D800A6FF33 /* Worlds */,
 				9C14217A156E68560011C992 /* Default.png */,
 				9C14217C156E68560011C992 /* fps_images.png */,
 				9C14217E156E68560011C992 /* fps_images-hd.png */,
@@ -704,6 +660,10 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9C6149521577AF6100A6FF33 /* CCBReader.h */,
+				9C6149531577AF6100A6FF33 /* CCBReader.m */,
+				9C6149541577AF6100A6FF33 /* CCScrollLayer.h */,
+				9C6149551577AF6100A6FF33 /* CCScrollLayer.m */,
 				9C142305156E69540011C992 /* cocos2d */,
 				9C1423C5156E69540011C992 /* CocosDenshion */,
 				9C1423CF156E69540011C992 /* kazmath */,
@@ -1033,19 +993,123 @@
 			path = GL;
 			sourceTree = "<group>";
 		};
+		9C6149731577B0D700A6FF33 /* Global Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Global Audio";
+			path = "Resources/Global Audio";
+			sourceTree = "<group>";
+		};
+		9C6149741577B0D800A6FF33 /* Global Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Global Images";
+			path = "Resources/Global Images";
+			sourceTree = "<group>";
+		};
+		9C6149751577B0D800A6FF33 /* Global SFX */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Global SFX";
+			path = "Resources/Global SFX";
+			sourceTree = "<group>";
+		};
+		9C6149761577B0D800A6FF33 /* Worlds */ = {
+			isa = PBXGroup;
+			children = (
+				9C6149771577B0D800A6FF33 /* Heaven */,
+				9C6149781577B0D800A6FF33 /* Hell */,
+				9C61497C1577B0D800A6FF33 /* Land */,
+				9C61497D1577B0D800A6FF33 /* Sea */,
+				9C61497E1577B0D800A6FF33 /* Space */,
+				9C61497F1577B0D800A6FF33 /* Underground */,
+			);
+			name = Worlds;
+			path = Resources/Worlds;
+			sourceTree = "<group>";
+		};
+		9C6149771577B0D800A6FF33 /* Heaven */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Heaven;
+			sourceTree = "<group>";
+		};
+		9C6149781577B0D800A6FF33 /* Hell */ = {
+			isa = PBXGroup;
+			children = (
+				9C6149791577B0D800A6FF33 /* Audio */,
+				9C61497A1577B0D800A6FF33 /* Images */,
+				9C61497B1577B0D800A6FF33 /* SFX */,
+			);
+			path = Hell;
+			sourceTree = "<group>";
+		};
+		9C6149791577B0D800A6FF33 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		9C61497A1577B0D800A6FF33 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9C61497B1577B0D800A6FF33 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SFX;
+			sourceTree = "<group>";
+		};
+		9C61497C1577B0D800A6FF33 /* Land */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Land;
+			sourceTree = "<group>";
+		};
+		9C61497D1577B0D800A6FF33 /* Sea */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sea;
+			sourceTree = "<group>";
+		};
+		9C61497E1577B0D800A6FF33 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Space;
+			sourceTree = "<group>";
+		};
+		9C61497F1577B0D800A6FF33 /* Underground */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Underground;
+			sourceTree = "<group>";
+		};
 		9CBF4813156F8F8600896EBF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				9CBF4814156F8F9500896EBF /* Player.h */,
-				9CBF4815156F8F9500896EBF /* Player.m */,
-				9C08ADB715737EA200AE0693 /* Platform.h */,
-				9C08ADB815737EA200AE0693 /* Platform.m */,
-				9C08ADC8157396C200AE0693 /* User.h */,
-				9C08ADC9157396C200AE0693 /* User.m */,
-				9CC26EBC157513AF00F58A47 /* Collectable.h */,
-				9CC26EBD157513AF00F58A47 /* Collectable.m */,
-				9CC4153315762C90009B0694 /* Enemy.h */,
-				9CC4153415762C90009B0694 /* Enemy.m */,
+				9C6149581577B08600A6FF33 /* Collectable.h */,
+				9C6149591577B08600A6FF33 /* Collectable.m */,
+				9C61495A1577B08600A6FF33 /* Enemy.h */,
+				9C61495B1577B08600A6FF33 /* Enemy.m */,
+				9C61495C1577B08600A6FF33 /* Platform.h */,
+				9C61495D1577B08600A6FF33 /* Platform.m */,
+				9C61495E1577B08600A6FF33 /* Player.h */,
+				9C61495F1577B08600A6FF33 /* Player.m */,
+				9C6149601577B08600A6FF33 /* User.h */,
+				9C6149611577B08600A6FF33 /* User.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1053,12 +1117,12 @@
 		9CBF4817156F927F00896EBF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				9CBF481F156F9B5A00896EBF /* StartScene.h */,
-				9CBF4820156F9B5A00896EBF /* StartScene.m */,
-				9CBF4823156F9E1D00896EBF /* LevelSelectScene.h */,
-				9CBF4824156F9E1D00896EBF /* LevelSelectScene.m */,
-				9CBF4826156FA0C200896EBF /* LevelScene.h */,
-				9CC4154B15766681009B0694 /* LevelScene.m */,
+				9C6149671577B09600A6FF33 /* LevelScene.h */,
+				9C6149681577B09600A6FF33 /* LevelScene.m */,
+				9C6149691577B09600A6FF33 /* LevelSelectScene.h */,
+				9C61496A1577B09600A6FF33 /* LevelSelectScene.m */,
+				9C61496B1577B09600A6FF33 /* StartScene.h */,
+				9C61496C1577B09600A6FF33 /* StartScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1066,8 +1130,8 @@
 		9CBF4822156F9C6200896EBF /* Global Layers */ = {
 			isa = PBXGroup;
 			children = (
-				9C1424E3156E86FB0011C992 /* UILayer.h */,
-				9C1424E4156E86FB0011C992 /* UILayer.m */,
+				9C6149701577B0A300A6FF33 /* UILayer.h */,
+				9C6149711577B0A300A6FF33 /* UILayer.m */,
 			);
 			name = "Global Layers";
 			sourceTree = "<group>";
@@ -1287,18 +1351,6 @@
 				9C14218B156E68560011C992 /* Icon.png in Resources */,
 				9C14218D156E68560011C992 /* Icon@2x.png in Resources */,
 				9C142190156E68560011C992 /* iTunesArtwork in Resources */,
-				9C08ADC01573919400AE0693 /* bg0.png in Resources */,
-				9C08ADD01573A7CE00AE0693 /* bg4.png in Resources */,
-				9C08AF7A1574099400AE0693 /* devil.png in Resources */,
-				9C08AF7B1574099400AE0693 /* hell-platform-broken.png in Resources */,
-				9C08AF7C1574099400AE0693 /* hell-platform.png in Resources */,
-				9C08AF7D1574099400AE0693 /* hell-platform2.png in Resources */,
-				9C08AF7E1574099400AE0693 /* mainmenu.png in Resources */,
-				9CC26EB31574392A00F58A47 /* level1.plhs in Resources */,
-				9CC26EB61575043C00F58A47 /* floor.png in Resources */,
-				9CC26EB81575054000F58A47 /* launch.png in Resources */,
-				9CC4153E15764A9F009B0694 /* Icon-locked.png in Resources */,
-				9CC415891576686B009B0694 /* level1.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1311,17 +1363,17 @@
 			files = (
 				9C1422E8156E68580011C992 /* main.m in Sources */,
 				9C1422EB156E68580011C992 /* AppDelegate.m in Sources */,
-				9C1424E5156E86FB0011C992 /* UILayer.m in Sources */,
-				9CBF4816156F8F9500896EBF /* Player.m in Sources */,
-				9CBF4821156F9B5A00896EBF /* StartScene.m in Sources */,
-				9CBF4825156F9E1D00896EBF /* LevelSelectScene.m in Sources */,
-				9C08ADB915737EA200AE0693 /* Platform.m in Sources */,
-				9C08ADCA157396C200AE0693 /* User.m in Sources */,
-				9C08ADCE1573A59800AE0693 /* CCScrollLayer.m in Sources */,
-				9CC26EBE157513AF00F58A47 /* Collectable.m in Sources */,
-				9CC4153515762C90009B0694 /* Enemy.m in Sources */,
-				9CC4154415765E74009B0694 /* CCBReader.m in Sources */,
-				9CC4154C15766681009B0694 /* LevelScene.m in Sources */,
+				9C6149561577AF6100A6FF33 /* CCBReader.m in Sources */,
+				9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */,
+				9C6149621577B08600A6FF33 /* Collectable.m in Sources */,
+				9C6149631577B08600A6FF33 /* Enemy.m in Sources */,
+				9C6149641577B08600A6FF33 /* Platform.m in Sources */,
+				9C6149651577B08600A6FF33 /* Player.m in Sources */,
+				9C6149661577B08600A6FF33 /* User.m in Sources */,
+				9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */,
+				9C61496E1577B09600A6FF33 /* LevelSelectScene.m in Sources */,
+				9C61496F1577B09600A6FF33 /* StartScene.m in Sources */,
+				9C6149721577B0A300A6FF33 /* UILayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

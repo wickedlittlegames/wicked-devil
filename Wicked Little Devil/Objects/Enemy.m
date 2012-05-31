@@ -16,7 +16,6 @@
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        self.scaleY = -1;
         self.active = FALSE;
         
         // defaults
@@ -32,20 +31,30 @@
 {
     if ( self.active )
     {
-        if ( [self.type isEqualToString:@"horizontal"] )
+        switch (self.tag)
         {
-            self.position = ccp ( self.position.x + self.speed_x, self.position.y );
+            // Horizontal Movement (right to left)
+            case 0:
+                self.position = ccp ( self.position.x + self.speed_x, self.position.y );
+                break;
+                
+            // Horizontal with wiggle (Bat style)
+            case 1:
+                self.position = ccp(self.position.x + self.speed_x, self.position.y + sin((self.position.x+2)/10) * 15); 
+                if (self.position.x > 480+70) self.position = ccp(-30, self.position.y);
+                break;
+                
+            // Vertical (down from up)
+            case 2:
+                self.position = ccp (self.position.x, self.position.y + self.speed_y);
+                break;
+            
+            // Fallback (as in, default).
+            default:
+                // don't move anywhere
+                break;
         }
-        if ( [self.type isEqualToString:@"horizontal-with-wiggle"] )
-        {
-            self.position = ccp(self.position.x + self.speed_x, self.position.y + sin((self.position.x+2)/10) * 15); 
-            if (self.position.x > 480+70) self.position = ccp(-30, self.position.y);
-        }
-        if ( [self.type isEqualToString:@"vertical"] )
-        {
-            self.position = ccp (self.position.x, self.position.y + self.speed_y);
-        }
-        if (levelThreshold >= 0 && (![self.type isEqualToString:@"vertical"]))
+        if ( levelThreshold < 0 && !(self.tag == 2) )
         {
             self.position = ccp(self.position.x, self.position.y + levelThreshold);
         }
@@ -54,10 +63,7 @@
 
 - (void) activateNearPlayerPoint:(Player*)player
 {
-    if (self.position.y - player.position.y < 200) 
-    {
-        self.active = TRUE;
-    }
+    // TODO: Needs work
 }
 
 - (BOOL) isIntersectingPlayer:(Player*)player

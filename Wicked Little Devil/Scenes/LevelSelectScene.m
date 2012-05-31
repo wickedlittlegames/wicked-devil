@@ -63,6 +63,7 @@
                                       disabledImage:[NSString stringWithFormat:@"Icon-locked.png",i] 
                                       target:self 
                                       selector:@selector(levelButtonTapped:)];
+            world_level.isEnabled = ( user.worldprogress >= 1  ? TRUE : FALSE );
             world_level.isEnabled = ( user.levelprogress >= i ? TRUE : FALSE );
             [world_1_menu addChild:world_level];
         }
@@ -101,7 +102,7 @@
 }
 
 - (void)levelButtonTapped:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithLevelNum:1]];
+    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:1 LevelNum:1]];
 }
 
 @end

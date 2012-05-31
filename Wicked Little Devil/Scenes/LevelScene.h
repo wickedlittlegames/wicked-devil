@@ -18,18 +18,18 @@
     Platform *floor;
     float levelThreshold;
     CGPoint touchLocation;
-    NSMutableArray *platforms, *collectables, *enemies;
+    NSMutableArray *platforms, *collectables, *bigcollectables, *enemies;
+    CCArray *gameObjectsArray;
+    CCLayer *gameObjectsLayer;
     CCLayer *background;
     
     // tidy
     CCMenuItem *launch;
     CCMenu *menu;
 }
-@property (nonatomic, assign) int level;
-@property (nonatomic, assign) float gravity;
+
 @property (nonatomic, assign) bool started;
 
-+(CCScene *) sceneWithLevelNum:(int)levelNum;
-//- (id)initWithLevelNum:(int)levelNum;
++(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 
 @end

@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "User.h"
 
-@interface StartScene : CCLayer {
+@interface StartScene : CCLayer  <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
     User *user;
 }
 +(CCScene *) scene;

@@ -8,6 +8,7 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "UILayer.h"
 #import "StartScene.h"
 #import "LevelSelectScene.h"
@@ -55,9 +56,65 @@
 		collectedscore_label.position = ccp(100, 470);
 		[self addChild:collectedscore_label];     
         
+        
+        //
+		// Leaderboards and Achievements
+		//
+		
+		// Default font size will be 28 points.
+		[CCMenuItemFont setFontSize:28];
+		CGSize size = [[CCDirector sharedDirector] winSize];
+        
+		// Achievement Menu Item using blocks
+		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
+			
+			
+			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+			achivementViewController.achievementDelegate = self;
+			
+			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+			
+			[[app navController] presentModalViewController:achivementViewController animated:YES];
+		}
+									   ];
+        
+		// Leaderboard Menu Item using blocks
+		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
+			
+			
+			GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+			leaderboardViewController.leaderboardDelegate = self;
+			
+			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+			
+			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
+        }
+									   ];
+		
+		CCMenu *menu_social = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
+		
+		[menu_social alignItemsHorizontallyWithPadding:20];
+		[menu_social setPosition:ccp( size.width/2, size.height/2 - 50)];
+		
+		// Add the menu to the layer
+		[self addChild:menu_social];
+        
     }
 	return self;    
 }
+
+-(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+
+-(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)startButtonTapped:(id)sender {
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];

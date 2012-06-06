@@ -74,6 +74,7 @@
         }
         if ([node isKindOfClass: [Enemy class]])
         {
+            node.tag = 1;
             [enemies addObject:node];
         }        
     }

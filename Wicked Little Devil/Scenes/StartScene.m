@@ -80,7 +80,7 @@
 		
 		[menu_gamecenter alignItemsHorizontallyWithPadding:20];
 		[menu_gamecenter setPosition:ccp( size.width/2, size.height/2 - 50)];
-		
+        
 		// Add the menu to the layer
 		[self addChild:menu_gamecenter];
         

@@ -266,6 +266,7 @@
 		9C61496F1577B09600A6FF33 /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496C1577B09600A6FF33 /* StartScene.m */; };
 		9C6149721577B0A300A6FF33 /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149711577B0A300A6FF33 /* UILayer.m */; };
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C8DC257157F720400760A04 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC256157F720300760A04 /* ShopScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -548,6 +549,9 @@
 		9C6149711577B0A300A6FF33 /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayer.m; path = "Global Layers/UILayer.m"; sourceTree = "<group>"; };
 		9C8DC24F157F66C300760A04 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		9C8DC250157F66C300760A04 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
+		9C8DC255157F720300760A04 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
+		9C8DC256157F720300760A04 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
+		9C8DC258157F73DA00760A04 /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterConstants.h; path = Objects/GameCenterConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1122,12 +1126,15 @@
 		9CBF4817156F927F00896EBF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				9C8DC258157F73DA00760A04 /* GameCenterConstants.h */,
 				9C6149671577B09600A6FF33 /* LevelScene.h */,
 				9C6149681577B09600A6FF33 /* LevelScene.m */,
 				9C6149691577B09600A6FF33 /* LevelSelectScene.h */,
 				9C61496A1577B09600A6FF33 /* LevelSelectScene.m */,
 				9C61496B1577B09600A6FF33 /* StartScene.h */,
 				9C61496C1577B09600A6FF33 /* StartScene.m */,
+				9C8DC255157F720300760A04 /* ShopScene.h */,
+				9C8DC256157F720300760A04 /* ShopScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1380,6 +1387,7 @@
 				9C61496F1577B09600A6FF33 /* StartScene.m in Sources */,
 				9C6149721577B0A300A6FF33 /* UILayer.m in Sources */,
 				9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */,
+				9C8DC257157F720400760A04 /* ShopScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

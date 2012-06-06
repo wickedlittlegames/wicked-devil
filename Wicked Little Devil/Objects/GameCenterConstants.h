@@ -1,0 +1,44 @@
+#pragma mark === IN APP PURCHASE IDS ===
+
+#define IAP_HEALTHBOOST 1    // .69
+#define IAP_DAMAGEINCREASE 2 // .69
+#define IAP_LIGHTFEET 3      // .69 
+#define IAP_DOUBLESOULS 4    // .69
+#define IAP_UNLOCK_WORLD_2 5 // .99
+#define IAP_UNLOCK_WORLD_3 6 // .99
+#define IAP_UNLOCK_WORLD_4 7 // .99
+#define IAP_UNLOCK_WORLD_5 8 // .99
+#define IAP_UNLOCK_WORLD_6 9 // .99
+#define IAP_ALL_POWERUPS 10  // 1.99
+#define IAP_ALL_WORLDS 11    // 4.99
+#define IAP_ALL_STUFF 12     // 5.99
+
+#pragma mark === ACHIEVEMENT IDS ===
+
+#define ACV_FIRST_PLAY 1
+#define ACV_BEAT_WORLD_1 2
+#define ACV_BEAT_WORLD_2 3
+#define ACV_BEAT_WORLD_3 4
+#define ACV_BEAT_WORLD_4 5
+#define ACV_BEAT_WORLD_5 6
+#define ACV_BEAT_WORLD_6 7
+#define ACV_KILLED_BY_DEATH 8
+#define ACV_THOUSAND_SOULS 9
+#define ACV_5THOUSAND_SOULS 10
+#define ACV_10THOUSAND_SOULS 11
+#define ACV_50THOUSAND_SOULS 12
+#define ACV_DIED_100_TIMES 13
+#define ACV_1000JUMPSONPLATFORM 14
+#define ACV_TWEETED 15
+#define ACV_FACEBOOKED 16
+#define ACV_FIRST_3BIG_SOULS 17
+
+#pragma mark === LEADERBOARD IDS ===
+
+#define LDB_GLOBAL 1
+#define LDB_WORLD_1 2
+#define LDB_WORLD_2 3
+#define LDB_WORLD_3 4
+#define LDB_WORLD_4 5
+#define LDB_WORLD_5 6
+#define LDB_WORLD_6 7

@@ -267,6 +267,11 @@
 		9C6149721577B0A300A6FF33 /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149711577B0A300A6FF33 /* UILayer.m */; };
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C8DC257157F720400760A04 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC256157F720300760A04 /* ShopScene.m */; };
+		9C8DC28C157F943000760A04 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC289157F943000760A04 /* bat.png */; };
+		9C8DC28D157F943000760A04 /* Devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28A157F943000760A04 /* Devil.png */; };
+		9C8DC28E157F943000760A04 /* hell-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28B157F943000760A04 /* hell-platform.png */; };
+		9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */; };
+		9C8DC296157F97B000760A04 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC295157F97B000760A04 /* star.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -552,6 +557,11 @@
 		9C8DC255157F720300760A04 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		9C8DC256157F720300760A04 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		9C8DC258157F73DA00760A04 /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterConstants.h; path = Objects/GameCenterConstants.h; sourceTree = "<group>"; };
+		9C8DC289157F943000760A04 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
+		9C8DC28A157F943000760A04 /* Devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Devil.png; sourceTree = "<group>"; };
+		9C8DC28B157F943000760A04 /* hell-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform.png"; sourceTree = "<group>"; };
+		9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
+		9C8DC295157F97B000760A04 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,6 +1023,10 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C8DC295157F97B000760A04 /* star.png */,
+				9C8DC289157F943000760A04 /* bat.png */,
+				9C8DC28A157F943000760A04 /* Devil.png */,
+				9C8DC28B157F943000760A04 /* hell-platform.png */,
 			);
 			name = "Global Images";
 			path = "Resources/Global Images";
@@ -1050,8 +1064,8 @@
 		9C6149781577B0D800A6FF33 /* Hell */ = {
 			isa = PBXGroup;
 			children = (
+				9C8DC28F157F94E800760A04 /* Levels */,
 				9C6149791577B0D800A6FF33 /* Audio */,
-				9C61497A1577B0D800A6FF33 /* Images */,
 				9C61497B1577B0D800A6FF33 /* SFX */,
 			);
 			path = Hell;
@@ -1062,13 +1076,6 @@
 			children = (
 			);
 			path = Audio;
-			sourceTree = "<group>";
-		};
-		9C61497A1577B0D800A6FF33 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		9C61497B1577B0D800A6FF33 /* SFX */ = {
@@ -1104,6 +1111,14 @@
 			children = (
 			);
 			path = Underground;
+			sourceTree = "<group>";
+		};
+		9C8DC28F157F94E800760A04 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
+			);
+			name = Levels;
 			sourceTree = "<group>";
 		};
 		9CBF4813156F8F8600896EBF /* Objects */ = {
@@ -1363,6 +1378,11 @@
 				9C14218B156E68560011C992 /* Icon.png in Resources */,
 				9C14218D156E68560011C992 /* Icon@2x.png in Resources */,
 				9C142190156E68560011C992 /* iTunesArtwork in Resources */,
+				9C8DC28C157F943000760A04 /* bat.png in Resources */,
+				9C8DC28D157F943000760A04 /* Devil.png in Resources */,
+				9C8DC28E157F943000760A04 /* hell-platform.png in Resources */,
+				9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */,
+				9C8DC296157F97B000760A04 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,7 @@
     
     // Grab the layers
     UILayer *ui = [UILayer node];
-	CCLayer *current = [CCLayer node];
+	ShopScene *current = [ShopScene node];
     
     // Fill the scene
     [scene addChild:ui z:100];

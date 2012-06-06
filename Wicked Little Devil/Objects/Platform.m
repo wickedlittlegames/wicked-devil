@@ -16,14 +16,14 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         // defaults
-        self.health = 5.0;
+        self.health = 500.0;
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE) 
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE && player.velocity.y < 0) 
     {
         self.health = self.health - player.damage;
         if (self.health == 0) self.visible = FALSE;

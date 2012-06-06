@@ -9,6 +9,7 @@
 #import "UILayer.h"
 #import "LevelScene.h"
 #import "LevelSelectScene.h"
+#import "ShopScene.h"
 
 @implementation LevelSelectScene
 
@@ -34,6 +35,11 @@
 	if( (self=[super init]) ) {
         // Get the user
         user = [[User alloc] init];
+        
+        CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(storeButtonTapped:)];
+        CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];
+        storemenu.position = ccp ( 120, 300 );
+        [self addChild:storemenu];
         
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
@@ -99,6 +105,11 @@
 
     }
 	return self;    
+}
+
+
+- (void)storeButtonTapped:(id)sender {
+    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
 }
 
 - (void)levelButtonTapped:(id)sender {

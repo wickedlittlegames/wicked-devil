@@ -23,7 +23,7 @@
         self.health = 100.0;
         self.damage = 1.0; 
         self.collected = 0;
-        self.jumpspeed = 8.5;
+        self.jumpspeed = 7.0;
     }
     return self;
 }

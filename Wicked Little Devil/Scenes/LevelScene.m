@@ -74,7 +74,7 @@
         }
         if ([node isKindOfClass: [Enemy class]])
         {
-            node.tag = 1;
+            node.tag = 0;
             [enemies addObject:node];
         }        
     }
@@ -98,7 +98,6 @@
                 background.position = ccp(background.position.x, background.position.y + levelThreshold/40);
                 floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
             }
-
             
             for (Platform *platform in platforms)
             {                
@@ -117,6 +116,7 @@
                 {
                     player.collected++;
                 }
+                [collectable movementWithThreshold:levelThreshold];
             }
             
             for (BigCollectable *bigcollectable in bigcollectables)
@@ -125,20 +125,21 @@
                 {
                     player.bigcollected++;
                 }
+                [bigcollectable movementWithThreshold:levelThreshold];                
             }
             
             for (Enemy *enemy in enemies)
             {
                 if ( enemy.isAlive )
                 {
-                    [enemy activateNearPlayerPoint:player];
+                    //[enemy activateNearPlayerPoint:player];
                     [enemy isIntersectingPlayer:player];
                     [enemy movementWithThreshold:levelThreshold];                    
                 }
             }
             
             [self playerMovementChecks];
-            [player movement:levelThreshold withGravity:0.225];
+            [player movement:levelThreshold withGravity:0.200];
         }
         else 
         {

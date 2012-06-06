@@ -12,6 +12,7 @@
 @interface Collectable : CCSprite {}
     
 - (BOOL) isIntersectingPlayer:(Player*)player;
+- (void) movementWithThreshold:(float)levelThreshold;
 
 @end
 

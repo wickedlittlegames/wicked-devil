@@ -23,6 +23,8 @@
         self.damage = 1;
         self.speed_x = 1;
         self.speed_y = 1;
+        
+        NSLog(@"Theres an enemy!");
     }
     return self;
 }
@@ -36,6 +38,7 @@
             // Horizontal Movement (right to left)
             case 0:
                 self.position = ccp ( self.position.x + self.speed_x, self.position.y );
+                if (self.position.x > 480+70) self.position = ccp(-30, self.position.y);
                 break;
                 
             // Horizontal with wiggle (Bat style)
@@ -63,12 +66,12 @@
 
 - (void) activateNearPlayerPoint:(Player*)player
 {
-    // TODO: Needs work
+    if ( !self.active ) self.active = TRUE;
 }
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if (player.velocity.y > 0)
+    if (player.velocity.y > 0 && CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE)
     {
         [self damageFromPlayer:player];
         if ( self.health <= 0 )
@@ -78,7 +81,7 @@
         }
         return TRUE;
     }
-    else if (player.velocity.y < 0)
+    else if (player.velocity.y < 0 && CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE)
     {
         [self damageToPlayer:player];
         return TRUE;

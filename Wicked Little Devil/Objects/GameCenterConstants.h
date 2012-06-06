@@ -32,6 +32,8 @@
 #define ACV_TWEETED 15
 #define ACV_FACEBOOKED 16
 #define ACV_FIRST_3BIG_SOULS 17
+#define ACV_UNLOCKED_HARDMODE 18
+#define ACV_BEAT_HARDMODE 19
 
 #pragma mark === LEADERBOARD IDS ===
 
@@ -42,3 +44,4 @@
 #define LDB_WORLD_4 5
 #define LDB_WORLD_5 6
 #define LDB_WORLD_6 7
+#define LDB_WORLD_HARDCORE 8

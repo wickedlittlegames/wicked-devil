@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, jumpspeed;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {

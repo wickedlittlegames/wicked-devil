@@ -8,12 +8,14 @@
 
 #import "CCBReader.h"
 #import "cocos2d.h"
+#import "User.h"
 #import "Player.h"
 #import "Platform.h"
 #import "Collectable.h"
 #import "Enemy.h"
 
 @interface LevelScene : CCLayer {
+    User *user;
     Player *player;
     Platform *floor;
     float levelThreshold;

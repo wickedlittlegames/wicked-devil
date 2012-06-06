@@ -22,3 +22,5 @@
 }
 
 @end
+
+@implementation BigCollectable @end

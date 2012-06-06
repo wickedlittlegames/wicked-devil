@@ -18,5 +18,6 @@
 - (void) movementWithThreshold:(float)levelThreshold;
 - (void) activateNearPlayerPoint:(Player*)player;
 - (BOOL) isIntersectingPlayer:(Player*)player;
+- (BOOL) isAlive;
 
 @end

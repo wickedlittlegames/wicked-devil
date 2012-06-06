@@ -6,11 +6,13 @@
 //  Copyright (c) 2012 Wicked Little Websites. All rights reserved.
 //
 
+#import "GameKitHelper.h"
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject {}
+@interface User : NSObject <GameKitHelperProtocol> {}
 
-@property (nonatomic, retain) NSUserDefaults *data;
+@property (nonatomic, retain) NSUserDefaults *udata;
+@property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int highscore, collected, levelprogress, worldprogress;
 
 @end

@@ -18,8 +18,10 @@
 {
 	if( (self=[super init]) ) {
         
+        user = [[User alloc] init];
+        
         self.started = TRUE;
-    
+        
         player = [Player spriteWithFile:@"devil.png"];
         touchLocation.x = player.position.x;
         [self addChild:player];
@@ -65,6 +67,10 @@
         if ([node isKindOfClass: [Collectable class]])
         {
             [collectables addObject:node];
+        }
+        if ([node isKindOfClass: [BigCollectable class]])
+        {
+            [bigcollectables addObject:node];
         }
         if ([node isKindOfClass: [Enemy class]])
         {
@@ -112,11 +118,22 @@
                 }
             }
             
+            for (BigCollectable *bigcollectable in bigcollectables)
+            {
+                if ( [bigcollectable isIntersectingPlayer:player] )
+                {
+                    player.bigcollected++;
+                }
+            }
+            
             for (Enemy *enemy in enemies)
             {
-                [enemy activateNearPlayerPoint:player];
-                [enemy isIntersectingPlayer:player];
-                [enemy movementWithThreshold:levelThreshold];
+                if ( enemy.isAlive )
+                {
+                    [enemy activateNearPlayerPoint:player];
+                    [enemy isIntersectingPlayer:player];
+                    [enemy movementWithThreshold:levelThreshold];                    
+                }
             }
             
             [self playerMovementChecks];

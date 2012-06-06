@@ -97,4 +97,10 @@
     self.health = self.health - player.damage;
 }
 
+- (BOOL) isAlive 
+{
+    return ( self.health > 0.0 ? TRUE : FALSE );
+}
+
+
 @end

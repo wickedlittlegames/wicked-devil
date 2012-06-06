@@ -14,6 +14,7 @@
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected;
+@property (nonatomic, assign) int bigcollected;
 
 - (BOOL) isAlive;
 - (void) jump;

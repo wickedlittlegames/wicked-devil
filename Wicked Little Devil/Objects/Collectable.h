@@ -14,3 +14,5 @@
 - (BOOL) isIntersectingPlayer:(Player*)player;
 
 @end
+
+@interface BigCollectable : Collectable {} @end

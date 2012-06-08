@@ -15,7 +15,6 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (void) movementWithThreshold:(float)levelThreshold;
-- (void) offScreenCleanup;
 
 @end
 

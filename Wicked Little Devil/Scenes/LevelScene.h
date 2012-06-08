@@ -13,14 +13,15 @@
 #import "Platform.h"
 #import "Collectable.h"
 #import "Enemy.h"
+#import "Trigger.h"
 
 @interface LevelScene : CCLayer {
     User *user;
-    Player *player;
     Platform *floor;
+    Player *player;
     float levelThreshold;
     CGPoint touchLocation;
-    NSMutableArray *platforms, *collectables, *bigcollectables, *enemies;
+    NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
     CCArray *gameObjectsArray;
     CCLayer *gameObjectsLayer;
     CCLayer *background;

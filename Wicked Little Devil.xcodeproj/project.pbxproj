@@ -272,6 +272,9 @@
 		9C8DC28E157F943000760A04 /* hell-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28B157F943000760A04 /* hell-platform.png */; };
 		9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */; };
 		9C8DC296157F97B000760A04 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC295157F97B000760A04 /* star.png */; };
+		9C8DC299157FC13900760A04 /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC298157FC13900760A04 /* Trigger.m */; };
+		9C8DC29B1580082B00760A04 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29A1580082B00760A04 /* floor.png */; };
+		9C8DC29D158009CB00760A04 /* Start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29C158009CB00760A04 /* Start-button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -562,6 +565,10 @@
 		9C8DC28B157F943000760A04 /* hell-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform.png"; sourceTree = "<group>"; };
 		9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
 		9C8DC295157F97B000760A04 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		9C8DC297157FC13900760A04 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
+		9C8DC298157FC13900760A04 /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trigger.m; sourceTree = "<group>"; };
+		9C8DC29A1580082B00760A04 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
+		9C8DC29C158009CB00760A04 /* Start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start-button.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1023,6 +1030,8 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C8DC29C158009CB00760A04 /* Start-button.png */,
+				9C8DC29A1580082B00760A04 /* floor.png */,
 				9C8DC295157F97B000760A04 /* star.png */,
 				9C8DC289157F943000760A04 /* bat.png */,
 				9C8DC28A157F943000760A04 /* Devil.png */,
@@ -1134,6 +1143,8 @@
 				9C61495F1577B08600A6FF33 /* Player.m */,
 				9C6149601577B08600A6FF33 /* User.h */,
 				9C6149611577B08600A6FF33 /* User.m */,
+				9C8DC297157FC13900760A04 /* Trigger.h */,
+				9C8DC298157FC13900760A04 /* Trigger.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1383,6 +1394,8 @@
 				9C8DC28E157F943000760A04 /* hell-platform.png in Resources */,
 				9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */,
 				9C8DC296157F97B000760A04 /* star.png in Resources */,
+				9C8DC29B1580082B00760A04 /* floor.png in Resources */,
+				9C8DC29D158009CB00760A04 /* Start-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1408,6 +1421,7 @@
 				9C6149721577B0A300A6FF33 /* UILayer.m in Sources */,
 				9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */,
 				9C8DC257157F720400760A04 /* ShopScene.m in Sources */,
+				9C8DC299157FC13900760A04 /* Trigger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

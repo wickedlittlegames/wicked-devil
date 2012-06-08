@@ -20,11 +20,21 @@
         
         user = [[User alloc] init];
         
-        self.started = TRUE;
+        self.started = FALSE;
         
         player = [Player spriteWithFile:@"devil.png"];
+        player.position = ccp( 320/2 , 110 );
         touchLocation.x = player.position.x;
         [self addChild:player];
+        
+        floor = [CCSprite spriteWithFile:@"floor.png"];
+        floor.position = ccp ( 320 / 2, 80 );
+        [self addChild:floor];
+        
+        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(launch:)];
+        menu = [CCMenu menuWithItems:launchButton, nil];
+        menu.position = ccp ( 320/2, 30 );
+        [self addChild:menu];
         
     }
 	return self;
@@ -57,6 +67,7 @@
     collectables    = [NSMutableArray arrayWithCapacity:100];
     bigcollectables = [NSMutableArray arrayWithCapacity:3];
     enemies         = [NSMutableArray arrayWithCapacity:100];
+    triggers        = [NSMutableArray arrayWithCapacity:100];
     
     for (CCNode* node in gameObjects)
     {
@@ -76,22 +87,27 @@
         {
             node.tag = 0;
             [enemies addObject:node];
-        }        
+        }
+        if ([node isKindOfClass: [Trigger class]])
+        {
+            [triggers addObject:node];
+        }
     }
+    
+    NSLog(@"%@",platforms);
 
     [self schedule:@selector(update:)];
 }
 
 #pragma mark === Game Loop ===
 
-
 - (void)update:(ccTime)dt 
 {
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
-        {   
-            levelThreshold = 370 - player.position.y;
+        {               
+            levelThreshold = 300 - player.position.y;
         
             if ( levelThreshold < 0 )
             {
@@ -103,11 +119,11 @@
             {                
                 if ( [platform isIntersectingPlayer:player] ) 
                 {
+                    NSLog(@"platform position: %f",platform.position.y);
                     [player jump];
                 }
 
                 [platform movementWithThreshold:levelThreshold];
-                [platform offScreenCleanup];
             }
             
             for (Collectable *collectable in collectables)
@@ -126,6 +142,11 @@
                     player.bigcollected++;
                 }
                 [bigcollectable movementWithThreshold:levelThreshold];                
+            }
+            
+            for (Trigger *trigger in triggers)
+            {
+                // TODO - TRIGGER TYPE
             }
             
             for (Enemy *enemy in enemies)
@@ -169,9 +190,9 @@
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, -18.5 );
+    player.velocity = ccp ( player.velocity.x, 8.5 );
     menu.visible = NO;
-    started = TRUE;
+    self.started = TRUE;
 }
 
 @end

@@ -17,6 +17,10 @@
     {
         // defaults
         self.health = 500.0;
+        self.visible = TRUE;
+        self.zOrder = 100;
+        self.opacity = 1;
+        NSLog(@"Does this fire?");
     }
     return self;
 }
@@ -38,14 +42,6 @@
     if (levelThreshold < 0)
     {
         self.position = ccp(self.position.x, self.position.y + levelThreshold);
-    }
-}
-
-- (void) offScreenCleanup
-{
-    if ( self.position.y > 700 ) 
-    {
-        [self.parent removeChild:self cleanup:YES];        
     }
 }
 

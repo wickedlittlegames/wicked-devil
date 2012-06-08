@@ -38,8 +38,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>146.8203125</real>
-							<real>69.82421875</real>
+							<real>149.984375</real>
+							<real>100</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -93,7 +93,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -186,8 +186,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250.8203125</real>
-							<real>321.82421875</real>
+							<real>240.984375</real>
+							<real>1280</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -241,7 +241,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -334,8 +334,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>74.8203125</real>
-							<real>419.82421875</real>
+							<real>74.984375</real>
+							<real>1174</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -389,7 +389,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -416,154 +416,6 @@
 						<array>
 							<string></string>
 							<string>Resources/Global Images/hell-platform.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>opacity</string>
-						<key>type</key>
-						<string>Byte</string>
-						<key>value</key>
-						<integer>255</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<false/>
-							<false/>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>blendFunc</string>
-						<key>type</key>
-						<string>Blendmode</string>
-						<key>value</key>
-						<array>
-							<integer>1</integer>
-							<integer>771</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string>Enemy</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>243.97265625</real>
-							<real>407.98046875</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>75</real>
-							<real>30</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>rotation</string>
-						<key>type</key>
-						<string>Degrees</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>tag</string>
-						<key>type</key>
-						<string>Integer</string>
-						<key>value</key>
-						<integer>-1</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ignoreAnchorPointForPosition</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>visible</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Resources/Global Images/bat.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -630,8 +482,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>67.8203125</real>
-							<real>177.82421875</real>
+							<real>149.984375</real>
+							<real>200</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -685,7 +537,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -764,7 +616,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>BigCollectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -778,8 +630,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>56.5703125</real>
-							<real>282.1796875</real>
+							<real>149.984375</real>
+							<real>300</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -790,8 +642,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -833,7 +685,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -859,7 +711,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -912,7 +764,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -926,8 +778,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250.5703125</real>
-							<real>341.1796875</real>
+							<real>149.984375</real>
+							<real>400</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -938,8 +790,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -961,9 +813,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -981,7 +833,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1007,7 +859,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1060,7 +912,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1074,8 +926,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250.5703125</real>
-							<real>360.1796875</real>
+							<real>149.984375</real>
+							<real>500</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1086,8 +938,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1109,9 +961,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1129,7 +981,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1155,7 +1007,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1208,7 +1060,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1222,8 +1074,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250.5703125</real>
-							<real>378.1796875</real>
+							<real>149.984375</real>
+							<real>600</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1234,8 +1086,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1257,9 +1109,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1277,7 +1129,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1303,7 +1155,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1356,7 +1208,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1370,8 +1222,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>86.5703125</real>
-							<real>281.1796875</real>
+							<real>149.984375</real>
+							<real>600</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1382,8 +1234,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1405,9 +1257,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1425,7 +1277,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1451,7 +1303,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1504,7 +1356,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1518,8 +1370,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>56.5703125</real>
-							<real>310.1796875</real>
+							<real>149.984375</real>
+							<real>800</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1530,8 +1382,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1553,9 +1405,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1573,7 +1425,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1599,7 +1451,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1652,7 +1504,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1666,8 +1518,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>73.5703125</real>
-							<real>441.1796875</real>
+							<real>149.984375</real>
+							<real>693</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1678,8 +1530,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1701,9 +1553,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1721,7 +1573,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1747,7 +1599,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1800,7 +1652,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1814,8 +1666,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>146.5703125</real>
-							<real>165.1796875</real>
+							<real>149.984375</real>
+							<real>900</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1826,8 +1678,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1849,9 +1701,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1869,7 +1721,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1895,7 +1747,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1948,7 +1800,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1962,8 +1814,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>146.5703125</real>
-							<real>144.1796875</real>
+							<real>149.984375</real>
+							<real>1000</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1974,8 +1826,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1997,9 +1849,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2017,7 +1869,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2043,7 +1895,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2096,7 +1948,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2110,8 +1962,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>148.5703125</real>
-							<real>121.1796875</real>
+							<real>149.984375</real>
+							<real>1100</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2122,8 +1974,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2145,9 +1997,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2165,7 +2017,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2191,7 +2043,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2244,7 +2096,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2258,8 +2110,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>146.5703125</real>
-							<real>144.1796875</real>
+							<real>194.984375</real>
+							<real>100</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2270,8 +2122,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2293,9 +2145,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2313,7 +2165,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2339,7 +2191,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2392,7 +2244,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2406,8 +2258,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>149.5703125</real>
-							<real>95.1796875</real>
+							<real>195.984375</real>
+							<real>200</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2418,8 +2270,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2441,9 +2293,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2461,7 +2313,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2487,7 +2339,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2540,7 +2392,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2554,8 +2406,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>171.5703125</real>
-							<real>165.1796875</real>
+							<real>193.984375</real>
+							<real>300</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2566,8 +2418,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2589,9 +2441,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2609,7 +2461,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2635,7 +2487,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2688,7 +2540,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2702,8 +2554,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>146.5703125</real>
-							<real>165.1796875</real>
+							<real>193.984375</real>
+							<real>396</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2714,8 +2566,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2737,9 +2589,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2757,7 +2609,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2783,7 +2635,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2836,7 +2688,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2850,8 +2702,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>172.5703125</real>
-							<real>144.1796875</real>
+							<real>193.984375</real>
+							<real>500</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2862,8 +2714,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2885,9 +2737,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2905,7 +2757,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2931,7 +2783,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2984,7 +2836,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2998,8 +2850,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>193.5703125</real>
-							<real>144.1796875</real>
+							<real>198.984375</real>
+							<real>598</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3010,8 +2862,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3033,9 +2885,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3053,7 +2905,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3079,7 +2931,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3132,7 +2984,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -3146,8 +2998,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>192.5703125</real>
-							<real>164.1796875</real>
+							<real>197.984375</real>
+							<real>692</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3158,8 +3010,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3181,9 +3033,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3201,7 +3053,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3227,7 +3079,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3280,7 +3132,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -3294,8 +3146,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>193.5703125</real>
-							<real>123.1796875</real>
+							<real>197.984375</real>
+							<real>800</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3306,8 +3158,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3329,9 +3181,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3349,7 +3201,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3375,7 +3227,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3428,7 +3280,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Collectable</string>
+				<string>Platform</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -3442,8 +3294,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>173.5703125</real>
-							<real>123.1796875</real>
+							<real>201.984375</real>
+							<real>895</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3454,8 +3306,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>30</real>
-							<real>29</real>
+							<real>24</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3477,9 +3329,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
+							<real>1</real>
+							<real>1</real>
+							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3497,7 +3349,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>-1</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3523,303 +3375,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/star.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>opacity</string>
-						<key>type</key>
-						<string>Byte</string>
-						<key>value</key>
-						<integer>255</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<false/>
-							<false/>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>blendFunc</string>
-						<key>type</key>
-						<string>Blendmode</string>
-						<key>value</key>
-						<array>
-							<integer>1</integer>
-							<integer>771</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string>Collectable</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>175.5703125</real>
-							<real>96.1796875</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>30</real>
-							<real>29</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>rotation</string>
-						<key>type</key>
-						<string>Degrees</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>tag</string>
-						<key>type</key>
-						<string>Integer</string>
-						<key>value</key>
-						<integer>-1</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ignoreAnchorPointForPosition</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>visible</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Resources/Global Images/star.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>opacity</string>
-						<key>type</key>
-						<string>Byte</string>
-						<key>value</key>
-						<integer>255</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<false/>
-							<false/>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>blendFunc</string>
-						<key>type</key>
-						<string>Blendmode</string>
-						<key>value</key>
-						<array>
-							<integer>1</integer>
-							<integer>771</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string>Collectable</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>203.5703125</real>
-							<real>96.1796875</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>30</real>
-							<real>29</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>rotation</string>
-						<key>type</key>
-						<string>Degrees</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>tag</string>
-						<key>type</key>
-						<string>Integer</string>
-						<key>value</key>
-						<integer>-1</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ignoreAnchorPointForPosition</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>visible</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Resources/Global Images/star.png</string>
+							<string>Resources/Global Images/hell-platform.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3894,9 +3450,9 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
-					<integer>0</integer>
+					<real>100</real>
+					<real>100</real>
+					<integer>1</integer>
 				</array>
 			</dict>
 			<dict>
@@ -3906,8 +3462,8 @@
 				<string>Point</string>
 				<key>value</key>
 				<array>
-					<real>0.5</real>
-					<real>0.5</real>
+					<real>0.0</real>
+					<real>0.0</real>
 				</array>
 			</dict>
 			<dict>

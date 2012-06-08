@@ -16,7 +16,6 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.position = ccp( 320/2 , 480/2 );
         
         self.stats = [NSUserDefaults standardUserDefaults];
         

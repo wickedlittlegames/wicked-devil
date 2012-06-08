@@ -17,17 +17,13 @@
     {
         // defaults
         self.health = 500.0;
-        self.visible = TRUE;
-        self.zOrder = 100;
-        self.opacity = 1;
-        NSLog(@"Does this fire?");
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE && player.velocity.y < 0) 
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox)) 
     {
         self.health = self.health - player.damage;
         if (self.health == 0) self.visible = FALSE;

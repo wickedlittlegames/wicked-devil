@@ -35,6 +35,9 @@
 	if( (self=[super init]) ) {
         // Get the user
         user = [[User alloc] init];
+                
+        
+        
         
         CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(storeButtonTapped:)];
         CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];

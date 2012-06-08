@@ -18,7 +18,6 @@
 @interface LevelScene : CCLayer {
     User *user;
     Platform *floor;
-    Player *player;
     float levelThreshold;
     CGPoint touchLocation;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
@@ -32,6 +31,7 @@
 }
 
 @property (nonatomic, assign) bool started;
+@property (nonatomic, retain) Player *player;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 

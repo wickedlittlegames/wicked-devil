@@ -10,7 +10,7 @@
 #import "LevelScene.h"
 
 @implementation LevelScene
-@synthesize started;
+@synthesize started, player;
 
 #pragma mark === Initialization ===
 
@@ -21,12 +21,7 @@
         user = [[User alloc] init];
         
         self.started = FALSE;
-        
-        player = [Player spriteWithFile:@"devil.png"];
-        player.position = ccp( 320/2 , 110 );
-        touchLocation.x = player.position.x;
-        [self addChild:player];
-        
+                
         floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp ( 320 / 2, 80 );
         [self addChild:floor];
@@ -46,19 +41,38 @@
 	CCScene *scene = [CCScene node];
     
     // Grab the layers
-    UILayer *ui = [UILayer node];
-    LevelScene *current = (LevelScene*)[CCBReader 
+    UILayer *ui                 = [UILayer node];
+    CCLayer *playerLayer        = [CCLayer node];
+    CCLayer  *world             = [CCLayer node];
+    LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL]; // level example name: world-1-level-2.ccbi
     
+    Player *_player = [Player spriteWithFile:@"devil.png"];
+    _player.position = ccp( 320/2 , 110 );
+    [playerLayer addChild:_player];
+    
+    // Add objects and players to world
+    [world addChild:objectLayer];
+    [world addChild:playerLayer];
+    
     // Build up a collection of arrays of the objects
-    [current createWorldWithObjects:[current children]];
+    [objectLayer createWorldWithObjects:[objectLayer children]];
+    
+    // Capture the player for the main layer
+    [objectLayer setLayerPlayer:_player];
     
     // Add layers to the scene
     [scene addChild:ui z:100];
-    [scene addChild:current];
+    [scene addChild:world z:50];
 
 	return scene;
+}
+
+- (void) setLayerPlayer:(Player*)_player
+{
+    self.player = _player;
+    touchLocation.x = self.player.position.x;
 }
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
@@ -93,8 +107,6 @@
             [triggers addObject:node];
         }
     }
-    
-    NSLog(@"%@",platforms);
 
     [self schedule:@selector(update:)];
 }
@@ -113,17 +125,16 @@
             {
                 background.position = ccp(background.position.x, background.position.y + levelThreshold/40);
                 floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
+                self.position = ccp(self.position.x, self.position.y + levelThreshold);
             }
             
             for (Platform *platform in platforms)
             {                
                 if ( [platform isIntersectingPlayer:player] ) 
                 {
-                    NSLog(@"platform position: %f",platform.position.y);
-                    [player jump];
+                    [self.player jump];
                 }
-
-                [platform movementWithThreshold:levelThreshold];
+                //[platform movementWithThreshold:levelThreshold];
             }
             
             for (Collectable *collectable in collectables)
@@ -132,7 +143,7 @@
                 {
                     player.collected++;
                 }
-                [collectable movementWithThreshold:levelThreshold];
+                //[collectable movementWithThreshold:levelThreshold];
             }
             
             for (BigCollectable *bigcollectable in bigcollectables)
@@ -141,7 +152,7 @@
                 {
                     player.bigcollected++;
                 }
-                [bigcollectable movementWithThreshold:levelThreshold];                
+                //[bigcollectable movementWithThreshold:levelThreshold];                
             }
             
             for (Trigger *trigger in triggers)
@@ -155,7 +166,7 @@
                 {
                     //[enemy activateNearPlayerPoint:player];
                     [enemy isIntersectingPlayer:player];
-                    [enemy movementWithThreshold:levelThreshold];                    
+                    //[enemy movementWithThreshold:levelThreshold];                    
                 }
             }
             
@@ -190,7 +201,7 @@
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, 8.5 );
+    player.velocity = ccp ( player.velocity.x, 19.5 );
     menu.visible = NO;
     self.started = TRUE;
 }

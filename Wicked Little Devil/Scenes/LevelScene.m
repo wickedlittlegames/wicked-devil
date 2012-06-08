@@ -46,7 +46,7 @@
     CCLayer  *world             = [CCLayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
-                                        owner:NULL]; // level example name: world-1-level-2.ccbi
+                                        owner:NULL];
     
     Player *_player = [Player spriteWithFile:@"devil.png"];
     _player.position = ccp( 320/2 , 110 );
@@ -134,7 +134,6 @@
                 {
                     [self.player jump];
                 }
-                //[platform movementWithThreshold:levelThreshold];
             }
             
             for (Collectable *collectable in collectables)
@@ -143,7 +142,6 @@
                 {
                     player.collected++;
                 }
-                //[collectable movementWithThreshold:levelThreshold];
             }
             
             for (BigCollectable *bigcollectable in bigcollectables)
@@ -152,7 +150,6 @@
                 {
                     player.bigcollected++;
                 }
-                //[bigcollectable movementWithThreshold:levelThreshold];                
             }
             
             for (Trigger *trigger in triggers)
@@ -166,7 +163,7 @@
                 {
                     //[enemy activateNearPlayerPoint:player];
                     [enemy isIntersectingPlayer:player];
-                    //[enemy movementWithThreshold:levelThreshold];                    
+                    //[enemy movementWithThreshold:levelThreshold];
                 }
             }
             

@@ -15,14 +15,14 @@
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        // defaults
         self.health = 500.0;
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
-{
+{        NSLog(@"Hit");
+
     if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox)) 
     {
         self.health = self.health - player.damage;

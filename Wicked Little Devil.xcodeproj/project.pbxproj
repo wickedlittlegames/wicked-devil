@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C086F9D15825E6F00E87785 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C086F9C15825E6F00E87785 /* ShopScene.m */; };
+		9C086FA015825E8200E87785 /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C086F9F15825E8200E87785 /* Trigger.m */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -266,19 +268,21 @@
 		9C61496F1577B09600A6FF33 /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496C1577B09600A6FF33 /* StartScene.m */; };
 		9C6149721577B0A300A6FF33 /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149711577B0A300A6FF33 /* UILayer.m */; };
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9C8DC257157F720400760A04 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC256157F720300760A04 /* ShopScene.m */; };
 		9C8DC28C157F943000760A04 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC289157F943000760A04 /* bat.png */; };
 		9C8DC28D157F943000760A04 /* Devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28A157F943000760A04 /* Devil.png */; };
 		9C8DC28E157F943000760A04 /* hell-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28B157F943000760A04 /* hell-platform.png */; };
 		9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */; };
 		9C8DC296157F97B000760A04 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC295157F97B000760A04 /* star.png */; };
-		9C8DC299157FC13900760A04 /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC298157FC13900760A04 /* Trigger.m */; };
 		9C8DC29B1580082B00760A04 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29A1580082B00760A04 /* floor.png */; };
 		9C8DC29D158009CB00760A04 /* Start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29C158009CB00760A04 /* Start-button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9C142162156E68560011C992 /* Wicked Little Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Little Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C086F9B15825E6F00E87785 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopScene.h; path = Scenes/ShopScene.h; sourceTree = "<group>"; };
+		9C086F9C15825E6F00E87785 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopScene.m; path = Scenes/ShopScene.m; sourceTree = "<group>"; };
+		9C086F9E15825E8200E87785 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = Objects/Trigger.h; sourceTree = "<group>"; };
+		9C086F9F15825E8200E87785 /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trigger.m; path = Objects/Trigger.m; sourceTree = "<group>"; };
+		9C142162156E68560011C992 /* Wicked Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9C14216A156E68560011C992 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -557,16 +561,12 @@
 		9C6149711577B0A300A6FF33 /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayer.m; path = "Global Layers/UILayer.m"; sourceTree = "<group>"; };
 		9C8DC24F157F66C300760A04 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		9C8DC250157F66C300760A04 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
-		9C8DC255157F720300760A04 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
-		9C8DC256157F720300760A04 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		9C8DC258157F73DA00760A04 /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterConstants.h; path = Objects/GameCenterConstants.h; sourceTree = "<group>"; };
 		9C8DC289157F943000760A04 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
 		9C8DC28A157F943000760A04 /* Devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Devil.png; sourceTree = "<group>"; };
 		9C8DC28B157F943000760A04 /* hell-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hell-platform.png"; sourceTree = "<group>"; };
 		9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
 		9C8DC295157F97B000760A04 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		9C8DC297157FC13900760A04 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
-		9C8DC298157FC13900760A04 /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trigger.m; sourceTree = "<group>"; };
 		9C8DC29A1580082B00760A04 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
 		9C8DC29C158009CB00760A04 /* Start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start-button.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -613,7 +613,7 @@
 		9C142163156E68560011C992 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C142162156E68560011C992 /* Wicked Little Devil.app */,
+				9C142162156E68560011C992 /* Wicked Devil.app */,
 				9C1422F8156E68E80011C992 /* libcocos2d-library.a */,
 			);
 			name = Products;
@@ -1133,6 +1133,8 @@
 		9CBF4813156F8F8600896EBF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				9C086F9E15825E8200E87785 /* Trigger.h */,
+				9C086F9F15825E8200E87785 /* Trigger.m */,
 				9C6149581577B08600A6FF33 /* Collectable.h */,
 				9C6149591577B08600A6FF33 /* Collectable.m */,
 				9C61495A1577B08600A6FF33 /* Enemy.h */,
@@ -1143,8 +1145,6 @@
 				9C61495F1577B08600A6FF33 /* Player.m */,
 				9C6149601577B08600A6FF33 /* User.h */,
 				9C6149611577B08600A6FF33 /* User.m */,
-				9C8DC297157FC13900760A04 /* Trigger.h */,
-				9C8DC298157FC13900760A04 /* Trigger.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1159,8 +1159,8 @@
 				9C61496A1577B09600A6FF33 /* LevelSelectScene.m */,
 				9C61496B1577B09600A6FF33 /* StartScene.h */,
 				9C61496C1577B09600A6FF33 /* StartScene.m */,
-				9C8DC255157F720300760A04 /* ShopScene.h */,
-				9C8DC256157F720300760A04 /* ShopScene.m */,
+				9C086F9B15825E6F00E87785 /* ShopScene.h */,
+				9C086F9C15825E6F00E87785 /* ShopScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1326,7 +1326,7 @@
 			);
 			name = "Wicked Little Devil";
 			productName = "Wicked Little Devil";
-			productReference = 9C142162156E68560011C992 /* Wicked Little Devil.app */;
+			productReference = 9C142162156E68560011C992 /* Wicked Devil.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9C1422F7156E68E80011C992 /* cocos2d-library */ = {
@@ -1420,8 +1420,8 @@
 				9C61496F1577B09600A6FF33 /* StartScene.m in Sources */,
 				9C6149721577B0A300A6FF33 /* UILayer.m in Sources */,
 				9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */,
-				9C8DC257157F720400760A04 /* ShopScene.m in Sources */,
-				9C8DC299157FC13900760A04 /* Trigger.m in Sources */,
+				9C086F9D15825E6F00E87785 /* ShopScene.m in Sources */,
+				9C086FA015825E8200E87785 /* Trigger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1591,7 +1591,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Wicked Devil";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1613,7 +1613,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Wicked Devil";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

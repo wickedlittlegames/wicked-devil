@@ -83,6 +83,9 @@
         
         CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         
+        CCLayer *community = [CCLayer node];
+        [scroller addPage:community];
+
         CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon-Small.png" selectedImage:@"Icon-Small.png" target:self selector:@selector(storeButtonTapped:)];
         CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];
         storemenu.position = ccp ( 120, 400 );

@@ -113,7 +113,7 @@
     {
         if (player.isAlive)
         {              
-            levelThreshold = 300 - player.position.y;
+            levelThreshold = 340 - player.position.y;
             
             if ( levelThreshold < 0 && floor.visible == TRUE )
             {
@@ -147,6 +147,8 @@
                 {
                     player.bigcollected++;
                 }
+                
+                [bigcollectable movementWithThreshold:levelThreshold];
             }
             
             for (Trigger *trigger in triggers)

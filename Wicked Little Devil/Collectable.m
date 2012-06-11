@@ -23,4 +23,16 @@
 
 @end
 
-@implementation BigCollectable @end
+@implementation BigCollectable 
+
+- (BOOL) isIntersectingPlayer:(Player*)player
+{
+    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE ) 
+    {
+        self.visible = FALSE;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+@end

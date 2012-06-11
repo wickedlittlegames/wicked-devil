@@ -16,14 +16,14 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.health = 500.0;
+        self.zOrder = 1;
     }
     return self;
 }
 
 -(BOOL) isIntersectingPlayer:(Player*)player
-{        NSLog(@"Hit");
-
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox)) 
+{   
+    if ( CGRectIntersectsRect(self.boundingBox, player.boundingBox) && player.velocity.y < 0)
     {
         self.health = self.health - player.damage;
         if (self.health == 0) self.visible = FALSE;
@@ -31,14 +31,6 @@
         return TRUE;
     }
     return FALSE;
-}
-
-- (void) movementWithThreshold:(float)levelThreshold 
-{
-    if (levelThreshold < 0)
-    {
-        self.position = ccp(self.position.x, self.position.y + levelThreshold);
-    }
 }
 
 @end

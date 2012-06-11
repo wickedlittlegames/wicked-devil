@@ -19,7 +19,6 @@
     User *user;
     Platform *floor;
     float levelThreshold;
-    CGPoint touchLocation;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
     CCArray *gameObjectsArray;
     CCLayer *gameObjectsLayer;
@@ -32,6 +31,8 @@
 
 @property (nonatomic, assign) bool started;
 @property (nonatomic, retain) Player *player;
+@property (nonatomic, assign) int worldNumber, levelNumber;
+@property (nonatomic, assign) CGPoint touchLocation;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 

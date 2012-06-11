@@ -35,77 +35,61 @@
 	if( (self=[super init]) ) {
         // Get the user
         user = [[User alloc] init];
-                
-        
-        
-        
-        CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(storeButtonTapped:)];
-        CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];
-        storemenu.position = ccp ( 120, 300 );
-        [self addChild:storemenu];
         
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
+        NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
         float menu_x = (screenSize.width/2) - 23;
         float menu_y = 275;
         
-        // Set up page layers for scroller
-        CCLayer *world_1 = [CCLayer node];
-        CCLayer *world_2 = [CCLayer node];
-        CCLayer *community = [CCLayer node];
+        // World & level array
+        int world_count = 6;
+        int levels_per_world = 9;
         
-        int world_1_levels = 10;
-        int world_2_levels = 10;
-        NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
+        NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:world_count];
         
-        CCMenu *world_1_menu = [CCMenu menuWithItems:nil];
-        CCMenu *world_2_menu = [CCMenu menuWithItems:nil];
-
-        world_1_menu.position = ccp ( menu_x, menu_y );
-        world_2_menu.position = ccp ( menu_x, menu_y );
-        
-        for (int i = 1; i < world_1_levels; i++)
+        for (int w = 1; w <= world_count; w++)
         {
-            CCMenuItem *world_level = [CCMenuItemImage 
-                                      itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",i]
-                                      selectedImage:[NSString stringWithFormat:@"Icon.png",i] 
-                                      disabledImage:[NSString stringWithFormat:@"Icon-locked.png",i] 
-                                      target:self 
-                                      selector:@selector(levelButtonTapped:)];
-            world_level.isEnabled = ( user.worldprogress >= 1  ? TRUE : FALSE );
-            world_level.isEnabled = ( user.levelprogress >= i ? TRUE : FALSE );
-            [world_1_menu addChild:world_level];
+            CCLayer *world = [CCLayer node];
+            CCMenu *world_menu = [CCMenu menuWithItems:nil];
+            world_menu.position = ccp ( menu_x, menu_y );
+            
+            for (int lvl = 1; lvl <= levels_per_world; lvl++)
+            {
+                CCMenuItem *level = [CCMenuItemImage 
+                                           itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",lvl]
+                                           selectedImage:[NSString stringWithFormat:@"Icon.png",lvl] 
+                                           disabledImage:[NSString stringWithFormat:@"Icon.png",lvl] 
+                                           target:self 
+                                           selector:@selector(levelButtonTapped:)];
+                level.userData = (int*)w;
+                level.tag      = lvl;
+                if ( user.worldprogress >= w )
+                {
+                    level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
+                }
+                else 
+                {
+                    level.isEnabled = FALSE;
+                }
+                
+                [world_menu addChild:level];
+            }
+            
+            [world_menu alignItemsInRows:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+            [world addChild:world_menu];
+            [worlds addObject:world];
         }
-        for (int i = 1; i < world_2_levels; i++)
-        {
-            CCMenuItem *world_level = [CCMenuItemImage 
-                                       itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",i]
-                                       selectedImage:[NSString stringWithFormat:@"Icon.png",i] 
-                                       disabledImage:[NSString stringWithFormat:@"Icon-locked.png",i] 
-                                       target:self 
-                                       selector:@selector(levelButtonTapped:)];
-            world_level.isEnabled = ( user.worldprogress >= 2  ? TRUE : FALSE );
-            world_level.isEnabled = ( user.levelprogress >= (i+10) ? TRUE : FALSE );
-            [world_2_menu addChild:world_level];
-        }
         
-        [world_1_menu alignItemsInRows:itemsPerRow, itemsPerRow, itemsPerRow,nil];
-        [world_2_menu alignItemsInRows:itemsPerRow, itemsPerRow, itemsPerRow,nil];
-        [world_1 addChild:world_1_menu];
-        [world_2 addChild:world_2_menu];
+        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         
-        CCSprite *bg1 = [CCSprite spriteWithFile:@"bg0.png"];
-        bg1.position = ccp( screenSize.width/2, screenSize.height/2 );
-        //[world_1 addChild:bg1 z:-1];
+        CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon-Small.png" selectedImage:@"Icon-Small.png" target:self selector:@selector(storeButtonTapped:)];
+        CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];
+        storemenu.position = ccp ( 120, 400 );
         
-        CCSprite *bg2 = [CCSprite spriteWithFile:@"bg4.png"];
-        bg2.position = ccp( screenSize.width/2, screenSize.height/2 );
-        //[world_2 addChild:bg2 z:-1];
-        
-        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: world_1, world_2, community,nil] widthOffset: 0];
-
         [self addChild:scroller];
-
+        [self addChild:storemenu];
+        
     }
 	return self;    
 }
@@ -115,8 +99,8 @@
     [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
 }
 
-- (void)levelButtonTapped:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:1 LevelNum:1]];
+- (void)levelButtonTapped:(CCMenuItem*)sender {
+    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:(int)sender.userData LevelNum:sender.tag]];
 }
 
 @end

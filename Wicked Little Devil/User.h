@@ -15,4 +15,6 @@
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int highscore, collected, levelprogress, worldprogress;
 
+- (void) syncData;
+
 @end

@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C142161156E68560011C992"
-               BuildableName = "Wicked Little Devil.app"
+               BuildableName = "Wicked Devil.app"
                BlueprintName = "Wicked Little Devil"
                ReferencedContainer = "container:Wicked Little Devil.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C142161156E68560011C992"
-            BuildableName = "Wicked Little Devil.app"
+            BuildableName = "Wicked Devil.app"
             BlueprintName = "Wicked Little Devil"
             ReferencedContainer = "container:Wicked Little Devil.xcodeproj">
          </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C142161156E68560011C992"
-            BuildableName = "Wicked Little Devil.app"
+            BuildableName = "Wicked Devil.app"
             BlueprintName = "Wicked Little Devil"
             ReferencedContainer = "container:Wicked Little Devil.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C142161156E68560011C992"
-            BuildableName = "Wicked Little Devil.app"
+            BuildableName = "Wicked Devil.app"
             BlueprintName = "Wicked Little Devil"
             ReferencedContainer = "container:Wicked Little Devil.xcodeproj">
          </BuildableReference>

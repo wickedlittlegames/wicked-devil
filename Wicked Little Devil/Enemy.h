@@ -7,9 +7,10 @@
 //
 
 #import "cocos2d.h"
+#import "GameObject.h"
 #import "Player.h"
 
-@interface Enemy : CCSprite {}
+@interface Enemy : GameObject {}
 
 @property (nonatomic,assign) bool active;
 @property (nonatomic,retain) NSString *type;

@@ -16,13 +16,14 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
+        self.jumpspeed = 20.0;
         
         self.stats = [NSUserDefaults standardUserDefaults];
         
         self.health = 100.0;
         self.damage = 1.0; 
         self.collected = 0;
-        self.jumpspeed = 7.0;
+        self.bigcollected = 0;
     }
     return self;
 }

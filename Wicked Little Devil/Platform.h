@@ -7,14 +7,14 @@
 //
 
 #import "cocos2d.h"
+#import "GameObject.h"
 #import "Player.h"
 
-@interface Platform : CCSprite {}
+@interface Platform : GameObject {}
 @property (nonatomic, assign) float health;
 @property (nonatomic, assign) NSString *type;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
-- (void) movementWithThreshold:(float)levelThreshold;
 
 @end
 

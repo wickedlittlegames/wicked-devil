@@ -7,12 +7,12 @@
 //
 
 #import "cocos2d.h"
+#import "GameObject.h"
 #import "Player.h"
 
-@interface Collectable : CCSprite {}
+@interface Collectable : GameObject {}
     
 - (BOOL) isIntersectingPlayer:(Player*)player;
-- (void) movementWithThreshold:(float)levelThreshold;
 
 @end
 

@@ -6,10 +6,10 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GameObject.h"
 #import "cocos2d.h"
 
-@interface Trigger : CCSprite {
+@interface Trigger : GameObject {
     
 }
 

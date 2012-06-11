@@ -45,6 +45,15 @@
     return self;
 }
 
+- (void) syncData
+{
+    [udata setInteger:self.collected forKey:@"collected"];
+    [udata setInteger:self.levelprogress forKey:@"levelprogress"];
+    [udata setInteger:self.worldprogress forKey:@"worldprogress"];    
+    
+    [udata synchronize];
+}
+
 - (void) createUser
 {
     [udata setBool:TRUE forKey:@"created"];

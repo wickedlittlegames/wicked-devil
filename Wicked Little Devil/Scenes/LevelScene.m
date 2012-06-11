@@ -7,10 +7,11 @@
 //
 
 #import "UILayer.h"
+#import "LevelSelectScene.h"
 #import "LevelScene.h"
 
 @implementation LevelScene
-@synthesize started, player;
+@synthesize started, player, worldNumber, levelNumber, touchLocation;
 
 #pragma mark === Initialization ===
 
@@ -31,6 +32,11 @@
         menu.position = ccp ( 320/2, 30 );
         [self addChild:menu];
         
+        player = [Player spriteWithFile:@"devil.png"];
+        player.position = ccp( 320/2 , 110 );
+        touchLocation.x = player.position.x;
+        [self addChild:player];
+
     }
 	return self;
 }
@@ -42,37 +48,26 @@
     
     // Grab the layers
     UILayer *ui                 = [UILayer node];
-    CCLayer *playerLayer        = [CCLayer node];
     CCLayer  *world             = [CCLayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
-    Player *_player = [Player spriteWithFile:@"devil.png"];
-    _player.position = ccp( 320/2 , 110 );
-    [playerLayer addChild:_player];
-    
     // Add objects and players to world
     [world addChild:objectLayer];
-    [world addChild:playerLayer];
-    
+
     // Build up a collection of arrays of the objects
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
     // Capture the player for the main layer
-    [objectLayer setLayerPlayer:_player];
+    [objectLayer setWorldNumber:worldNum];
+    [objectLayer setLevelNumber:levelNum];
     
     // Add layers to the scene
     [scene addChild:ui z:100];
     [scene addChild:world z:50];
 
 	return scene;
-}
-
-- (void) setLayerPlayer:(Player*)_player
-{
-    self.player = _player;
-    touchLocation.x = self.player.position.x;
 }
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
@@ -99,7 +94,6 @@
         }
         if ([node isKindOfClass: [Enemy class]])
         {
-            node.tag = 0;
             [enemies addObject:node];
         }
         if ([node isKindOfClass: [Trigger class]])
@@ -118,22 +112,23 @@
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
-        {               
+        {              
             levelThreshold = 300 - player.position.y;
-        
-            if ( levelThreshold < 0 )
-            {
-                background.position = ccp(background.position.x, background.position.y + levelThreshold/40);
-                floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
-                self.position = ccp(self.position.x, self.position.y + levelThreshold);
-            }
             
+            if ( levelThreshold < 0 && floor.visible == TRUE )
+            {
+                floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
+                floor.visible = (floor.position.y < -300 ? FALSE : TRUE);
+            }
+
             for (Platform *platform in platforms)
-            {                
+            {       
                 if ( [platform isIntersectingPlayer:player] ) 
                 {
                     [self.player jump];
                 }
+                
+                [platform movementWithThreshold:levelThreshold];
             }
             
             for (Collectable *collectable in collectables)
@@ -142,6 +137,8 @@
                 {
                     player.collected++;
                 }
+                
+                [collectable movementWithThreshold:levelThreshold];
             }
             
             for (BigCollectable *bigcollectable in bigcollectables)
@@ -155,6 +152,22 @@
             for (Trigger *trigger in triggers)
             {
                 // TODO - TRIGGER TYPE
+                switch (trigger.tag)
+                {
+                    case 0:
+                        // Platform toggle
+                        
+                        break;
+                    case 10:
+                        // This is the end of level trigger!
+                        if ( CGRectIntersectsRect(player.boundingBox, trigger.boundingBox ) )
+                        {
+                            [self gameover];
+                        }
+                        break;
+                }
+                
+                [trigger movementWithThreshold:levelThreshold];
             }
             
             for (Enemy *enemy in enemies)
@@ -163,7 +176,7 @@
                 {
                     //[enemy activateNearPlayerPoint:player];
                     [enemy isIntersectingPlayer:player];
-                    //[enemy movementWithThreshold:levelThreshold];
+                    [enemy movementWithThreshold:levelThreshold];
                 }
             }
             
@@ -177,11 +190,43 @@
     }
 }
 
+- (void) gameover
+{
+    self.started = FALSE;
+    [self unschedule:@selector(update:)];
+    
+    user.collected += player.collected;
+    if (self.levelNumber == user.levelprogress)
+    {
+        user.levelprogress = (player.bigcollected > 0 ? user.levelprogress++ : user.levelprogress);
+        if (user.levelprogress > 9)
+        {
+            user.worldprogress++;
+            user.levelprogress = 1;
+        }
+    }
+    [user syncData];
+    
+    CCLayer *gameover = [CCLayer node];
+    CCMenuItem *restartButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(restartButtonTapped:)];
+    CCMenuItem *nextLevelButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(nextLevelButtonTapped:)];
+    CCMenuItem *backtoMenuButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(backToMenuButtonTapped:)];
+    
+    nextLevelButton.isEnabled = (player.bigcollected > 0 ? TRUE : FALSE);
+    
+    CCMenu *gameovermenu = [CCMenu menuWithItems:restartButton,nextLevelButton,backtoMenuButton,nil]; 
+    gameovermenu.position = ccp ( 120, 300 );
+    [gameover addChild:gameovermenu];
+    
+    [self addChild:gameover];
+}
+
+
 #pragma mark === Touch and Movement ===
 
 - (void) playerMovementChecks
 {
-    float diff = touchLocation.x - player.position.x;
+    float diff = self.touchLocation.x - player.position.x;
     if (diff > 4)  diff = 4;
     if (diff < -4) diff = -4;
     CGPoint new_player_location = CGPointMake(player.position.x + diff, player.position.y);
@@ -192,15 +237,38 @@
 {
     for( UITouch *touch in touches ) {
         CGPoint location = [touch locationInView: [touch view]];
-        touchLocation = location;
+        self.touchLocation = location;
     }
 }
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, 19.5 );
+    player.velocity = ccp ( player.velocity.x, 30.5 );
     menu.visible = NO;
     self.started = TRUE;
+}
+
+- (void) restartButtonTapped:(id)sender 
+{
+    [self clearReadyForOrders];
+    [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
+}
+
+- (void) nextLevelButtonTapped:(id)sender 
+{
+    [self clearReadyForOrders];
+    [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:(++self.levelNumber)]];
+}
+
+- (void) backtoMenuButtonTapped:(id)sender 
+{
+    [self clearReadyForOrders];
+    [[CCDirector sharedDirector] pushScene:[LevelSelectScene scene]];
+}
+
+- (void) clearReadyForOrders
+{
+    [self removeAllChildrenWithCleanup:YES];
 }
 
 @end

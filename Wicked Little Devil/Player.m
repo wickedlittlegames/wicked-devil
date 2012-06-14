@@ -20,8 +20,8 @@
         
         self.stats = [NSUserDefaults standardUserDefaults];
         
-        self.health = 100.0;
-        self.damage = 0.5; 
+        self.health = 10.0;
+        self.damage = 1.0; 
         self.collected = 0;
         self.bigcollected = 0;
     }

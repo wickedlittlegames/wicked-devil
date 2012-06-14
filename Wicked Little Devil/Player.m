@@ -16,12 +16,12 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 20.0;
+        self.jumpspeed = 5.5;
         
         self.stats = [NSUserDefaults standardUserDefaults];
         
         self.health = 100.0;
-        self.damage = 1.0; 
+        self.damage = 0.5; 
         self.collected = 0;
         self.bigcollected = 0;
     }
@@ -46,9 +46,9 @@
     return ( self.health > 0.0 ? TRUE : FALSE );
 }
 
-- (void) jump
+- (void) jump:(float)speed
 {
-    self.velocity = ccp (self.velocity.x, self.jumpspeed);
+    self.velocity = ccp (self.velocity.x, speed);
 }
 
 @end

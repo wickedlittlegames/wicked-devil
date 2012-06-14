@@ -8,9 +8,11 @@
 
 #import "GameObject.h"
 #import "cocos2d.h"
+#import "Player.h"
 
 @interface Trigger : GameObject {
     
 }
+- (BOOL) isIntersectingPlayer:(Player*)player;
 
 @end

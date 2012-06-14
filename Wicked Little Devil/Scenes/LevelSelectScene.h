@@ -8,10 +8,13 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
+#import "GameCenterConstants.h"
+#import "LevelDetailLayer.h"
 #import "User.h"
 
 @interface LevelSelectScene : CCLayer {
     User *user;
+    LevelDetailLayer *detail;
 }
 +(CCScene *) scene;
 @end

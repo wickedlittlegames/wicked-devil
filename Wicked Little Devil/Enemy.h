@@ -16,8 +16,6 @@
 @property (nonatomic,retain) NSString *type;
 @property (nonatomic,assign) float speed_x, speed_y, health, damage;
 
-- (void) movementWithThreshold:(float)levelThreshold;
-- (void) activateNearPlayerPoint:(Player*)player;
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (BOOL) isAlive;
 

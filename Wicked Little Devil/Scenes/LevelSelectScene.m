@@ -42,26 +42,22 @@
         float menu_x = (screenSize.width/2) - 23;
         float menu_y = 275;
         
-        // World & level array
-        int world_count = 6;
-        int levels_per_world = 9;
+        NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
         
-        NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:world_count];
-        
-        for (int w = 1; w <= world_count; w++)
+        for (int w = 1; w <= WORLDS_PER_GAME; w++)
         {
             CCLayer *world = [CCLayer node];
             CCMenu *world_menu = [CCMenu menuWithItems:nil];
             world_menu.position = ccp ( menu_x, menu_y );
             
-            for (int lvl = 1; lvl <= levels_per_world; lvl++)
+            for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
             {
                 CCMenuItem *level = [CCMenuItemImage 
                                            itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",lvl]
                                            selectedImage:[NSString stringWithFormat:@"Icon.png",lvl] 
-                                           disabledImage:[NSString stringWithFormat:@"Icon.png",lvl] 
+                                           disabledImage:[NSString stringWithFormat:@"icon-locked.png",lvl] 
                                            target:self 
-                                           selector:@selector(levelButtonTapped:)];
+                                           selector:@selector(tap_level:)];
                 level.userData = (int*)w;
                 level.tag      = lvl;
                 if ( user.worldprogress >= w )
@@ -72,11 +68,11 @@
                 {
                     level.isEnabled = FALSE;
                 }
-                
+                NSLog(@"World:%d, Level: %d ENABLED = %i",w,lvl,level.isEnabled);
                 [world_menu addChild:level];
             }
             
-            [world_menu alignItemsInRows:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+            [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
             [world addChild:world_menu];
             [worlds addObject:world];
         }
@@ -86,23 +82,29 @@
         CCLayer *community = [CCLayer node];
         [scroller addPage:community];
 
-        CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon-Small.png" selectedImage:@"Icon-Small.png" target:self selector:@selector(storeButtonTapped:)];
+        CCMenuItem *storeButton = [CCMenuItemImage itemWithNormalImage:@"Icon-Small.png" selectedImage:@"Icon-Small.png" target:self selector:@selector(tap_store:)];
         CCMenu *storemenu = [CCMenu menuWithItems:storeButton, nil];
-        storemenu.position = ccp ( 120, 400 );
+        storemenu.position = ccp ( 120, 440 );
+        
+        detail = [LevelDetailLayer node];
         
         [self addChild:scroller];
         [self addChild:storemenu];
+        [self addChild:detail];
         
     }
 	return self;    
 }
 
-
-- (void)storeButtonTapped:(id)sender {
+- (void) tap_store:(id)sender
+{
     [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
 }
 
-- (void)levelButtonTapped:(CCMenuItem*)sender {
+- (void) tap_level:(CCMenuItem*)sender
+{
+    NSLog(@"W:%d,L:%d",(int)sender.userData,sender.tag);
+    //[detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
     [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:(int)sender.userData LevelNum:sender.tag]];
 }
 

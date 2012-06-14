@@ -1,3 +1,7 @@
+#pragma mark === GAME CENTRIC NUMBERS ===
+#define LEVELS_PER_WORLD 9
+#define WORLDS_PER_GAME  6
+
 #pragma mark === IN APP PURCHASE IDS ===
 
 #define IAP_HEALTHBOOST 1    // .69

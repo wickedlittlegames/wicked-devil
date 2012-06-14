@@ -10,7 +10,10 @@
 
 
 @implementation UILayer
-@synthesize label;
+@synthesize lbl_user_collected, 
+            lbl_player_collected,
+            lbl_game_time, 
+            lbl_player_health;
 
 - (id) init {
     self = [super init];
@@ -19,6 +22,20 @@
 		//label.color = ccc3(255,255,255);
 		//label.position = ccp(200, 300);
 		//[self addChild:label];
+        
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        
+        NSString *font = @"Arial";
+        int size = 18;
+        
+        lbl_game_time = [CCLabelTTF labelWithString:@"Gametime" fontName:font fontSize:size];
+        lbl_game_time.position = ccp ( screenSize.width - 200, screenSize.height - 20); 
+        [self addChild:lbl_game_time];
+        
+        lbl_player_health = [CCLabelTTF labelWithString:@"Player health: " fontName:font fontSize:size];
+        lbl_player_health.position = ccp ( screenSize.width - 250, screenSize.height - 20); 
+        [self addChild:lbl_player_health];        
+        
     }
     return self;
 }

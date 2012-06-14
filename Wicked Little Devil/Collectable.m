@@ -7,13 +7,13 @@
 //
 
 #import "Collectable.h"
-
+#import "CCNode+CoordHelpers.h"
 
 @implementation Collectable
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE ) 
+    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
     {
         self.visible = FALSE;
         return TRUE;
@@ -27,7 +27,7 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect(player.boundingBox, self.boundingBox) && self.visible == TRUE ) 
+    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
     {
         self.visible = FALSE;
         return TRUE;

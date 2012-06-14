@@ -38,6 +38,7 @@
 	if( (self=[super init]) ) {
 
         user = [[User alloc] init];
+        NSLog(@"%@",user.udata);
         
         CCMenuItem *startButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(startButtonTapped:)];
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];

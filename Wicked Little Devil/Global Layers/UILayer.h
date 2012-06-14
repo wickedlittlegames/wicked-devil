@@ -10,5 +10,6 @@
 
 @interface UILayer : CCLayer {}
 
-@property (nonatomic, assign) CCLabelTTF *label;
+@property (nonatomic, assign) CCLabelTTF *lbl_user_collected, *lbl_player_collected,
+                                         *lbl_game_time, *lbl_player_health;
 @end

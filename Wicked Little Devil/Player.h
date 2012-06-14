@@ -17,7 +17,7 @@
 @property (nonatomic, assign) int bigcollected;
 
 - (BOOL) isAlive;
-- (void) jump;
+- (void) jump:(float)speed;
 - (void) movement:(float)threshhold withGravity:(float)gravity;
 
 @end

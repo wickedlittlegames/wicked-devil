@@ -7,7 +7,7 @@
 //
 
 #import "Trigger.h"
-
+#import "CCNode+CoordHelpers.h"
 
 @implementation Trigger
 
@@ -19,6 +19,16 @@
         self.visible = FALSE;
     }
     return self;
+}
+
+- (BOOL) isIntersectingPlayer:(Player*)player
+{
+    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
+    {
+        self.visible = FALSE;
+        return TRUE;
+    }
+    return FALSE;
 }
 
 @end

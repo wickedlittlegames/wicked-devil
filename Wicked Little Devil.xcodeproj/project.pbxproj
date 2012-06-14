@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9C086F9D15825E6F00E87785 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C086F9C15825E6F00E87785 /* ShopScene.m */; };
+		9C1162AC158772BC0006870F /* slide-in.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1162AB158772BC0006870F /* slide-in.png */; };
+		9C1162B015877A0B0006870F /* LevelDetailLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1162AF15877A0B0006870F /* LevelDetailLayer.m */; };
+		9C1162B21587E4940006870F /* devil2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1162B11587E4940006870F /* devil2.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -255,6 +258,10 @@
 		9C1424D1156E69540011C992 /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423EF156E69540011C992 /* vec2.c */; };
 		9C1424D2156E69540011C992 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F0156E69540011C992 /* vec3.c */; };
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
+		9C32AC3A1589442D00B85726 /* icon-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC391589442D00B85726 /* icon-locked.png */; };
+		9C32AC3D1589EB5A00B85726 /* world-1-level-2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */; };
+		9C32AC3F1589EF1300B85726 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3E1589EF1300B85726 /* rat.png */; };
+		9C53908A158939B7003D5DEC /* CCNode+CoordHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C539089158939B7003D5DEC /* CCNode+CoordHelpers.m */; };
 		9C6149561577AF6100A6FF33 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149531577AF6100A6FF33 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149681577B09600A6FF33 /* LevelScene.m */; };
@@ -276,11 +283,27 @@
 		9C9393641586244700E68BAD /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93935C1586244600E68BAD /* Enemy.m */; };
 		9C9393651586244700E68BAD /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93935E1586244600E68BAD /* Collectable.m */; };
 		9C9393691586249700E68BAD /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9393681586249700E68BAD /* GameObject.m */; };
+		9CEC365F158A2611008B127E /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC365D158A2611008B127E /* sprites.png */; };
+		9CEC3660158A2611008B127E /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC365E158A2611008B127E /* sprites.plist */; };
+		9CEC366C158A2894008B127E /* bigcollectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3662158A2894008B127E /* bigcollectable.png */; };
+		9CEC366D158A2894008B127E /* collectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3663158A2894008B127E /* collectable.png */; };
+		9CEC366E158A2894008B127E /* platform-bouncy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3664158A2894008B127E /* platform-bouncy.png */; };
+		9CEC366F158A2894008B127E /* platform-breakable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3665158A2894008B127E /* platform-breakable.png */; };
+		9CEC3670158A2894008B127E /* platform-damage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3666158A2894008B127E /* platform-damage.png */; };
+		9CEC3671158A2894008B127E /* platform-moveable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3667158A2894008B127E /* platform-moveable.png */; };
+		9CEC3672158A2894008B127E /* platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3668158A2894008B127E /* platform-normal.png */; };
+		9CEC3673158A2894008B127E /* platform-toggle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3669158A2894008B127E /* platform-toggle1.png */; };
+		9CEC3674158A2894008B127E /* platform-toggle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC366A158A2894008B127E /* platform-toggle2.png */; };
+		9CEC3675158A2894008B127E /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC366B158A2894008B127E /* player.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9C086F9B15825E6F00E87785 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopScene.h; path = Scenes/ShopScene.h; sourceTree = "<group>"; };
 		9C086F9C15825E6F00E87785 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopScene.m; path = Scenes/ShopScene.m; sourceTree = "<group>"; };
+		9C1162AB158772BC0006870F /* slide-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide-in.png"; sourceTree = "<group>"; };
+		9C1162AE15877A0B0006870F /* LevelDetailLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDetailLayer.h; sourceTree = "<group>"; };
+		9C1162AF15877A0B0006870F /* LevelDetailLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDetailLayer.m; sourceTree = "<group>"; };
+		9C1162B11587E4940006870F /* devil2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil2.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -536,6 +559,11 @@
 		9C1423F2156E69540011C992 /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_cocos2d.txt; sourceTree = "<group>"; };
 		9C1423F3156E69540011C992 /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
 		9C1423F4156E69540011C992 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_Kazmath.txt; sourceTree = "<group>"; };
+		9C32AC391589442D00B85726 /* icon-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-locked.png"; sourceTree = "<group>"; };
+		9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-2.ccbi"; sourceTree = "<group>"; };
+		9C32AC3E1589EF1300B85726 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
+		9C539088158939B7003D5DEC /* CCNode+CoordHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+CoordHelpers.h"; sourceTree = "<group>"; };
+		9C539089158939B7003D5DEC /* CCNode+CoordHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CoordHelpers.m"; sourceTree = "<group>"; };
 		9C6149521577AF6100A6FF33 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
 		9C6149531577AF6100A6FF33 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
@@ -572,6 +600,18 @@
 		9C9393661586245A00E68BAD /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterConstants.h; sourceTree = "<group>"; };
 		9C9393671586249700E68BAD /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		9C9393681586249700E68BAD /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		9CEC365D158A2611008B127E /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
+		9CEC365E158A2611008B127E /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
+		9CEC3662158A2894008B127E /* bigcollectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigcollectable.png; sourceTree = "<group>"; };
+		9CEC3663158A2894008B127E /* collectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectable.png; sourceTree = "<group>"; };
+		9CEC3664158A2894008B127E /* platform-bouncy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-bouncy.png"; sourceTree = "<group>"; };
+		9CEC3665158A2894008B127E /* platform-breakable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-breakable.png"; sourceTree = "<group>"; };
+		9CEC3666158A2894008B127E /* platform-damage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-damage.png"; sourceTree = "<group>"; };
+		9CEC3667158A2894008B127E /* platform-moveable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-moveable.png"; sourceTree = "<group>"; };
+		9CEC3668158A2894008B127E /* platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal.png"; sourceTree = "<group>"; };
+		9CEC3669158A2894008B127E /* platform-toggle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle1.png"; sourceTree = "<group>"; };
+		9CEC366A158A2894008B127E /* platform-toggle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle2.png"; sourceTree = "<group>"; };
+		9CEC366B158A2894008B127E /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -641,6 +681,7 @@
 		9C142178156E68560011C992 /* Wicked Little Devil */ = {
 			isa = PBXGroup;
 			children = (
+				9C5390871589399E003D5DEC /* Extensions */,
 				9CBF4822156F9C6200896EBF /* Global Layers */,
 				9CBF4817156F927F00896EBF /* Scenes */,
 				9CBF4813156F8F8600896EBF /* Objects */,
@@ -1022,6 +1063,15 @@
 			path = GL;
 			sourceTree = "<group>";
 		};
+		9C5390871589399E003D5DEC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C539088158939B7003D5DEC /* CCNode+CoordHelpers.h */,
+				9C539089158939B7003D5DEC /* CCNode+CoordHelpers.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		9C6149731577B0D700A6FF33 /* Global Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,6 +1083,22 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CEC3662158A2894008B127E /* bigcollectable.png */,
+				9CEC3663158A2894008B127E /* collectable.png */,
+				9CEC3664158A2894008B127E /* platform-bouncy.png */,
+				9CEC3665158A2894008B127E /* platform-breakable.png */,
+				9CEC3666158A2894008B127E /* platform-damage.png */,
+				9CEC3667158A2894008B127E /* platform-moveable.png */,
+				9CEC3668158A2894008B127E /* platform-normal.png */,
+				9CEC3669158A2894008B127E /* platform-toggle1.png */,
+				9CEC366A158A2894008B127E /* platform-toggle2.png */,
+				9CEC366B158A2894008B127E /* player.png */,
+				9CEC365D158A2611008B127E /* sprites.png */,
+				9CEC365E158A2611008B127E /* sprites.plist */,
+				9C32AC3E1589EF1300B85726 /* rat.png */,
+				9C32AC391589442D00B85726 /* icon-locked.png */,
+				9C1162B11587E4940006870F /* devil2.png */,
+				9C1162AB158772BC0006870F /* slide-in.png */,
 				9C8DC29C158009CB00760A04 /* Start-button.png */,
 				9C8DC29A1580082B00760A04 /* floor.png */,
 				9C8DC295157F97B000760A04 /* star.png */,
@@ -1128,6 +1194,7 @@
 		9C8DC28F157F94E800760A04 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */,
 				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
 			);
 			name = Levels;
@@ -1173,6 +1240,8 @@
 		9CBF4822156F9C6200896EBF /* Global Layers */ = {
 			isa = PBXGroup;
 			children = (
+				9C1162AE15877A0B0006870F /* LevelDetailLayer.h */,
+				9C1162AF15877A0B0006870F /* LevelDetailLayer.m */,
 				9C6149701577B0A300A6FF33 /* UILayer.h */,
 				9C6149711577B0A300A6FF33 /* UILayer.m */,
 			);
@@ -1401,6 +1470,23 @@
 				9C8DC296157F97B000760A04 /* star.png in Resources */,
 				9C8DC29B1580082B00760A04 /* floor.png in Resources */,
 				9C8DC29D158009CB00760A04 /* Start-button.png in Resources */,
+				9C1162AC158772BC0006870F /* slide-in.png in Resources */,
+				9C1162B21587E4940006870F /* devil2.png in Resources */,
+				9C32AC3A1589442D00B85726 /* icon-locked.png in Resources */,
+				9C32AC3D1589EB5A00B85726 /* world-1-level-2.ccbi in Resources */,
+				9C32AC3F1589EF1300B85726 /* rat.png in Resources */,
+				9CEC365F158A2611008B127E /* sprites.png in Resources */,
+				9CEC3660158A2611008B127E /* sprites.plist in Resources */,
+				9CEC366C158A2894008B127E /* bigcollectable.png in Resources */,
+				9CEC366D158A2894008B127E /* collectable.png in Resources */,
+				9CEC366E158A2894008B127E /* platform-bouncy.png in Resources */,
+				9CEC366F158A2894008B127E /* platform-breakable.png in Resources */,
+				9CEC3670158A2894008B127E /* platform-damage.png in Resources */,
+				9CEC3671158A2894008B127E /* platform-moveable.png in Resources */,
+				9CEC3672158A2894008B127E /* platform-normal.png in Resources */,
+				9CEC3673158A2894008B127E /* platform-toggle1.png in Resources */,
+				9CEC3674158A2894008B127E /* platform-toggle2.png in Resources */,
+				9CEC3675158A2894008B127E /* player.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1428,6 +1514,8 @@
 				9C9393641586244700E68BAD /* Enemy.m in Sources */,
 				9C9393651586244700E68BAD /* Collectable.m in Sources */,
 				9C9393691586249700E68BAD /* GameObject.m in Sources */,
+				9C1162B015877A0B0006870F /* LevelDetailLayer.m in Sources */,
+				9C53908A158939B7003D5DEC /* CCNode+CoordHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1592,12 +1680,13 @@
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Wicked Devil";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1614,12 +1703,13 @@
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Wicked Devil";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

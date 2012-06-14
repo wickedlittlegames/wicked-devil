@@ -10,8 +10,10 @@
 #import "LevelSelectScene.h"
 #import "LevelScene.h"
 
+CCTexture2D *platform_toggle1, *platform_toggle2;
+
 @implementation LevelScene
-@synthesize started, player, worldNumber, levelNumber, touchLocation;
+@synthesize started, player, worldNumber, levelNumber, touchLocation, ui, levelTimer;
 
 #pragma mark === Initialization ===
 
@@ -21,7 +23,11 @@
         
         user = [[User alloc] init];
         
+        platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
+        platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];        
+        
         self.started = FALSE;
+        self.levelTimer = 0;
                 
         floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp ( 320 / 2, 80 );
@@ -31,11 +37,6 @@
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
         [self addChild:menu];
-        
-        player = [Player spriteWithFile:@"devil.png"];
-        player.position = ccp( 320/2 , 110 );
-        touchLocation.x = player.position.x;
-        [self addChild:player];
 
     }
 	return self;
@@ -47,14 +48,25 @@
 	CCScene *scene = [CCScene node];
     
     // Grab the layers
-    UILayer *ui                 = [UILayer node];
+    UILayer *_ui                 = [UILayer node];
     CCLayer  *world             = [CCLayer node];
+    CCLayer *playerlayer        = [CCLayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
+    Player *_player = [Player spriteWithFile:@"player.png"];
+    _player.scale = _player.scale/2;
+    _player.position = ccp( 320/2 , 110 );
+    [playerlayer addChild:_player];
+    _ui.lbl_player_health.string = [NSString stringWithFormat:@"Player health: %f",_player.health];
+    _ui.lbl_game_time.visible = FALSE;
+    
     // Add objects and players to world
     [world addChild:objectLayer];
+    [objectLayer setPlayer:_player];
+    [objectLayer setTouchLocation:_player.position];
+    [objectLayer setUi:_ui];
 
     // Build up a collection of arrays of the objects
     [objectLayer createWorldWithObjects:[objectLayer children]];
@@ -64,8 +76,9 @@
     [objectLayer setLevelNumber:levelNum];
     
     // Add layers to the scene
-    [scene addChild:ui z:100];
+    [scene addChild:_ui z:100];
     [scene addChild:world z:50];
+    [scene addChild:playerlayer z:51];
 
 	return scene;
 }
@@ -112,8 +125,15 @@
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
-        {              
+        {   
+            ui.lbl_game_time.string = [NSString stringWithFormat:@"Time: %d",self.levelTimer++];
+            
             levelThreshold = 340 - player.position.y;
+            
+            if ( levelThreshold < 0 )
+            {
+                self.position = ccp (self.position.x, self.position.y + levelThreshold);
+            }
             
             if ( levelThreshold < 0 && floor.visible == TRUE )
             {
@@ -123,12 +143,76 @@
 
             for (Platform *platform in platforms)
             {       
-                if ( [platform isIntersectingPlayer:player] ) 
+                if ( platform.isAlive && platform.active )
                 {
-                    [self.player jump];
+                    if ( [platform isIntersectingPlayer:player] ) 
+                    {
+                        switch (platform.tag)
+                        {
+                            case 0: 
+                                // moving
+                                [self.player jump:player.jumpspeed];
+                                break;
+                            case 1:
+                                [self.player jump:player.jumpspeed*2];                                
+                                break;                                
+                            case 2:
+                                // break
+                                [platform takeDamagefromPlayer:player];
+                                [self.player jump:player.jumpspeed-2];
+                                break; 
+                            case 3:
+                                // damage enemies
+                                break;
+                            case 4:
+                                // toggle
+                                [self.player jump:player.jumpspeed];
+                                platform.active = !platform.active;
+                                [platform setTexture:platform_toggle2];
+                                for (Platform *pf in platforms)
+                                {
+                                    if (pf.tag == 5)
+                                    {
+                                        pf.active = !platform.active;
+                                        [pf setTexture:platform_toggle1];
+                                    }
+                                }
+                                break;
+                            case 5:
+                                // toggle
+                                [self.player jump:player.jumpspeed];
+                                platform.active = !platform.active;
+                                [platform setTexture:platform_toggle2];
+                                for (Platform *pf in platforms)
+                                {
+                                    if (pf.tag == 4)
+                                    {
+                                        pf.active = !platform.active;
+                                        [pf setTexture:platform_toggle1];
+                                    }
+                                }
+                                break;
+                            default:
+                                // default
+                                [self.player jump:player.jumpspeed];
+                                break;
+                        }
+                    }
+                    if (platform.tag == 0)
+                    {
+                        if ( platform.animating == FALSE )
+                        {
+                            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+                            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+                            
+                            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+                            [platform runAction:repeater];
+                            
+                            platform.animating = TRUE;
+                        }
+                    }
+
                 }
-                
-                [platform movementWithThreshold:levelThreshold];
             }
             
             for (Collectable *collectable in collectables)
@@ -137,8 +221,6 @@
                 {
                     player.collected++;
                 }
-                
-                [collectable movementWithThreshold:levelThreshold];
             }
             
             for (BigCollectable *bigcollectable in bigcollectables)
@@ -147,43 +229,39 @@
                 {
                     player.bigcollected++;
                 }
-                
-                [bigcollectable movementWithThreshold:levelThreshold];
             }
             
             for (Trigger *trigger in triggers)
             {
-                // TODO - TRIGGER TYPE
-                switch (trigger.tag)
+                if ( [trigger isIntersectingPlayer:player] )
                 {
-                    case 0:
-                        // Platform toggle
-                        
-                        break;
-                    case 10:
-                        // This is the end of level trigger!
-                        if ( CGRectIntersectsRect(player.boundingBox, trigger.boundingBox ) )
-                        {
+                    switch (trigger.tag)
+                    {
+                        case 0:
+                            // Platform toggle
+                            break;
+                        case 10:
                             [self gameover];
-                        }
-                        break;
-                }
-                
-                [trigger movementWithThreshold:levelThreshold];
+                            break;
+                        default:
+                            [self gameover];
+                            break;
+                    }
+                }  
             }
             
             for (Enemy *enemy in enemies)
             {
                 if ( enemy.isAlive )
                 {
-                    //[enemy activateNearPlayerPoint:player];
                     [enemy isIntersectingPlayer:player];
-                    [enemy movementWithThreshold:levelThreshold];
                 }
             }
             
             [self playerMovementChecks];
-            [player movement:levelThreshold withGravity:0.200];
+            [player movement:levelThreshold withGravity:0.25];
+            
+            ui.lbl_player_health.string = [NSString stringWithFormat:@"%f", player.health];
         }
         else 
         {
@@ -200,20 +278,23 @@
     user.collected += player.collected;
     if (self.levelNumber == user.levelprogress)
     {
-        user.levelprogress = (player.bigcollected > 0 ? user.levelprogress++ : user.levelprogress);
-        if (user.levelprogress > 9)
+        if (player.bigcollected > 0 )
         {
-            user.worldprogress++;
-            user.levelprogress = 1;
+            user.levelprogress = user.levelprogress + 1;
+            if (user.levelprogress > 9)
+            {
+                user.worldprogress = user.worldprogress + 1;
+                user.levelprogress = 1;
+            }
         }
     }
     [user syncData];
-    
+
     CCLayer *gameover = [CCLayer node];
     CCMenuItem *restartButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(restartButtonTapped:)];
     CCMenuItem *nextLevelButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(nextLevelButtonTapped:)];
     CCMenuItem *backtoMenuButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(backToMenuButtonTapped:)];
-    
+    NSLog(@"Set up items");
     nextLevelButton.isEnabled = (player.bigcollected > 0 ? TRUE : FALSE);
     
     CCMenu *gameovermenu = [CCMenu menuWithItems:restartButton,nextLevelButton,backtoMenuButton,nil]; 
@@ -237,7 +318,8 @@
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for( UITouch *touch in touches ) {
+    for( UITouch *touch in touches ) 
+    {
         CGPoint location = [touch locationInView: [touch view]];
         self.touchLocation = location;
     }
@@ -245,7 +327,7 @@
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, 30.5 );
+    player.velocity = ccp ( player.velocity.x, 5.5 );
     menu.visible = NO;
     self.started = TRUE;
 }
@@ -258,8 +340,16 @@
 
 - (void) nextLevelButtonTapped:(id)sender 
 {
-    [self clearReadyForOrders];
-    [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:(++self.levelNumber)]];
+    [self clearReadyForOrders]; 
+    int nextlevel = self.levelNumber + 1;
+    if (nextlevel > 9)
+    {
+        // do a world transition
+    }
+    else 
+    {
+        [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:nextlevel]];
+    }
 }
 
 - (void) backtoMenuButtonTapped:(id)sender 

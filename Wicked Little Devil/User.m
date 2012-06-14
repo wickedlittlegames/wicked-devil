@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "GameCenterConstants.h"
 
 @implementation User
 @synthesize udata, highscore, collected, levelprogress, worldprogress, gameKitHelper;
@@ -15,28 +16,19 @@
 {
 	if( (self=[super init]) ) 
     {
-        /* 
-            NSUserDefaults:
-                - created
-                - highscore
-                - collected
-                - item1
-                - item2
-                - levelprogress
-                - worldprogress
-        */
         udata = [NSUserDefaults standardUserDefaults];
         if ( [udata boolForKey:@"created"] == FALSE )
         {
             [self createUser];
         }
-        
+                
         self.gameKitHelper = [GameKitHelper sharedGameKitHelper];
         self.gameKitHelper.delegate = self;
         if ([self.gameKitHelper isGameCenterAvailable])
         {
             [self.gameKitHelper authenticateLocalPlayer];
         }
+        
         self.highscore = [udata integerForKey:@"highscore"];
         self.collected = [udata integerForKey:@"collected"];
         self.levelprogress = [udata integerForKey:@"levelprogress"];
@@ -47,6 +39,7 @@
 
 - (void) syncData
 {
+    NSLog(@"%d",self.levelprogress); 
     [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];    

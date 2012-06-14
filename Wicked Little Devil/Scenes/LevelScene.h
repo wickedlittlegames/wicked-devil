@@ -23,6 +23,7 @@
     CCArray *gameObjectsArray;
     CCLayer *gameObjectsLayer;
     CCLayer *background;
+    CCLabelTTF *lbl_collected, *lbl_time, *lbl_player_health;
     
     // tidy
     CCMenuItem *launch;
@@ -31,8 +32,9 @@
 
 @property (nonatomic, assign) bool started;
 @property (nonatomic, retain) Player *player;
-@property (nonatomic, assign) int worldNumber, levelNumber;
+@property (nonatomic, assign) int worldNumber, levelNumber, levelTimer;
 @property (nonatomic, assign) CGPoint touchLocation;
+@property (nonatomic, assign) UILayer *ui;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 

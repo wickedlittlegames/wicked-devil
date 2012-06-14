@@ -34,7 +34,7 @@
 
 @property (nonatomic, assign) bool started;
 @property (nonatomic, retain) Player *player;
-@property (nonatomic, assign) int worldNumber, levelNumber, levelTimer;
+@property (nonatomic, assign) int worldNumber, levelNumber;
 @property (nonatomic, assign) CGPoint touchLocation;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;

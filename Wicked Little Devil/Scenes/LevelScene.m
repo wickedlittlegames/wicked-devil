@@ -11,7 +11,7 @@
 CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
-@synthesize started, player, worldNumber, levelNumber, touchLocation, levelTimer;
+@synthesize started, player, worldNumber, levelNumber, touchLocation;
 
 #pragma mark === Initialization ===
 
@@ -19,21 +19,22 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
 	if( (self=[super init]) ) {
         
+        self.started = FALSE;
+        self.isTouchEnabled = TRUE;
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
         user = [[User alloc] init];
         
         platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
         platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];        
         
-        self.started = FALSE;
-        self.levelTimer = 0;
-                
         floor = [CCSprite spriteWithFile:@"floor.png"];
-        floor.position = ccp ( 320 / 2, 80 );
+        floor.position = ccp ( screenSize.width/2, 80 );
         [self addChild:floor];
         
-        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(launch:)];
+        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
-        menu.position = ccp ( 320/2, 30 );
+        menu.position = ccp ( screenSize.width/2, 30 );
         [self addChild:menu];
 
     }
@@ -46,31 +47,26 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 	CCScene *scene = [CCScene node];
     
     // Grab the layers
-    CCLayer  *world             = [CCLayer node];
     CCLayer *playerlayer        = [CCLayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
     Player *_player = [Player spriteWithFile:@"player.png"];
     _player.scale = _player.scale/2;
-    _player.position = ccp( 320/2 , 110 );
+    _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
     
-    // Add objects and players to world
-    [world addChild:objectLayer];
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
-
-    // Build up a collection of arrays of the objects
-    [objectLayer createWorldWithObjects:[objectLayer children]];
-    
-    // Capture the player for the main layer
     [objectLayer setWorldNumber:worldNum];
-    [objectLayer setLevelNumber:levelNum];
-    
+    [objectLayer setLevelNumber:levelNum];    
+    [objectLayer createWorldWithObjects:[objectLayer children]];
+        
     // Add layers to the scene
-    [scene addChild:world z:50];
+    [scene addChild:objectLayer z:50];
     [scene addChild:playerlayer z:51];
 
 	return scene;
@@ -118,18 +114,12 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
-        {               
+        {   
             levelThreshold = 340 - player.position.y;
             
             if ( levelThreshold < 0 )
             {
                 self.position = ccp (self.position.x, self.position.y + levelThreshold);
-            }
-            
-            if ( levelThreshold < 0 && floor.visible == TRUE )
-            {
-                floor.position = ccp(floor.position.x, floor.position.y + levelThreshold);
-                floor.visible = (floor.position.y < -300 ? FALSE : TRUE);
             }
 
             for (Platform *platform in platforms)
@@ -146,7 +136,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                             // 3: Breakable Platform
                             // 4: Toggle (1)
                             // 5: Toggle (2)
-                                
                             case 0: 
                                 [self.player jump:player.jumpspeed];
                                 break;
@@ -243,12 +232,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                 {
                     switch (trigger.tag)
                     {
-                        case 0:
-                            // Platform toggle
-                            break;
-                        case 10:
-                            [self gameover];
-                            break;
                         default:
                             [self gameover];
                             break;
@@ -278,13 +261,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
     self.isTouchEnabled = FALSE;
     [self unschedule:@selector(update:)];
-    id horizontalmove = [CCMoveTo actionWithDuration:2 position:ccp(280,player.position.y)];
-    
-    CCAction *repeater = [CCSequence actions:horizontalmove,nil];
-    [player runAction:repeater];
-
-    
-    
     user.collected += player.collected;
     if (self.levelNumber == user.levelprogress)
     {
@@ -299,20 +275,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         }
     }
     [user syncData];
-
-    
-    CCLayer *gameover = [CCLayer node];
-    CCMenuItem *restartButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(restartButtonTapped:)];
-    CCMenuItem *nextLevelButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(nextLevelButtonTapped:)];
-    CCMenuItem *backtoMenuButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(backToMenuButtonTapped:)];
-    NSLog(@"Set up items");
-    nextLevelButton.isEnabled = (player.bigcollected > 0 ? TRUE : FALSE);
-    
-    CCMenu *gameovermenu = [CCMenu menuWithItems:restartButton,nextLevelButton,backtoMenuButton,nil]; 
-    gameovermenu.position = ccp ( 120, 300 );
-    [gameover addChild:gameovermenu];
-    
-    [self addChild:gameover];
 }
 
 
@@ -336,22 +298,22 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     }
 }
 
-- (void)launch:(id)sender
+- (void)tap_launch:(id)sender
 {
     player.velocity = ccp ( player.velocity.x, player.jumpspeed + 3 );
     menu.visible = NO;
     self.started = TRUE;
 }
 
-- (void) restartButtonTapped:(id)sender 
+- (void) tap_restart:(id)sender 
 {
-    [self clearReadyForOrders];
+    [self removeAllChildrenWithCleanup:YES];
     [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
 }
 
-- (void) nextLevelButtonTapped:(id)sender 
+- (void) tap_next_level:(id)sender 
 {
-    [self clearReadyForOrders]; 
+    [self removeAllChildrenWithCleanup:YES]; 
     int nextlevel = self.levelNumber + 1;
     if (nextlevel > 9)
     {
@@ -365,13 +327,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void) backtoMenuButtonTapped:(id)sender 
 {
-    [self clearReadyForOrders];
-    [[CCDirector sharedDirector] pushScene:[LevelSelectScene scene]];
-}
-
-- (void) clearReadyForOrders
-{
     [self removeAllChildrenWithCleanup:YES];
+    [[CCDirector sharedDirector] pushScene:[LevelSelectScene scene]];
 }
 
 @end

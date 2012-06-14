@@ -11,9 +11,7 @@
 
 #import "User.h"
 
-@interface ShopScene : CCLayer {
-    User *user;
-}
+@interface ShopScene : CCLayer {}
 
 +(CCScene *) scene;
 @end

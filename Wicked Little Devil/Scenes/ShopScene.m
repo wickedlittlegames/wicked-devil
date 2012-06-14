@@ -31,16 +31,7 @@
 -(id) init
 {
     if( (self=[super init]) ) {
-        // Get the user
-        user = [[User alloc] init];
-        
-        // Screen Size
-        //CGSize screenSize = [CCDirector sharedDirector].winSize;
-        //float menu_x = (screenSize.width/2) - 23;
-        //float menu_y = 275;
-
-        //CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: nil] widthOffset: 0];
-        //[self addChild:scroller];
+        //User *user = [[User alloc] init];
     }
     return self;
 }

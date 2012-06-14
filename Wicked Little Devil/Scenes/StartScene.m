@@ -33,11 +33,11 @@
 {
 	if( (self=[super init]) ) {
 
-		CGSize size = [[CCDirector sharedDirector] winSize];
+		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         CCMenuItem *start = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"START" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_start:)];
         CCMenu *menu = [CCMenu menuWithItems:start, nil];
-        menu.position = ccp ( size.width/2, size.height/2 );
+        menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
 
         [self addChild:menu];
         

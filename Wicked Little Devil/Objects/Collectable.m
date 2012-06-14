@@ -7,7 +7,6 @@
 //
 
 #import "Collectable.h"
-#import "CCNode+CoordHelpers.h"
 
 @implementation Collectable
 

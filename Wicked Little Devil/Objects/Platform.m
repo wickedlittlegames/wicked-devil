@@ -7,7 +7,6 @@
 //
 
 #import "Platform.h"
-#import "CCNode+CoordHelpers.h"
 
 @implementation Platform
 @synthesize health, type, animating,original_position,active;

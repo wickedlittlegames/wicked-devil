@@ -8,8 +8,6 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "UILayer.h"
-#import "CCScrollLayer.h"
 #import "ShopScene.h"
 
 
@@ -21,11 +19,9 @@
 	CCScene *scene = [CCScene node];
     
     // Grab the layers
-    UILayer *ui = [UILayer node];
 	ShopScene *current = [ShopScene node];
     
     // Fill the scene
-    [scene addChild:ui z:100];
 	[scene addChild:current z:10];
     
     // Show the scene

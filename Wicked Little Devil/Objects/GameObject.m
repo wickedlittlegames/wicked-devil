@@ -8,16 +8,5 @@
 
 #import "GameObject.h"
 
-
 @implementation GameObject
-
-- (void) movementWithThreshold:(float)levelThreshold 
-{
-    if (levelThreshold < 0)
-    {
-        self.position = ccp(self.position.x, self.position.y + levelThreshold);
-    }
-}
-
-
 @end

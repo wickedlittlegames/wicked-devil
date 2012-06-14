@@ -6,14 +6,12 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "UILayer.h"
-#import "LevelSelectScene.h"
 #import "LevelScene.h"
 
 CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
-@synthesize started, player, worldNumber, levelNumber, touchLocation, ui, levelTimer;
+@synthesize started, player, worldNumber, levelNumber, touchLocation, levelTimer;
 
 #pragma mark === Initialization ===
 
@@ -48,7 +46,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 	CCScene *scene = [CCScene node];
     
     // Grab the layers
-    UILayer *_ui                 = [UILayer node];
     CCLayer  *world             = [CCLayer node];
     CCLayer *playerlayer        = [CCLayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
@@ -59,14 +56,11 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     _player.scale = _player.scale/2;
     _player.position = ccp( 320/2 , 110 );
     [playerlayer addChild:_player];
-    _ui.lbl_player_health.string = [NSString stringWithFormat:@"Player health: %f",_player.health];
-    _ui.lbl_game_time.visible = FALSE;
     
     // Add objects and players to world
     [world addChild:objectLayer];
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
-    [objectLayer setUi:_ui];
 
     // Build up a collection of arrays of the objects
     [objectLayer createWorldWithObjects:[objectLayer children]];
@@ -76,7 +70,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setLevelNumber:levelNum];
     
     // Add layers to the scene
-    [scene addChild:_ui z:100];
     [scene addChild:world z:50];
     [scene addChild:playerlayer z:51];
 
@@ -125,9 +118,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
         if (player.isAlive)
-        {   
-            ui.lbl_game_time.string = [NSString stringWithFormat:@"Time: %d",self.levelTimer++];
-            
+        {               
             levelThreshold = 340 - player.position.y;
             
             if ( levelThreshold < 0 )
@@ -149,23 +140,27 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                     {
                         switch (platform.tag)
                         {
+                            // 0: Vertical Moving
+                            // 1: Horizontal Moving
+                            // 2: Big Jump
+                            // 3: Breakable Platform
+                            // 4: Toggle (1)
+                            // 5: Toggle (2)
+                                
                             case 0: 
-                                // moving
                                 [self.player jump:player.jumpspeed];
                                 break;
                             case 1:
-                                [self.player jump:player.jumpspeed*2];                                
+                                [self.player jump:player.jumpspeed];
                                 break;                                
                             case 2:
-                                // break
-                                [platform takeDamagefromPlayer:player];
-                                [self.player jump:player.jumpspeed-2];
+                                [self.player jump:player.jumpspeed*2];
                                 break; 
                             case 3:
-                                // damage enemies
+                                [platform takeDamagefromPlayer:player];
+                                [self.player jump:player.jumpspeed];
                                 break;
                             case 4:
-                                // toggle
                                 [self.player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -179,7 +174,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 }
                                 break;
                             case 5:
-                                // toggle
                                 [self.player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -193,7 +187,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 }
                                 break;
                             default:
-                                // default
                                 [self.player jump:player.jumpspeed];
                                 break;
                         }
@@ -206,6 +199,19 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                             id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
                             
                             CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+                            [platform runAction:repeater];
+                            
+                            platform.animating = TRUE;
+                        }
+                    }
+                    if (platform.tag == 1)
+                    {
+                        if ( platform.animating == FALSE )
+                        {
+                            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+                            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+                            
+                            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
                             [platform runAction:repeater];
                             
                             platform.animating = TRUE;
@@ -260,8 +266,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             
             [self playerMovementChecks];
             [player movement:levelThreshold withGravity:0.25];
-            
-            ui.lbl_player_health.string = [NSString stringWithFormat:@"%f", player.health];
         }
         else 
         {
@@ -272,8 +276,14 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void) gameover
 {
-    self.started = FALSE;
+    self.isTouchEnabled = FALSE;
     [self unschedule:@selector(update:)];
+    id horizontalmove = [CCMoveTo actionWithDuration:2 position:ccp(280,player.position.y)];
+    
+    CCAction *repeater = [CCSequence actions:horizontalmove,nil];
+    [player runAction:repeater];
+
+    
     
     user.collected += player.collected;
     if (self.levelNumber == user.levelprogress)
@@ -290,6 +300,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     }
     [user syncData];
 
+    
     CCLayer *gameover = [CCLayer node];
     CCMenuItem *restartButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(restartButtonTapped:)];
     CCMenuItem *nextLevelButton = [CCMenuItemImage itemWithNormalImage:@"Icon.png" selectedImage:@"Icon.png" target:self selector:@selector(nextLevelButtonTapped:)];
@@ -327,7 +338,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void)launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, 5.5 );
+    player.velocity = ccp ( player.velocity.x, player.jumpspeed + 3 );
     menu.visible = NO;
     self.started = TRUE;
 }

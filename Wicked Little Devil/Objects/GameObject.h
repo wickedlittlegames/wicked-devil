@@ -8,10 +8,5 @@
 
 #import "cocos2d.h"
 
-@interface GameObject : CCSprite {
-    
-}
-
-- (void) movementWithThreshold:(float)levelThreshold;
-
+@interface GameObject : CCSprite {}
 @end

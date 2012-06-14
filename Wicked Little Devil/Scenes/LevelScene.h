@@ -6,8 +6,10 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "CCBReader.h"
 #import "cocos2d.h"
+#import "CCBReader.h"
+#import "LevelSelectScene.h"
+
 #import "User.h"
 #import "Player.h"
 #import "Platform.h"
@@ -34,7 +36,6 @@
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, assign) int worldNumber, levelNumber, levelTimer;
 @property (nonatomic, assign) CGPoint touchLocation;
-@property (nonatomic, assign) UILayer *ui;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 

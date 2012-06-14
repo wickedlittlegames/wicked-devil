@@ -7,14 +7,21 @@
 //
 
 #import <GameKit/GameKit.h>
+
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 #import "GameCenterConstants.h"
+
+#import "LevelScene.h"
+#import "ShopScene.h"
 #import "LevelDetailLayer.h"
+
 #import "User.h"
 
 @interface LevelSelectScene : CCLayer {
-    User *user;
     LevelDetailLayer *detail;
 }
+
 +(CCScene *) scene;
+
 @end

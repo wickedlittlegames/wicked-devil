@@ -7,7 +7,7 @@
 //
 
 #import "GameKitHelper.h"
-#import <Foundation/Foundation.h>
+#import "GameCenterConstants.h"
 
 @interface User : NSObject <GameKitHelperProtocol> {}
 

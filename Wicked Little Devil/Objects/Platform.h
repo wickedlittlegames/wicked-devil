@@ -7,6 +7,8 @@
 //
 
 #import "cocos2d.h"
+#import "CCNode+CoordHelpers.h"
+
 #import "GameObject.h"
 #import "Player.h"
 

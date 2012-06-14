@@ -7,7 +7,6 @@
 //
 
 #import "User.h"
-#import "GameCenterConstants.h"
 
 @implementation User
 @synthesize udata, highscore, collected, levelprogress, worldprogress, gameKitHelper;

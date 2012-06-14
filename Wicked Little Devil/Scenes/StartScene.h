@@ -8,10 +8,9 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
-#import "User.h"
 
-@interface StartScene : CCLayer  <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
-    User *user;
-}
+#import "LevelSelectScene.h"
+
+@interface StartScene : CCLayer {}
 +(CCScene *) scene;
 @end

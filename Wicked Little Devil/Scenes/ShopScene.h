@@ -7,10 +7,13 @@
 //
 
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
+
 #import "User.h"
 
 @interface ShopScene : CCLayer {
     User *user;
 }
+
 +(CCScene *) scene;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "Enemy.h"
-#import "CCNode+CoordHelpers.h"
 
 @implementation Enemy
 @synthesize type, active, speed_x, speed_y, health, damage;

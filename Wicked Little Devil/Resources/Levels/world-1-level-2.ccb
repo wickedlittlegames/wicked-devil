@@ -939,8 +939,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>276.21484375</real>
-							<real>571.0999755859375</real>
+							<real>185.21484375</real>
+							<real>630.0999755859375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -994,7 +994,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>3</integer>
+						<integer>5</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1020,7 +1020,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/platform-breakable.png</string>
+							<string>Resources/Global Images/platform-toggle2.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3603,8 +3603,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>184.21484375</real>
-							<real>627.0999755859375</real>
+							<real>278.21484375</real>
+							<real>560.0999755859375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3658,7 +3658,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>3</integer>
+						<integer>4</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3684,7 +3684,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Resources/Global Images/platform-breakable.png</string>
+							<string>Resources/Global Images/platform-toggle1.png</string>
 						</array>
 					</dict>
 					<dict>

@@ -19,6 +19,7 @@
 #import "User.h"
 
 @interface LevelSelectScene : CCLayer {
+    User *user;
     LevelDetailLayer *detail;
 }
 

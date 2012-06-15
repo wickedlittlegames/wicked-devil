@@ -27,7 +27,7 @@
 {
 	if( (self=[super init]) ) {
         // Get the user
-        User *user = [[User alloc] init];
+        user = [[User alloc] init];
 
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
@@ -90,7 +90,6 @@
         [self addChild:scroller];
         [self addChild:storemenu];
         [self addChild:detail];
-        
     }
 	return self;    
 }

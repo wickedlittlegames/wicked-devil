@@ -11,7 +11,7 @@
 CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
-@synthesize started, player, worldNumber, levelNumber, touchLocation;
+@synthesize started, player, worldNumber, levelNumber, touchLocation, ui, timeLimit;
 
 #pragma mark === Initialization ===
 
@@ -21,6 +21,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         
         self.started = FALSE;
         self.isTouchEnabled = TRUE;
+        self.timeLimit = 100;
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         user = [[User alloc] init];
@@ -48,6 +49,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     // Grab the layers
     CCLayer *playerlayer        = [CCLayer node];
+    GameplayUILayer *_ui        = [GameplayUILayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
@@ -62,12 +64,14 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
     [objectLayer setWorldNumber:worldNum];
-    [objectLayer setLevelNumber:levelNum];    
+    [objectLayer setLevelNumber:levelNum];
+    [objectLayer setUi:_ui];
     [objectLayer createWorldWithObjects:[objectLayer children]];
         
     // Add layers to the scene
     [scene addChild:objectLayer z:50];
     [scene addChild:playerlayer z:51];
+    [scene addChild:_ui];
 
 	return scene;
 }
@@ -105,6 +109,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     }
 
     [self schedule:@selector(update:)];
+    [self schedule:@selector(countdown:) interval:1.0f];
 }
 
 #pragma mark === Game Loop ===
@@ -113,7 +118,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
     if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
     {
-        if (player.isAlive)
+        if (player.isAlive && player.position.y > -20)
         {   
             levelThreshold = 340 - player.position.y;
             
@@ -249,10 +254,25 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             
             [self playerMovementChecks];
             [player movement:levelThreshold withGravity:0.25];
+            
+            [ui.lbl_collected setString:[NSString stringWithFormat:@"Collected: %d",player.collected]];
         }
         else 
         {
             NSLog(@"Dead");
+            [self gameover];
+        }
+    }
+}
+
+- (void)countdown:(ccTime)dt
+{
+    if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
+    {
+        if (player.isAlive)
+        {
+            self.timeLimit--;
+            [ui.lbl_gametime setString:[NSString stringWithFormat:@"%i",self.timeLimit]];
         }
     }
 }
@@ -260,7 +280,25 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (void) gameover
 {
     self.isTouchEnabled = FALSE;
+    ui.lbl_gameover.visible = TRUE;
+    ui.lbl_gameover_bigcollected.visible = TRUE;
+    ui.lbl_gameover_collected.visible = TRUE;    
+    ui.lbl_gameover_timebonus.visible = TRUE;
+    ui.lbl_gameover_score.visible = TRUE;
+    ui.lbl_gameover_highscore.visible = TRUE;
+    
+    int timebonus = 100 - self.timeLimit;
+    int score = ((100 - self.timeLimit) + player.collected) * player.bigcollected;
+    
+    [ui.lbl_gameover_bigcollected setString:[NSString stringWithFormat:@"BIG COLLECTED: %d",player.bigcollected]];
+    [ui.lbl_gameover_collected setString:[NSString stringWithFormat:@"COLLECTED: %d",player.collected]];
+    [ui.lbl_gameover_timebonus setString:[NSString stringWithFormat:@"TIME BONUS: %d",timebonus]];
+    [ui.lbl_gameover_score setString:[NSString stringWithFormat:@"SCORE: %d", score]];
+    [ui.lbl_gameover_highscore setString:[NSString stringWithFormat:@"CURRENT HIGH SCORE: %d", ((100 - self.timeLimit) + player.collected) * player.bigcollected]];    
+    
+    
     [self unschedule:@selector(update:)];
+    [self unschedule:@selector(countdown:)];
     user.collected += player.collected;
     if (self.levelNumber == user.levelprogress)
     {

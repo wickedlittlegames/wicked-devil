@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "CCBReader.h"
 #import "LevelSelectScene.h"
+#import "GameplayUILayer.h"
 
 #import "User.h"
 #import "Player.h"
@@ -22,10 +23,6 @@
     Platform *floor;
     float levelThreshold;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
-    CCArray *gameObjectsArray;
-    CCLayer *gameObjectsLayer;
-    CCLayer *background;
-    CCLabelTTF *lbl_collected, *lbl_time, *lbl_player_health;
     
     // tidy
     CCMenuItem *launch;
@@ -34,8 +31,9 @@
 
 @property (nonatomic, assign) bool started;
 @property (nonatomic, retain) Player *player;
-@property (nonatomic, assign) int worldNumber, levelNumber;
+@property (nonatomic, assign) int worldNumber, levelNumber, timeLimit;
 @property (nonatomic, assign) CGPoint touchLocation;
+@property (nonatomic, assign) GameplayUILayer *ui;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 

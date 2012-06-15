@@ -13,8 +13,10 @@
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
-@property (nonatomic, assign) int highscore, collected, levelprogress, worldprogress;
+@property (nonatomic, assign) int collected, levelprogress, worldprogress;
+@property (nonatomic, assign) NSMutableArray *level_bigcollecteds, *highscores;
 
 - (void) syncData;
+- (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score;
 
 @end

@@ -9,36 +9,38 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscore, collected, levelprogress, worldprogress, gameKitHelper;
+@synthesize udata, highscores, collected, level_bigcollecteds, levelprogress, worldprogress, gameKitHelper;
 
 -(id) init
 {
 	if( (self=[super init]) ) 
     {
         udata = [NSUserDefaults standardUserDefaults];
+        
+        [self resetUser];
+        
         if ( [udata boolForKey:@"created"] == FALSE )
         {
             [self createUser];
         }
-                
+        
+        self.highscores = [udata objectForKey:@"highscores"];
+        self.collected = [udata integerForKey:@"collected"];
+        self.levelprogress = [udata integerForKey:@"levelprogress"];
+        self.worldprogress = [udata integerForKey:@"worldprogress"];
+        
         self.gameKitHelper = [GameKitHelper sharedGameKitHelper];
         self.gameKitHelper.delegate = self;
         if ([self.gameKitHelper isGameCenterAvailable])
         {
             [self.gameKitHelper authenticateLocalPlayer];
         }
-        
-        self.highscore = [udata integerForKey:@"highscore"];
-        self.collected = [udata integerForKey:@"collected"];
-        self.levelprogress = [udata integerForKey:@"levelprogress"];
-        self.worldprogress = [udata integerForKey:@"worldprogress"];
     }
     return self;
 }
 
 - (void) syncData
 {
-    NSLog(@"%d",self.levelprogress); 
     [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];    
@@ -46,10 +48,37 @@
     [udata synchronize];
 }
 
+- (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score
+{
+    NSMutableArray *temp_ccarray = [udata objectForKey:@"highscores"];
+    int current_highscore = (int)[[temp_ccarray objectAtIndex:w-1] objectAtIndex:lvl-1];
+    if (score > current_highscore)
+    {
+        [[temp_ccarray objectAtIndex:w-1] replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:score]];    
+        [udata setObject:temp_ccarray forKey:@"highscores"];
+        
+        [udata synchronize];
+    }
+}
+
 - (void) createUser
 {
+    NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    for (int w = 1; w <= WORLDS_PER_GAME; w++)
+    {
+        NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
+        for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
+        {
+            [w addObject:[NSNumber numberWithInt:0]];
+        }
+        NSArray *w_temp = [w copy];
+        [worlds addObject:w_temp];
+    }
+    
+    NSArray *worlds_temp = [worlds copy];
+
     [udata setBool:TRUE forKey:@"created"];
-    [udata setInteger:0 forKey:@"highscore"];
+    [udata setObject:worlds_temp forKey:@"highscores"];
     [udata setInteger:0 forKey:@"collected"];
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];    
@@ -60,7 +89,7 @@
 - (void) resetUser
 {
     [udata setBool:FALSE forKey:@"created"];
-    [udata setInteger:0 forKey:@"highscore"];
+    [udata setObject:NULL forKey:@"highscores"];
     [udata setInteger:0 forKey:@"collected"];
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];    

@@ -26,7 +26,7 @@
     NSString *title_scores = @"Your Top Score";
     NSString *title_facebook = @"Your Facebook Friends";
     NSString *title_compare  = @"Share Options";
-    NSString *text_score = [NSString stringWithFormat:@"%d",user.highscore];
+    NSString *text_score = [NSString stringWithFormat:@"%d",user.collected];
     
     CCLabelTTF *label_world = [CCLabelTTF labelWithString:title_world fontName:font fontSize:20];
     CCLabelTTF *label_scores = [CCLabelTTF labelWithString:title_scores fontName:font fontSize:20];

@@ -28,7 +28,12 @@
 	if( (self=[super init]) ) {
         // Get the user
         user = [[User alloc] init];
-
+        CCLOG(@"Highscores: %@",user.highscores);
+        CCLOG(@"World Progress: %@",user.highscores);        
+        CCLOG(@"World Progress: %i",user.worldprogress);           
+        CCLOG(@"Level Progress: %i",user.levelprogress);
+        CCLOG(@"Collected: %i", user.collected);
+        
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
@@ -62,7 +67,6 @@
                 {
                     level.isEnabled = FALSE;
                 }
-                //NSLog(@"World:%d, Level: %d ENABLED = %i",w,lvl,level.isEnabled);
                 [world_menu addChild:level];
             }
             

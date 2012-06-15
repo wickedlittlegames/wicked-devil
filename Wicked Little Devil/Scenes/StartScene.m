@@ -32,7 +32,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-
+        
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         CCMenuItem *start = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"START" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_start:)];

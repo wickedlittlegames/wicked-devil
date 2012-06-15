@@ -36,5 +36,8 @@
 @property (nonatomic, assign) GameplayUILayer *ui;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
+- (void) tap_nextlevel:(id)sender;
+- (void) tap_restart:(id)sender;
+- (void) tap_mainmenu:(id)sender;
 
 @end

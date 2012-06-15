@@ -18,4 +18,5 @@
                                         *lbl_gameover_score,
                                         *lbl_gameover_highscore,
                                         *lbl_gameover_timebonus;
+@property (nonatomic, retain) CCMenu *menu_gameover;
 @end

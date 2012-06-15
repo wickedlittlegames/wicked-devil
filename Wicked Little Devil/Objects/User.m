@@ -13,11 +13,9 @@
 
 -(id) init
 {
-	if( (self=[super init]) ) 
+	if( (self=[super init]) )
     {
         udata = [NSUserDefaults standardUserDefaults];
-        
-        [self resetUser];
         
         if ( [udata boolForKey:@"created"] == FALSE )
         {
@@ -50,13 +48,14 @@
 
 - (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score
 {
-    NSMutableArray *temp_ccarray = [udata objectForKey:@"highscores"];
-    int current_highscore = (int)[[temp_ccarray objectAtIndex:w-1] objectAtIndex:lvl-1];
+    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    int current_highscore = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+
     if (score > current_highscore)
     {
-        [[temp_ccarray objectAtIndex:w-1] replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:score]];    
-        [udata setObject:temp_ccarray forKey:@"highscores"];
-        
+        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:score]];    
+        [udata setObject:tmp forKey:@"highscores"];
         [udata synchronize];
     }
 }
@@ -71,14 +70,14 @@
         {
             [w addObject:[NSNumber numberWithInt:0]];
         }
-        NSArray *w_temp = [w copy];
-        [worlds addObject:w_temp];
+        NSArray *tmp = [w copy];
+        [worlds addObject:tmp];
     }
     
-    NSArray *worlds_temp = [worlds copy];
+    NSArray *tmp2 = [worlds copy];
 
     [udata setBool:TRUE forKey:@"created"];
-    [udata setObject:worlds_temp forKey:@"highscores"];
+    [udata setObject:tmp2 forKey:@"highscores"];
     [udata setInteger:0 forKey:@"collected"];
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];    

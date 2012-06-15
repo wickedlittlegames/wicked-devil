@@ -29,8 +29,7 @@
         // Get the user
         user = [[User alloc] init];
         CCLOG(@"Highscores: %@",user.highscores);
-        CCLOG(@"World Progress: %@",user.highscores);        
-        CCLOG(@"World Progress: %i",user.worldprogress);           
+        CCLOG(@"World Progress: %i",user.worldprogress);
         CCLOG(@"Level Progress: %i",user.levelprogress);
         CCLOG(@"Collected: %i", user.collected);
         

@@ -29,7 +29,7 @@
     CCMenu *menu;
 }
 
-@property (nonatomic, assign) bool started;
+@property (nonatomic, assign) bool started, complete;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, assign) int worldNumber, levelNumber, timeLimit;
 @property (nonatomic, assign) CGPoint touchLocation;

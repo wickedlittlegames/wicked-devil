@@ -29,6 +29,7 @@
         // Get the user
         user = [[User alloc] init];
         CCLOG(@"Highscores: %@",user.highscores);
+        CCLOG(@"Souls: %@",user.souls);
         CCLOG(@"World Progress: %i",user.worldprogress);
         CCLOG(@"Level Progress: %i",user.levelprogress);
         CCLOG(@"Collected: %i", user.collected);
@@ -66,6 +67,17 @@
                 {
                     level.isEnabled = FALSE;
                 }
+                if ( level.isEnabled )
+                {
+                    NSString *str_level_souls = [NSString stringWithFormat:@"SOULS: %d",[user getSoulsForWorld:w andLevel:lvl]];
+                    CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:str_level_souls fontName:@"Arial" fontSize:18];
+                    [level addChild:lbl_level_souls];
+                }
+                
+                NSString *str_level_name = [NSString stringWithFormat:@"%i - %i",w,lvl];
+                CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:str_level_name fontName:@"Arial" fontSize:18];
+                [level addChild:lbl_level_name];
+                
                 [world_menu addChild:level];
             }
             

@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -24,13 +24,14 @@
         self.damage = 1.0; 
         self.collected = 0;
         self.bigcollected = 0;
+        self.modifier_gravity = 0;
     }
     return self;
 }
 
 - (void) movement:(float)levelThreshold withGravity:(float)gravity
 {
-    self.velocity = ccp( self.velocity.x, self.velocity.y - gravity );
+    self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
     if (levelThreshold < 0)
     {
         self.position = ccp(self.position.x + self.velocity.x, self.position.y + (self.velocity.y + levelThreshold));
@@ -49,6 +50,48 @@
 - (void) jump:(float)speed
 {
     self.velocity = ccp (self.velocity.x, speed);
+}
+
+- (void) setupPowerup:(int)powerup
+{
+    switch (powerup)
+    {
+        case 0:
+            // nothing
+            break;
+        case 1:
+            // double health
+            self.health = self.health * 2;
+            break;
+        case 2:
+            // light feet / less damage to platforms
+            self.damage = self.damage / 4;
+            break;
+        case 3: 
+            // invulnerability
+            self.health = self.health * 100000;
+        case 4:
+            // bigger bounce
+            self.jumpspeed = self.jumpspeed + 2;
+            break;
+        case 5:
+            // little devil
+            self.scale = self.scale/2;
+            break;
+        case 6: 
+            // low gravity
+            self.modifier_gravity = 0.1;
+            break;
+        default:
+            // nothing
+            break;
+            
+        // OTHERS:
+            // Bounce on the floor, never die from falling
+            // Hit enemies from below
+            // quicker reactions (modifier for move diff)
+            // 
+    }
 }
 
 @end

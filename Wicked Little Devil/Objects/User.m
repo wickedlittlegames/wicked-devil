@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, level_bigcollecteds, levelprogress, worldprogress, gameKitHelper;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup;
 
 -(id) init
 {
@@ -22,12 +22,14 @@
             [self createUser];
         }
         
-        self.highscores = [udata objectForKey:@"highscores"];
-        self.collected = [udata integerForKey:@"collected"];
-        self.levelprogress = [udata integerForKey:@"levelprogress"];
-        self.worldprogress = [udata integerForKey:@"worldprogress"];
+        self.highscores     = [udata objectForKey:@"highscores"];
+        self.souls          = [udata objectForKey:@"souls"];
+        self.collected      = [udata integerForKey:@"collected"];
+        self.levelprogress  = [udata integerForKey:@"levelprogress"];
+        self.worldprogress  = [udata integerForKey:@"worldprogress"];
+        self.powerup        = [udata integerForKey:@"powerup"];
         
-        self.gameKitHelper = [GameKitHelper sharedGameKitHelper];
+        self.gameKitHelper  = [GameKitHelper sharedGameKitHelper];
         self.gameKitHelper.delegate = self;
         if ([self.gameKitHelper isGameCenterAvailable])
         {
@@ -41,9 +43,26 @@
 {
     [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
-    [udata setInteger:self.worldprogress forKey:@"worldprogress"];    
+    [udata setInteger:self.worldprogress forKey:@"worldprogress"];
+    [udata setInteger:self.powerup forKey:@"powerup"];
     
     [udata synchronize];
+}
+
+- (int) getScoreForWorld:(int)w andLevel:(int)lvl
+{
+    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    
+    return (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+}
+
+- (int) getSoulsForWorld:(int)w andLevel:(int)lvl
+{
+    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+
+    return (int)[[tmp2 objectAtIndex:lvl-1] intValue];
 }
 
 - (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score
@@ -60,9 +79,24 @@
     }
 }
 
+- (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total
+{
+    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    int current_total = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+    
+    if (total > current_total)
+    {
+        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:total]];    
+        [udata setObject:tmp forKey:@"souls"];
+        [udata synchronize];
+    }
+}
+
 - (void) createUser
 {
     NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
         NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
@@ -71,27 +105,27 @@
             [w addObject:[NSNumber numberWithInt:0]];
         }
         NSArray *tmp = [w copy];
+        NSArray *tmp_souls = [w copy];
         [worlds addObject:tmp];
+        [worlds_souls addObject:tmp_souls];
     }
-    
     NSArray *tmp2 = [worlds copy];
+    NSArray *tmp2_souls = [worlds_souls copy];
 
     [udata setBool:TRUE forKey:@"created"];
     [udata setObject:tmp2 forKey:@"highscores"];
+    [udata setObject:tmp2_souls forKey:@"souls"];
     [udata setInteger:0 forKey:@"collected"];
     [udata setInteger:1 forKey:@"levelprogress"];
-    [udata setInteger:1 forKey:@"worldprogress"];    
+    [udata setInteger:1 forKey:@"worldprogress"];
+    [udata setInteger:0 forKey:@"powerup"];
     
     [udata synchronize];
 }
 
 - (void) resetUser
 {
-    [udata setBool:FALSE forKey:@"created"];
-    [udata setObject:NULL forKey:@"highscores"];
-    [udata setInteger:0 forKey:@"collected"];
-    [udata setInteger:1 forKey:@"levelprogress"];
-    [udata setInteger:1 forKey:@"worldprogress"];    
+    [udata setBool:FALSE forKey:@"created"];    
     
     [udata synchronize];    
 }

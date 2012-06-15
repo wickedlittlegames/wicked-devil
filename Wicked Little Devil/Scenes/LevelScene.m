@@ -11,7 +11,7 @@
 CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
-@synthesize started, player, worldNumber, levelNumber, touchLocation, ui, timeLimit;
+@synthesize started, complete, player, worldNumber, levelNumber, touchLocation, ui, timeLimit;
 
 #pragma mark === Initialization ===
 
@@ -20,11 +20,13 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 	if( (self=[super init]) ) {
         
         self.started = FALSE;
+        self.complete = FALSE;
         self.isTouchEnabled = TRUE;
         self.timeLimit = 100;
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         user = [[User alloc] init];
+        [player setupPowerup:user.powerup];
         
         platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
         platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];        
@@ -37,6 +39,16 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( screenSize.width/2, 30 );
         [self addChild:menu];
+        
+        CCMenuItem *btn_gameover_nextlevel = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT LEVEL" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_nextlevel:)];
+        CCMenuItem *btn_gameover_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_restart:)];
+        CCMenuItem *btn_gameover_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_mainmenu:)];                
+        
+        CCMenu *menu_gameover = [CCMenu menuWithItems:btn_gameover_nextlevel, btn_gameover_restart, btn_gameover_mainmenu, nil];
+        menu_gameover.position = ccp ( 100, 100 );
+        [menu_gameover alignItemsVertically];
+        [self addChild:menu_gameover];
+
 
     }
 	return self;
@@ -49,7 +61,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     // Grab the layers
     CCLayer *playerlayer        = [CCLayer node];
-    GameplayUILayer *_ui        = [GameplayUILayer node];
+    GameplayUILayer *uilayer        = [GameplayUILayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
@@ -61,28 +73,18 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
     
-    CCMenuItem *btn_gameover_nextlevel = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT LEVEL" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_nextlevel:)];
-    CCMenuItem *btn_gameover_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_restart:)];
-    CCMenuItem *btn_gameover_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_mainmenu:)];                
-    
-    CCMenu *menu_gameover = [CCMenu menuWithItems:btn_gameover_nextlevel, btn_gameover_restart, btn_gameover_mainmenu, nil];
-    menu_gameover.position = ccp ( _ui.lbl_gameover_highscore.position.x, _ui.lbl_gameover_highscore.position.y - 30 );
-    [menu_gameover alignItemsVertically];
-    [_ui addChild:menu_gameover];
-    menu_gameover.visible = FALSE;
-
     
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
     [objectLayer setWorldNumber:worldNum];
     [objectLayer setLevelNumber:levelNum];
-    [objectLayer setUi:_ui];
+    [objectLayer setUi:uilayer];
     [objectLayer createWorldWithObjects:[objectLayer children]];
         
     // Add layers to the scene
     [scene addChild:objectLayer z:50];
     [scene addChild:playerlayer z:51];
-    [scene addChild:_ui];
+    [scene addChild:uilayer];
 
 	return scene;
 }
@@ -249,6 +251,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                     switch (trigger.tag)
                     {
                         default:
+                            self.complete = TRUE;
                             [self gameover];
                             break;
                     }
@@ -290,6 +293,9 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void) gameover
 {
+    [self unschedule:@selector(update:)];
+    [self unschedule:@selector(countdown:)];
+    
     self.isTouchEnabled = FALSE;
     ui.lbl_gameover.visible = TRUE;
     ui.lbl_gameover_bigcollected.visible = TRUE;
@@ -310,6 +316,11 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         score = ((100 - self.timeLimit) + player.collected) * 1;
     }
     
+    if (player.bigcollected > 0 && self.complete)
+    {
+        [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected ];
+    }
+    
     [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
     
     [ui.lbl_gameover_bigcollected setString:[NSString stringWithFormat:@"BIG COLLECTED: %d",player.bigcollected]];
@@ -317,10 +328,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [ui.lbl_gameover_timebonus setString:[NSString stringWithFormat:@"TIME BONUS: %d",timebonus]];
     [ui.lbl_gameover_score setString:[NSString stringWithFormat:@"SCORE: %d", score]];
     [ui.lbl_gameover_highscore setString:[NSString stringWithFormat:@"CURRENT HIGH SCORE: %d", ((100 - self.timeLimit) + player.collected) * player.bigcollected]];    
-    
-    
-    [self unschedule:@selector(update:)];
-    [self unschedule:@selector(countdown:)];
+
     user.collected += player.collected;
     if (self.levelNumber == user.levelprogress)
     {
@@ -368,16 +376,22 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (void) tap_nextlevel:(id)sender
 {
     [self removeAllChildrenWithCleanup:YES]; 
-    int nextlevel = self.levelNumber + 1;
-    if (nextlevel > 9)
+    if ( self.worldNumber == user.worldprogress && self.levelNumber == user.levelprogress )
     {
-        // do a world transition
+        [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
     }
     else 
     {
-        [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:nextlevel]];
+        int nextlevel = self.levelNumber + 1;
+        if (nextlevel > 9)
+        {
+            [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber+1 LevelNum:self.levelNumber+1]];
+        }
+        else 
+        {
+            [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber+1]];
+        }
     }
-
 }
 
 - (void) tap_restart:(id)sender
@@ -389,6 +403,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (void) tap_mainmenu:(id)sender
 {
     [self removeAllChildrenWithCleanup:YES];
+    [ui removeAllChildrenWithCleanup:YES];
     [[CCDirector sharedDirector] pushScene:[LevelSelectScene scene]];
 }
 

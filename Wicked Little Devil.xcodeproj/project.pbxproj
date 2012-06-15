@@ -293,6 +293,7 @@
 		9CFF0B7B158A7D0C000AA4E0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B75158A7D0C000AA4E0 /* User.m */; };
 		9CFF0B7E158A7D3F000AA4E0 /* LevelDetailLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B7D158A7D3F000AA4E0 /* LevelDetailLayer.m */; };
 		9CFF0B81158A7D4B000AA4E0 /* CCNode+CoordHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B80158A7D4B000AA4E0 /* CCNode+CoordHelpers.m */; };
+		9CFF0B88158A82C5000AA4E0 /* GameplayUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -607,6 +608,8 @@
 		9CFF0B7F158A7D4B000AA4E0 /* CCNode+CoordHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCNode+CoordHelpers.h"; path = "Extensions/CCNode+CoordHelpers.h"; sourceTree = "<group>"; };
 		9CFF0B80158A7D4B000AA4E0 /* CCNode+CoordHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCNode+CoordHelpers.m"; path = "Extensions/CCNode+CoordHelpers.m"; sourceTree = "<group>"; };
 		9CFF0B82158A7D52000AA4E0 /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterConstants.h; path = Constants/GameCenterConstants.h; sourceTree = "<group>"; };
+		9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameplayUILayer.h; path = Layers/GameplayUILayer.h; sourceTree = "<group>"; };
+		9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameplayUILayer.m; path = Layers/GameplayUILayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1234,6 +1237,8 @@
 		9CBF4822156F9C6200896EBF /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */,
+				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
 				9CFF0B7C158A7D3F000AA4E0 /* LevelDetailLayer.h */,
 				9CFF0B7D158A7D3F000AA4E0 /* LevelDetailLayer.m */,
 			);
@@ -1514,6 +1519,7 @@
 				9CFF0B7B158A7D0C000AA4E0 /* User.m in Sources */,
 				9CFF0B7E158A7D3F000AA4E0 /* LevelDetailLayer.m in Sources */,
 				9CFF0B81158A7D4B000AA4E0 /* CCNode+CoordHelpers.m in Sources */,
+				9CFF0B88158A82C5000AA4E0 /* GameplayUILayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

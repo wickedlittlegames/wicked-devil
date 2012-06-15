@@ -90,7 +90,11 @@
             // Bounce on the floor, never die from falling
             // Hit enemies from below
             // quicker reactions (modifier for move diff)
+            // collectables are worth twice as much!
+            // slow motion - slow down the timer
+            // tiny enemies
             // 
+            
     }
 }
 

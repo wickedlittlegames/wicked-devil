@@ -299,7 +299,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     ui.lbl_gameover_highscore.visible = TRUE;
     ui.menu_gameover.visible = TRUE;
     
-    int timebonus = 100 - self.timeLimit;
+    int timebonus = self.timeLimit;
     int score = 0;
     if (player.bigcollected > 0)
     {

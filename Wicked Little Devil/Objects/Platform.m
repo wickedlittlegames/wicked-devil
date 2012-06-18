@@ -39,4 +39,34 @@
     return ( self.health > 0.0 ? TRUE : FALSE );
 }
 
+- (void) setupHVMovement
+{
+    if (self.tag == 0)
+    {
+        if ( self.animating == FALSE )
+        {
+            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
+        }
+    }
+    if (self.tag == 1)
+    {
+        if ( self.animating == FALSE )
+        {
+            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
+        }
+    }
+}
+
 @end

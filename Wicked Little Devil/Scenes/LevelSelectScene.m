@@ -69,14 +69,17 @@
                 }
                 if ( level.isEnabled )
                 {
-                    NSString *str_level_souls = [NSString stringWithFormat:@"SOULS: %d",[user getSoulsForWorld:w andLevel:lvl]];
-                    CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:str_level_souls fontName:@"Arial" fontSize:18];
+                    NSString *str_level_souls = [NSString stringWithFormat:@"%d",[user getSoulsForWorld:w andLevel:lvl]];
+                    CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:str_level_souls fontName:@"Marker Felt" fontSize:16];
                     [level addChild:lbl_level_souls];
+                    lbl_level_souls.color = ccc3(0,0,0);
+                    lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
                 }
                 
                 NSString *str_level_name = [NSString stringWithFormat:@"%i - %i",w,lvl];
-                CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:str_level_name fontName:@"Arial" fontSize:18];
+                CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:str_level_name fontName:@"Marker Felt" fontSize:12];
                 [level addChild:lbl_level_name];
+                lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
                 
                 [world_menu addChild:level];
             }
@@ -91,11 +94,11 @@
         CCLayer *community = [CCLayer node];
         [scroller addPage:community];
 
-        CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Arial" fontSize:18] target:self selector:@selector(tap_store:)];
+        CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
         CCMenu *storemenu = [CCMenu menuWithItems:store, nil];
         storemenu.position = ccp ( screenSize.width - 40, 10 );
         
-        CCLabelTTF *lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Arial" fontSize:18];
+        CCLabelTTF *lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
         [self addChild:lbl_user_collected];
@@ -117,8 +120,7 @@
 - (void) tap_level:(CCMenuItem*)sender
 {
     NSLog(@"W:%d,L:%d",(int)sender.userData,sender.tag);
-    //[detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
-    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:(int)sender.userData LevelNum:sender.tag]];
+    [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
 }
 
 @end

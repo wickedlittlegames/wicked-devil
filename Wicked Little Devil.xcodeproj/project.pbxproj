@@ -283,6 +283,7 @@
 		9CEC3673158A2894008B127E /* platform-toggle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3669158A2894008B127E /* platform-toggle1.png */; };
 		9CEC3674158A2894008B127E /* platform-toggle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC366A158A2894008B127E /* platform-toggle2.png */; };
 		9CEC3675158A2894008B127E /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC366B158A2894008B127E /* player.png */; };
+		9CF82A3A158F68D900BDC2D7 /* GameoverUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */; };
 		9CFF0B62158A5F78000AA4E0 /* world-1-level-3.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */; };
 		9CFF0B69158A7CB8000AA4E0 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B68158A7CB7000AA4E0 /* Platform.m */; };
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
@@ -588,6 +589,8 @@
 		9CEC3669158A2894008B127E /* platform-toggle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle1.png"; sourceTree = "<group>"; };
 		9CEC366A158A2894008B127E /* platform-toggle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle2.png"; sourceTree = "<group>"; };
 		9CEC366B158A2894008B127E /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		9CF82A38158F68D900BDC2D7 /* GameoverUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameoverUILayer.h; path = Layers/GameoverUILayer.h; sourceTree = "<group>"; };
+		9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameoverUILayer.m; path = Layers/GameoverUILayer.m; sourceTree = "<group>"; };
 		9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-3.ccbi"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
@@ -1237,10 +1240,12 @@
 		9CBF4822156F9C6200896EBF /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */,
-				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
 				9CFF0B7C158A7D3F000AA4E0 /* LevelDetailLayer.h */,
 				9CFF0B7D158A7D3F000AA4E0 /* LevelDetailLayer.m */,
+				9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */,
+				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
+				9CF82A38158F68D900BDC2D7 /* GameoverUILayer.h */,
+				9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1520,6 +1525,7 @@
 				9CFF0B7E158A7D3F000AA4E0 /* LevelDetailLayer.m in Sources */,
 				9CFF0B81158A7D4B000AA4E0 /* CCNode+CoordHelpers.m in Sources */,
 				9CFF0B88158A82C5000AA4E0 /* GameplayUILayer.m in Sources */,
+				9CF82A3A158F68D900BDC2D7 /* GameoverUILayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

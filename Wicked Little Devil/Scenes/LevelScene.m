@@ -22,14 +22,14 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         self.started = FALSE;
         self.complete = FALSE;
         self.isTouchEnabled = TRUE;
-        self.timeLimit = 100;
+
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         user = [[User alloc] init];
         [player setupPowerup:user.powerup];
         
         platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
-        platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];        
+        platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];
         
         floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp ( screenSize.width/2, 80 );
@@ -39,17 +39,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( screenSize.width/2, 30 );
         [self addChild:menu];
-        
-        CCMenuItem *btn_gameover_nextlevel = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT LEVEL" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_nextlevel:)];
-        CCMenuItem *btn_gameover_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_restart:)];
-        CCMenuItem *btn_gameover_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"Arial" fontSize:20] target:self selector:@selector(tap_mainmenu:)];                
-        
-        CCMenu *menu_gameover = [CCMenu menuWithItems:btn_gameover_nextlevel, btn_gameover_restart, btn_gameover_mainmenu, nil];
-        menu_gameover.position = ccp ( 100, 100 );
-        [menu_gameover alignItemsVertically];
-        [self addChild:menu_gameover];
-
-
     }
 	return self;
 }
@@ -61,7 +50,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     // Grab the layers
     CCLayer *playerlayer        = [CCLayer node];
-    GameplayUILayer *uilayer        = [GameplayUILayer node];
+    GameplayUILayer *uilayer    = [GameplayUILayer node];
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
@@ -72,19 +61,19 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     _player.scale = _player.scale/2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
-    
-    
+        
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
     [objectLayer setWorldNumber:worldNum];
     [objectLayer setLevelNumber:levelNum];
     [objectLayer setUi:uilayer];
+    [objectLayer setTimeLimit:objectLayer.tag];
     [objectLayer createWorldWithObjects:[objectLayer children]];
-        
+    
     // Add layers to the scene
     [scene addChild:objectLayer z:50];
     [scene addChild:playerlayer z:51];
-    [scene addChild:uilayer];
+    [scene addChild:uilayer z:100];
 
 	return scene;
 }
@@ -198,33 +187,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 break;
                         }
                     }
-                    if (platform.tag == 0)
-                    {
-                        if ( platform.animating == FALSE )
-                        {
-                            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-                            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-                            
-                            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
-                            [platform runAction:repeater];
-                            
-                            platform.animating = TRUE;
-                        }
-                    }
-                    if (platform.tag == 1)
-                    {
-                        if ( platform.animating == FALSE )
-                        {
-                            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-                            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-                            
-                            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-                            [platform runAction:repeater];
-                            
-                            platform.animating = TRUE;
-                        }
-                    }
-
+                    [platform setupHVMovement];
                 }
             }
             
@@ -273,7 +236,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         }
         else 
         {
-            NSLog(@"Dead");
             [self gameover];
         }
     }
@@ -293,56 +255,46 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void) gameover
 {
+    self.started = FALSE;
     [self unschedule:@selector(update:)];
     [self unschedule:@selector(countdown:)];
-    
-    self.isTouchEnabled = FALSE;
-    ui.lbl_gameover.visible = TRUE;
-    ui.lbl_gameover_bigcollected.visible = TRUE;
-    ui.lbl_gameover_collected.visible = TRUE;    
-    ui.lbl_gameover_timebonus.visible = TRUE;
-    ui.lbl_gameover_score.visible = TRUE;
-    ui.lbl_gameover_highscore.visible = TRUE;
-    ui.menu_gameover.visible = TRUE;
-    
-    int timebonus = self.timeLimit;
-    int score = 0;
-    if (player.bigcollected > 0)
+        
+    if (player.isAlive) // Won the game
     {
-        score = ((100 - self.timeLimit) + player.collected) * player.bigcollected;
-    }
-    else 
-    {
-        score = ((100 - self.timeLimit) + player.collected) * 1;
-    }
-    
-    if (player.bigcollected > 0 && self.complete)
-    {
-        [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected ];
-    }
-    
-    [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
-    
-    [ui.lbl_gameover_bigcollected setString:[NSString stringWithFormat:@"BIG COLLECTED: %d",player.bigcollected]];
-    [ui.lbl_gameover_collected setString:[NSString stringWithFormat:@"COLLECTED: %d",player.collected]];
-    [ui.lbl_gameover_timebonus setString:[NSString stringWithFormat:@"TIME BONUS: %d",timebonus]];
-    [ui.lbl_gameover_score setString:[NSString stringWithFormat:@"SCORE: %d", score]];
-    [ui.lbl_gameover_highscore setString:[NSString stringWithFormat:@"CURRENT HIGH SCORE: %d", ((100 - self.timeLimit) + player.collected) * player.bigcollected]];    
-
-    user.collected += player.collected;
-    if (self.levelNumber == user.levelprogress)
-    {
-        if (player.bigcollected > 0 )
+        int score = 0;
+        if (player.bigcollected > 0)
         {
-            user.levelprogress = user.levelprogress + 1;
-            if (user.levelprogress > 9)
+            score = ((100 - self.timeLimit) + player.collected) * player.bigcollected;
+        }
+        else 
+        {
+            score = ((100 - self.timeLimit) + player.collected) * 1;
+        }
+        
+        if (player.bigcollected > 0 && self.complete)
+        {
+            [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected ];
+        }
+        
+        [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
+        
+        user.collected += player.collected;
+        if (self.levelNumber == user.levelprogress)
+        {
+            if (player.bigcollected > 0 )
             {
-                user.worldprogress = user.worldprogress + 1;
-                user.levelprogress = 1;
+                user.levelprogress = user.levelprogress + 1;
+                if (user.levelprogress > 9)
+                {
+                    user.worldprogress = user.worldprogress + 1;
+                    user.levelprogress = 1;
+                }
             }
         }
+        [user syncData];
     }
-    [user syncData];
+    GameoverUILayer *gameover_ui = [GameoverUILayer node];
+    [self addChild:gameover_ui];
 }
 
 
@@ -377,7 +329,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
     [self removeAllChildrenWithCleanup:YES]; 
     if ( self.worldNumber == user.worldprogress && self.levelNumber == user.levelprogress )
-    {
+    {   
         [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
     }
     else 

@@ -10,7 +10,9 @@
 #import "CCBReader.h"
 #import "LevelSelectScene.h"
 #import "GameplayUILayer.h"
+#import "GameoverUILayer.h"
 
+#import "GameObject.h"
 #import "User.h"
 #import "Player.h"
 #import "Platform.h"
@@ -20,7 +22,7 @@
 
 @interface LevelScene : CCLayer {
     User *user;
-    Platform *floor;
+    GameObject *floor;
     float levelThreshold;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
     

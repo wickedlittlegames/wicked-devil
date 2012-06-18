@@ -21,7 +21,7 @@
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (BOOL) isAlive;
 - (void) takeDamagefromPlayer:(Player*)player;
-
+- (void) setupHVMovement;
 @end
 
 

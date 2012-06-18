@@ -93,8 +93,6 @@
             // collectables are worth twice as much!
             // slow motion - slow down the timer
             // tiny enemies
-            // 
-            
     }
 }
 

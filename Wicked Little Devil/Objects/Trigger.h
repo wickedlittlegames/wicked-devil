@@ -14,6 +14,10 @@
 @interface Trigger : GameObject {
     
 }
+@property (nonatomic, assign) bool isEffectActive;
+
 - (BOOL) isIntersectingPlayer:(Player*)player;
+- (void) toggleEffect;
+- (void) damageToPlayer:(Player*)player;
 
 @end

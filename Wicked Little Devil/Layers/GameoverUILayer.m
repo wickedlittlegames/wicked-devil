@@ -21,7 +21,7 @@
         int fontsize = 18;
                 
         CCSprite *background = [CCSprite spriteWithFile:@"slide-in.png"];
-        background.opacity = 0.8;
+        background.position = ccp (screenSize.width/2, screenSize.height/2);
         [self addChild:background];
         
         lbl_gameover = [CCLabelTTF labelWithString:@"GAME OVER" fontName:font fontSize:fontsize];
@@ -54,7 +54,7 @@
         
         CCMenu *menu_gameover = [CCMenu menuWithItems:next, restart, mainmenu, nil];
         [menu_gameover alignItemsVerticallyWithPadding:20];
-        menu_gameover.position = ccp ( 0, 400 );
+        menu_gameover.position = ccp ( screenSize.width/2, 400 );
         [self addChild:menu_gameover];
     }
 	return self;    
@@ -62,8 +62,9 @@
 
 - (void) tap_next:(id)sender
 {
-    
+    [self removeAllChildrenWithCleanup:YES];
 }
+
 
 - (void) tap_restart:(id)sender
 {

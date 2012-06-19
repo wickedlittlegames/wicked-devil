@@ -22,6 +22,5 @@
 - (BOOL) isAlive;
 - (void) takeDamagefromPlayer:(Player*)player;
 - (void) setupHVMovement;
+
 @end
-
-

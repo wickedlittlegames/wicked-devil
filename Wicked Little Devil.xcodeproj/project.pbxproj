@@ -260,6 +260,7 @@
 		9C32AC3A1589442D00B85726 /* icon-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC391589442D00B85726 /* icon-locked.png */; };
 		9C32AC3D1589EB5A00B85726 /* world-1-level-2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */; };
 		9C32AC3F1589EF1300B85726 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3E1589EF1300B85726 /* rat.png */; };
+		9C4B10AD1590754D0078074B /* PlayerStatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B10AC1590754D0078074B /* PlayerStatsScene.m */; };
 		9C6149561577AF6100A6FF33 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149531577AF6100A6FF33 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149681577B09600A6FF33 /* LevelScene.m */; };
@@ -560,6 +561,8 @@
 		9C32AC391589442D00B85726 /* icon-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-locked.png"; sourceTree = "<group>"; };
 		9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-2.ccbi"; sourceTree = "<group>"; };
 		9C32AC3E1589EF1300B85726 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
+		9C4B10AB1590754D0078074B /* PlayerStatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerStatsScene.h; path = Scenes/PlayerStatsScene.h; sourceTree = "<group>"; };
+		9C4B10AC1590754D0078074B /* PlayerStatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerStatsScene.m; path = Scenes/PlayerStatsScene.m; sourceTree = "<group>"; };
 		9C6149521577AF6100A6FF33 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
 		9C6149531577AF6100A6FF33 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
@@ -1231,6 +1234,8 @@
 				9C61496A1577B09600A6FF33 /* LevelSelectScene.m */,
 				9C086F9B15825E6F00E87785 /* ShopScene.h */,
 				9C086F9C15825E6F00E87785 /* ShopScene.m */,
+				9C4B10AB1590754D0078074B /* PlayerStatsScene.h */,
+				9C4B10AC1590754D0078074B /* PlayerStatsScene.m */,
 				9C6149671577B09600A6FF33 /* LevelScene.h */,
 				9C6149681577B09600A6FF33 /* LevelScene.m */,
 			);
@@ -1526,6 +1531,7 @@
 				9CFF0B81158A7D4B000AA4E0 /* CCNode+CoordHelpers.m in Sources */,
 				9CFF0B88158A82C5000AA4E0 /* GameplayUILayer.m in Sources */,
 				9CF82A3A158F68D900BDC2D7 /* GameoverUILayer.m in Sources */,
+				9C4B10AD1590754D0078074B /* PlayerStatsScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

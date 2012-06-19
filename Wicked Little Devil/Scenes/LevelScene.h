@@ -36,6 +36,7 @@
 @property (nonatomic, assign) int worldNumber, levelNumber, timeLimit;
 @property (nonatomic, assign) CGPoint touchLocation;
 @property (nonatomic, assign) GameplayUILayer *ui;
+@property (nonatomic, assign) GameoverUILayer *gameoverlayer;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 - (void) tap_nextlevel:(id)sender;

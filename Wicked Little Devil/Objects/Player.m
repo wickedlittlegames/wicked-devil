@@ -21,7 +21,7 @@
         self.stats = [NSUserDefaults standardUserDefaults];
         
         self.health = 10.0;
-        self.damage = 1.0; 
+        self.damage = 1.0;
         self.collected = 0;
         self.bigcollected = 0;
         self.modifier_gravity = 0;
@@ -91,9 +91,18 @@
             // Hit enemies from below
             // quicker reactions (modifier for move diff)
             // collectables are worth twice as much!
+            // moneybags - normal platforms give 100 points per bounce but are destroyed
             // slow motion - slow down the timer
             // tiny enemies
+            // fun card - change devil to different colour
+            // fun card - comedy "boing" sound when jumping
+            // fun card - 
     }
+}
+
+- (void) killObject:(id)sender
+{
+    
 }
 
 @end

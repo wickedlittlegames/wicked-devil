@@ -33,6 +33,7 @@
         CCLOG(@"World Progress: %i",user.worldprogress);
         CCLOG(@"Level Progress: %i",user.levelprogress);
         CCLOG(@"Collected: %i", user.collected);
+        CCLOG(@"Powerup: %@",user.powerup);
         
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
@@ -95,8 +96,10 @@
         [scroller addPage:community];
 
         CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
-        CCMenu *storemenu = [CCMenu menuWithItems:store, nil];
-        storemenu.position = ccp ( screenSize.width - 40, 10 );
+        CCMenuItem *stats = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Player" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_stats:)];
+        CCMenu *storemenu = [CCMenu menuWithItems:store,stats, nil];
+        [storemenu alignItemsHorizontallyWithPadding:20];
+        storemenu.position = ccp ( screenSize.width - 80, 10 );
         
         CCLabelTTF *lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
@@ -116,10 +119,12 @@
 {
     [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
 }
-
+- (void) tap_stats:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[PlayerStatsScene scene]];
+}
 - (void) tap_level:(CCMenuItem*)sender
 {
-    NSLog(@"W:%d,L:%d",(int)sender.userData,sender.tag);
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
 }
 

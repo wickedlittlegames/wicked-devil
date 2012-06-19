@@ -14,6 +14,7 @@
 
 #import "ShopScene.h"
 #import "LevelDetailLayer.h"
+#import "PlayerStatsScene.h"
 
 #import "User.h"
 

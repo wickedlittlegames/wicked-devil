@@ -7,7 +7,7 @@
 //
 
 #import "LevelSelectScene.h"
-
+#import "LevelScene.h"
 @implementation LevelSelectScene
 
 +(CCScene *) scene
@@ -86,6 +86,20 @@
             }
             
             [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+            if ( w == 1 )
+            {
+                CCSprite *background = [CCSprite spriteWithFile:@"bg_hell.png"];
+                background.position = ccp (screenSize.width/2, screenSize.height/2);
+                [world addChild:background];
+            }
+            else if ( w == 2 )
+            {
+                CCSprite *background = [CCSprite spriteWithFile:@"bg_underground.png"];
+                background.position = ccp (screenSize.width/2, screenSize.height/2);
+                [world addChild:background];
+            }
+
+            
             [world addChild:world_menu];
             [worlds addObject:world];
         }

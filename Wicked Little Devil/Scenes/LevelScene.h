@@ -33,7 +33,7 @@
 
 @property (nonatomic, assign) bool started, complete;
 @property (nonatomic, retain) Player *player;
-@property (nonatomic, assign) int worldNumber, levelNumber, timeLimit;
+@property (nonatomic, assign) int worldNumber, levelNumber;
 @property (nonatomic, assign) CGPoint touchLocation;
 @property (nonatomic, assign) GameplayUILayer *ui;
 @property (nonatomic, assign) GameoverUILayer *gameoverlayer;

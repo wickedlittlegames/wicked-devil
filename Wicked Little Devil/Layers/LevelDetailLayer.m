@@ -53,7 +53,6 @@
     menu.position = ccp ( 0, 400 );
     
     [self addChild:menu];
- 
 
     [self addChild:label_world];
     [self addChild:label_scores];

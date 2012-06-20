@@ -10,7 +10,7 @@
 #import "LevelSelectScene.h"
 
 @implementation GameoverUILayer {}
-@synthesize lbl_gameover, lbl_gameover_bigcollected, lbl_gameover_collected, lbl_gameover_score, lbl_gameover_highscore, lbl_gameover_timebonus;
+@synthesize lbl_gameover, lbl_gameover_bigcollected, lbl_gameover_collected, lbl_gameover_score, lbl_gameover_highscore;
 
 -(id) init
 {
@@ -35,10 +35,6 @@
         lbl_gameover_collected = [CCLabelTTF labelWithString:@"COLLECTED: xx" fontName:font fontSize:fontsize];
         lbl_gameover_collected.position = ccp ( lbl_gameover.position.x, lbl_gameover.position.y - 60);
         [self addChild:lbl_gameover_collected];
-        
-        lbl_gameover_timebonus = [CCLabelTTF labelWithString:@"TIME BONUS: xxsecs left" fontName:font fontSize:fontsize];
-        lbl_gameover_timebonus.position = ccp ( lbl_gameover.position.x, lbl_gameover.position.y - 90);
-        [self addChild:lbl_gameover_timebonus];
         
         lbl_gameover_score = [CCLabelTTF labelWithString:@"TOTAL SCORE: xx" fontName:font fontSize:fontsize];
         lbl_gameover_score.position = ccp ( lbl_gameover.position.x, lbl_gameover.position.y - 120);

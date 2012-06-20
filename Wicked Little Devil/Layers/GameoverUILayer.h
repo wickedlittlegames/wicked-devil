@@ -13,8 +13,7 @@
                                         *lbl_gameover_bigcollected,
                                         *lbl_gameover_collected,
                                         *lbl_gameover_score,
-                                        *lbl_gameover_highscore,
-                                        *lbl_gameover_timebonus;
+                                        *lbl_gameover_highscore;
 
 
 @end

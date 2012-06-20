@@ -11,7 +11,7 @@
 CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
-@synthesize started, complete, player, worldNumber, levelNumber, touchLocation, ui, timeLimit, gameoverlayer;
+@synthesize started, complete, player, worldNumber, levelNumber, touchLocation, ui, gameoverlayer;
 
 #pragma mark === Initialization ===
 
@@ -62,7 +62,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     _player.scale = _player.scale/2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
-    
+        
     gameoverlayer.visible = FALSE;
         
     [objectLayer setPlayer:_player];
@@ -71,15 +71,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setLevelNumber:levelNum];
     [objectLayer setUi:uilayer];
     [objectLayer setGameoverlayer:gameoverlayer];
-    if ( objectLayer.tag > 0 )
-    {
-        [objectLayer setTimeLimit:objectLayer.tag];        
-    }
-    else
-    {
-        [objectLayer setTimeLimit:100];
-    }
-
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
     // Add layers to the scene
@@ -124,7 +115,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     }
 
     [self schedule:@selector(update:)];
-    [self schedule:@selector(countdown:) interval:1.0f];
 }
 
 #pragma mark === Game Loop ===
@@ -158,24 +148,19 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                             // 5: Toggle (2)
                             // 6: Trap fire
                             case 0: 
-                                [self showScorePop:250 atPosition:platform.position];               
                                 [player jump:player.jumpspeed];
                                 break;
                             case 1:
-                                [self showScorePop:250 atPosition:platform.position];               
                                 [player jump:player.jumpspeed];
                                 break;                                
                             case 2:
-                                [self showScorePop:250 atPosition:platform.position];               
                                 [player jump:player.jumpspeed*2];
                                 break; 
                             case 3:
-                                [self showScorePop:750 atPosition:platform.position];               
-                                [platform takeDamagefromPlayer:player];
+                                
                                 [player jump:player.jumpspeed];
                                 break;
                             case 4:
-                                [self showScorePop:100 atPosition:platform.position];               
                                 [player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -189,7 +174,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 }
                                 break;
                             case 5:
-                                [self showScorePop:100 atPosition:platform.position];               
                                 [player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -217,8 +201,9 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 // if the user has moneybags active
                                 if ( user.powerup == 8 )
                                 {
-                                    [self showScorePop:100 atPosition:platform.position];
+                                    [self showScorePop:10 atPosition:platform.position];
                                 }
+                                //[platform takeDamagefromPlayer:player];
                                 [player jump:player.jumpspeed];
                                 break;
                         }
@@ -232,7 +217,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                 if ( [collectable isIntersectingPlayer:player] ) 
                 {
                     player.collected++;
-                    [self showScorePop:1 atPosition:collectable.position];
                 }
             }
             
@@ -278,19 +262,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         }
         else 
         {
+            player.health = 0;
             [self gameover];
-        }
-    }
-}
-
-- (void)countdown:(ccTime)dt
-{
-    if ( ![[CCDirector sharedDirector] isPaused] && self.started == TRUE )
-    {
-        if (player.isAlive)
-        {
-            self.timeLimit--;
-            [ui.lbl_gametime setString:[NSString stringWithFormat:@"%i",self.timeLimit]];
         }
     }
 }
@@ -299,18 +272,17 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
     self.started = FALSE;
     [self unschedule:@selector(update:)];
-    [self unschedule:@selector(countdown:)];
-        
+    
     if (player.isAlive) // Won the game
     {       
         int score = 0;
         if (player.bigcollected > 0)
         {
-            score = ((100 - self.timeLimit) + player.collected) * player.bigcollected;
+            score = player.collected * player.bigcollected;
         }
         else 
         {
-            score = ((100 - self.timeLimit) + player.collected) * 1;
+            score = player.collected * 1;
         }
         
         if (player.bigcollected > 0 && self.complete)
@@ -323,7 +295,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         user.collected += player.collected;
         if (self.levelNumber == user.levelprogress)
         {
-            if (player.bigcollected > 0 )
+            if ( player.bigcollected > 0 )
             {
                 user.levelprogress = user.levelprogress + 1;
                 if (user.levelprogress > 9)
@@ -334,7 +306,18 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             }
         }
         [user syncData];
+        
+        [gameoverlayer.lbl_gameover_score setString:[NSString stringWithFormat:@"Score: %i",score]];
+        [gameoverlayer.lbl_gameover_highscore setString:[NSString stringWithFormat:@"Highscore: %i",[user getScoreForWorld:worldNumber andLevel:levelNumber]]];        
         gameoverlayer.visible = TRUE;
+    }
+    else 
+    {
+        gameoverlayer.visible = TRUE;
+        gameoverlayer.lbl_gameover_bigcollected.visible = FALSE;
+        gameoverlayer.lbl_gameover_collected.visible = FALSE;
+        gameoverlayer.lbl_gameover_highscore.visible = FALSE;
+        gameoverlayer.lbl_gameover_score.visible = FALSE;
     }
 }
 

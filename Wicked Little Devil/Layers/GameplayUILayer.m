@@ -11,7 +11,7 @@
 #import "LevelSelectScene.h"
 
 @implementation GameplayUILayer
-@synthesize lbl_player_health, lbl_gametime, lbl_collected;
+@synthesize lbl_player_health, lbl_score, lbl_collected;
 
 -(id) init
 {
@@ -25,9 +25,9 @@
         lbl_collected.position = ccp (screenSize.width - 100, screenSize.height - 20);
         [self addChild:lbl_collected];
         
-        lbl_gametime = [CCLabelTTF labelWithString:@"100" fontName:font fontSize:fontsize];
-        lbl_gametime.position = ccp ( 20, screenSize.height - 20);
-        [self addChild:lbl_gametime];
+        lbl_score = [CCLabelTTF labelWithString:@"Score: 0" fontName:font fontSize:fontsize];
+        lbl_score.position = ccp ( 50, screenSize.height - 20);
+        [self addChild:lbl_score];        
     }
 	return self;    
 }

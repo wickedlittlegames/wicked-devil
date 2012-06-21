@@ -10,6 +10,6 @@
 
 @interface GameplayUILayer : CCLayer {}
 @property (nonatomic,retain) CCLabelTTF *lbl_collected,
-                                        *lbl_gametime,          
+                                        *lbl_score,          
                                         *lbl_player_health;
 @end

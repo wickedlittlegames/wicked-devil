@@ -13,7 +13,7 @@
 @property (nonatomic, assign) float health, damage, jumpspeed, modifier_gravity;
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
-@property (nonatomic, assign) int collected, bigcollected;
+@property (nonatomic, assign) int collected, bigcollected, score;
 
 - (BOOL) isAlive;
 - (void) jump:(float)speed;

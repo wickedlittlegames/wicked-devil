@@ -201,7 +201,13 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                 // if the user has moneybags active
                                 if ( user.powerup == 8 )
                                 {
-                                    [self showScorePop:10 atPosition:platform.position];
+                                    [self showScorePop:200 atPosition:platform.position];
+                                    player.score += 200;
+                                }
+                                else 
+                                {
+                                    [self showScorePop:100 atPosition:platform.position];
+                                    player.score += 100;
                                 }
                                 //[platform takeDamagefromPlayer:player];
                                 [player jump:player.jumpspeed];
@@ -217,6 +223,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                 if ( [collectable isIntersectingPlayer:player] ) 
                 {
                     player.collected++;
+                    player.score ++;
                 }
             }
             
@@ -225,7 +232,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                 if ( [bigcollectable isIntersectingPlayer:player] )
                 {
                     player.bigcollected++;
-                    [self showScorePop:500 atPosition:bigcollectable.position];               
+                    [self showScorePop:500 atPosition:bigcollectable.position];
+                    player.score += 500;
                 }
             }
             
@@ -259,6 +267,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             [player movement:levelThreshold withGravity:0.25];
             
             [ui.lbl_collected setString:[NSString stringWithFormat:@"Collected: %d",player.collected]];
+            [ui.lbl_score setString:[NSString stringWithFormat:@"Score: %d", player.score]];
         }
         else 
         {

@@ -50,6 +50,8 @@
             CCMenu *world_menu = [CCMenu menuWithItems:nil];
             world_menu.position = ccp ( menu_x, menu_y );
             
+            int world_souls_total = 0;
+            
             for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
             {
                 CCMenuItem *level = [CCMenuItemImage 
@@ -70,7 +72,9 @@
                 }
                 if ( level.isEnabled )
                 {
-                    NSString *str_level_souls = [NSString stringWithFormat:@"%d",[user getSoulsForWorld:w andLevel:lvl]];
+                    int world_souls = [user getSoulsForWorld:w andLevel:lvl];
+                    world_souls_total += world_souls;
+                    NSString *str_level_souls = [NSString stringWithFormat:@"%d",world_souls];
                     CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:str_level_souls fontName:@"Marker Felt" fontSize:16];
                     [level addChild:lbl_level_souls];
                     lbl_level_souls.color = ccc3(0,0,0);
@@ -98,7 +102,10 @@
                 background.position = ccp (screenSize.width/2, screenSize.height/2);
                 [world addChild:background];
             }
-
+            
+            CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:@"Marker Felt" fontSize:14];
+            world_stars.position = ccp ( screenSize.width - 80, 390);
+            [world addChild:world_stars];
             
             [world addChild:world_menu];
             [worlds addObject:world];

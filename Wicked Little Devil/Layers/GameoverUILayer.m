@@ -126,7 +126,6 @@
             id fade_in_menu = [CCFadeIn actionWithDuration:0.5];
             id delay = [CCDelayTime actionWithDuration:tmp_player_bigcollected*0.5];
             [menu_success runAction:[CCSequence actions:delay, fade_in_menu, nil]];
-
         }
     }
 }

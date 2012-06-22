@@ -165,27 +165,19 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                     {
                         switch (platform.tag)
                         {
-                            // 0: Vertical Moving
-                            // 1: Horizontal Moving
-                            // 2: Big Jump
-                            // 3: Breakable Platform
-                            // 4: Toggle (1)
-                            // 5: Toggle (2)
-                            // 6: Trap fire
-                            case 0: 
+                            case 0: // 0: Vertical Moving
                                 [player jump:player.jumpspeed];
                                 break;
-                            case 1:
+                            case 1: // 1: Horizontal Moving
                                 [player jump:player.jumpspeed];
                                 break;                                
-                            case 2:
+                            case 2: // 2: Big Jump
                                 [player jump:player.jumpspeed*2];
                                 break; 
-                            case 3:
-                                
+                            case 3: // 3: Breakable Platform
                                 [player jump:player.jumpspeed];
                                 break;
-                            case 4:
+                            case 4: // 4: Toggle (1)
                                 [player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -198,7 +190,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                     }
                                 }
                                 break;
-                            case 5:
+                            case 5: // 5: Toggle (2)
                                 [player jump:player.jumpspeed];
                                 platform.active = !platform.active;
                                 [platform setTexture:platform_toggle2];
@@ -211,7 +203,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
                                     }
                                 }
                                 break;
-                            case 6:
+                            case 6: // 6: Trap fire
                                 [player jump:player.jumpspeed];
                                 for (Trigger *trigger in triggers)
                                 {
@@ -307,38 +299,24 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     self.started = FALSE;
     [self unschedule:@selector(update:)];
     
-    if (player.isAlive) // Won the game
+    if (player.isAlive && player.bigcollected > 0 && self.complete) // Won the game
     {       
-        int score = 0;
-        if (player.bigcollected > 0)
-        {
-            score = player.collected * player.bigcollected;
-        }
-        else 
-        {
-            score = player.collected * 1;
-        }
+        int score = player.collected * player.bigcollected;
+        user.collected += player.collected;
         
-        if (player.bigcollected > 0 && self.complete)
-        {
-            [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected];
-        }
-        
+        [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected];
         [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
         
-        user.collected += player.collected;
         if (self.levelNumber == user.levelprogress)
         {
-            if ( player.bigcollected > 0 )
+            user.levelprogress = user.levelprogress + 1;
+            if (user.levelprogress > 9)
             {
-                user.levelprogress = user.levelprogress + 1;
-                if (user.levelprogress > 9)
-                {
-                    user.worldprogress = user.worldprogress + 1;
-                    user.levelprogress = 1;
-                }
+                user.worldprogress = user.worldprogress + 1;
+                user.levelprogress = 1;
             }
         }
+        
         [user syncData];
         gameoverlayer.visible = TRUE;
         [gameoverlayer setWorld:worldNumber];
@@ -384,40 +362,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     player.velocity = ccp ( player.velocity.x, player.jumpspeed + 3 );
     menu.visible = NO;
     self.started = TRUE;
-}
-
-- (void) tap_nextlevel:(id)sender
-{
-    [self removeAllChildrenWithCleanup:YES]; 
-    if ( self.worldNumber == user.worldprogress && self.levelNumber == user.levelprogress )
-    {   
-        [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
-    }
-    else 
-    {
-        int nextlevel = self.levelNumber + 1;
-        if (nextlevel > 9)
-        {
-            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber+1 LevelNum:self.levelNumber+1]];
-        }
-        else 
-        {
-            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber+1]];
-        }
-    }
-}
-
-- (void) tap_restart:(id)sender
-{
-    [self removeAllChildrenWithCleanup:YES];
-    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
-}
-
-- (void) tap_mainmenu:(id)sender
-{
-    [self removeAllChildrenWithCleanup:YES];
-    [ui removeAllChildrenWithCleanup:YES];
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 
 - (void) showScorePop:(int)score atPosition:(CGPoint)location

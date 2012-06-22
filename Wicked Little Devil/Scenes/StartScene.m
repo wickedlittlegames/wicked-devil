@@ -11,7 +11,6 @@
 #import "AppDelegate.h"
 #import "StartScene.h"
 
-
 @implementation StartScene
 
 +(CCScene *) scene
@@ -40,7 +39,6 @@
         menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
 
         [self addChild:menu];
-        
     }
 	return self;    
 }

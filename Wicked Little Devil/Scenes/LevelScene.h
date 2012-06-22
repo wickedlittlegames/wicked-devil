@@ -37,6 +37,7 @@
 @property (nonatomic, assign) CGPoint touchLocation;
 @property (nonatomic, assign) GameplayUILayer *ui;
 @property (nonatomic, assign) GameoverUILayer *gameoverlayer;
+@property (nonatomic, assign) CCSprite* background_front, *background_middle, *background_middle2, *background_back;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum;
 - (void) tap_nextlevel:(id)sender;

@@ -32,8 +32,21 @@
 {
     if( (self=[super init]) ) {
         //User *user = [[User alloc] init];
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
+        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
+        CCMenu *menu = [CCMenu menuWithItems:back, nil];
+        menu.position = ccp ( screenSize.width - 80, 10 );
+        
+        [self addChild:menu];
+
     }
     return self;
+}
+
+- (void) tap_back
+{
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 
 

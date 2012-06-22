@@ -12,6 +12,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
 @synthesize started, complete, player, worldNumber, levelNumber, touchLocation, ui, gameoverlayer;
+@synthesize background_front, background_middle, background_middle2, background_back;
 
 #pragma mark === Initialization ===
 
@@ -58,11 +59,26 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
+    /*CCSprite *_background_front = [CCSprite spriteWithFile:@"background_front.png"];
+    _background_front.position = ccp ( screenSize.width/2, screenSize.height/2 );
+    [scene addChild:_background_front z:4];
+    
+    CCSprite *_background_middle = [CCSprite spriteWithFile:@"background_middle.png"];
+    _background_middle.position = ccp ( screenSize.width/2, screenSize.height/2 );
+    [scene addChild:_background_middle z:3];
+    
+    CCSprite *_background_middle2 = [CCSprite spriteWithFile:@"background_middle2.png"];
+    _background_middle2.position = ccp ( screenSize.width/2, screenSize.height/2 );
+    [scene addChild:_background_middle2 z:2];
+    
+    CCSprite *_background_back = [CCSprite spriteWithFile:@"background_back.png"];
+    _background_back.position = ccp ( screenSize.width/2, screenSize.height/2 );
+    [scene addChild:_background_back z:1];*/
+    
     Player *_player = [Player spriteWithFile:@"player.png"];
     _player.scale = _player.scale/2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
-        
     gameoverlayer.visible = FALSE;
         
     [objectLayer setPlayer:_player];
@@ -71,6 +87,11 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setLevelNumber:levelNum];
     [objectLayer setUi:uilayer];
     [objectLayer setGameoverlayer:gameoverlayer];
+    /*[objectLayer setBackground_front:_background_front];
+    [objectLayer setBackground_middle:_background_middle];
+    [objectLayer setBackground_middle2:_background_middle2];
+    [objectLayer setBackground_back:_background_back];
+     */
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
     // Add layers to the scene
@@ -130,6 +151,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             if ( levelThreshold < 0 )
             {
                 self.position = ccp (self.position.x, self.position.y + levelThreshold);
+                self.background_front.position = ccp ( self.position.x, self.position.y + (levelThreshold/10) );
+                self.background_middle.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/2 );
+                self.background_middle2.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/4 );
+                self.background_back.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/6 );                
             }
 
             for (Platform *platform in platforms)
@@ -315,10 +340,12 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             }
         }
         [user syncData];
-        
-        [gameoverlayer.lbl_gameover_score setString:[NSString stringWithFormat:@"Score: %i",score]];
-        [gameoverlayer.lbl_gameover_highscore setString:[NSString stringWithFormat:@"Highscore: %i",[user getScoreForWorld:worldNumber andLevel:levelNumber]]];        
         gameoverlayer.visible = TRUE;
+        [gameoverlayer setWorld:worldNumber];
+        [gameoverlayer setLevel:levelNumber];
+        [gameoverlayer setNext_world:user.worldprogress];
+        [gameoverlayer setNext_world:user.levelprogress];        
+        [gameoverlayer doFinalScoreAnimationsforUser:user andPlayer:player];
     }
     else 
     {
@@ -327,6 +354,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         gameoverlayer.lbl_gameover_collected.visible = FALSE;
         gameoverlayer.lbl_gameover_highscore.visible = FALSE;
         gameoverlayer.lbl_gameover_score.visible = FALSE;
+        gameoverlayer.menu_failed.opacity = 1.0;
     }
 }
 
@@ -363,18 +391,18 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [self removeAllChildrenWithCleanup:YES]; 
     if ( self.worldNumber == user.worldprogress && self.levelNumber == user.levelprogress )
     {   
-        [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
+        [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
     }
     else 
     {
         int nextlevel = self.levelNumber + 1;
         if (nextlevel > 9)
         {
-            [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber+1 LevelNum:self.levelNumber+1]];
+            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber+1 LevelNum:self.levelNumber+1]];
         }
         else 
         {
-            [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber+1]];
+            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber+1]];
         }
     }
 }
@@ -382,14 +410,14 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (void) tap_restart:(id)sender
 {
     [self removeAllChildrenWithCleanup:YES];
-    [[CCDirector sharedDirector] pushScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
+    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
 }
 
 - (void) tap_mainmenu:(id)sender
 {
     [self removeAllChildrenWithCleanup:YES];
     [ui removeAllChildrenWithCleanup:YES];
-    [[CCDirector sharedDirector] pushScene:[LevelSelectScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 
 - (void) showScorePop:(int)score atPosition:(CGPoint)location

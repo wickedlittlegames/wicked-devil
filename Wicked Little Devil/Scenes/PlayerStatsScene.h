@@ -8,6 +8,8 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
+#import "LevelSelectScene.h"
+
 #import "User.h"
 
 @interface PlayerStatsScene : CCLayer  <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {}

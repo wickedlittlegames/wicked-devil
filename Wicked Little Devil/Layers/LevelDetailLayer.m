@@ -39,7 +39,7 @@
     
     label_world.position = ccp ( 0, 460 );
     label_scores.position = ccp ( 0, 200 );
-    label_big_collected.position = ccp ( 0, 180);
+    label_big_collected.position = ccp ( 0, 180 );
     label_facebook.position = ccp ( 0, 100 );
     label_compare.position = ccp ( 0, 30 );
     

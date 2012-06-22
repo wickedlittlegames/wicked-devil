@@ -80,10 +80,23 @@
 		
 		// Add the menu to the layer
 		[self addChild:menu];
+                
+        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
+        CCMenu *back_menu = [CCMenu menuWithItems:back, nil];
+        back_menu.position = ccp ( screenSize.width - 80, 10 );
+        
+        [self addChild:back_menu];
+
 
     }
     return self;
 }
+
+- (void) tap_back
+{
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+}
+
 
 #pragma mark GameKit delegate
 

@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "CCScrollLayer.h"
+#import "LevelSelectScene.h"
 
 #import "User.h"
 

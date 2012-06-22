@@ -270,6 +270,13 @@
 		9C809B02159115220083B56D /* bg_hell.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809B01159115220083B56D /* bg_hell.png */; };
 		9C809B04159116B10083B56D /* bg_underground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809B03159116B10083B56D /* bg_underground-hd.png */; };
 		9C809B06159116DA0083B56D /* bg_underground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809B05159116DA0083B56D /* bg_underground.png */; };
+		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
+		9C84ED471594C4C40083DF40 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED461594C4C40083DF40 /* Parse.framework */; };
+		9C84ED491594C4E80083DF40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED481594C4E80083DF40 /* CFNetwork.framework */; };
+		9C84ED4B1594C4F10083DF40 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */; };
+		9C84ED4D1594C5010083DF40 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */; };
+		9C84ED4F1594C50A0083DF40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4E1594C50A0083DF40 /* Security.framework */; };
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C8DC28C157F943000760A04 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC289157F943000760A04 /* bat.png */; };
 		9C8DC28D157F943000760A04 /* Devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC28A157F943000760A04 /* Devil.png */; };
@@ -581,6 +588,14 @@
 		9C809B01159115220083B56D /* bg_hell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_hell.png; sourceTree = "<group>"; };
 		9C809B03159116B10083B56D /* bg_underground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_underground-hd.png"; sourceTree = "<group>"; };
 		9C809B05159116DA0083B56D /* bg_underground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_underground.png; sourceTree = "<group>"; };
+		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		9C84ED421594BFD40083DF40 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9C84ED461594C4C40083DF40 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		9C84ED481594C4E80083DF40 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		9C84ED4E1594C50A0083DF40 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C8DC24F157F66C300760A04 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		9C8DC250157F66C300760A04 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		9C8DC289157F943000760A04 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
@@ -631,6 +646,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C84ED4F1594C50A0083DF40 /* Security.framework in Frameworks */,
+				9C84ED4D1594C5010083DF40 /* libz.1.1.3.dylib in Frameworks */,
+				9C84ED4B1594C4F10083DF40 /* MobileCoreServices.framework in Frameworks */,
+				9C84ED491594C4E80083DF40 /* CFNetwork.framework in Frameworks */,
+				9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */,
 				9C142303156E692F0011C992 /* libcocos2d-library.a in Frameworks */,
 				9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */,
 				9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */,
@@ -641,6 +661,7 @@
 				9C142173156E68560011C992 /* Foundation.framework in Frameworks */,
 				9C142175156E68560011C992 /* CoreGraphics.framework in Frameworks */,
 				9C142177156E68560011C992 /* GameKit.framework in Frameworks */,
+				9C84ED471594C4C40083DF40 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +698,12 @@
 		9C142165156E68560011C992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C84ED4E1594C50A0083DF40 /* Security.framework */,
+				9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */,
+				9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */,
+				9C84ED481594C4E80083DF40 /* CFNetwork.framework */,
+				9C84ED461594C4C40083DF40 /* Parse.framework */,
+				9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */,
 				9C142166156E68560011C992 /* QuartzCore.framework */,
 				9C142168156E68560011C992 /* OpenGLES.framework */,
 				9C14216A156E68560011C992 /* OpenAL.framework */,
@@ -741,6 +768,7 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9C84ED3F1594BFC40083DF40 /* Reachability */,
 				9C8DC24F157F66C300760A04 /* GameKitHelper.h */,
 				9C8DC250157F66C300760A04 /* GameKitHelper.m */,
 				9C6149521577AF6100A6FF33 /* CCBReader.h */,
@@ -1206,6 +1234,15 @@
 			path = Underground;
 			sourceTree = "<group>";
 		};
+		9C84ED3F1594BFC40083DF40 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				9C84ED411594BFD40083DF40 /* Reachability.h */,
+				9C84ED421594BFD40083DF40 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		9C8DC28F157F94E800760A04 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1548,6 +1585,7 @@
 				9CFF0B88158A82C5000AA4E0 /* GameplayUILayer.m in Sources */,
 				9CF82A3A158F68D900BDC2D7 /* GameoverUILayer.m in Sources */,
 				9C4B10AD1590754D0078074B /* PlayerStatsScene.m in Sources */,
+				9C84ED431594BFD40083DF40 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1705,6 +1743,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wicked Little Devil/Prefix.pch";
@@ -1712,7 +1754,7 @@
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1729,13 +1771,17 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wicked Little Devil/Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",

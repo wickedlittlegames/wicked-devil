@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbid, fbtoken;
 
 -(id) init
 {
@@ -22,9 +22,20 @@
             [self createUser];
         }
         
+        if ([self isConnectedToInternet] && [self isConnectedToFacebook])
+        {
+            // general parse note - to activate the "collectables" feature, users will need to
+            // sign up, otherwise the features are locked & to unlock levels they have to pay.
+            // fair trade to be able to show some cool facebook/twitter stats.
+            //PFObject *parse = [PFObject objectWithClassName:@"UserData"];
+        }
+        else 
+        {
+            self.collected  = [udata integerForKey:@"collected"];
+        }
+        
         self.highscores     = [udata objectForKey:@"highscores"];
         self.souls          = [udata objectForKey:@"souls"];
-        self.collected      = [udata integerForKey:@"collected"];
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
@@ -45,8 +56,11 @@
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];
     [udata setInteger:self.powerup forKey:@"powerup"];
-    
     [udata synchronize];
+    
+    PFObject *parseObject = [PFObject objectWithClassName:@"StoreData"];
+    [parseObject setObject:[NSNumber numberWithInt:self.collected] forKey:@"Collected"];
+    [parseObject saveEventually];
 }
 
 - (int) getScoreForWorld:(int)w andLevel:(int)lvl
@@ -138,11 +152,27 @@
     [udata synchronize];
 }
 
+- (BOOL) isConnectedToInternet 
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];  
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
+    return !(networkStatus == NotReachable);
+}
+
+- (BOOL) isConnectedToFacebook
+{
+    return TRUE;
+}
+
+- (void) connectToFacebook
+{
+    // do parse stuff here
+}
+
 - (void) resetUser
 {
     [udata setBool:FALSE forKey:@"created"];    
-    
-    [udata synchronize];    
+    [udata synchronize];
 }
 
 #pragma mark GameKitHelper delegate methods

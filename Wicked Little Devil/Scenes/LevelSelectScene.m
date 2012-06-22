@@ -121,7 +121,7 @@
         CCLayer *community = [CCLayer node];
         [scroller addPage:community];
 
-        CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
+        CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Facebook" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
         CCMenuItem *stats = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Player" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_stats:)];
         CCMenu *storemenu = [CCMenu menuWithItems:store,stats, nil];
         [storemenu alignItemsHorizontallyWithPadding:20];
@@ -130,7 +130,7 @@
         CCLabelTTF *lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
-        [self addChild:lbl_user_collected];
+        [self addChild:lbl_user_collected z:100];
         
         detail = [LevelDetailLayer node];
         
@@ -143,7 +143,17 @@
 
 - (void) tap_store:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+//    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+    PFUser *currentUser = [PFUser currentUser];
+
+    if (![PFFacebookUtils isLinkedWithUser:currentUser]) {
+        [PFFacebookUtils linkUser:currentUser permissions:nil block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Woohoo, user logged in with Facebook!");
+            }
+        }];
+    }
+
 }
 - (void) tap_stats:(id)sender
 {

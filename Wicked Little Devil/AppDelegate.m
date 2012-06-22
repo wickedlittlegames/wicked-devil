@@ -7,9 +7,10 @@
 //
 
 #import "cocos2d.h"
-
 #import "AppDelegate.h"
 #import "StartScene.h"
+
+#import <Parse/Parse.h>
 
 @implementation AppController
 
@@ -17,7 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Create the main window
+	[Parse setApplicationId:@"ku2m9Hu2IJjciLhQT1blymmwo97eOOjgGYS5hpNX"
+                  clientKey:@"0rr4JmAqVvRLfsKsonH52X4P5wANvEq5tCQW8bE3"];
+    
+    [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
+    
+    [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        if (error) {
+            NSLog(@"Anonymous login failed.");
+        } else {
+            NSLog(@"Anonymous user logged in.");
+        }
+    }];
+
+
+
+
+    // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 
@@ -139,6 +156,15 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url]; 
 }
 
 @end

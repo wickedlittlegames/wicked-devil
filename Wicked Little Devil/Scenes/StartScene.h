@@ -8,7 +8,7 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
-
+#import <Parse/Parse.h>
 #import "LevelSelectScene.h"
 
 @interface StartScene : CCLayer {}

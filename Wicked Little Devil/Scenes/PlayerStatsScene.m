@@ -29,7 +29,7 @@
 -(id) init
 {
     if( (self=[super init]) ) {
-        User *user = [[User alloc] init];
+        user = [[User alloc] init];
         
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         NSString *font = @"Arial";
@@ -86,10 +86,19 @@
         back_menu.position = ccp ( screenSize.width - 80, 10 );
         
         [self addChild:back_menu];
-
-
+        
+        CCMenuItem *resetuser = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESET PLAYER" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_resetuser:)];
+        CCMenu *resetusermenu = [CCMenu menuWithItems:resetuser, nil];
+        [resetusermenu alignItemsHorizontallyWithPadding:20];
+        resetusermenu.position = ccp ( screenSize.width/2, screenSize.height/2 );
+        [self addChild:resetusermenu];
     }
     return self;
+}
+
+- (void) tap_resetuser:(id)sender
+{
+    [user resetUser];
 }
 
 - (void) tap_back

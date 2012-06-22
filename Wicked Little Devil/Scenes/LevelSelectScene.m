@@ -51,6 +51,7 @@
             world_menu.position = ccp ( menu_x, menu_y );
             
             int world_souls_total = 0;
+            int world_score_total = [user getScoreForWorldOnly:w];
             
             for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
             {
@@ -102,6 +103,10 @@
                 background.position = ccp (screenSize.width/2, screenSize.height/2);
                 [world addChild:background];
             }
+            
+            CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
+            world_score.position = ccp (90, 390);
+            [world addChild:world_score];            
             
             CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:@"Marker Felt" fontSize:14];
             world_stars.position = ccp ( screenSize.width - 80, 390);

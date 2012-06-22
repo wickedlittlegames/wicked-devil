@@ -40,6 +40,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( screenSize.width/2, 30 );
         [self addChild:menu];
+        
+        
     }
 	return self;
 }
@@ -48,11 +50,12 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 {
     // Create a Scene
 	CCScene *scene = [CCScene node];
-    
+
     // Grab the layers
     CCLayer *playerlayer        = [CCLayer node];
     GameplayUILayer *uilayer    = [GameplayUILayer node];
     GameoverUILayer *gameoverlayer = [GameoverUILayer node];
+
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
@@ -301,9 +304,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     if (player.isAlive && player.bigcollected > 0 && self.complete) // Won the game
     {       
-        int score = player.collected * player.bigcollected;
         user.collected += player.collected;
-        
+        int score = player.score * player.bigcollected;
         [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected];
         [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
         
@@ -322,7 +324,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         [gameoverlayer setWorld:worldNumber];
         [gameoverlayer setLevel:levelNumber];
         [gameoverlayer setNext_world:user.worldprogress];
-        [gameoverlayer setNext_world:user.levelprogress];        
+        [gameoverlayer setNext_level:user.levelprogress];
+        [gameoverlayer setScore:score];
         [gameoverlayer doFinalScoreAnimationsforUser:user andPlayer:player];
     }
     else 
@@ -330,9 +333,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         gameoverlayer.visible = TRUE;
         gameoverlayer.lbl_gameover_bigcollected.visible = FALSE;
         gameoverlayer.lbl_gameover_collected.visible = FALSE;
-        gameoverlayer.lbl_gameover_highscore.visible = FALSE;
         gameoverlayer.lbl_gameover_score.visible = FALSE;
-        gameoverlayer.menu_failed.opacity = 1.0;
+        gameoverlayer.menu_failed.visible = TRUE;
     }
 }
 
@@ -362,6 +364,40 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     player.velocity = ccp ( player.velocity.x, player.jumpspeed + 3 );
     menu.visible = NO;
     self.started = TRUE;
+}
+
+- (void) tap_nextlevel:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES]; 
+    if ( self.worldNumber == user.worldprogress && self.levelNumber == user.levelprogress )
+    {   
+        [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:user.worldprogress LevelNum:user.levelprogress]];
+    }
+    else 
+    {
+        int nextlevel = self.levelNumber + 1;
+        if (nextlevel > 9)
+        {
+            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber+1 LevelNum:self.levelNumber+1]];
+        }
+        else 
+        {
+            [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber+1]];
+        }
+    }
+}
+
+- (void) tap_restart:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES];
+    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
+}
+
+- (void) tap_mainmenu:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES];
+    [ui removeAllChildrenWithCleanup:YES];
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 
 - (void) showScorePop:(int)score atPosition:(CGPoint)location

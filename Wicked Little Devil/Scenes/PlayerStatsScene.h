@@ -12,7 +12,10 @@
 
 #import "User.h"
 
-@interface PlayerStatsScene : CCLayer  <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {}
+@interface PlayerStatsScene : CCLayer  <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> 
+{
+    User *user;
+}
 
 +(CCScene *) scene;
 @end

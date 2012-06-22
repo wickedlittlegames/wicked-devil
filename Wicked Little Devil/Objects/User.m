@@ -57,6 +57,21 @@
     return (int)[[tmp2 objectAtIndex:lvl-1] intValue];
 }
 
+- (int) getScoreForWorldOnly:(int)w
+{
+    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    int tmp_score = 0;
+    
+    for (int i = 0; i < [tmp2 count]; i++)
+    {
+        tmp_score += [[tmp2 objectAtIndex:i]intValue];
+    }
+    
+    return tmp_score;
+}
+
+
 - (int) getSoulsForWorld:(int)w andLevel:(int)lvl
 {
     NSMutableArray *tmp = [udata objectForKey:@"souls"];

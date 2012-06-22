@@ -20,5 +20,6 @@
 - (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total;
 - (int) getScoreForWorld:(int)w andLevel:(int)lvl;
 - (int) getSoulsForWorld:(int)w andLevel:(int)lvl;
-
+- (int) getScoreForWorldOnly:(int)w;
+- (void) resetUser;
 @end

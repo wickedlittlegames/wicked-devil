@@ -62,21 +62,24 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
-    /*CCSprite *_background_front = [CCSprite spriteWithFile:@"background_front.png"];
+    
+    /*
+    CCSprite *_background_front = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-front",worldNum]];
     _background_front.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_front z:4];
     
-    CCSprite *_background_middle = [CCSprite spriteWithFile:@"background_middle.png"];
+    CCSprite *_background_middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid",worldNum]];
     _background_middle.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle z:3];
     
-    CCSprite *_background_middle2 = [CCSprite spriteWithFile:@"background_middle2.png"];
+    CCSprite *_background_middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid2",worldNum]];
     _background_middle2.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle2 z:2];
     
-    CCSprite *_background_back = [CCSprite spriteWithFile:@"background_back.png"];
+    CCSprite *_background_back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-back",worldNum]];
     _background_back.position = ccp ( screenSize.width/2, screenSize.height/2 );
-    [scene addChild:_background_back z:1];*/
+    [scene addChild:_background_back z:1];
+     */
     
     Player *_player = [Player spriteWithFile:@"player.png"];
     _player.scale = _player.scale/2;

@@ -35,7 +35,6 @@
         NSString *font = @"Arial";
         int fontsize = 18;
 
-        
         CCLabelTTF *lbl_total_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Total Collected:%d",user.collected] fontName:font fontSize:fontsize];
         lbl_total_collected.position = ccp (screenSize.width/2, 460);
         [self addChild:lbl_total_collected];

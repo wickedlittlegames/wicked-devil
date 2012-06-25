@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString *fbid;
 @property (nonatomic, assign) bool fbloggedin;
 - (void) syncData;
+- (void) syncCollected;
 - (void) resetUser;
 - (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score;
 - (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total;

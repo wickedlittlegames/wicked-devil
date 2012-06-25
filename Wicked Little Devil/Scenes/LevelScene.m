@@ -37,8 +37,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         [player setupPowerup:user.powerup];
         
         CCLOG(@"TEXTURE CACHE FOR PLATFORM TOGGLES");
-        platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
-        platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];
+        CCTextureCache* textureCache = [CCTextureCache sharedTextureCache];            
+        platform_toggle1 = [textureCache addImage:@"platform-toggle1.png"];
+        platform_toggle2 = [textureCache addImage:@"platform-toggle2.png"];
+        
 
         CCLOG(@"FLOOR.PNG ADDED");
         floor = [CCSprite spriteWithFile:@"floor.png"];
@@ -76,7 +78,16 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     CCLOG(@"SCENE SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
     
+    /*_batchNode = [CCSpriteBatchNode batchNodeWithFile:@"Sprites.pvr.ccz"]; // 1
+    [self addChild:_batchNode]; // 2
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Sprites.plist"]; // 3
     
+    _ship = [CCSprite spriteWithSpriteFrameName:@"SpaceFlier_sm_1.png"];  // 4
+    CGSize winSize = [CCDirector sharedDirector].winSize; // 5
+    _ship.position = ccp(winSize.width * 0.1, winSize.height * 0.5); // 6
+    [_batchNode addChild:_ship z:1]; // 7
+    */
+        
     /*CCSprite *_background_front = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-front.png",worldNum]];
     _background_front.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_front z:4];

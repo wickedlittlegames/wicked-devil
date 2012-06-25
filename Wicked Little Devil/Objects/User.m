@@ -109,6 +109,15 @@
     }
 }
 
+- (void) syncCollected
+{
+    if ( self.canCollect )
+    {
+        [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
+        [[PFUser currentUser] saveEventually];
+    }
+}
+
 #pragma mark User Utility Methods
 
 - (BOOL) canCollect

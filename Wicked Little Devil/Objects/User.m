@@ -233,8 +233,12 @@
  if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] 
       isEqualToString: @"OAuthException"]) {
      NSLog(@"The facebook token was invalidated");
+     [PFUser logOut];
+     self.fbloggedin = FALSE;
  } else {
      NSLog(@"Some other error");
+     [PFUser logOut];
+     self.fbloggedin = FALSE;
  }
 }
 

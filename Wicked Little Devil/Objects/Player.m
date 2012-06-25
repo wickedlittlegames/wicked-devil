@@ -16,7 +16,10 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 5.5;
+        self.jumpspeed = 7.5;
+        self.scaleY = 0.5;
+        self.scaleX = 0.8;
+        
         
         self.stats = [NSUserDefaults standardUserDefaults];
         

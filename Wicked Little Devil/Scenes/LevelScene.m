@@ -19,23 +19,33 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (id) init
 {
 	if( (self=[super init]) ) {
-        
+        CCLOG(@"INIT LEVELSCENE");
+
         self.started = FALSE;
         self.complete = FALSE;
-        self.isTouchEnabled = TRUE;
+        CCLOG(@"STARTED: FALSE");
+        CCLOG(@"COMPLETE: FALSE");                
 
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        CCLOG(@"SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
         
+        CCLOG(@"INIT USER");
         user = [[User alloc] init];
+        CCLOG(@"INIT USER DONE");        
+        
+        CCLOG(@"SETTING UP POWERUP: %i",user.powerup);
         [player setupPowerup:user.powerup];
         
+        CCLOG(@"TEXTURE CACHE FOR PLATFORM TOGGLES");
         platform_toggle1 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle1.png"];
         platform_toggle2 = [[CCTextureCache sharedTextureCache] addImage:@"platform-toggle2.png"];
-        
+
+        CCLOG(@"FLOOR.PNG ADDED");
         floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp ( screenSize.width/2, 80 );
         [self addChild:floor];
         
+        CCLOG(@"LAUNCH BUTTON ADDED");        
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( screenSize.width/2, 30 );
@@ -48,41 +58,44 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum
 {
+    CCLOG(@"SCENE CREATED");
     // Create a Scene
 	CCScene *scene = [CCScene node];
 
     // Grab the layers
+    CCLOG(@"GRABBING THE NORMAL LAYERS");
     CCLayer *playerlayer        = [CCLayer node];
     GameplayUILayer *uilayer    = [GameplayUILayer node];
     GameoverUILayer *gameoverlayer = [GameoverUILayer node];
 
+    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]); 
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
                                         nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    CCLOG(@"SCENE SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
     
     
-    /*
-    CCSprite *_background_front = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-front",worldNum]];
+    /*CCSprite *_background_front = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-front.png",worldNum]];
     _background_front.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_front z:4];
     
-    CCSprite *_background_middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid",worldNum]];
+    CCSprite *_background_middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid.png",worldNum]];
     _background_middle.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle z:3];
     
-    CCSprite *_background_middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid2",worldNum]];
+    CCSprite *_background_middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid2.png",worldNum]];
     _background_middle2.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle2 z:2];
     
-    CCSprite *_background_back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-back",worldNum]];
+    CCSprite *_background_back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-back.png",worldNum]];
     _background_back.position = ccp ( screenSize.width/2, screenSize.height/2 );
-    [scene addChild:_background_back z:1];
-     */
+    [scene addChild:_background_back z:1];*/
     
-    Player *_player = [Player spriteWithFile:@"player.png"];
-    _player.scale = _player.scale/2;
+    CCLOG(@"SETTING UP GAME ELEMENTS AND PASSING THEM THROUGH TO THE GAME");
+    Player *_player = [Player spriteWithFile:@"devil2.png"];
+    //_player.scale = _player.scale/2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
     gameoverlayer.visible = FALSE;
@@ -96,21 +109,24 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     /*[objectLayer setBackground_front:_background_front];
     [objectLayer setBackground_middle:_background_middle];
     [objectLayer setBackground_middle2:_background_middle2];
-    [objectLayer setBackground_back:_background_back];
-     */
+    [objectLayer setBackground_back:_background_back];*/
+
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
     // Add layers to the scene
+    CCLOG(@"ADDING ALL THE LAYERS TO THE SCENE");
     [scene addChild:objectLayer z:50];
     [scene addChild:playerlayer z:51];
     [scene addChild:uilayer z:100];
     [scene addChild:gameoverlayer z:101];
 
+    CCLOG(@"RETURN SCENE");
 	return scene;
 }
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
 {
+    CCLOG(@"FILLING SOME ARRAYS WITH THE GAME OBJECTS");
     platforms       = [NSMutableArray arrayWithCapacity:100];
     collectables    = [NSMutableArray arrayWithCapacity:100];
     bigcollectables = [NSMutableArray arrayWithCapacity:3];
@@ -126,6 +142,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if ([node isKindOfClass: [Collectable class]])
         {
             [collectables addObject:node];
+            if (!user.canCollect)
+            {
+                node.visible = FALSE;
+            }
         }
         if ([node isKindOfClass: [BigCollectable class]])
         {
@@ -141,6 +161,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         }
     }
 
+    CCLOG(@"BEGIN THE GAME LOOP");
     [self schedule:@selector(update:)];
 }
 
@@ -157,10 +178,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             if ( levelThreshold < 0 )
             {
                 self.position = ccp (self.position.x, self.position.y + levelThreshold);
-                self.background_front.position = ccp ( self.position.x, self.position.y + (levelThreshold/10) );
-                self.background_middle.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/2 );
-                self.background_middle2.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/4 );
-                self.background_back.position = ccp ( self.position.x, self.position.y + (levelThreshold/10)/6 );                
+                /*self.background_front.position = ccp ( self.background_front.position.x, self.background_front.position.y + (levelThreshold) );
+                self.background_middle.position = ccp ( self.background_middle.position.x, self.background_middle.position.y + (levelThreshold)/2 );
+                self.background_middle2.position = ccp ( self.background_middle2.position.x, self.background_middle2.position.y + (levelThreshold)/4 );
+                self.background_back.position = ccp ( self.background_back.position.x, self.background_back.position.y + (levelThreshold)/6 );  */              
             }
 
             for (Platform *platform in platforms)
@@ -287,7 +308,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             }
             
             [self playerMovementChecks];
-            [player movement:levelThreshold withGravity:0.25];
+            [player movement:levelThreshold withGravity:0.15];
             
             [ui.lbl_collected setString:[NSString stringWithFormat:@"Collected: %d",player.collected]];
             [ui.lbl_score setString:[NSString stringWithFormat:@"Score: %d", player.score]];
@@ -364,7 +385,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 - (void)tap_launch:(id)sender
 {
-    player.velocity = ccp ( player.velocity.x, player.jumpspeed + 3 );
+    player.velocity = ccp ( player.velocity.x, player.jumpspeed );
     menu.visible = NO;
     self.started = TRUE;
 }

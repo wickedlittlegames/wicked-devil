@@ -31,6 +31,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
+        CCLOG(@"INIT STARTSCENE");
         
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -44,6 +45,7 @@
 }
 
 - (void)tap_start:(id)sender {
+    CCLOG(@"TAPPED START");
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 

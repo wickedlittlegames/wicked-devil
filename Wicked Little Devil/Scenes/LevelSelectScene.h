@@ -21,6 +21,8 @@
 @interface LevelSelectScene : CCLayer {
     User *user;
     LevelDetailLayer *detail;
+    CCMenu *facebookmenu;
+    CCLabelTTF *lbl_user_collected;
 }
 
 +(CCScene *) scene;

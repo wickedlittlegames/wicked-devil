@@ -9,58 +9,111 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbid, fbtoken;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbid, fbloggedin;
+
+#pragma mark User creation/persistance methods
 
 -(id) init
 {
 	if( (self=[super init]) )
     {
+        CCLOG(@"GRABBING USER DEFAULTS FILE");
         udata = [NSUserDefaults standardUserDefaults];
-        
+
         if ( [udata boolForKey:@"created"] == FALSE )
         {
+            CCLOG(@"FIRST TIME, CREATING USER");
             [self createUser];
         }
         
-        if ([self isConnectedToInternet] && [self isConnectedToFacebook])
-        {
-            // general parse note - to activate the "collectables" feature, users will need to
-            // sign up, otherwise the features are locked & to unlock levels they have to pay.
-            // fair trade to be able to show some cool facebook/twitter stats.
-            //PFObject *parse = [PFObject objectWithClassName:@"UserData"];
-        }
-        else 
-        {
-            self.collected  = [udata integerForKey:@"collected"];
-        }
-        
+        CCLOG(@"SETTING PARAMS BASED ON UDEFAULTS");        
         self.highscores     = [udata objectForKey:@"highscores"];
         self.souls          = [udata objectForKey:@"souls"];
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
+        self.fbid           = [udata valueForKey:@"fbid"];
+        self.fbloggedin     = FALSE;
         
-        self.gameKitHelper  = [GameKitHelper sharedGameKitHelper];
-        self.gameKitHelper.delegate = self;
-        if ([self.gameKitHelper isGameCenterAvailable])
+        if ([PFUser currentUser] && // Check if a user is cached
+            [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet]) // Check if user is linked to Facebook
         {
-            [self.gameKitHelper authenticateLocalPlayer];
+            PFQuery *query = [PFUser query];
+            PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
+            self.collected = [[result objectForKey:@"collected"] intValue];
+
+            self.fbloggedin = TRUE;
         }
+        else 
+        {
+            self.collected = 0;
+            self.fbloggedin = FALSE;
+        }
+        
+        
+        //[self gameKitBlock];
     }
     return self;
 }
 
+- (void) createUser
+{
+    NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    for (int w = 1; w <= WORLDS_PER_GAME; w++)
+    {
+        NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
+        for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
+        {
+            [w addObject:[NSNumber numberWithInt:0]];
+        }
+        NSArray *tmp = [w copy];
+        NSArray *tmp_souls = [w copy];
+        [worlds addObject:tmp];
+        [worlds_souls addObject:tmp_souls];
+    }
+    NSArray *tmp2 = [worlds copy];
+    NSArray *tmp2_souls = [worlds_souls copy];
+    
+    [udata setObject:tmp2 forKey:@"highscores"];
+    [udata setObject:tmp2_souls forKey:@"souls"];
+    [udata setInteger:1 forKey:@"levelprogress"];
+    [udata setInteger:1 forKey:@"worldprogress"];
+    [udata setInteger:0 forKey:@"powerup"];
+    [udata setValue:NULL forKey:@"fbid"];
+    [udata setBool:FALSE forKey:@"fbloggedin"];
+    
+    [udata setBool:TRUE forKey:@"created"];
+    
+    [udata synchronize];
+}
+
+- (void) resetUser
+{
+    [udata setBool:FALSE forKey:@"created"];    
+    [udata synchronize];
+}
+
 - (void) syncData
 {
-    [udata setInteger:self.collected forKey:@"collected"];
+    CCLOG(@"SYNCING DATA");
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];
     [udata setInteger:self.powerup forKey:@"powerup"];
     [udata synchronize];
     
-    PFObject *parseObject = [PFObject objectWithClassName:@"StoreData"];
-    [parseObject setObject:[NSNumber numberWithInt:self.collected] forKey:@"Collected"];
-    [parseObject saveEventually];
+    if ( self.canCollect )
+    {
+        [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
+        [[PFUser currentUser] saveEventually];
+    }
+}
+
+#pragma mark User Utility Methods
+
+- (BOOL) canCollect
+{
+    return ([self isConnectedToInternet] && self.fbloggedin && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
 }
 
 - (int) getScoreForWorld:(int)w andLevel:(int)lvl
@@ -122,35 +175,9 @@
     }
 }
 
-- (void) createUser
-{
-    NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-    NSMutableArray *worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-    for (int w = 1; w <= WORLDS_PER_GAME; w++)
-    {
-        NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
-        for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
-        {
-            [w addObject:[NSNumber numberWithInt:0]];
-        }
-        NSArray *tmp = [w copy];
-        NSArray *tmp_souls = [w copy];
-        [worlds addObject:tmp];
-        [worlds_souls addObject:tmp_souls];
-    }
-    NSArray *tmp2 = [worlds copy];
-    NSArray *tmp2_souls = [worlds_souls copy];
 
-    [udata setBool:TRUE forKey:@"created"];
-    [udata setObject:tmp2 forKey:@"highscores"];
-    [udata setObject:tmp2_souls forKey:@"souls"];
-    [udata setInteger:0 forKey:@"collected"];
-    [udata setInteger:1 forKey:@"levelprogress"];
-    [udata setInteger:1 forKey:@"worldprogress"];
-    [udata setInteger:0 forKey:@"powerup"];
-    
-    [udata synchronize];
-}
+
+#pragma mark Facebook methods
 
 - (BOOL) isConnectedToInternet 
 {
@@ -159,23 +186,71 @@
     return !(networkStatus == NotReachable);
 }
 
-- (BOOL) isConnectedToFacebook
+- (BOOL) loginWithFacebook
 {
-    return TRUE;
+    login_success = FALSE;
+    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
+                                 @"user_birthday",@"user_location",
+                                 @"offline_access", nil];
+
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            CCLOG(@"Uh oh. The user cancelled the Facebook login.");
+            CCLOG(@"ERROR: %@",error);
+        } else if (user.isNew) {
+            CCLOG(@"USER IS NEW, CREATE ALL THE STUFF");
+            [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name" andDelegate:self];
+            CCLOG(@"USER IS NEW, STUFF CREATED");            
+            [udata setBool:TRUE forKey:@"fbloggedin"];
+            [udata synchronize];
+            login_success = TRUE;
+        } else {
+            CCLOG(@"USER IS NOT NEW, JUST LOG IN");            
+            [udata setBool:TRUE forKey:@"fbloggedin"];
+            [udata synchronize];
+            login_success = TRUE;
+        }
+    }];
+    
+    return login_success;
 }
 
-- (void) connectToFacebook
-{
-    // do parse stuff here
+- (void)request:(PF_FBRequest *)request didLoad:(id)result {
+    CCLOG(@"CREATING USER CUSTOM PARAMS | fbID, fbName");    
+    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"collected"];
+    [[PFUser currentUser] save];
+
+    CCLOG(@"CREATING USER UDATA | fbID, fbName");
+    [self.udata setValue:[result objectForKey:@"id"] forKey:@"fbid"];
+    [self.udata setValue:[result objectForKey:@"name"] forKey:@"fbname"];
+    [self.udata synchronize];
+}
+     
+-(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
+ // OAuthException means our session is invalid
+ if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] 
+      isEqualToString: @"OAuthException"]) {
+     NSLog(@"The facebook token was invalidated");
+ } else {
+     NSLog(@"Some other error");
+ }
 }
 
-- (void) resetUser
-{
-    [udata setBool:FALSE forKey:@"created"];    
-    [udata synchronize];
-}
 
 #pragma mark GameKitHelper delegate methods
+
+- (void) gameKitBlock
+{
+    self.gameKitHelper  = [GameKitHelper sharedGameKitHelper];
+    self.gameKitHelper.delegate = self;
+    if ([self.gameKitHelper isGameCenterAvailable])
+    {
+        [self.gameKitHelper authenticateLocalPlayer];
+    }
+}
+
 -(void) onLocalPlayerAuthenticationChanged
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];

@@ -11,13 +11,16 @@
 #import "GameKitHelper.h"
 #import "GameCenterConstants.h"
 
-@interface User : NSObject <GameKitHelperProtocol> {}
+@interface User : NSObject <GameKitHelperProtocol, PF_FBRequestDelegate, UINavigationControllerDelegate > {
+    bool login_success;
+}
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup;
 @property (nonatomic, assign) NSMutableArray *highscores, *souls;
-@property (nonatomic, retain) NSString *fbid, *fbtoken;
+@property (nonatomic, retain) NSString *fbid;
+@property (nonatomic, assign) bool fbloggedin;
 - (void) syncData;
 - (void) resetUser;
 - (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score;
@@ -26,4 +29,6 @@
 - (int) getSoulsForWorld:(int)w andLevel:(int)lvl;
 - (int) getScoreForWorldOnly:(int)w;
 - (BOOL) isConnectedToInternet;
+- (BOOL) loginWithFacebook;
+- (BOOL) canCollect;
 @end

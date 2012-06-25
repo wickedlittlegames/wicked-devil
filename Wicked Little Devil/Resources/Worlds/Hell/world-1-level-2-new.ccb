@@ -51,9 +51,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>49.0625</real>
-							<real>2.5</real>
-							<integer>4</integer>
+							<real>321</real>
+							<real>60.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -63,8 +63,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -89,7 +89,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -151,8 +151,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -173,7 +173,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -199,9 +199,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>20.625</real>
-							<real>17.708333969116211</real>
-							<integer>4</integer>
+							<real>133</real>
+							<real>188.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -211,8 +211,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -237,7 +237,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -299,8 +299,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -321,7 +321,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -347,9 +347,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>42.8125</real>
-							<real>33.125</real>
-							<integer>4</integer>
+							<real>263</real>
+							<real>342.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -359,8 +359,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -385,7 +385,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -447,8 +447,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -469,7 +469,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -495,9 +495,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>70.9375</real>
-							<real>45.833332061767578</real>
-							<integer>4</integer>
+							<real>431</real>
+							<real>476.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -507,8 +507,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -533,7 +533,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -595,8 +595,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -617,7 +617,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -643,9 +643,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>87.1875</real>
-							<real>62.5</real>
-							<integer>4</integer>
+							<real>155</real>
+							<real>558.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -655,8 +655,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -681,7 +681,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -743,8 +743,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -765,7 +765,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -791,9 +791,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>55.3125</real>
-							<real>74.583335876464844</real>
-							<integer>4</integer>
+							<real>391</real>
+							<real>686.6015625</real>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -803,8 +803,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>20</real>
+							<real>107</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -829,7 +829,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -891,8 +891,8 @@
 						<key>value</key>
 						<array>
 							<integer>255</integer>
-							<integer>114</integer>
-							<integer>5</integer>
+							<integer>255</integer>
+							<integer>255</integer>
 						</array>
 					</dict>
 					<dict>
@@ -913,7 +913,7 @@
 						<string>Blendmode</string>
 						<key>value</key>
 						<array>
-							<integer>770</integer>
+							<integer>1</integer>
 							<integer>771</integer>
 						</array>
 					</dict>
@@ -937,7 +937,7 @@
 				<array>
 					<real>0.0</real>
 					<real>0.0</real>
-					<integer>4</integer>
+					<integer>0</integer>
 				</array>
 			</dict>
 			<dict>
@@ -947,9 +947,9 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>100</real>
-					<real>100</real>
-					<integer>1</integer>
+					<real>0.0</real>
+					<real>0.0</real>
+					<integer>0</integer>
 				</array>
 			</dict>
 			<dict>
@@ -959,8 +959,8 @@
 				<string>Point</string>
 				<key>value</key>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
+					<real>0.5</real>
+					<real>0.5</real>
 				</array>
 			</dict>
 			<dict>
@@ -1016,7 +1016,7 @@
 				<key>type</key>
 				<string>Check</string>
 				<key>value</key>
-				<true/>
+				<false/>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -1060,13 +1060,13 @@
 			<key>ext</key>
 			<string> </string>
 			<key>height</key>
-			<integer>480</integer>
+			<integer>960</integer>
 			<key>name</key>
 			<string>iPhone Portrait</string>
 			<key>scale</key>
 			<real>1</real>
 			<key>width</key>
-			<integer>320</integer>
+			<integer>640</integer>
 		</dict>
 	</array>
 </dict>

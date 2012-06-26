@@ -227,7 +227,14 @@
         [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
         [highscore setObject:[NSNumber numberWithInt:lvl] forKey:@"level"];
         [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];        
-        [highscore save];        
+        [highscore save];    
+        
+        GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
+        if (localPlayer.authenticated)
+        {
+            GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+            [gkHelper submitScore:score category:[NSString stringWithFormat:@"world-%i-level-%i",w,lvl]];
+        }
     }
 }
 

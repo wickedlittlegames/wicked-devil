@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbloggedin, fbFriends;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbloggedin, fbFriends, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
 
 #pragma mark User creation/persistance methods
 
@@ -34,11 +34,24 @@
         self.powerup        = [udata integerForKey:@"powerup"];
         self.fbloggedin     = [udata boolForKey:@"fbloggedin"];
         self.fbFriends      = [udata arrayForKey:@"fbfriends"];
+        self.unlocked_world_1  = [udata boolForKey:@"unlocked_world_1"];
+        self.unlocked_world_2  = [udata boolForKey:@"unlocked_world_2"];
+        self.unlocked_world_3  = [udata boolForKey:@"unlocked_world_3"];
+        self.unlocked_world_4  = [udata boolForKey:@"unlocked_world_4"];
+        self.unlocked_world_5  = [udata boolForKey:@"unlocked_world_5"];
+        self.unlocked_world_6  = [udata boolForKey:@"unlocked_world_6"];
         
         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet] && self.fbloggedin)
         {
+            //[[PFUser currentUser] refresh];
             CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
             self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+            self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];
+            self.unlocked_world_2  = [[[PFUser currentUser] objectForKey:@"unlocked_world_2"] boolValue];
+            self.unlocked_world_3  = [[[PFUser currentUser] objectForKey:@"unlocked_world_3"] boolValue];
+            self.unlocked_world_4  = [[[PFUser currentUser] objectForKey:@"unlocked_world_4"] boolValue];
+            self.unlocked_world_5  = [[[PFUser currentUser] objectForKey:@"unlocked_world_5"] boolValue];
+            self.unlocked_world_6  = [[[PFUser currentUser] objectForKey:@"unlocked_world_6"] boolValue];
             
             [udata  setBool:TRUE forKey:@"fbloggedin"];
             [udata synchronize];
@@ -85,6 +98,12 @@
     [udata setInteger:0 forKey:@"powerup"];
     [udata setBool:FALSE forKey:@"fbloggedin"];
     [udata setObject:NULL forKey:@"fbfriends"];
+    [udata setBool:TRUE  forKey:@"unlocked_world_1"];
+    [udata setBool:FALSE forKey:@"unlocked_world_2"];
+    [udata setBool:FALSE forKey:@"unlocked_world_3"];
+    [udata setBool:FALSE forKey:@"unlocked_world_4"];
+    [udata setBool:FALSE forKey:@"unlocked_world_5"];
+    [udata setBool:FALSE forKey:@"unlocked_world_6"];    
     
     [udata setBool:TRUE forKey:@"created"];
     
@@ -234,8 +253,8 @@
         [highscore setObject:[PFUser currentUser] forKey:@"user"];        
         [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
         [highscore setObject:[NSNumber numberWithInt:lvl] forKey:@"level"];
-        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];        
-        [highscore save];
+        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+        [highscore saveInBackground];
 
         CCLOG(@"BETTER - UPDATING THE GAMECENTER LEADERBOARDS");
         GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];

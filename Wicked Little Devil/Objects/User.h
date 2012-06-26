@@ -19,7 +19,7 @@
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup;
 @property (nonatomic, assign) NSMutableArray *highscores, *souls;
-@property (nonatomic, assign) bool fbloggedin;
+@property (nonatomic, assign) bool fbloggedin, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
 @property (nonatomic, retain) NSArray *fbFriends;
 - (void) syncData;
 - (void) syncCollected;

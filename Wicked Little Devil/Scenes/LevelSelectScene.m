@@ -89,7 +89,28 @@
             CCMenu *unlockmenu = [CCMenu menuWithItems:unlock, nil];
             unlock.tag = w;            
             unlockmenu.position = ccp ( screenSize.width/2, 420 );
-            unlockmenu.visible = ( user.worldprogress >= w ? FALSE : TRUE );
+            //unlockmenu.visible = ( user.worldprogress >= w ? FALSE : TRUE );
+            switch (w)
+            {
+                case 1:
+                    unlockmenu.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
+                    break;
+                case 2:
+                    unlockmenu.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
+                    break;
+                case 3:
+                    unlockmenu.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
+                    break;
+                case 4:
+                    unlockmenu.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
+                    break;
+                case 5:
+                    unlockmenu.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
+                    break;
+                case 6:
+                    unlockmenu.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
+                    break;
+            }
             [world addChild:unlockmenu];
             
             CCLOG(@"SETTING WORLD SCORE");             
@@ -111,10 +132,20 @@
         CCLOG(@"INIT SCROLLER");
         CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
 
+        CCLOG(@"ADDING PURGATORY PAGE");
+        CCLayer *purgatory = [CCLayer node];
+        CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:@"Marker Felt" fontSize:18];
+        lbl_purgatory.position = ccp ( screenSize.width/2, 420 );
+        [purgatory addChild:lbl_purgatory];
+        [scroller addPage:purgatory];
+        
         CCLOG(@"ADDING COMMUNITY PAGE");
         CCLayer *community = [CCLayer node];
+        CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:@"Marker Felt" fontSize:18];
+        lbl_community.position = ccp ( screenSize.width/2, 420 );
+        [community addChild:lbl_community];        
         [scroller addPage:community];
-
+        
         CCLOG(@"ADDING UI ELEMENTS");        
         CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
         CCMenuItem *stats = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Player" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_stats:)];
@@ -126,6 +157,7 @@
         lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
+        if ( !user.isConnectedToInternet ) lbl_user_collected.string = @"Collected: Offline";
         lbl_user_collected.visible = user.fbloggedin;
         [self addChild:lbl_user_collected z:100];
         
@@ -180,11 +212,12 @@
         } 
         else 
         {
+            [[PFUser currentUser] refresh];
             PFQuery *query = [PFUser query];
             PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
             lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",[[result objectForKey:@"collected"] intValue]];
             [[PFUser currentUser] incrementKey:@"RunCount"];
-            [[PFUser currentUser] save];
+            [[PFUser currentUser] saveInBackground];
             
             facebookmenu.visible = FALSE;
             lbl_user_collected.visible = TRUE;
@@ -202,8 +235,14 @@
     [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
     [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
     [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"collected"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:1] forKey:@"unlocked_world_1"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_2"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_3"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_4"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_5"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_6"];
     [[PFUser currentUser] incrementKey:@"RunCount"];
-    [[PFUser currentUser] save];
+    [[PFUser currentUser] saveInBackground];
 }
 
 -(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {

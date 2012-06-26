@@ -32,7 +32,10 @@
 -(id) init
 {
     if( (self=[super init]) ) {
+        [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
+        
         //User *user = [[User alloc] init];
+        
         CGSize screenSize = [CCDirector sharedDirector].winSize;
 
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
@@ -44,10 +47,9 @@
         restore_purchasesmenu.position = ccp ( 85, 10 );
         
         CCLayer *powerups_layer = [self createPowerupLayer];
-        CCLayer *worlds_layer = [self createWorldsLayer];
         CCLayer *money_layer  = [self createMoneyLayer];
         
-        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,worlds_layer,money_layer, nil] widthOffset: 0];
+        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
         scroller.position = ccp(0,0);
         [self addChild:scroller];
         
@@ -99,18 +101,9 @@
     return tmp_layer;
 }
 
-- (CCLayer*)createWorldsLayer
+- (void) update_label
 {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
-    //float menu_x = (screenSize.width/2);
-    //float menu_y = 275;
-    
-    CCLayer *tmp_layer = [CCLayer node];
-    CCLabelTTF *worlds_label = [CCLabelTTF labelWithString:@"UNLOCK WORLDS" fontName:@"Marker Felt" fontSize:20];
-    worlds_label.position = ccp (screenSize.width/2,420);
-    [tmp_layer addChild:worlds_label];
-    return tmp_layer;
+    // do nothing
 }
 
 - (CCLayer*)createMoneyLayer

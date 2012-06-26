@@ -31,19 +31,10 @@
         
         // Get the user
         user = [[User alloc] init];
-        CCLOG(@"USER DATA");
-        CCLOG(@"Highscores: %@",user.highscores);
-        CCLOG(@"Souls: %@",user.souls);
-        CCLOG(@"World Progress: %i",user.worldprogress);
-        CCLOG(@"Level Progress: %i",user.levelprogress);
-        CCLOG(@"Collected: %i", user.collected);
-        CCLOG(@"Powerup: %@",user.powerup);
-        CCLOG(@"Friends:%@",user.fbFriends);
-        CCLOG(@"USER DATA END");        
         
         // Screen Size
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-        NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
+        NSNumber* itemsPerRow = [NSNumber numberWithInt:4];
         float menu_x = (screenSize.width/2);
         float menu_y = 275;
         
@@ -67,51 +58,39 @@
                                            disabledImage:[NSString stringWithFormat:@"icon-locked.png",lvl] 
                                            target:self 
                                            selector:@selector(tap_level:)];
+                
+                CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",w,lvl] fontName:@"Marker Felt" fontSize:12];
+                lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
+                [level addChild:lbl_level_name];
+                
                 level.userData = (int*)w;
                 level.tag      = lvl;
-                if ( user.worldprogress >= w )
-                {
-                    level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
-                }
-                else 
-                {
-                    level.isEnabled = FALSE;
-                }
+                level.isEnabled = FALSE;
+                level.isEnabled = ( user.worldprogress >= w && user.levelprogress >= lvl ? TRUE : FALSE );
+                
                 if ( level.isEnabled )
                 {
-                    int world_souls = [user getSoulsForWorld:w andLevel:lvl];
-                    world_souls_total += world_souls;
-                    NSString *str_level_souls = [NSString stringWithFormat:@"%d",world_souls];
-                    CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:str_level_souls fontName:@"Marker Felt" fontSize:16];
-                    [level addChild:lbl_level_souls];
+                    int souls = [user getSoulsForWorld:w andLevel:lvl];
+                    world_souls_total += souls;
+                    
+                    CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:@"Marker Felt" fontSize:16];
                     lbl_level_souls.color = ccc3(0,0,0);
                     lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
+                    [level addChild:lbl_level_souls];                    
                 }
-                
-                NSString *str_level_name = [NSString stringWithFormat:@"%i - %i",w,lvl];
-                CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:str_level_name fontName:@"Marker Felt" fontSize:12];
-                [level addChild:lbl_level_name];
-                lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
                 
                 [world_menu addChild:level];
                 CCLOG(@"LEVEL %i CREATED", lvl);
             }
             
             [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
-            if ( w == 1 )
-            {
-                CCLOG(@"ADDING BACKGROUND: bg_hell");
-                CCSprite *background = [CCSprite spriteWithFile:@"bg_hell.png"];
-                background.position = ccp (screenSize.width/2, screenSize.height/2);
-                [world addChild:background];
-            }
-            else if ( w == 2 )
-            {
-                CCLOG(@"ADDING BACKGROUND: bg_underground");                
-                CCSprite *background = [CCSprite spriteWithFile:@"bg_underground.png"];
-                background.position = ccp (screenSize.width/2, screenSize.height/2);
-                [world addChild:background];
-            }
+
+            CCMenuItem *unlock = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"UNLOCK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_unlock:)];
+            CCMenu *unlockmenu = [CCMenu menuWithItems:unlock, nil];
+            unlock.tag = w;            
+            unlockmenu.position = ccp ( screenSize.width/2, 420 );
+            unlockmenu.visible = ( user.worldprogress >= w ? FALSE : TRUE );
+            [world addChild:unlockmenu];
             
             CCLOG(@"SETTING WORLD SCORE");             
             CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
@@ -124,6 +103,7 @@
             [world addChild:world_stars];
             
             [world addChild:world_menu];
+            
             [worlds addObject:world];
             CCLOG(@"WORLD %i CREATED", w);
         }
@@ -153,14 +133,11 @@
         facebookmenu = [CCMenu menuWithItems:facebook, nil];
         [facebookmenu alignItemsHorizontallyWithPadding:20];
         facebookmenu.position = ccp ( 85, 10 );
-        [self addChild:facebookmenu z:100];
         facebookmenu.visible = !user.fbloggedin;
-        
-        CCLOG(@"LOGIN BUTTON: %d | LOGGED IN TEXT: %d", facebookmenu.visible, lbl_user_collected.visible);        
+        [self addChild:facebookmenu z:100];
     
-        detail = [LevelDetailLayer node];
-        
         CCLOG(@"ADDING IN ALL THE LAYERS");
+        detail = [LevelDetailLayer node];
         [self addChild:scroller];
         [self addChild:storemenu];
         [self addChild:detail];
@@ -181,30 +158,41 @@
                                  @"user_birthday",@"user_location",
                                  @"offline_access", nil];
     
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *pfuser, NSError *error) {
-        if (!pfuser) {
-            CCLOG(@"Uh oh. The user cancelled the Facebook login.");
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *pfuser, NSError *error) 
+    {
+        if (!pfuser) 
+        {
             CCLOG(@"ERROR: %@",error);
-        } else if (pfuser.isNew) {
-            facebookmenu.visible = FALSE;
-            lbl_user_collected.visible = TRUE;            
-            CCLOG(@"USER IS NEW, CREATE ALL THE STUFF");
+        } 
+        else if (pfuser.isNew) 
+        {
             [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name" andDelegate:self];
+            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];                        
+            
+            facebookmenu.visible = FALSE;
+            lbl_user_collected.visible = TRUE;
+            
+            CCLOG(@"USER IS NEW, CREATE ALL THE STUFF");
             CCLOG(@"USER IS NEW, STUFF CREATED");
             [user.udata setBool:TRUE forKey:@"fbloggedin"];            
             user.fbloggedin = TRUE;            
             [user.udata synchronize];
-            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];                        
-        } else {
+        } 
+        else 
+        {
+            PFQuery *query = [PFUser query];
+            PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
+            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",[[result objectForKey:@"collected"] intValue]];
+            [[PFUser currentUser] incrementKey:@"RunCount"];
+            [[PFUser currentUser] save];
+            
             facebookmenu.visible = FALSE;
-            lbl_user_collected.visible = TRUE;            
+            lbl_user_collected.visible = TRUE;
+            
             CCLOG(@"USER IS NOT NEW, JUST LOG IN");     
             [user.udata setBool:TRUE forKey:@"fbloggedin"];
             user.fbloggedin = TRUE;
             [user.udata synchronize];
-            PFQuery *query = [PFUser query];
-            PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
-            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",[[result objectForKey:@"collected"] intValue]];
         }
     }];
 }
@@ -216,11 +204,6 @@
     [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"collected"];
     [[PFUser currentUser] incrementKey:@"RunCount"];
     [[PFUser currentUser] save];
-    
-    CCLOG(@"CREATING USER UDATA | fbID, fbName");
-    [user.udata setValue:[result objectForKey:@"id"] forKey:@"fbid"];
-    [user.udata setValue:[result objectForKey:@"name"] forKey:@"fbname"];
-    [user.udata synchronize];
 }
 
 -(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
@@ -248,6 +231,10 @@
 {
     CCLOG(@"TAPPED LEVEL: %i - %i",sender.tag, user );
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
+}
+- (void) tap_unlock:(CCMenuItem*)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
 }
 
 @end

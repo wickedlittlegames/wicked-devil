@@ -27,7 +27,7 @@
     NSString *font = @"Marker Felt";
     NSString *title_world = [NSString stringWithFormat:@"World %i - Level %i",world, level];
     NSString *title_scores = [NSString stringWithFormat:@"Highscore: %i", [user getScoreForWorld:world andLevel:level]];
-    NSString *title_bigcollected = [NSString stringWithFormat:@"Souls Captured: %i",[user getSoulsForWorld:world andLevel:level]];
+    NSString *title_bigcollected = @"Souls Captured:";
     NSString *title_facebook = @"Your Facebook Friends";
     NSString *title_compare  = @"Share Options";
     
@@ -42,6 +42,13 @@
     label_big_collected.position = ccp ( 0, 180 );
     label_facebook.position = ccp ( 0, 100 );
     label_compare.position = ccp ( 0, 30 );
+    
+    for (int i = 0; i < [user getSoulsForWorld:world andLevel:level]; i++)
+    {
+        CCSprite *bigcollected = [CCSprite spriteWithFile:@"bigcollectable.png"];
+        bigcollected.position = ccp ( 0+(80*i), 130);
+        [self addChild:bigcollected z:100];        
+    }
     
     CCMenuItem *play = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"PLAY" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_play:)];
     play.tag = level;

@@ -40,7 +40,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         CCTextureCache* textureCache = [CCTextureCache sharedTextureCache];            
         platform_toggle1 = [textureCache addImage:@"platform-toggle1.png"];
         platform_toggle2 = [textureCache addImage:@"platform-toggle2.png"];
-        
 
         CCLOG(@"FLOOR.PNG ADDED");
         floor = [CCSprite spriteWithFile:@"floor.png"];
@@ -80,7 +79,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SPRITES.plist"];
+    /*[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SPRITES.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"SPRITES.png"];
     [scene addChild:spriteSheet];
             
@@ -98,7 +97,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     
     CCSprite *_background_back = [CCSprite spriteWithSpriteFrameName:@"1-bg-back.png"];
     _background_back.position = ccp ( screenSize.width/2, screenSize.height/2 );
-    [scene addChild:_background_back z:1];
+    [scene addChild:_background_back z:1];*/
     
     CCLOG(@"SETTING UP GAME ELEMENTS AND PASSING THEM THROUGH TO THE GAME");
     Player *_player = [Player spriteWithFile:@"devil2.png"];
@@ -113,10 +112,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setLevelNumber:levelNum];
     [objectLayer setUi:uilayer];
     [objectLayer setGameoverlayer:gameoverlayer];
-    [objectLayer setBackground_front:_background_front];
+    /*[objectLayer setBackground_front:_background_front];
     [objectLayer setBackground_middle:_background_middle];
     [objectLayer setBackground_middle2:_background_middle2];
-    [objectLayer setBackground_back:_background_back];
+    [objectLayer setBackground_back:_background_back];*/
 
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
@@ -185,10 +184,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             if ( levelThreshold < 0 )
             {
                 self.position = ccp (self.position.x, self.position.y + levelThreshold);
-                self.background_front.position = ccp ( self.background_front.position.x, self.background_front.position.y + (levelThreshold)/10 );
+                /*self.background_front.position = ccp ( self.background_front.position.x, self.background_front.position.y + (levelThreshold)/10 );
                 self.background_middle.position = ccp ( self.background_middle.position.x, self.background_middle.position.y + (levelThreshold)/10/2 );
                 self.background_middle2.position = ccp ( self.background_middle2.position.x, self.background_middle2.position.y + (levelThreshold)/10/4 );
-                self.background_back.position = ccp ( self.background_back.position.x, self.background_back.position.y + (levelThreshold)/10/6 );                
+                self.background_back.position = ccp ( self.background_back.position.x, self.background_back.position.y + (levelThreshold)/10/6 );     */           
             }
 
             for (Platform *platform in platforms)

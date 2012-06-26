@@ -34,5 +34,6 @@
 
 - (NSString*) get_fbName;
 - (NSString*) get_fbId;
+- (void) get_fbFriends;
 
 @end

@@ -65,8 +65,12 @@
 
 - (void) doFinalScoreAnimationsforUser:(User*)user andPlayer:(Player*)player
 {
-    [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
+    if (user.canCollect)
+    {
+        [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
+    }
     [lbl_gameover_score setString:@"Score: 0"];
+    [lbl_gameover_bigcollected setString:[NSString stringWithFormat:@"BIG COLLECTED: %i",player.bigcollected]];
     
     tmp_player_score = 0;
     score_multiplier_check = 1;

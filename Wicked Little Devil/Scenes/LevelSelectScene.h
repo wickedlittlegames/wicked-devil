@@ -18,7 +18,7 @@
 
 #import "User.h"
 
-@interface LevelSelectScene : CCLayer {
+@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate> {
     User *user;
     LevelDetailLayer *detail;
     CCMenu *facebookmenu;

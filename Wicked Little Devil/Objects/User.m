@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbid, fbloggedin;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbloggedin, fbFriends;
 
 #pragma mark User creation/persistance methods
 
@@ -19,7 +19,7 @@
     {
         CCLOG(@"GRABBING USER DEFAULTS FILE");
         udata = [NSUserDefaults standardUserDefaults];
-
+        
         if ( [udata boolForKey:@"created"] == FALSE )
         {
             CCLOG(@"FIRST TIME, CREATING USER");
@@ -32,24 +32,22 @@
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
-        self.fbid           = [udata valueForKey:@"fbid"];
         self.fbloggedin     = FALSE;
+        self.fbFriends      = NULL;
+        self.collected      = 0;
+        
         
         if ([PFUser currentUser] && // Check if a user is cached
             [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet]) // Check if user is linked to Facebook
         {
+            //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+            
             PFQuery *query = [PFUser query];
             PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
             self.collected = [[result objectForKey:@"collected"] intValue];
 
             self.fbloggedin = TRUE;
         }
-        else 
-        {
-            self.collected = 0;
-            self.fbloggedin = FALSE;
-        }
-        
         
         //[self gameKitBlock];
     }
@@ -80,7 +78,6 @@
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];
     [udata setInteger:0 forKey:@"powerup"];
-    [udata setValue:NULL forKey:@"fbid"];
     [udata setBool:FALSE forKey:@"fbloggedin"];
     
     [udata setBool:TRUE forKey:@"created"];
@@ -104,6 +101,7 @@
     
     if ( self.canCollect )
     {
+        CCLOG(@"CAN CONNECT");
         [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
         [[PFUser currentUser] saveEventually];
     }
@@ -118,12 +116,67 @@
     }
 }
 
-#pragma mark User Utility Methods
-
 - (BOOL) canCollect
 {
     return ([self isConnectedToInternet] && self.fbloggedin && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
 }
+
+#pragma mark User Utility Methods
+
+- (NSString*) get_fbId
+{
+    PFQuery *query = [PFUser query];
+    PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
+    return [result objectForKey:@"fbId"];
+}
+
+- (NSString*) get_fbName
+{
+    PFQuery *query = [PFUser query];
+    PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
+    return [result objectForKey:@"fbName"];
+}
+
+- (NSArray*) get_fbFriends
+{
+    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+    return self.fbFriends;
+}
+
+- (void)request:(PF_FBRequest *)request didLoad:(id)result {
+    // Assuming no errors, result will be an NSDictionary of your user's friends
+    NSArray *friendObjects = [result objectForKey:@"data"];
+
+    NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+    
+    // Create a list of friends' Facebook IDs
+    for (NSDictionary *friendObject in friendObjects) {
+        [friendIds addObject:[friendObject objectForKey:@"id"]];
+    }
+       
+    // Construct a PFUser query that will find friends whose facebook ids are contained
+    // in the current user's friend list.
+    PFQuery *friendQuery = [PFUser query];
+    [friendQuery whereKey:@"fbId" containedIn:friendIds];
+
+    // findObjects will return a list of PFUsers that are friends with the current user
+    self.fbFriends = [friendQuery findObjects];
+}
+
+-(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
+    // OAuthException means our session is invalid
+    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] 
+         isEqualToString: @"OAuthException"]) {
+        NSLog(@"The facebook token was invalidated");
+        [PFUser logOut];
+        self.fbloggedin = FALSE;
+    } else {
+        NSLog(@"Some other error");
+        [PFUser logOut];
+        self.fbloggedin = FALSE;
+    }
+}
+
 
 - (int) getScoreForWorld:(int)w andLevel:(int)lvl
 {
@@ -158,27 +211,40 @@
 
 - (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score
 {
+    CCLOG(@"UPDATING HIGH SCORE: %i | %i | %i ",w, lvl, score);
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int current_highscore = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
-
+    CCLOG(@"CURRENT HIGHSCORE: %i ",current_highscore);
     if (score > current_highscore)
     {
+        CCLOG(@"BETTER - UPDATING");
         [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:score]];    
         [udata setObject:tmp forKey:@"highscores"];
         [udata synchronize];
+        
+        PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
+        [highscore setObject:[PFUser currentUser] forKey:@"user"];        
+        [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
+        [highscore setObject:[NSNumber numberWithInt:lvl] forKey:@"level"];
+        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];        
+        [highscore save];        
     }
 }
 
 - (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total
 {
+    CCLOG(@"UPDATING SOULS: %i | %i | %i ",w, lvl, total);
+
     NSMutableArray *tmp = [udata objectForKey:@"souls"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    CCLOG(@"TMP:%@| TMP2: %@",tmp, tmp2);
     int current_total = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+    CCLOG(@"CURRENT SOULS: %i ",current_total);
     
     if (total > current_total)
     {
-        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:total]];    
+        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:total]];
         [udata setObject:tmp forKey:@"souls"];
         [udata synchronize];
     }
@@ -193,62 +259,6 @@
     Reachability *reachability = [Reachability reachabilityForInternetConnection];  
     NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
     return !(networkStatus == NotReachable);
-}
-
-- (BOOL) loginWithFacebook
-{
-    login_success = FALSE;
-    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
-                                 @"user_birthday",@"user_location",
-                                 @"offline_access", nil];
-
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        if (!user) {
-            CCLOG(@"Uh oh. The user cancelled the Facebook login.");
-            CCLOG(@"ERROR: %@",error);
-        } else if (user.isNew) {
-            CCLOG(@"USER IS NEW, CREATE ALL THE STUFF");
-            [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name" andDelegate:self];
-            CCLOG(@"USER IS NEW, STUFF CREATED");            
-            [udata setBool:TRUE forKey:@"fbloggedin"];
-            [udata synchronize];
-            login_success = TRUE;
-        } else {
-            CCLOG(@"USER IS NOT NEW, JUST LOG IN");            
-            [udata setBool:TRUE forKey:@"fbloggedin"];
-            [udata synchronize];
-            login_success = TRUE;
-        }
-    }];
-    
-    return login_success;
-}
-
-- (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    CCLOG(@"CREATING USER CUSTOM PARAMS | fbID, fbName");    
-    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
-    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"collected"];
-    [[PFUser currentUser] save];
-
-    CCLOG(@"CREATING USER UDATA | fbID, fbName");
-    [self.udata setValue:[result objectForKey:@"id"] forKey:@"fbid"];
-    [self.udata setValue:[result objectForKey:@"name"] forKey:@"fbname"];
-    [self.udata synchronize];
-}
-     
--(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
- // OAuthException means our session is invalid
- if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] 
-      isEqualToString: @"OAuthException"]) {
-     NSLog(@"The facebook token was invalidated");
-     [PFUser logOut];
-     self.fbloggedin = FALSE;
- } else {
-     NSLog(@"Some other error");
-     [PFUser logOut];
-     self.fbloggedin = FALSE;
- }
 }
 
 

@@ -23,9 +23,9 @@
     
     [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
     
-    [PFUser enableAutomaticUser];
-    [[PFUser currentUser] incrementKey:@"RunCount"];
-    [[PFUser currentUser] saveInBackground];
+    //[PFUser enableAutomaticUser];
+    //[[PFUser currentUser] incrementKey:@"RunCount"];
+    //[[PFUser currentUser] saveInBackground];
     
     // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -8,6 +8,7 @@
 
 #import "LevelSelectScene.h"
 #import "LevelScene.h"
+
 @implementation LevelSelectScene
 
 +(CCScene *) scene
@@ -37,7 +38,7 @@
         CCLOG(@"Level Progress: %i",user.levelprogress);
         CCLOG(@"Collected: %i", user.collected);
         CCLOG(@"Powerup: %@",user.powerup);
-        CCLOG(@"FBID: %@",user.fbid);  
+        CCLOG(@"Friends:%@",user.fbFriends);
         CCLOG(@"USER DATA END");        
         
         // Screen Size
@@ -174,15 +175,64 @@
 }
 
 - (void) tap_facebook
-{
+{   
     CCLOG(@"TAPPED LOGIN FACEBOOK");
-    if ( [user loginWithFacebook] ) 
-    {
-        CCLOG(@"LOGIN SUCCESS");
-        lbl_user_collected.visible = TRUE;
-        facebookmenu.visible = FALSE;
-    }
+    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
+                                 @"user_birthday",@"user_location",
+                                 @"offline_access", nil];
     
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *pfuser, NSError *error) {
+        if (!pfuser) {
+            CCLOG(@"Uh oh. The user cancelled the Facebook login.");
+            CCLOG(@"ERROR: %@",error);
+        } else if (pfuser.isNew) {
+            facebookmenu.visible = FALSE;
+            lbl_user_collected.visible = TRUE;            
+            CCLOG(@"USER IS NEW, CREATE ALL THE STUFF");
+            [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name" andDelegate:self];
+            CCLOG(@"USER IS NEW, STUFF CREATED");
+            [user.udata setBool:TRUE forKey:@"fbloggedin"];            
+            [user.udata synchronize];
+            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];                        
+        } else {
+            facebookmenu.visible = FALSE;
+            lbl_user_collected.visible = TRUE;            
+            CCLOG(@"USER IS NOT NEW, JUST LOG IN");     
+            [user.udata setBool:TRUE forKey:@"fbloggedin"];            
+            [user.udata synchronize];
+            PFQuery *query = [PFUser query];
+            PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
+            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",[[result objectForKey:@"collected"] intValue]];
+        }
+    }];
+}
+
+- (void)request:(PF_FBRequest *)request didLoad:(id)result {
+    CCLOG(@"CREATING USER CUSTOM PARAMS | fbID, fbName");    
+    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"collected"];
+    [[PFUser currentUser] incrementKey:@"RunCount"];
+    [[PFUser currentUser] save];
+    
+    CCLOG(@"CREATING USER UDATA | fbID, fbName");
+    [user.udata setValue:[result objectForKey:@"id"] forKey:@"fbid"];
+    [user.udata setValue:[result objectForKey:@"name"] forKey:@"fbname"];
+    [user.udata synchronize];
+}
+
+-(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
+    // OAuthException means our session is invalid
+    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] 
+         isEqualToString: @"OAuthException"]) {
+        NSLog(@"The facebook token was invalidated");
+        [PFUser logOut];
+        user.fbloggedin = FALSE;
+    } else {
+        NSLog(@"Some other error");
+        [PFUser logOut];
+        user.fbloggedin = FALSE;
+    }
 }
 
 - (void) tap_stats:(id)sender

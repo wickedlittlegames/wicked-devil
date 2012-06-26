@@ -53,6 +53,9 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         menu.position = ccp ( screenSize.width/2, 30 );
         [self addChild:menu];
         
+        CCLOG(@"SCENE SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
+        
+        
         
     }
 	return self;
@@ -60,7 +63,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 +(CCScene *) sceneWithWorldNum:(int)worldNum LevelNum:(int)levelNum
 {
-    CCLOG(@"SCENE CREATED");
+    CCLOG(@"SCENE CREATED: WORLD: %i | LEVEL: %i", worldNum, levelNum);
     // Create a Scene
 	CCScene *scene = [CCScene node];
 
@@ -70,39 +73,32 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     GameplayUILayer *uilayer    = [GameplayUILayer node];
     GameoverUILayer *gameoverlayer = [GameoverUILayer node];
 
-    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]); 
+    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-1-level-1.ccbi",worldNum,levelNum]); 
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
-                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-%d-level-%d.ccbi",worldNum,levelNum]
+                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-1-level-1.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    CCLOG(@"SCENE SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
-    
-    /*_batchNode = [CCSpriteBatchNode batchNodeWithFile:@"Sprites.pvr.ccz"]; // 1
-    [self addChild:_batchNode]; // 2
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Sprites.plist"]; // 3
-    
-    _ship = [CCSprite spriteWithSpriteFrameName:@"SpaceFlier_sm_1.png"];  // 4
-    CGSize winSize = [CCDirector sharedDirector].winSize; // 5
-    _ship.position = ccp(winSize.width * 0.1, winSize.height * 0.5); // 6
-    [_batchNode addChild:_ship z:1]; // 7
-    */
-        
-    /*CCSprite *_background_front = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-front.png",worldNum]];
+
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SPRITES.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"SPRITES.png"];
+    [scene addChild:spriteSheet];
+            
+    CCSprite *_background_front = [CCSprite spriteWithSpriteFrameName:@"1-bg-front.png"];
     _background_front.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_front z:4];
     
-    CCSprite *_background_middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid.png",worldNum]];
+    CCSprite *_background_middle = [CCSprite spriteWithSpriteFrameName:@"1-bg-mid.png"];
     _background_middle.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle z:3];
     
-    CCSprite *_background_middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-mid2.png",worldNum]];
+    CCSprite *_background_middle2 = [CCSprite spriteWithSpriteFrameName:@"1-bg-mid2.png"];
     _background_middle2.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [scene addChild:_background_middle2 z:2];
     
-    CCSprite *_background_back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%i-bg-back.png",worldNum]];
+    CCSprite *_background_back = [CCSprite spriteWithSpriteFrameName:@"1-bg-back.png"];
     _background_back.position = ccp ( screenSize.width/2, screenSize.height/2 );
-    [scene addChild:_background_back z:1];*/
+    [scene addChild:_background_back z:1];
     
     CCLOG(@"SETTING UP GAME ELEMENTS AND PASSING THEM THROUGH TO THE GAME");
     Player *_player = [Player spriteWithFile:@"devil2.png"];
@@ -117,10 +113,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setLevelNumber:levelNum];
     [objectLayer setUi:uilayer];
     [objectLayer setGameoverlayer:gameoverlayer];
-    /*[objectLayer setBackground_front:_background_front];
+    [objectLayer setBackground_front:_background_front];
     [objectLayer setBackground_middle:_background_middle];
     [objectLayer setBackground_middle2:_background_middle2];
-    [objectLayer setBackground_back:_background_back];*/
+    [objectLayer setBackground_back:_background_back];
 
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
@@ -189,10 +185,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             if ( levelThreshold < 0 )
             {
                 self.position = ccp (self.position.x, self.position.y + levelThreshold);
-                /*self.background_front.position = ccp ( self.background_front.position.x, self.background_front.position.y + (levelThreshold) );
-                self.background_middle.position = ccp ( self.background_middle.position.x, self.background_middle.position.y + (levelThreshold)/2 );
-                self.background_middle2.position = ccp ( self.background_middle2.position.x, self.background_middle2.position.y + (levelThreshold)/4 );
-                self.background_back.position = ccp ( self.background_back.position.x, self.background_back.position.y + (levelThreshold)/6 );  */              
+                self.background_front.position = ccp ( self.background_front.position.x, self.background_front.position.y + (levelThreshold)/10 );
+                self.background_middle.position = ccp ( self.background_middle.position.x, self.background_middle.position.y + (levelThreshold)/10/2 );
+                self.background_middle2.position = ccp ( self.background_middle2.position.x, self.background_middle2.position.y + (levelThreshold)/10/4 );
+                self.background_back.position = ccp ( self.background_back.position.x, self.background_back.position.y + (levelThreshold)/10/6 );                
             }
 
             for (Platform *platform in platforms)

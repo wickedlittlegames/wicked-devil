@@ -266,6 +266,11 @@
 		9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149681577B09600A6FF33 /* LevelScene.m */; };
 		9C61496E1577B09600A6FF33 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496A1577B09600A6FF33 /* LevelSelectScene.m */; };
 		9C61496F1577B09600A6FF33 /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C61496C1577B09600A6FF33 /* StartScene.m */; };
+		9C7E670C1598E708008768EE /* hell_sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7E670A1598E708008768EE /* hell_sprites.png */; };
+		9C7E67111598E9BC008768EE /* SPRITES.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C7E670F1598E9BC008768EE /* SPRITES.plist */; };
+		9C7E67121598E9BC008768EE /* SPRITES.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7E67101598E9BC008768EE /* SPRITES.png */; };
+		9C7E67151598EC15008768EE /* SPRITES-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C7E67131598EC15008768EE /* SPRITES-hd.plist */; };
+		9C7E67161598EC15008768EE /* SPRITES-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7E67141598EC15008768EE /* SPRITES-hd.png */; };
 		9C809AFF1591129A0083B56D /* bg_hell-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809AFE1591129A0083B56D /* bg_hell-hd.png */; };
 		9C809B02159115220083B56D /* bg_hell.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809B01159115220083B56D /* bg_hell.png */; };
 		9C809B04159116B10083B56D /* bg_underground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C809B03159116B10083B56D /* bg_underground-hd.png */; };
@@ -589,6 +594,11 @@
 		9C61496A1577B09600A6FF33 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectScene.m; path = Scenes/LevelSelectScene.m; sourceTree = "<group>"; };
 		9C61496B1577B09600A6FF33 /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartScene.h; path = Scenes/StartScene.h; sourceTree = "<group>"; };
 		9C61496C1577B09600A6FF33 /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartScene.m; path = Scenes/StartScene.m; sourceTree = "<group>"; };
+		9C7E670A1598E708008768EE /* hell_sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hell_sprites.png; sourceTree = "<group>"; };
+		9C7E670F1598E9BC008768EE /* SPRITES.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SPRITES.plist; sourceTree = "<group>"; };
+		9C7E67101598E9BC008768EE /* SPRITES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SPRITES.png; sourceTree = "<group>"; };
+		9C7E67131598EC15008768EE /* SPRITES-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SPRITES-hd.plist"; sourceTree = "<group>"; };
+		9C7E67141598EC15008768EE /* SPRITES-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SPRITES-hd.png"; sourceTree = "<group>"; };
 		9C809AFE1591129A0083B56D /* bg_hell-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_hell-hd.png"; sourceTree = "<group>"; };
 		9C809B01159115220083B56D /* bg_hell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_hell.png; sourceTree = "<group>"; };
 		9C809B03159116B10083B56D /* bg_underground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_underground-hd.png"; sourceTree = "<group>"; };
@@ -1134,6 +1144,11 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C7E67131598EC15008768EE /* SPRITES-hd.plist */,
+				9C7E67141598EC15008768EE /* SPRITES-hd.png */,
+				9C7E670F1598E9BC008768EE /* SPRITES.plist */,
+				9C7E67101598E9BC008768EE /* SPRITES.png */,
+				9C7E670A1598E708008768EE /* hell_sprites.png */,
 				9CEF22461597C60A00893789 /* platform-normal-hd.png */,
 				9C9522271594EE1000DF2AC2 /* 1-bg-back.png */,
 				9C9522281594EE1000DF2AC2 /* 1-bg-front.png */,
@@ -1574,6 +1589,11 @@
 				9C95222D1594EE1000DF2AC2 /* 1-bg-mid.png in Resources */,
 				9C95222E1594EE1000DF2AC2 /* 1-bg-mid2.png in Resources */,
 				9CEF22471597C60A00893789 /* platform-normal-hd.png in Resources */,
+				9C7E670C1598E708008768EE /* hell_sprites.png in Resources */,
+				9C7E67111598E9BC008768EE /* SPRITES.plist in Resources */,
+				9C7E67121598E9BC008768EE /* SPRITES.png in Resources */,
+				9C7E67151598EC15008768EE /* SPRITES-hd.plist in Resources */,
+				9C7E67161598EC15008768EE /* SPRITES-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

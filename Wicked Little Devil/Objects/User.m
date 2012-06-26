@@ -43,7 +43,7 @@
         
         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet] && self.fbloggedin)
         {
-            //[[PFUser currentUser] refresh];
+            [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
             CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
             self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
             self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];

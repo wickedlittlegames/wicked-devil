@@ -192,13 +192,15 @@
             [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name" andDelegate:self];
             CCLOG(@"USER IS NEW, STUFF CREATED");
             [user.udata setBool:TRUE forKey:@"fbloggedin"];            
+            user.fbloggedin = TRUE;            
             [user.udata synchronize];
             lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];                        
         } else {
             facebookmenu.visible = FALSE;
             lbl_user_collected.visible = TRUE;            
             CCLOG(@"USER IS NOT NEW, JUST LOG IN");     
-            [user.udata setBool:TRUE forKey:@"fbloggedin"];            
+            [user.udata setBool:TRUE forKey:@"fbloggedin"];
+            user.fbloggedin = TRUE;
             [user.udata synchronize];
             PFQuery *query = [PFUser query];
             PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
@@ -227,10 +229,12 @@
          isEqualToString: @"OAuthException"]) {
         NSLog(@"The facebook token was invalidated");
         [PFUser logOut];
+        [user.udata setBool:FALSE forKey:@"fbloggedin"];
         user.fbloggedin = FALSE;
     } else {
         NSLog(@"Some other error");
         [PFUser logOut];
+        [user.udata setBool:FALSE forKey:@"fbloggedin"];        
         user.fbloggedin = FALSE;
     }
 }

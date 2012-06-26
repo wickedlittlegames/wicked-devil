@@ -32,21 +32,20 @@
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
-        self.fbloggedin     = FALSE;
-        self.fbFriends      = NULL;
-        self.collected      = 0;
-        
+        self.fbloggedin     = [udata boolForKey:@"fbloggedin"];
+        self.fbFriends      = NULL;      
         
         if ([PFUser currentUser] && // Check if a user is cached
             [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet]) // Check if user is linked to Facebook
         {
-            //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
-            
+            CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
             PFQuery *query = [PFUser query];
             PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
             self.collected = [[result objectForKey:@"collected"] intValue];
-
-            self.fbloggedin = TRUE;
+            
+            [udata  setBool:TRUE forKey:@"fbloggedin"];
+            [udata synchronize];
+            self.fbloggedin = TRUE;                
         }
         
         //[self gameKitBlock];

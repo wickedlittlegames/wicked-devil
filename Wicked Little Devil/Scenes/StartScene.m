@@ -31,8 +31,6 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        CCLOG(@"INIT STARTSCENE");
-        
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         CCMenuItem *start = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"START" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_start:)];
@@ -45,7 +43,6 @@
 }
 
 - (void)tap_start:(id)sender {
-    CCLOG(@"TAPPED START");
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 

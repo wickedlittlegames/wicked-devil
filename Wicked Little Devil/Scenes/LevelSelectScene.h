@@ -9,10 +9,12 @@
 #import <GameKit/GameKit.h>
 
 #import "cocos2d.h"
+#import "AppDelegate.h"
 #import "CCScrollLayer.h"
 #import "GameCenterConstants.h"
 
 #import "ShopScene.h"
+#import "LevelScene.h"
 #import "LevelDetailLayer.h"
 
 #import "User.h"

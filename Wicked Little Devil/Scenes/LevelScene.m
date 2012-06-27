@@ -107,6 +107,11 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     _player.position = ccp( screenSize.width/2 , 110 );
     [playerlayer addChild:_player];
     gameoverlayer.visible = FALSE;
+    
+    [scene addChild:playerlayer z:51];
+    [scene addChild:uilayer z:100];
+    [scene addChild:gameoverlayer z:101];
+    [scene addChild:objectLayer z:50];
         
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
@@ -121,13 +126,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
-    // Add layers to the scene
-    CCLOG(@"ADDING ALL THE LAYERS TO THE SCENE");
-    [scene addChild:objectLayer z:50];
-    [scene addChild:playerlayer z:51];
-    [scene addChild:uilayer z:100];
-    [scene addChild:gameoverlayer z:101];
-
     CCLOG(@"RETURN SCENE");
 	return scene;
 }

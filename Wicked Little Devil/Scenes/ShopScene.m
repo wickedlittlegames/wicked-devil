@@ -38,27 +38,20 @@
         if (user.isAvailableForOnlinePlay)
         {
             [[PFUser currentUser] refresh]; // change all refresh to refresh with background with spinny loader
-            
-            CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
-            CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
-            restore_purchasesmenu.position = ccp ( 85, 10 );
-            
-            CCLayer *powerups_layer = [self createPowerupLayer];
-            CCLayer *money_layer  = [self createMoneyLayer];
-            
-            CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
-            scroller.position = ccp(0,0);
-            [self addChild:scroller];
-            
-            [self addChild:restore_purchasesmenu];                    
         }
-        else 
-        {
-            CCLabelTTF *lbl_offline = [CCLabelTTF labelWithString:@"Offline" fontName:@"Arial" fontSize:18];
-            lbl_offline.position = ccp ( screenSize.width/2, screenSize.height/2 );
-            [self addChild:lbl_offline];
-        }
+        CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
+        CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
+        restore_purchasesmenu.position = ccp ( 85, 10 );
         
+        CCLayer *powerups_layer = [self createPowerupLayer];
+        CCLayer *money_layer  = [self createMoneyLayer];
+        
+        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
+        scroller.position = ccp(0,0);
+        [self addChild:scroller];
+        
+        [self addChild:restore_purchasesmenu];
+
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];
         menu.position = ccp ( screenSize.width - 80, 10 );

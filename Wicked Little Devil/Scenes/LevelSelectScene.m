@@ -65,6 +65,7 @@
                 level.userData = (int*)w;
                 level.tag      = lvl;
                 level.isEnabled = FALSE;
+                level.isEnabled = ( user.worlds_unlocked ? TRUE : FALSE );
                 level.isEnabled = ( user.worldprogress >= w && user.levelprogress >= lvl ? TRUE : FALSE );
                 
                 if ( level.isEnabled )
@@ -88,29 +89,7 @@
             menu_unlock = [CCMenu menuWithItems:unlock, nil];
             menu_unlock.tag = w;            
             menu_unlock.position = ccp ( screenSize.width/2, 420 );
-
-            switch (w)
-            {
-                case 1:
-                    menu_unlock.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
-                    break;
-                case 2:
-                    menu_unlock.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
-                    break;
-                case 3:
-                    menu_unlock.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
-                    break;
-                case 4:
-                    menu_unlock.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
-                    break;
-                case 5:
-                    menu_unlock.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
-                    break;
-                case 6:
-                    menu_unlock.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
-                    break;
-            }
-            
+            menu_unlock.visible = ( w == 1 ? FALSE : !user.worlds_unlocked );
             [world addChild:menu_unlock];
             
             CCLOG(@"SETTING WORLD SCORE");             
@@ -207,7 +186,22 @@
 
 - (void) tap_unlock:(CCMenuItem*)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+    //[[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+    if ( user.collected >= 5000 && user.isAvailableForOnlinePlay )
+    {
+        user.worlds_unlocked = TRUE;
+        user.collected -= 5000;
+        [self removeChild:menu_unlock cleanup:YES];
+        [user sync];
+    }
+    else
+    {
+        UIAlertView* dialog = [UIAlertView alloc];
+        [dialog setDelegate:self];
+        [dialog setTitle:@"Unable to unlock"];
+        [dialog setMessage:@"You haven't collected enough souls."];
+        [dialog show];
+    }
 }
 
 - (void) tap_achievements:(id)sender
@@ -252,27 +246,6 @@
                     menu_facebook.visible = FALSE;
                     [lbl_user_collected setString:[NSString stringWithFormat:@"Collected: %i",user.collected]];
                     lbl_user_collected.visible = TRUE;
-                    switch (menu_unlock.tag)
-                    {
-                        case 1:
-                            menu_unlock.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
-                            break;
-                        case 2:
-                            menu_unlock.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
-                            break;
-                        case 3:
-                            menu_unlock.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
-                            break;
-                        case 4:
-                            menu_unlock.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
-                            break;
-                        case 5:
-                            menu_unlock.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
-                            break;
-                        case 6:
-                            menu_unlock.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
-                            break;
-                    }
                 }
             }
         }];

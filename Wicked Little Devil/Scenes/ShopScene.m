@@ -78,7 +78,7 @@
                                        target:self 
                                        selector:@selector(tap_powerup:)];
     powerup_healthboost.tag = 0;
-    CCLabelTTF *powerup_name_healthboost = [CCLabelTTF labelWithString:@"Health Boost" fontName:@"Marker Felt" fontSize:12];
+    CCLabelTTF *powerup_name_healthboost = [CCLabelTTF labelWithString:@"Health Boost ( 1000Souls )" fontName:@"Marker Felt" fontSize:12];
     powerup_name_healthboost.position = ccp (powerup_name_healthboost.position.x + 27, powerup_name_healthboost.position.y - 12);
     [powerup_healthboost addChild:powerup_name_healthboost];
     
@@ -88,7 +88,7 @@
                                      target:self 
                                      selector:@selector(tap_powerup:)];
     powerup_lightfeet.tag = 1;
-    CCLabelTTF *powerup_name_lightfeet = [CCLabelTTF labelWithString:@"Light Feet" fontName:@"Marker Felt" fontSize:12];
+    CCLabelTTF *powerup_name_lightfeet = [CCLabelTTF labelWithString:@"Light Feet ( 1000Souls )" fontName:@"Marker Felt" fontSize:12];
     powerup_name_lightfeet.position = ccp (powerup_name_lightfeet.position.x + 27, powerup_name_lightfeet.position.y - 12);
     [powerup_lightfeet addChild:powerup_name_lightfeet];
     
@@ -98,7 +98,7 @@
                                      target:self 
                                      selector:@selector(tap_powerup:)];
     powerup_moneybags.tag = 2;
-    CCLabelTTF *powerup_name_moneybags = [CCLabelTTF labelWithString:@"Moneybags" fontName:@"Marker Felt" fontSize:12];
+    CCLabelTTF *powerup_name_moneybags = [CCLabelTTF labelWithString:@"Moneybags ( 10000Souls )" fontName:@"Marker Felt" fontSize:10];
     powerup_name_moneybags.position = ccp (powerup_name_moneybags.position.x + 27, powerup_name_moneybags.position.y - 12);
     [powerup_moneybags addChild:powerup_name_moneybags];
     

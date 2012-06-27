@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked;
 
 #pragma mark User creation/persistance methods
 
@@ -32,23 +32,13 @@
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
-        self.unlocked_world_1  = [udata boolForKey:@"unlocked_world_1"];
-        self.unlocked_world_2  = [udata boolForKey:@"unlocked_world_2"];
-        self.unlocked_world_3  = [udata boolForKey:@"unlocked_world_3"];
-        self.unlocked_world_4  = [udata boolForKey:@"unlocked_world_4"];
-        self.unlocked_world_5  = [udata boolForKey:@"unlocked_world_5"];
-        self.unlocked_world_6  = [udata boolForKey:@"unlocked_world_6"];
+        self.worlds_unlocked = [udata boolForKey:@"worlds_unlocked"];
         
         if (self.isAvailableForOnlinePlay)
         {
             CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
             self.collected         = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
-            self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];
-            self.unlocked_world_2  = [[[PFUser currentUser] objectForKey:@"unlocked_world_2"] boolValue];
-            self.unlocked_world_3  = [[[PFUser currentUser] objectForKey:@"unlocked_world_3"] boolValue];
-            self.unlocked_world_4  = [[[PFUser currentUser] objectForKey:@"unlocked_world_4"] boolValue];
-            self.unlocked_world_5  = [[[PFUser currentUser] objectForKey:@"unlocked_world_5"] boolValue];
-            self.unlocked_world_6  = [[[PFUser currentUser] objectForKey:@"unlocked_world_6"] boolValue];
+            self.worlds_unlocked   = [[[PFUser currentUser] objectForKey:@"worlds_unlocked"] boolValue];
         }
         
         //[self gameKitBlock];
@@ -78,12 +68,7 @@
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];
     [udata setInteger:0 forKey:@"powerup"];
-    [udata setBool:TRUE  forKey:@"unlocked_world_1"];
-    [udata setBool:FALSE forKey:@"unlocked_world_2"];
-    [udata setBool:FALSE forKey:@"unlocked_world_3"];
-    [udata setBool:FALSE forKey:@"unlocked_world_4"];
-    [udata setBool:FALSE forKey:@"unlocked_world_5"];
-    [udata setBool:FALSE forKey:@"unlocked_world_6"];    
+    [udata setBool:FALSE forKey:@"worlds_unlocked"];
     
     [udata setBool:TRUE forKey:@"created"];
     
@@ -99,13 +84,8 @@
     
     if ( self.isAvailableForOnlinePlay )
     {
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_1] forKey:@"unlocked_world_1"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_2] forKey:@"unlocked_world_2"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_3] forKey:@"unlocked_world_3"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_4] forKey:@"unlocked_world_4"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_5] forKey:@"unlocked_world_5"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_6] forKey:@"unlocked_world_6"];        
-        [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.worlds_unlocked] forKey:@"worlds_unlocked"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
         [[PFUser currentUser] saveInBackground];
     }
 }
@@ -122,13 +102,9 @@
     [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
     [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
     [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
+    
     [[PFUser currentUser] setObject:[NSNumber numberWithInt:100] forKey:@"collected"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:1] forKey:@"unlocked_world_1"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_2"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_3"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_4"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_5"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_6"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"worlds_unlocked"];    
     
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if ( succeeded )
@@ -146,14 +122,6 @@
 
 - (BOOL) parse_login;
 { 
-    self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
-    self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];
-    self.unlocked_world_2  = [[[PFUser currentUser] objectForKey:@"unlocked_world_2"] boolValue];
-    self.unlocked_world_3  = [[[PFUser currentUser] objectForKey:@"unlocked_world_3"] boolValue];
-    self.unlocked_world_4  = [[[PFUser currentUser] objectForKey:@"unlocked_world_4"] boolValue];
-    self.unlocked_world_5  = [[[PFUser currentUser] objectForKey:@"unlocked_world_5"] boolValue];
-    self.unlocked_world_6  = [[[PFUser currentUser] objectForKey:@"unlocked_world_6"] boolValue];
-    
     [self sync];
     
     return TRUE;
@@ -183,36 +151,26 @@
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
-    CCLOG(@"SETTING HIGHSCORE");
-    CCLOG(@"WORLD: %i | LEVEL %i",w, l);
     NSMutableArray *highscores_tmp = [[udata objectForKey:@"highscores"] mutableCopy];
-    CCLOG(@"MUTABLE ARRAY: %@", highscores_tmp);
     int current_highscore = [self getHighscoreforWorld:w level:l];
-    CCLOG(@"CURRENT HIGHSCORE: %i", current_highscore);
     if (score > current_highscore)
     {
-        CCLOG(@"UPDATING BECAUSE ITS HIGHER");
         // Updating Local
         NSMutableArray *tmp = [[highscores_tmp objectAtIndex:w-1] mutableCopy];
-        CCLOG(@"SUB MUTABLE ARRAY: %@",tmp);
         [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
         [highscores_tmp replaceObjectAtIndex:w-1 withObject:tmp];
-        CCLOG(@"REPLACED OBJECT AT INDEX");
         NSArray *highscore = highscores_tmp;
-        CCLOG(@"HIGHSCORE ARRAY: %@",highscore);
         [udata setObject:highscore forKey:@"highscores"];
-        CCLOG(@"HIGHSCORE SET IN UDATA");        
         [udata synchronize];
-        CCLOG(@"HIGHSCORE SYNCD");
         // Updating Parse
         if ( self.isAvailableForOnlinePlay )
         {   
-            CCLOG(@"SYNC PARSE HIGH SCORE");
             PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-            [highscore setObject:[[PFUser currentUser] objectForKey:@"fbId"] forKey:@"user"];        
+            [highscore setObject:[PFUser currentUser] forKey:@"user"];        
             [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
             [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
             [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+
             CCLOG(@"SAVING PARSE");            
             [[PFUser currentUser] save];
         }

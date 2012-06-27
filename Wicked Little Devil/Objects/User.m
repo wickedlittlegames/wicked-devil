@@ -79,6 +79,8 @@
 {
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];
+    [udata setBool:self.worlds_unlocked forKey:@"worlds_unlocked"];
+    [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.powerup forKey:@"powerup"];
     [udata synchronize];
     

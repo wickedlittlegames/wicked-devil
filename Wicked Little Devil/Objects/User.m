@@ -99,6 +99,12 @@
     
     if ( self.isAvailableForOnlinePlay )
     {
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_1] forKey:@"unlocked_world_1"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_2] forKey:@"unlocked_world_2"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_3] forKey:@"unlocked_world_3"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_4] forKey:@"unlocked_world_4"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_5] forKey:@"unlocked_world_5"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.unlocked_world_6] forKey:@"unlocked_world_6"];        
         [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
         [[PFUser currentUser] saveInBackground];
     }
@@ -200,16 +206,19 @@
         CCLOG(@"HIGHSCORE SYNCD");
         // Updating Parse
         if ( self.isAvailableForOnlinePlay )
-        {
+        {   
+            CCLOG(@"SYNC PARSE HIGH SCORE");
             PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
             [highscore setObject:[[PFUser currentUser] objectForKey:@"fbId"] forKey:@"user"];        
             [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
             [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
             [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+            CCLOG(@"SAVING PARSE");            
             [[PFUser currentUser] save];
         }
         
         // Updating Leaderboards
+        CCLOG(@"UPDATING LEADERBOARDS");        
         GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
         if (localPlayer.authenticated)
         {

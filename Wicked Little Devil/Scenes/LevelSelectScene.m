@@ -171,9 +171,10 @@
         if ( !user.isAvailableForOnlinePlay ) 
         {
             lbl_user_collected.visible = FALSE;
+            NSString *str_facebook = ( user.isOnline ? @"Sign In With Facebook" : @"Offline");
             
             CCMenuItem *btn_facebook = [CCMenuItemFont 
-                                        itemWithLabel:[CCLabelTTF labelWithString:@"Sign In With Facebook" fontName:@"Marker Felt" fontSize:18] 
+                                        itemWithLabel:[CCLabelTTF labelWithString:str_facebook fontName:@"Marker Felt" fontSize:18] 
                                         target:self 
                                         selector:@selector(tap_facebook)];
             

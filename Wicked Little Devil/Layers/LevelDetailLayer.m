@@ -26,7 +26,7 @@
     int fontsize = 16;
     NSString *font = @"Marker Felt";
     NSString *title_world = [NSString stringWithFormat:@"World %i - Level %i",world, level];
-    NSString *title_scores = [NSString stringWithFormat:@"Highscore: %i", [user getScoreForWorld:world andLevel:level]];
+    NSString *title_scores = [NSString stringWithFormat:@"Highscore: %i", [user getHighscoreforWorld:world level:level]];
     NSString *title_bigcollected = @"Souls Captured:";
     NSString *title_facebook = @"Your Facebook Friends";
     NSString *title_compare  = @"Share Options";
@@ -43,7 +43,7 @@
     label_facebook.position = ccp ( 0, 100 );
     label_compare.position = ccp ( 0, 30 );
     
-    for (int i = 0; i < [user getSoulsForWorld:world andLevel:level]; i++)
+    for (int i = 0; i < [user getSoulsforWorld:world level:level]; i++)
     {
         CCSprite *bigcollected = [CCSprite spriteWithFile:@"bigcollectable.png"];
         bigcollected.position = ccp ( 0+(80*i), 130);

@@ -32,29 +32,37 @@
 -(id) init
 {
     if( (self=[super init]) ) {
-        [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
-        
-        //User *user = [[User alloc] init];
-        
+        User *user = [User alloc];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-
+        
+        if (user.isAvailableForOnlinePlay)
+        {
+            [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
+            
+            CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
+            CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
+            restore_purchasesmenu.position = ccp ( 85, 10 );
+            
+            CCLayer *powerups_layer = [self createPowerupLayer];
+            CCLayer *money_layer  = [self createMoneyLayer];
+            
+            CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
+            scroller.position = ccp(0,0);
+            [self addChild:scroller];
+            
+            [self addChild:restore_purchasesmenu];                    
+        }
+        else 
+        {
+            CCLabelTTF *lbl_offline = [CCLabelTTF labelWithString:@"Offline" fontName:@"Arial" fontSize:18];
+            lbl_offline.position = ccp ( screenSize.width/2, screenSize.height/2 );
+            [self addChild:lbl_offline];
+        }
+        
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];
         menu.position = ccp ( screenSize.width - 80, 10 );
-
-        CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
-        CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
-        restore_purchasesmenu.position = ccp ( 85, 10 );
-        
-        CCLayer *powerups_layer = [self createPowerupLayer];
-        CCLayer *money_layer  = [self createMoneyLayer];
-        
-        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
-        scroller.position = ccp(0,0);
-        [self addChild:scroller];
-        
-        [self addChild:menu];
-        [self addChild:restore_purchasesmenu];        
+        [self addChild:menu];        
     }
     return self;
 }

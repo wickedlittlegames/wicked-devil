@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, fbloggedin, fbFriends, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
 
 #pragma mark User creation/persistance methods
 
@@ -23,7 +23,7 @@
         if ( [udata boolForKey:@"created"] == FALSE )
         {
             CCLOG(@"FIRST TIME, CREATING USER");
-            [self createUser];
+            [self create];
         }
         
         CCLOG(@"SETTING PARAMS BASED ON UDEFAULTS");        
@@ -32,8 +32,6 @@
         self.levelprogress  = [udata integerForKey:@"levelprogress"];
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
-        self.fbloggedin     = [udata boolForKey:@"fbloggedin"];
-        self.fbFriends      = [udata arrayForKey:@"fbfriends"];
         self.unlocked_world_1  = [udata boolForKey:@"unlocked_world_1"];
         self.unlocked_world_2  = [udata boolForKey:@"unlocked_world_2"];
         self.unlocked_world_3  = [udata boolForKey:@"unlocked_world_3"];
@@ -41,38 +39,24 @@
         self.unlocked_world_5  = [udata boolForKey:@"unlocked_world_5"];
         self.unlocked_world_6  = [udata boolForKey:@"unlocked_world_6"];
         
-        if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [self isConnectedToInternet] && self.fbloggedin)
+        if (self.isAvailableForOnlinePlay)
         {
-            [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
             CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
-            self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+            self.collected         = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
             self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];
             self.unlocked_world_2  = [[[PFUser currentUser] objectForKey:@"unlocked_world_2"] boolValue];
             self.unlocked_world_3  = [[[PFUser currentUser] objectForKey:@"unlocked_world_3"] boolValue];
             self.unlocked_world_4  = [[[PFUser currentUser] objectForKey:@"unlocked_world_4"] boolValue];
             self.unlocked_world_5  = [[[PFUser currentUser] objectForKey:@"unlocked_world_5"] boolValue];
             self.unlocked_world_6  = [[[PFUser currentUser] objectForKey:@"unlocked_world_6"] boolValue];
-            
-            [udata  setBool:TRUE forKey:@"fbloggedin"];
-            [udata synchronize];
-            self.fbloggedin = TRUE;                
         }
-        
-        CCLOG(@"Highscores: %@",self.highscores);
-        CCLOG(@"Souls: %@",self.souls);
-        CCLOG(@"World Progress: %i",self.worldprogress);
-        CCLOG(@"Level Progress: %i",self.levelprogress);
-        CCLOG(@"Collected: %i", self.collected);
-        CCLOG(@"Powerup: %@",self.powerup);
-        CCLOG(@"FBLogged In: %d",self.fbloggedin);
-        CCLOG(@"Friends:%@",self.fbFriends);
         
         //[self gameKitBlock];
     }
     return self;
 }
 
-- (void) createUser
+- (void) create
 {
     NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     NSMutableArray *worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
@@ -110,109 +94,131 @@
     [udata synchronize];
 }
 
-- (void) resetUser
+- (void) sync
 {
-    [udata setBool:FALSE forKey:@"created"];    
-    [udata synchronize];
-}
-
-- (void) syncData
-{
-    CCLOG(@"SYNCING DATA");
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];
     [udata setInteger:self.powerup forKey:@"powerup"];
     [udata synchronize];
     
-    if ( self.canCollect )
-    {
-        CCLOG(@"CAN CONNECT");
-        [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
-        [[PFUser currentUser] saveEventually];
-    }
-}
-
-- (void) syncCollected
-{
-    if ( self.canCollect )
+    if ( self.isAvailableForOnlinePlay )
     {
         [[PFUser currentUser] setValue:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
-        [[PFUser currentUser] saveEventually];
+        [[PFUser currentUser] saveInBackground];
     }
 }
 
-- (BOOL) canCollect
+- (void) reset
 {
-    return ([self isConnectedToInternet] && self.fbloggedin && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
-}
-
-#pragma mark User Utility Methods
-
-- (NSString*) get_fbId
-{
-    PFQuery *query = [PFUser query];
-    PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
-    return [result objectForKey:@"fbId"];
-}
-
-- (NSString*) get_fbName
-{
-    PFQuery *query = [PFUser query];
-    PFObject *result = [query getObjectWithId:[PFUser currentUser].objectId];
-    return [result objectForKey:@"fbName"];
-}
-
-- (void) get_fbFriends
-{
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
-}
-
-- (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    // Assuming no errors, result will be an NSDictionary of your user's friends
-    NSArray *friendObjects = [result objectForKey:@"data"];
-
-    NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
-    
-    // Create a list of friends' Facebook IDs
-    for (NSDictionary *friendObject in friendObjects) {
-        [friendIds addObject:[friendObject objectForKey:@"id"]];
-    }
-       
-    // Construct a PFUser query that will find friends whose facebook ids are contained
-    // in the current user's friend list.
-    PFQuery *friendQuery = [PFUser query];
-    [friendQuery whereKey:@"fbId" containedIn:friendIds];
-
-    // findObjects will return a list of PFUsers that are friends with the current user
-    self.fbFriends = [friendQuery findObjects];
-    [udata setObject:self.fbFriends forKey:@"fbfriends"];
+    [udata setBool:FALSE forKey:@"created"];
     [udata synchronize];
 }
 
--(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error 
+
+- (BOOL) parse_create:(id)result
 {
-    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] isEqualToString: @"OAuthException"]) 
-    {
-        NSLog(@"The facebook token was invalidated");
-    } 
-    else 
-    {
-        NSLog(@"Some other error");
-    }
-    [PFUser logOut];
-    self.fbloggedin = FALSE;
-    [udata setBool:self.fbloggedin forKey:@"fbloggedin"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:100] forKey:@"collected"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:1] forKey:@"unlocked_world_1"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_2"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_3"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_4"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_5"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"unlocked_world_6"];
+    
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if ( succeeded )
+        {
+            self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+        }
+        else 
+        {
+            NSLog(@"THERE WERE ERRORS: %@",error);
+        }
+    }];
+    
+    return (self.collected >= 100);
 }
 
-- (int) getScoreForWorld:(int)w andLevel:(int)lvl
+- (BOOL) parse_login;
+{ 
+    self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+    
+    [self sync];
+    
+    return TRUE;
+}
+
+- (void) parse_logout
+{
+    [PFUser logOut];
+}
+
+- (BOOL) isOnline
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];  
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
+    return !(networkStatus == NotReachable);
+}
+
+- (BOOL) isConnectedToFacebook
+{
+    return ([PFUser currentUser] && [self isOnline] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
+}
+
+- (BOOL) isAvailableForOnlinePlay
+{
+    return (self.isConnectedToFacebook && self.isOnline);
+}
+
+- (void) setHighscore:(int)score world:(int)w level:(int)l
 {
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     
-    return (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+    int current_highscore = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    
+    if (score > current_highscore)
+    {
+        // Updating Local
+        [tmp2 replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];    
+        [udata setObject:tmp forKey:@"highscores"];
+        [udata synchronize];
+
+        // Updating Parse
+        PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
+        [highscore setObject:[[PFUser currentUser] objectForKey:@"fbId"] forKey:@"user"];        
+        [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
+        [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
+        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+        
+        // Updating Leaderboards
+        GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
+        if (localPlayer.authenticated)
+        {
+            [self.gameKitHelper submitScore:score category:[NSString stringWithFormat:@"world-%i-level-%i",w,l]];
+        }
+    }
+
+}
+- (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
+{
+    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    
+    int current_total = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    
+    if (tmp_souls > current_total)
+    {
+        [tmp2 replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+        [udata setObject:tmp forKey:@"souls"];
+        [udata synchronize];
+    }
 }
 
-- (int) getScoreForWorldOnly:(int)w
+- (int) getHighscoreforWorld:(int)w
 {
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
@@ -226,69 +232,37 @@
     return tmp_score;
 }
 
-- (int) getSoulsForWorld:(int)w andLevel:(int)lvl
+- (int) getHighscoreforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"souls"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-
-    return (int)[[tmp2 objectAtIndex:lvl-1] intValue];
-}
-
-- (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score
-{
-    CCLOG(@"UPDATING HIGH SCORE: %i | %i | %i ",w, lvl, score);
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int current_highscore = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
-    CCLOG(@"CURRENT HIGHSCORE: %i ",current_highscore);
-    if (score > current_highscore)
-    {
-        CCLOG(@"BETTER - UPDATING THE LOCAL UDATA");
-        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:score]];    
-        [udata setObject:tmp forKey:@"highscores"];
-        [udata synchronize];
-        
-        CCLOG(@"BETTER - UPDATING THE REMOTE PARSE");        
-        PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-        [highscore setObject:[PFUser currentUser] forKey:@"user"];        
-        [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
-        [highscore setObject:[NSNumber numberWithInt:lvl] forKey:@"level"];
-        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-        if ( self.canCollect ) { [highscore saveInBackground]; } 
-        else { [highscore saveEventually]; }
-
-        CCLOG(@"BETTER - UPDATING THE GAMECENTER LEADERBOARDS");
-        GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-        if (localPlayer.authenticated)
-        {
-            [self.gameKitHelper submitScore:score category:[NSString stringWithFormat:@"world-%i-level-%i",w,lvl]];
-        }
-    }
+    
+    return (int)[[tmp2 objectAtIndex:l-1] intValue];
 }
 
-- (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total
+- (int) getSoulsforWorld:(int)w
 {
-    CCLOG(@"UPDATING SOULS: %i | %i | %i ",w, lvl, total);
     NSMutableArray *tmp = [udata objectForKey:@"souls"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int current_total = (int)[[tmp2 objectAtIndex:lvl-1] intValue];
+    int tmp_score = 0;
     
-    CCLOG(@"CURRENT SOULS: %i ",current_total);
-    if (total > current_total)
+    for (int i = 0; i < [tmp2 count]; i++)
     {
-        CCLOG(@"BETTER - UPDATING THE LOCAL UDATA");        
-        [tmp2 replaceObjectAtIndex:lvl-1 withObject:[NSNumber numberWithInt:total]];
-        [udata setObject:tmp forKey:@"souls"];
-        [udata synchronize];
+        tmp_score += [[tmp2 objectAtIndex:i]intValue];
     }
+    
+    return tmp_score;
 }
 
-- (BOOL) isConnectedToInternet 
+- (int) getSoulsforWorld:(int)w level:(int)l
 {
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];  
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
-    return !(networkStatus == NotReachable);
+    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+
+    return (int)[[tmp2 objectAtIndex:l-1] intValue];
 }
+
+
 
 #pragma mark GameKitHelper delegate methods
 

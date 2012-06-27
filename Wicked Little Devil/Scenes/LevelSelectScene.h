@@ -14,14 +14,13 @@
 
 #import "ShopScene.h"
 #import "LevelDetailLayer.h"
-#import "PlayerStatsScene.h"
 
 #import "User.h"
 
-@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate> {
+@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate, GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
     User *user;
     LevelDetailLayer *detail;
-    CCMenu *facebookmenu;
+    CCMenu *menu_facebook;
     CCLabelTTF *lbl_user_collected;
 }
 

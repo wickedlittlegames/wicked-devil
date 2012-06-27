@@ -65,7 +65,7 @@
 
 - (void) doFinalScoreAnimationsforUser:(User*)user andPlayer:(Player*)player
 {
-    if (user.canCollect)
+    if (user.isAvailableForOnlinePlay)
     {
         [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
     }
@@ -78,7 +78,7 @@
     
     tmp_score_increment = player.score;
     NSLog(@"WORLD: %i, LEVEL: %i", world, level);
-    tmp_user_highscore = [user getScoreForWorld:world andLevel:level];
+    tmp_user_highscore = [user getHighscoreforWorld:world level:level];
 
     lbl_gameover_score.scale = 1.0;
     [self schedule: @selector(tick_score) interval: 1.0f/60.0f];

@@ -11,29 +11,31 @@
 #import "GameKitHelper.h"
 #import "GameCenterConstants.h"
 
-@interface User : NSObject <GameKitHelperProtocol, PF_FBRequestDelegate> {
-    bool login_success;
-}
+@interface User : NSObject <GameKitHelperProtocol, PF_FBRequestDelegate> {}
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup;
 @property (nonatomic, assign) NSMutableArray *highscores, *souls;
-@property (nonatomic, assign) bool fbloggedin, unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
-@property (nonatomic, retain) NSArray *fbFriends;
-- (void) syncData;
-- (void) syncCollected;
-- (void) resetUser;
-- (void) updateHighscoreforWorld:(int)w andLevel:(int)lvl withScore:(int)score;
-- (void) updateSoulForWorld:(int)w andLevel:(int)lvl withTotal:(int)total;
-- (int) getScoreForWorld:(int)w andLevel:(int)lvl;
-- (int) getSoulsForWorld:(int)w andLevel:(int)lvl;
-- (int) getScoreForWorldOnly:(int)w;
-- (BOOL) isConnectedToInternet;
-- (BOOL) canCollect;
+@property (nonatomic, assign) bool unlocked_world_1, unlocked_world_2, unlocked_world_3, unlocked_world_4, unlocked_world_5, unlocked_world_6;
 
-- (NSString*) get_fbName;
-- (NSString*) get_fbId;
-- (void) get_fbFriends;
+- (void) create;
+- (void) sync; // combine syncdata and synchcollected
+- (void) reset; // resetUser
+- (BOOL) parse_create:(id)result;
+- (BOOL) parse_login; // login with parse
+- (void) parse_logout;  // logout of parse
+
+- (BOOL) isOnline; // is connected to internet
+- (BOOL) isConnectedToFacebook; // can collect
+- (BOOL) isAvailableForOnlinePlay;
+
+- (void) setHighscore:(int)score world:(int)w level:(int)l;
+- (void) setSouls:(int)souls world:(int)w level:(int)l;
+
+- (int) getHighscoreforWorld:(int)w;
+- (int) getHighscoreforWorld:(int)w level:(int)l;
+- (int) getSoulsforWorld:(int)w;
+- (int) getSoulsforWorld:(int)w level:(int)l;
 
 @end

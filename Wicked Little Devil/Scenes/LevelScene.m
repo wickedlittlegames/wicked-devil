@@ -19,6 +19,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (id) init
 {
 	if( (self=[super init]) ) {
+        [[CCDirector sharedDirector]setDisplayStats:YES];
+        
         CCLOG(@"INIT LEVELSCENE");
 
         self.started = FALSE;
@@ -148,10 +150,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if ([node isKindOfClass: [Collectable class]])
         {
             [collectables addObject:node];
-            if (!user.canCollect)
-            {
-                node.visible = FALSE;
-            }
+            node.visible = user.isAvailableForOnlinePlay;
         }
         if ([node isKindOfClass: [BigCollectable class]])
         {
@@ -336,8 +335,10 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     {       
         user.collected += player.collected;
         int score = player.score * player.bigcollected;
-        [user updateSoulForWorld:worldNumber andLevel:levelNumber withTotal:player.bigcollected];
-        [user updateHighscoreforWorld:worldNumber andLevel:levelNumber withScore:score];
+        int souls = player.bigcollected;
+        
+        [user setHighscore:score world:worldNumber level:levelNumber];
+        [user setSouls:souls world:worldNumber level:levelNumber];
         
         if (self.levelNumber == user.levelprogress)
         {
@@ -349,7 +350,8 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             }
         }
         
-        [user syncData];
+        [user sync];
+        
         gameoverlayer.visible = TRUE;
         [gameoverlayer setWorld:worldNumber];
         [gameoverlayer setLevel:levelNumber];

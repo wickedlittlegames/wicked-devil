@@ -99,7 +99,6 @@
     powerup_name_lightfeet.position = ccp (powerup_name_lightfeet.position.x + 27, powerup_name_lightfeet.position.y - 12);
     [powerup_lightfeet addChild:powerup_name_lightfeet];
     
-    
     CCMenuItem *powerup_moneybags = [CCMenuItemImage 
                                      itemWithNormalImage:@"Icon.png"
                                      selectedImage:@"Icon.png" 

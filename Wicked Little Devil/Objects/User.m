@@ -264,8 +264,14 @@
 {
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    int tmp_score = 0;
     
-    return (int)[[tmp2 objectAtIndex:l-1] intValue];
+    if ( [tmp2 count] > 0 )
+    {
+        tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    }
+    
+    return tmp_score;
 }
 
 - (int) getSoulsforWorld:(int)w
@@ -289,8 +295,14 @@
 {
     NSMutableArray *tmp = [udata objectForKey:@"souls"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-
-    return (int)[[tmp2 objectAtIndex:l-1] intValue];
+    int tmp_score = 0;
+    
+    if ( [tmp2 count] > 0 )
+    {
+        tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    }
+    
+    return tmp_score;
 }
 
 

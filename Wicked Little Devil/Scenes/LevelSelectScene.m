@@ -86,32 +86,33 @@
             [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
 
             CCMenuItem *unlock = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"UNLOCK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_unlock:)];
-            CCMenu *unlockmenu = [CCMenu menuWithItems:unlock, nil];
-            unlock.tag = w;            
-            unlockmenu.position = ccp ( screenSize.width/2, 420 );
-            //unlockmenu.visible = ( user.worldprogress >= w ? FALSE : TRUE );
+            menu_unlock = [CCMenu menuWithItems:unlock, nil];
+            menu_unlock.tag = w;            
+            menu_unlock.position = ccp ( screenSize.width/2, 420 );
+
             switch (w)
             {
                 case 1:
-                    unlockmenu.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
                     break;
                 case 2:
-                    unlockmenu.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
                     break;
                 case 3:
-                    unlockmenu.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
                     break;
                 case 4:
-                    unlockmenu.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
                     break;
                 case 5:
-                    unlockmenu.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
                     break;
                 case 6:
-                    unlockmenu.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
+                    menu_unlock.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
                     break;
             }
-            [world addChild:unlockmenu];
+            
+            [world addChild:menu_unlock];
             
             CCLOG(@"SETTING WORLD SCORE");             
             CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
@@ -251,6 +252,27 @@
                     menu_facebook.visible = FALSE;
                     [lbl_user_collected setString:[NSString stringWithFormat:@"Collected: %i",user.collected]];
                     lbl_user_collected.visible = TRUE;
+                    switch (menu_unlock.tag)
+                    {
+                        case 1:
+                            menu_unlock.visible = ( user.unlocked_world_1 ? FALSE : TRUE );
+                            break;
+                        case 2:
+                            menu_unlock.visible = ( user.unlocked_world_2 ? FALSE : TRUE );
+                            break;
+                        case 3:
+                            menu_unlock.visible = ( user.unlocked_world_3 ? FALSE : TRUE );
+                            break;
+                        case 4:
+                            menu_unlock.visible = ( user.unlocked_world_4 ? FALSE : TRUE );
+                            break;
+                        case 5:
+                            menu_unlock.visible = ( user.unlocked_world_5 ? FALSE : TRUE );
+                            break;
+                        case 6:
+                            menu_unlock.visible = ( user.unlocked_world_6 ? FALSE : TRUE );
+                            break;
+                    }
                 }
             }
         }];
@@ -261,6 +283,7 @@
     CCLOG(@"CREATING USER CUSTOM PARAMS | fbID, fbName");    
     if ( [user parse_create:result] )
     {
+        CCLOG(@"UPDATING UI AFTER COMPLETED CREATION OF PARSE CHAR");
         menu_facebook.visible = FALSE;
         [lbl_user_collected setString:[NSString stringWithFormat:@"Collected: %i",user.collected]];
         lbl_user_collected.visible = TRUE;        

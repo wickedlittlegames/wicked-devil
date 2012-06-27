@@ -20,7 +20,7 @@
 @interface LevelSelectScene : CCLayer <PF_FBRequestDelegate, GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
     User *user;
     LevelDetailLayer *detail;
-    CCMenu *menu_facebook;
+    CCMenu *menu_facebook, *menu_unlock;
     CCLabelTTF *lbl_user_collected;
 }
 

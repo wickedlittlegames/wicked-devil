@@ -37,7 +37,7 @@
         
         if (user.isAvailableForOnlinePlay)
         {
-            [[PFUser currentUser] refreshInBackgroundWithTarget:self selector:nil];
+            [[PFUser currentUser] refresh]; // change all refresh to refresh with background with spinny loader
             
             CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
             CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];

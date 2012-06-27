@@ -58,8 +58,8 @@
 
 - (void) create
 {
-    NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-    NSMutableArray *worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
         NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
@@ -67,21 +67,17 @@
         {
             [w addObject:[NSNumber numberWithInt:0]];
         }
-        NSArray *tmp = [w copy];
-        NSArray *tmp_souls = [w copy];
-        [worlds addObject:tmp];
-        [worlds_souls addObject:tmp_souls];
+        [tmp_worlds addObject:w];
+        [tmp_worlds_souls addObject:w];
     }
-    NSArray *tmp2 = [worlds copy];
-    NSArray *tmp2_souls = [worlds_souls copy];
+    NSArray *worlds = tmp_worlds;
+    NSArray *world_souls = tmp_worlds_souls;
     
-    [udata setObject:tmp2 forKey:@"highscores"];
-    [udata setObject:tmp2_souls forKey:@"souls"];
+    [udata setObject:worlds forKey:@"highscores"];
+    [udata setObject:world_souls forKey:@"souls"];
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];
     [udata setInteger:0 forKey:@"powerup"];
-    [udata setBool:FALSE forKey:@"fbloggedin"];
-    [udata setObject:NULL forKey:@"fbfriends"];
     [udata setBool:TRUE  forKey:@"unlocked_world_1"];
     [udata setBool:FALSE forKey:@"unlocked_world_2"];
     [udata setBool:FALSE forKey:@"unlocked_world_3"];
@@ -145,6 +141,12 @@
 - (BOOL) parse_login;
 { 
     self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+    self.unlocked_world_1  = [[[PFUser currentUser] objectForKey:@"unlocked_world_1"] boolValue];
+    self.unlocked_world_2  = [[[PFUser currentUser] objectForKey:@"unlocked_world_2"] boolValue];
+    self.unlocked_world_3  = [[[PFUser currentUser] objectForKey:@"unlocked_world_3"] boolValue];
+    self.unlocked_world_4  = [[[PFUser currentUser] objectForKey:@"unlocked_world_4"] boolValue];
+    self.unlocked_world_5  = [[[PFUser currentUser] objectForKey:@"unlocked_world_5"] boolValue];
+    self.unlocked_world_6  = [[[PFUser currentUser] objectForKey:@"unlocked_world_6"] boolValue];
     
     [self sync];
     
@@ -175,24 +177,27 @@
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    
-    int current_highscore = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    NSMutableArray *highscores_tmp = [[udata objectForKey:@"highscores"] mutableCopy];
+    int current_highscore = [self getHighscoreforWorld:w level:l];
     
     if (score > current_highscore)
     {
         // Updating Local
-        [tmp2 replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];    
-        [udata setObject:tmp forKey:@"highscores"];
+        [[highscores_tmp objectAtIndex:w-1] replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
+        NSArray *highscore = highscores_tmp;
+        [udata setObject:highscore forKey:@"highscores"];
         [udata synchronize];
 
         // Updating Parse
-        PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-        [highscore setObject:[[PFUser currentUser] objectForKey:@"fbId"] forKey:@"user"];        
-        [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
-        [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
-        [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+        if ( self.isAvailableForOnlinePlay )
+        {
+            PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
+            [highscore setObject:[[PFUser currentUser] objectForKey:@"fbId"] forKey:@"user"];        
+            [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
+            [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
+            [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+            [[PFUser currentUser] save];
+        }
         
         // Updating Leaderboards
         GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
@@ -205,15 +210,15 @@
 }
 - (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"souls"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    NSMutableArray *souls_tmp = [[udata objectForKey:@"souls"] mutableCopy];
     
-    int current_total = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    int current_total = [self getSoulsforWorld:w level:l];
     
     if (tmp_souls > current_total)
     {
-        [tmp2 replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
-        [udata setObject:tmp forKey:@"souls"];
+        [[souls_tmp objectAtIndex:w-1] replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+        NSArray *souls_arr = souls_tmp;
+        [udata setObject:souls_arr forKey:@"souls"];
         [udata synchronize];
     }
 }

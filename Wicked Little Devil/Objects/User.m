@@ -177,17 +177,27 @@
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
+    CCLOG(@"SETTING HIGHSCORE");
+    CCLOG(@"WORLD: %i | LEVEL %i",w, l);
     NSMutableArray *highscores_tmp = [[udata objectForKey:@"highscores"] mutableCopy];
+    CCLOG(@"MUTABLE ARRAY: %@", highscores_tmp);
     int current_highscore = [self getHighscoreforWorld:w level:l];
-    
+    CCLOG(@"CURRENT HIGHSCORE: %i", current_highscore);
     if (score > current_highscore)
     {
+        CCLOG(@"UPDATING BECAUSE ITS HIGHER");
         // Updating Local
-        [[highscores_tmp objectAtIndex:w-1] replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
+        NSMutableArray *tmp = [[highscores_tmp objectAtIndex:w-1] mutableCopy];
+        CCLOG(@"SUB MUTABLE ARRAY: %@",tmp);
+        [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
+        [highscores_tmp replaceObjectAtIndex:w-1 withObject:tmp];
+        CCLOG(@"REPLACED OBJECT AT INDEX");
         NSArray *highscore = highscores_tmp;
+        CCLOG(@"HIGHSCORE ARRAY: %@",highscore);
         [udata setObject:highscore forKey:@"highscores"];
+        CCLOG(@"HIGHSCORE SET IN UDATA");        
         [udata synchronize];
-
+        CCLOG(@"HIGHSCORE SYNCD");
         // Updating Parse
         if ( self.isAvailableForOnlinePlay )
         {
@@ -216,7 +226,9 @@
     
     if (tmp_souls > current_total)
     {
-        [[souls_tmp objectAtIndex:w-1] replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+        NSMutableArray *tmp = [[souls_tmp objectAtIndex:w-1] mutableCopy];
+        [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+        [souls_tmp replaceObjectAtIndex:w-1 withObject:tmp];        
         NSArray *souls_arr = souls_tmp;
         [udata setObject:souls_arr forKey:@"souls"];
         [udata synchronize];
@@ -228,10 +240,12 @@
     NSMutableArray *tmp = [udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
-    
-    for (int i = 0; i < [tmp2 count]; i++)
+    if ( [tmp2 count] > 0 )
     {
-        tmp_score += [[tmp2 objectAtIndex:i]intValue];
+        for (int i = 0; i < [tmp2 count]; i++)
+        {
+            tmp_score += [[tmp2 objectAtIndex:i]intValue];
+        }
     }
     
     return tmp_score;
@@ -251,9 +265,12 @@
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
     
-    for (int i = 0; i < [tmp2 count]; i++)
+    if ( [tmp2 count] > 0 )
     {
-        tmp_score += [[tmp2 objectAtIndex:i]intValue];
+        for (int i = 0; i < [tmp2 count]; i++)
+        {
+            tmp_score += [[tmp2 objectAtIndex:i]intValue];
+        }
     }
     
     return tmp_score;

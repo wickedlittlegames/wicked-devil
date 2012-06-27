@@ -254,7 +254,8 @@
         [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
         [highscore setObject:[NSNumber numberWithInt:lvl] forKey:@"level"];
         [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-        [highscore saveInBackground];
+        if ( self.canCollect ) { [highscore saveInBackground]; } 
+        else { [highscore saveEventually]; }
 
         CCLOG(@"BETTER - UPDATING THE GAMECENTER LEADERBOARDS");
         GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];

@@ -85,21 +85,30 @@
                                        target:self 
                                        selector:@selector(tap_powerup:)];
     powerup_healthboost.tag = 0;
+    CCLabelTTF *powerup_name_healthboost = [CCLabelTTF labelWithString:@"Health Boost" fontName:@"Marker Felt" fontSize:12];
+    powerup_name_healthboost.position = ccp (powerup_name_healthboost.position.x + 27, powerup_name_healthboost.position.y - 12);
+    [powerup_healthboost addChild:powerup_name_healthboost];
     
     CCMenuItem *powerup_lightfeet = [CCMenuItemImage 
                                      itemWithNormalImage:@"Icon.png"
                                      selectedImage:@"Icon.png" 
                                      target:self 
-                                     selector:@selector(tap_powerup_healthboost:)];
+                                     selector:@selector(tap_powerup:)];
     powerup_lightfeet.tag = 1;
+    CCLabelTTF *powerup_name_lightfeet = [CCLabelTTF labelWithString:@"Light Feet" fontName:@"Marker Felt" fontSize:12];
+    powerup_name_lightfeet.position = ccp (powerup_name_lightfeet.position.x + 27, powerup_name_lightfeet.position.y - 12);
+    [powerup_lightfeet addChild:powerup_name_lightfeet];
+    
     
     CCMenuItem *powerup_moneybags = [CCMenuItemImage 
                                      itemWithNormalImage:@"Icon.png"
                                      selectedImage:@"Icon.png" 
                                      target:self 
-                                     selector:@selector(tap_powerup_healthboost:)];
+                                     selector:@selector(tap_powerup:)];
     powerup_moneybags.tag = 2;
-    
+    CCLabelTTF *powerup_name_moneybags = [CCLabelTTF labelWithString:@"Moneybags" fontName:@"Marker Felt" fontSize:12];
+    powerup_name_moneybags.position = ccp (powerup_name_moneybags.position.x + 27, powerup_name_moneybags.position.y - 12);
+    [powerup_moneybags addChild:powerup_name_moneybags];
     
     CCMenu *powerups_menu = [CCMenu menuWithItems:powerup_healthboost,powerup_lightfeet,powerup_moneybags, nil];
     powerups_menu.position = ccp (menu_x, menu_y);
@@ -128,7 +137,7 @@
     return tmp_layer;
 }
 
-- (void)tap_powerup_healthboost:(CCMenuItem*)sender
+- (void)tap_powerup:(CCMenuItem*)sender
 {
     CCLOG(@"TAPPED POWERUP PURCHASE");
     switch (sender.tag)

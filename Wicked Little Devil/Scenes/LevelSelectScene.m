@@ -193,7 +193,7 @@
         detail = [LevelDetailLayer node];
         
         [self addChild:scroller];
-        [scroller selectPage:user.cache_current_world];
+        [scroller selectPage:user.cache_current_world-1];
         
         [self addChild:storemenu];
         [self addChild:detail];

@@ -309,7 +309,7 @@ enum
 	
 	[self updatePages];
 	
-	[self moveToPage: currentScreen_];
+	//[self moveToPage: currentScreen_];
 }
 
 - (void) removePage: (CCLayer *) aPage

@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked, cache_current_world;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked, cache_current_world, offline;
 
 #pragma mark User creation/persistance methods
 
@@ -34,8 +34,16 @@
         self.powerup        = [udata integerForKey:@"powerup"];
         self.worlds_unlocked = [udata boolForKey:@"worlds_unlocked"];
         self.cache_current_world = [udata integerForKey:@"cache_current_world"];
+        self.offline      = [udata boolForKey:@"offline"];
         
-        if (self.isAvailableForOnlinePlay)
+        if ( self.offline && self.isAvailableForOnlinePlay )
+        {
+            self.offline = FALSE;
+            [udata setBool:self.offline forKey:@"offline"];
+            [udata synchronize];
+        }
+        
+        if (self.isAvailableForOnlinePlay && !self.offline)
         {
             CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
             self.collected         = [[[PFUser currentUser] objectForKey:@"collected"] intValue];

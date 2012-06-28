@@ -17,7 +17,7 @@
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world;
 @property (nonatomic, assign) NSMutableArray *highscores, *souls;
-@property (nonatomic, assign) bool worlds_unlocked;
+@property (nonatomic, assign) bool worlds_unlocked, offline;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected

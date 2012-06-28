@@ -222,31 +222,20 @@
     if ( user.isAvailableForOnlinePlay )
     {
         [user parse_refresh];
-        if ( user.collected >= 5000 )
+        if ( user.collected >= 500 )
         {
             user.worlds_unlocked = TRUE;
-            user.collected -= 5000;
+            user.collected -= 500;
             [self removeChild:menu_unlock cleanup:YES];
             [user sync];
             lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
+            menu_unlock.visible = FALSE;
         }
         else
         {
             CCLOG(@"CANT AFFORD");
         }
 
-    }
-    
-    if ( user.collected >= 5000 && user.isAvailableForOnlinePlay )
-    {
-        user.worlds_unlocked = TRUE;
-        user.collected -= 5000;
-        [self removeChild:menu_unlock cleanup:YES];
-        [user sync];
-    }
-    else
-    {
-        CCLOG(@"CANT AFFORD");
     }
 }
 

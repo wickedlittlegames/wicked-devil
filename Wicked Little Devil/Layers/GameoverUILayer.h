@@ -20,6 +20,7 @@
                                         *lbl_gameover_collected,
                                         *lbl_gameover_score;
 @property (nonatomic, retain) CCMenu *menu_failed, *menu_success;
+@property (nonatomic, retain) CCMenuItem *next;
 
 - (void) doFinalScoreAnimationsforUser:(User*)user andPlayer:(Player*)player;
 

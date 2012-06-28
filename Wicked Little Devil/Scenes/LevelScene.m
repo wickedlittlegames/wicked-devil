@@ -74,9 +74,9 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     GameplayUILayer *uilayer    = [GameplayUILayer node];
     GameoverUILayer *gameoverlayer = [GameoverUILayer node];
 
-    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-1-level-1.ccbi",worldNum,levelNum]); 
+    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-1-level-2.ccbi",worldNum,levelNum]); 
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
-                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-1-level-1.ccbi",worldNum,levelNum]
+                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-1-level-2.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -144,7 +144,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if ([node isKindOfClass: [Platform class]])
         {
             [platforms addObject:node];
-            node.tag = 10;
+            node.tag = 2;
         }
         if ([node isKindOfClass: [Collectable class]])
         {
@@ -342,7 +342,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if (self.levelNumber == user.levelprogress)
         {
             user.levelprogress = user.levelprogress + 1;
-            if (user.levelprogress > LEVELS_PER_WORLD)
+            if (user.levelprogress > LEVELS_PER_WORLD && user.worlds_unlocked)
             {
                 user.worldprogress = user.worldprogress + 1;
                 user.levelprogress = 1;

@@ -12,7 +12,7 @@
 
 @implementation GameoverUILayer {}
 @synthesize lbl_gameover, lbl_gameover_bigcollected, lbl_gameover_collected, lbl_gameover_score;
-@synthesize menu_failed, menu_success, world, level, next_world, next_level, score;
+@synthesize menu_failed, menu_success, world, level, next_world, next_level, score, next;
 -(id) init
 {
 	if( (self=[super init]) ) {
@@ -41,7 +41,7 @@
         lbl_gameover_score.position = ccp ( lbl_gameover.position.x, lbl_gameover.position.y - 120);
         [self addChild:lbl_gameover_score];
         
-        CCMenuItem *next = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_next:)];
+        next = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_next:)];
         CCMenuItem *restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_restart:)];
         CCMenuItem *mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_mainmenu:)];
         
@@ -69,6 +69,12 @@
     {
         [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
     }
+    if ( level == 12 )
+    {
+        next.isEnabled = user.worlds_unlocked;
+        next.visible = next.isEnabled;        
+    }
+
     [lbl_gameover_score setString:@"Score: 0"];
     [lbl_gameover_bigcollected setString:[NSString stringWithFormat:@"BIG COLLECTED: %i",player.bigcollected]];
     

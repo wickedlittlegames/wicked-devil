@@ -342,7 +342,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if (self.levelNumber == user.levelprogress)
         {
             user.levelprogress = user.levelprogress + 1;
-            if (user.levelprogress > 9)
+            if (user.levelprogress > LEVELS_PER_WORLD)
             {
                 user.worldprogress = user.worldprogress + 1;
                 user.levelprogress = 1;

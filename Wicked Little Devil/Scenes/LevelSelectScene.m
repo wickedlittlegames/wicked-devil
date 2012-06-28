@@ -65,28 +65,35 @@
                 level.userData = (int*)w;
                 level.tag      = lvl;
                 level.isEnabled = FALSE;
-
-                if ( w == 1 ) 
+                
+                if ( w == 1 )
                 {
-                    level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
-                    level.isEnabled = ( user.worldprogress > w ? TRUE : FALSE );
-                }
-
-                if ( w > 1 && user.worlds_unlocked )
-                {
-                    if ( user.worldprogress == w )
+                    level.isEnabled = TRUE;
+                    if ( user.worldprogress > 1 )
+                    {
+                        level.isEnabled = TRUE;
+                    }
+                    else 
                     {
                         level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                     }
+                }
+                if ( user.worlds_unlocked )
+                {
                     if ( user.worldprogress > w )
                     {
-                        level.isEnabled = TRUE;                        
+                        level.isEnabled = TRUE;
+                    }
+                    else if ( user.worldprogress < w )
+                    {
+                        level.isEnabled = FALSE;
+                    }
+                    else if ( user.worldprogress == w )
+                    {
+                        level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                     }
                 }
 
-                CCLOG(@"User Progress: World: %i, Level %i,",user.worldprogress, user.levelprogress);
-                CCLOG(@"WORLD: %i, LEVEL %i. Locked == %d", w, lvl, level.isEnabled);
-                
                 if ( level.isEnabled )
                 {
                     int souls = [user getSoulsforWorld:w level:lvl];

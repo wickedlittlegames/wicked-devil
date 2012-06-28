@@ -132,10 +132,6 @@
 	if( [navController_ visibleViewController] == director_ )
     {
 		[director_ startAnimation];
-        if ([PFUser currentUser] != nil)
-        {
-            [[PFUser currentUser] refresh];
-        }
     }
 }
 

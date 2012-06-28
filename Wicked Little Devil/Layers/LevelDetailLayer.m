@@ -53,6 +53,7 @@
     CCMenuItem *play = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"PLAY" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_play:)];
     play.tag = level;
     play.userData = (int*)world;
+    play.userObject = user;
     CCMenuItem *close = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"CLOSE" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_close:)];
     
     CCMenu *menu = [CCMenu menuWithItems:play,close, nil];

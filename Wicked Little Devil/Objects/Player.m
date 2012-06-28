@@ -88,16 +88,16 @@
             break;
             
         // OTHERS:
-            // Bounce on the floor, never die from falling
-            // Hit enemies from below
-            // quicker reactions (modifier for move diff)
-            // collectables are worth twice as much!
-            // moneybags - normal platforms give 100 points per bounce but are destroyed
-            // slow motion - slow down the timer
-            // tiny enemies
-            // fun card - change devil to different colour
-            // fun card - comedy "boing" sound when jumping
-            // fun card - 
+            // Bounce on the floor, never die from falling if self.position < 0, player jump make sound
+            // Hit enemies from below - 
+            // quicker reactions (modifier for move diff) - 
+            // collectables are worth twice as much! - self.collectable += 2;
+            // moneybags - normal platforms give 100 points per bounce but are destroyer
+            // tiny enemies - enemies.scale = 0.5;
+            // fun card - change devil to different colour - self.colour = ccc3(255,123,122);
+            // fun card - comedy "boing" sound when jumping - 
+            // fun card - dubstep noises when jumping on platforms
+            
     }
 }
 

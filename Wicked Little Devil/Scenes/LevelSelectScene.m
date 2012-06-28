@@ -65,8 +65,27 @@
                 level.userData = (int*)w;
                 level.tag      = lvl;
                 level.isEnabled = FALSE;
-                level.isEnabled = ( user.worlds_unlocked ? TRUE : FALSE );
-                level.isEnabled = ( user.worldprogress >= w && user.levelprogress >= lvl ? TRUE : FALSE );
+
+                if ( w == 1 ) 
+                {
+                    level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
+                    level.isEnabled = ( user.worldprogress > w ? TRUE : FALSE );
+                }
+
+                if ( w > 1 && user.worlds_unlocked )
+                {
+                    if ( user.worldprogress == w )
+                    {
+                        level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
+                    }
+                    if ( user.worldprogress > w )
+                    {
+                        level.isEnabled = TRUE;                        
+                    }
+                }
+
+                CCLOG(@"User Progress: World: %i, Level %i,",user.worldprogress, user.levelprogress);
+                CCLOG(@"WORLD: %i, LEVEL %i. Locked == %d", w, lvl, level.isEnabled);
                 
                 if ( level.isEnabled )
                 {
@@ -165,7 +184,10 @@
     
         CCLOG(@"ADDING IN ALL THE LAYERS");
         detail = [LevelDetailLayer node];
+        
         [self addChild:scroller];
+        [scroller selectPage:user.cache_current_world];
+        
         [self addChild:storemenu];
         [self addChild:detail];
     }
@@ -181,12 +203,33 @@
 - (void) tap_level:(CCMenuItem*)sender
 {
     CCLOG(@"TAPPED LEVEL: %i - %i",sender.tag, user );
+    user.cache_current_world  = (int)sender.userData;
+    [user sync_cache_current_world];
+
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
 }
 
 - (void) tap_unlock:(CCMenuItem*)sender
 {
     //[[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+    if ( user.isAvailableForOnlinePlay )
+    {
+        [user parse_refresh];
+        if ( user.collected >= 5000 )
+        {
+            user.worlds_unlocked = TRUE;
+            user.collected -= 5000;
+            [self removeChild:menu_unlock cleanup:YES];
+            [user sync];
+            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
+        }
+        else
+        {
+            CCLOG(@"CANT AFFORD");
+        }
+
+    }
+    
     if ( user.collected >= 5000 && user.isAvailableForOnlinePlay )
     {
         user.worlds_unlocked = TRUE;
@@ -196,11 +239,7 @@
     }
     else
     {
-        UIAlertView* dialog = [UIAlertView alloc];
-        [dialog setDelegate:self];
-        [dialog setTitle:@"Unable to unlock"];
-        [dialog setMessage:@"You haven't collected enough souls."];
-        [dialog show];
+        CCLOG(@"CANT AFFORD");
     }
 }
 

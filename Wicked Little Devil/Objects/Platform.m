@@ -9,7 +9,7 @@
 #import "Platform.h"
 
 @implementation Platform
-@synthesize health, type, animating,original_position,active;
+@synthesize health, type, animating,original_position,active, flipped;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -19,6 +19,7 @@
         self.animating = FALSE;
         self.active = TRUE;
         self.original_position = ccp(self.position.x, self.position.y);
+        self.flipped = FALSE;
     }
     return self;
 }
@@ -66,6 +67,22 @@
             [self runAction:repeater];
             
             self.animating = TRUE;
+        }
+    }
+    if (self.tag == 10)
+    {
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        
+        int direction = (self.flipped ? -1 : 1);  
+        self.position = ccp (self.position.x + direction, self.position.y);
+
+        if ( self.position.x >= (screenSize.width - self.contentSize.width/2) && self.flipped == FALSE )
+        {
+            self.flipped = TRUE;
+        }
+        if ( self.position.x <= 0 + (self.contentSize.width/2) )
+        {
+            self.flipped = FALSE;
         }
     }
 }

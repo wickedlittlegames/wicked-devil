@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked, cache_current_world;
 
 #pragma mark User creation/persistance methods
 
@@ -33,6 +33,7 @@
         self.worldprogress  = [udata integerForKey:@"worldprogress"];
         self.powerup        = [udata integerForKey:@"powerup"];
         self.worlds_unlocked = [udata boolForKey:@"worlds_unlocked"];
+        self.cache_current_world = [udata integerForKey:@"cache_current_world"];
         
         if (self.isAvailableForOnlinePlay)
         {
@@ -40,6 +41,8 @@
             self.collected         = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
             self.worlds_unlocked   = [[[PFUser currentUser] objectForKey:@"worlds_unlocked"] boolValue];
         }
+        
+        [self _log];
         
         //[self gameKitBlock];
     }
@@ -69,6 +72,7 @@
     [udata setInteger:1 forKey:@"worldprogress"];
     [udata setInteger:0 forKey:@"powerup"];
     [udata setBool:FALSE forKey:@"worlds_unlocked"];
+    [udata setInteger:1 forKey:@"cache_current_world"];
     
     [udata setBool:TRUE forKey:@"created"];
     
@@ -88,8 +92,13 @@
     {
         [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.worlds_unlocked] forKey:@"worlds_unlocked"];
         [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
-        [[PFUser currentUser] saveInBackground];
+        [[PFUser currentUser] saveEventually];
     }
+}
+
+- (void) sync_cache_current_world
+{
+    [udata setInteger:self.cache_current_world forKey:@"cache_current_world"];
 }
 
 - (void) reset
@@ -120,6 +129,14 @@
     }];
     
     return (self.collected >= 100);
+}
+
+- (void) parse_refresh
+{
+    [[PFUser currentUser] refresh];
+    self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
+    self.worlds_unlocked = [[[PFUser currentUser] objectForKey:@"worlds_unlocked"] boolValue];
+    [self sync];
 }
 
 - (BOOL) parse_login;
@@ -265,7 +282,18 @@
     return tmp_score;
 }
 
-
+- (void) _log
+{
+    CCLOG(@"Highscores: %@",self.highscores);
+    CCLOG(@"Souls: %@",self.souls);    
+    CCLOG(@"World Progress: %i",self.worldprogress);    
+    CCLOG(@"Level Progress: %i",self.levelprogress);    
+    CCLOG(@"Powerup: %i",self.powerup);    
+    CCLOG(@"Worlds Unlocked: %d",self.worlds_unlocked);    
+    CCLOG(@"Cache Current World: %i",self.cache_current_world);    
+    CCLOG(@"Collected: %i",self.collected);    
+    CCLOG(@"Parse User: %@", [PFUser currentUser]);
+}
 
 #pragma mark GameKitHelper delegate methods
 

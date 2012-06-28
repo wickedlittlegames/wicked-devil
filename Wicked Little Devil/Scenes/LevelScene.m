@@ -144,6 +144,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if ([node isKindOfClass: [Platform class]])
         {
             [platforms addObject:node];
+            node.tag = 10;
         }
         if ([node isKindOfClass: [Collectable class]])
         {

@@ -15,7 +15,7 @@
 @interface Platform : GameObject {}
 @property (nonatomic, assign) float health;
 @property (nonatomic, assign) NSString *type;
-@property (nonatomic, assign) BOOL animating, active;
+@property (nonatomic, assign) BOOL animating, active, flipped;
 @property (nonatomic, assign) CGPoint original_position;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;

@@ -27,15 +27,14 @@
         }
         
         CCLOG(@"SETTING PARAMS BASED ON UDEFAULTS");        
-        self.highscores     = [udata objectForKey:@"highscores"];
-        self.souls          = [udata objectForKey:@"souls"];
-        self.levelprogress  = [udata integerForKey:@"levelprogress"];
-        self.worldprogress  = [udata integerForKey:@"worldprogress"];
-        self.powerup        = [udata integerForKey:@"powerup"];
-        self.worlds_unlocked = [udata boolForKey:@"worlds_unlocked"];
-        self.cache_current_world = [udata integerForKey:@"cache_current_world"];
-        
-        self.collected      = [udata integerForKey:@"collected"];
+        self.highscores             = [udata objectForKey:@"highscores"];
+        self.souls                  = [udata objectForKey:@"souls"];
+        self.levelprogress          = [udata integerForKey:@"levelprogress"];
+        self.worldprogress          = [udata integerForKey:@"worldprogress"];
+        self.powerup                = [udata integerForKey:@"powerup"];
+        self.worlds_unlocked        = [udata boolForKey:@"worlds_unlocked"];
+        self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
+        self.collected              = [udata integerForKey:@"collected"];
         
         [self _log];
         

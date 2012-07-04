@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, worlds_unlocked, cache_current_world, offline;
+@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, powerups, worlds_unlocked, cache_current_world, offline;
 
 #pragma mark User creation/persistance methods
 
@@ -34,21 +34,8 @@
         self.powerup        = [udata integerForKey:@"powerup"];
         self.worlds_unlocked = [udata boolForKey:@"worlds_unlocked"];
         self.cache_current_world = [udata integerForKey:@"cache_current_world"];
-        self.offline      = [udata boolForKey:@"offline"];
         
-        if ( self.offline && self.isAvailableForOnlinePlay )
-        {
-            self.offline = FALSE;
-            [udata setBool:self.offline forKey:@"offline"];
-            [udata synchronize];
-        }
-        
-        if (self.isAvailableForOnlinePlay && !self.offline)
-        {
-            CCLOG(@"PFUSER IS AVAILABLE AND LINKED TO FACEBOOK");
-            self.collected         = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
-            self.worlds_unlocked   = [[[PFUser currentUser] objectForKey:@"worlds_unlocked"] boolValue];
-        }
+        self.collected      = [udata integerForKey:@"collected"];
         
         [self _log];
         
@@ -59,8 +46,7 @@
 
 - (void) create
 {
-    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds, *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
         NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
@@ -81,6 +67,7 @@
     [udata setInteger:0 forKey:@"powerup"];
     [udata setBool:FALSE forKey:@"worlds_unlocked"];
     [udata setInteger:1 forKey:@"cache_current_world"];
+    [udata setInteger:0 forKey:@"collected"];
     
     [udata setBool:TRUE forKey:@"created"];
     
@@ -95,13 +82,6 @@
     [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.powerup forKey:@"powerup"];
     [udata synchronize];
-    
-    if ( self.isAvailableForOnlinePlay )
-    {
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.worlds_unlocked] forKey:@"worlds_unlocked"];
-        [[PFUser currentUser] setObject:[NSNumber numberWithInt:self.collected] forKey:@"collected"];
-        [[PFUser currentUser] saveEventually];
-    }
 }
 
 - (void) sync_cache_current_world
@@ -112,51 +92,8 @@
 - (void) reset
 {
     [udata setBool:FALSE forKey:@"created"];
+    [self create];
     [udata synchronize];
-}
-
-
-- (BOOL) parse_create:(id)result
-{
-    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
-    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
-    [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
-    
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:100] forKey:@"collected"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"worlds_unlocked"];    
-    
-    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if ( succeeded )
-        {
-            self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
-        }
-        else 
-        {
-            NSLog(@"THERE WERE ERRORS: %@",error);
-        }
-    }];
-    
-    return (self.collected >= 100);
-}
-
-- (void) parse_refresh
-{
-    [[PFUser currentUser] refresh];
-    self.collected = [[[PFUser currentUser] objectForKey:@"collected"] intValue];
-    self.worlds_unlocked = [[[PFUser currentUser] objectForKey:@"worlds_unlocked"] boolValue];
-    [self sync];
-}
-
-- (BOOL) parse_login;
-{ 
-    [self sync];
-    
-    return TRUE;
-}
-
-- (void) parse_logout
-{
-    [PFUser logOut];
 }
 
 - (BOOL) isOnline
@@ -169,11 +106,6 @@
 - (BOOL) isConnectedToFacebook
 {
     return ([PFUser currentUser] && [self isOnline] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
-}
-
-- (BOOL) isAvailableForOnlinePlay
-{
-    return (self.isConnectedToFacebook && self.isOnline);
 }
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
@@ -190,7 +122,7 @@
         [udata setObject:highscore forKey:@"highscores"];
         [udata synchronize];
         // Updating Parse
-        if ( self.isAvailableForOnlinePlay )
+        if ( self.isConnectedToFacebook )
         {   
             PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
             [highscore setObject:[PFUser currentUser] forKey:@"user"];        
@@ -198,8 +130,7 @@
             [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
             [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
 
-            CCLOG(@"SAVING PARSE");            
-            [[PFUser currentUser] save];
+            [[PFUser currentUser] saveEventually];
         }
         
         // Updating Leaderboards

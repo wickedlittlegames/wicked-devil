@@ -32,13 +32,9 @@
 -(id) init
 {
     if( (self=[super init]) ) {
-        User *user = [User alloc];
+        //User *user = [User alloc];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
-        if (user.isAvailableForOnlinePlay)
-        {
-            [[PFUser currentUser] refresh]; // change all refresh to refresh with background with spinny loader
-        }
         CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
         CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
         restore_purchasesmenu.position = ccp ( 85, 10 );
@@ -142,7 +138,6 @@
             break;
     }
 }
-
 
 - (void) tap_back
 {

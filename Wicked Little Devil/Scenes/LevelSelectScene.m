@@ -110,13 +110,6 @@
             }
             
             [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
-
-            CCMenuItem *unlock = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"UNLOCK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_unlock:)];
-            menu_unlock = [CCMenu menuWithItems:unlock, nil];
-            menu_unlock.tag = w;            
-            menu_unlock.position = ccp ( screenSize.width/2, 420 );
-            menu_unlock.visible = ( w == 1 ? FALSE : !user.worlds_unlocked );
-            [world addChild:menu_unlock];
             
             CCLOG(@"SETTING WORLD SCORE");             
             CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
@@ -169,25 +162,17 @@
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
         [self addChild:lbl_user_collected z:100];
+                
+        /*CCMenuItem *btn_facebook = [CCMenuItemFont 
+                                    itemWithLabel:[CCLabelTTF labelWithString:str_facebook fontName:@"Marker Felt" fontSize:18] 
+                                    target:self 
+                                    selector:@selector(tap_facebook)];
         
-        CCLOG(@"IS USER AVAILABLE FOR ONLINE PLAY: %d",user.isAvailableForOnlinePlay);
-        
-        if ( !user.isAvailableForOnlinePlay ) 
-        {
-            lbl_user_collected.visible = FALSE;
-            NSString *str_facebook = ( user.isOnline ? @"Sign In With Facebook" : @"Offline");
-            
-            CCMenuItem *btn_facebook = [CCMenuItemFont 
-                                        itemWithLabel:[CCLabelTTF labelWithString:str_facebook fontName:@"Marker Felt" fontSize:18] 
-                                        target:self 
-                                        selector:@selector(tap_facebook)];
-            
-            menu_facebook = [CCMenu menuWithItems:btn_facebook, nil];
-            [menu_facebook alignItemsHorizontallyWithPadding:20];
-            menu_facebook.position = ccp ( 85, 10 );
-            menu_facebook.visible = TRUE;
-            [self addChild:menu_facebook z:100];
-        }        
+        menu_facebook = [CCMenu menuWithItems:btn_facebook, nil];
+        [menu_facebook alignItemsHorizontallyWithPadding:20];
+        menu_facebook.position = ccp ( 85, 10 );
+        menu_facebook.visible = TRUE;
+        [self addChild:menu_facebook z:100];*/
     
         CCLOG(@"ADDING IN ALL THE LAYERS");
         detail = [LevelDetailLayer node];
@@ -216,29 +201,6 @@
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
 }
 
-- (void) tap_unlock:(CCMenuItem*)sender
-{
-    //[[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
-    if ( user.isAvailableForOnlinePlay )
-    {
-        [user parse_refresh];
-        if ( user.collected >= 500 )
-        {
-            user.worlds_unlocked = TRUE;
-            user.collected -= 500;
-            [self removeChild:menu_unlock cleanup:YES];
-            [user sync];
-            lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
-            menu_unlock.visible = FALSE;
-        }
-        else
-        {
-            CCLOG(@"CANT AFFORD");
-        }
-
-    }
-}
-
 - (void) tap_achievements:(id)sender
 {
     GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
@@ -264,47 +226,56 @@
 {   
     if ( user.isOnline )
     {
-        NSArray *permissionsArray = [NSArray arrayWithObjects:@"email",@"offline_access", nil];
-        
-        [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *pfuser, NSError *error) 
-        {
-            if (!pfuser) { CCLOG(@"ERROR: %@",error); } // Something went wrong...
-            else if (pfuser.isNew) // User w/facebook id has never been seen before
-            {
-                // This request fires off to Facebook and creates the user
+        NSArray *permissions = [NSArray arrayWithObjects:@"email", nil];
+        [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
+            if (!pfuser) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else if (pfuser.isNew) {
+
                 [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name,email" andDelegate:self];
-            } 
-            else // User has been seen before on Facebook, but maybe not on this device
-            {
-                if ( [user parse_login] ) 
-                {
-                    menu_facebook.visible = FALSE;
-                    [lbl_user_collected setString:[NSString stringWithFormat:@"Collected: %i",user.collected]];
-                    lbl_user_collected.visible = TRUE;
-                }
+                
+            } else {
+                
+                // show the picture in the corner    
+                
             }
         }];
+
+        
     }
 }
 
-- (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    CCLOG(@"CREATING USER CUSTOM PARAMS | fbID, fbName");    
-    if ( [user parse_create:result] )
+- (void)request:(PF_FBRequest *)request didLoad:(id)result 
+{
+    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
+    [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
+    
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:100] forKey:@"collected"];
+    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"worlds_unlocked"];    
+    
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if ( succeeded )
+        {
+            user.collected += 1000;
+            [user sync];
+        }
+        else 
+        {
+            NSLog(@"THERE WERE ERRORS: %@",error);
+        }
+    }];
+}
+
+-(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error 
+{
+    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] isEqualToString: @"OAuthException"]) 
     {
-        CCLOG(@"UPDATING UI AFTER COMPLETED CREATION OF PARSE CHAR");
-        menu_facebook.visible = FALSE;
-        [lbl_user_collected setString:[NSString stringWithFormat:@"Collected: %i",user.collected]];
-        lbl_user_collected.visible = TRUE;        
-    }
-}
-
--(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error {
-    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] isEqualToString: @"OAuthException"]) {
         NSLog(@"The facebook token was invalidated:%@",error);
-        [user parse_logout];
-    } else {
+    } 
+    else 
+    {
         NSLog(@"Some other error:%@",error);
-        [user parse_logout];
     }
 }
 

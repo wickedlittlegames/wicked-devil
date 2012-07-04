@@ -149,7 +149,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if ([node isKindOfClass: [Collectable class]])
         {
             [collectables addObject:node];
-            node.visible = user.isAvailableForOnlinePlay;
         }
         if ([node isKindOfClass: [BigCollectable class]])
         {
@@ -316,6 +315,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             
             [ui.lbl_collected setString:[NSString stringWithFormat:@"Collected: %d",player.collected]];
             [ui.lbl_score setString:[NSString stringWithFormat:@"Score: %d", player.score]];
+            [ui.lbl_player_health setString:[NSString stringWithFormat:@"Health:",player.health]];
         }
         else 
         {

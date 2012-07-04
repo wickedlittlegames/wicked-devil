@@ -16,21 +16,16 @@
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world;
-@property (nonatomic, assign) NSMutableArray *highscores, *souls;
+@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups;
 @property (nonatomic, assign) bool worlds_unlocked, offline;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected
 - (void) sync_cache_current_world;
 - (void) reset; // resetUser
-- (BOOL) parse_create:(id)result;
-- (BOOL) parse_login; // login with parse
-- (void) parse_logout;  // logout of parse
-- (void) parse_refresh; // refresh parse
 
 - (BOOL) isOnline; // is connected to internet
 - (BOOL) isConnectedToFacebook; // can collect
-- (BOOL) isAvailableForOnlinePlay;
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l;
 - (void) setSouls:(int)souls world:(int)w level:(int)l;

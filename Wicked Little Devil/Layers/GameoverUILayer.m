@@ -20,7 +20,7 @@
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         NSString *font = @"Arial";
         int fontsize = 18;
-                
+        
         CCSprite *background = [CCSprite spriteWithFile:@"slide-in.png"];
         background.position = ccp (screenSize.width/2, screenSize.height/2);
         [self addChild:background];
@@ -65,10 +65,8 @@
 
 - (void) doFinalScoreAnimationsforUser:(User*)user andPlayer:(Player*)player
 {
-    if (user.isAvailableForOnlinePlay)
-    {
-        [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
-    }
+    [lbl_gameover_collected setString:[NSString stringWithFormat:@"Collected: %i",player.collected]];
+    
     if ( level == 12 )
     {
         next.isEnabled = user.worlds_unlocked;

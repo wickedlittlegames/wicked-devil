@@ -11,7 +11,6 @@
 #import "ShopScene.h"
 #import "CCScrollLayer.h"
 
-
 @implementation ShopScene
 
 +(CCScene *) scene
@@ -29,119 +28,72 @@
 	return scene;
 }
 
+-(void)buttonTapped:(id)sender
+{
+	NSLog(@"buttonTapped");
+}
+
+
 -(id) init
 {
     if( (self=[super init]) ) {
-        //User *user = [User alloc];
+        CCLOG(@"DOING");
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
-        CCMenuItem *restore_purchases = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Restore Purchases" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)];
-        CCMenu *restore_purchasesmenu = [CCMenu menuWithItems:restore_purchases, nil];
-        restore_purchasesmenu.position = ccp ( 85, 10 );
+        appDelegate                 = (AppController*)[[UIApplication sharedApplication] delegate];
         
-        CCLayer *powerups_layer = [self createPowerupLayer];
-        CCLayer *money_layer  = [self createMoneyLayer];
+        view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 480)];
+        table = [[UITableView alloc] initWithFrame:CGRectMake(100, 100, 300, 300)];
+        data = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];        
+        table.dataSource = self;
+        table.delegate   = self;
+        [view addSubview:table];
+        [appDelegate.window addSubview:view];
         
-        CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:powerups_layer,money_layer, nil] widthOffset: 0];
-        scroller.position = ccp(0,0);
-        [self addChild:scroller];
         
-        [self addChild:restore_purchasesmenu];
-
+        //User *user = [User alloc];
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];
         menu.position = ccp ( screenSize.width - 80, 10 );
-        [self addChild:menu];        
+        [self addChild:menu];
+        
+        CCLOG(@"DOING");        
     }
     return self;
 }
 
-- (CCLayer*)createPowerupLayer
-{
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
-    float menu_x = (screenSize.width/2);
-    float menu_y = 275;
-    
-    CCLayer *tmp_layer = [CCLayer node];
-    CCLabelTTF *powerups_label = [CCLabelTTF labelWithString:@"POWERUPS" fontName:@"Marker Felt" fontSize:20];
-    powerups_label.position = ccp (screenSize.width/2,420);
-    [tmp_layer addChild:powerups_label];
-    
-    CCMenuItem *powerup_healthboost = [CCMenuItemImage 
-                                       itemWithNormalImage:@"Icon.png"
-                                       selectedImage:@"Icon.png" 
-                                       target:self 
-                                       selector:@selector(tap_powerup:)];
-    powerup_healthboost.tag = 0;
-    CCLabelTTF *powerup_name_healthboost = [CCLabelTTF labelWithString:@"Health Boost ( 1000Souls )" fontName:@"Marker Felt" fontSize:12];
-    powerup_name_healthboost.position = ccp (powerup_name_healthboost.position.x + 27, powerup_name_healthboost.position.y - 12);
-    [powerup_healthboost addChild:powerup_name_healthboost];
-    
-    CCMenuItem *powerup_lightfeet = [CCMenuItemImage 
-                                     itemWithNormalImage:@"Icon.png"
-                                     selectedImage:@"Icon.png" 
-                                     target:self 
-                                     selector:@selector(tap_powerup:)];
-    powerup_lightfeet.tag = 1;
-    CCLabelTTF *powerup_name_lightfeet = [CCLabelTTF labelWithString:@"Light Feet ( 1000Souls )" fontName:@"Marker Felt" fontSize:12];
-    powerup_name_lightfeet.position = ccp (powerup_name_lightfeet.position.x + 27, powerup_name_lightfeet.position.y - 12);
-    [powerup_lightfeet addChild:powerup_name_lightfeet];
-    
-    CCMenuItem *powerup_moneybags = [CCMenuItemImage 
-                                     itemWithNormalImage:@"Icon.png"
-                                     selectedImage:@"Icon.png" 
-                                     target:self 
-                                     selector:@selector(tap_powerup:)];
-    powerup_moneybags.tag = 2;
-    CCLabelTTF *powerup_name_moneybags = [CCLabelTTF labelWithString:@"Moneybags ( 10000Souls )" fontName:@"Marker Felt" fontSize:10];
-    powerup_name_moneybags.position = ccp (powerup_name_moneybags.position.x + 27, powerup_name_moneybags.position.y - 12);
-    [powerup_moneybags addChild:powerup_name_moneybags];
-    
-    CCMenu *powerups_menu = [CCMenu menuWithItems:powerup_healthboost,powerup_lightfeet,powerup_moneybags, nil];
-    powerups_menu.position = ccp (menu_x, menu_y);
-    [powerups_menu alignItemsInColumns:itemsPerRow,nil];
-    [tmp_layer addChild:powerups_menu];
-    
-    return tmp_layer;
-}
-
-- (void) update_label
-{
-    // do nothing
-}
-
-- (CCLayer*)createMoneyLayer
-{
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //NSNumber* itemsPerRow = [NSNumber numberWithInt:3];
-    //float menu_x = (screenSize.width/2);
-    //float menu_y = 275;
-    
-    CCLayer *tmp_layer = [CCLayer node];
-    CCLabelTTF *money_label = [CCLabelTTF labelWithString:@"PURCHASE SIN POINTS" fontName:@"Marker Felt" fontSize:20];
-    money_label.position = ccp (screenSize.width/2,420);
-    [tmp_layer addChild:money_label];
-    return tmp_layer;
-}
-
-- (void)tap_powerup:(CCMenuItem*)sender
-{
-    CCLOG(@"TAPPED POWERUP PURCHASE");
-    switch (sender.tag)
-    {
-        case 0:
-            CCLOG(@"DO POWERUP PURCHASE SCREEN");
-            break;
-        default:
-            CCLOG(@"DEFAULT POWERUP PURCHASE");
-            break;
-    }
-}
-
 - (void) tap_back
 {
+    [view removeFromSuperview];
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+}
+
+#pragma mark UITableView code
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [data count];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 78;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+	if(cell == nil)
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    
+    cell.textLabel.text = [data objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:@"platform-normal.png"];
+    
+    return cell;
 }
 
 

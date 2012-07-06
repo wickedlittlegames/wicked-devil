@@ -17,16 +17,13 @@
 {
 	if( (self=[super init]) )
     {
-        CCLOG(@"GRABBING USER DEFAULTS FILE");
         udata = [NSUserDefaults standardUserDefaults];
         
         if ( [udata boolForKey:@"created"] == FALSE )
         {
-            CCLOG(@"FIRST TIME, CREATING USER");
             [self create];
         }
         
-        CCLOG(@"SETTING PARAMS BASED ON UDEFAULTS");        
         self.highscores             = [udata objectForKey:@"highscores"];
         self.souls                  = [udata objectForKey:@"souls"];
         self.levelprogress          = [udata integerForKey:@"levelprogress"];
@@ -45,6 +42,8 @@
 
 - (void) create
 {
+    CCLOG(@"CREATING USER");
+    
     NSMutableArray *tmp_worlds, *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
@@ -73,6 +72,13 @@
     [udata synchronize];
 }
 
+- (void) reset
+{
+    [udata setBool:FALSE forKey:@"created"];
+    [self create];
+    [udata synchronize];
+}
+
 - (void) sync
 {
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
@@ -86,13 +92,6 @@
 - (void) sync_cache_current_world
 {
     [udata setInteger:self.cache_current_world forKey:@"cache_current_world"];
-}
-
-- (void) reset
-{
-    [udata setBool:FALSE forKey:@"created"];
-    [self create];
-    [udata synchronize];
 }
 
 - (BOOL) isOnline
@@ -133,7 +132,6 @@
         }
         
         // Updating Leaderboards
-        CCLOG(@"UPDATING LEADERBOARDS");        
         GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
         if (localPlayer.authenticated)
         {

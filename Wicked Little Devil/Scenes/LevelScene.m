@@ -311,7 +311,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
             }
             
             [self playerMovementChecks];
-            [player movement:levelThreshold withGravity:0.15];
+            [player movement:levelThreshold withGravity:0.25];
             
             [ui.lbl_collected setString:[NSString stringWithFormat:@"Collected: %d",player.collected]];
             [ui.lbl_score setString:[NSString stringWithFormat:@"Score: %d", player.score]];

@@ -16,7 +16,7 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 5.5;        
+        self.jumpspeed = 7.5;        
         
         self.stats = [NSUserDefaults standardUserDefaults];
         
@@ -33,6 +33,7 @@
 - (void) movement:(float)levelThreshold withGravity:(float)gravity
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
+    
     if (levelThreshold < 0)
     {
         self.position = ccp(self.position.x + self.velocity.x, self.position.y + (self.velocity.y + levelThreshold));

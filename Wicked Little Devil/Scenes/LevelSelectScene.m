@@ -26,8 +26,6 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        CCLOG(@"LEVELSELECT SCENE INIT");
-        
         // Get the user
         user = [[User alloc] init];
         
@@ -38,20 +36,20 @@
         float menu_y = 275;
         
         NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-        CCLOG(@"LOOPING THROUGH WORLDS TO CREATE LEVEL MENUS");
+
         for (int w = 1; w <= WORLDS_PER_GAME; w++)
         {
             CCLayer *world = [CCLayer node];
                       
-            CCMenu *world_menu = [CCMenu menuWithItems:nil];
-            world_menu.position = ccp ( menu_x, menu_y );
+            CCMenu *menu_world = [CCMenu menuWithItems:nil];
+            menu_world.position = ccp ( menu_x, menu_y );
             
             int world_souls_total = 0;
             int world_score_total = [user getHighscoreforWorld:w];
             
             for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
             {
-                CCMenuItem *level = [CCMenuItemImage 
+                CCMenuItem *btn_level = [CCMenuItemImage 
                                            itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",lvl]
                                            selectedImage:[NSString stringWithFormat:@"Icon.png",lvl] 
                                            disabledImage:[NSString stringWithFormat:@"icon-locked.png",lvl] 
@@ -60,41 +58,41 @@
                 
                 CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",w,lvl] fontName:@"Marker Felt" fontSize:12];
                 lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
-                [level addChild:lbl_level_name];
+                [btn_level addChild:lbl_level_name];
                 
-                level.userData = (int*)w;
-                level.tag      = lvl;
-                level.isEnabled = FALSE;
+                btn_level.userData = (int*)w;
+                btn_level.tag      = lvl;
+                btn_level.isEnabled = FALSE;
                 
                 if ( w == 1 )
                 {
-                    level.isEnabled = TRUE;
+                    btn_level.isEnabled = TRUE;
                     if ( user.worldprogress > 1 )
                     {
-                        level.isEnabled = TRUE;
+                        btn_level.isEnabled = TRUE;
                     }
                     else 
                     {
-                        level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
+                        btn_level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                     }
                 }
                 if ( user.worlds_unlocked )
                 {
                     if ( user.worldprogress > w )
                     {
-                        level.isEnabled = TRUE;
+                        btn_level.isEnabled = TRUE;
                     }
                     else if ( user.worldprogress < w )
                     {
-                        level.isEnabled = FALSE;
+                        btn_level.isEnabled = FALSE;
                     }
                     else if ( user.worldprogress == w )
                     {
-                        level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
+                        btn_level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                     }
                 }
 
-                if ( level.isEnabled )
+                if ( btn_level.isEnabled )
                 {
                     int souls = [user getSoulsforWorld:w level:lvl];
                     world_souls_total += souls;
@@ -102,49 +100,41 @@
                     CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:@"Marker Felt" fontSize:16];
                     lbl_level_souls.color = ccc3(0,0,0);
                     lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
-                    [level addChild:lbl_level_souls];                    
+                    [btn_level addChild:lbl_level_souls];                    
                 }
                 
-                [world_menu addChild:level];
-                CCLOG(@"LEVEL %i CREATED", lvl);
+                [menu_world addChild:btn_level];
             }
             
-            [world_menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+            [menu_world alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
             
-            CCLOG(@"SETTING WORLD SCORE");             
             CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
             world_score.position = ccp (90, 390);
             [world addChild:world_score];            
             
-            CCLOG(@"SETTING WORLD STARS");                         
             CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:@"Marker Felt" fontSize:14];
             world_stars.position = ccp ( screenSize.width - 80, 390);
             [world addChild:world_stars];
             
-            [world addChild:world_menu];
+            [world addChild:menu_world];
             
             [worlds addObject:world];
-            CCLOG(@"WORLD %i CREATED", w);
         }
         
-        CCLOG(@"INIT SCROLLER");
         CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
 
-        CCLOG(@"ADDING PURGATORY PAGE");
         CCLayer *purgatory = [CCLayer node];
         CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:@"Marker Felt" fontSize:18];
         lbl_purgatory.position = ccp ( screenSize.width/2, 420 );
         [purgatory addChild:lbl_purgatory];
         [scroller addPage:purgatory];
         
-        CCLOG(@"ADDING COMMUNITY PAGE");
         CCLayer *community = [CCLayer node];
         CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:@"Marker Felt" fontSize:18];
         lbl_community.position = ccp ( screenSize.width/2, 420 );
         [community addChild:lbl_community];        
         [scroller addPage:community];
         
-        CCLOG(@"ADDING UI ELEMENTS");        
         CCMenuItem *store = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Store" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_store:)];
         CCMenu *storemenu = [CCMenu menuWithItems:store, nil];
         [storemenu alignItemsHorizontallyWithPadding:20];
@@ -157,7 +147,6 @@
         menu_gamecenter.position = ccp ( screenSize.width/2, 40 );
         [self addChild:menu_gamecenter z:101];
         
-        CCLOG(@"SETTING THE BUTTON/LABEL FOR FACEBOOK LOGIN");
         lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
@@ -174,7 +163,6 @@
         menu_facebook.visible = TRUE;
         [self addChild:menu_facebook z:100];*/
     
-        CCLOG(@"ADDING IN ALL THE LAYERS");
         detail = [LevelDetailLayer node];
         
         [self addChild:scroller];
@@ -188,38 +176,15 @@
 
 - (void) tap_store:(id)sender
 {
-    CCLOG(@"TAPPED STORE");
     [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];    
 }
 
 - (void) tap_level:(CCMenuItem*)sender
 {
-    CCLOG(@"TAPPED LEVEL: %i - %i",sender.tag, user );
     user.cache_current_world  = (int)sender.userData;
     [user sync_cache_current_world];
 
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
-}
-
-- (void) tap_achievements:(id)sender
-{
-    GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-    achivementViewController.achievementDelegate = self;
-    
-    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-    
-    [[app navController] presentModalViewController:achivementViewController animated:YES];
-}
-
-- (void) tap_leaderboards:(id)sender
-{
-    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-    leaderboardViewController.leaderboardDelegate = self;
-    
-    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-    
-    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
-
 }
 
 - (void) tap_facebook
@@ -280,6 +245,26 @@
 }
 
 #pragma mark GameKit delegate
+- (void) tap_achievements:(id)sender
+{
+    GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+    achivementViewController.achievementDelegate = self;
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    
+    [[app navController] presentModalViewController:achivementViewController animated:YES];
+}
+
+- (void) tap_leaderboards:(id)sender
+{
+    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+    leaderboardViewController.leaderboardDelegate = self;
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    
+    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+    
+}
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {

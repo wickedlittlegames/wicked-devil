@@ -9,10 +9,16 @@
 #import "cocos2d.h"
 #import "CCScrollLayer.h"
 #import "LevelSelectScene.h"
+#import "AppDelegate.h"
 
 #import "User.h"
 
-@interface ShopScene : CCLayer {}
-
+@interface ShopScene : CCLayer <UITableViewDelegate, UITableViewDataSource> 
+{
+    UIView *view;
+    UITableView *table;
+    NSArray *data;
+    AppController *appDelegate;
+}
 +(CCScene *) scene;
 @end

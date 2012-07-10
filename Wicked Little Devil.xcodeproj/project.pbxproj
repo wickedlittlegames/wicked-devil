@@ -309,6 +309,8 @@
 		9CEF22471597C60A00893789 /* platform-normal-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEF22461597C60A00893789 /* platform-normal-hd.png */; };
 		9CF82A3A158F68D900BDC2D7 /* GameoverUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */; };
 		9CF8790F1591C1F6006AAB97 /* platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8790D1591C1F6006AAB97 /* platform-normal.png */; };
+		9CFDC74515AC555400404AA3 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDC74415AC555400404AA3 /* SimpleTableCell.xib */; };
+		9CFDC74915AC56D400404AA3 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDC74815AC56D400404AA3 /* SimpleTableCell.m */; };
 		9CFF0B62158A5F78000AA4E0 /* world-1-level-3.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */; };
 		9CFF0B69158A7CB8000AA4E0 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B68158A7CB7000AA4E0 /* Platform.m */; };
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
@@ -644,6 +646,9 @@
 		9CF82A38158F68D900BDC2D7 /* GameoverUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameoverUILayer.h; path = Layers/GameoverUILayer.h; sourceTree = "<group>"; };
 		9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameoverUILayer.m; path = Layers/GameoverUILayer.m; sourceTree = "<group>"; };
 		9CF8790D1591C1F6006AAB97 /* platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal.png"; sourceTree = "<group>"; };
+		9CFDC74415AC555400404AA3 /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleTableCell.xib; path = Objects/SimpleTableCell.xib; sourceTree = "<group>"; };
+		9CFDC74715AC56D400404AA3 /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableCell.h; path = Objects/SimpleTableCell.h; sourceTree = "<group>"; };
+		9CFDC74815AC56D400404AA3 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableCell.m; path = Objects/SimpleTableCell.m; sourceTree = "<group>"; };
 		9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-3.ccbi"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
@@ -1322,6 +1327,9 @@
 				9CFF0B75158A7D0C000AA4E0 /* User.m */,
 				9CFF0B67158A7CB7000AA4E0 /* Platform.h */,
 				9CFF0B68158A7CB7000AA4E0 /* Platform.m */,
+				9CFDC74415AC555400404AA3 /* SimpleTableCell.xib */,
+				9CFDC74715AC56D400404AA3 /* SimpleTableCell.h */,
+				9CFDC74815AC56D400404AA3 /* SimpleTableCell.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1615,6 +1623,7 @@
 				9C00E3C2159CF20D005D9D08 /* bp_good_and_broken_platforms.png in Resources */,
 				9C00E3C3159CF20D005D9D08 /* bp_rat.png in Resources */,
 				9C04FED515A7113D0030CFF5 /* Powerups.plist in Resources */,
+				9CFDC74515AC555400404AA3 /* SimpleTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1648,6 +1657,7 @@
 				9C84ED431594BFD40083DF40 /* Reachability.m in Sources */,
 				9C227CF1159B6B7B00F7E6E1 /* IAPHelper.m in Sources */,
 				9C227CF6159B6CEC00F7E6E1 /* InAppRageIAPHelper.m in Sources */,
+				9CFDC74915AC56D400404AA3 /* SimpleTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

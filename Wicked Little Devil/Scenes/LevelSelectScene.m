@@ -151,23 +151,11 @@
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
         [self addChild:lbl_user_collected z:100];
-                
-        /*CCMenuItem *btn_facebook = [CCMenuItemFont 
-                                    itemWithLabel:[CCLabelTTF labelWithString:str_facebook fontName:@"Marker Felt" fontSize:18] 
-                                    target:self 
-                                    selector:@selector(tap_facebook)];
-        
-        menu_facebook = [CCMenu menuWithItems:btn_facebook, nil];
-        [menu_facebook alignItemsHorizontallyWithPadding:20];
-        menu_facebook.position = ccp ( 85, 10 );
-        menu_facebook.visible = TRUE;
-        [self addChild:menu_facebook z:100];*/
-    
-        detail = [LevelDetailLayer node];
-        
+
         [self addChild:scroller];
         [scroller selectPage:user.cache_current_world-1];
         
+        detail = [LevelDetailLayer node];        
         [self addChild:storemenu];
         [self addChild:detail];
     }
@@ -205,8 +193,6 @@
                 
             }
         }];
-
-        
     }
 }
 

@@ -17,8 +17,9 @@
 {
     UIView *view;
     UITableView *table;
-    NSArray *data;
-    AppController *appDelegate;
+    NSArray *data, *data2;
+    AppController *app;
 }
 +(CCScene *) scene;
+- (void) tap_purchase:(int)item;
 @end

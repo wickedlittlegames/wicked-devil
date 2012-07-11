@@ -21,7 +21,6 @@
 #import "Trigger.h"
 
 @interface LevelScene : CCLayer {
-    User *user;
     GameObject *floor;
     float levelThreshold;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
@@ -33,6 +32,7 @@
 
 @property (nonatomic, assign) bool started, complete;
 @property (nonatomic, retain) Player *player;
+@property (nonatomic, retain) User *user;
 @property (nonatomic, assign) int worldNumber, levelNumber;
 @property (nonatomic, assign) CGPoint touchLocation;
 @property (nonatomic, assign) GameplayUILayer *ui;

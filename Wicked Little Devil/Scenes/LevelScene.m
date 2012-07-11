@@ -12,7 +12,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
 @implementation LevelScene
 @synthesize started, complete, player, worldNumber, levelNumber, touchLocation, ui, gameoverlayer;
-@synthesize background_front, background_middle, background_middle2, background_back;
+@synthesize background_front, background_middle, background_middle2, background_back, user;
 
 #pragma mark === Initialization ===
 
@@ -30,13 +30,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         CCLOG(@"SCREENSIZE: WIDTH:%f | HEIGHT:%f",screenSize.width, screenSize.height);
-        
-        CCLOG(@"INIT USER");
-        user = [[User alloc] init];
-        CCLOG(@"INIT USER DONE");        
-        
-        CCLOG(@"SETTING UP POWERUP: %i",user.powerup);
-        [player setupPowerup:user.powerup];
         
         CCLOG(@"TEXTURE CACHE FOR PLATFORM TOGGLES");
         CCTextureCache* textureCache = [CCTextureCache sharedTextureCache];            
@@ -108,11 +101,15 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [playerlayer addChild:_player];
     gameoverlayer.visible = FALSE;
     
+    User *_user = [[User alloc] init];
+    [_player setupPowerup:_user.powerup];
+
     [scene addChild:playerlayer z:51];
     [scene addChild:uilayer z:100];
     [scene addChild:gameoverlayer z:101];
     [scene addChild:objectLayer z:50];
         
+    [objectLayer setUser:_user];
     [objectLayer setPlayer:_player];
     [objectLayer setTouchLocation:_player.position];
     [objectLayer setWorldNumber:worldNum];
@@ -342,7 +339,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         if (self.levelNumber == user.levelprogress)
         {
             user.levelprogress = user.levelprogress + 1;
-            if (user.levelprogress > LEVELS_PER_WORLD && user.worlds_unlocked)
+            if (user.levelprogress > LEVELS_PER_WORLD)
             {
                 user.worldprogress = user.worldprogress + 1;
                 user.levelprogress = 1;

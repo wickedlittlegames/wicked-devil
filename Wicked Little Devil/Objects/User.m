@@ -228,7 +228,6 @@
     CCLOG(@"Worlds Unlocked: %d",self.worlds_unlocked);    
     CCLOG(@"Cache Current World: %i",self.cache_current_world);    
     CCLOG(@"Collected: %i",self.collected);    
-    CCLOG(@"Parse User: %@", [PFUser currentUser]);
 }
 
 #pragma mark GameKitHelper delegate methods

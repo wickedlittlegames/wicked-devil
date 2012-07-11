@@ -76,20 +76,18 @@
                         btn_level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                     }
                 }
-                if ( user.worlds_unlocked )
+                
+                if ( user.worldprogress > w )
                 {
-                    if ( user.worldprogress > w )
-                    {
-                        btn_level.isEnabled = TRUE;
-                    }
-                    else if ( user.worldprogress < w )
-                    {
-                        btn_level.isEnabled = FALSE;
-                    }
-                    else if ( user.worldprogress == w )
-                    {
-                        btn_level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
-                    }
+                    btn_level.isEnabled = TRUE;
+                }
+                else if ( user.worldprogress < w )
+                {
+                    btn_level.isEnabled = FALSE;
+                }
+                else if ( user.worldprogress == w )
+                {
+                    btn_level.isEnabled = ( user.levelprogress >= lvl ? TRUE : FALSE );
                 }
 
                 if ( btn_level.isEnabled )
@@ -117,7 +115,6 @@
             [world addChild:world_stars];
             
             [world addChild:menu_world];
-            
             [worlds addObject:world];
         }
         
@@ -151,6 +148,12 @@
         lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
         lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
         [self addChild:lbl_user_collected z:100];
+        
+        CCMenuItem *btn_equipment = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"EQUIP" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_equipment:)];
+        CCMenu *menu_equipment = [CCMenu menuWithItems:btn_equipment, nil];
+        menu_equipment.position = ccp ( screenSize.width/2, 90 );
+        [self addChild:menu_equipment];
+        
 
         [self addChild:scroller];
         [scroller selectPage:user.cache_current_world-1];
@@ -175,6 +178,17 @@
     [detail setupDetailsForWorld:(int)sender.userData level:sender.tag withUserData:user];
 }
 
+- (void) tap_equipment:(id)sender
+{
+    PlayerEquipmentLayer *layer = [PlayerEquipmentLayer node];
+    [self addChild:layer z:1000];
+}
+
+- (void) tap_back
+{
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];    
+}
+
 - (void) tap_facebook
 {   
     if ( user.isOnline )
@@ -189,7 +203,7 @@
                 
             } else {
                 
-                // show the picture in the corner    
+                // show the picture in the corner
                 
             }
         }];

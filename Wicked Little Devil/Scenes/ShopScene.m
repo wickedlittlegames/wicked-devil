@@ -46,8 +46,8 @@
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        data = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];        
-        data2 = [NSArray arrayWithObjects:@"Test 1", @"Test 2",nil];
+        data = [NSArray arrayWithObjects:@"1,000 souls", @"2,500 souls", @"5,000 souls", @"10,000 souls", @"100,000 souls", @"1,000,000 souls", nil];        
+        data2 = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.99",@"£4.99", @"£8.99", @"£10.99",nil];
         
         table.dataSource = self;
         table.delegate   = self;
@@ -83,24 +83,24 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0: return  @"Level 1 Cards"; break;
-        case 1: return  @"Level 2 Cards"; break;
-    }
-    return @"ttitle";
+    //switch (section) {
+    //    case 0: return  @"Currency"; break;
+    //    case 1: return  @"Misc"; break;
+    //}
+    return @"Currency";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0: return [data count]/3; break;
-        case 1: return [data2 count]; break;
-    }
-    return 0;
+    //switch (section) {
+      //  case 0: return [data count]; break;
+       // case 1: return [data2 count]; break;
+    //}
+    return [data count];
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 2;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,26 +120,33 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     } 
-    int section = [indexPath section];
+//    int section = [indexPath section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.label_title.text = [data objectAtIndex:indexPath.row];
+    cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
+    cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+    cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+    cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
 
-    switch (section) {
-        case 0:
-            cell.label_title.text = [data objectAtIndex:indexPath.row];
-            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-            cell.label_price.text    = @"2000";
-            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
-            break;
-        case 1:
-            cell.label_title.text = [data2 objectAtIndex:indexPath.row];
-            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-            cell.label_price.text    = @"2000";
-            [cell.button_buy setEnabled:NO];
-            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];            
-            break;
-    }
+
+//    switch (section) {
+//        case 0:
+//            cell.label_title.text = [data objectAtIndex:indexPath.row];
+//            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
+//            cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+//            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+//            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
+//            break;
+//        case 1:
+//            cell.label_title.text = [data2 objectAtIndex:indexPath.row];
+//            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
+//            cell.label_price.text    = @"2000";
+//            [cell.button_buy setEnabled:NO];
+//            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+//            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];            
+//            break;
+//    }
         
     return cell;
 }

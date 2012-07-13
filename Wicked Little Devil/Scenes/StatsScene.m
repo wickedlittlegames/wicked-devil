@@ -29,6 +29,10 @@
 -(id) init
 {
     if( (self=[super init]) ) {
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        NSString *font = @"Marker Felt";
+        int fontsize = 18;
+        
         user = [[User alloc] init];
         
         app = (AppController*)[[UIApplication sharedApplication] delegate];
@@ -41,12 +45,18 @@
         [view addSubview:table];
         [app.window addSubview:view];
         
+        
+        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
+        CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
+        menu_back.position = ccp ( screenSize.width - 80, 10 );
+        [self addChild:menu_back z:100]; 
     }
     return self;
 }
 
 - (void) tap_back
 {
+    [view removeFromSuperview];
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
 }
 

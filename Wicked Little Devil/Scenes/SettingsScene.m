@@ -46,15 +46,18 @@
         [self addChild:menu z:100];
         
         // Cheat Menu
-        CCMenuItem *btn_cheat1 = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"1 MILLION SOULS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_cheat1)];
-        CCMenuItem *btn_cheat2 = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"UNLOCK ALL WORLDS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_cheat2)];
+        CCMenuItem *btn_cheat1 = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"CHEAT: 1 MILLION SOULS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_cheat1)];
+        CCMenuItem *btn_cheat2 = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"CHEAT: UNLOCK ALL WORLDS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_cheat2)];
+        CCMenuItem *btn_cheat3 = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"CHEAT: UNLOCK ALL POWERUPS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_cheat3)];
         CCMenuItem *btn_reset = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESET USER" fontName:font fontSize:fontsize] target:self selector:@selector(tap_reset)];
-        CCMenu *menu_cheat = [CCMenu menuWithItems:btn_cheat1,btn_cheat2,btn_reset, nil];
+        CCMenuItem *btn_dummygameover = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"FAKE GAME OVER" fontName:font fontSize:fontsize] target:self selector:@selector(tap_fake_gameover)];
+        CCMenuItem *btn_dummylevel = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"DUMMY LEVEL" fontName:font fontSize:fontsize] target:self selector:@selector(tap_dummy_level)];        
+        CCMenu *menu_cheat = [CCMenu menuWithItems:btn_cheat1,btn_cheat2,btn_cheat3, btn_reset,btn_dummygameover, btn_dummylevel, nil];
         [menu_cheat alignItemsVerticallyWithPadding:10];
-        menu_cheat.position = ccp ( screenSize.width/2, 150 );
+        menu_cheat.position = ccp ( screenSize.width/2, 240 );
         [self addChild:menu_cheat z:100];
 
-        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
+        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
         CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
         menu_back.position = ccp ( screenSize.width - 80, 10 );
         [self addChild:menu_back z:100];
@@ -96,8 +99,24 @@
     [user sync];
 }
 
+- (void) tap_cheat3
+{
+    CCLOG(@"UNLOCK ALL POWERUPS");
+}
+
 - (void) tap_reset
 {
     [user reset];
 }
+
+- (void) tap_fake_gameover
+{
+    CCLOG(@"FAKE A GAMEOVER SCREEN");
+}
+
+- (void) tap_dummy_level
+{
+    CCLOG(@"START AN EXTREME LEVEL WITH ALL THE STUFF IN IT BUT ITS NOT POSSIBLE TO DIE");
+}
+
 @end

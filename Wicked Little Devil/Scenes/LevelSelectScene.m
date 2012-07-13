@@ -55,7 +55,7 @@
         
         // Equippable Button
         CCMenu *menu_stats = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"STATS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_stats)], nil];
-        [menu_stats setPosition:ccp(screenSize.width - 200, 10 )];
+        [menu_stats setPosition:ccp(screenSize.width - 40, 40 )];
         [self addChild:menu_stats];
         
         // Settings Button

@@ -38,7 +38,7 @@
         [self setup_cards];
         
         // Back Button
-        CCMenu *menu_back = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)], nil];
+        CCMenu *menu_back = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)], nil];
         menu_back.position = ccp ( screenSize.width - 80, 10 );
         [self addChild:menu_back];
     }

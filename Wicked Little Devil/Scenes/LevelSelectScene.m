@@ -45,7 +45,7 @@
         
         // Collectable Button
         lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:fontsize];
-        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 20, 10 )];
+        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 30, 10 )];
         [self addChild:lbl_user_collected z:100];
         
         // Equippable Button

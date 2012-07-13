@@ -1210,6 +1210,8 @@
 		9C54D46215B055FE00D52A22 /* Gameplay */ = {
 			isa = PBXGroup;
 			children = (
+				9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */,
+				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
 				9C6149671577B09600A6FF33 /* LevelScene.h */,
 				9C6149681577B09600A6FF33 /* LevelScene.m */,
 				9C54D45915B054B200D52A22 /* GameOverScene.h */,
@@ -1402,8 +1404,6 @@
 		9CBF4822156F9C6200896EBF /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				9CFF0B86158A82C5000AA4E0 /* GameplayUILayer.h */,
-				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
 				9CF82A38158F68D900BDC2D7 /* GameoverUILayer.h */,
 				9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */,
 			);

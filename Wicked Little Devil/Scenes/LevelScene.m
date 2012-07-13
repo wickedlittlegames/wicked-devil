@@ -67,9 +67,9 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     GameplayUILayer *uilayer    = [GameplayUILayer node];
     GameoverUILayer *gameoverlayer = [GameoverUILayer node];
 
-    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-1-level-2.ccbi",worldNum,levelNum]); 
+    CCLOG(@"PULLING IN THE LEVEL.CCBI FILE / LAYER: %@",[NSString stringWithFormat:@"world-%i-level-%i.ccbi",worldNum,levelNum]); 
     LevelScene *objectLayer     = (LevelScene*)[CCBReader 
-                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-1-level-2.ccbi",worldNum,levelNum]
+                                        nodeGraphFromFile:[NSString stringWithFormat:@"world-%i-level-%i.ccbi",worldNum,levelNum]
                                         owner:NULL];
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];

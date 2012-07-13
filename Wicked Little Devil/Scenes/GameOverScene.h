@@ -14,6 +14,8 @@
 @interface GameOverScene : CCLayer {
     User *user;
     int total;
+    CCLabelTTF *label_score;
+    CCLabelTTF *label_score_type;
 }
 @property (nonatomic, assign) int score, timebonus, bigs, world, level;
 

@@ -48,6 +48,13 @@
         menu_back.position = ccp ( screenSize.width - 80, 10 );
         [self addChild:menu_back z:100];
         
+        label_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",score] fontName:font fontSize:fontsize];
+        [label_score setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:label_score];
+        
+        label_score_type = [CCLabelTTF labelWithString:@"SCORE:" fontName:font fontSize:fontsize];
+        [label_score_type setPosition:ccp(screenSize.width/2, screenSize.height/2 + 40)];
+        [self addChild:label_score_type];        
     }
     return self;
 }
@@ -84,7 +91,7 @@
 
 - (void) anim_1
 {
-    CCLOG(@"ANIM 1");    
+    CCLOG(@"ANIM 1");
     [self anim_2];
 }
 

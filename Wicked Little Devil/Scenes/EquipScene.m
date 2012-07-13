@@ -80,12 +80,14 @@
         // buttons for equip or purchase
         CCMenuItem *btn_equip = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Equip" fontName:font fontSize:fontsize] target:self selector:@selector(tap_equip:)];
         CCMenuItem *btn_buy = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Purchase" fontName:font fontSize:fontsize] target:self selector:@selector(tap_buy:)];    
+        CCMenuItem *btn_demo = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Demo" fontName:font fontSize:fontsize] target:self selector:@selector(tap_demob:)];    
         btn_equip.tag = i;
         btn_buy.tag = i;
+        btn_demo.tag = i;
         btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
         
         // Place the menu on the screen
-        CCMenu *menu = [CCMenu menuWithItems:btn_equip, btn_buy, nil];
+        CCMenu *menu = [CCMenu menuWithItems:btn_equip, btn_buy, btn_demo, nil];
         [menu alignItemsHorizontallyWithPadding:20];
         menu.position = ccp ( screenSize.width/2, 80 );
         [card addChild:menu];
@@ -99,14 +101,20 @@
     [self addChild:scroller];
 }
 
-- (void) tap_equip:(id)sender
+- (void) tap_equip:(CCMenuItem*)sender
 {
-    CCLOG(@"TAPPED EQUIP | TODO: SET UP EQUIP");
+    user.powerup = sender.tag;
+    [user sync];
 }
 
 - (void) tap_buy:(id)sender
 {
     CCLOG(@"TAPPED BUY | TODO: SET UP BUY");    
+}
+
+- (void) tap_demo:(id)sender
+{
+    CCLOG(@"PLAY A DEMO VIDEO OF THE POWERUP IN ACTION");
 }
 
 - (void) tap_back

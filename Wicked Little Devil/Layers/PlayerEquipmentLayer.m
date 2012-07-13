@@ -40,8 +40,8 @@
         }
         CCLOG(@"CREATED CARDS");            
         
-        //CCScrollLayer *scroller2 = [[CCScrollLayer alloc] initWithLayers:[NSArray arrayWithObjects:cards, nil] widthOffset: 0];
-        //[self addChild:scroller2];
+        CCScrollLayer *scroller2 = [[CCScrollLayer alloc] initWithLayers:cards widthOffset: 20];
+        [self addChild:scroller2];
         
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_back)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];

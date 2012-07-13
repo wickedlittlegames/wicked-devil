@@ -9,10 +9,9 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-#import "GameObject.h"
 #import "Player.h"
 
-@interface Platform : GameObject {}
+@interface Platform : CCSprite {}
 @property (nonatomic, assign) float health;
 @property (nonatomic, assign) NSString *type;
 @property (nonatomic, assign) BOOL animating, active, flipped;

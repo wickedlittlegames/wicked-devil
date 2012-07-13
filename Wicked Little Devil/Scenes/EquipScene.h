@@ -1,12 +1,15 @@
 //
-//  GameObject.h
+//  EquipScene.h
 //  Wicked Little Devil
 //
-//  Created by Andrew Girvan on 11/06/2012.
+//  Created by Andrew Girvan on 13/07/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
 #import "cocos2d.h"
 
-@interface GameObject : CCSprite {}
+@interface EquipScene : CCLayer {
+    
+}
++(CCScene *) scene;
 @end

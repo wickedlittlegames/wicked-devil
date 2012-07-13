@@ -120,7 +120,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
     [objectLayer setBackground_middle:_background_middle];
     [objectLayer setBackground_middle2:_background_middle2];
     [objectLayer setBackground_back:_background_back];*/
-
+    
     [objectLayer createWorldWithObjects:[objectLayer children]];
     
     CCLOG(@"RETURN SCENE");
@@ -161,7 +161,6 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
         }
     }
 
-    CCLOG(@"BEGIN THE GAME LOOP");
     [self schedule:@selector(update:)];
 }
 

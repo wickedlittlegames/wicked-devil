@@ -23,25 +23,20 @@
 	ShopScene *current = [ShopScene node];
     
     // Fill the scene
-	[scene addChild:current z:10];
+	[scene addChild:current];
     
     // Show the scene
 	return scene;
 }
 
--(void)buttonTapped:(id)sender
-{
-	NSLog(@"buttonTapped");
-}
-
-
 -(id) init
 {
     if( (self=[super init]) ) {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-        User *user = [[User alloc] init];
+        NSString *font = @"Marker Felt";
+        int fontsize = 18;
         
-        self.isTouchEnabled = YES;
+        User *user = [[User alloc] init];
         
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
@@ -60,9 +55,9 @@
         menu.position = ccp ( screenSize.width - 80, 10 );
         [self addChild:menu z:100];
         
-        CCLabelTTF *lbl_user_collected = [CCLabelTTF labelWithString:@"Collected:" fontName:@"Marker Felt" fontSize:18];
-        lbl_user_collected.position = ccp ( lbl_user_collected.contentSize.width, 10 );
-        lbl_user_collected.string = [NSString stringWithFormat:@"Collected: %i",user.collected];
+        // Collectable Button
+        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:fontsize];
+        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 20, 10 )];
         [self addChild:lbl_user_collected z:100];
     }
     return self;

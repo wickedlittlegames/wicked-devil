@@ -12,7 +12,6 @@
 #import "GameplayUILayer.h"
 #import "GameoverUILayer.h"
 
-#import "GameObject.h"
 #import "User.h"
 #import "Player.h"
 #import "Platform.h"
@@ -21,7 +20,7 @@
 #import "Trigger.h"
 
 @interface LevelScene : CCLayer {
-    GameObject *floor;
+    CCSprite *floor;
     float levelThreshold;
     NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
     

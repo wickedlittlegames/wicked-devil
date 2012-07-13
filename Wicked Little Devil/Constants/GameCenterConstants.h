@@ -4,18 +4,11 @@
 
 #pragma mark === IN APP PURCHASE IDS ===
 
-#define IAP_HEALTHBOOST 1    // .69
-#define IAP_DAMAGEINCREASE 2 // .69
-#define IAP_LIGHTFEET 3      // .69 
-#define IAP_DOUBLESOULS 4    // .69
-#define IAP_UNLOCK_WORLD_2 5 // .99
-#define IAP_UNLOCK_WORLD_3 6 // .99
-#define IAP_UNLOCK_WORLD_4 7 // .99
-#define IAP_UNLOCK_WORLD_5 8 // .99
-#define IAP_UNLOCK_WORLD_6 9 // .99
-#define IAP_ALL_POWERUPS 10  // 1.99
-#define IAP_ALL_WORLDS 11    // 4.99
-#define IAP_ALL_STUFF 12     // 5.99
+#define IAP_1000 1      //  .69
+#define IAP_2500 2      //  .99
+#define IAP_5000 3      // 1.69 
+#define IAP_10000 4    //  2.99
+#define IAP_100000 5    // 6.99
 
 #pragma mark === ACHIEVEMENT IDS ===
 
@@ -42,11 +35,10 @@
 
 #pragma mark === LEADERBOARD IDS ===
 
-#define LDB_GLOBAL 1
-#define LDB_WORLD_1 2
-#define LDB_WORLD_2 3
-#define LDB_WORLD_3 4
-#define LDB_WORLD_4 5
-#define LDB_WORLD_5 6
-#define LDB_WORLD_6 7
-#define LDB_WORLD_HARDCORE 8
+#define LDB_WORLD_1 1
+#define LDB_WORLD_2 2
+#define LDB_WORLD_3 3
+#define LDB_WORLD_4 4
+#define LDB_WORLD_5 5
+#define LDB_WORLD_6 6
+#define LDB_MOST_SOULS 7

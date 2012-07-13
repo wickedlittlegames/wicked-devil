@@ -9,10 +9,9 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-#import "GameObject.h"
 #import "Player.h"
 
-@interface Enemy : GameObject {}
+@interface Enemy : CCSprite {}
 
 @property (nonatomic,assign) bool active;
 @property (nonatomic,retain) NSString *type;

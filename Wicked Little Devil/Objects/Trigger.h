@@ -8,12 +8,10 @@
 
 #import "cocos2d.h"
 
-#import "GameObject.h"
 #import "Player.h"
 
-@interface Trigger : GameObject {
-    
-}
+@interface Trigger : CCSprite {}
+
 @property (nonatomic, assign) bool isEffectActive;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;

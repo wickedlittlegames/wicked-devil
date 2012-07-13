@@ -45,7 +45,6 @@
         [view addSubview:table];
         [app.window addSubview:view];
         
-        
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
         CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
         menu_back.position = ccp ( screenSize.width - 80, 10 );

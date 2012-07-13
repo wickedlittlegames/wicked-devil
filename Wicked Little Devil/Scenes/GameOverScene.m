@@ -27,6 +27,7 @@
     
     // Fill the scene
 	[scene addChild:current];
+    [current do_scores];
     
     // Show the scene
 	return scene;
@@ -34,38 +35,91 @@
 
 -(id) init
 {
-    if( (self=[super init]) ) {
-        //CGSize screenSize = [CCDirector sharedDirector].winSize;
-        //NSString *font = @"Marker Felt";
-        //int fontsize = 18;
+    if( (self=[super init]) ) 
+    {
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        NSString *font = @"Marker Felt";
+        int fontsize = 18;
         
         user = [[User alloc] init];
         
-        // Place static elements such as background
-        //CCSprite *background = [CCSprite spriteWithFile:@"bg_gameover.png"];
-        //[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        //[self addChild:background];
+        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
+        CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
+        menu_back.position = ccp ( screenSize.width - 80, 10 );
+        [self addChild:menu_back z:100];
         
-        if ( bigs >= 1 )
-        {
-            int facebook_bonus = ( user.isConnectedToFacebook ? 200 : 0 );
-            int score_calc = (score * bigs) + timebonus + facebook_bonus;
-            
-            CCLOG(@"SCORE IS: %i", score_calc);
-            
-            // Step through the animations for the scores
-            // - Show BASIC score
-            // - Add on multiplier for bigs
-            // - Add on time bonus
-            // - Add on potential Facebook bonus!
-            // - Final score on fire if highscore
-        }
-        else 
-        {
-            // don't do much, just show a fail screen
-        }
     }
     return self;
+}
+
+- (void) tap_back
+{
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+}
+
+- (void) do_scores
+{
+    if ( bigs >= 1 )
+    {
+        int facebook_bonus = ( user.isConnectedToFacebook ? 200 : 0 );
+        
+        total = (score * bigs) + timebonus + facebook_bonus;
+        
+        CCLOG(@"SCORE IS: %i (basic: %i, bigs: %i, timebonus: %i, fb: %i)", total, score, bigs, timebonus, facebook_bonus);
+        
+        // Step through the animations for the scores
+        [self anim_start];
+    }
+    else 
+    {
+        CCLOG(@"NO BIGS");
+    }
+}
+
+- (void) anim_start
+{
+    CCLOG(@"ANIM START");
+    [self anim_1];
+}
+
+- (void) anim_1
+{
+    CCLOG(@"ANIM 1");    
+    [self anim_2];
+}
+
+- (void) anim_2
+{
+    CCLOG(@"ANIM 2");    
+    [self anim_3];
+}
+
+- (void) anim_3
+{
+    CCLOG(@"ANIM 3");
+    [self anim_end];
+}
+
+- (void) anim_end
+{
+    CCLOG(@"ANIM END");
+    if (total > [user getHighscoreforWorld:world level:level])
+    {
+        // Show the highscore animation
+        [self anim_highscore];
+    }
+    
+    [self anim_menufade];
+}
+
+- (void) anim_highscore
+{
+    CCLOG(@"ANIM HIGHSCORE");
+}
+
+- (void) anim_menufade
+{
+    CCLOG(@"ANIM MENUFADE");
 }
 
 @end

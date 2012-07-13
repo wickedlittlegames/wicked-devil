@@ -13,9 +13,11 @@
 
 @interface GameOverScene : CCLayer {
     User *user;
+    int total;
 }
 @property (nonatomic, assign) int score, timebonus, bigs, world, level;
 
 +(CCScene *) sceneWithScore:(int)_score timebonus:(int)_timebonus bigs:(int)_bigs forWorld:(int)_world andLevel:(int)_level;
+- (void) do_scores;
 
 @end

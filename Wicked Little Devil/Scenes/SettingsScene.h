@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "User.h"
 #import "LevelSelectScene.h"
+#import "GameOverScene.h"
 
 @interface SettingsScene : CCLayer 
 {

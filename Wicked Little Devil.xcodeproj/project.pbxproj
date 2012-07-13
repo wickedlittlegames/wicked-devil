@@ -273,6 +273,7 @@
 		9C54D45815B0541700D52A22 /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45715B0541600D52A22 /* SettingsScene.m */; };
 		9C54D45B15B054B200D52A22 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45A15B054B200D52A22 /* GameOverScene.m */; };
 		9C54D46015B055CC00D52A22 /* EquipScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45F15B055CC00D52A22 /* EquipScene.m */; };
+		9C54D46515B06F8300D52A22 /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D46415B06F8300D52A22 /* StatsScene.m */; };
 		9C6149561577AF6100A6FF33 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149531577AF6100A6FF33 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C61496D1577B09600A6FF33 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149681577B09600A6FF33 /* LevelScene.m */; };
@@ -608,6 +609,8 @@
 		9C54D45A15B054B200D52A22 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverScene.m; path = Scenes/GameOverScene.m; sourceTree = "<group>"; };
 		9C54D45E15B055CC00D52A22 /* EquipScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EquipScene.h; path = Scenes/EquipScene.h; sourceTree = "<group>"; };
 		9C54D45F15B055CC00D52A22 /* EquipScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EquipScene.m; path = Scenes/EquipScene.m; sourceTree = "<group>"; };
+		9C54D46315B06F8300D52A22 /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatsScene.h; path = Scenes/StatsScene.h; sourceTree = "<group>"; };
+		9C54D46415B06F8300D52A22 /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatsScene.m; path = Scenes/StatsScene.m; sourceTree = "<group>"; };
 		9C6149521577AF6100A6FF33 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
 		9C6149531577AF6100A6FF33 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
@@ -1198,6 +1201,8 @@
 				9C086F9C15825E6F00E87785 /* ShopScene.m */,
 				9C54D45615B0541600D52A22 /* SettingsScene.h */,
 				9C54D45715B0541600D52A22 /* SettingsScene.m */,
+				9C54D46315B06F8300D52A22 /* StatsScene.h */,
+				9C54D46415B06F8300D52A22 /* StatsScene.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -1704,6 +1709,7 @@
 				9C54D45815B0541700D52A22 /* SettingsScene.m in Sources */,
 				9C54D45B15B054B200D52A22 /* GameOverScene.m in Sources */,
 				9C54D46015B055CC00D52A22 /* EquipScene.m in Sources */,
+				9C54D46515B06F8300D52A22 /* StatsScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

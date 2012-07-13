@@ -53,15 +53,32 @@
         [menu_equipment setPosition:ccp(screenSize.width - 40, 10 )];
         [self addChild:menu_equipment];
         
+        // Equippable Button
+        CCMenu *menu_stats = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"STATS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_stats)], nil];
+        [menu_stats setPosition:ccp(screenSize.width - 200, 10 )];
+        [self addChild:menu_stats];
+        
         // Settings Button
         CCMenu *menu_settings = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"SETTINGS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_settings)], nil];
         [menu_settings setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
         [self addChild:menu_settings];
         
         // Facebook Button
-        CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"LOGIN WITH FACEBOOK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
-        [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
-        [self addChild:menu_facebook];
+        if ( user.isConnectedToFacebook )
+        {   
+            NSArray *fbName = [[[PFUser currentUser] valueForKey:@"fbName"] componentsSeparatedByString:@" "];
+            NSString *firstName = [fbName objectAtIndex:0];
+            
+            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:[NSString stringWithFormat:@"Welcome to HELL, %@",firstName] fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
+            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
+            [self addChild:menu_facebook];
+        }
+        else 
+        {
+            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"LOGIN WITH FACEBOOK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
+            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
+            [self addChild:menu_facebook];            
+        }
     }
 	return self;    
 }
@@ -70,7 +87,12 @@
 
 - (void) tap_settings
 {
-    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[SettingsScene scene]];
+}
+
+- (void) tap_stats
+{
+    [[CCDirector sharedDirector] replaceScene:[StatsScene scene]];    
 }
 
 - (void) tap_store

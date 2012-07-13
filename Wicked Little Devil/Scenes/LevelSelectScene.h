@@ -17,6 +17,7 @@
 #import "EquipScene.h"
 #import "SettingsScene.h"
 #import "LevelScene.h"
+#import "StatsScene.h"
 
 #import "User.h"
 

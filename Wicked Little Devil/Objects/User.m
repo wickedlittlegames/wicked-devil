@@ -130,13 +130,6 @@
 
             [[PFUser currentUser] saveEventually];
         }
-        
-        // Updating Leaderboards
-        GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-        if (localPlayer.authenticated)
-        {
-            [self.gameKitHelper submitScore:score category:[NSString stringWithFormat:@"world-%i-level-%i",w,l]];
-        }
     }
 
 }
@@ -228,6 +221,7 @@
     CCLOG(@"Worlds Unlocked: %d",self.worlds_unlocked);    
     CCLOG(@"Cache Current World: %i",self.cache_current_world);    
     CCLOG(@"Collected: %i",self.collected);    
+    CCLOG(@"ParseDeets: %@",[PFUser currentUser]);
 }
 
 #pragma mark GameKitHelper delegate methods

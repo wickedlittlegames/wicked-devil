@@ -14,6 +14,8 @@
 #import "GameCenterConstants.h"
 
 #import "ShopScene.h"
+#import "EquipScene.h"
+#import "SettingsScene.h"
 #import "LevelScene.h"
 
 #import "User.h"

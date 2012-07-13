@@ -26,7 +26,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        // Screen Size
+        
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"Marker Felt";
         int fontsize = 18;
@@ -80,7 +80,7 @@
 
 - (void) tap_equipment
 {
-    //PlayerEquipmentLayer *layer = [PlayerEquipmentLayer node];
+    [[CCDirector sharedDirector] replaceScene:[EquipScene scene]];
 }
 
 - (void) tap_back

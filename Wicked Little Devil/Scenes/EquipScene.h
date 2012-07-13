@@ -7,9 +7,15 @@
 //
 
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 
-@interface EquipScene : CCLayer {
-    
+#import "User.h"
+
+@interface EquipScene : CCLayer 
+{
+    User *user;
+    CGSize screenSize;
 }
+
 +(CCScene *) scene;
 @end

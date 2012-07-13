@@ -13,7 +13,6 @@
 		9C00E3C3159CF20D005D9D08 /* bp_rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C00E3BF159CF20D005D9D08 /* bp_rat.png */; };
 		9C04FED515A7113D0030CFF5 /* Cards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C04FED415A7113D0030CFF5 /* Cards.plist */; };
 		9C086F9D15825E6F00E87785 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C086F9C15825E6F00E87785 /* ShopScene.m */; };
-		9C0C37F015ADC5BE00F6F772 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0C37EF15ADC5BE00F6F772 /* Card.m */; };
 		9C1162AC158772BC0006870F /* slide-in.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1162AB158772BC0006870F /* slide-in.png */; };
 		9C1162B21587E4940006870F /* devil2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1162B11587E4940006870F /* devil2.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
@@ -271,7 +270,6 @@
 		9C32AC3F1589EF1300B85726 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3E1589EF1300B85726 /* rat.png */; };
 		9C4F71DC15ADAE57002595C1 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F71DB15ADAE57002595C1 /* card.png */; };
 		9C4F71DF15ADAEAF002595C1 /* card-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F71DE15ADAEAF002595C1 /* card-hd.png */; };
-		9C4F71E215ADB0B9002595C1 /* PlayerEquipmentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F71E115ADB0B9002595C1 /* PlayerEquipmentLayer.m */; };
 		9C54D45815B0541700D52A22 /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45715B0541600D52A22 /* SettingsScene.m */; };
 		9C54D45B15B054B200D52A22 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45A15B054B200D52A22 /* GameOverScene.m */; };
 		9C54D46015B055CC00D52A22 /* EquipScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C54D45F15B055CC00D52A22 /* EquipScene.m */; };
@@ -337,8 +335,6 @@
 		9C04FED415A7113D0030CFF5 /* Cards.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cards.plist; path = Resources/Cards.plist; sourceTree = "<group>"; };
 		9C086F9B15825E6F00E87785 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopScene.h; path = Scenes/ShopScene.h; sourceTree = "<group>"; };
 		9C086F9C15825E6F00E87785 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopScene.m; path = Scenes/ShopScene.m; sourceTree = "<group>"; };
-		9C0C37EE15ADC5BE00F6F772 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = Objects/Card.h; sourceTree = "<group>"; };
-		9C0C37EF15ADC5BE00F6F772 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = Objects/Card.m; sourceTree = "<group>"; };
 		9C1162AB158772BC0006870F /* slide-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide-in.png"; sourceTree = "<group>"; };
 		9C1162B11587E4940006870F /* devil2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil2.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -606,8 +602,6 @@
 		9C32AC3E1589EF1300B85726 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
 		9C4F71DB15ADAE57002595C1 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 		9C4F71DE15ADAEAF002595C1 /* card-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-hd.png"; sourceTree = "<group>"; };
-		9C4F71E015ADB0B9002595C1 /* PlayerEquipmentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerEquipmentLayer.h; path = Layers/PlayerEquipmentLayer.h; sourceTree = "<group>"; };
-		9C4F71E115ADB0B9002595C1 /* PlayerEquipmentLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerEquipmentLayer.m; path = Layers/PlayerEquipmentLayer.m; sourceTree = "<group>"; };
 		9C54D45615B0541600D52A22 /* SettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsScene.h; path = Scenes/SettingsScene.h; sourceTree = "<group>"; };
 		9C54D45715B0541600D52A22 /* SettingsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsScene.m; path = Scenes/SettingsScene.m; sourceTree = "<group>"; };
 		9C54D45915B054B200D52A22 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = Scenes/GameOverScene.h; sourceTree = "<group>"; };
@@ -1176,8 +1170,6 @@
 		9C54D45C15B0551A00D52A22 /* UI Items */ = {
 			isa = PBXGroup;
 			children = (
-				9C0C37EE15ADC5BE00F6F772 /* Card.h */,
-				9C0C37EF15ADC5BE00F6F772 /* Card.m */,
 				9CFDC74415AC555400404AA3 /* SimpleTableCell.xib */,
 				9CFDC74715AC56D400404AA3 /* SimpleTableCell.h */,
 				9CFDC74815AC56D400404AA3 /* SimpleTableCell.m */,
@@ -1409,8 +1401,6 @@
 				9CFF0B87158A82C5000AA4E0 /* GameplayUILayer.m */,
 				9CF82A38158F68D900BDC2D7 /* GameoverUILayer.h */,
 				9CF82A39158F68D900BDC2D7 /* GameoverUILayer.m */,
-				9C4F71E015ADB0B9002595C1 /* PlayerEquipmentLayer.h */,
-				9C4F71E115ADB0B9002595C1 /* PlayerEquipmentLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1711,8 +1701,6 @@
 				9C227CF1159B6B7B00F7E6E1 /* IAPHelper.m in Sources */,
 				9C227CF6159B6CEC00F7E6E1 /* InAppRageIAPHelper.m in Sources */,
 				9CFDC74915AC56D400404AA3 /* SimpleTableCell.m in Sources */,
-				9C4F71E215ADB0B9002595C1 /* PlayerEquipmentLayer.m in Sources */,
-				9C0C37F015ADC5BE00F6F772 /* Card.m in Sources */,
 				9C54D45815B0541700D52A22 /* SettingsScene.m in Sources */,
 				9C54D45B15B054B200D52A22 /* GameOverScene.m in Sources */,
 				9C54D46015B055CC00D52A22 /* EquipScene.m in Sources */,

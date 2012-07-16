@@ -112,7 +112,7 @@
 - (void) tap_fake_gameover
 {
     CCLOG(@"FAKE A GAMEOVER SCREEN");
-    [[CCDirector sharedDirector] replaceScene:[GameOverScene sceneWithScore:1200 timebonus:300 bigs:3 forWorld:2 andLevel:3]];
+    [[CCDirector sharedDirector] replaceScene:[GameOverScene sceneWithScore:1200 timebonus:300 bigs:3 forWorld:1 andLevel:1]];
 }
 
 - (void) tap_dummy_level

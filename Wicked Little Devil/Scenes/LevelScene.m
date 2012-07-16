@@ -417,6 +417,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (void) tap_restart:(id)sender
 {
     [self removeAllChildrenWithCleanup:YES];
+    CCLOG(@"WORLD NUMBER: %i, LEVEL %i",worldNumber, levelNumber);
     [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:self.worldNumber LevelNum:self.levelNumber]];
 }
 

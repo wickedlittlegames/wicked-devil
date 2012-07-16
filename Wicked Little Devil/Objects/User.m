@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, levelprogress, worldprogress, gameKitHelper, powerup, powerups, worlds_unlocked, cache_current_world, offline;
+@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, gameKitHelper, powerup, powerups, worlds_unlocked, cache_current_world, offline;
 
 #pragma mark User creation/persistance methods
 
@@ -32,6 +32,7 @@
         self.worlds_unlocked        = [udata boolForKey:@"worlds_unlocked"];
         self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
         self.collected              = [udata integerForKey:@"collected"];
+        self.items                  = [udata objectForKey:@"items"];
         
         [self _log];
         
@@ -44,7 +45,8 @@
 {
     CCLOG(@"CREATING USER");
     
-    NSMutableArray *tmp_worlds, *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
         NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
@@ -58,6 +60,27 @@
     NSArray *worlds = tmp_worlds;
     NSArray *world_souls = tmp_worlds_souls;
     
+    // items
+    NSArray *contentArray = [[NSDictionary 
+                              dictionaryWithContentsOfFile:[[NSBundle mainBundle] 
+                                                            pathForResource:@"Cards" 
+                                                            ofType:@"plist"]
+                              ] objectForKey:@"Powerups"];
+    
+    NSMutableArray *itemsarr = [NSMutableArray arrayWithCapacity:[contentArray count]];
+    for (int i = 0; i <[contentArray count]; i++ )
+    {
+        if ( i == 0 )
+        {
+            [itemsarr addObject:[NSNumber numberWithInt:1]];
+        }
+        else 
+        {
+            [itemsarr addObject:[NSNumber numberWithInt:0]];
+        }
+    }
+    
+    [udata setObject:itemsarr forKey:@"items"];
     [udata setObject:worlds forKey:@"highscores"];
     [udata setObject:world_souls forKey:@"souls"];
     [udata setInteger:1 forKey:@"levelprogress"];
@@ -106,10 +129,23 @@
     return ([PFUser currentUser] && [self isOnline] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
 }
 
+- (void) buyItem:(int)item
+{
+    NSMutableArray *items_tmp = [[udata objectForKey:@"items"] mutableCopy];
+    [items_tmp replaceObjectAtIndex:item withObject:[NSNumber numberWithInt:1]];
+    
+    [udata setObject:items_tmp forKey:@"items"];
+    [udata synchronize];
+    
+    self.items = [udata objectForKey:@"items"];    
+}
+
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
-    NSMutableArray *highscores_tmp = [[udata objectForKey:@"highscores"] mutableCopy];
+    NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
+    CCLOG(@"highscores_tmp: %@",highscores_tmp);
     int current_highscore = [self getHighscoreforWorld:w level:l];
+    CCLOG(@"CURRENT HIGHSCORE:%i",current_highscore);
     if (score > current_highscore)
     {
         // Updating Local
@@ -123,12 +159,12 @@
         if ( self.isConnectedToFacebook )
         {   
             PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-            [highscore setObject:[PFUser currentUser] forKey:@"user"];        
+            [highscore setObject:[PFUser currentUser] forKey:@"user"];
+            [highscore setObject:[[PFUser currentUser] valueForKey:@"fbId"] forKey:@"fbId"];
             [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
             [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
             [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-
-            [[PFUser currentUser] saveEventually];
+            [highscore saveInBackground];
         }
     }
 
@@ -222,6 +258,7 @@
     CCLOG(@"Cache Current World: %i",self.cache_current_world);    
     CCLOG(@"Collected: %i",self.collected);    
     CCLOG(@"ParseDeets: %@",[PFUser currentUser]);
+    CCLOG(@"Items: %@", self.items);
 }
 
 #pragma mark GameKitHelper delegate methods

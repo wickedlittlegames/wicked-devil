@@ -83,8 +83,30 @@
         CCMenuItem *btn_demo = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Demo" fontName:font fontSize:fontsize] target:self selector:@selector(tap_demob:)];    
         btn_equip.tag = i;
         btn_buy.tag = i;
+        btn_buy.userObject = [NSNumber numberWithInt:3000];
         btn_demo.tag = i;
-        btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
+        
+        if ( [[user.items objectAtIndex:i] intValue] == 1 )
+        {
+            btn_buy.visible = FALSE;
+            btn_equip.visible = TRUE;
+            btn_demo.visible = FALSE;
+            
+            btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
+        }
+        else 
+        {
+            btn_buy.visible = TRUE;
+            btn_equip.visible = FALSE;
+            btn_demo.visible = TRUE;
+        }
+        
+        if ( i == 0 )
+        {
+            btn_buy.visible = FALSE;
+            btn_demo.visible = FALSE;
+            btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
+        }
         
         // Place the menu on the screen
         CCMenu *menu = [CCMenu menuWithItems:btn_equip, btn_buy, btn_demo, nil];
@@ -107,9 +129,20 @@
     [user sync];
 }
 
-- (void) tap_buy:(id)sender
+- (void) tap_buy:(CCMenuItem*)sender
 {
     CCLOG(@"TAPPED BUY | TODO: SET UP BUY");    
+    int cost = [sender.userObject intValue];
+    if ( user.collected >= cost )
+    {
+        user.collected -= cost;
+        [user buyItem:sender.tag];
+        [user sync];
+    }
+    else 
+    {
+        CCLOG(@"NOT ENOUGH MONEY");
+    }
 }
 
 - (void) tap_demo:(id)sender

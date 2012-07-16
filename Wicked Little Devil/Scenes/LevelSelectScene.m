@@ -183,6 +183,8 @@
     NSNumber* itemsPerRow = [NSNumber numberWithInt:4];
     float menu_x = (screenSize.width/2);
     float menu_y = 275;
+    NSString *font = @"Marker Felt";
+    int fontsize = 12;
     
     NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     
@@ -205,7 +207,7 @@
                                      target:self 
                                      selector:@selector(tap_level:)];
             
-            CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",w,lvl] fontName:@"Marker Felt" fontSize:12];
+            CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",w,lvl] fontName:font fontSize:fontsize];
             lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
             [btn_level addChild:lbl_level_name];
             
@@ -244,7 +246,7 @@
                 int souls = [user getSoulsforWorld:w level:lvl];
                 world_souls_total += souls;
                 
-                CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:@"Marker Felt" fontSize:16];
+                CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:font fontSize:16];
                 lbl_level_souls.color = ccc3(0,0,0);
                 lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
                 [btn_level addChild:lbl_level_souls];                    
@@ -255,11 +257,11 @@
         
         [menu_world alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
         
-        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:@"Marker Felt" fontSize:14];
+        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:font fontSize:14];
         world_score.position = ccp (90, 390);
         [world addChild:world_score];            
         
-        CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:@"Marker Felt" fontSize:14];
+        CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:14];
         world_stars.position = ccp ( screenSize.width - 80, 390);
         [world addChild:world_stars];
         
@@ -268,13 +270,35 @@
     }
     
     CCLayer *purgatory = [CCLayer node];
-    CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:@"Marker Felt" fontSize:18];
+    CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:font fontSize:18];
     lbl_purgatory.position = ccp ( screenSize.width/2, 420 );
     [purgatory addChild:lbl_purgatory];
     [worlds addObject:purgatory];
     
     CCLayer *community = [CCLayer node];
-    CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:@"Marker Felt" fontSize:18];
+    CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:font fontSize:18];
+    CCLabelTTF *news = [CCLabelTTF labelWithString:@"You need to be online to retreive the latest news" fontName:font fontSize:14];
+    [news setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    if ( user.isOnline )
+    {
+        PFQuery *query = [PFQuery queryWithClassName:@"News"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (!error) {
+                for (int i = 0; i < [posts count]; i++)
+                {
+                    PFObject *post = [[posts objectAtIndex:i] valueForKey:@"Content"];
+                    [news setString:[NSString stringWithFormat:@"%@",post]];
+                }
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+
+    }
+    
+    [community addChild:news];
     lbl_community.position = ccp ( screenSize.width/2, 420 );
     [community addChild:lbl_community];        
     [worlds addObject:community];

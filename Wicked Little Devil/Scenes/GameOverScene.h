@@ -11,11 +11,13 @@
 #import "LevelSelectScene.h"
 #import "LevelScene.h"
 
-@interface GameOverScene : CCLayer {
+@interface GameOverScene : CCLayer <PF_FBRequestDelegate> {
     User *user;
     int total;
     CCLabelTTF *label_score;
     CCLabelTTF *label_score_type;
+    NSArray *friendUsers;
+    NSMutableArray *friendIds;
 }
 @property (nonatomic, assign) int score, timebonus, bigs, world, level;
 

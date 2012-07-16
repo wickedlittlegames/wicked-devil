@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world;
-@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups;
+@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups, *items;
 @property (nonatomic, assign) bool worlds_unlocked, offline;
 
 - (void) create;
@@ -27,6 +27,7 @@
 - (BOOL) isOnline; // is connected to internet
 - (BOOL) isConnectedToFacebook; // can collect
 
+- (void) buyItem:(int)item;
 - (void) setHighscore:(int)score world:(int)w level:(int)l;
 - (void) setSouls:(int)souls world:(int)w level:(int)l;
 

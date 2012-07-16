@@ -188,6 +188,34 @@
     
     NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     
+    CCLayer *community = [CCLayer node];
+    CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:font fontSize:18];
+    CCLabelTTF *news = [CCLabelTTF labelWithString:@"You need to be online to retreive the latest news" fontName:font fontSize:14];
+    [news setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    if ( user.isOnline )
+    {
+        PFQuery *query = [PFQuery queryWithClassName:@"News"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (!error) {
+                for (int i = 0; i < [posts count]; i++)
+                {
+                    PFObject *post = [[posts objectAtIndex:i] valueForKey:@"Content"];
+                    [news setString:[NSString stringWithFormat:@"%@",post]];
+                }
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+        
+    }
+    
+    [community addChild:news];
+    lbl_community.position = ccp ( screenSize.width/2, 420 );
+    [community addChild:lbl_community];        
+    [worlds addObject:community];
+    
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
         CCLayer *world = [CCLayer node];
@@ -275,36 +303,18 @@
     [purgatory addChild:lbl_purgatory];
     [worlds addObject:purgatory];
     
-    CCLayer *community = [CCLayer node];
-    CCLabelTTF *lbl_community = [CCLabelTTF labelWithString:@"COMMUNITY" fontName:font fontSize:18];
-    CCLabelTTF *news = [CCLabelTTF labelWithString:@"You need to be online to retreive the latest news" fontName:font fontSize:14];
-    [news setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    
-    if ( user.isOnline )
+    CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
+    if ( user.cache_current_world == 0 )
     {
-        PFQuery *query = [PFQuery queryWithClassName:@"News"];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (!error) {
-                for (int i = 0; i < [posts count]; i++)
-                {
-                    PFObject *post = [[posts objectAtIndex:i] valueForKey:@"Content"];
-                    [news setString:[NSString stringWithFormat:@"%@",post]];
-                }
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-
+        [scroller selectPage:1];
+        user.cache_current_world = 1;
+        [user sync];
+    }
+    else 
+    {
+        [scroller selectPage:user.cache_current_world];        
     }
     
-    [community addChild:news];
-    lbl_community.position = ccp ( screenSize.width/2, 420 );
-    [community addChild:lbl_community];        
-    [worlds addObject:community];
-    
-    CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-    [scroller selectPage:user.cache_current_world-1];
     [self addChild:scroller];
 }
 

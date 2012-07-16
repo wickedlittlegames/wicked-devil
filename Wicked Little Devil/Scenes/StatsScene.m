@@ -35,10 +35,10 @@
         
         user = [[User alloc] init];
         
-        app = (AppController*)[[UIApplication sharedApplication] delegate];
-        view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        data = [NSArray arrayWithObjects:@"Stat 1", @"Stat 2", nil];
+        app     = (AppController*)[[UIApplication sharedApplication] delegate];
+        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
+        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
+        data    = [NSArray arrayWithObjects:@"Stat 1", @"Stat 2", nil];
         
         table.dataSource = self;
         table.delegate   = self;
@@ -48,7 +48,7 @@
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
         CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
         menu_back.position = ccp ( screenSize.width - 80, 10 );
-        [self addChild:menu_back z:100]; 
+        [self addChild:menu_back z:100];
     }
     return self;
 }

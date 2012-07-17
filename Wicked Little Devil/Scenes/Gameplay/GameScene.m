@@ -5,7 +5,6 @@
 //  Created by Andrew Girvan on 17/07/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
-
 #import "GameScene.h"
 
 @implementation GameScene
@@ -15,28 +14,30 @@
 
 #pragma mark === Init ===
 
-+(CCScene *) scene
++(CCScene *) sceneWithWorld:(int)w andLevel:(int)l
 {
     // Create a Scene
 	CCScene *scene = [CCScene node];
     
-    GameScene *layer = [GameScene node];
+    GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l];
     [scene addChild:layer];
 
     // Show the scene
 	return scene;
 }
 
-- (id) init
+- (id) initWithWorld:(int)w andLevel:(int)l
 {
 	if( (self=[super init]) ) 
     {
         user = [[User alloc] init];
+        world = w;
+        level = l;
         
         self.isTouchEnabled = YES;
         
         CCLOG(@"INIT: W: %i, L: %i", world, level);
-        NSString *file_level = [NSString stringWithFormat:@"world-6-level-66.ccbi",world,level];
+        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",world,level];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];

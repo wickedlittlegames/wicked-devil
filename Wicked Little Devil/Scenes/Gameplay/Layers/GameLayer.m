@@ -9,15 +9,12 @@
 #import "GameLayer.h"
 #import "GameScene.h"
 
-GameScene *_parent;
-
 @implementation GameLayer
 @synthesize platforms, collectables, bigcollectables, enemies, triggers;
 
 - (id) init
 {
 	if( (self=[super init]) ) {
-        _parent = (GameScene*)self.parent;
     }
 	return self;
 }
@@ -88,7 +85,6 @@ GameScene *_parent;
             switch (trigger.tag)
             {
                 default:
-                    CCLOG(@"DOING GAME OVER");
                     break;
             }
         }

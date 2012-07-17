@@ -20,5 +20,4 @@
 @property (nonatomic) UIWindow *window;
 @property (readonly) UINavigationController *navController;
 @property (unsafe_unretained, readonly) CCDirectorIOS *director;
-
 @end

@@ -37,7 +37,8 @@
 @property (nonatomic, assign) float threshold;
 @property (nonatomic, assign) bool started, won;
 
-+(CCScene *) scene;
++(CCScene *) sceneWithWorld:(int)w andLevel:(int)l;
+- (id) initWithWorld:(int)w andLevel:(int)l;
 - (void) end;
 
 @end

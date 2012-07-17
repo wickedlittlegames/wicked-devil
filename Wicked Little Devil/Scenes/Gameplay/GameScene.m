@@ -12,6 +12,8 @@
 @synthesize started, won; // bools
 @synthesize threshold; // floats
 
+static GameScene* _sharedGameScene = nil;
+
 #pragma mark === Init ===
 
 +(CCScene *) sceneWithWorld:(int)w andLevel:(int)l
@@ -24,6 +26,16 @@
 
     // Show the scene
 	return scene;
+}
+
++(GameScene *) sharedGameScene
+{
+    @synchronized([GameScene class]) 
+    {
+        if (!_sharedGameScene) _sharedGameScene = [[self alloc] init];
+        return _sharedGameScene;
+    }
+    return nil;
 }
 
 - (id) initWithWorld:(int)w andLevel:(int)l

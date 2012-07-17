@@ -85,6 +85,7 @@
             switch (trigger.tag)
             {
                 default:
+                    [[GameScene sharedGameScene] end];
                     break;
             }
         }

@@ -38,6 +38,7 @@
 @property (nonatomic, assign) bool started, won;
 
 +(CCScene *) sceneWithWorld:(int)w andLevel:(int)l;
++(GameScene *) sharedGameScene;
 - (id) initWithWorld:(int)w andLevel:(int)l;
 - (void) end;
 

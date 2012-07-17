@@ -208,7 +208,6 @@
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
-        
     }
     
     [community addChild:news];

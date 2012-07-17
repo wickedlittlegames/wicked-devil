@@ -88,8 +88,7 @@ GameScene *_parent;
             switch (trigger.tag)
             {
                 default:
-                    _parent.won = ( player.bigcollected > 0 ? TRUE : FALSE );
-                    [_parent end];
+                    CCLOG(@"DOING GAME OVER");
                     break;
             }
         }

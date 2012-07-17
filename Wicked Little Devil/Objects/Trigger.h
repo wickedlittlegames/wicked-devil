@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-
 #import "Player.h"
 
 @interface Trigger : CCSprite {}

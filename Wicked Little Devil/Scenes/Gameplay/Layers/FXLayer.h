@@ -6,11 +6,10 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface FXLayer : CCLayer {
-    
-}
+@interface FXLayer : CCLayer {}
+
+- (void) update:(float)threshold;
 
 @end

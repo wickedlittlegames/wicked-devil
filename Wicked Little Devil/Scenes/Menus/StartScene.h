@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "LevelSelectScene.h"
+#import "GameScene.h"
 
 @interface StartScene : CCLayer {}
 +(CCScene *) scene;

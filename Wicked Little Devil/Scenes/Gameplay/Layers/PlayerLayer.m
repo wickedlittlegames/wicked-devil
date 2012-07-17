@@ -10,5 +10,19 @@
 
 
 @implementation PlayerLayer
+@synthesize player;
+
+- (id) init
+{
+	if( (self=[super init]) ) 
+    {
+        
+        player = [Player spriteWithFile:@"devil2.png"];
+        [player setPosition:ccp ( 160 , 110 )];
+        [self addChild:player];
+        
+    }
+	return self;
+}
 
 @end

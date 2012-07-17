@@ -11,4 +11,18 @@
 
 @implementation FXLayer
 
+- (id) init
+{
+	if( (self=[super init]) ) 
+    {
+        
+    }
+	return self;
+}
+
+- (void) update:(float)threshold
+{
+    
+}
+
 @end

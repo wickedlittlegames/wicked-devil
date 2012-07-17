@@ -6397,7 +6397,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>LevelScene</string>
+		<string>GameLayer</string>
 		<key>memberVarAssignmentName</key>
 		<string></string>
 		<key>memberVarAssignmentType</key>

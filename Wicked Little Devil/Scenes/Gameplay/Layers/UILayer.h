@@ -6,11 +6,12 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Player.h"
 
-@interface UILayer : CCLayer {
-    
-}
+@interface UILayer : CCLayer {}
+@property (nonatomic, retain) CCLabelTTF *label_score, *label_health, *label_bigs;
+
+- (void) update:(Player*)player;
 
 @end

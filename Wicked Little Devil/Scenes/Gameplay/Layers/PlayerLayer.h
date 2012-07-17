@@ -6,11 +6,11 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface PlayerLayer : CCLayer {
-    
-}
+#import "Player.h"
+
+@interface PlayerLayer : CCLayer {}
+@property (nonatomic, retain) Player *player;
 
 @end

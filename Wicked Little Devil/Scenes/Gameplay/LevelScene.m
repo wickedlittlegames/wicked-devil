@@ -19,6 +19,7 @@ CCTexture2D *platform_toggle1, *platform_toggle2;
 - (id) init
 {
 	if( (self=[super init]) ) {
+        CCLOG(@"WHAT???????");
         [[CCDirector sharedDirector]setDisplayStats:YES];
         
         CCLOG(@"INIT LEVELSCENE");

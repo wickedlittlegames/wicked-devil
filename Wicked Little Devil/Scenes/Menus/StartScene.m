@@ -43,7 +43,9 @@
 }
 
 - (void)tap_start:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    //[[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    CCLOG(@"CLICKED");
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]];
 }
 
 @end

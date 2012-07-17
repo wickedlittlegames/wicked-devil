@@ -16,6 +16,7 @@
 {
 	if( (self=[super init]) ) 
     {
+        self.isTouchEnabled = YES;
         
         player = [Player spriteWithFile:@"devil2.png"];
         [player setPosition:ccp ( 160 , 110 )];

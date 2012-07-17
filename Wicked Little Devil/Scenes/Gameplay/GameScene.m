@@ -33,8 +33,10 @@
     {
         user = [[User alloc] init];
         
-        CCLOG(@"INIT");
-        NSString *file_level = [NSString stringWithFormat:@"world-1-level-1.ccbi",world,level];
+        self.isTouchEnabled = YES;
+        
+        CCLOG(@"INIT: W: %i, L: %i", world, level);
+        NSString *file_level = [NSString stringWithFormat:@"world-6-level-66.ccbi",world,level];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
@@ -56,6 +58,8 @@
         [self addChild:layer_ui];
         
         player = layer_player.player;
+        [player setupPowerup:user.powerup];
+        
         location_touch = player.position;
         
         self.started = NO;
@@ -126,7 +130,16 @@
         [user sync];
         
         [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                                   sceneWithScore:score 
+                                                   sceneWithScore:player.score 
+                                                   timebonus:100 
+                                                   bigs:player.bigcollected 
+                                                   forWorld:world 
+                                                   andLevel:level]];
+    }
+    else 
+    {
+        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
+                                                   sceneWithScore:player.score 
                                                    timebonus:100 
                                                    bigs:player.bigcollected 
                                                    forWorld:world 
@@ -156,7 +169,7 @@
 
 - (void)tap_launch:(id)sender
 {
-    layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed*2 );
+    layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     self.started = YES;
     menu.visible = NO;
 }

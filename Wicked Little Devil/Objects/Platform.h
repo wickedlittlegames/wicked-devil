@@ -17,9 +17,7 @@
 @property (nonatomic, assign) BOOL animating, active, flipped;
 @property (nonatomic, assign) CGPoint original_position;
 
-- (BOOL) isIntersectingPlayer:(Player*)player;
-- (BOOL) isAlive;
-- (void) takeDamagefromPlayer:(Player*)player;
+- (void) intersectionCheck:(Player*)player;
 - (void) setupHVMovement;
 
 @end

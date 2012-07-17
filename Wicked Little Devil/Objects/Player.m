@@ -16,9 +16,7 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 7.5;        
-        
-        self.stats = [NSUserDefaults standardUserDefaults];
+        self.jumpspeed = 12.5;        
         
         self.health = 10.0;
         self.damage = 1.0;
@@ -44,7 +42,7 @@
     }
 }
 
-- (BOOL) isAlive 
+- (BOOL) isAlive
 {
     return ( self.health > 0.0 ? TRUE : FALSE );
 }
@@ -100,11 +98,6 @@
             // fun card - dubstep noises when jumping on platforms
             
     }
-}
-
-- (void) killObject:(id)sender
-{
-    
 }
 
 @end

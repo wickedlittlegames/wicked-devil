@@ -24,25 +24,36 @@
     return self;
 }
 
--(BOOL) isIntersectingPlayer:(Player*)player
-{   
-    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible )
+- (void) intersectionCheck:(Player*)player
+{
+    if ( self.health > 0 && self.active )
     {
-        return TRUE;
+        if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible )
+        {
+            [self doAction:self.tag player:player];
+        }
     }
-    return FALSE;
 }
 
--(void)takeDamagefromPlayer:(Player*)player
+- (void) doAction:(int)tag player:(Player*)player
 {
-    self.health = self.health - player.damage;
-    self.visible = (self.health == 0 ? FALSE : TRUE);
+    switch (self.tag)
+    {
+        case 0:
+            [player jump:player.jumpspeed];
+            break;
+        case 1: 
+            [player jump:player.jumpspeed*1.5];
+            break;
+        default:
+            [player jump:player.jumpspeed];
+            break;
+    }
 }
 
--(BOOL)isAlive
-{
-    return ( self.health > 0.0 ? TRUE : FALSE );
-}
+
+
+
 
 - (void) setupHVMovement
 {

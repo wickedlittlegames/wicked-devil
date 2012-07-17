@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 #import "User.h"
 #import "LevelSelectScene.h"
-#import "LevelScene.h"
+#import "GameScene.h"
 
 @interface GameOverScene : CCLayer <PF_FBRequestDelegate> {
     User *user;

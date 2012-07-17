@@ -118,7 +118,7 @@
 - (void) tap_dummy_level
 {
     CCLOG(@"START AN EXTREME LEVEL WITH ALL THE STUFF IN IT BUT ITS NOT POSSIBLE TO DIE");
-    [[CCDirector sharedDirector] replaceScene:[LevelScene sceneWithWorldNum:6 LevelNum:66]];
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]];
 }
 
 @end

@@ -58,22 +58,9 @@ GameScene *_parent;
 
 - (void) update:(Player*)player threshold:(float)levelThreshold
 {       
-    if ( levelThreshold < 0 ) self.position = ccp (self.position.x, self.position.y + levelThreshold);
-    
     for (Platform *platform in platforms)
     {       
-        if ( platform.isAlive && platform.active )
-        {
-            if ( [platform isIntersectingPlayer:player] ) 
-            {
-                switch (platform.tag)
-                {
-                    case 0:
-                        [player jump:player.jumpspeed];
-                        break;
-                }
-            }
-        }
+        [platform intersectionCheck:player];
     }
     
     for (Collectable *collectable in collectables)
@@ -81,7 +68,7 @@ GameScene *_parent;
         if ( [collectable isIntersectingPlayer:player] ) 
         {
             player.collected++;
-            player.score ++;
+            player.score++;
         }
     }
     
@@ -107,6 +94,8 @@ GameScene *_parent;
             }
         }
     }
+    
+    if ( levelThreshold < 0 ) self.position = ccp (self.position.x, self.position.y + levelThreshold);
 }
 
 @end

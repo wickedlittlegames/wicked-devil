@@ -118,11 +118,11 @@
 - (void) anim_end
 {
     CCLOG(@"ANIM END");
-    if (total > [user getHighscoreforWorld:world level:level])
-    {
-        // Show the highscore animation
-        [self anim_highscore];
-    }
+//    if (total > [user getHighscoreforWorld:world level:level])
+//    {
+//        // Show the highscore animation
+//        [self anim_highscore];
+//    }
     
     [self anim_menufade];
 }

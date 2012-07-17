@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 @interface Player : CCSprite {
-    CCSpriteBatchNode *anim_sprites_jump;
+    
 }
 
 @property (nonatomic, assign) float health, damage, jumpspeed, modifier_gravity;

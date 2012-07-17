@@ -16,7 +16,7 @@
 #import "ShopScene.h"
 #import "EquipScene.h"
 #import "SettingsScene.h"
-#import "LevelScene.h"
+#import "GameScene.h"
 #import "StatsScene.h"
 
 #import "User.h"

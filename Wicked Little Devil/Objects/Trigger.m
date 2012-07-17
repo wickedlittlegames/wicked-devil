@@ -10,45 +10,16 @@
 #import "CCNode+CoordHelpers.h"
 
 @implementation Trigger
-@synthesize isEffectActive;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
-    if( (self=[super initWithTexture:texture rect:rect]))
-    {
-        // defaults
-        self.visible = FALSE;
-        self.isEffectActive = FALSE;
-    }
+    if( (self=[super initWithTexture:texture rect:rect])) {}
     return self;
 }
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible ) 
-    {
-        return TRUE;
-    }
-    return FALSE;
-}
-
-- (void) toggleEffect
-{
-    // do the partical effect
-    self.isEffectActive = !self.isEffectActive;
-    if (isEffectActive)
-    {
-        // do effect
-    }
-    else 
-    {
-        // do effect
-    }
-}
-
-- (void) damageToPlayer:(Player*)player
-{
-    player.health = player.health - 1.0;
+    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible );
 }
 
 @end

@@ -105,7 +105,7 @@ GameScene *_parent;
                     [_parent end];
                     break;
             }
-        }  
+        }
     }
 }
 

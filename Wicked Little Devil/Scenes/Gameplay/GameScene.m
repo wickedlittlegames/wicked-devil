@@ -29,7 +29,9 @@
 
 - (id) init
 {
-	if( (self=[super init]) ) {
+	if( (self=[super init]) ) 
+    {
+        user = [[User alloc] init];
         
         CCLOG(@"INIT");
         NSString *file_level = [NSString stringWithFormat:@"world-1-level-1.ccbi",world,level];
@@ -38,12 +40,13 @@
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
         [self addChild:menu];
-    
+
         layer_bg        = [BGLayer node];
         layer_fx        = [FXLayer node];
+        layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
         layer_player    = [PlayerLayer node];
         layer_ui        = [UILayer node];
-        layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
+
         [layer_game createWorldWithObjects:[layer_game children]];
         
         [self addChild:layer_bg];
@@ -55,12 +58,8 @@
         player = layer_player.player;
         location_touch = player.position;
         
-        user = [[User alloc] init];
-        
         self.started = NO;
-        
         [self schedule:@selector(update:)];
-        
     }
 	return self;
 }

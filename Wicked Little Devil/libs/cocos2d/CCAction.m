@@ -30,6 +30,7 @@
 #import "CCAction.h"
 #import "CCActionInterval.h"
 #import "Support/CGPointExtension.h"
+#import "Player.h"
 
 //
 // Action Base Class
@@ -321,17 +322,42 @@
 
 -(void) step:(ccTime) dt
 {
-	if(boundarySet)
-	{
-		// whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
-		if(boundaryFullyCovered)
-			return;
+    
+    #define CLAMP(x,y,z) MIN(MAX(x,y),z)
+    
+    CGPoint pos;
+    if(boundarySet)
+    {
+        // whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
+        if(boundaryFullyCovered) return;
+        
+        CGPoint tempPos = ccpSub(halfScreenSize, followedNode_.position);
+        pos = ccp(CLAMP(tempPos.x,leftBoundary,rightBoundary), CLAMP(tempPos.y,bottomBoundary,topBoundary));
+    }
+    else {
+        // pos = ccpSub( halfScreenSize, followedNode_.position );
+        CCNode *n = (CCNode*)target_;
+        float s = n.scale;
+        pos = ccpSub( halfScreenSize, followedNode_.position );
+        pos.x *= s;
+        pos.y *= s;
+    }
+    
+    CGPoint moveVect;
+    
+    CGPoint oldPos = [target_ position];
+    double dist = ccpDistance(pos, oldPos);
 
-		CGPoint tempPos = ccpSub( halfScreenSize, followedNode_.position);
-		[target_ setPosition:ccp(clampf(tempPos.x,leftBoundary,rightBoundary), clampf(tempPos.y,bottomBoundary,topBoundary))];
-	}
-	else
-		[target_ setPosition:ccpSub( halfScreenSize, followedNode_.position )];
+//    if ( pos.y < oldPos.y )
+//    {
+        if (dist > 1){
+            moveVect = ccpMult(ccpSub(pos,oldPos),0.08); //0.05 is the smooth constant.
+            oldPos = ccpAdd(oldPos, moveVect);
+            [target_ setPosition:oldPos];
+        }
+//    }
+    
+    #undef CLAMP
 }
 
 

@@ -29,6 +29,7 @@
     User        *user;
     
     CGPoint location_touch;
+    CGSize screenSize;
     
     CCMenu *menu; // temp
 }

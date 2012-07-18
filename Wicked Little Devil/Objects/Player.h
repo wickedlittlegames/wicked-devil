@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected, bigcollected, score;
 
++(Player *) sharedPlayer;
 - (BOOL) isAlive;
 - (void) jump:(float)speed;
 - (void) movement:(float)threshhold withGravity:(float)gravity;

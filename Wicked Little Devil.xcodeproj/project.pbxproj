@@ -310,7 +310,6 @@
 		9CDF944815B561EE0017E58B /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944215B561EE0017E58B /* StatsScene.m */; };
 		9CDF944C15B561FA0017E58B /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944A15B561FA0017E58B /* SimpleTableCell.m */; };
 		9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */; };
-		9CEAB0D715B59CE400CC2EC5 /* world-6-level-66.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CEAB0D615B59CE400CC2EC5 /* world-6-level-66.ccbi */; };
 		9CEC366C158A2894008B127E /* bigcollectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3662158A2894008B127E /* bigcollectable.png */; };
 		9CEC366D158A2894008B127E /* collectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3663158A2894008B127E /* collectable.png */; };
 		9CEC366E158A2894008B127E /* platform-bouncy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC3664158A2894008B127E /* platform-bouncy.png */; };
@@ -664,7 +663,6 @@
 		9CDF944915B561FA0017E58B /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableCell.h; path = "Scenes/UI Items/SimpleTableCell.h"; sourceTree = "<group>"; };
 		9CDF944A15B561FA0017E58B /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableCell.m; path = "Scenes/UI Items/SimpleTableCell.m"; sourceTree = "<group>"; };
 		9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleTableCell.xib; path = "Scenes/UI Items/SimpleTableCell.xib"; sourceTree = "<group>"; };
-		9CEAB0D615B59CE400CC2EC5 /* world-6-level-66.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-6-level-66.ccbi"; path = "../../../../../../../../../Desktop/ccb 4/world-6-level-66.ccbi"; sourceTree = "<group>"; };
 		9CEC3662158A2894008B127E /* bigcollectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigcollectable.png; sourceTree = "<group>"; };
 		9CEC3663158A2894008B127E /* collectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectable.png; sourceTree = "<group>"; };
 		9CEC3664158A2894008B127E /* platform-bouncy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-bouncy.png"; sourceTree = "<group>"; };
@@ -1374,7 +1372,6 @@
 		9C8DC28F157F94E800760A04 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				9CEAB0D615B59CE400CC2EC5 /* world-6-level-66.ccbi */,
 				9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */,
 				9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */,
 				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
@@ -1692,7 +1689,6 @@
 				9C4F71DC15ADAE57002595C1 /* card.png in Resources */,
 				9C4F71DF15ADAEAF002595C1 /* card-hd.png in Resources */,
 				9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */,
-				9CEAB0D715B59CE400CC2EC5 /* world-6-level-66.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 - (id) init
 {
 	if( (self=[super init]) ) {
+        
     }
 	return self;
 }
@@ -57,6 +58,10 @@
 {       
     for (Platform *platform in platforms)
     {       
+        if ([platform worldBoundingBox].origin.y < -20 )
+        {
+            platform.visible = NO; platform.active = NO;
+        }
         [platform intersectionCheck:player];
     }
     
@@ -91,7 +96,7 @@
         }
     }
     
-    if ( levelThreshold < 0 ) self.position = ccp (self.position.x, self.position.y + levelThreshold);
+    //if ( levelThreshold < 0 ) self.position = ccp (self.position.x, self.position.y + levelThreshold);
 }
 
 @end

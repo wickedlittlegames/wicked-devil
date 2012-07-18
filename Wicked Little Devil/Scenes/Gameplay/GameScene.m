@@ -43,13 +43,15 @@ static GameScene* _sharedGameScene = nil;
 	if( (self=[super init]) ) 
     {
         user = [[User alloc] init];
+        
+        screenSize = [CCDirector sharedDirector].winSize;
         world = w;
         level = l;
         
         self.isTouchEnabled = YES;
         
         CCLOG(@"INIT: W: %i, L: %i", world, level);
-        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",world,level];
+        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",1,1];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
@@ -72,6 +74,9 @@ static GameScene* _sharedGameScene = nil;
         
         player = layer_player.player;
         [player setupPowerup:user.powerup];
+        
+        [layer_game runAction:[CCFollow actionWithTarget:(player) worldBoundary:CGRectMake(0,0,320,1350)]];
+        [layer_player runAction:[CCFollow actionWithTarget:(player) worldBoundary:CGRectMake(0,0,320,1350)]];        
         
         location_touch = player.position;
         

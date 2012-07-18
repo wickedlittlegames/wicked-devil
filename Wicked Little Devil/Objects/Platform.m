@@ -28,7 +28,7 @@
 {
     if ( self.health > 0 && self.active )
     {
-        if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible )
+        if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible && [player worldBoundingBox].origin.y < ([self worldBoundingBox].origin.y - (self.contentSize.height -1)))
         {
             [self doAction:self.tag player:player];
         }

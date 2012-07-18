@@ -11,6 +11,7 @@
 #import "ShopScene.h"
 #import "CCScrollLayer.h"
 #import "SimpleTableCell.h"
+#import "MKStoreManager.h"
 
 @implementation ShopScene
 
@@ -70,7 +71,17 @@
 
 - (void) tap_purchase:(int)item
 {
-    NSLog(@"Item %d",item);
+    
+    CCLOG(@"PURCHASING");
+    [[MKStoreManager sharedManager] buyFeature:IAP_SOUL 
+                                    onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
+    {
+         NSLog(@"Purchased: %@", purchasedFeature);
+    }
+    onCancelled:^
+    {
+         NSLog(@"User Cancelled Transaction");
+     }];
 }
 
 #pragma mark UITableView code

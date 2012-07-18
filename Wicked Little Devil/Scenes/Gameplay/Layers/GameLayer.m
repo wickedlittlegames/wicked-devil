@@ -32,7 +32,7 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
-            node.tag = 10;
+            node.tag = 0;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [Collectable class]])
@@ -51,14 +51,6 @@
         {
             [triggers addObject:node];
         }
-    }
-}
-
-- (void) testMove
-{
-    for (Platform *platform in platforms)
-    {
-        [platform setupHVMovement];
     }
 }
 

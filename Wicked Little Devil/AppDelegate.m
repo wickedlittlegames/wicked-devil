@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "StartScene.h"
+#import "MKStoreManager.h"
 
 #import <Parse/Parse.h>
 
@@ -22,6 +23,8 @@
                   clientKey:@"0rr4JmAqVvRLfsKsonH52X4P5wANvEq5tCQW8bE3"];
     
     [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
+    
+    [MKStoreManager sharedManager];
 
     // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

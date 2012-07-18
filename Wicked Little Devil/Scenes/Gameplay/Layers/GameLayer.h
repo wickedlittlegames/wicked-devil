@@ -14,14 +14,10 @@
 #import "Enemy.h"
 #import "Trigger.h"
 
-@interface GameLayer : CCLayer 
-{
-
-}
+@interface GameLayer : CCLayer {}
 @property (nonatomic, retain) NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects;
 - (void) update:(Player*)player threshold:(float)levelThreshold;
-- (void) testMove;
 
 @end

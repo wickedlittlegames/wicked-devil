@@ -82,13 +82,11 @@ static GameScene* _sharedGameScene = nil;
         
         self.started = NO;
         
-        [self schedule:@selector(update:)];
+        id move = [CCMoveTo actionWithDuration:8.0 position:ccp(0,0)];
+        id ease = [CCEaseSineOut actionWithAction:move];
         
         [self setPosition:ccp(0,(-self.contentSize.height - 200))];
-        
-        id move = [CCMoveTo actionWithDuration:8.0 position:ccp(0,0)];
-        id ease = [CCEaseExponentialOut actionWithAction:move];
-        [self runAction: ease];        
+        [self runAction: ease];
     }
 	return self;
 }
@@ -97,8 +95,6 @@ static GameScene* _sharedGameScene = nil;
 
 - (void)update:(ccTime)dt 
 {
-    [layer_game testMove];
-    
     if ( ![[CCDirector sharedDirector] isPaused] && self.started )
     {
         if (player.isAlive && player.position.y > -20)
@@ -196,6 +192,7 @@ static GameScene* _sharedGameScene = nil;
 
 - (void)tap_launch:(id)sender
 { 
+    [self schedule:@selector(update:)];
     layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     self.started = YES;
     menu.visible = NO;

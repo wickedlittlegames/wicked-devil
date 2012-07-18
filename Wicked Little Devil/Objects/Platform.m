@@ -17,7 +17,7 @@
     {
         self.health = 1.0;
         self.animating = FALSE;
-        self.active = TRUE;
+        self.active = FALSE;
         self.original_position = ccp(self.position.x, self.position.y);
         self.flipped = FALSE;
     }

@@ -32,7 +32,7 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
-            node.tag = 0;
+            node.tag = 10;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [Collectable class]])
@@ -54,13 +54,22 @@
     }
 }
 
+- (void) testMove
+{
+    for (Platform *platform in platforms)
+    {
+        [platform setupHVMovement];
+    }
+}
+
 - (void) update:(Player*)player threshold:(float)levelThreshold
 {       
     for (Platform *platform in platforms)
     {       
-        if ([platform worldBoundingBox].origin.y < -20 )
+        if ([platform worldBoundingBox].origin.y < -20 && platform.active )
         {
-            platform.visible = NO; platform.active = NO;
+            platform.visible = NO;
+            platform.active = NO;
         }
         [platform intersectionCheck:player];
     }
@@ -95,8 +104,6 @@
             }
         }
     }
-    
-    //if ( levelThreshold < 0 ) self.position = ccp (self.position.x, self.position.y + levelThreshold);
 }
 
 @end

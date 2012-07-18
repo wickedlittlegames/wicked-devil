@@ -18,7 +18,7 @@ static Player* _sharedPlayer = nil;
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 6.5;        
+        self.jumpspeed = 9.5;        
         
         self.health = 10.0;
         self.damage = 1.0;

@@ -22,5 +22,6 @@
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects;
 - (void) update:(Player*)player threshold:(float)levelThreshold;
+- (void) testMove;
 
 @end

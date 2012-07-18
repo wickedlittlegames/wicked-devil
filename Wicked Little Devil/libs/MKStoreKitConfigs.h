@@ -35,7 +35,7 @@
 // To avoid making mistakes map plist entries to macros on this page.
 // when you include MKStoreManager in your clss, these macros get defined there
 
-#define kConsumableBaseFeatureId @"com.mycompany.myapp."
+#define kConsumableBaseFeatureId @"com.wickedlittlegames.wicked-devil."
 #define kFeatureAId @"com.mugunthkumar.caltasks.propack"
 #define IAP_SOUL @"com.wickedlittlegames.wickeddevil.1000soul"
 #define kConsumableFeatureBId @"com.mycompany.myapp.005"

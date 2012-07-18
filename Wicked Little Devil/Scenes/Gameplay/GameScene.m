@@ -193,6 +193,7 @@ static GameScene* _sharedGameScene = nil;
 - (void)tap_launch:(id)sender
 { 
     [self schedule:@selector(update:)];
+    
     layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     self.started = YES;
     menu.visible = NO;

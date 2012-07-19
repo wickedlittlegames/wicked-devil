@@ -11,14 +11,12 @@
 @implementation Player
 @synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score;
 
-static Player* _sharedPlayer = nil;
-
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 9.5;        
+        self.jumpspeed = 7;        
         
         self.health = 10.0;
         self.damage = 1.0;
@@ -30,30 +28,10 @@ static Player* _sharedPlayer = nil;
     return self;
 }
 
-
-+(Player *) sharedPlayer
-{
-    @synchronized([Player class]) 
-    {
-        if (!_sharedPlayer) _sharedPlayer = [[self alloc] init];
-        return _sharedPlayer;
-    }
-    return nil;
-}
-
-
-- (void) movement:(float)levelThreshold withGravity:(float)gravity
+- (void) movementwithGravity:(float)gravity
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
-    
-//    if (levelThreshold < 0)
-//    {
-//        self.position = ccp(self.position.x + self.velocity.x, self.position.y + (self.velocity.y + levelThreshold));
-//    }
-//    else 
-//    {
-        self.position = ccp(self.position.x, self.position.y + self.velocity.y);
-//    }
+    self.position = ccp(self.position.x, self.position.y + self.velocity.y);
 }
 
 - (BOOL) isAlive

@@ -8,7 +8,6 @@
 
 #import "GameOverScene.h"
 
-
 @implementation GameOverScene
 @synthesize score, timebonus, bigs, world, level;
 
@@ -23,6 +22,7 @@
 	GameOverScene *current = [GameOverScene node];
     [current setScore:_score];
     [current setTimebonus:_timebonus];
+    CCLOG(@"_BIGS:%i",_bigs);
     [current setBigs:_bigs];
     [current setWorld:_world];
     [current setLevel:_level];
@@ -74,6 +74,7 @@
 
 - (void) do_scores
 {
+    CCLOG(@"BIGS:%i",bigs);
     if ( bigs >= 1 )
     {
         int facebook_bonus = ( user.isConnectedToFacebook ? 200 : 0 );
@@ -81,6 +82,7 @@
         total = (score * bigs) + timebonus + facebook_bonus;
         
         CCLOG(@"SCORE IS: %i (basic: %i, bigs: %i, timebonus: %i, fb: %i)", total, score, bigs, timebonus, facebook_bonus);
+        [label_score setString:[NSString stringWithFormat:@"%i",total]];
         
         // Step through the animations for the scores
         [self anim_start];

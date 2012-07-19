@@ -7,7 +7,7 @@
 //
 
 #import "GameLayer.h"
-#import "GameScene.h"
+#import "GameOverScene.h"
 
 @implementation GameLayer
 @synthesize platforms, collectables, bigcollectables, enemies, triggers;
@@ -32,7 +32,6 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
-            node.tag = 0;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [Collectable class]])
@@ -54,47 +53,108 @@
     }
 }
 
-- (void) update:(Player*)player threshold:(float)levelThreshold
+- (void) update:(Game *)game
 {       
     for (Platform *platform in platforms)
     {       
-        if ([platform worldBoundingBox].origin.y < -20 && platform.active )
+        if ([platform worldBoundingBox].origin.y < -80 && platform.active )
         {
             platform.visible = NO;
             platform.active = NO;
         }
-        [platform intersectionCheck:player];
+        [platform intersectionCheck:game.player];
+        [platform setupHVMovement];
     }
     
     for (Collectable *collectable in collectables)
     {
-        if ( [collectable isIntersectingPlayer:player] ) 
+        if ( [collectable isIntersectingPlayer:game.player] ) 
         {
-            player.collected++;
-            player.score++;
+            game.player.collected++;
+            game.player.score++;
         }
     }
     
     for (BigCollectable *bigcollectable in bigcollectables)
     {
-        if ( [bigcollectable isIntersectingPlayer:player] )
+        if ( [bigcollectable isIntersectingPlayer:game.player] )
         {
-            player.bigcollected++;
-            player.score += 500;
+            game.player.bigcollected++;
+            game.player.score += 500;
         }
     }
     
     for (Trigger *trigger in triggers)
     {
-        if ( [trigger isIntersectingPlayer:player] )
+        if ( [trigger isIntersectingPlayer:game.player] )
         {
             switch (trigger.tag)
             {
                 default:
-                    [[GameScene sharedGameScene] end];
+                    game.isGameover = YES;
+                    game.didWin = ( game.player.bigcollected >= 1 ? TRUE : FALSE );
                     break;
             }
         }
+    }
+}
+
+- (void) gameoverCheck:(Game*)game
+{
+    if ( !game.isGameover )
+    {   
+        game.isGameover = ( game.player.isAlive ? FALSE : TRUE );
+        game.isGameover = ( game.player.position.y < -80 ? TRUE : FALSE);
+        
+        if ( game.isGameover ) 
+        {
+            [self end:game];
+        }
+    }
+    else 
+    {
+        [self end:game];
+    }
+}
+
+- (void) end:(Game*)game
+{
+    if (game.didWin)
+    {
+        game.user.collected += game.player.collected;
+
+        int score = game.player.score * game.player.bigcollected;
+        int souls = game.player.bigcollected;
+        
+        [game.user setHighscore:score world:game.world level:game.level];
+        [game.user setSouls:souls world:game.world level:game.level];
+        
+        if (game.level == game.user.levelprogress)
+        {
+            game.user.levelprogress = game.user.levelprogress + 1;
+            if (game.user.levelprogress > LEVELS_PER_WORLD)
+            {
+                game.user.worldprogress = game.user.worldprogress + 1;
+                game.user.levelprogress = 1;
+            }
+        }
+        [game.user sync];
+
+        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
+                                                   sceneWithScore:game.player.score 
+                                                   timebonus:100 
+                                                   bigs:game.player.bigcollected 
+                                                   forWorld:game.world 
+                                                   andLevel:game.level]];
+    }
+    else 
+    {
+        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
+                                                   sceneWithScore:0 
+                                                   timebonus:0 
+                                                   bigs:0 
+                                                   forWorld:game.world 
+                                                   andLevel:game.level]];
     }
 }
 

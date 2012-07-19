@@ -8,16 +8,21 @@
 
 #import "cocos2d.h"
 
+#import "User.h"
 #import "Player.h"
 #import "Platform.h"
 #import "Collectable.h"
 #import "Enemy.h"
 #import "Trigger.h"
+#import "Game.h"
 
 @interface GameLayer : CCLayer {}
 @property (nonatomic, retain) NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers;
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects;
-- (void) update:(Player*)player threshold:(float)levelThreshold;
+
+- (void) update:(Game *)game;
+- (void) gameoverCheck:(Game*)game;
+- (void) end:(Game*)game;
 
 @end

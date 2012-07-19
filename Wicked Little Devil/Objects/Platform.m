@@ -26,13 +26,29 @@
 
 - (void) intersectionCheck:(Player*)player
 {
-    if ( self.health > 0 && self.active )
+
+    if ( player.velocity.y < 0  && self.visible)
     {
-        if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible && [player worldBoundingBox].origin.y < ([self worldBoundingBox].origin.y - (self.contentSize.height -1)))
+        CGSize platform_size = self.contentSize;
+        CGPoint platform_pos = self.position;
+        CGSize player_size     = player.contentSize; 
+        CGPoint player_pos     = player.position;
+        
+        float max_x = platform_pos.x - platform_size.width/2 - 10;
+        float min_x = platform_pos.x + platform_size.width/2 + 10;
+        float min_y = platform_pos.y + (platform_size.height+player_size.height)/2 - 1;
+
+        if(player_pos.x > max_x &&
+           player_pos.x < min_x &&
+           player_pos.y > platform_pos.y &&
+           player_pos.y < min_y)
         {
+
             [self doAction:self.tag player:player];
+            
         }
     }
+
 }
 
 - (void) doAction:(int)tag player:(Player*)player
@@ -43,7 +59,7 @@
             [player jump:player.jumpspeed];
             break;
         case 1: 
-            [player jump:player.jumpspeed*1.5];
+            [player jump:player.jumpspeed*1.75];
             break;
         default:
             [player jump:player.jumpspeed];
@@ -70,19 +86,19 @@
             self.animating = TRUE;
         }
     }
-    if (self.tag == 1)
-    {
-        if ( self.animating == FALSE )
-        {
-            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
-    }
+//    if (self.tag == 1)
+//    {
+//        if ( self.animating == FALSE )
+//        {
+//            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+//            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+//            
+//            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+//            [self runAction:repeater];
+//            
+//            self.animating = TRUE;
+//        }
+//    }
     if (self.tag == 10)
     {
         CGSize screenSize = [CCDirector sharedDirector].winSize;

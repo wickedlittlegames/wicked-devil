@@ -34,7 +34,7 @@
         self.collected              = [udata integerForKey:@"collected"];
         self.items                  = [udata objectForKey:@"items"];
         
-        [self _log];
+        //[self _log];
         
         //[self gameKitBlock];
     }
@@ -143,9 +143,7 @@
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
     NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
-    CCLOG(@"highscores_tmp: %@",highscores_tmp);
     int current_highscore = [self getHighscoreforWorld:w level:l];
-    CCLOG(@"CURRENT HIGHSCORE:%i",current_highscore);
     if (score > current_highscore)
     {
         // Updating Local

@@ -8,11 +8,7 @@
 #import "GameScene.h"
 
 @implementation GameScene
-@synthesize world, level; // ints
-@synthesize started, won; // bools
 @synthesize threshold; // floats
-
-static GameScene* _sharedGameScene = nil;
 
 #pragma mark === Init ===
 
@@ -28,30 +24,18 @@ static GameScene* _sharedGameScene = nil;
 	return scene;
 }
 
-+(GameScene *) sharedGameScene
-{
-    @synchronized([GameScene class]) 
-    {
-        if (!_sharedGameScene) _sharedGameScene = [[self alloc] init];
-        return _sharedGameScene;
-    }
-    return nil;
-}
-
 - (id) initWithWorld:(int)w andLevel:(int)l
 {
 	if( (self=[super init]) ) 
     {
-        user = [[User alloc] init];
-        
         screenSize = [CCDirector sharedDirector].winSize;
-        world = w;
-        level = l;
         
+        User *user = [[User alloc] init];
+        game = [[Game alloc] init];        
         self.isTouchEnabled = YES;
         
-        CCLOG(@"INIT: W: %i, L: %i", world, level);
-        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",1,1];
+        CCLOG(@"INIT: W: %i, L: %i", w, l);
+        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
@@ -72,21 +56,23 @@ static GameScene* _sharedGameScene = nil;
         [self addChild:layer_player];
         [self addChild:layer_ui];
         
-        player = layer_player.player;
-        [player setupPowerup:user.powerup];
+        game.player = layer_player.player;
+        game.threshold = 0;
+        game.user = user;
+        game.world = w;
+        game.level = l;
+        [game.player setupPowerup:user.powerup];
+        location_touch = game.player.position;
         
-        [layer_game runAction:[CCFollow actionWithTarget:(player) worldBoundary:CGRectMake(0,0,320,1350)]];
-        [layer_player runAction:[CCFollow actionWithTarget:(player) worldBoundary:CGRectMake(0,0,320,1350)]];        
+        [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];
+        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];        
         
-        location_touch = player.position;
-        
-        self.started = NO;
-        
-        id move = [CCMoveTo actionWithDuration:8.0 position:ccp(0,0)];
-        id ease = [CCEaseSineOut actionWithAction:move];
-        
-        [self setPosition:ccp(0,(-self.contentSize.height - 200))];
-        [self runAction: ease];
+        // INTRO
+        //        id move = [CCMoveTo actionWithDuration:1.0 position:ccp(0,0)];
+        //        id ease = [CCEaseSineOut actionWithAction:move];
+        //        
+        //        [self setPosition:ccp(0,(-self.contentSize.height - 200))];
+        //        [self runAction: ease];
     }
 	return self;
 }
@@ -95,78 +81,35 @@ static GameScene* _sharedGameScene = nil;
 
 - (void)update:(ccTime)dt 
 {
-    if ( ![[CCDirector sharedDirector] isPaused] && self.started )
+    if ( ![[CCDirector sharedDirector] isPaused])
     {
-        if (player.isAlive && player.position.y > -20)
+        if ( game.isStarted )
         {
-            threshold = 340 - player.position.y;
-            
-            // Background Layer Interactions
-            [layer_bg update:threshold];
-            
-            // Game Layer Interactions
-            [layer_game update:player threshold:threshold];
-            
-            // Player Layer Interactions        
-            [player movement:threshold withGravity:0.25];
-            
-            // UI Layer Interactions
-            [layer_ui update:player];
-            
-            // Control Interactions
-            [self control_player];
-        }
-        else 
-        {
-            CCLOG(@"GAMEOVER");
-            player.health = 0;
-            [self end];
-        }
-    }
-}
-
-- (void) end
-{
-    CCLOG(@"ENDED");
-    self.started = FALSE;
-    [self unschedule:@selector(update:)];
-    
-    if (player.isAlive && player.bigcollected > 0 && self.won) // Won the game
-    {
-        user.collected += player.collected;
-        int score = player.score * player.bigcollected;
-        int souls = player.bigcollected;
-        
-        [user setHighscore:score world:world level:level];
-        [user setSouls:souls world:world level:level];
-        
-        if (level == user.levelprogress)
-        {
-            user.levelprogress = user.levelprogress + 1;
-            if (user.levelprogress > LEVELS_PER_WORLD)
+            [layer_game gameoverCheck:game];
+            if ( !game.isGameover )
             {
-                user.worldprogress = user.worldprogress + 1;
-                user.levelprogress = 1;
+                game.threshold = 340 - game.player.position.y;
+                
+                // Background Layer Interactions
+                [layer_bg update:game.threshold];
+                
+                // Game Layer Interactions
+                [layer_game update:game];
+                
+                // Player Layer Interactions
+                [game.player movementwithGravity:0.18];
+                
+                // UI Layer Interactions
+                [layer_ui update:game.player];
+                
+                // Control Interactions
+                [self control_player];
+            }
+            else 
+            {
+                [self unschedule:@selector(update:)];
             }
         }
-        
-        [user sync];
-        
-        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                                   sceneWithScore:player.score 
-                                                   timebonus:100 
-                                                   bigs:player.bigcollected 
-                                                   forWorld:world 
-                                                   andLevel:level]];
-    }
-    else 
-    {
-        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                                   sceneWithScore:player.score 
-                                                   timebonus:100 
-                                                   bigs:player.bigcollected 
-                                                   forWorld:world 
-                                                   andLevel:level]];
     }
 }
 
@@ -174,11 +117,11 @@ static GameScene* _sharedGameScene = nil;
 
 - (void) control_player
 {
-    float diff = location_touch.x - player.position.x;
+    float diff = location_touch.x - game.player.position.x;
     if (diff > 4)  diff = 4;
     if (diff < -4) diff = -4;
-    CGPoint new_player_location = CGPointMake(player.position.x + diff, player.position.y);
-    player.position = new_player_location;
+    CGPoint new_player_location = CGPointMake(game.player.position.x + diff, game.player.position.y);
+    game.player.position = new_player_location;
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -192,10 +135,11 @@ static GameScene* _sharedGameScene = nil;
 
 - (void)tap_launch:(id)sender
 { 
+    game.isStarted = YES;
+    game.isGameover = NO;
     [self schedule:@selector(update:)];
     
     layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
-    self.started = YES;
     menu.visible = NO;
 }
 

@@ -11,6 +11,7 @@
 #import "GameOverScene.h"
 
 #import "User.h"
+#import "Game.h"
 #import "BGLayer.h"
 #import "FXLayer.h"
 #import "PlayerLayer.h"
@@ -25,8 +26,7 @@
     GameLayer   *layer_game;
     UILayer     *layer_ui;
     
-    Player      *player;
-    User        *user;
+    Game        *game;
     
     CGPoint location_touch;
     CGSize screenSize;
@@ -34,13 +34,9 @@
     CCMenu *menu; // temp
 }
 
-@property (nonatomic, assign) int world, level;
 @property (nonatomic, assign) float threshold;
-@property (nonatomic, assign) bool started, won;
 
 +(CCScene *) sceneWithWorld:(int)w andLevel:(int)l;
-+(GameScene *) sharedGameScene;
 - (id) initWithWorld:(int)w andLevel:(int)l;
-- (void) end;
 
 @end

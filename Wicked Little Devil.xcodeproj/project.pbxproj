@@ -295,6 +295,8 @@
 		9C8DC29D158009CB00760A04 /* Start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29C158009CB00760A04 /* Start-button.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
+		9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */; };
+		9CACDF5615B8199200E8F518 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACDF5515B8199200E8F518 /* Game.m */; };
 		9CDF942B15B561CA0017E58B /* BGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942015B561CA0017E58B /* BGLayer.m */; };
 		9CDF942C15B561CA0017E58B /* FXLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942215B561CA0017E58B /* FXLayer.m */; };
 		9CDF942F15B561CA0017E58B /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942815B561CA0017E58B /* PlayerLayer.m */; };
@@ -640,6 +642,9 @@
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
 		9CA61BA715B566BB00B447E9 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Scenes/Gameplay/Layers/GameLayer.m; sourceTree = "<group>"; };
+		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
+		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
+		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
 		9CDF941F15B561CA0017E58B /* BGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGLayer.h; path = Scenes/Gameplay/Layers/BGLayer.h; sourceTree = "<group>"; };
 		9CDF942015B561CA0017E58B /* BGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGLayer.m; path = Scenes/Gameplay/Layers/BGLayer.m; sourceTree = "<group>"; };
 		9CDF942115B561CA0017E58B /* FXLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXLayer.h; path = Scenes/Gameplay/Layers/FXLayer.h; sourceTree = "<group>"; };
@@ -1399,6 +1404,7 @@
 		9C8DC28F157F94E800760A04 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */,
 				9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */,
 				9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */,
 				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
@@ -1421,6 +1427,8 @@
 				9CFF0B75158A7D0C000AA4E0 /* User.m */,
 				9CFF0B67158A7CB7000AA4E0 /* Platform.h */,
 				9CFF0B68158A7CB7000AA4E0 /* Platform.m */,
+				9CACDF5415B8199100E8F518 /* Game.h */,
+				9CACDF5515B8199200E8F518 /* Game.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1730,6 +1738,7 @@
 				9C4F71DF15ADAEAF002595C1 /* card-hd.png in Resources */,
 				9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */,
 				9CE614B415B70B3A00AF1C78 /* MKStoreKitConfigs.plist in Resources */,
+				9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1774,6 +1783,7 @@
 				9CE614BE15B70B9200AF1C78 /* JSONKit.m in Sources */,
 				9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */,
 				9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */,
+				9CACDF5615B8199200E8F518 /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

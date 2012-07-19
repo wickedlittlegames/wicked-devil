@@ -71,7 +71,6 @@
 
 - (void) tap_purchase:(int)item
 {
-    
     CCLOG(@"PURCHASING");
     [[MKStoreManager sharedManager] buyFeature:IAP_SOUL 
                                     onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
@@ -81,7 +80,7 @@
     onCancelled:^
     {
          NSLog(@"User Cancelled Transaction");
-     }];
+    }];
 }
 
 #pragma mark UITableView code
@@ -97,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //switch (section) {
+    //switch (section){
       //  case 0: return [data count]; break;
        // case 1: return [data2 count]; break;
     //}

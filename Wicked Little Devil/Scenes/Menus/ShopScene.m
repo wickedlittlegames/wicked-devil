@@ -37,6 +37,7 @@
         NSString *font = @"Marker Felt";
         int fontsize = 18;
         
+        user = [[User alloc] init];
         
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
@@ -79,6 +80,9 @@
         CCLOG(@"USER COLLECTED %i", user.collected);
         user.collected += 1000;
         [user sync];
+        
+        [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",user.collected]];
+        
         CCLOG(@"USER COLLECTED %i", user.collected);        
     }
     onCancelled:^

@@ -20,6 +20,7 @@
     NSArray *data, *data2;
     AppController *app;
     CCLabelTTF *lbl_user_collected;
+    User *user;
 }
 +(CCScene *) scene;
 - (void) tap_purchase:(int)item;

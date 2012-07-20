@@ -37,7 +37,6 @@
         NSString *font = @"Marker Felt";
         int fontsize = 18;
         
-        User *user = [[User alloc] init];
         
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
@@ -76,12 +75,18 @@
                                     onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
          NSLog(@"Purchased: %@", purchasedFeature);
+        user = [[User alloc] init];
+        CCLOG(@"USER COLLECTED %i", user.collected);
+        user.collected += 1000;
+        [user sync];
+        CCLOG(@"USER COLLECTED %i", user.collected);        
     }
     onCancelled:^
     {
          NSLog(@"User Cancelled Transaction");
     }];
 }
+
 
 #pragma mark UITableView code
 

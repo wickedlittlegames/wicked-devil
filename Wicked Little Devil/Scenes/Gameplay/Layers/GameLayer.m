@@ -34,9 +34,12 @@
         {
             [platforms addObject:node];
         }
-        if ([node isKindOfClass: [Collectable class]])
+        if ([node isKindOfClass: [CCNode class]])
         {
-            [collectables addObject:node];
+            for (Collectable *collectable in node.children)
+            {
+                [collectables addObject:collectable];
+            }
         }
         if ([node isKindOfClass: [BigCollectable class]])
         {

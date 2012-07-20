@@ -9,17 +9,8 @@
 			<key>Count</key>
 			<integer>1000</integer>
 			<key>Name</key>
-			<string>1000 Souls</string>
+			<string>collected</string>
 		</dict>
-	</dict>
-	<key>Non-Consumables</key>
-	<array>
-		<string>com.mugunthkumar.caltasks.propack</string>
-	</array>
-	<key>Subscriptions</key>
-	<dict>
-		<key>com.mugunthkumar.subinapptest.wk1</key>
-		<integer>7</integer>
 	</dict>
 </dict>
 </plist>

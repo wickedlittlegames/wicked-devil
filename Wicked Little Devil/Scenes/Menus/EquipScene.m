@@ -83,7 +83,7 @@
         CCMenuItem *btn_demo = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Demo" fontName:font fontSize:fontsize] target:self selector:@selector(tap_demob:)];    
         btn_equip.tag = i;
         btn_buy.tag = i;
-        btn_buy.userObject = [NSNumber numberWithInt:3000];
+        btn_buy.userObject = [NSNumber numberWithInt:100];
         btn_demo.tag = i;
         
         if ( [[user.items objectAtIndex:i] intValue] == 1 )

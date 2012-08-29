@@ -22,28 +22,21 @@
 
 - (void) createWorldSpecificBackgrounds:(int)world
 {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    
+    parallax = [CCParallaxScrollNode node];
+
     top = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
-    [top setPosition:ccp(screenSize.width/2,0)];
-    [self addChild:top z:4];
-    
     middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle.png",world]];
-    [middle setPosition:ccp(screenSize.width/2,0)];
-    [self addChild:middle z:3];
-    
     middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle2.png",world]];
-    [middle2 setPosition:ccp(screenSize.width/2,0)];
-    [self addChild:middle2 z:2];
-    
     bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
-    [bottom setPosition:ccp(screenSize.width/2,0)];
-    [self addChild:bottom z:1];    
+    
+    [parallax addInfiniteScrollYWithZ:0 Ratio:ccp(0.5,0.5) Pos:ccp([[CCDirector sharedDirector] winSize].width/2,0) Objects:top,middle,middle2,bottom, nil];
+    
+    [self addChild:parallax z:-1];
 }
 
 - (void) update:(float)threshold
 {
-    
+    [parallax updateWithVelocity:ccp(0,-4) AndDelta:0.01];
 }
 
 @end

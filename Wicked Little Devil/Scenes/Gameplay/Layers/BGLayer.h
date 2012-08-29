@@ -7,10 +7,12 @@
 //
 
 #import "cocos2d.h"
+#import "CCParallaxScrollNode.h"
 
 @interface BGLayer : CCLayer 
 {
     CCSprite *top, *middle, *middle2, *bottom;
+    CCParallaxScrollNode *parallax;
 }
 
 - (void) createWorldSpecificBackgrounds:(int)world;

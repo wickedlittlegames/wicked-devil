@@ -8,8 +8,12 @@
 
 #import "cocos2d.h"
 
-@interface BGLayer : CCLayer {}
+@interface BGLayer : CCLayer 
+{
+    CCSprite *top, *middle, *middle2, *bottom;
+}
 
+- (void) createWorldSpecificBackgrounds:(int)world;
 - (void) update:(float)threshold;
 
 @end

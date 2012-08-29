@@ -32,6 +32,7 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
+            node.tag = 6;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [CCNode class]])
@@ -65,6 +66,7 @@
             platform.visible = NO;
             platform.active = NO;
         }
+
         [platform intersectionCheck:game.player];
         [platform setupHVMovement];
     }

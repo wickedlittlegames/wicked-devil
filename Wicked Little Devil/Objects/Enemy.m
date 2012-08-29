@@ -5,6 +5,13 @@
 //  Created by Andrew Girvan on 30/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
+//
+//   -1 - Rat STATIC
+//   0 - Bat
+//   1 - Water
+//   2 - Preist
+//   3 - Meteors (take from little devil)
+//   4 - Angels
 
 #import "Enemy.h"
 
@@ -30,32 +37,48 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    switch (self.tag)
+    if ( player.velocity.y < 0  && self.visible && self.health > 0)
     {
-        case 0:
-            break;
-        default:
-            if (player.velocity.y < 0 && CGRectIntersectsRect([player worldBoundingBox], [self worldBoundingBox]) && self.visible == TRUE)
-            {
-                [self damageFromPlayer:player];
-                if ( self.health <= 0 )
-                {
-                    self.active = FALSE;
-                    self.visible = FALSE;
-                }
-                [player jump:player.jumpspeed];
-                return TRUE;
-            }
-            else if (player.velocity.y > 0 && CGRectIntersectsRect([player worldBoundingBox], [self worldBoundingBox]) && self.visible == TRUE)
-            {
-                [self damageToPlayer:player];
-                return TRUE;
-            }
-            break;
+        CGSize enemy_size = self.contentSize;
+        CGPoint enemy_pos = self.position;
+        CGSize player_size     = player.contentSize; 
+        CGPoint player_pos     = player.position;
+        
+        float max_x = enemy_pos.x - enemy_size.width/2 - 10;
+        float min_x = enemy_pos.x + enemy_size.width/2 + 10;
+        float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
+        
+        if(player_pos.x > max_x &&
+           player_pos.x < min_x &&
+           player_pos.y > enemy_pos.y &&
+           player_pos.y < min_y)
+        {
+            [self doAction:self.tag player:player];
+        }
     }
     return FALSE;
 }
 
+- (void) doAction:(int)tag player:(Player*)player
+{
+    switch (tag)
+    {
+        // rat, bat, meteors
+        default:
+            [self damageToPlayer:player];
+            break;
+        // water
+        case 1:
+            // move player up then pop (animation)
+            break;
+        // stop intersection of preists
+        case 2:
+            break;
+        // stop intersections of angels
+        case 4:
+            break;
+    }
+}
 
 - (void) damageToPlayer:(Player*)player
 {

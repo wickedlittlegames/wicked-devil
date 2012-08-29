@@ -143,7 +143,15 @@
 
 - (void) check_facebook_scores
 {
+    CCLOG(@"CHECKING FACEBOOK SCORES");
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+    NSString *message = [NSString stringWithFormat:@"I just scored %i points on W%iL%i",score,world,level];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   message, @"message",
+                                   nil];
+    
+    CCLOG(@"SENDING FACEBOOK MESSAGE");
+    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/feed" andParams:params andHttpMethod:@"POST" andDelegate:self];
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {

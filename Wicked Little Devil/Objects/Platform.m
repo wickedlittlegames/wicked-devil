@@ -5,6 +5,20 @@
 //  Created by Andrew Girvan on 28/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
+//  Platform types
+//  -1, 0 = normal
+//  1     = double jump
+//  2     = horizontal movement
+//  3     = vertical movement
+//  4     = bat/waving movement
+//  5     = toggle button
+//  51    = toggle option 1
+//  52    = toggle option 2
+//  6     = breakable
+//  7     = timed - 5 seconds
+//  71    = timed - 10 seconds
+//  72    = timed - 15 seconds
+//  73    = timed - 30 seconds
 
 #import "Platform.h"
 
@@ -15,7 +29,7 @@
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        self.health = 1.0;
+        self.health = 2.0;
         self.animating = FALSE;
         self.active = TRUE;
         self.original_position = ccp(self.position.x, self.position.y);
@@ -27,7 +41,7 @@
 - (void) intersectionCheck:(Player*)player
 {
 
-    if ( player.velocity.y < 0  && self.visible)
+    if ( player.velocity.y < 0  && self.visible && self.health > 0)
     {
         CGSize platform_size = self.contentSize;
         CGPoint platform_pos = self.position;
@@ -43,7 +57,6 @@
            player_pos.y > platform_pos.y &&
            player_pos.y < min_y)
         {
-
             [self doAction:self.tag player:player];
             
         }
@@ -61,19 +74,47 @@
         case 1: 
             [player jump:player.jumpspeed*1.75];
             break;
+        case 6: 
+            self.health--;
+            if ( self.health != 0 )
+            {
+                [player jump:player.jumpspeed*1.75];
+            }
+            else 
+            {
+                [self fall];
+            }
         default:
             [player jump:player.jumpspeed];
             break;
     }
 }
 
+- (void) showDamage
+{
+    // swap the image
+}
 
+- (void) fall
+{
+    if ( self.animating == FALSE )
+    {
+        id fallmove = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
+        id falldie  = [CCCallFunc actionWithTarget:self selector:@selector(die)];
+        [self runAction:[CCSequence actions:fallmove,falldie,nil]];
+        self.animating = TRUE;
+    }
+}
 
-
+- (void) die
+{
+    self.visible = FALSE;
+    [self removeFromParentAndCleanup:YES];
+}
 
 - (void) setupHVMovement
 {
-    if (self.tag == 0)
+    if (self.tag == 2)
     {
         if ( self.animating == FALSE )
         {
@@ -86,33 +127,28 @@
             self.animating = TRUE;
         }
     }
-//    if (self.tag == 1)
-//    {
-//        if ( self.animating == FALSE )
-//        {
-//            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-//            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-//            
-//            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-//            [self runAction:repeater];
+    if (self.tag == 3)
+    {
+        if ( self.animating == FALSE )
+        {
+            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
+        }
+    }
+    if ( self.tag == 4 )
+    {
+        if ( self.animating == FALSE )
+        {
+//            id waveAction  = [CCWaves actionWithWaves:5 amplitude:20 horizontal:NO vertical:YES grid:ccg(15,10) duration:20];
+//            id repeate     = [CCRepeatForever actionWithAction:waveAction];
+//            [self runAction:repeate];
 //            
 //            self.animating = TRUE;
-//        }
-//    }
-    if (self.tag == 10)
-    {
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        
-        int direction = (self.flipped ? -1 : 1);  
-        self.position = ccp (self.position.x + direction, self.position.y);
-
-        if ( self.position.x >= (screenSize.width - self.contentSize.width/2) && self.flipped == FALSE )
-        {
-            self.flipped = TRUE;
-        }
-        if ( self.position.x <= 0 + (self.contentSize.width/2) )
-        {
-            self.flipped = FALSE;
         }
     }
 }

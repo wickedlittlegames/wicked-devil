@@ -122,7 +122,7 @@
 {   
     if ( user.isOnline )
     {
-        NSArray *permissions = [NSArray arrayWithObjects:@"email", nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"email,publish_actions", nil];
         [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
             if (!pfuser) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");

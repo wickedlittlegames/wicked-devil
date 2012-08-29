@@ -48,6 +48,7 @@
         layer_player    = [PlayerLayer node];
         layer_ui        = [UILayer node];
 
+        [layer_bg createWorldSpecificBackgrounds:w]; 
         [layer_game createWorldWithObjects:[layer_game children]];
         
         [self addChild:layer_bg];

@@ -293,6 +293,9 @@
 		9C8DC296157F97B000760A04 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC295157F97B000760A04 /* star.png */; };
 		9C8DC29B1580082B00760A04 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29A1580082B00760A04 /* floor.png */; };
 		9C8DC29D158009CB00760A04 /* Start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29C158009CB00760A04 /* Start-button.png */; };
+		9CA5221D15EE61FD00AB72CB /* CCParallaxScrollNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9CA5221E15EE61FD00AB72CB /* CCParallaxScrollOffset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9CA5221F15EE61FD00AB72CB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5221C15EE61FD00AB72CB /* README */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */; };
@@ -638,6 +641,11 @@
 		9C8DC295157F97B000760A04 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		9C8DC29A1580082B00760A04 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
 		9C8DC29C158009CB00760A04 /* Start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start-button.png"; sourceTree = "<group>"; };
+		9CA5221815EE61FD00AB72CB /* CCParallaxScrollNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxScrollNode.h; sourceTree = "<group>"; };
+		9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCParallaxScrollNode.mm; sourceTree = "<group>"; };
+		9CA5221A15EE61FD00AB72CB /* CCParallaxScrollOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxScrollOffset.h; sourceTree = "<group>"; };
+		9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCParallaxScrollOffset.mm; sourceTree = "<group>"; };
+		9CA5221C15EE61FD00AB72CB /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -846,6 +854,7 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9CA5221715EE61FD00AB72CB /* cocos2d-parallax */,
 				9C227CED159B6B5600F7E6E1 /* IAP */,
 				9C84ED3F1594BFC40083DF40 /* Reachability */,
 				9C8DC24F157F66C300760A04 /* GameKitHelper.h */,
@@ -1412,6 +1421,18 @@
 			name = Levels;
 			sourceTree = "<group>";
 		};
+		9CA5221715EE61FD00AB72CB /* cocos2d-parallax */ = {
+			isa = PBXGroup;
+			children = (
+				9CA5221815EE61FD00AB72CB /* CCParallaxScrollNode.h */,
+				9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */,
+				9CA5221A15EE61FD00AB72CB /* CCParallaxScrollOffset.h */,
+				9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */,
+				9CA5221C15EE61FD00AB72CB /* README */,
+			);
+			path = "cocos2d-parallax";
+			sourceTree = "<group>";
+		};
 		9CBF4813156F8F8600896EBF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1739,6 +1760,7 @@
 				9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */,
 				9CE614B415B70B3A00AF1C78 /* MKStoreKitConfigs.plist in Resources */,
 				9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */,
+				9CA5221F15EE61FD00AB72CB /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1784,6 +1806,8 @@
 				9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */,
 				9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */,
 				9CACDF5615B8199200E8F518 /* Game.m in Sources */,
+				9CA5221D15EE61FD00AB72CB /* CCParallaxScrollNode.mm in Sources */,
+				9CA5221E15EE61FD00AB72CB /* CCParallaxScrollOffset.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -142,14 +142,8 @@
     }
     if ( self.tag == 4 )
     {
-        if ( self.animating == FALSE )
-        {
-//            id waveAction  = [CCWaves actionWithWaves:5 amplitude:20 horizontal:NO vertical:YES grid:ccg(15,10) duration:20];
-//            id repeate     = [CCRepeatForever actionWithAction:waveAction];
-//            [self runAction:repeate];
-//            
-//            self.animating = TRUE;
-        }
+        self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+2)/10) * 2); 
+        if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) self.position = ccp(-70, self.position.y);
     }
 }
 

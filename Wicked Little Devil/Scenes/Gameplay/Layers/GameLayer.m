@@ -32,7 +32,7 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
-            node.tag = 6;
+//            node.tag = 4;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [CCNode class]])

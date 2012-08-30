@@ -11,11 +11,10 @@
 
 @interface BGLayer : CCLayer 
 {
-    CCSprite *top, *middle, *middle2, *bottom;
     CCParallaxScrollNode *parallax;
 }
 
 - (void) createWorldSpecificBackgrounds:(int)world;
-- (void) update:(float)threshold;
+- (void) update:(float)threshold delta:(float)dt;
 
 @end

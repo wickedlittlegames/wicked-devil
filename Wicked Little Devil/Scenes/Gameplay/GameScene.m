@@ -92,7 +92,7 @@
                 game.threshold = 340 - game.player.position.y;
                 
                 // Background Layer Interactions
-                [layer_bg update:game.threshold];
+                [layer_bg update:game.threshold delta:dt];
                 
                 // Game Layer Interactions
                 [layer_game update:game];

@@ -22,21 +22,31 @@
 
 - (void) createWorldSpecificBackgrounds:(int)world
 {
+    CCSprite *top = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
+    CCSprite *top2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
+    CCSprite *middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle.png",world]];
+    CCSprite *middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle2.png",world]];
+    CCSprite *bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
+    
     parallax = [CCParallaxScrollNode node];
-
-    top = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
-    middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle.png",world]];
-    middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle2.png",world]];
-    bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
+    float totalHeight =  top.contentSize.height;    
     
-    [parallax addInfiniteScrollYWithZ:0 Ratio:ccp(0.5,0.5) Pos:ccp([[CCDirector sharedDirector] winSize].width/2,0) Objects:top,middle,middle2,bottom, nil];
-    
-    [self addChild:parallax z:-1];
+    [parallax addChild:top z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
+    [parallax addChild:top2 z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,totalHeight-120) ScrollOffset:ccp(0,totalHeight)];
+    [parallax addChild:middle2 z:3 Ratio:ccp(0.5,0.1) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
+    [parallax addChild:middle z:2 Ratio:ccp(0.5,0.05) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
+    [parallax addChild:bottom z:1 Ratio:ccp(0,0) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
+        
+    [self addChild:parallax];
 }
 
-- (void) update:(float)threshold
+- (void) update:(float)threshold delta:(float)dt
 {
-    [parallax updateWithVelocity:ccp(0,-4) AndDelta:0.01];
+    CCLOG(@"%d",threshold);
+    if ( threshold < 0 )
+    {
+        [parallax updateWithYPosition:parallax.position.y - threshold AndDelta:dt];
+    }
 }
 
 @end

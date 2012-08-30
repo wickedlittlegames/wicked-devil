@@ -32,7 +32,6 @@
     {
         if ([node isKindOfClass: [Platform class]])
         {
-//            node.tag = 4;
             [platforms addObject:node];
         }
         if ([node isKindOfClass: [CCNode class]])
@@ -67,7 +66,7 @@
             platform.active = NO;
         }
 
-        [platform intersectionCheck:game.player];
+        [platform intersectionCheck:game.player platforms:platforms];
         [platform setupHVMovement];
     }
     

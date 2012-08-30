@@ -38,9 +38,8 @@
     return self;
 }
 
-- (void) intersectionCheck:(Player*)player
+- (void) intersectionCheck:(Player*)player platforms:(NSMutableArray*)platforms
 {
-
     if ( player.velocity.y < 0  && self.visible && self.health > 0)
     {
         CGSize platform_size = self.contentSize;
@@ -57,37 +56,65 @@
            player_pos.y > platform_pos.y &&
            player_pos.y < min_y)
         {
-            [self doAction:self.tag player:player];
+            switch (self.tag)
+            {
+                case 1: // bigger jump
+                    [player jump:player.jumpspeed*1.75];
+                    break;
+                case 5: // toggle platforms
+                    for (int i = 0; i < [platforms count]; i++)
+                    {
+                        for (Platform *platform in platforms)
+                        {
+//                        case 4:
+//                            // toggle
+//                            [self.player jump:player.jumpspeed];
+//                            platform.active = !platform.active;
+//                            [platform setTexture:platform_toggle2];
+//                            for (Platform *pf in platforms)
+//                            {
+//                                if (pf.tag == 5)
+//                                {
+//                                    pf.active = !platform.active;
+//                                    [pf setTexture:platform_toggle1];
+//                                }
+//                            }
+//                            break;
+//                        case 5:
+//                            // toggle
+//                            [self.player jump:player.jumpspeed];
+//                            platform.active = !platform.active;
+//                            [platform setTexture:platform_toggle2];
+//                            for (Platform *pf in platforms)
+//                            {
+//                                if (pf.tag == 4)
+//                                {
+//                                    pf.active = !platform.active;
+//                                    [pf setTexture:platform_toggle1];
+//                                }
+//                            }
+//                            break;
+                        }
+                    }
+                    break;
+                case 6: 
+                    self.health--;
+                    if ( self.health != 0 )
+                    {
+                        [player jump:player.jumpspeed*1.75];
+                    }
+                    else 
+                    {
+                        [self fall];
+                    }
+                default:
+                    [player jump:player.jumpspeed];
+                    break;
+            }
             
         }
     }
 
-}
-
-- (void) doAction:(int)tag player:(Player*)player
-{
-    switch (self.tag)
-    {
-        case 0:
-            [player jump:player.jumpspeed];
-            break;
-        case 1: 
-            [player jump:player.jumpspeed*1.75];
-            break;
-        case 6: 
-            self.health--;
-            if ( self.health != 0 )
-            {
-                [player jump:player.jumpspeed*1.75];
-            }
-            else 
-            {
-                [self fall];
-            }
-        default:
-            [player jump:player.jumpspeed];
-            break;
-    }
 }
 
 - (void) showDamage

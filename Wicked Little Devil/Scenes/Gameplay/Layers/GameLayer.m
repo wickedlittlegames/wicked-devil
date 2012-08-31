@@ -47,6 +47,7 @@
         }
         if ([node isKindOfClass: [Enemy class]])
         {
+            node.tag = 3;
             [enemies addObject:node];
         }
         if ([node isKindOfClass: [Trigger class]])

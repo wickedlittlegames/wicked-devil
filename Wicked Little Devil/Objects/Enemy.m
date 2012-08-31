@@ -31,6 +31,7 @@
         self.speed_x = 1;
         self.speed_y = 1;
         self.attacking = FALSE;
+        CCLOG(@"ENEMY");
     }
     return self;
 }
@@ -121,29 +122,36 @@
             if ( !self.attacking ) [self floatPlayer:player];
             break;
         case 2: // fire a projectile
-            [self fireTowardPosition:player.position];
+            [self fireTowardPosition:[player worldBoundingBox].origin];
+            break;
+        case 3: 
+            [self fireDownWithWarning:self.position];
             break;
         // stop intersections of angels
         case 4:
-            [self fireTowardPosition:player.position];
+            [self fireTowardPosition:[player worldBoundingBox].origin];
             break;
     }
 }
 
 - (void) floatPlayer:(Player*)player
 {
+    CCLOG(@"FLOATING");
     self.attacking = TRUE;
     
     self.position = ccp(player.position.x, player.position.y);
     [self setZOrder:4];
     
+    CGPoint saved_velocity = player.velocity;
+    
     id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,3)];
     id moveupby = [CCMoveBy actionWithDuration:2 position:ccp(0,400)];
-    id killFloat = [CCCallFunc actionWithTarget:self selector:@selector(killFloat)];
+    //id killFloat = [CCCallFunc actionWithTarget:self selector:@selector(killFloat)];
     //id givebackControl = [CCCallFunc actionWithTarget:player selector:@selector(givebackControl)];
     
-    [self runAction:[CCSequence actions:movedownwobble, moveupby, killFloat, nil]];
+    //[self runAction:[CCSequence actions:movedownwobble, moveupby, killFloat, nil]];
     [player runAction:[CCSequence actions:movedownwobble, moveupby, nil]]; 
+    player.velocity = saved_velocity;
 }
 
 - (void) killFloat
@@ -156,11 +164,11 @@
     self.attacking = TRUE;
     
     projectile = [Enemy spriteWithFile:@"bigcollectable.png"];
-    [projectile setPosition:ccp(self.position.x, self.position.y - 2000)];
+    [projectile setPosition:ccp(self.position.x, self.position.y + 2000)];
     projectile.tag = 102;
     [self addChild:projectile];
     
-    id movetoposition = [CCMoveBy actionWithDuration:2 position:ccp(0,5000)];
+    id movetoposition = [CCMoveBy actionWithDuration:10 position:ccp(0,-5000)];
     id killattack     = [CCCallFunc actionWithTarget:self selector:@selector(killAttack)];
     
     [projectile runAction:[CCSequence actions:movetoposition, killattack, nil]];

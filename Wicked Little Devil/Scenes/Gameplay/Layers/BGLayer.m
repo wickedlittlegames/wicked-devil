@@ -29,7 +29,7 @@
     CCSprite *bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
     
     parallax = [CCParallaxScrollNode node];
-    float totalHeight =  top.contentSize.height;    
+    float totalHeight =  top.contentSize.height;
     
     [parallax addChild:top z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
     [parallax addChild:top2 z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,totalHeight-120) ScrollOffset:ccp(0,totalHeight)];

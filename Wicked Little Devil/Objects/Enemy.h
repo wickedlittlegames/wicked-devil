@@ -11,13 +11,18 @@
 
 #import "Player.h"
 
-@interface Enemy : CCSprite {}
+@interface Enemy : CCSprite 
+{
+    Enemy *projectile;
+    CCSprite *projectile_info;
+}
 
-@property (nonatomic,assign) bool active;
+@property (nonatomic,assign) bool active, attacking;
 @property (nonatomic,retain) NSString *type;
 @property (nonatomic,assign) float speed_x, speed_y, health, damage;
 
-- (BOOL) isIntersectingPlayer:(Player*)player;
+- (void) isIntersectingPlayer:(Player*)player;
 - (BOOL) isAlive;
+- (void) doMovement;
 
 @end

@@ -101,6 +101,11 @@
             }
         }
     }
+    for (Enemy *enemy in enemies)
+    {
+        [enemy isIntersectingPlayer:game.player];
+        [enemy doMovement];
+    }
 }
 
 - (void) gameoverCheck:(Game*)game

@@ -42,10 +42,9 @@
 
 - (void) update:(float)threshold delta:(float)dt
 {
-    CCLOG(@"%d",threshold);
     if ( threshold < 0 )
     {
-        [parallax updateWithYPosition:parallax.position.y - threshold AndDelta:dt];
+        [parallax updateWithYPosition:parallax.position.y - 40 AndDelta:dt];
     }
 }
 

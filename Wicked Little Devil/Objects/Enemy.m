@@ -12,11 +12,12 @@
 //   2 - Preist
 //   3 - Meteors (take from little devil)
 //   4 - Angels
+//   101 - projectile at position
 
 #import "Enemy.h"
 
 @implementation Enemy
-@synthesize type, active, speed_x, speed_y, health, damage;
+@synthesize type, active, speed_x, speed_y, health, damage, attacking;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -29,55 +30,168 @@
         self.damage = 1;
         self.speed_x = 1;
         self.speed_y = 1;
-        
-        NSLog(@"Theres an enemy!");
+        self.attacking = FALSE;
     }
     return self;
 }
 
-- (BOOL) isIntersectingPlayer:(Player*)player
+- (void) doMovement
 {
-    if ( player.velocity.y < 0  && self.visible && self.health > 0)
+    switch (self.tag)
     {
-        CGSize enemy_size = self.contentSize;
-        CGPoint enemy_pos = self.position;
-        CGSize player_size     = player.contentSize; 
-        CGPoint player_pos     = player.position;
-        
-        float max_x = enemy_pos.x - enemy_size.width/2 - 10;
-        float min_x = enemy_pos.x + enemy_size.width/2 + 10;
-        float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
-        
-        if(player_pos.x > max_x &&
-           player_pos.x < min_x &&
-           player_pos.y > enemy_pos.y &&
-           player_pos.y < min_y)
-        {
-            [self doAction:self.tag player:player];
-        }
+        default: // just move down the screen
+            break;
+        case 0: // bat, wobble
+            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+2)/10) * 2); 
+            if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) self.position = ccp(-70, self.position.y);
+            break;
+        case 1: // bubble (sea)
+            break;
     }
-    return FALSE;
+}
+
+- (void) isIntersectingPlayer:(Player*)player
+{
+    switch (self.tag)
+    {
+        default: // all normal hit then die enemies
+            if ( player.velocity.y < 0  && self.visible && self.health > 0)
+            {
+                CGSize enemy_size = self.contentSize;
+                CGPoint enemy_pos = self.position;
+                CGSize player_size     = player.contentSize; 
+                CGPoint player_pos     = player.position;
+                
+                float max_x = enemy_pos.x - enemy_size.width/2 - 10;
+                float min_x = enemy_pos.x + enemy_size.width/2 + 10;
+                float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
+                
+                if(player_pos.x > max_x &&
+                   player_pos.x < min_x &&
+                   player_pos.y > enemy_pos.y &&
+                   player_pos.y < min_y)
+                {
+                    [self doAction:self.tag player:player];
+                }
+            }
+            break;
+        case 2: // amish/preist, projectile
+            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking)
+            {
+                [self doAction:self.tag player:player];
+            }
+            break;
+        case 3: // meteor trigger (shadow on the rock)
+            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
+            {
+                [self doAction:self.tag player:player];
+            }
+            break;
+        case 4: // angels
+            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
+            {
+                [self doAction:self.tag player:player];
+            }
+            break;
+    }
+}
+
+- (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 
+{
+    float xdif = circlePoint.x - circlePointTwo.x;
+    float ydif = circlePoint.y - circlePointTwo.y;
+    
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+    
+    if(distance <= radius+radiusTwo) 
+        return YES;
+    
+    return NO;
 }
 
 - (void) doAction:(int)tag player:(Player*)player
 {
     switch (tag)
     {
-        // rat, bat, meteors
-        default:
+
+        default: // rat, bat, meteors
             [self damageToPlayer:player];
             break;
-        // water
-        case 1:
-            // move player up then pop (animation)
+        case 1: // move player up then pop (animation)
+            if ( !self.attacking ) [self floatPlayer:player];
             break;
-        // stop intersection of preists
-        case 2:
+        case 2: // fire a projectile
+            [self fireTowardPosition:player.position];
             break;
         // stop intersections of angels
         case 4:
+            [self fireTowardPosition:player.position];
             break;
     }
+}
+
+- (void) floatPlayer:(Player*)player
+{
+    self.attacking = TRUE;
+    
+    self.position = ccp(player.position.x, player.position.y);
+    [self setZOrder:4];
+    
+    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,3)];
+    id moveupby = [CCMoveBy actionWithDuration:2 position:ccp(0,400)];
+    id killFloat = [CCCallFunc actionWithTarget:self selector:@selector(killFloat)];
+    //id givebackControl = [CCCallFunc actionWithTarget:player selector:@selector(givebackControl)];
+    
+    [self runAction:[CCSequence actions:movedownwobble, moveupby, killFloat, nil]];
+    [player runAction:[CCSequence actions:movedownwobble, moveupby, nil]]; 
+}
+
+- (void) killFloat
+{
+    [self removeFromParentAndCleanup:YES];
+}
+
+- (void) fireDownWithWarning:(CGPoint)position
+{
+    self.attacking = TRUE;
+    
+    projectile = [Enemy spriteWithFile:@"bigcollectable.png"];
+    [projectile setPosition:ccp(self.position.x, self.position.y - 2000)];
+    projectile.tag = 102;
+    [self addChild:projectile];
+    
+    id movetoposition = [CCMoveBy actionWithDuration:2 position:ccp(0,5000)];
+    id killattack     = [CCCallFunc actionWithTarget:self selector:@selector(killAttack)];
+    
+    [projectile runAction:[CCSequence actions:movetoposition, killattack, nil]];
+}
+- (void) fireTowardPosition:(CGPoint)position
+{
+    self.attacking = TRUE;
+    
+    // Create the projectile
+    projectile = [Enemy spriteWithFile:@"collectable.png"];
+    [projectile setPosition:ccp(self.position.x,self.position.y)];
+    projectile.tag = 101;
+    [self addChild:projectile];
+    
+    id movetoplayer = [CCMoveTo actionWithDuration:0.75 position:position];
+    id delay       =  [CCDelayTime actionWithDuration:5];
+    id resetAttack =  [CCCallFunc actionWithTarget:self selector:@selector(resetAttack)];
+    
+    [projectile runAction:[CCSequence actions:movetoplayer, delay, resetAttack, nil]];
+}
+
+- (void) resetAttack
+{
+    self.attacking = FALSE;
+    [self removeChildByTag:101 cleanup:YES];
+}
+
+- (void) killAttack
+{
+    [self removeAllChildrenWithCleanup:YES];
+    [self removeFromParentAndCleanup:YES];
 }
 
 - (void) damageToPlayer:(Player*)player

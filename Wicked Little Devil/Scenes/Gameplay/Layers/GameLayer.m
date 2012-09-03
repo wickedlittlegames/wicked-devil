@@ -33,6 +33,7 @@
         if ([node isKindOfClass: [Platform class]])
         {
             [platforms addObject:node];
+            if ( node.tag == 52 ) node.visible = NO;
         }
         if ([node isKindOfClass: [CCNode class]])
         {

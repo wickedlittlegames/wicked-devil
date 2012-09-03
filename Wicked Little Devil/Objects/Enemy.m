@@ -134,15 +134,20 @@
     
     id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
     id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
+    id killfloat = [CCCallFuncND actionWithTarget:self selector:@selector(killFloat:data:) data:(void*)player];
     
     player.controllable = FALSE;
     
-    [player runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
+    [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
     player.velocity = saved_velocity;
 }
 
-- (void) killFloat
+- (void) killFloat:(id)sender data:(id)data
 {
+    Player *player = data;
+    player.controllable = TRUE;
+    self.visible = FALSE;
+    self.active = FALSE;
     [self removeFromParentAndCleanup:YES];
 }
 

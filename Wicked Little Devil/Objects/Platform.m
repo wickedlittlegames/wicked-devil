@@ -23,7 +23,7 @@
 #import "Platform.h"
 
 @implementation Platform
-@synthesize health, type, animating,original_position,active, flipped;
+@synthesize health, type, animating,original_position,active, flipped, toggled;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -34,7 +34,7 @@
         self.active = TRUE;
         self.original_position = ccp(self.position.x, self.position.y);
         self.flipped = FALSE;
-        self.visible = (self.tag == 52 ? FALSE : TRUE);
+        self.toggled = FALSE;
     }
     return self;
 }
@@ -74,16 +74,17 @@
                         {
                             case 51:
                                 CCLOG(@"TOGGLING 51");
-                                self.visible = !self.visible;
+                                tmpPlatform.visible = !self.toggled;
                                 break;
                             case 52:
-                                CCLOG(@"TOGGLING 52");                                    
-                                self.visible = !self.visible;                                    
+                                CCLOG(@"TOGGLING 52");
+                                tmpPlatform.visible = self.toggled; 
                                 break;
                             default:
                                 break;
                         }
                     }
+                    self.toggled = YES;
                     break;
                 case 6: 
                     self.health--;

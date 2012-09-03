@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -26,6 +26,7 @@
         self.score = 0;
         self.last_platform_touched = NULL;
         self.controllable = NO;
+        self.toggled_platform = NO;
     }
     return self;
 }

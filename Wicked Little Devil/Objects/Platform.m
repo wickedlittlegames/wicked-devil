@@ -34,7 +34,6 @@
         self.active = TRUE;
         self.original_position = ccp(self.position.x, self.position.y);
         self.flipped = FALSE;
-        self.toggled = FALSE;
     }
     return self;
 }
@@ -74,17 +73,17 @@
                         {
                             case 51:
                                 CCLOG(@"TOGGLING 51");
-                                tmpPlatform.visible = !self.toggled;
+                                tmpPlatform.visible = player.toggled_platform;
                                 break;
                             case 52:
                                 CCLOG(@"TOGGLING 52");
-                                tmpPlatform.visible = self.toggled; 
+                                tmpPlatform.visible = !player.toggled_platform; 
                                 break;
                             default:
                                 break;
                         }
                     }
-                    self.toggled = YES;
+                    player.toggled_platform = !player.toggled_platform;
                     break;
                 case 6: 
                     self.health--;

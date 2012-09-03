@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected, bigcollected, score;
 @property (nonatomic, retain) id last_platform_touched;
-@property (nonatomic, assign) BOOL controllable;
+@property (nonatomic, assign) BOOL controllable, toggled_platform;
 
 - (BOOL) isAlive;
 - (void) jump:(float)speed;

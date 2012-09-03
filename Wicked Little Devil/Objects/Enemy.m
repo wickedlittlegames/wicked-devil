@@ -32,6 +32,7 @@
         self.speed_x = 1;
         self.speed_y = 1;
         self.attacking = FALSE;
+        self.active = YES;
         CCLOG(@"ENEMY");
     }
     return self;
@@ -55,7 +56,7 @@
     switch (self.tag)
     {
         default: // all normal hit then die enemies
-            if ( player.velocity.y < 0  && self.visible && self.health > 0)
+            if ( self.visible && self.health > 0)
             {
                 CGSize enemy_size = self.contentSize;
                 CGPoint enemy_pos = self.position;
@@ -131,13 +132,12 @@
     
     CGPoint saved_velocity = player.velocity;
     
-    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-3)];
+    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
     id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
-    //id killFloat = [CCCallFunc actionWithTarget:self selector:@selector(killFloat)];
-    //id givebackControl = [CCCallFunc actionWithTarget:player selector:@selector(givebackControl)];
     
-    //[self runAction:[CCSequence actions:movedownwobble, moveupby, killFloat, nil]];
-    [player runAction:[CCSequence actions:movedownwobble, moveupby, nil]]; 
+    player.controllable = FALSE;
+    
+    [player runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
     player.velocity = saved_velocity;
 }
 

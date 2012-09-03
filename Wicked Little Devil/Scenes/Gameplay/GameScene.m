@@ -70,7 +70,7 @@
         
         // INTRO
         if ( !game.isIntro )
-        {
+        {            
             game.isIntro = YES;
             id move = [CCMoveTo actionWithDuration:4.0 position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];
@@ -104,7 +104,7 @@
                 [layer_bg update:game.threshold delta:dt];
                 
                 // Player Layer Interactions
-                [game.player movementwithGravity:0.18];
+                if ( game.player.controllable ) [game.player movementwithGravity:0.18];
                 
                 // UI Layer Interactions
                 [layer_ui update:game.player];

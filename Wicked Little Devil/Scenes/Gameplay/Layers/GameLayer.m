@@ -66,7 +66,7 @@
             platform.active = NO;
         }
 
-        [platform intersectionCheck:game.player platforms:platforms];
+        if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
         [platform setupHVMovement];
     }
     

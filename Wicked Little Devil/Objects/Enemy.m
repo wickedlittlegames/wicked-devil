@@ -14,6 +14,7 @@
 //   4 - Angels
 //   101 - projectile at position
 
+#import "Platform.h"
 #import "Enemy.h"
 
 @implementation Enemy
@@ -42,11 +43,9 @@
     {
         default: // just move down the screen
             break;
-        case 0: // bat, wobble
-            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+2)/10) * 2); 
+        case 0: // bat wobble
+            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2); 
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) self.position = ccp(-70, self.position.y);
-            break;
-        case 1: // bubble (sea)
             break;
     }
 }
@@ -97,24 +96,12 @@
     }
 }
 
-- (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 
-{
-    float xdif = circlePoint.x - circlePointTwo.x;
-    float ydif = circlePoint.y - circlePointTwo.y;
-    
-    float distance = sqrt(xdif*xdif+ydif*ydif);
-    
-    if(distance <= radius+radiusTwo) 
-        return YES;
-    
-    return NO;
-}
-
 - (void) doAction:(int)tag player:(Player*)player
 {
+    Platform* target = player.last_platform_touched;
+    
     switch (tag)
     {
-
         default: // rat, bat, meteors
             [self damageToPlayer:player];
             break;
@@ -129,7 +116,7 @@
             break;
         // stop intersections of angels
         case 4:
-            [self fireTowardPosition:[player worldBoundingBox].origin];
+            [self fireTowardPosition:target.position];
             break;
     }
 }
@@ -144,8 +131,8 @@
     
     CGPoint saved_velocity = player.velocity;
     
-    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,3)];
-    id moveupby = [CCMoveBy actionWithDuration:2 position:ccp(0,400)];
+    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-3)];
+    id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
     //id killFloat = [CCCallFunc actionWithTarget:self selector:@selector(killFloat)];
     //id givebackControl = [CCCallFunc actionWithTarget:player selector:@selector(givebackControl)];
     
@@ -168,11 +155,12 @@
     projectile.tag = 102;
     [self addChild:projectile];
     
-    id movetoposition = [CCMoveBy actionWithDuration:10 position:ccp(0,-5000)];
+    id movetoposition = [CCMoveBy actionWithDuration:7 position:ccp(0,-5000)];
     id killattack     = [CCCallFunc actionWithTarget:self selector:@selector(killAttack)];
     
     [projectile runAction:[CCSequence actions:movetoposition, killattack, nil]];
 }
+
 - (void) fireTowardPosition:(CGPoint)position
 {
     self.attacking = TRUE;
@@ -217,5 +205,17 @@
     return ( self.health > 0.0 ? TRUE : FALSE );
 }
 
+- (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 
+{
+    float xdif = circlePoint.x - circlePointTwo.x;
+    float ydif = circlePoint.y - circlePointTwo.y;
+    
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+    
+    if(distance <= radius+radiusTwo) 
+        return YES;
+    
+    return NO;
+}
 
 @end

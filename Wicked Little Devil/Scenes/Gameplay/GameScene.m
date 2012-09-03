@@ -40,7 +40,7 @@
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
-        [self addChild:menu];
+        [self addChild:menu z:10];
 
         layer_bg        = [BGLayer node];
         layer_fx        = [FXLayer node];
@@ -69,11 +69,17 @@
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];        
         
         // INTRO
-        //        id move = [CCMoveTo actionWithDuration:1.0 position:ccp(0,0)];
-        //        id ease = [CCEaseSineOut actionWithAction:move];
-        //        
-        //        [self setPosition:ccp(0,(-self.contentSize.height - 200))];
-        //        [self runAction: ease];
+        if ( !game.isIntro )
+        {
+            game.isIntro = YES;
+            id move = [CCMoveTo actionWithDuration:4.0 position:ccp(0,0)];
+            id ease = [CCEaseSineOut actionWithAction:move];
+        
+            [self setPosition:ccp(0,(-self.contentSize.height - 200))];
+            [self runAction: ease];
+        }
+        
+        [self schedule:@selector(update:)];
     }
 	return self;
 }
@@ -84,6 +90,9 @@
 {
     if ( ![[CCDirector sharedDirector] isPaused])
     {
+        // Game Layer Interactions
+        [layer_game update:game];
+
         if ( game.isStarted )
         {
             [layer_game gameoverCheck:game];
@@ -93,9 +102,6 @@
                 
                 // Background Layer Interactions
                 [layer_bg update:game.threshold delta:dt];
-                
-                // Game Layer Interactions
-                [layer_game update:game];
                 
                 // Player Layer Interactions
                 [game.player movementwithGravity:0.18];
@@ -118,17 +124,27 @@
 
 - (void) control_player
 {
-    float diff = location_touch.x - game.player.position.x;
-    if (diff > 4)  diff = 4;
-    if (diff < -4) diff = -4;
-    CGPoint new_player_location = CGPointMake(game.player.position.x + diff, game.player.position.y);
-    game.player.position = new_player_location;
+    if ( game.player.controllable )
+    {
+        float diff = location_touch.x - game.player.position.x;
+        if (diff > 4)  diff = 4;
+        if (diff < -4) diff = -4;
+        CGPoint new_player_location = CGPointMake(game.player.position.x + diff, game.player.position.y);
+        game.player.position = new_player_location;
+    }
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for( UITouch *touch in touches ) 
     {
+        if (game.isIntro)
+        {
+            [self stopAllActions];
+            [self setPosition:ccp(0,0)];
+            game.isIntro = NO;
+        }
+        
         CGPoint location = [touch locationInView: [touch view]];
         location_touch = location;
     }
@@ -138,7 +154,8 @@
 { 
     game.isStarted = YES;
     game.isGameover = NO;
-    [self schedule:@selector(update:)];
+    game.player.controllable = YES;
+    game.isIntro = NO;    
     
     layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     menu.visible = NO;

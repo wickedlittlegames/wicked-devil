@@ -308,6 +308,17 @@
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */; };
 		9CACDF5615B8199200E8F518 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACDF5515B8199200E8F518 /* Game.m */; };
+		9CD939AA15F41493001B0D50 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939A915F41493001B0D50 /* bubble.png */; };
+		9CD939AD15F41842001B0D50 /* backdrop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939AC15F41842001B0D50 /* backdrop.plist */; };
+		9CD939AF15F418BC001B0D50 /* backdrop2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939AE15F418BC001B0D50 /* backdrop2.plist */; };
+		9CD939B315F41AC6001B0D50 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B215F41AC6001B0D50 /* particleTexture.png */; };
+		9CD939BA15F4A077001B0D50 /* bg_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B415F4A077001B0D50 /* bg_6.png */; };
+		9CD939BB15F4A077001B0D50 /* bg_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B515F4A077001B0D50 /* bg_5.png */; };
+		9CD939BC15F4A077001B0D50 /* bg_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B615F4A077001B0D50 /* bg_4.png */; };
+		9CD939BD15F4A077001B0D50 /* bg_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B715F4A077001B0D50 /* bg_3.png */; };
+		9CD939BE15F4A077001B0D50 /* bg_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B815F4A077001B0D50 /* bg_2.png */; };
+		9CD939BF15F4A077001B0D50 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B915F4A077001B0D50 /* bg_1.png */; };
+		9CD939C715F4DC67001B0D50 /* devil3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939C615F4DC67001B0D50 /* devil3.png */; };
 		9CDF942B15B561CA0017E58B /* BGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942015B561CA0017E58B /* BGLayer.m */; };
 		9CDF942C15B561CA0017E58B /* FXLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942215B561CA0017E58B /* FXLayer.m */; };
 		9CDF942F15B561CA0017E58B /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942815B561CA0017E58B /* PlayerLayer.m */; };
@@ -669,6 +680,17 @@
 		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
 		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
 		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
+		9CD939A915F41493001B0D50 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		9CD939AC15F41842001B0D50 /* backdrop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backdrop.plist; sourceTree = "<group>"; };
+		9CD939AE15F418BC001B0D50 /* backdrop2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backdrop2.plist; sourceTree = "<group>"; };
+		9CD939B215F41AC6001B0D50 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
+		9CD939B415F4A077001B0D50 /* bg_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_6.png; sourceTree = "<group>"; };
+		9CD939B515F4A077001B0D50 /* bg_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_5.png; sourceTree = "<group>"; };
+		9CD939B615F4A077001B0D50 /* bg_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_4.png; sourceTree = "<group>"; };
+		9CD939B715F4A077001B0D50 /* bg_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_3.png; sourceTree = "<group>"; };
+		9CD939B815F4A077001B0D50 /* bg_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_2.png; sourceTree = "<group>"; };
+		9CD939B915F4A077001B0D50 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
+		9CD939C615F4DC67001B0D50 /* devil3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil3.png; sourceTree = "<group>"; };
 		9CDF941F15B561CA0017E58B /* BGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGLayer.h; path = Scenes/Gameplay/Layers/BGLayer.h; sourceTree = "<group>"; };
 		9CDF942015B561CA0017E58B /* BGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGLayer.m; path = Scenes/Gameplay/Layers/BGLayer.m; sourceTree = "<group>"; };
 		9CDF942115B561CA0017E58B /* FXLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXLayer.h; path = Scenes/Gameplay/Layers/FXLayer.h; sourceTree = "<group>"; };
@@ -1295,6 +1317,17 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CD939C615F4DC67001B0D50 /* devil3.png */,
+				9CD939B415F4A077001B0D50 /* bg_6.png */,
+				9CD939B515F4A077001B0D50 /* bg_5.png */,
+				9CD939B615F4A077001B0D50 /* bg_4.png */,
+				9CD939B715F4A077001B0D50 /* bg_3.png */,
+				9CD939B815F4A077001B0D50 /* bg_2.png */,
+				9CD939B915F4A077001B0D50 /* bg_1.png */,
+				9CD939B215F41AC6001B0D50 /* particleTexture.png */,
+				9CD939AE15F418BC001B0D50 /* backdrop2.plist */,
+				9CD939AC15F41842001B0D50 /* backdrop.plist */,
+				9CD939A915F41493001B0D50 /* bubble.png */,
 				9CA5222C15EF897500AB72CB /* background-1-top.png */,
 				9CA5222D15EF897500AB72CB /* background-1-top-hd.png */,
 				9CA5222E15EF897500AB72CB /* background-1-middle2.png */,
@@ -1793,6 +1826,17 @@
 				9CA5223915EF897500AB72CB /* background-1-middle-hd.png in Resources */,
 				9CA5223A15EF897500AB72CB /* background-1-bottom.png in Resources */,
 				9CA5223B15EF897500AB72CB /* background-1-bottom-hd.png in Resources */,
+				9CD939AA15F41493001B0D50 /* bubble.png in Resources */,
+				9CD939AD15F41842001B0D50 /* backdrop.plist in Resources */,
+				9CD939AF15F418BC001B0D50 /* backdrop2.plist in Resources */,
+				9CD939B315F41AC6001B0D50 /* particleTexture.png in Resources */,
+				9CD939BA15F4A077001B0D50 /* bg_6.png in Resources */,
+				9CD939BB15F4A077001B0D50 /* bg_5.png in Resources */,
+				9CD939BC15F4A077001B0D50 /* bg_4.png in Resources */,
+				9CD939BD15F4A077001B0D50 /* bg_3.png in Resources */,
+				9CD939BE15F4A077001B0D50 /* bg_2.png in Resources */,
+				9CD939BF15F4A077001B0D50 /* bg_1.png in Resources */,
+				9CD939C715F4DC67001B0D50 /* devil3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

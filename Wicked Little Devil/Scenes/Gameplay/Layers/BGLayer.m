@@ -15,37 +15,38 @@
 {
 	if( (self=[super init]) ) 
     {
-        
+
     }
 	return self;
 }
 
 - (void) createWorldSpecificBackgrounds:(int)world
 {
-    CCSprite *top = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
-    CCSprite *top2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-top.png",world]];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
     CCSprite *middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle.png",world]];
     CCSprite *middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle2.png",world]];
     CCSprite *bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
+
+    [middle setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [middle2 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [bottom setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
-    parallax = [CCParallaxScrollNode node];
-    float totalHeight =  top.contentSize.height;
-    
-    [parallax addChild:top z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
-    [parallax addChild:top2 z:4 Ratio:ccp(0.05,0.5) Pos:ccp(0,totalHeight-120) ScrollOffset:ccp(0,totalHeight)];
-    [parallax addChild:middle2 z:3 Ratio:ccp(0.5,0.1) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
-    [parallax addChild:middle z:2 Ratio:ccp(0.5,0.05) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
-    [parallax addChild:bottom z:1 Ratio:ccp(0,0) Pos:ccp(0,0) ScrollOffset:ccp(0,totalHeight)];
-        
-    [self addChild:parallax];
+    [self addChild:middle z:2];
+    [self addChild:middle2 z:3];
+    [self addChild:bottom z:1];
+            
+//    //CCParticleSystem *enemyemitter = [[CCParticleSystem alloc] pa:@"backdrop2.plist"];
+//    CCParticleSystem *enemyemitter = [CCParticleSystem particleWithFile:@"backdrop2.plist"];
+//    [self addChild:enemyemitter z:4];
+//    
+//    enemyemitter.position =ccp(screenSize.width/2, screenSize.height); 
+//    [enemyemitter resetSystem];
 }
 
 - (void) update:(float)threshold delta:(float)dt
 {
-    if ( threshold < 0 )
-    {
-        [parallax updateWithYPosition:parallax.position.y - 40 AndDelta:dt];
-    }
+
 }
 
 @end

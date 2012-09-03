@@ -7,14 +7,14 @@
 //
 //  Platform types
 //  -1, 0 = normal
-//  1     = double jump
-//  2     = horizontal movement
-//  3     = vertical movement
-//  4     = bat/waving movement
-//  5     = toggle button
+//  1     = double jump (green)
+//  2     = horizontal movement (pink)
+//  3     = vertical movement (pink dark)
+//  4     = bat/waving movement (blue)
+//  5     = toggle button 
 //  51    = toggle option 1
 //  52    = toggle option 2
-//  6     = breakable
+//  6     = breakable (yellow)
 //  7     = timed - 5 seconds
 //  71    = timed - 10 seconds
 //  72    = timed - 15 seconds
@@ -34,6 +34,7 @@
         self.active = TRUE;
         self.original_position = ccp(self.position.x, self.position.y);
         self.flipped = FALSE;
+        self.visible = (self.tag == 52 ? FALSE : TRUE);
     }
     return self;
 }
@@ -56,44 +57,31 @@
            player_pos.y > platform_pos.y &&
            player_pos.y < min_y)
         {
+            player.last_platform_touched = NULL;
+            player.last_platform_touched = self;
+            
             switch (self.tag)
             {
                 case 1: // bigger jump
                     [player jump:player.jumpspeed*1.75];
                     break;
-                case 5: // toggle platforms
-                    for (int i = 0; i < [platforms count]; i++)
+                case 5: // toggle
+                    [player jump:player.jumpspeed];
+                    CCLOG(@"TOGGLING 5");                    
+                    for (Platform *tmpPlatform in platforms)
                     {
-                        for (Platform *platform in platforms)
+                        switch (tmpPlatform.tag)
                         {
-//                        case 4:
-//                            // toggle
-//                            [self.player jump:player.jumpspeed];
-//                            platform.active = !platform.active;
-//                            [platform setTexture:platform_toggle2];
-//                            for (Platform *pf in platforms)
-//                            {
-//                                if (pf.tag == 5)
-//                                {
-//                                    pf.active = !platform.active;
-//                                    [pf setTexture:platform_toggle1];
-//                                }
-//                            }
-//                            break;
-//                        case 5:
-//                            // toggle
-//                            [self.player jump:player.jumpspeed];
-//                            platform.active = !platform.active;
-//                            [platform setTexture:platform_toggle2];
-//                            for (Platform *pf in platforms)
-//                            {
-//                                if (pf.tag == 4)
-//                                {
-//                                    pf.active = !platform.active;
-//                                    [pf setTexture:platform_toggle1];
-//                                }
-//                            }
-//                            break;
+                            case 51:
+                                CCLOG(@"TOGGLING 51");
+                                self.visible = !self.visible;
+                                break;
+                            case 52:
+                                CCLOG(@"TOGGLING 52");                                    
+                                self.visible = !self.visible;                                    
+                                break;
+                            default:
+                                break;
                         }
                     }
                     break;

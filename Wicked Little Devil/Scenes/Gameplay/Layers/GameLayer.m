@@ -47,7 +47,6 @@
         }
         if ([node isKindOfClass: [Enemy class]])
         {
-            node.tag = 3;
             [enemies addObject:node];
         }
         if ([node isKindOfClass: [Trigger class]])
@@ -61,7 +60,7 @@
 {       
     for (Platform *platform in platforms)
     {       
-        if ([platform worldBoundingBox].origin.y < -80 && platform.active )
+        if ([platform worldBoundingBox].origin.y < -80 && platform.active && !game.isIntro)
         {
             platform.visible = NO;
             platform.active = NO;
@@ -104,6 +103,12 @@
     }
     for (Enemy *enemy in enemies)
     {
+        if ([enemy worldBoundingBox].origin.y < -80 && enemy.active && !game.isIntro )
+        {
+            enemy.visible = NO;
+            enemy.active = NO;
+        }
+        
         [enemy isIntersectingPlayer:game.player];
         [enemy doMovement];
     }

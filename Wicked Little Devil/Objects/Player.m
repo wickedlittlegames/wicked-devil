@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -24,6 +24,8 @@
         self.bigcollected = 0;
         self.modifier_gravity = 0;
         self.score = 0;
+        self.last_platform_touched = NULL;
+        self.controllable = NO;
     }
     return self;
 }
@@ -36,7 +38,7 @@
 
 - (BOOL) isAlive
 {
-    return ( self.health > 0.0 ? TRUE : FALSE );
+    return ( self.health > 0.0 );
 }
 
 - (void) jump:(float)speed

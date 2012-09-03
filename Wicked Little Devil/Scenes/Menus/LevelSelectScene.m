@@ -222,6 +222,10 @@
         CCMenu *menu_world = [CCMenu menuWithItems:nil];
         menu_world.position = ccp ( menu_x, menu_y );
         
+        CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", w]];
+        [world addChild:bg];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
+        
         int world_souls_total = 0;
         int world_score_total = [user getHighscoreforWorld:w];
         

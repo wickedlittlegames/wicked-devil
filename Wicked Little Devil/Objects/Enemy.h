@@ -11,11 +11,7 @@
 
 #import "Player.h"
 
-@interface Enemy : CCSprite 
-{
-    Enemy *projectile;
-    CCSprite *projectile_info;
-}
+@interface Enemy : CCSprite {}
 
 @property (nonatomic,assign) bool active, attacking;
 @property (nonatomic,retain) NSString *type;

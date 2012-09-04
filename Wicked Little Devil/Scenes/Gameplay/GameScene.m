@@ -65,6 +65,7 @@
         game.user = user;
         game.world = w;
         game.level = l;
+        game.fx = layer_fx;
         [game.player setupPowerup:user.powerup];
         
         [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];

@@ -20,9 +20,17 @@
 	return self;
 }
 
-- (void) update:(float)threshold
+- (void) update:(float)threshold{}
+
+- (void) runEffect:(int)number
 {
-    
+    switch (number)
+    {
+        case 0:
+            break;
+        default: 
+            break;
+    }
 }
 
 @end

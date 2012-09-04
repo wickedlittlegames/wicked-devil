@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #import "User.h"
+#import "FXLayer.h"
 
 @interface Game : NSObject {}
 
@@ -16,4 +17,5 @@
 @property (nonatomic, assign) bool isGameover, didWin, isStarted, isIntro;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) FXLayer *fx;
 @end

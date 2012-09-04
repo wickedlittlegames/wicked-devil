@@ -112,6 +112,8 @@
         case 1: // move player up then pop (animation)
             if ( !self.attacking ) [self floatPlayer:player];
             break;
+        case 3:
+            break;
     }
 }
 

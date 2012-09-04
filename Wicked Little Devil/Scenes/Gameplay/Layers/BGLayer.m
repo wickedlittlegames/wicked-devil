@@ -35,13 +35,6 @@
     [self addChild:middle z:2];
     [self addChild:middle2 z:3];
     [self addChild:bottom z:1];
-            
-//    //CCParticleSystem *enemyemitter = [[CCParticleSystem alloc] pa:@"backdrop2.plist"];
-//    CCParticleSystem *enemyemitter = [CCParticleSystem particleWithFile:@"backdrop2.plist"];
-//    [self addChild:enemyemitter z:4];
-//    
-//    enemyemitter.position =ccp(screenSize.width/2, screenSize.height); 
-//    [enemyemitter resetSystem];
 }
 
 - (void) update:(float)threshold delta:(float)dt

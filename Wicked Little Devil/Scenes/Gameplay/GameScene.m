@@ -51,10 +51,13 @@
         [layer_bg createWorldSpecificBackgrounds:w]; 
         [layer_game createWorldWithObjects:[layer_game children]];
         
-        [self addChild:layer_bg];
-        [self addChild:layer_fx];
-        [self addChild:layer_game];
-        [self addChild:layer_player];
+        CCLayer *collab = [CCLayer node];
+        [self addChild:collab];
+        
+        [collab addChild:layer_bg];
+        [collab addChild:layer_fx];
+        [collab addChild:layer_game];
+        [collab addChild:layer_player];
         [self addChild:layer_ui];
         
         game.player = layer_player.player;
@@ -63,10 +66,9 @@
         game.world = w;
         game.level = l;
         [game.player setupPowerup:user.powerup];
-        location_touch = game.player.position;
         
         [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];
-        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];        
+        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];
         
         // INTRO
         if ( !game.isIntro )
@@ -75,8 +77,8 @@
             id move = [CCMoveTo actionWithDuration:4.0 position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];
         
-            [self setPosition:ccp(0,(-self.contentSize.height - 200))];
-            [self runAction: ease];
+            [collab setPosition:ccp(0,(-self.contentSize.height - 200))];
+            [collab runAction: ease];
         }
         
         [self schedule:@selector(update:)];
@@ -102,6 +104,9 @@
                 
                 // Background Layer Interactions
                 [layer_bg update:game.threshold delta:dt];
+                
+                // FX Layer Interactions
+                [layer_fx update:game.threshold];
                 
                 // Player Layer Interactions
                 if ( game.player.controllable ) [game.player movementwithGravity:0.18];
@@ -145,8 +150,11 @@
             game.isIntro = NO;
         }
         
-        CGPoint location = [touch locationInView: [touch view]];
-        location_touch = location;
+        if ( game.player.controllable )
+        {
+            CGPoint location = [touch locationInView: [touch view]];
+            location_touch = location;
+        }
     }
 }
 
@@ -155,7 +163,8 @@
     game.isStarted = YES;
     game.isGameover = NO;
     game.player.controllable = YES;
-    game.isIntro = NO;    
+    game.isIntro = NO;
+    location_touch = game.player.position;
     
     layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     menu.visible = NO;

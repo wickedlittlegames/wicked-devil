@@ -20,8 +20,7 @@
         
         player = [Player spriteWithFile:@"devil3.png"];
         [player setPosition:ccp ( 160 , 110 )];
-        [self addChild:player];
-        
+        [self addChild:player z:1];                
     }
 	return self;
 }

@@ -89,7 +89,7 @@
             }
             break;
         case 4: // angels
-            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
+            if ( !self.attacking )
             {
                 [self doAction:self.tag player:player];
             }

@@ -73,7 +73,7 @@
             // little devil
             self.scale = self.scale/2;
             break;
-        case 6: 
+        case 6:
             // low gravity
             self.modifier_gravity = 0.1;
             break;

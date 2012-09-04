@@ -66,17 +66,14 @@
                     break;
                 case 5: // toggle
                     [player jump:player.jumpspeed];
-                    CCLOG(@"TOGGLING 5");                    
                     for (Platform *tmpPlatform in platforms)
                     {
                         switch (tmpPlatform.tag)
                         {
                             case 51:
-                                CCLOG(@"TOGGLING 51");
                                 tmpPlatform.visible = player.toggled_platform;
                                 break;
                             case 52:
-                                CCLOG(@"TOGGLING 52");
                                 tmpPlatform.visible = !player.toggled_platform; 
                                 break;
                             default:
@@ -99,10 +96,8 @@
                     [player jump:player.jumpspeed];
                     break;
             }
-            
         }
     }
-
 }
 
 - (void) showDamage

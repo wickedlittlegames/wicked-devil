@@ -3,12 +3,13 @@
 #define WORLDS_PER_GAME  6
 
 #pragma mark === IN APP PURCHASE IDS ===
-
-#define IAP_1000 1      //  .69
-#define IAP_2500 2      //  .99
-#define IAP_5000 3      // 1.69 
-#define IAP_10000 4    //  2.99
-#define IAP_100000 5    // 6.99
+    
+#define IAP_1000        1      //  .69
+#define IAP_2500        2      //  .99
+#define IAP_5000        3      // 1.29
+#define IAP_10000       4      // 1.99
+#define IAP_50000       5      // 2.99
+#define IAP_100000      6      // 4.99
 
 #pragma mark === ACHIEVEMENT IDS ===
 
@@ -27,7 +28,7 @@
 #define ACV_DIED_100_TIMES 13 // died 100 times "It's Safer in Hell"
 #define ACV_1000JUMPSONPLATFORM 14 // jumped on 1000 platforms "Van Halen Would Be Proud"
 #define ACV_SHARED_SOCIAL 15 // shared the game on twitter or Facebook (once only) "Psycho-Social"
-#define ACV_FIRST_3BIG_SOULS 16 // "Angry Devil"
+#define ACV_FIRST_3BIG_SOULS 16 // "Wicked Devil"
 #define ACV_UNLOCKED_METAMODE 17 // ?????
 #define ACV_BEAT_HARDMODE 18 // ?????????
 #define ACV_SUPERPOWERED 19  // collected all the powerups
@@ -41,4 +42,3 @@
 #define LDB_WORLD_4 4
 #define LDB_WORLD_5 5
 #define LDB_WORLD_6 6
-#define LDB_MOST_SOULS 7

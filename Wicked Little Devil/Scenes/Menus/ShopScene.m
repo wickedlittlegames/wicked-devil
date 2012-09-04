@@ -42,8 +42,8 @@
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        data = [NSArray arrayWithObjects:@"1,000 souls", @"2,500 souls", @"5,000 souls", @"10,000 souls", @"100,000 souls", @"1,000,000 souls", nil];        
-        data2 = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.99",@"£4.99", @"£8.99", @"£10.99",nil];
+        data = [NSArray arrayWithObjects:@"1,000 Souls", @"2,500 Souls", @"5,000 Souls", @"10,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];        
+        data2 = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.29",@"£1.99", @"£2.99", @"£4.99",nil];
         
         table.dataSource = self;
         table.delegate   = self;

@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -27,6 +27,8 @@
         self.last_platform_touched = NULL;
         self.controllable = NO;
         self.toggled_platform = NO;
+        
+        [self setupAnimations];
     }
     return self;
 }
@@ -44,7 +46,26 @@
 
 - (void) jump:(float)speed
 {
+    [self runAction:self.jumpAction];
     self.velocity = ccp (self.velocity.x, speed);
+}
+
+- (void) setupAnimations
+{
+    // JUMP
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilJump.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevilJump.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *jumpAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 8; ++i) {
+        [jumpAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"AnimDevilJump%d.png", i]]];
+    }
+    
+    CCAnimation *jumpAnim = [CCAnimation animationWithAnimationFrames:jumpAnimFrames delayPerUnit:0.1f loops:0];
+    self.jumpAction = [CCAnimate actionWithAnimation:jumpAnim];
 }
 
 - (void) setupPowerup:(int)powerup

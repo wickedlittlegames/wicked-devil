@@ -18,6 +18,7 @@
 @property (nonatomic, assign) int collected, bigcollected, score;
 @property (nonatomic, retain) id last_platform_touched;
 @property (nonatomic, assign) BOOL controllable, toggled_platform;
+@property (nonatomic, assign) CCAction *jumpAction;
 
 - (BOOL) isAlive;
 - (void) jump:(float)speed;

@@ -113,6 +113,8 @@
         [enemy isIntersectingPlayer:game.player];
         [enemy doMovement];
     }
+    
+    [self gameoverCheck:game];
 }
 
 - (void) gameoverCheck:(Game*)game

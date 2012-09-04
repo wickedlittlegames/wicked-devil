@@ -25,6 +25,7 @@
     PlayerLayer *layer_player;
     GameLayer   *layer_game;
     UILayer     *layer_ui;
+    CCLayer     *collab;
     
     Game        *game;
     

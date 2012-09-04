@@ -51,7 +51,7 @@
         [layer_bg createWorldSpecificBackgrounds:w]; 
         [layer_game createWorldWithObjects:[layer_game children]];
         
-        CCLayer *collab = [CCLayer node];
+        collab = [CCLayer node];
         [self addChild:collab];
         
         [collab addChild:layer_bg];
@@ -72,7 +72,7 @@
         
         // INTRO
         if ( !game.isIntro )
-        {            
+        {
             game.isIntro = YES;
             id move = [CCMoveTo actionWithDuration:4.0 position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];
@@ -95,7 +95,7 @@
         // Game Layer Interactions
         [layer_game update:game];
 
-        if ( game.isStarted )
+        if ( game.isStarted && !game.isGameover )
         {
             [layer_game gameoverCheck:game];
             if ( !game.isGameover )
@@ -145,8 +145,8 @@
     {
         if (game.isIntro)
         {
-            [self stopAllActions];
-            [self setPosition:ccp(0,0)];
+            [collab stopAllActions];
+            [collab setPosition:ccp(0,0)];
             game.isIntro = NO;
         }
         

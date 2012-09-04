@@ -5,8 +5,7 @@
 //  Created by Andrew Girvan on 30/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
-//
-//   -1 - Rat STATIC
+//  -1 - does nothing
 //   0 - Bat
 //   1 - Water
 //   2 - Preist
@@ -18,7 +17,7 @@
 #import "Enemy.h"
 
 @implementation Enemy
-@synthesize type, active, speed_x, speed_y, health, damage, attacking;
+@synthesize type, active, speed_x, speed_y, health, damage, attacking, base_y;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -33,6 +32,7 @@
         self.speed_y = 1;
         self.attacking = FALSE;
         self.active = YES;
+        self.base_y = self.position.y;
         CCLOG(@"ENEMY");
     }
     return self;
@@ -45,8 +45,11 @@
         default: // just move down the screen
             break;
         case 0: // bat wobble
-            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2); 
-            if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) self.position = ccp(-70, self.position.y);
+            self.position = ccp(self.position.x + 0.5, self.base_y + sin((self.position.x+1)/10) * 2); 
+            if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) 
+            {
+                self.position = ccp(-70, self.base_y);
+            }
             break;
     }
 }
@@ -99,7 +102,7 @@
 
 - (void) doAction:(int)tag player:(Player*)player
 {
-    Platform* target = player.last_platform_touched;
+    //    Platform* target = player.last_platform_touched;
     
     switch (tag)
     {
@@ -108,16 +111,6 @@
             break;
         case 1: // move player up then pop (animation)
             if ( !self.attacking ) [self floatPlayer:player];
-            break;
-        case 2: // fire a projectile
-            [self fireTowardPosition:[player worldBoundingBox].origin];
-            break;
-        case 3: 
-            [self fireDownWithWarning:self.position];
-            break;
-        // stop intersections of angels
-        case 4:
-            [self fireTowardPosition:target.position];
             break;
     }
 }
@@ -129,17 +122,16 @@
     
     self.position = ccp(player.position.x, player.position.y);
     [self setZOrder:4];
-    
-    CGPoint saved_velocity = player.velocity;
-    
+        
     id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
     id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
     id killfloat = [CCCallFuncND actionWithTarget:self selector:@selector(killFloat:data:) data:(void*)player];
     
     player.controllable = FALSE;
-    
+    player.velocity = ccp(0,0);
+
+    [self runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
     [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
-    player.velocity = saved_velocity;
 }
 
 - (void) killFloat:(id)sender data:(id)data
@@ -151,63 +143,9 @@
     [self removeFromParentAndCleanup:YES];
 }
 
-- (void) fireDownWithWarning:(CGPoint)position
-{
-    self.attacking = TRUE;
-    
-    projectile = [Enemy spriteWithFile:@"bigcollectable.png"];
-    [projectile setPosition:ccp(self.position.x, self.position.y + 2000)];
-    projectile.tag = 102;
-    [self addChild:projectile];
-    
-    id movetoposition = [CCMoveBy actionWithDuration:7 position:ccp(0,-5000)];
-    id killattack     = [CCCallFunc actionWithTarget:self selector:@selector(killAttack)];
-    
-    [projectile runAction:[CCSequence actions:movetoposition, killattack, nil]];
-}
-
-- (void) fireTowardPosition:(CGPoint)position
-{
-    self.attacking = TRUE;
-    
-    // Create the projectile
-    projectile = [Enemy spriteWithFile:@"collectable.png"];
-    [projectile setPosition:ccp(self.position.x,self.position.y)];
-    projectile.tag = 101;
-    [self addChild:projectile];
-    
-    id movetoplayer = [CCMoveTo actionWithDuration:0.75 position:position];
-    id delay       =  [CCDelayTime actionWithDuration:5];
-    id resetAttack =  [CCCallFunc actionWithTarget:self selector:@selector(resetAttack)];
-    
-    [projectile runAction:[CCSequence actions:movetoplayer, delay, resetAttack, nil]];
-}
-
-- (void) resetAttack
-{
-    self.attacking = FALSE;
-    [self removeChildByTag:101 cleanup:YES];
-}
-
-- (void) killAttack
-{
-    [self removeAllChildrenWithCleanup:YES];
-    [self removeFromParentAndCleanup:YES];
-}
-
 - (void) damageToPlayer:(Player*)player
 {
-    player.health = player.health - self.damage;
-}
- 
-- (void) damageFromPlayer:(Player*)player
-{
-    self.health = self.health - player.damage;
-}
-
-- (BOOL) isAlive 
-{
-    return ( self.health > 0.0 ? TRUE : FALSE );
+    //player.health = player.health - self.damage;
 }
 
 - (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 

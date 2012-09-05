@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction, animating, fallAction;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -17,9 +17,9 @@
     {
         self.velocity = ccp ( 0 , 0 );
         self.jumpspeed = 7;        
-        
         self.health = 10.0;
         self.damage = 1.0;
+        self.scale = 1.5;
         self.collected = 0;
         self.bigcollected = 0;
         self.modifier_gravity = 0;
@@ -27,6 +27,7 @@
         self.last_platform_touched = NULL;
         self.controllable = NO;
         self.toggled_platform = NO;
+        self.animating = NO;
         
         [self setupAnimations];
     }
@@ -37,6 +38,8 @@
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
     self.position = ccp(self.position.x, self.position.y + self.velocity.y);
+    
+    if ( self.velocity.y < 0 ) [self animationRunner:2];
 }
 
 - (BOOL) isAlive
@@ -46,9 +49,37 @@
 
 - (void) jump:(float)speed
 {
-    [self runAction:self.jumpAction];
+    self.animating = NO;
+    [self animationRunner:1];
+    
     self.velocity = ccp (self.velocity.x, speed);
 }
+
+- (void) animationRunner:(int)which
+{
+    if ( !self.animating )
+    {
+        self.animating = YES;
+        
+        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(killAnimation)];
+        switch (which)
+        {
+            case 1: // jump
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.jumpAction], stopAnimation, nil]];
+                break;
+            case 2:
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.fallAction], nil]];
+                break;
+        }
+    }
+}
+
+- (void) killAnimation
+{
+    self.animating = NO;
+}
+
+
 
 - (void) setupAnimations
 {
@@ -58,14 +89,27 @@
     [self addChild:spriteSheet];
     
     NSMutableArray *jumpAnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 8; ++i) {
+    for(int i = 1; i <= 6; ++i) {
         [jumpAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"AnimDevilJump%d.png", i]]];
+          [NSString stringWithFormat:@"Demon_jumping_50X75_%i.png", i]]];
     }
     
-    CCAnimation *jumpAnim = [CCAnimation animationWithAnimationFrames:jumpAnimFrames delayPerUnit:0.1f loops:0];
-    self.jumpAction = [CCAnimate actionWithAnimation:jumpAnim];
+    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];
+    
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilFall.plist"];
+    CCSpriteBatchNode *spriteSheet2 = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevilFall.png"];
+    [self addChild:spriteSheet2];
+    
+    NSMutableArray *fallAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 4; ++i) {
+        [fallAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"demon_Falling_%i.png", i]]];
+    }
+    
+    self.fallAction = [CCAnimation animationWithSpriteFrames:fallAnimFrames delay:0.1f];    
 }
 
 - (void) setupPowerup:(int)powerup

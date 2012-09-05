@@ -18,7 +18,7 @@
     {
         self.isTouchEnabled = YES;
         
-        player = [Player spriteWithFile:@"devil3.png"];
+        player = [Player spriteWithFile:@"Demon_jumping_50X75_1.png"];
         [player setPosition:ccp ( 160 , 110 )];
         [self addChild:player z:1];                
     }

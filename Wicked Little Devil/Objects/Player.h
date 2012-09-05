@@ -8,21 +8,20 @@
 
 #import "cocos2d.h"
 
-@interface Player : CCSprite {
-    
-}
+@interface Player : CCSprite {}
 
 @property (nonatomic, assign) float health, damage, jumpspeed, modifier_gravity;
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected, bigcollected, score;
 @property (nonatomic, retain) id last_platform_touched;
-@property (nonatomic, assign) BOOL controllable, toggled_platform;
-@property (nonatomic, assign) CCAction *jumpAction;
+@property (nonatomic, assign) BOOL controllable, toggled_platform, animating;
+@property (nonatomic, retain) CCAnimation *jumpAction, *fallAction;
 
 - (BOOL) isAlive;
 - (void) jump:(float)speed;
 - (void) movementwithGravity:(float)gravity;
 - (void) setupPowerup:(int)powerup;
+- (void) animationRunner:(int)which;
 
 @end

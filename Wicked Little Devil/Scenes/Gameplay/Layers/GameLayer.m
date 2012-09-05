@@ -10,7 +10,7 @@
 #import "GameOverScene.h"
 
 @implementation GameLayer
-@synthesize platforms, collectables, bigcollectables, enemies, triggers;
+@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters;
 
 - (id) init
 {
@@ -27,6 +27,7 @@
     bigcollectables = [NSMutableArray arrayWithCapacity:3];
     enemies         = [NSMutableArray arrayWithCapacity:100];
     triggers        = [NSMutableArray arrayWithCapacity:100];
+    emitters        = [NSMutableArray arrayWithCapacity:100];
     
     for (CCNode* node in self.children)
     {
@@ -55,6 +56,11 @@
             [triggers addObject:node];
         }
     }
+    
+    CCParticleSystemQuad *emitter_angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
+    emitter_angelblast.position = ccp( 200 , 200 );
+    [emitters addObject:emitter_angelblast];
+    [self addChild:[emitters objectAtIndex:0]];
 }
 
 - (void) update:(Game *)game

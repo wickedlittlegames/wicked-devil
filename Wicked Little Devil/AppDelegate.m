@@ -22,7 +22,7 @@
 	[Parse setApplicationId:@"ku2m9Hu2IJjciLhQT1blymmwo97eOOjgGYS5hpNX"
                   clientKey:@"0rr4JmAqVvRLfsKsonH52X4P5wANvEq5tCQW8bE3"];
     
-    [PFFacebookUtils initializeWithApplicationId:@"346539862099992"];
+    [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
     
     [MKStoreManager sharedManager];
 

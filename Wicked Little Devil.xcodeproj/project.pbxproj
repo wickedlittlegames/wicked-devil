@@ -263,7 +263,6 @@
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
-		9C84ED471594C4C40083DF40 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED461594C4C40083DF40 /* Parse.framework */; };
 		9C84ED491594C4E80083DF40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED481594C4E80083DF40 /* CFNetwork.framework */; };
 		9C84ED4B1594C4F10083DF40 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */; };
 		9C84ED4D1594C5010083DF40 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */; };
@@ -286,6 +285,15 @@
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */; };
 		9CACDF5615B8199200E8F518 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACDF5515B8199200E8F518 /* Game.m */; };
+		9CB3CF9115F78AB9005A7267 /* Demon_jumping_50X75_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9015F78AB9005A7267 /* Demon_jumping_50X75_1.png */; };
+		9CB3CF9615F78BCA005A7267 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9415F78BCA005A7267 /* particleTexture.png */; };
+		9CB3CF9915F78D48005A7267 /* AnimDevilFall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9715F78D48005A7267 /* AnimDevilFall.plist */; };
+		9CB3CF9A15F78D48005A7267 /* AnimDevilFall.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9815F78D48005A7267 /* AnimDevilFall.png */; };
+		9CB3CF9C15F79502005A7267 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9B15F79502005A7267 /* AngelBlast.plist */; };
+		9CB880DC15F686030080EB36 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB880DB15F686030080EB36 /* Parse.framework */; };
+		9CB880DE15F686660080EB36 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */; };
+		9CB9B11915F78599003888B2 /* AnimDevilJump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B11715F78599003888B2 /* AnimDevilJump.plist */; };
+		9CB9B11A15F78599003888B2 /* AnimDevilJump.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B11815F78599003888B2 /* AnimDevilJump.png */; };
 		9CD939AA15F41493001B0D50 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939A915F41493001B0D50 /* bubble.png */; };
 		9CD939BA15F4A077001B0D50 /* bg_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B415F4A077001B0D50 /* bg_6.png */; };
 		9CD939BB15F4A077001B0D50 /* bg_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B515F4A077001B0D50 /* bg_5.png */; };
@@ -608,7 +616,6 @@
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		9C84ED421594BFD40083DF40 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9C84ED461594C4C40083DF40 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9C84ED481594C4E80083DF40 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
@@ -637,6 +644,15 @@
 		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
 		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
 		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
+		9CB3CF9015F78AB9005A7267 /* Demon_jumping_50X75_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Demon_jumping_50X75_1.png; sourceTree = "<group>"; };
+		9CB3CF9415F78BCA005A7267 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
+		9CB3CF9715F78D48005A7267 /* AnimDevilFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDevilFall.plist; sourceTree = "<group>"; };
+		9CB3CF9815F78D48005A7267 /* AnimDevilFall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDevilFall.png; sourceTree = "<group>"; };
+		9CB3CF9B15F79502005A7267 /* AngelBlast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AngelBlast.plist; sourceTree = "<group>"; };
+		9CB880DB15F686030080EB36 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		9CB9B11715F78599003888B2 /* AnimDevilJump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDevilJump.plist; sourceTree = "<group>"; };
+		9CB9B11815F78599003888B2 /* AnimDevilJump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDevilJump.png; sourceTree = "<group>"; };
 		9CD939A915F41493001B0D50 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		9CD939B415F4A077001B0D50 /* bg_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_6.png; sourceTree = "<group>"; };
 		9CD939B515F4A077001B0D50 /* bg_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_5.png; sourceTree = "<group>"; };
@@ -732,6 +748,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CB880DE15F686660080EB36 /* libsqlite3.0.dylib in Frameworks */,
 				9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */,
 				9C84ED4F1594C50A0083DF40 /* Security.framework in Frameworks */,
 				9C84ED4D1594C5010083DF40 /* libz.1.1.3.dylib in Frameworks */,
@@ -748,7 +765,7 @@
 				9C142173156E68560011C992 /* Foundation.framework in Frameworks */,
 				9C142175156E68560011C992 /* CoreGraphics.framework in Frameworks */,
 				9C142177156E68560011C992 /* GameKit.framework in Frameworks */,
-				9C84ED471594C4C40083DF40 /* Parse.framework in Frameworks */,
+				9CB880DC15F686030080EB36 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +783,7 @@
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
+				9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */,
 				9C142304156E69540011C992 /* libs */,
 				9C142178156E68560011C992 /* Wicked Little Devil */,
 				9C142165156E68560011C992 /* Frameworks */,
@@ -785,12 +803,12 @@
 		9C142165156E68560011C992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CB880DB15F686030080EB36 /* Parse.framework */,
 				9C84ED4E1594C50A0083DF40 /* Security.framework */,
 				9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */,
 				9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */,
 				9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */,
 				9C84ED481594C4E80083DF40 /* CFNetwork.framework */,
-				9C84ED461594C4C40083DF40 /* Parse.framework */,
 				9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */,
 				9C142166156E68560011C992 /* QuartzCore.framework */,
 				9C142168156E68560011C992 /* OpenGLES.framework */,
@@ -1281,6 +1299,13 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CB3CF9B15F79502005A7267 /* AngelBlast.plist */,
+				9CB3CF9715F78D48005A7267 /* AnimDevilFall.plist */,
+				9CB3CF9815F78D48005A7267 /* AnimDevilFall.png */,
+				9CB3CF9415F78BCA005A7267 /* particleTexture.png */,
+				9CB3CF9015F78AB9005A7267 /* Demon_jumping_50X75_1.png */,
+				9CB9B11715F78599003888B2 /* AnimDevilJump.plist */,
+				9CB9B11815F78599003888B2 /* AnimDevilJump.png */,
 				9CD93A4015F6388D001B0D50 /* Untitled_Default.png */,
 				9CD93A4115F6388D001B0D50 /* Untitled_Default.plist */,
 				9CD939C615F4DC67001B0D50 /* devil3.png */,
@@ -1770,6 +1795,13 @@
 				9CD939E315F63137001B0D50 /* world-1-level-8.ccbi in Resources */,
 				9CD93A4215F6388D001B0D50 /* Untitled_Default.png in Resources */,
 				9CD93A4315F6388D001B0D50 /* Untitled_Default.plist in Resources */,
+				9CB9B11915F78599003888B2 /* AnimDevilJump.plist in Resources */,
+				9CB9B11A15F78599003888B2 /* AnimDevilJump.png in Resources */,
+				9CB3CF9115F78AB9005A7267 /* Demon_jumping_50X75_1.png in Resources */,
+				9CB3CF9615F78BCA005A7267 /* particleTexture.png in Resources */,
+				9CB3CF9915F78D48005A7267 /* AnimDevilFall.plist in Resources */,
+				9CB3CF9A15F78D48005A7267 /* AnimDevilFall.png in Resources */,
+				9CB3CF9C15F79502005A7267 /* AngelBlast.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

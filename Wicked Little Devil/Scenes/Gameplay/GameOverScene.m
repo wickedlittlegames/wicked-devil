@@ -144,49 +144,58 @@
 - (void) check_facebook_scores
 {
     CCLOG(@"CHECKING FACEBOOK SCORES");
-//    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"123",@"message",nil];
+    CCLOG(@"%@",params);
 
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"10023",@"message",nil];
+//    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andParams:params andHttpMethod:@"POST" andDelegate:self];
+    //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andDelegate:self];
+    
+    
+    //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+
     
     CCLOG(@"SENDING FACEBOOK MESSAGE");
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andParams:params andHttpMethod:@"POST" andDelegate:self];
+    
     
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {
     CCLOG(@"REQUEST");
     CCLOG(@"%@",request);
-//    
-//    // Assuming no errors, result will be an NSDictionary of your user's friends
-//    NSArray *friendObjects = [result objectForKey:@"data"];
-//    friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
-//    // Create a list of friends' Facebook IDs
-//    for (NSDictionary *friendObject in friendObjects) {
-//        [friendIds addObject:[friendObject objectForKey:@"id"]];
-//    }
-//    
-//    // Construct a PFUser query that will find friends whose facebook ids are contained
-//    // in the current user's friend list.
-//    PFQuery *friendQuery = [PFUser query];
-//    [friendQuery whereKey:@"fbId" containedIn:friendIds];
-//    
-//    // findObjects will return a list of PFUsers that are friends with the current user
-//    friendUsers = [friendQuery findObjects];
-//    
-//    CCLOG(@"FRIENDS: %@", friendIds);
-//    CCLOG(@"FRIEND USERS: %@", friendUsers);
-//
-//    NSMutableArray *scoreUsers = [NSMutableArray arrayWithCapacity:[friendUsers count]];
-//    
-//    for (int i = 0; i < [friendUsers count]; i++ )
-//    {
-//        PFQuery *scoreQuery = [PFQuery queryWithClassName:@"Highscore"];
-//        [scoreQuery whereKey:@"world" equalTo:[NSNumber numberWithInt:world]];
-//        [scoreQuery whereKey:@"level" equalTo:[NSNumber numberWithInt:level]];
-//        [scoreQuery whereKey:@"fbId" equalTo:[[friendUsers objectAtIndex:i] valueForKey:@"fbId"]];
-//        CCLOG(@"SCORE QUERY RESULT:%@",[scoreQuery findObjects]);
-//        [scoreUsers addObject:[scoreQuery findObjects]];
-//    }
+    CCLOG(@"RESULT:");
+    CCLOG(@"%@", result);
+    
+    // Assuming no errors, result will be an NSDictionary of your user's friends
+    NSArray *friendObjects = [result objectForKey:@"data"];
+    friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+    // Create a list of friends' Facebook IDs
+    for (NSDictionary *friendObject in friendObjects) {
+        [friendIds addObject:[friendObject objectForKey:@"id"]];
+    }
+    
+    // Construct a PFUser query that will find friends whose facebook ids are contained
+    // in the current user's friend list.
+    PFQuery *friendQuery = [PFUser query];
+    [friendQuery whereKey:@"fbId" containedIn:friendIds];
+    
+    // findObjects will return a list of PFUsers that are friends with the current user
+    friendUsers = [friendQuery findObjects];
+    
+    CCLOG(@"FRIENDS: %@", friendIds);
+    CCLOG(@"FRIEND USERS: %@", friendUsers);
+
+    NSMutableArray *scoreUsers = [NSMutableArray arrayWithCapacity:[friendUsers count]];
+    
+    for (int i = 0; i < [friendUsers count]; i++ )
+    {
+        PFQuery *scoreQuery = [PFQuery queryWithClassName:@"Highscore"];
+        [scoreQuery whereKey:@"world" equalTo:[NSNumber numberWithInt:world]];
+        [scoreQuery whereKey:@"level" equalTo:[NSNumber numberWithInt:level]];
+        [scoreQuery whereKey:@"fbId" equalTo:[[friendUsers objectAtIndex:i] valueForKey:@"fbId"]];
+        CCLOG(@"SCORE QUERY RESULT:%@",[scoreQuery findObjects]);
+        [scoreUsers addObject:[scoreQuery findObjects]];
+    }
 }
 
 @end

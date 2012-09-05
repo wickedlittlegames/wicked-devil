@@ -238,7 +238,7 @@
  Gets the instance of the Facebook object (from the Facebook SDK) that Parse uses.
  @result The Facebook instance.
  */
-+ (PF_Facebook *)facebook __attribute__ ((deprecated));
++ (PF_Facebook *)facebook; 
 
 /*!
  Gets the instance of the Facebook object (from the Facebook SDK) that Parse uses.

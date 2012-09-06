@@ -10,19 +10,18 @@
 #import "GameOverScene.h"
 
 @implementation GameLayer
-@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters;
+@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters,  world, level;
 
 - (id) init
 {
 	if( (self=[super init]) ) {
-        
+
     }
 	return self;
 }
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
 {
-    
     platforms       = [CCArray arrayWithCapacity:100];
     collectables    = [CCArray arrayWithCapacity:100];
     bigcollectables = [CCArray arrayWithCapacity:3];
@@ -57,10 +56,6 @@
             [triggers addObject:node];
         }
     }
-    //    CCParticleSystemQuad *emitter_angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
-    //    emitter_angelblast.position = ccp( 200 , 200 );
-    //    [emitters addObject:emitter_angelblast];
-    //    [self addChild:[emitters objectAtIndex:0]];
 }
 
 - (void) update:(Game *)game
@@ -83,7 +78,7 @@
         }
 
         if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
-        if  ( !platform.animating ) [platform setupMovement];
+        [platform setupHVMovement];
     }
     
     CCARRAY_FOREACH(collectables, collectable)
@@ -186,7 +181,7 @@
     else 
     {
         
-        id delay = [CCDelayTime actionWithDuration:3.0];
+        id delay = [CCDelayTime actionWithDuration:1.0];
         
         CCAction *endfunc = [CCCallFunc actionWithTarget:self selector:@selector(gotogameover)];
         
@@ -196,12 +191,7 @@
 
 - (void) gotogameover
 {
-        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                               sceneWithScore:0 
-                                               timebonus:0 
-                                               bigs:0 
-                                               forWorld:1
-                                               andLevel:1]];
+    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level]];
 }
 
 @end

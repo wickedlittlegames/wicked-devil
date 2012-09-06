@@ -45,7 +45,7 @@
         [self animationRunner:2]; 
     }
     
-    if ( self.velocity.y < -5  && !self.falling ) 
+    if ( self.velocity.y < -8.5  && !self.falling ) 
     {
         self.animating = NO;
         self.falling = YES;

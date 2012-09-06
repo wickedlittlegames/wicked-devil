@@ -67,6 +67,9 @@
         game.level = l;
         game.fx = layer_fx;
         [game.player setupPowerup:user.powerup];
+        [layer_ui setupItemsforGame:game];   
+        layer_game.world = w;
+        layer_game.level = l;
         
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
         float top = trigger_top.position.y + 100;
@@ -115,7 +118,7 @@
                 if ( game.player.controllable ) [game.player movementwithGravity:0.18];
                 
                 // UI Layer Interactions
-                [layer_ui update:game.player];
+                [layer_ui update:game];
                 
                 // Control Interactions
                 [self control_player];

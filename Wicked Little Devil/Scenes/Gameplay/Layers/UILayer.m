@@ -7,34 +7,52 @@
 //
 
 #import "UILayer.h"
+#import "Game.h"
+#import "GameScene.h"
 
 @implementation UILayer
-@synthesize label_bigs, label_score, label_health; //cclabelttfs
+@synthesize world, level;
 
 - (id) init
 {
 	if( (self=[super init]) ) 
     {
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        NSString *font = @"Marker Felt";
-        int fontsize = 14;
-        
-        label_bigs = [CCLabelTTF labelWithString:@"BIG: 0" fontName:font fontSize:fontsize];
-        label_health = [CCLabelTTF labelWithString:@"HEALTH: 3" fontName:font fontSize:fontsize];
-        label_score  = [CCLabelTTF labelWithString:@"SCORE: 0" fontName:font fontSize:fontsize];
-        
-        [label_bigs setPosition:ccp(95, screenSize.height - 25)];
-        [label_health setPosition:ccp(95, screenSize.height - 95)];
-        [label_score setPosition:ccp(screenSize.width - 50, screenSize.height - 25)];
-        
-        [self addChild:label_bigs];
-        [self addChild:label_health];
-        [self addChild:label_score];
+
     }
 	return self;
 }
 
-- (void) update:(Player*)player
+- (void) setupItemsforGame:(Game*)game
+{
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    self.world = game.world;
+    self.level = game.level;
+    
+    CCLOG(@"%i, %i", self.world, self.level);
+    
+    CCMenuItem *button_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Marker Felt" fontSize:14] target:self selector:@selector(tap_restart)];
+    CCMenu *menu_restart = [CCMenu menuWithItems:button_restart, nil];
+    [menu_restart  setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
+    
+    CCMenuItem *button_menu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MENU" fontName:@"Marker Felt" fontSize:14] target:self selector:@selector(tap_pause)];
+    CCMenu *menu_menu = [CCMenu menuWithItems:button_menu, nil];
+    [menu_menu  setPosition:ccp(screenSize.width - 120, screenSize.height - 25 )];    
+    
+    [self addChild:menu_restart z:100];
+    [self addChild:menu_menu z:100];
+}
+
+- (void) tap_restart
+{
+    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level]];
+}
+
+- (void) tap_pause
+{
+    [[CCDirector sharedDirector] pause];
+}
+
+- (void) update:(Game*)game
 {
 
 }

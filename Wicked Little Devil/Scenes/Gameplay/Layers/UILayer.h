@@ -7,11 +7,13 @@
 //
 
 #import "cocos2d.h"
-#import "Player.h"
 
+@class Game, GameScene;
 @interface UILayer : CCLayer {}
-@property (nonatomic, retain) CCLabelTTF *label_score, *label_health, *label_bigs;
 
-- (void) update:(Player*)player;
+@property (nonatomic, assign) int world, level;
+
+- (void) setupItemsforGame:(Game*)game;
+- (void) update:(Game*)game;
 
 @end

@@ -31,10 +31,9 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.health = 2.0;
-        self.animating = FALSE;
         
-        [self setupActions];
-        [self setupMovement];
+        // [self setupActions];
+//        [self setupMovement];
     }
     return self;
 }
@@ -93,7 +92,7 @@
 {
     if ( !self.animating )
     {
-        [self runAction:self.action_fall];
+//        [self runAction:self.action_fall];
         self.animating = TRUE;
     }
 }
@@ -109,40 +108,67 @@
     return YES;
 }
 
-- (void) setupActions 
-{
-    id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-    id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-    id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-    id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-    id fallmove = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
-    id falldie  = [CCCallFunc actionWithTarget:self selector:@selector(die)];
+//- (void) setupActions 
+//{
+//    id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+//    id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+//    id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+//    id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+//    self.action_horizontal_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+//    self.action_vertical_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+//}
+//
+//- (void) setupMovement
+//{
+//    if ( !self.animating ) 
+//    {       
+//        switch (self.tag)
+//        {
+//            default:
+//                break;
+//            case 2:
+//                [self runAction:self.action_vertical_repeat];
+//                self.animating = TRUE;
+//                break;
+//            case 3:
+//                [self runAction:self.action_horizontal_repeat];
+//                self.animating = TRUE;                
+//                break;
+//        }
+//        
+//        self.animating = YES;
+//    }
+//}
 
-    self.action_fall = [CCSequence actions:fallmove,falldie,nil];
-    self.action_horizontal_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-    self.action_vertical_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
-}
-
-- (void) setupMovement
+- (void) setupHVMovement
 {
-    if ( !self.animating ) 
-    {       
-        switch (self.tag)
+    if ( self.animating == FALSE )
+    {
+        if (self.tag == 2)
         {
-            default:
-                break;
-            case 2:
-                [self runAction:self.action_vertical_repeat];
-                self.animating = TRUE;
-                break;
-            case 3:
-                [self runAction:self.action_horizontal_repeat];
-                self.animating = TRUE;                
-                break;
+            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
         }
-        
-        self.animating = YES;
+    }
+    if ( self.animating == FALSE )
+    {
+        if (self.tag == 3)
+        {
+            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
+        }
     }
 }
+
 
 @end

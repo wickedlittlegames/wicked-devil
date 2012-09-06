@@ -78,6 +78,13 @@
                 }
             }
             break;
+            case 6:
+                if ( !self.attacking ) 
+                {
+//                    [game.fx doEffect:1 atPosition:[self worldBoundingBox].origin];
+                    self.attacking = YES;
+                }
+                break;            
 //            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
     }
 }

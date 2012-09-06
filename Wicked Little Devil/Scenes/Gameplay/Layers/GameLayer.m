@@ -22,12 +22,13 @@
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
 {
-    platforms       = [NSMutableArray arrayWithCapacity:100];
-    collectables    = [NSMutableArray arrayWithCapacity:100];
-    bigcollectables = [NSMutableArray arrayWithCapacity:3];
-    enemies         = [NSMutableArray arrayWithCapacity:100];
-    triggers        = [NSMutableArray arrayWithCapacity:100];
-    emitters        = [NSMutableArray arrayWithCapacity:100];
+    
+    platforms       = [CCArray arrayWithCapacity:100];
+    collectables    = [CCArray arrayWithCapacity:100];
+    bigcollectables = [CCArray arrayWithCapacity:3];
+    enemies         = [CCArray arrayWithCapacity:100];
+    triggers        = [CCArray arrayWithCapacity:100];
+    emitters        = [CCArray arrayWithCapacity:100];
     
     for (CCNode* node in self.children)
     {
@@ -56,28 +57,31 @@
             [triggers addObject:node];
         }
     }
-    
-    CCParticleSystemQuad *emitter_angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
-    emitter_angelblast.position = ccp( 200 , 200 );
-    [emitters addObject:emitter_angelblast];
-    [self addChild:[emitters objectAtIndex:0]];
+    //    CCParticleSystemQuad *emitter_angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
+    //    emitter_angelblast.position = ccp( 200 , 200 );
+    //    [emitters addObject:emitter_angelblast];
+    //    [self addChild:[emitters objectAtIndex:0]];
 }
 
 - (void) update:(Game *)game
 {       
-    for (Platform *platform in platforms)
-    {       
-        if ([platform worldBoundingBox].origin.y < -80 && platform.active && !game.isIntro)
+    Platform *platform = nil;
+    Collectable *collectable = nil;
+    BigCollectable *bigcollectable = nil;
+    Trigger *trigger = nil;
+    Enemy *enemy = nil;
+    
+    CCARRAY_FOREACH(platforms, platform)
+    {           
+        if ([platform worldBoundingBox].origin.y < -80 && [platform isActive] && !game.isIntro)
         {
             platform.visible = NO;
-            platform.active = NO;
         }
 
         if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
-        [platform setupHVMovement];
     }
     
-    for (Collectable *collectable in collectables)
+    CCARRAY_FOREACH(collectables, collectable)
     {
         if ( [collectable isIntersectingPlayer:game.player] ) 
         {
@@ -86,7 +90,7 @@
         }
     }
     
-    for (BigCollectable *bigcollectable in bigcollectables)
+    CCARRAY_FOREACH(bigcollectables, bigcollectable)
     {
         if ( [bigcollectable isIntersectingPlayer:game.player] )
         {
@@ -95,7 +99,7 @@
         }
     }
     
-    for (Trigger *trigger in triggers)
+    CCARRAY_FOREACH(triggers, trigger)
     {
         if ( [trigger isIntersectingPlayer:game.player] )
         {
@@ -108,7 +112,8 @@
             }
         }
     }
-    for (Enemy *enemy in enemies)
+    
+    CCARRAY_FOREACH(enemies, enemy)
     {
         if ([enemy worldBoundingBox].origin.y < -80 && enemy.active && !game.isIntro )
         {

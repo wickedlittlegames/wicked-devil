@@ -12,5 +12,5 @@
 @interface FXLayer : CCLayer {}
 
 - (void) update:(float)threshold;
-- (void) runEffect:(int)number;
+
 @end

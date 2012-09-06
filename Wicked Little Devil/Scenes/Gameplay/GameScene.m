@@ -68,17 +68,17 @@
         game.fx = layer_fx;
         [game.player setupPowerup:user.powerup];
         
-        [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];
-        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,1350)]];
+        [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,7000)]];
+        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,7000)]];
         
         // INTRO
         if ( !game.isIntro )
         {
             game.isIntro = YES;
-            id move = [CCMoveTo actionWithDuration:4.0 position:ccp(0,0)];
+            id move = [CCMoveTo actionWithDuration:6.0 position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];
         
-            [collab setPosition:ccp(0,(-self.contentSize.height - 200))];
+            [collab setPosition:ccp(0,7000)];
             [collab runAction: ease];
         }
         
@@ -102,9 +102,6 @@
             if ( !game.isGameover )
             {
                 game.threshold = 340 - game.player.position.y;
-                
-                // Background Layer Interactions
-                [layer_bg update:game.threshold delta:dt];
                 
                 // FX Layer Interactions
                 [layer_fx update:game.threshold];

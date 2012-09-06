@@ -4,14 +4,13 @@
 //
 //  Created by Andrew Girvan on 30/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
-//
-//  -1 - does nothing
-//   0 - Bat
-//   1 - Water
-//   2 - Preist
-//   3 - Meteors (take from little devil)
-//   4 - Angels
-//   101 - projectile at position
+// 1  = Bat
+// 2  = Mine
+// 3  = Bubble
+// 4  = Rockets
+// 5  = Debris
+// 6  = Angel Laser of Death (from the top and sides and bottom)
+
 
 #import "Platform.h"
 #import "Enemy.h"
@@ -44,12 +43,15 @@
     {
         default: // just move down the screen
             break;
-        case 0: // bat wobble
-            self.position = ccp(self.position.x + 0.5, self.base_y + sin((self.position.x+1)/10) * 2); 
+        case 1: // bat wobble
+            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2); 
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) 
             {
-                self.position = ccp(-70, self.base_y);
+                self.position = ccp(-70, self.position.y);
             }
+            break;
+        case 3:
+            //[self runAction:[CCWaves actionWithWaves:10 amplitude:0.5 horizontal:TRUE vertical:TRUE grid:ccg(10, 10) duration:5.0]];
             break;
     }
 }
@@ -79,24 +81,7 @@
                 }
             }
             break;
-        case 2: // amish/preist, projectile
-            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking)
-            {
-                [self doAction:self.tag player:player];
-            }
-            break;
-        case 3: // meteor trigger (shadow on the rock)
-            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
-            {
-                [self doAction:self.tag player:player];
-            }
-            break;
-        case 4: // angels
-            if ( !self.attacking )
-            {
-                [self doAction:self.tag player:player];
-            }
-            break;
+//            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
     }
 }
 
@@ -109,10 +94,8 @@
         default: // rat, bat, meteors
             [self damageToPlayer:player];
             break;
-        case 1: // move player up then pop (animation)
+        case 3: // move player up then pop (animation)
             if ( !self.attacking ) [self floatPlayer:player];
-            break;
-        case 3:
             break;
     }
 }

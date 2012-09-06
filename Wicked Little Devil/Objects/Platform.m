@@ -23,7 +23,8 @@
 #import "Platform.h"
 
 @implementation Platform
-@synthesize health, type, animating,original_position,active, flipped, toggled;
+@synthesize health, type, animating, toggled;
+@synthesize action_vertical_repeat, action_horizontal_repeat, action_fall;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -31,32 +32,26 @@
     {
         self.health = 2.0;
         self.animating = FALSE;
-        self.active = TRUE;
-        self.original_position = ccp(self.position.x, self.position.y);
-        self.flipped = FALSE;
+    
+        [self setupActions];
+        [self setupMovement];
     }
     return self;
 }
 
-- (void) intersectionCheck:(Player*)player platforms:(NSMutableArray*)platforms
+- (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms
 {
-    if ( player.velocity.y < 0  && self.visible && self.health > 0)
+    if ( player.velocity.y < 0  && [self isActive])
     {
-        CGSize platform_size = self.contentSize;
-        CGPoint platform_pos = self.position;
-        CGSize player_size     = player.contentSize; 
-        CGPoint player_pos     = player.position;
-        
-        float max_x = platform_pos.x - platform_size.width/2 - 10;
-        float min_x = platform_pos.x + platform_size.width/2 + 10;
-        float min_y = platform_pos.y + (platform_size.height+player_size.height)/2 - 1;
+        float max_x = self.position.x - self.contentSize.width/2 - 10;
+        float min_x = self.position.x + self.contentSize.width/2 + 10;
+        float min_y = self.position.y + (self.contentSize.height+player.contentSize.height)/2 - 1;
 
-        if(player_pos.x > max_x &&
-           player_pos.x < min_x &&
-           player_pos.y > platform_pos.y &&
-           player_pos.y < min_y)
+        if(player.position.x > max_x &&
+           player.position.x < min_x &&
+           player.position.y > self.position.y &&
+           player.position.y < min_y)
         {
-            player.last_platform_touched = NULL;
             player.last_platform_touched = self;
             
             switch (self.tag)
@@ -83,15 +78,9 @@
                     player.toggled_platform = !player.toggled_platform;
                     break;
                 case 6: 
-                    self.health--;
-                    if ( self.health != 0 )
-                    {
-                        [player jump:player.jumpspeed*1.75];
-                    }
-                    else 
-                    {
-                        [self fall];
-                    }
+                    [player jump:player.jumpspeed];
+                    [self fall];
+                    break;
                 default:
                     [player jump:player.jumpspeed];
                     break;
@@ -100,18 +89,11 @@
     }
 }
 
-- (void) showDamage
-{
-    // swap the image
-}
-
 - (void) fall
 {
-    if ( self.animating == FALSE )
+    if ( !self.animating )
     {
-        id fallmove = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
-        id falldie  = [CCCallFunc actionWithTarget:self selector:@selector(die)];
-        [self runAction:[CCSequence actions:fallmove,falldie,nil]];
+        [self runAction:self.action_fall];
         self.animating = TRUE;
     }
 }
@@ -122,38 +104,50 @@
     [self removeFromParentAndCleanup:YES];
 }
 
-- (void) setupHVMovement
+- (BOOL) isActive
 {
-    if (self.tag == 2)
+    if ( !self.visible )
     {
-        if ( self.animating == FALSE )
-        {
-            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
+        return NO;
     }
-    if (self.tag == 3)
+    if ( self.position.y < 320 )
     {
-        if ( self.animating == FALSE )
-        {
-            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
+        return NO;
     }
-    if ( self.tag == 4 )
-    {
-        self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+2)/10) * 2); 
-        if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) self.position = ccp(-70, self.position.y);
+    return YES;
+}
+
+- (void) setupActions 
+{
+    id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+    id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+    id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+    id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+    id fallmove = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
+    id falldie  = [CCCallFunc actionWithTarget:self selector:@selector(die)];
+
+    self.action_fall = [CCSequence actions:fallmove,falldie,nil];
+    self.action_horizontal_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+    self.action_vertical_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+}
+
+- (void) setupMovement
+{
+    if ( !self.animating ) 
+    {       
+        switch (self.tag)
+        {
+            default:
+                break;
+            case 2:
+                [self runAction:self.action_vertical_repeat];
+                self.animating = TRUE;
+                break;
+            case 3:
+                [self runAction:self.action_horizontal_repeat];
+                self.animating = TRUE;                
+                break;
+        }
     }
 }
 

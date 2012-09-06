@@ -39,7 +39,7 @@
     self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
     self.position = ccp(self.position.x, self.position.y + self.velocity.y);
     
-    if ( self.velocity.y < 0 ) [self animationRunner:2];
+//    if ( self.velocity.y < 0 ) [self animationRunner:2];
 }
 
 - (BOOL) isAlive
@@ -49,8 +49,8 @@
 
 - (void) jump:(float)speed
 {
-    self.animating = NO;
-    [self animationRunner:1];
+//    self.animating = NO;
+//    [self animationRunner:1];
     
     self.velocity = ccp (self.velocity.x, speed);
 }
@@ -95,7 +95,7 @@
           [NSString stringWithFormat:@"Demon_jumping_50X75_%i.png", i]]];
     }
     
-    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];
+    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.05f];
     
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilFall.plist"];
@@ -109,7 +109,7 @@
           [NSString stringWithFormat:@"demon_Falling_%i.png", i]]];
     }
     
-    self.fallAction = [CCAnimation animationWithSpriteFrames:fallAnimFrames delay:0.1f];    
+    self.fallAction = [CCAnimation animationWithSpriteFrames:fallAnimFrames delay:0.05f];    
 }
 
 - (void) setupPowerup:(int)powerup

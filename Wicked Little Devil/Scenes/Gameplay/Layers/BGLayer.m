@@ -37,9 +37,4 @@
     [self addChild:bottom z:1];
 }
 
-- (void) update:(float)threshold delta:(float)dt
-{
-
-}
-
 @end

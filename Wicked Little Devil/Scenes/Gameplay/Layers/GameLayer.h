@@ -17,7 +17,7 @@
 #import "Game.h"
 
 @interface GameLayer : CCLayer {}
-@property (nonatomic, retain) NSMutableArray *platforms, *collectables, *bigcollectables, *enemies, *triggers, *emitters;
+@property (nonatomic, retain) CCArray *platforms, *collectables, *bigcollectables, *enemies, *triggers, *emitters;
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects;
 

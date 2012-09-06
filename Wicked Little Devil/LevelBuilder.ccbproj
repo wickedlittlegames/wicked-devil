@@ -9,20 +9,24 @@
 	<key>fileVersion</key>
 	<integer>1</integer>
 	<key>flattenPaths</key>
-	<true/>
+	<false/>
 	<key>javascriptBased</key>
 	<false/>
 	<key>onlyPublishCCBs</key>
 	<true/>
 	<key>publishDirectory</key>
-	<string>../../../../../../Desktop</string>
+	<string>Resources/Worlds/Hell</string>
 	<key>publishToZipFile</key>
-	<true/>
+	<false/>
 	<key>resourcePaths</key>
 	<array>
 		<dict>
 			<key>path</key>
 			<string>.</string>
+		</dict>
+		<dict>
+			<key>path</key>
+			<string>Resources</string>
 		</dict>
 	</array>
 </dict>

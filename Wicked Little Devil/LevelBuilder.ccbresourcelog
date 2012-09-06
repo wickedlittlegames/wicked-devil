@@ -1,36 +1,95 @@
-MKStoreKitConfigs.plist
+libs/MKStoreKitConfigs.plist
+Resources/Cards.plist
+Resources/Default.png
+Resources/fps_images-hd.png
+Resources/fps_images-ipadhd.png
+Resources/fps_images.png
+Resources/Global Images/AngelBlast.plist
+Resources/Global Images/AnimDevilFall.plist
+Resources/Global Images/AnimDevilFall.png
+Resources/Global Images/AnimDevilJump.plist
+Resources/Global Images/AnimDevilJump.png
+Resources/Global Images/background-1-bottom-hd.png
+Resources/Global Images/background-1-bottom.png
+Resources/Global Images/background-1-middle-hd.png
+Resources/Global Images/background-1-middle.png
+Resources/Global Images/background-1-middle2-hd.png
+Resources/Global Images/background-1-middle2.png
+Resources/Global Images/background-1-top-hd.png
+Resources/Global Images/background-1-top.png
+Resources/Global Images/bg_1.png
+Resources/Global Images/bg_2.png
+Resources/Global Images/bg_3.png
+Resources/Global Images/bg_4.png
+Resources/Global Images/bg_5.png
+Resources/Global Images/bg_6.png
+Resources/Global Images/bigcollectable.png
+Resources/Global Images/bubble.png
+Resources/Global Images/card-hd.png
+Resources/Global Images/card.png
+Resources/Global Images/collectable.png
+Resources/Global Images/Demon_jumping_50X75_1.png
+Resources/Global Images/devil3.png
+Resources/Global Images/icon-locked.png
+Resources/Global Images/particleTexture.png
+Resources/Global Images/platform-normal-hd.png
+Resources/Global Images/platform-normal.png
+Resources/Global Images/Start-button.png
+Resources/Global Images/Untitled_Default.plist
+Resources/Global Images/Untitled_Default.png
+Resources/Icon-72.png
+Resources/Icon-Small-50.png
+Resources/Icon-Small.png
+Resources/Icon-Small@2x.png
+Resources/Icon.png
+Resources/Icon@2x.png
+Resources/Info.plist
+Resources/Levels/world-1-level-1.ccbi
+Resources/Levels/world-1-level-2.ccbi
+Resources/Levels/world-1-level-3.ccbi
+Resources/Levels/world-1-level-4.ccbi
+Resources/Levels/world-1-level-5.ccbi
+Resources/Levels/world-1-level-6.ccbi
+Resources/Levels/world-1-level-7.ccbi
+Resources/Levels/world-1-level-8.ccbi
 Cards.plist
 Default.png
 fps_images-hd.png
 fps_images-ipadhd.png
 fps_images.png
-background-1-bottom-hd.png
-background-1-bottom.png
-background-1-middle-hd.png
-background-1-middle.png
-background-1-middle2-hd.png
-background-1-middle2.png
-background-1-top-hd.png
-background-1-top.png
-bg_1.png
-bg_2.png
-bg_3.png
-bg_4.png
-bg_5.png
-bg_6.png
-bigcollectable.png
-bubble.png
-card-hd.png
-card.png
-collectable.png
-devil3.png
-hell_sprites.png
-icon-locked.png
-platform-normal-hd.png
-platform-normal.png
-Start-button.png
-Untitled_Default.plist
-Untitled_Default.png
+Global Images/AngelBlast.plist
+Global Images/AnimDevilFall.plist
+Global Images/AnimDevilFall.png
+Global Images/AnimDevilJump.plist
+Global Images/AnimDevilJump.png
+Global Images/background-1-bottom-hd.png
+Global Images/background-1-bottom.png
+Global Images/background-1-middle-hd.png
+Global Images/background-1-middle.png
+Global Images/background-1-middle2-hd.png
+Global Images/background-1-middle2.png
+Global Images/background-1-top-hd.png
+Global Images/background-1-top.png
+Global Images/bg_1.png
+Global Images/bg_2.png
+Global Images/bg_3.png
+Global Images/bg_4.png
+Global Images/bg_5.png
+Global Images/bg_6.png
+Global Images/bigcollectable.png
+Global Images/bubble.png
+Global Images/card-hd.png
+Global Images/card.png
+Global Images/collectable.png
+Global Images/Demon_jumping_50X75_1.png
+Global Images/devil3.png
+Global Images/icon-locked.png
+Global Images/particleTexture.png
+Global Images/platform-normal-hd.png
+Global Images/platform-normal.png
+Global Images/Start-button.png
+Global Images/Untitled_Default.plist
+Global Images/Untitled_Default.png
 Icon-72.png
 Icon-Small-50.png
 Icon-Small.png
@@ -38,11 +97,11 @@ Icon-Small@2x.png
 Icon.png
 Icon@2x.png
 Info.plist
-world-1-level-1.ccbi
-world-1-level-2.ccbi
-world-1-level-3.ccbi
-world-1-level-4.ccbi
-world-1-level-5.ccbi
-world-1-level-6.ccbi
-world-1-level-7.ccbi
-world-1-level-8.ccbi
+Levels/world-1-level-1.ccbi
+Levels/world-1-level-2.ccbi
+Levels/world-1-level-3.ccbi
+Levels/world-1-level-4.ccbi
+Levels/world-1-level-5.ccbi
+Levels/world-1-level-6.ccbi
+Levels/world-1-level-7.ccbi
+Levels/world-1-level-8.ccbi

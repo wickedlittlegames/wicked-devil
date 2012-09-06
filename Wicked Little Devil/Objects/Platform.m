@@ -32,7 +32,7 @@
     {
         self.health = 2.0;
         self.animating = FALSE;
-    
+        
         [self setupActions];
         [self setupMovement];
     }
@@ -140,6 +140,8 @@
                 self.animating = TRUE;                
                 break;
         }
+        
+        self.animating = YES;
     }
 }
 

@@ -65,6 +65,8 @@
 
 - (void) update:(Game *)game
 {       
+    [self gameoverCheck:game];
+    
     Platform *platform = nil;
     Collectable *collectable = nil;
     BigCollectable *bigcollectable = nil;
@@ -81,6 +83,7 @@
         }
 
         if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
+        if  ( !platform.animating ) [platform setupMovement];
     }
     
     CCARRAY_FOREACH(collectables, collectable)
@@ -123,11 +126,9 @@
             enemy.active = NO;
         }
         
-        [enemy isIntersectingPlayer:game.player];
+        [enemy isIntersectingPlayer:game];
         [enemy doMovement];
     }
-    
-    [self gameoverCheck:game];
 }
 
 - (void) gameoverCheck:(Game*)game

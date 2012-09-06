@@ -12,7 +12,7 @@
 // 6  = Angel Laser of Death (from the top and sides and bottom)
 
 #import "Platform.h"
-#import "Player.h"
+#import "Game.h"
 #import "Enemy.h"
 #import "FXLayer.h"
 
@@ -43,7 +43,7 @@
         default: // just move down the screen
             break;
         case 1: // bat wobble
-            if ( self.base_y == 0 ) { CCLOG(@"SETTING Y"); self.base_y = self.position.y; }
+            if ( self.base_y == 0 ) { self.base_y = self.position.y; }
             self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) 
             {
@@ -53,7 +53,7 @@
     }
 }
 
-- (void) isIntersectingPlayer:(Player*)player
+- (void) isIntersectingPlayer:(Game*)game
 {
     switch (self.tag)
     {
@@ -62,8 +62,8 @@
             {
                 CGSize enemy_size = self.contentSize;
                 CGPoint enemy_pos = self.position;
-                CGSize player_size     = player.contentSize; 
-                CGPoint player_pos     = player.position;
+                CGSize player_size     = game.player.contentSize; 
+                CGPoint player_pos     = game.player.position;
                 
                 float max_x = enemy_pos.x - enemy_size.width/2 - 10;
                 float min_x = enemy_pos.x + enemy_size.width/2 + 10;
@@ -74,7 +74,7 @@
                    player_pos.y > enemy_pos.y &&
                    player_pos.y < min_y)
                 {
-                    [self doAction:self.tag player:player];
+                    [self doAction:self.tag player:game];
                 }
             }
             break;
@@ -82,22 +82,22 @@
     }
 }
 
-- (void) doAction:(int)tag player:(Player*)player
+- (void) doAction:(int)tag player:(Game*)game
 {   
     switch (tag)
     {
         default:
             self.active = NO;
-            [self damageToPlayer:player];
+            [self damageToPlayer:game.player];
             break;
         case 2: // mine
             self.active = NO;
             self.visible = NO;
-            [self explodeAtPosition:[self worldBoundingBox].origin];
-            [self damageToPlayer:player];
+            [game.fx doEffect:0 atPosition:[self worldBoundingBox].origin];
+            [self damageToPlayer:game.player];
             break;
         case 3: // water
-            if ( !self.attacking ) [self floatPlayer:player];
+            if ( !self.attacking ) [self floatPlayer:game.player];
             break;
         case 4: // generate rocket somewhere
             break;

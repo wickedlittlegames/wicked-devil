@@ -10,6 +10,11 @@
 
 @interface FXLayer : CCLayer {}
 
+@property (nonatomic, retain) CCArray *effects;
+@property (nonatomic, assign) BOOL running;
+
+- (void) doEffect:(int)effect atPosition:(CGPoint)fx_pos;
+- (void) stopAllEffects;
 - (void) update:(float)threshold;
 
 @end

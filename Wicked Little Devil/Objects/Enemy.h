@@ -9,14 +9,14 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-@class Player;
+@class Game;
 @interface Enemy : CCSprite {}
 
 @property (nonatomic,assign) bool active, attacking;
 @property (nonatomic,retain) NSString *type;
 @property (nonatomic,assign) float speed_x, speed_y, health, damage, base_y;
 
-- (void) isIntersectingPlayer:(Player*)player;
+- (void) isIntersectingPlayer:(Game*)game;
 - (void) doMovement;
 
 @end

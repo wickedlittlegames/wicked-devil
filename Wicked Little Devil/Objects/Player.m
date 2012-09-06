@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction, animating, fallAction;
+@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction, animating, fallAction, fallFarAction, explodeAction, falling;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -17,7 +17,7 @@
     {
         self.velocity = ccp ( 0 , 0 );
         self.jumpspeed = 7;        
-        self.health = 10.0;
+        self.health = 1.0;
         self.damage = 1.0;
         self.scale = 1.5;
         self.collected = 0;
@@ -28,6 +28,7 @@
         self.controllable = NO;
         self.toggled_platform = NO;
         self.animating = NO;
+        self.falling = NO;
         
         [self setupAnimations];
     }
@@ -39,7 +40,18 @@
     self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
     self.position = ccp(self.position.x, self.position.y + self.velocity.y);
     
-//    if ( self.velocity.y < 0 ) [self animationRunner:2];
+    if ( self.velocity.y < 0 && self.velocity.y > -5) 
+    {
+        [self animationRunner:2]; 
+    }
+    
+    if ( self.velocity.y < -5  && !self.falling ) 
+    {
+        self.animating = NO;
+        self.falling = YES;
+        CCLOG(@"VELOCITY: %f", self.velocity.y); 
+        [self animationRunner:3];
+    }
 }
 
 - (BOOL) isAlive
@@ -49,8 +61,9 @@
 
 - (void) jump:(float)speed
 {
-//    self.animating = NO;
-//    [self animationRunner:1];
+    self.animating = NO;
+    self.falling = NO;
+    [self animationRunner:1];
     
     self.velocity = ccp (self.velocity.x, speed);
 }
@@ -70,6 +83,9 @@
             case 2:
                 [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.fallAction], nil]];
                 break;
+            case 3:
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.fallFarAction], nil]];
+                break;
         }
     }
 }
@@ -84,20 +100,25 @@
 - (void) setupAnimations
 {
     // JUMP
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilJump.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevilJump.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"DevilAnim.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"DevilAnim.png"];
     [self addChild:spriteSheet];
     
     NSMutableArray *jumpAnimFrames = [NSMutableArray array];
     for(int i = 1; i <= 6; ++i) {
         [jumpAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"Demon_jumping_50X75_%i.png", i]]];
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+
+    NSMutableArray *fallFarAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [fallFarAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fallingforever%i.png", i]]];
     }
     
-    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.05f];
-    
-    
+    // JUMP
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilFall.plist"];
     CCSpriteBatchNode *spriteSheet2 = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevilFall.png"];
     [self addChild:spriteSheet2];
@@ -109,7 +130,9 @@
           [NSString stringWithFormat:@"demon_Falling_%i.png", i]]];
     }
     
+    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.05f];
     self.fallAction = [CCAnimation animationWithSpriteFrames:fallAnimFrames delay:0.05f];    
+    self.fallFarAction = [CCAnimation animationWithSpriteFrames:fallFarAnimFrames delay:0.05f];
 }
 
 - (void) setupPowerup:(int)powerup

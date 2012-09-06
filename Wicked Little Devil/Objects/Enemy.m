@@ -1,7 +1,7 @@
 //
 //  Enemy.m
 //  Wicked Little Devil
-//
+// 
 //  Created by Andrew Girvan on 30/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 // 1  = Bat
@@ -10,7 +10,6 @@
 // 4  = Rockets
 // 5  = Debris
 // 6  = Angel Laser of Death (from the top and sides and bottom)
-
 
 #import "Platform.h"
 #import "Enemy.h"
@@ -31,8 +30,6 @@
         self.speed_y = 1;
         self.attacking = FALSE;
         self.active = YES;
-        self.base_y = self.position.y;
-        CCLOG(@"ENEMY");
     }
     return self;
 }
@@ -44,14 +41,12 @@
         default: // just move down the screen
             break;
         case 1: // bat wobble
-            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2); 
-            if (self.position.x > [[CCDirector sharedDirector] winSize].width+70) 
+            if ( self.base_y == 0 ) { CCLOG(@"SETTING Y"); self.base_y = self.position.y; }
+            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2);
+            if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) 
             {
-                self.position = ccp(-70, self.position.y);
+                self.position = ccp(-70, self.base_y);
             }
-            break;
-        case 3:
-            //[self runAction:[CCWaves actionWithWaves:10 amplitude:0.5 horizontal:TRUE vertical:TRUE grid:ccg(10, 10) duration:5.0]];
             break;
     }
 }
@@ -86,23 +81,34 @@
 }
 
 - (void) doAction:(int)tag player:(Player*)player
-{
-    //    Platform* target = player.last_platform_touched;
-    
+{   
     switch (tag)
     {
-        default: // rat, bat, meteors
+        default:
+            self.active = NO;
             [self damageToPlayer:player];
             break;
-        case 3: // move player up then pop (animation)
+        case 2: // mine
+            self.active = NO;
+            self.visible = NO;
+            [self explodeAtPosition:[self worldBoundingBox].origin];
+            [self damageToPlayer:player];
+            break;
+        case 3: // water
             if ( !self.attacking ) [self floatPlayer:player];
+            break;
+        case 4: // generate rocket somewhere
             break;
     }
 }
 
+- (void) explodeAtPosition:(CGPoint)positionex
+{
+
+}
+
 - (void) floatPlayer:(Player*)player
 {
-    CCLOG(@"FLOATING");
     self.attacking = TRUE;
     
     self.position = ccp(player.position.x, player.position.y);
@@ -130,7 +136,7 @@
 
 - (void) damageToPlayer:(Player*)player
 {
-    //player.health = player.health - self.damage;
+    player.health = player.health - self.damage;
 }
 
 - (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 

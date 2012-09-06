@@ -15,8 +15,8 @@
 @property (nonatomic, retain) NSUserDefaults *stats;
 @property (nonatomic, assign) int collected, bigcollected, score;
 @property (nonatomic, retain) id last_platform_touched;
-@property (nonatomic, assign) BOOL controllable, toggled_platform, animating;
-@property (nonatomic, retain) CCAnimation *jumpAction, *fallAction;
+@property (nonatomic, assign) BOOL controllable, toggled_platform, animating, falling;
+@property (nonatomic, retain) CCAnimation *jumpAction, *fallAction, *fallFarAction, *explodeAction;
 
 - (BOOL) isAlive;
 - (void) jump:(float)speed;

@@ -106,14 +106,6 @@
 
 - (BOOL) isActive
 {
-    if ( !self.visible )
-    {
-        return NO;
-    }
-    if ( self.position.y < 320 )
-    {
-        return NO;
-    }
     return YES;
 }
 

@@ -73,9 +73,11 @@
     
     CCARRAY_FOREACH(platforms, platform)
     {           
-        if ([platform worldBoundingBox].origin.y < -80 && [platform isActive] && !game.isIntro)
+        if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
         {
             platform.visible = NO;
+            [platforms removeObject:platform];
+            [platform removeFromParentAndCleanup:YES];
         }
 
         if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
@@ -133,7 +135,11 @@
     if ( !game.isGameover )
     {   
         game.isGameover = ( game.player.isAlive ? FALSE : TRUE );
-        game.isGameover = ( game.player.position.y < -80 ? TRUE : FALSE);
+        
+        if ( game.player.isAlive )
+        {
+            game.isGameover = ( game.player.position.y < -80 ? TRUE : FALSE);
+        }
         
         if ( game.isGameover ) 
         {
@@ -178,13 +184,23 @@
     }
     else 
     {
-        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                                   sceneWithScore:0 
-                                                   timebonus:0 
-                                                   bigs:0 
-                                                   forWorld:game.world 
-                                                   andLevel:game.level]];
+        
+        id delay = [CCDelayTime actionWithDuration:3.0];
+        
+        CCAction *endfunc = [CCCallFunc actionWithTarget:self selector:@selector(gotogameover)];
+        
+        [self runAction:[CCSequence actions:delay, endfunc, nil]];
     }
+}
+
+- (void) gotogameover
+{
+        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
+                                               sceneWithScore:0 
+                                               timebonus:0 
+                                               bigs:0 
+                                               forWorld:1
+                                               andLevel:1]];
 }
 
 @end

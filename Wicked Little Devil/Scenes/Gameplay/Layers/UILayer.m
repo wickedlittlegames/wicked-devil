@@ -36,9 +36,7 @@
 
 - (void) update:(Player*)player
 {
-    [label_bigs     setString:[NSString stringWithFormat:@"BIG: %i", player.bigcollected]];
-    [label_health   setString:[NSString stringWithFormat:@"HEALTH: %i", player.health]];
-    [label_score    setString:[NSString stringWithFormat:@"SCORE: %i", player.score]];    
+
 }
 
 @end

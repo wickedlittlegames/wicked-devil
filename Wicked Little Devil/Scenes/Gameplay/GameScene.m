@@ -68,17 +68,22 @@
         game.fx = layer_fx;
         [game.player setupPowerup:user.powerup];
         
-        [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,7000)]];
-        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,7000)]];
+        Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
+        float top = trigger_top.position.y + 100;
+        
+        [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
+        [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         
         // INTRO
         if ( !game.isIntro )
         {
             game.isIntro = YES;
-            id move = [CCMoveTo actionWithDuration:6.0 position:ccp(0,0)];
+            float time_for_anim = top/400;
+
+            id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];
         
-            [collab setPosition:ccp(0,7000)];
+            [collab setPosition:ccp(0,-top)];
             [collab runAction: ease];
         }
         
@@ -163,9 +168,9 @@
     game.player.controllable = YES;
     game.isIntro = NO;
     location_touch = game.player.position;
-    
-    layer_player.player.velocity = ccp ( layer_player.player.velocity.x, layer_player.player.jumpspeed );
     menu.visible = NO;
+    
+    [game.player jump:game.player.jumpspeed];
 }
 
 @end

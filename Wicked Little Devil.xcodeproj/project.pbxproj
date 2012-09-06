@@ -260,6 +260,9 @@
 		9C32AC3D1589EB5A00B85726 /* world-1-level-2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */; };
 		9C4F71DC15ADAE57002595C1 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F71DB15ADAE57002595C1 /* card.png */; };
 		9C4F71DF15ADAEAF002595C1 /* card-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F71DE15ADAEAF002595C1 /* card-hd.png */; };
+		9C5403E915F8CE5F00A48A60 /* Explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403E815F8CE5F00A48A60 /* Explosion.plist */; };
+		9C5403EE15F8D69900A48A60 /* DevilAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403EC15F8D69900A48A60 /* DevilAnim.plist */; };
+		9C5403EF15F8D69900A48A60 /* DevilAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403ED15F8D69900A48A60 /* DevilAnim.png */; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
@@ -611,6 +614,9 @@
 		9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-2.ccbi"; sourceTree = "<group>"; };
 		9C4F71DB15ADAE57002595C1 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 		9C4F71DE15ADAEAF002595C1 /* card-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-hd.png"; sourceTree = "<group>"; };
+		9C5403E815F8CE5F00A48A60 /* Explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Explosion.plist; sourceTree = "<group>"; };
+		9C5403EC15F8D69900A48A60 /* DevilAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevilAnim.plist; sourceTree = "<group>"; };
+		9C5403ED15F8D69900A48A60 /* DevilAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevilAnim.png; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1239,6 +1245,15 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		9C5403EB15F8D68D00A48A60 /* Devil */ = {
+			isa = PBXGroup;
+			children = (
+				9C5403EC15F8D69900A48A60 /* DevilAnim.plist */,
+				9C5403ED15F8D69900A48A60 /* DevilAnim.png */,
+			);
+			name = Devil;
+			sourceTree = "<group>";
+		};
 		9C54D45C15B0551A00D52A22 /* UI Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -1299,6 +1314,8 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C5403EB15F8D68D00A48A60 /* Devil */,
+				9C5403E815F8CE5F00A48A60 /* Explosion.plist */,
 				9CB3CF9B15F79502005A7267 /* AngelBlast.plist */,
 				9CB3CF9715F78D48005A7267 /* AnimDevilFall.plist */,
 				9CB3CF9815F78D48005A7267 /* AnimDevilFall.png */,
@@ -1802,6 +1819,9 @@
 				9CB3CF9915F78D48005A7267 /* AnimDevilFall.plist in Resources */,
 				9CB3CF9A15F78D48005A7267 /* AnimDevilFall.png in Resources */,
 				9CB3CF9C15F79502005A7267 /* AngelBlast.plist in Resources */,
+				9C5403E915F8CE5F00A48A60 /* Explosion.plist in Resources */,
+				9C5403EE15F8D69900A48A60 /* DevilAnim.plist in Resources */,
+				9C5403EF15F8D69900A48A60 /* DevilAnim.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

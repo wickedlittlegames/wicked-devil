@@ -94,6 +94,7 @@
             self.active = NO;
             self.visible = NO;
             [game.fx doEffect:0 atPosition:[self worldBoundingBox].origin];
+            [game.player runAction:[CCFadeOut actionWithDuration:1.0f]];
             [self damageToPlayer:game.player];
             break;
         case 3: // water

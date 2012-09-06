@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-#import "Enemy.h"
 
 @interface FXLayer : CCLayer {}
 

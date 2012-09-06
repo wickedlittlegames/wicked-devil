@@ -12,7 +12,9 @@
 // 6  = Angel Laser of Death (from the top and sides and bottom)
 
 #import "Platform.h"
+#import "Player.h"
 #import "Enemy.h"
+#import "FXLayer.h"
 
 @implementation Enemy
 @synthesize type, active, speed_x, speed_y, health, damage, attacking, base_y;

@@ -9,8 +9,7 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-#import "Player.h"
-
+@class Player;
 @interface Enemy : CCSprite {}
 
 @property (nonatomic,assign) bool active, attacking;

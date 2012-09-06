@@ -6,10 +6,7 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "Player.h"
-#import "User.h"
-#import "FXLayer.h"
-
+@class FXLayer, Player, User;
 @interface Game : NSObject {}
 
 @property (nonatomic, assign) int world, level;

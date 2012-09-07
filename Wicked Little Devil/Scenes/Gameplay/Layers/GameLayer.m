@@ -83,7 +83,7 @@
     
     CCARRAY_FOREACH(collectables, collectable)
     {
-        if ( [collectable isIntersectingPlayer:game.player] ) 
+        if ( [collectable isIntersectingPlayer:game.player] )
         {
             game.player.collected++;
             game.player.score++;

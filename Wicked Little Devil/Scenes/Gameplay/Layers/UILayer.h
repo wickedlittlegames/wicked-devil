@@ -9,7 +9,10 @@
 #import "cocos2d.h"
 
 @class Game, GameScene;
-@interface UILayer : CCLayer {}
+@interface UILayer : CCLayer 
+{
+    CCMenu *pause_screen;
+}
 
 @property (nonatomic, assign) int world, level;
 

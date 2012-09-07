@@ -12,23 +12,31 @@
 
 #pragma mark === Init ===
 
-+(CCScene *) sceneWithWorld:(int)w andLevel:(int)l
++(CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart
 {
     // Create a Scene
 	CCScene *scene = [CCScene node];
     
-    GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l];
+    GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l withRestart:restart];
     [scene addChild:layer];
 
     // Show the scene
 	return scene;
 }
 
-- (id) initWithWorld:(int)w andLevel:(int)l
+- (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart
 {
 	if( (self=[super init]) ) 
     {
         screenSize = [CCDirector sharedDirector].winSize;
+        
+        if ( restart )
+        {
+            CCLayerColor *whiteflash = [CCLayerColor layerWithColor:ccc4(225, 225, 225, 225)];
+            [self addChild:whiteflash z:1000];
+            
+            [whiteflash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.5f], nil]];
+        }
         
         User *user = [[User alloc] init];
         game = [[Game alloc] init];        
@@ -78,7 +86,7 @@
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         
         // INTRO
-        if ( !game.isIntro )
+        if ( !game.isIntro && !restart)
         {
             game.isIntro = YES;
             float time_for_anim = top/400;

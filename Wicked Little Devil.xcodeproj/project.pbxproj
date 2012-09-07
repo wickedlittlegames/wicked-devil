@@ -286,6 +286,8 @@
 		9CA5223B15EF897500AB72CB /* background-1-bottom-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5223315EF897500AB72CB /* background-1-bottom-hd.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
+		9CACD77415FA294800F11990 /* DevilAnimFall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CACD77215FA294800F11990 /* DevilAnimFall.plist */; };
+		9CACD77515FA294800F11990 /* DevilAnimFall.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CACD77315FA294800F11990 /* DevilAnimFall.png */; };
 		9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */; };
 		9CACDF5615B8199200E8F518 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACDF5515B8199200E8F518 /* Game.m */; };
 		9CB3CF9115F78AB9005A7267 /* Demon_jumping_50X75_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB3CF9015F78AB9005A7267 /* Demon_jumping_50X75_1.png */; };
@@ -647,6 +649,8 @@
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
 		9CA61BA715B566BB00B447E9 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Scenes/Gameplay/Layers/GameLayer.m; sourceTree = "<group>"; };
+		9CACD77215FA294800F11990 /* DevilAnimFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevilAnimFall.plist; sourceTree = "<group>"; };
+		9CACD77315FA294800F11990 /* DevilAnimFall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevilAnimFall.png; sourceTree = "<group>"; };
 		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
 		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
 		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
@@ -1248,6 +1252,8 @@
 		9C5403EB15F8D68D00A48A60 /* Devil */ = {
 			isa = PBXGroup;
 			children = (
+				9CACD77215FA294800F11990 /* DevilAnimFall.plist */,
+				9CACD77315FA294800F11990 /* DevilAnimFall.png */,
 				9C5403EC15F8D69900A48A60 /* DevilAnim.plist */,
 				9C5403ED15F8D69900A48A60 /* DevilAnim.png */,
 			);
@@ -1822,6 +1828,8 @@
 				9C5403E915F8CE5F00A48A60 /* Explosion.plist in Resources */,
 				9C5403EE15F8D69900A48A60 /* DevilAnim.plist in Resources */,
 				9C5403EF15F8D69900A48A60 /* DevilAnim.png in Resources */,
+				9CACD77415FA294800F11990 /* DevilAnimFall.plist in Resources */,
+				9CACD77515FA294800F11990 /* DevilAnimFall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

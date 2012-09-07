@@ -115,7 +115,7 @@
     user.cache_current_world  = (int)sender.userData;
     [user sync_cache_current_world];
     
-    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag]];
+    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]];
 }
 
 - (void) tap_facebook

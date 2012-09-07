@@ -119,15 +119,15 @@
     }
     
     // JUMP
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevilFall.plist"];
-    CCSpriteBatchNode *spriteSheet2 = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevilFall.png"];
-    [self addChild:spriteSheet2];
+//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"DevilAnimFall.plist"];
+//    CCSpriteBatchNode *spriteSheet2 = [CCSpriteBatchNode batchNodeWithFile:@"DevilAnimFall.png"];
+//    [self addChild:spriteSheet2];
     
     NSMutableArray *fallAnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 4; ++i) {
+    for(int i = 6; i >= 1; --i) {
         [fallAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"demon_Falling_%i.png", i]]];
+          [NSString stringWithFormat:@"jump%i.png", i]]];
     }
     
     self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.05f];

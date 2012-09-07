@@ -191,7 +191,7 @@
 
 - (void) gotogameover
 {
-    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level]];
+    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE]];
 }
 
 @end

@@ -67,7 +67,7 @@
 
 - (void) tap_back
 {
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene scene]]];
 }
 
 #pragma mark === Score Animation Steps ===

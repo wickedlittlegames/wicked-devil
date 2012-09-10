@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9C04FED515A7113D0030CFF5 /* Cards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C04FED415A7113D0030CFF5 /* Cards.plist */; };
+		9C0E69D215FE1AF400F3BEFD /* level.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69D115FE1AF400F3BEFD /* level.png */; };
+		9C0E69D515FE1BBF00F3BEFD /* FirstScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69D415FE1BBF00F3BEFD /* FirstScreen.jpg */; };
+		9C0E69D715FE1F5500F3BEFD /* level-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69D615FE1F5500F3BEFD /* level-locked.png */; };
+		9C0E69DB15FE203A00F3BEFD /* CrashLandingBB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69D915FE203A00F3BEFD /* CrashLandingBB.ttf */; };
+		9C0E69DC15FE203A00F3BEFD /* CrashLandingBB_ital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69DA15FE203A00F3BEFD /* CrashLandingBB_ital.ttf */; };
+		9C0E69DF15FE288800F3BEFD /* Storebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69DD15FE288800F3BEFD /* Storebutton.png */; };
+		9C0E69E015FE288800F3BEFD /* Powerupsbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E69DE15FE288800F3BEFD /* Powerupsbutton.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -358,6 +365,13 @@
 
 /* Begin PBXFileReference section */
 		9C04FED415A7113D0030CFF5 /* Cards.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cards.plist; path = Resources/Cards.plist; sourceTree = "<group>"; };
+		9C0E69D115FE1AF400F3BEFD /* level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level.png; sourceTree = "<group>"; };
+		9C0E69D415FE1BBF00F3BEFD /* FirstScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FirstScreen.jpg; sourceTree = "<group>"; };
+		9C0E69D615FE1F5500F3BEFD /* level-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level-locked.png"; sourceTree = "<group>"; };
+		9C0E69D915FE203A00F3BEFD /* CrashLandingBB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB.ttf; sourceTree = "<group>"; };
+		9C0E69DA15FE203A00F3BEFD /* CrashLandingBB_ital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB_ital.ttf; sourceTree = "<group>"; };
+		9C0E69DD15FE288800F3BEFD /* Storebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Storebutton.png; sourceTree = "<group>"; };
+		9C0E69DE15FE288800F3BEFD /* Powerupsbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Powerupsbutton.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -794,6 +808,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C0E69D815FE203000F3BEFD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9C0E69D915FE203A00F3BEFD /* CrashLandingBB.ttf */,
+				9C0E69DA15FE203A00F3BEFD /* CrashLandingBB_ital.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
@@ -856,6 +879,7 @@
 		9C142179156E68560011C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C0E69D815FE203000F3BEFD /* Fonts */,
 				9C54D45D15B0557300D52A22 /* Cards */,
 				9C6149731577B0D700A6FF33 /* Global Audio */,
 				9C6149741577B0D800A6FF33 /* Global Images */,
@@ -1324,6 +1348,11 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C0E69DD15FE288800F3BEFD /* Storebutton.png */,
+				9C0E69DE15FE288800F3BEFD /* Powerupsbutton.png */,
+				9C0E69D615FE1F5500F3BEFD /* level-locked.png */,
+				9C0E69D415FE1BBF00F3BEFD /* FirstScreen.jpg */,
+				9C0E69D115FE1AF400F3BEFD /* level.png */,
 				9C65BDF715FA34BA00573A61 /* particleTexture2.png */,
 				9C65BDF815FA34BA00573A61 /* collectAnim.plist */,
 				9C5403EB15F8D68D00A48A60 /* Devil */,
@@ -1838,6 +1867,13 @@
 				9CACD77515FA294800F11990 /* DevilAnimFall.png in Resources */,
 				9C65BDF915FA34BA00573A61 /* particleTexture2.png in Resources */,
 				9C65BDFA15FA34BA00573A61 /* collectAnim.plist in Resources */,
+				9C0E69D215FE1AF400F3BEFD /* level.png in Resources */,
+				9C0E69D515FE1BBF00F3BEFD /* FirstScreen.jpg in Resources */,
+				9C0E69D715FE1F5500F3BEFD /* level-locked.png in Resources */,
+				9C0E69DB15FE203A00F3BEFD /* CrashLandingBB.ttf in Resources */,
+				9C0E69DC15FE203A00F3BEFD /* CrashLandingBB_ital.ttf in Resources */,
+				9C0E69DF15FE288800F3BEFD /* Storebutton.png in Resources */,
+				9C0E69E015FE288800F3BEFD /* Powerupsbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

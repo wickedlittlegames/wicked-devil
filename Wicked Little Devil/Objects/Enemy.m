@@ -120,6 +120,7 @@
 - (void) floatPlayer:(Player*)player
 {
     self.attacking = TRUE;
+    self.visible   = FALSE;
     
     self.position = ccp(player.position.x, player.position.y);
     [self setZOrder:4];
@@ -131,7 +132,6 @@
     player.controllable = FALSE;
     player.velocity = ccp(0,0);
 
-    [self runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
     [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
 }
 

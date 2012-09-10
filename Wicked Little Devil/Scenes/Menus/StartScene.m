@@ -33,9 +33,13 @@
 	if( (self=[super init]) ) {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
+        CCSprite *bg = [CCSprite spriteWithFile:@"FirstScreen.jpg"];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:bg];
+        
         CCMenuItem *start = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"START" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_start:)];
         CCMenu *menu = [CCMenu menuWithItems:start, nil];
-        menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
+        menu.position = ccp ( screenSize.width/2,70 );
         
         [self addChild:menu];
     }
@@ -43,7 +47,7 @@
 }
 
 - (void)tap_start:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene scene]]];
 }
 
 @end

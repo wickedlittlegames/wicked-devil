@@ -68,7 +68,7 @@
 
 - (void) tap_back
 {
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
 }
 
 - (void) tap_mute_music 

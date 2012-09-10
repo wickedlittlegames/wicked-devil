@@ -28,57 +28,63 @@
 	if( (self=[super init]) ) {
         
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-        NSString *font = @"Marker Felt";
-        int fontsize = 18;
+        NSString *font = @"CrashLanding BB";
+        int fontsize = 36;
         
         // Get the user
         user = [[User alloc] init];
                 
         // Set up the world menu system
         [self world_menu_setup];
-        
-        // - Store Button
-        CCMenu *menu_store = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BUY SOULS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_store)], nil];
-        [menu_store alignItemsHorizontallyWithPadding:20];
-        [menu_store setPosition:ccp(screenSize.width - 120, 10 )];
+
+        // Store button
+        CCMenu *menu_store = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_store = [CCMenuItemImage 
+                                 itemWithNormalImage:@"Storebutton.png"
+                                 selectedImage:@"Storebutton.png"
+                                 disabledImage:@"Storebutton.png"
+                                 target:self 
+                                 selector:@selector(tap_store)];
+        [menu_store setPosition:ccp((screenSize.width - btn_store.contentSize.width) - 1, 25)];
+        [menu_store addChild:btn_store];
         [self addChild:menu_store];
         
         // Collectable Button
         lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:fontsize];
-        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 30, 10 )];
+        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 35, 20 )];
         [self addChild:lbl_user_collected z:100];
         
-        // Equippable Button
-        CCMenu *menu_equipment = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"EQUIP" fontName:font fontSize:fontsize] target:self selector:@selector(tap_equipment)], nil];
-        [menu_equipment setPosition:ccp(screenSize.width - 40, 10 )];
-        [self addChild:menu_equipment];
+//        // Equippable Button
+//        CCMenu *menu_equipment = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"EQUIP" fontName:font fontSize:fontsize] target:self selector:@selector(tap_equipment)], nil];
+//        [menu_equipment setPosition:ccp(screenSize.width - 40, 10 )];
+//        [self addChild:menu_equipment];
         
-        // Equippable Button
-        CCMenu *menu_stats = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"STATS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_stats)], nil];
-        [menu_stats setPosition:ccp(screenSize.width - 40, 40 )];
-        [self addChild:menu_stats];
+//        // Equippable Button
+//        CCMenu *menu_stats = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"STATS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_stats)], nil];
+//        [menu_stats setPosition:ccp(screenSize.width - 40, 40 )];
+//        [self addChild:menu_stats];
         
         // Settings Button
         CCMenu *menu_settings = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"SETTINGS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_settings)], nil];
         [menu_settings setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
         [self addChild:menu_settings];
-        
-        // Facebook Button
-        if ( user.isConnectedToFacebook )
-        {   
-            NSArray *fbName = [[[PFUser currentUser] valueForKey:@"fbName"] componentsSeparatedByString:@" "];
-            NSString *firstName = [fbName objectAtIndex:0];
-            
-            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:[NSString stringWithFormat:@"Welcome to HELL, %@",firstName] fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
-            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
-            [self addChild:menu_facebook];
-        }
-        else 
-        {
-            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"LOGIN WITH FACEBOOK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
-            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
-            [self addChild:menu_facebook];            
-        }
+//        
+//        // Facebook Button
+//        if ( user.isConnectedToFacebook )
+//        {   
+//            NSArray *fbName = [[[PFUser currentUser] valueForKey:@"fbName"] componentsSeparatedByString:@" "];
+//            NSString *firstName = [fbName objectAtIndex:0];
+//            
+//            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:[NSString stringWithFormat:@"Welcome to HELL, %@",firstName] fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
+//            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
+//            [self addChild:menu_facebook];
+//        }
+//        else 
+//        {
+//            CCMenu *menu_facebook = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"LOGIN WITH FACEBOOK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_facebook)], nil];
+//            [menu_facebook setPosition:ccp(95, screenSize.height - 25 )];
+//            [self addChild:menu_facebook];            
+//        }
     }
 	return self;    
 }
@@ -87,27 +93,27 @@
 
 - (void) tap_settings
 {
-    [[CCDirector sharedDirector] replaceScene:[SettingsScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[SettingsScene scene]]];
 }
 
 - (void) tap_stats
 {
-    [[CCDirector sharedDirector] replaceScene:[StatsScene scene]];    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[StatsScene scene]]];    
 }
 
 - (void) tap_store
 {
-    [[CCDirector sharedDirector] replaceScene:[ShopScene scene]];    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[ShopScene scene]]];    
 }
 
 - (void) tap_equipment
 {
-    [[CCDirector sharedDirector] replaceScene:[EquipScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[EquipScene scene]]];    
 }
 
 - (void) tap_back
 {
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectScene scene]]];    
 }
 
 - (void) tap_level:(CCMenuItem*)sender
@@ -115,7 +121,7 @@
     user.cache_current_world  = (int)sender.userData;
     [user sync_cache_current_world];
     
-    [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1 scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]]];        
 }
 
 - (void) tap_facebook
@@ -183,8 +189,8 @@
     NSNumber* itemsPerRow = [NSNumber numberWithInt:4];
     float menu_x = (screenSize.width/2);
     float menu_y = 275;
-    NSString *font = @"Marker Felt";
-    int fontsize = 12;
+    NSString *font = @"CrashLanding BB";
+    int fontsize = 38;
     
     NSMutableArray *worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
     
@@ -232,14 +238,40 @@
         for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
         {
             CCMenuItem *btn_level = [CCMenuItemImage 
-                                     itemWithNormalImage:[NSString stringWithFormat:@"Icon.png",lvl]
-                                     selectedImage:[NSString stringWithFormat:@"Icon.png",lvl] 
-                                     disabledImage:[NSString stringWithFormat:@"icon-locked.png",lvl] 
+                                     itemWithNormalImage:[NSString stringWithFormat:@"level.png",lvl]
+                                     selectedImage:[NSString stringWithFormat:@"level.png",lvl] 
+                                     disabledImage:[NSString stringWithFormat:@"level-locked.png",lvl] 
                                      target:self 
                                      selector:@selector(tap_level:)];
             
-            CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",w,lvl] fontName:font fontSize:fontsize];
-            lbl_level_name.position = ccp (lbl_level_name.position.x + 27, lbl_level_name.position.y - 12);
+            CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",lvl] fontName:font fontSize:fontsize];
+            lbl_level_name.position = ccp (lbl_level_name.position.x + 29, btn_level.position.y + 29);
+            
+            switch (w)
+            {
+                case 1: 
+                    lbl_level_name.color = ccc3(195, 0, 0);
+                    break;
+                case 2: 
+                    lbl_level_name.color = ccc3(99, 99, 99);
+                    break;
+                case 3: 
+                    lbl_level_name.color = ccc3(13, 133, 172);
+                    break;
+                case 4: 
+                    lbl_level_name.color = ccc3(12, 124, 33);
+                    break;
+                case 5: 
+                    lbl_level_name.color = ccc3(0, 0, 0);
+                    break;
+                case 6: 
+                    lbl_level_name.color = ccc3(255, 255, 255);
+                    break;
+                default:
+                    lbl_level_name.color = ccc3(0,0,0);
+                    break;
+            }
+            
             [btn_level addChild:lbl_level_name];
             
             btn_level.userData = (int*)w;
@@ -280,19 +312,21 @@
                 CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:font fontSize:16];
                 lbl_level_souls.color = ccc3(0,0,0);
                 lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
-                [btn_level addChild:lbl_level_souls];                    
+                //[btn_level addChild:lbl_level_souls];                    
             }
+            
+            lbl_level_name.visible = btn_level.isEnabled;            
             
             [menu_world addChild:btn_level];
         }
         
         [menu_world alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
         
-        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:font fontSize:14];
+        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:font fontSize:32];
         world_score.position = ccp (90, 390);
         [world addChild:world_score];            
         
-        CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:14];
+        CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:32];
         world_stars.position = ccp ( screenSize.width - 80, 390);
         [world addChild:world_stars];
         
@@ -301,7 +335,7 @@
     }
     
     CCLayer *purgatory = [CCLayer node];
-    CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:font fontSize:18];
+    CCLabelTTF *lbl_purgatory = [CCLabelTTF labelWithString:@"PURGATORY" fontName:font fontSize:42];
     lbl_purgatory.position = ccp ( screenSize.width/2, 420 );
     [purgatory addChild:lbl_purgatory];
     [worlds addObject:purgatory];

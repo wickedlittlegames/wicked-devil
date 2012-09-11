@@ -23,7 +23,7 @@
 #import "Platform.h"
 
 @implementation Platform
-@synthesize health, type, animating, toggled;
+@synthesize health, type, animating, toggled, active;
 @synthesize action_vertical_repeat, action_horizontal_repeat, action_fall;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
@@ -31,6 +31,7 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.health = 2.0;
+        self.active = TRUE;
         
         // [self setupActions];
 //        [self setupMovement];
@@ -40,7 +41,7 @@
 
 - (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms
 {
-    if ( player.velocity.y < 0  && [self isActive])
+    if ( player.velocity.y < 0  && self.active)
     {
         float max_x = self.position.x - self.contentSize.width/2 - 10;
         float min_x = self.position.x + self.contentSize.width/2 + 10;
@@ -66,9 +67,11 @@
                         {
                             case 51:
                                 tmpPlatform.visible = player.toggled_platform;
+                                tmpPlatform.active = tmpPlatform.visible;
                                 break;
                             case 52:
                                 tmpPlatform.visible = !player.toggled_platform; 
+                                tmpPlatform.active = tmpPlatform.visible;                                
                                 break;
                             default:
                                 break;

@@ -14,13 +14,12 @@
 @interface Platform : CCSprite {}
 @property (nonatomic, assign) float health;
 @property (nonatomic, assign) NSString *type;
-@property (nonatomic, assign) BOOL animating, toggled;
+@property (nonatomic, assign) BOOL animating, toggled, active;
 @property (nonatomic, retain) CCAction *action_vertical_repeat, *action_horizontal_repeat, *action_fall;
 
 - (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms;
 //- (void) setupMovement;
 - (void) setupHVMovement;
-- (BOOL) isActive;
 
 
 @end

@@ -96,6 +96,7 @@
         {
             game.player.bigcollected++;
             game.player.score += 500;
+            [game.fx doEffect:2 atPosition:[bigcollectable worldBoundingBox].origin];
         }
     }
     

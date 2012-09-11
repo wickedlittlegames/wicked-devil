@@ -270,6 +270,12 @@
 		9C5403E915F8CE5F00A48A60 /* Explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403E815F8CE5F00A48A60 /* Explosion.plist */; };
 		9C5403EE15F8D69900A48A60 /* DevilAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403EC15F8D69900A48A60 /* DevilAnim.plist */; };
 		9C5403EF15F8D69900A48A60 /* DevilAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5403ED15F8D69900A48A60 /* DevilAnim.png */; };
+		9C5AD90615FE61D900DC47D3 /* Settingbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90415FE61D900DC47D3 /* Settingbutton.png */; };
+		9C5AD90715FE61D900DC47D3 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90515FE61D900DC47D3 /* Begin-Button.png */; };
+		9C5AD90B15FE6D7800DC47D3 /* SoulCollected.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90915FE6D7800DC47D3 /* SoulCollected.plist */; };
+		9C5AD90C15FE6D7800DC47D3 /* particleTextureSoul.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90A15FE6D7800DC47D3 /* particleTextureSoul.png */; };
+		9C5AD90F15FE726E00DC47D3 /* Character-Mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90D15FE726E00DC47D3 /* Character-Mine.png */; };
+		9C5AD91015FE726E00DC47D3 /* Character-Bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5AD90E15FE726E00DC47D3 /* Character-Bat.png */; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C65BDF915FA34BA00573A61 /* particleTexture2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C65BDF715FA34BA00573A61 /* particleTexture2.png */; };
 		9C65BDFA15FA34BA00573A61 /* collectAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C65BDF815FA34BA00573A61 /* collectAnim.plist */; };
@@ -308,6 +314,9 @@
 		9CB880DE15F686660080EB36 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */; };
 		9CB9B11915F78599003888B2 /* AnimDevilJump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B11715F78599003888B2 /* AnimDevilJump.plist */; };
 		9CB9B11A15F78599003888B2 /* AnimDevilJump.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B11815F78599003888B2 /* AnimDevilJump.png */; };
+		9CCE303015FE77A2005B45EF /* HomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE302F15FE77A2005B45EF /* HomeScreen.png */; };
+		9CCE303315FE7841005B45EF /* button-start.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE303215FE7841005B45EF /* button-start.png */; };
+		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
 		9CD939AA15F41493001B0D50 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939A915F41493001B0D50 /* bubble.png */; };
 		9CD939BA15F4A077001B0D50 /* bg_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B415F4A077001B0D50 /* bg_6.png */; };
 		9CD939BB15F4A077001B0D50 /* bg_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD939B515F4A077001B0D50 /* bg_5.png */; };
@@ -635,6 +644,12 @@
 		9C5403E815F8CE5F00A48A60 /* Explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Explosion.plist; sourceTree = "<group>"; };
 		9C5403EC15F8D69900A48A60 /* DevilAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevilAnim.plist; sourceTree = "<group>"; };
 		9C5403ED15F8D69900A48A60 /* DevilAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevilAnim.png; sourceTree = "<group>"; };
+		9C5AD90415FE61D900DC47D3 /* Settingbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settingbutton.png; sourceTree = "<group>"; };
+		9C5AD90515FE61D900DC47D3 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
+		9C5AD90915FE6D7800DC47D3 /* SoulCollected.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoulCollected.plist; sourceTree = "<group>"; };
+		9C5AD90A15FE6D7800DC47D3 /* particleTextureSoul.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTextureSoul.png; sourceTree = "<group>"; };
+		9C5AD90D15FE726E00DC47D3 /* Character-Mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Character-Mine.png"; sourceTree = "<group>"; };
+		9C5AD90E15FE726E00DC47D3 /* Character-Bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Character-Bat.png"; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C65BDF715FA34BA00573A61 /* particleTexture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture2.png; sourceTree = "<group>"; };
@@ -681,6 +696,10 @@
 		9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		9CB9B11715F78599003888B2 /* AnimDevilJump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDevilJump.plist; sourceTree = "<group>"; };
 		9CB9B11815F78599003888B2 /* AnimDevilJump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDevilJump.png; sourceTree = "<group>"; };
+		9CCE302F15FE77A2005B45EF /* HomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeScreen.png; sourceTree = "<group>"; };
+		9CCE303215FE7841005B45EF /* button-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-start.png"; sourceTree = "<group>"; };
+		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
+		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
 		9CD939A915F41493001B0D50 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		9CD939B415F4A077001B0D50 /* bg_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_6.png; sourceTree = "<group>"; };
 		9CD939B515F4A077001B0D50 /* bg_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_5.png; sourceTree = "<group>"; };
@@ -820,7 +839,6 @@
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
-				9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */,
 				9C142304156E69540011C992 /* libs */,
 				9C142178156E68560011C992 /* Wicked Little Devil */,
 				9C142165156E68560011C992 /* Frameworks */,
@@ -844,6 +862,7 @@
 				9C84ED4E1594C50A0083DF40 /* Security.framework */,
 				9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */,
 				9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */,
+				9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */,
 				9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */,
 				9C84ED481594C4E80083DF40 /* CFNetwork.framework */,
 				9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */,
@@ -863,7 +882,6 @@
 		9C142178156E68560011C992 /* Wicked Little Devil */ = {
 			isa = PBXGroup;
 			children = (
-				9CE614C115B7198A00AF1C78 /* Wicked Devil.entitlements */,
 				9CFF0B66158A7C57000AA4E0 /* Constants */,
 				9C5390871589399E003D5DEC /* Extensions */,
 				9CBF4817156F927F00896EBF /* Scenes */,
@@ -904,6 +922,7 @@
 		9C1422E5156E68580011C992 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9CE614C115B7198A00AF1C78 /* Wicked Devil.entitlements */,
 				9C1422E6156E68580011C992 /* Prefix.pch */,
 				9C1422E7156E68580011C992 /* main.m */,
 			);
@@ -1311,6 +1330,8 @@
 			children = (
 				9CDF943F15B561EE0017E58B /* StartScene.h */,
 				9CDF944015B561EE0017E58B /* StartScene.m */,
+				9CCE303415FF35A9005B45EF /* WorldSelectScene.h */,
+				9CCE303515FF35A9005B45EF /* WorldSelectScene.m */,
 				9CDF943915B561EE0017E58B /* LevelSelectScene.h */,
 				9CDF943A15B561EE0017E58B /* LevelSelectScene.m */,
 				9CDF943715B561EE0017E58B /* EquipScene.h */,
@@ -1348,6 +1369,14 @@
 		9C6149741577B0D800A6FF33 /* Global Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CCE303215FE7841005B45EF /* button-start.png */,
+				9CCE302F15FE77A2005B45EF /* HomeScreen.png */,
+				9C5AD90D15FE726E00DC47D3 /* Character-Mine.png */,
+				9C5AD90E15FE726E00DC47D3 /* Character-Bat.png */,
+				9C5AD90915FE6D7800DC47D3 /* SoulCollected.plist */,
+				9C5AD90A15FE6D7800DC47D3 /* particleTextureSoul.png */,
+				9C5AD90415FE61D900DC47D3 /* Settingbutton.png */,
+				9C5AD90515FE61D900DC47D3 /* Begin-Button.png */,
 				9C0E69DD15FE288800F3BEFD /* Storebutton.png */,
 				9C0E69DE15FE288800F3BEFD /* Powerupsbutton.png */,
 				9C0E69D615FE1F5500F3BEFD /* level-locked.png */,
@@ -1874,6 +1903,14 @@
 				9C0E69DC15FE203A00F3BEFD /* CrashLandingBB_ital.ttf in Resources */,
 				9C0E69DF15FE288800F3BEFD /* Storebutton.png in Resources */,
 				9C0E69E015FE288800F3BEFD /* Powerupsbutton.png in Resources */,
+				9C5AD90615FE61D900DC47D3 /* Settingbutton.png in Resources */,
+				9C5AD90715FE61D900DC47D3 /* Begin-Button.png in Resources */,
+				9C5AD90B15FE6D7800DC47D3 /* SoulCollected.plist in Resources */,
+				9C5AD90C15FE6D7800DC47D3 /* particleTextureSoul.png in Resources */,
+				9C5AD90F15FE726E00DC47D3 /* Character-Mine.png in Resources */,
+				9C5AD91015FE726E00DC47D3 /* Character-Bat.png in Resources */,
+				9CCE303015FE77A2005B45EF /* HomeScreen.png in Resources */,
+				9CCE303315FE7841005B45EF /* button-start.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1926,6 +1963,7 @@
 				9CD93A3915F632E2001B0D50 /* CCBsequence.m in Sources */,
 				9CD93A3A15F632E2001B0D50 /* CCBSequenceProperty.m in Sources */,
 				9CD93A3B15F632E2001B0D50 /* CCNode+CCBRelativePositioning.m in Sources */,
+				9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,7 @@
                                  disabledImage:@"Storebutton.png"
                                  target:self 
                                  selector:@selector(tap_store)];
-        [menu_store setPosition:ccp((screenSize.width - btn_store.contentSize.width) - 1, 25)];
+        [menu_store setPosition:ccp(screenSize.width - 20, 20)];
         [menu_store addChild:btn_store];
         [self addChild:menu_store];
         
@@ -55,20 +55,17 @@
         [self addChild:lbl_user_collected z:100];
         
 //        // Equippable Button
-//        CCMenu *menu_equipment = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"EQUIP" fontName:font fontSize:fontsize] target:self selector:@selector(tap_equipment)], nil];
-//        [menu_equipment setPosition:ccp(screenSize.width - 40, 10 )];
-//        [self addChild:menu_equipment];
-        
-//        // Equippable Button
-//        CCMenu *menu_stats = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"STATS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_stats)], nil];
-//        [menu_stats setPosition:ccp(screenSize.width - 40, 40 )];
-//        [self addChild:menu_stats];
-        
-        // Settings Button
-        CCMenu *menu_settings = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"SETTINGS" fontName:font fontSize:fontsize] target:self selector:@selector(tap_settings)], nil];
-        [menu_settings setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
-        [self addChild:menu_settings];
-//        
+        CCMenu *menu_equip = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_equip = [CCMenuItemImage 
+                                 itemWithNormalImage:@"Powerupsbutton.png"
+                                 selectedImage:@"Powerupsbutton.png"
+                                 disabledImage:@"Powerupsbutton.png"
+                                 target:self 
+                                 selector:@selector(tap_equipment)];
+        [menu_equip setPosition:ccp(screenSize.width - 60, 20)];
+        [menu_equip addChild:btn_equip];
+        [self addChild:menu_equip];
+
 //        // Facebook Button
 //        if ( user.isConnectedToFacebook )
 //        {   

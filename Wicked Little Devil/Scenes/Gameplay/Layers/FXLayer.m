@@ -25,9 +25,15 @@
 - (void) doEffect:(int)effect atPosition:(CGPoint)fx_pos
 {
     CCParticleSystemQuad *fx = (CCParticleSystemQuad*)[self.effects objectAtIndex:effect];
-    CCLOG(@"%@",fx);
     [fx setPosition:fx_pos];
-    [self addChild:fx z:10];
+    if ( ![self getChildByTag:effect] )
+    {
+        [self addChild:fx z:10 tag:effect];
+    } 
+    else 
+    {
+        [fx resetSystem];
+    }
 }
 
 - (void) stopAllEffects
@@ -45,10 +51,10 @@
     
     // Soul collect
     CCParticleSystem *angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
-    [self.effects addObject:angelblast];    
+    [self.effects addObject:angelblast];
     
-    // Angel blast 
-    
+    CCParticleSystem *bigcollectableblast = [CCParticleSystemQuad particleWithFile:@"SoulCollected.plist"];
+    [self.effects addObject:bigcollectableblast];    
 
 }
 

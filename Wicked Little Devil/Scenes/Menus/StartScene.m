@@ -33,15 +33,21 @@
 	if( (self=[super init]) ) {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCSprite *bg = [CCSprite spriteWithFile:@"FirstScreen.jpg"];
+        CCSprite *bg = [CCSprite spriteWithFile:@"HomeScreen.png"];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
         
-        CCMenuItem *start = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"START" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_start:)];
-        CCMenu *menu = [CCMenu menuWithItems:start, nil];
-        menu.position = ccp ( screenSize.width/2,70 );
-        
-        [self addChild:menu];
+
+        CCMenu *menu_start = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_start = [CCMenuItemImage 
+                                 itemWithNormalImage:@"button-start.png"
+                                 selectedImage:@"button-start.png"
+                                 disabledImage:@"button-start.png"
+                                 target:self 
+                                 selector:@selector(tap_start:)];
+        [menu_start setPosition:ccp(screenSize.width/2, 80)];
+        [menu_start addChild:btn_start];
+        [self addChild:menu_start];
     }
 	return self;    
 }

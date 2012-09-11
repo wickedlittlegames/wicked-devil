@@ -45,7 +45,7 @@
         CCLOG(@"INIT: W: %i, L: %i", w, l);
         NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];
         
-        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Start-button.png" selectedImage:@"Start-button.png" target:self selector:@selector(tap_launch:)];
+        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
         [self addChild:menu z:10];

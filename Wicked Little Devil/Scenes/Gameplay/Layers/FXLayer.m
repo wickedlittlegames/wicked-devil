@@ -10,54 +10,45 @@
 
 
 @implementation FXLayer
-@synthesize effects, running;
+@synthesize effects;
 
 - (id) init
 {
 	if( (self=[super init]) ) 
     {
-        self.running = NO;
-        [self initAllEffects];
+        self.effects = [CCArray arrayWithCapacity:100];
+
+        CCParticleSystemQuad *explosion = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:explosion];
+        
     }
 	return self;
 }
 
-- (void) doEffect:(int)effect atPosition:(CGPoint)fx_pos
+- (void) start:(int)effect position:(CGPoint)pos
 {
-    CCParticleSystemQuad *fx = (CCParticleSystemQuad*)[self.effects objectAtIndex:effect];
-    [fx setPosition:fx_pos];
-    if ( ![self getChildByTag:effect] )
+    CCParticleSystemQuad *fx = [self.effects objectAtIndex:effect];
+    [fx setPosition:pos];
+    
+    if ( ![self getChildByTag:effect] ) 
     {
         [self addChild:fx z:10 tag:effect];
-    } 
+    }
+    
     else 
-    {
-        [fx resetSystem];
+    { 
+        [fx resetSystem]; 
     }
 }
 
-- (void) stopAllEffects
+- (void) stopAll
 {
-        
-}
-
-- (void) initAllEffects 
-{
-    self.effects = [CCArray arrayWithCapacity:100];
-    
-    // Explosion
-    CCParticleSystemQuad *explosion = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
-    [self.effects addObject:explosion];
-    
-    // Soul collect
-    CCParticleSystem *angelblast = [CCParticleSystemQuad particleWithFile:@"AngelBlast.plist"];
-    [self.effects addObject:angelblast];
-    
-    CCParticleSystem *bigcollectableblast = [CCParticleSystemQuad particleWithFile:@"SoulCollected.plist"];
-    [self.effects addObject:bigcollectableblast];    
+    CCParticleSystemQuad *tmp_fx = nil;
+    CCARRAY_FOREACH([self children], tmp_fx ) 
+    {
+        [tmp_fx stopSystem];
+    }
 
 }
-
-- (void) update:(float)threshold{}
 
 @end

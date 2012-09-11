@@ -150,9 +150,4 @@
     CCLOG(@"PLAY A DEMO VIDEO OF THE POWERUP IN ACTION");
 }
 
-- (void) tap_back
-{
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
-}
-
 @end

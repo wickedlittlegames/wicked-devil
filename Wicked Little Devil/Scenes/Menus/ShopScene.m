@@ -66,7 +66,7 @@
 - (void) tap_back
 {
     [view removeFromSuperview];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
 }
 
 - (void) tap_purchase:(int)item

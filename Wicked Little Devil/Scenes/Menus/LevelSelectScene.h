@@ -17,16 +17,17 @@
 #import "EquipScene.h"
 #import "SettingsScene.h"
 #import "GameScene.h"
-#import "StatsScene.h"
 
 #import "User.h"
 
-@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate, GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> 
+@class WorldSelectScene;
+@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate> 
 {
     User *user;
     CCLabelTTF *lbl_user_collected;
 }
 
-+(CCScene *) scene;
++(CCScene *) sceneWithWorld:(int)world;
+- (id) initWithWorld:(int)world;
 
 @end

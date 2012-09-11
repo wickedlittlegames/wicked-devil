@@ -8,14 +8,12 @@
 
 #import "cocos2d.h"
 
-#import "User.h"
-#import "Player.h"
 #import "Platform.h"
 #import "Collectable.h"
 #import "Enemy.h"
 #import "Trigger.h"
-#import "Game.h"
 
+@class Game;
 @interface GameLayer : CCLayer {}
 @property (nonatomic, retain) CCArray *platforms, *collectables, *bigcollectables, *enemies, *triggers, *emitters;
 @property (nonatomic, assign) int world, level;

@@ -67,7 +67,7 @@
 
 - (void) tap_back
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene sceneWithWorld:1]]];
 }
 
 #pragma mark === Score Animation Steps ===
@@ -148,7 +148,7 @@
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"123",@"message",nil];
     CCLOG(@"%@",params);
 
-//    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andParams:params andHttpMethod:@"POST" andDelegate:self];
+    //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andParams:params andHttpMethod:@"POST" andDelegate:self];
     //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andDelegate:self];
     
     

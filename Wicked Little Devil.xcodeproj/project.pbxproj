@@ -288,9 +288,6 @@
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C8DC291157F94F500760A04 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */; };
 		9C8DC29D158009CB00760A04 /* Start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DC29C158009CB00760A04 /* Start-button.png */; };
-		9CA5221D15EE61FD00AB72CB /* CCParallaxScrollNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CA5221E15EE61FD00AB72CB /* CCParallaxScrollOffset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CA5221F15EE61FD00AB72CB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5221C15EE61FD00AB72CB /* README */; };
 		9CA5223415EF897500AB72CB /* background-1-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5222C15EF897500AB72CB /* background-1-top.png */; };
 		9CA5223515EF897500AB72CB /* background-1-top-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5222D15EF897500AB72CB /* background-1-top-hd.png */; };
 		9CA5223615EF897500AB72CB /* background-1-middle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA5222E15EF897500AB72CB /* background-1-middle2.png */; };
@@ -347,7 +344,6 @@
 		9CDF944515B561EE0017E58B /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943C15B561EE0017E58B /* SettingsScene.m */; };
 		9CDF944615B561EE0017E58B /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943E15B561EE0017E58B /* ShopScene.m */; };
 		9CDF944715B561EE0017E58B /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944015B561EE0017E58B /* StartScene.m */; };
-		9CDF944815B561EE0017E58B /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944215B561EE0017E58B /* StatsScene.m */; };
 		9CDF944C15B561FA0017E58B /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944A15B561FA0017E58B /* SimpleTableCell.m */; };
 		9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */; };
 		9CE614B215B70B3A00AF1C78 /* MKSKProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614A915B70B3A00AF1C78 /* MKSKProduct.m */; };
@@ -638,7 +634,7 @@
 		9C1423F4156E69540011C992 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_Kazmath.txt; sourceTree = "<group>"; };
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9C32AC391589442D00B85726 /* icon-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-locked.png"; sourceTree = "<group>"; };
-		9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-2.ccbi"; sourceTree = "<group>"; };
+		9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-2.ccbi"; path = "Hell/world-1-level-2.ccbi"; sourceTree = "<group>"; };
 		9C4F71DB15ADAE57002595C1 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 		9C4F71DE15ADAEAF002595C1 /* card-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-hd.png"; sourceTree = "<group>"; };
 		9C5403E815F8CE5F00A48A60 /* Explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Explosion.plist; sourceTree = "<group>"; };
@@ -663,13 +659,8 @@
 		9C84ED4E1594C50A0083DF40 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C8DC24F157F66C300760A04 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		9C8DC250157F66C300760A04 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
-		9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
+		9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-1.ccbi"; path = "Hell/world-1-level-1.ccbi"; sourceTree = "<group>"; };
 		9C8DC29C158009CB00760A04 /* Start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start-button.png"; sourceTree = "<group>"; };
-		9CA5221815EE61FD00AB72CB /* CCParallaxScrollNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxScrollNode.h; sourceTree = "<group>"; };
-		9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCParallaxScrollNode.mm; sourceTree = "<group>"; };
-		9CA5221A15EE61FD00AB72CB /* CCParallaxScrollOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxScrollOffset.h; sourceTree = "<group>"; };
-		9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCParallaxScrollOffset.mm; sourceTree = "<group>"; };
-		9CA5221C15EE61FD00AB72CB /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		9CA5222C15EF897500AB72CB /* background-1-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-1-top.png"; sourceTree = "<group>"; };
 		9CA5222D15EF897500AB72CB /* background-1-top-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-1-top-hd.png"; sourceTree = "<group>"; };
 		9CA5222E15EF897500AB72CB /* background-1-middle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-1-middle2.png"; sourceTree = "<group>"; };
@@ -684,7 +675,7 @@
 		9CA61BA715B566BB00B447E9 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Scenes/Gameplay/Layers/GameLayer.m; sourceTree = "<group>"; };
 		9CACD77215FA294800F11990 /* DevilAnimFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevilAnimFall.plist; sourceTree = "<group>"; };
 		9CACD77315FA294800F11990 /* DevilAnimFall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevilAnimFall.png; sourceTree = "<group>"; };
-		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
+		9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-4.ccbi"; path = "Hell/world-1-level-4.ccbi"; sourceTree = "<group>"; };
 		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
 		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
 		9CB3CF9015F78AB9005A7267 /* Demon_jumping_50X75_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Demon_jumping_50X75_1.png; sourceTree = "<group>"; };
@@ -708,10 +699,10 @@
 		9CD939B815F4A077001B0D50 /* bg_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_2.png; sourceTree = "<group>"; };
 		9CD939B915F4A077001B0D50 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
 		9CD939C615F4DC67001B0D50 /* devil3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devil3.png; sourceTree = "<group>"; };
-		9CD939DC15F63137001B0D50 /* world-1-level-5.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-5.ccbi"; sourceTree = "<group>"; };
-		9CD939DD15F63137001B0D50 /* world-1-level-6.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-6.ccbi"; sourceTree = "<group>"; };
-		9CD939DE15F63137001B0D50 /* world-1-level-7.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-7.ccbi"; sourceTree = "<group>"; };
-		9CD939DF15F63137001B0D50 /* world-1-level-8.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-8.ccbi"; sourceTree = "<group>"; };
+		9CD939DC15F63137001B0D50 /* world-1-level-5.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-5.ccbi"; path = "Hell/world-1-level-5.ccbi"; sourceTree = "<group>"; };
+		9CD939DD15F63137001B0D50 /* world-1-level-6.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-6.ccbi"; path = "Hell/world-1-level-6.ccbi"; sourceTree = "<group>"; };
+		9CD939DE15F63137001B0D50 /* world-1-level-7.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-7.ccbi"; path = "Hell/world-1-level-7.ccbi"; sourceTree = "<group>"; };
+		9CD939DF15F63137001B0D50 /* world-1-level-8.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-8.ccbi"; path = "Hell/world-1-level-8.ccbi"; sourceTree = "<group>"; };
 		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
 		9CD93A1615F632E2001B0D50 /* CCBActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBActionManager.m; sourceTree = "<group>"; };
 		9CD93A1715F632E2001B0D50 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -746,8 +737,6 @@
 		9CDF943E15B561EE0017E58B /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopScene.m; path = Scenes/Menus/ShopScene.m; sourceTree = "<group>"; };
 		9CDF943F15B561EE0017E58B /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartScene.h; path = Scenes/Menus/StartScene.h; sourceTree = "<group>"; };
 		9CDF944015B561EE0017E58B /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartScene.m; path = Scenes/Menus/StartScene.m; sourceTree = "<group>"; };
-		9CDF944115B561EE0017E58B /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatsScene.h; path = Scenes/Menus/StatsScene.h; sourceTree = "<group>"; };
-		9CDF944215B561EE0017E58B /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatsScene.m; path = Scenes/Menus/StatsScene.m; sourceTree = "<group>"; };
 		9CDF944915B561FA0017E58B /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableCell.h; path = "Scenes/UI Items/SimpleTableCell.h"; sourceTree = "<group>"; };
 		9CDF944A15B561FA0017E58B /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableCell.m; path = "Scenes/UI Items/SimpleTableCell.m"; sourceTree = "<group>"; };
 		9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleTableCell.xib; path = "Scenes/UI Items/SimpleTableCell.xib"; sourceTree = "<group>"; };
@@ -772,7 +761,7 @@
 		9CEC3663158A2894008B127E /* collectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectable.png; sourceTree = "<group>"; };
 		9CEF22461597C60A00893789 /* platform-normal-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal-hd.png"; sourceTree = "<group>"; };
 		9CF8790D1591C1F6006AAB97 /* platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal.png"; sourceTree = "<group>"; };
-		9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-3.ccbi"; sourceTree = "<group>"; };
+		9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = "world-1-level-3.ccbi"; path = "Hell/world-1-level-3.ccbi"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
 		9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collectable.h; path = Objects/Collectable.h; sourceTree = "<group>"; };
@@ -888,8 +877,8 @@
 				9CBF4813156F8F8600896EBF /* Objects */,
 				9C142179156E68560011C992 /* Resources */,
 				9C1422E5156E68580011C992 /* Supporting Files */,
-				9C1422EA156E68580011C992 /* AppDelegate.m */,
 				9C1422E9156E68580011C992 /* AppDelegate.h */,
+				9C1422EA156E68580011C992 /* AppDelegate.m */,
 			);
 			path = "Wicked Little Devil";
 			sourceTree = "<group>";
@@ -897,11 +886,11 @@
 		9C142179156E68560011C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9CCE303815FF3BA2005B45EF /* Data */,
 				9C0E69D815FE203000F3BEFD /* Fonts */,
-				9C54D45D15B0557300D52A22 /* Cards */,
-				9C6149731577B0D700A6FF33 /* Global Audio */,
-				9C6149741577B0D800A6FF33 /* Global Images */,
-				9C6149751577B0D800A6FF33 /* Global SFX */,
+				9C6149731577B0D700A6FF33 /* SFX */,
+				9C6149741577B0D800A6FF33 /* Images */,
+				9C6149751577B0D800A6FF33 /* FX */,
 				9C6149761577B0D800A6FF33 /* Worlds */,
 				9C14217A156E68560011C992 /* Default.png */,
 				9C14217C156E68560011C992 /* fps_images.png */,
@@ -933,7 +922,6 @@
 			isa = PBXGroup;
 			children = (
 				9CD93A1415F632E2001B0D50 /* CCBReader */,
-				9CA5221715EE61FD00AB72CB /* cocos2d-parallax */,
 				9C227CED159B6B5600F7E6E1 /* IAP */,
 				9C84ED3F1594BFC40083DF40 /* Reachability */,
 				9C8DC24F157F66C300760A04 /* GameKitHelper.h */,
@@ -1317,17 +1305,10 @@
 			name = "UI Items";
 			sourceTree = "<group>";
 		};
-		9C54D45D15B0557300D52A22 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				9C04FED415A7113D0030CFF5 /* Cards.plist */,
-			);
-			name = Cards;
-			sourceTree = "<group>";
-		};
 		9C54D46115B055F800D52A22 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				9C54D45C15B0551A00D52A22 /* UI Items */,
 				9CDF943F15B561EE0017E58B /* StartScene.h */,
 				9CDF944015B561EE0017E58B /* StartScene.m */,
 				9CCE303415FF35A9005B45EF /* WorldSelectScene.h */,
@@ -1340,8 +1321,6 @@
 				9CDF943C15B561EE0017E58B /* SettingsScene.m */,
 				9CDF943D15B561EE0017E58B /* ShopScene.h */,
 				9CDF943E15B561EE0017E58B /* ShopScene.m */,
-				9CDF944115B561EE0017E58B /* StatsScene.h */,
-				9CDF944215B561EE0017E58B /* StatsScene.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -1358,15 +1337,15 @@
 			name = Gameplay;
 			sourceTree = "<group>";
 		};
-		9C6149731577B0D700A6FF33 /* Global Audio */ = {
+		9C6149731577B0D700A6FF33 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Global Audio";
+			name = SFX;
 			path = "Resources/Global Audio";
 			sourceTree = "<group>";
 		};
-		9C6149741577B0D800A6FF33 /* Global Images */ = {
+		9C6149741577B0D800A6FF33 /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				9CCE303215FE7841005B45EF /* button-start.png */,
@@ -1420,89 +1399,25 @@
 				9C32AC391589442D00B85726 /* icon-locked.png */,
 				9C8DC29C158009CB00760A04 /* Start-button.png */,
 			);
-			name = "Global Images";
+			name = Images;
 			path = "Resources/Global Images";
 			sourceTree = "<group>";
 		};
-		9C6149751577B0D800A6FF33 /* Global SFX */ = {
+		9C6149751577B0D800A6FF33 /* FX */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Global SFX";
+			name = FX;
 			path = "Resources/Global SFX";
 			sourceTree = "<group>";
 		};
 		9C6149761577B0D800A6FF33 /* Worlds */ = {
 			isa = PBXGroup;
 			children = (
-				9C6149771577B0D800A6FF33 /* Heaven */,
-				9C6149781577B0D800A6FF33 /* Hell */,
-				9C61497C1577B0D800A6FF33 /* Land */,
-				9C61497D1577B0D800A6FF33 /* Sea */,
-				9C61497E1577B0D800A6FF33 /* Space */,
-				9C61497F1577B0D800A6FF33 /* Underground */,
+				9CCE303715FF3B82005B45EF /* Escape From Hell */,
 			);
 			name = Worlds;
 			path = Resources/Worlds;
-			sourceTree = "<group>";
-		};
-		9C6149771577B0D800A6FF33 /* Heaven */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Heaven;
-			sourceTree = "<group>";
-		};
-		9C6149781577B0D800A6FF33 /* Hell */ = {
-			isa = PBXGroup;
-			children = (
-				9C8DC28F157F94E800760A04 /* Levels */,
-				9C6149791577B0D800A6FF33 /* Audio */,
-				9C61497B1577B0D800A6FF33 /* SFX */,
-			);
-			path = Hell;
-			sourceTree = "<group>";
-		};
-		9C6149791577B0D800A6FF33 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		9C61497B1577B0D800A6FF33 /* SFX */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SFX;
-			sourceTree = "<group>";
-		};
-		9C61497C1577B0D800A6FF33 /* Land */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Land;
-			sourceTree = "<group>";
-		};
-		9C61497D1577B0D800A6FF33 /* Sea */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sea;
-			sourceTree = "<group>";
-		};
-		9C61497E1577B0D800A6FF33 /* Space */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Space;
-			sourceTree = "<group>";
-		};
-		9C61497F1577B0D800A6FF33 /* Underground */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Underground;
 			sourceTree = "<group>";
 		};
 		9C84ED3F1594BFC40083DF40 /* Reachability */ = {
@@ -1512,33 +1427,6 @@
 				9C84ED421594BFD40083DF40 /* Reachability.m */,
 			);
 			name = Reachability;
-			sourceTree = "<group>";
-		};
-		9C8DC28F157F94E800760A04 /* Levels */ = {
-			isa = PBXGroup;
-			children = (
-				9CD939DC15F63137001B0D50 /* world-1-level-5.ccbi */,
-				9CD939DD15F63137001B0D50 /* world-1-level-6.ccbi */,
-				9CD939DE15F63137001B0D50 /* world-1-level-7.ccbi */,
-				9CD939DF15F63137001B0D50 /* world-1-level-8.ccbi */,
-				9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */,
-				9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */,
-				9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */,
-				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
-			);
-			name = Levels;
-			sourceTree = "<group>";
-		};
-		9CA5221715EE61FD00AB72CB /* cocos2d-parallax */ = {
-			isa = PBXGroup;
-			children = (
-				9CA5221815EE61FD00AB72CB /* CCParallaxScrollNode.h */,
-				9CA5221915EE61FD00AB72CB /* CCParallaxScrollNode.mm */,
-				9CA5221A15EE61FD00AB72CB /* CCParallaxScrollOffset.h */,
-				9CA5221B15EE61FD00AB72CB /* CCParallaxScrollOffset.mm */,
-				9CA5221C15EE61FD00AB72CB /* README */,
-			);
-			path = "cocos2d-parallax";
 			sourceTree = "<group>";
 		};
 		9CBF4813156F8F8600896EBF /* Objects */ = {
@@ -1567,9 +1455,31 @@
 			children = (
 				9C54D46215B055FE00D52A22 /* Gameplay */,
 				9C54D46115B055F800D52A22 /* Menus */,
-				9C54D45C15B0551A00D52A22 /* UI Items */,
 			);
 			name = Scenes;
+			sourceTree = "<group>";
+		};
+		9CCE303715FF3B82005B45EF /* Escape From Hell */ = {
+			isa = PBXGroup;
+			children = (
+				9CD939DC15F63137001B0D50 /* world-1-level-5.ccbi */,
+				9CD939DD15F63137001B0D50 /* world-1-level-6.ccbi */,
+				9CD939DE15F63137001B0D50 /* world-1-level-7.ccbi */,
+				9CD939DF15F63137001B0D50 /* world-1-level-8.ccbi */,
+				9CACDF5115B76E4A00E8F518 /* world-1-level-4.ccbi */,
+				9CFF0B61158A5F78000AA4E0 /* world-1-level-3.ccbi */,
+				9C32AC3C1589EB5A00B85726 /* world-1-level-2.ccbi */,
+				9C8DC290157F94F500760A04 /* world-1-level-1.ccbi */,
+			);
+			name = "Escape From Hell";
+			sourceTree = "<group>";
+		};
+		9CCE303815FF3BA2005B45EF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9C04FED415A7113D0030CFF5 /* Cards.plist */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		9CD93A1415F632E2001B0D50 /* CCBReader */ = {
@@ -1859,7 +1769,6 @@
 				9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */,
 				9CE614B415B70B3A00AF1C78 /* MKStoreKitConfigs.plist in Resources */,
 				9CACDF5215B76E4A00E8F518 /* world-1-level-4.ccbi in Resources */,
-				9CA5221F15EE61FD00AB72CB /* README in Resources */,
 				9CA5223415EF897500AB72CB /* background-1-top.png in Resources */,
 				9CA5223515EF897500AB72CB /* background-1-top-hd.png in Resources */,
 				9CA5223615EF897500AB72CB /* background-1-middle2.png in Resources */,
@@ -1943,7 +1852,6 @@
 				9CDF944515B561EE0017E58B /* SettingsScene.m in Sources */,
 				9CDF944615B561EE0017E58B /* ShopScene.m in Sources */,
 				9CDF944715B561EE0017E58B /* StartScene.m in Sources */,
-				9CDF944815B561EE0017E58B /* StatsScene.m in Sources */,
 				9CDF944C15B561FA0017E58B /* SimpleTableCell.m in Sources */,
 				9CA61BA515B5655300B447E9 /* GameScene.m in Sources */,
 				9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */,
@@ -1955,8 +1863,6 @@
 				9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */,
 				9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */,
 				9CACDF5615B8199200E8F518 /* Game.m in Sources */,
-				9CA5221D15EE61FD00AB72CB /* CCParallaxScrollNode.mm in Sources */,
-				9CA5221E15EE61FD00AB72CB /* CCParallaxScrollOffset.mm in Sources */,
 				9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */,
 				9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */,
 				9CD93A3815F632E2001B0D50 /* CCBReader.m in Sources */,

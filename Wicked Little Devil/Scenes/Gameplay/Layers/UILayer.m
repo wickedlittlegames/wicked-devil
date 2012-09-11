@@ -7,7 +7,6 @@
 //
 
 #import "UILayer.h"
-#import "Game.h"
 #import "GameScene.h"
 
 @implementation UILayer
@@ -26,9 +25,7 @@
 {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     self.world = game.world;
-     self.level = game.level;
-    
-    CCLOG(@"%i, %i", self.world, self.level);
+    self.level = game.level;
     
     CCMenuItem *button_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Marker Felt" fontSize:14] target:self selector:@selector(tap_restart)];
     CCMenu *menu_restart = [CCMenu menuWithItems:button_restart, nil];
@@ -70,7 +67,7 @@
 - (void) tap_mainmenu
 {
     [[CCDirector sharedDirector] resume];
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene scene]];
+    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:world]];
 }
 
 - (void) update:(Game*)game

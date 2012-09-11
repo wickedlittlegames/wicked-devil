@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "StartScene.h"
+#import "WorldSelectScene.h"
 
 @implementation StartScene
 
@@ -30,13 +31,13 @@
 
 -(id) init
 {
-	if( (self=[super init]) ) {
+	if( (self=[super init]) ) 
+    {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         CCSprite *bg = [CCSprite spriteWithFile:@"HomeScreen.png"];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
-        
 
         CCMenu *menu_start = [CCMenu menuWithItems:nil];
         CCMenuItem *btn_start = [CCMenuItemImage 
@@ -53,7 +54,7 @@
 }
 
 - (void)tap_start:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[WorldSelectScene scene]]];
 }
 
 @end

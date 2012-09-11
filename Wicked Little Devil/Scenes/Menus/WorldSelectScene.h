@@ -6,11 +6,22 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 
-@interface WorldSelectScene : CCLayer {
+@class User;
+@interface WorldSelectScene : CCLayer 
+{
+    User *user;
     
+    CGSize screenSize;
+    NSMutableArray *worlds;
+    NSString *font;
+    int fontsize;
+    
+    CCScrollLayer *scroller;    
 }
+
++(CCScene *) scene;
 
 @end

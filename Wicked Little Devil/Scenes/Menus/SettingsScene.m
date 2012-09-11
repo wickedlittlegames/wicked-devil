@@ -66,11 +66,6 @@
     return self;
 }
 
-- (void) tap_back
-{
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
-}
-
 - (void) tap_mute_music 
 {
     CCLOG(@"TODO: MUTE MUSIC SLIDER/TICK");

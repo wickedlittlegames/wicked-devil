@@ -16,11 +16,9 @@
 {
 	if( (self=[super init]) ) 
     {
-        self.isTouchEnabled = YES;
-        
         player = [Player spriteWithFile:@"Demon_jumping_50X75_1.png"];
         [player setPosition:ccp ( 160 , 110 )];
-        [self addChild:player z:1];                
+        [self addChild:player];              
     }
 	return self;
 }

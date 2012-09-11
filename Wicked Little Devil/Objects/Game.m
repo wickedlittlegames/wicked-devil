@@ -12,6 +12,6 @@
 
 
 @implementation Game
-@synthesize isGameover, didWin, world, level, isStarted, isIntro, player, threshold, user, fx;
+@synthesize isGameover, didWin, world, level, isStarted, isIntro, player, user, fx;
 
 @end

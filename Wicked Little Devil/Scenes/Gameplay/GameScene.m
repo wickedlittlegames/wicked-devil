@@ -69,7 +69,6 @@
         [self addChild:layer_ui];
         
         game.player = layer_player.player;
-        game.threshold = 0;
         game.user = user;
         game.world = w;
         game.level = l;
@@ -116,12 +115,7 @@
         {
             [layer_game gameoverCheck:game];
             if ( !game.isGameover )
-            {
-                game.threshold = 340 - game.player.position.y;
-                
-                // FX Layer Interactions
-                [layer_fx update:game.threshold];
-                
+            {                                
                 // Player Layer Interactions
                 if ( game.player.controllable ) [game.player movementwithGravity:0.18];
                 

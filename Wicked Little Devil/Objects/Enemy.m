@@ -100,7 +100,7 @@
         case 2: // mine
             self.active = NO;
             self.visible = NO;
-            [game.fx doEffect:0 atPosition:[self worldBoundingBox].origin];
+            [game.fx start:0 position:[self worldBoundingBox].origin];
             [game.player runAction:[CCFadeOut actionWithDuration:1.0f]];
             [self damageToPlayer:game.player];
             break;

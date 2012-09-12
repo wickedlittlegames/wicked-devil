@@ -49,15 +49,9 @@
         bg.position = ccp(screenSize.width/2, screenSize.height/2 );
         [self addChild:bg];
         
-        // Back Button
-        CCMenuItem *button_back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back:)];
-        CCMenu *menu_back = [CCMenu menuWithItems:button_back, nil];
-        menu_back.position = ccp ( 20, screenSize.height - 20 );
-        [self addChild:menu_back];
-        
         // Collectable Button
         CCLabelTTF *collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] dimensions:CGSizeMake(480, 100) hAlignment:UITextAlignmentLeft fontName:font fontSize:fontsize]; 
-        collected.position = ccp ( 20 , 20 );        
+        collected.position = ccp ( 20, screenSize.height - 20 );
         [self addChild:collected];
 
         for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
@@ -100,13 +94,21 @@
             
             if ( button.isEnabled )
             {
-                //  int souls = [user getSoulsforWorld:world level:lvl];
-                //  world_souls_total += souls;
-                //                
-                //  CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:font fontSize:16];
-                //  lbl_level_souls.color = ccc3(0,0,0);
-                //  lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
-                //  //[btn_level addChild:lbl_level_souls];                    
+//                int souls = [user getSoulsforWorld:world level:lvl];
+//                world_souls_total += souls;
+//                int soul_x = 40;
+//                
+//                for (int s = 1; s <= 3; s++)
+//                {
+//                    CCSprite *soul = [CCSprite spriteWithFile:@"BigCollectable-Empty.png"];
+//                    soul.position = ccp(button.position.x + (soul_x * s), button.position.y);
+//                    [button addChild:soul];
+//                }
+//                
+//                
+//                CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:font fontSize:16];
+//                lbl_level_souls.color = ccc3(0,0,0);
+//                lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
             }
             
             CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",lvl] fontName:font fontSize:fontsize];
@@ -154,6 +156,18 @@
         CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:32];
         world_stars.position = ccp ( screenSize.width - 80, 390);
         [self addChild:world_stars];
+        
+        // Back Button
+        CCMenu *menu_back = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_back = [CCMenuItemImage 
+                                itemWithNormalImage:@"button-back2.png"
+                                selectedImage:@"button-back2.png"
+                                disabledImage:@"button-back2.png"
+                                target:self 
+                                selector:@selector(tap_back:)];
+        [menu_back setPosition:ccp(30, 30)];
+        [menu_back addChild:btn_back];
+        [self addChild:menu_back];
     }
     return self;
 }
@@ -162,7 +176,7 @@
 
 - (void) tap_level:(CCMenuItem*)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1 scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender

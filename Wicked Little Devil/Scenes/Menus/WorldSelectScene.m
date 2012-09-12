@@ -36,10 +36,16 @@
         [self setup];
         
         // Back Button
-        CCMenuItem *button_back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back:)];
-        CCMenu *menu_back = [CCMenu menuWithItems:button_back, nil];
-        menu_back.position = ccp ( 20, screenSize.height - 20 );
-        [self addChild:menu_back];        
+        CCMenu *menu_back = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_back = [CCMenuItemImage 
+                                 itemWithNormalImage:@"button-back2.png"
+                                 selectedImage:@"button-back2.png"
+                                 disabledImage:@"button-back2.png"
+                                 target:self 
+                                 selector:@selector(tap_back:)];
+        [menu_back setPosition:ccp(30, 30)];
+        [menu_back addChild:btn_back];
+        [self addChild:menu_back];
     }
 	return self;    
 }
@@ -85,6 +91,7 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"UNDERGROUND" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 2;
+    button.isEnabled = ( user.worldprogress >= button.tag );
     CCMenu *menu = [CCMenu menuWithItems:button, nil];
     
     menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -99,6 +106,7 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"OCEAN" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 3;
+    button.isEnabled = ( user.worldprogress >= button.tag );    
     CCMenu *menu = [CCMenu menuWithItems:button, nil];
     
     menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -113,6 +121,7 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"EARTH" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 4;
+    button.isEnabled = ( user.worldprogress >= button.tag );    
     CCMenu *menu = [CCMenu menuWithItems:button, nil];
     
     menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -127,6 +136,7 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"SPACE" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 5;
+    button.isEnabled = ( user.worldprogress >= button.tag );    
     CCMenu *menu = [CCMenu menuWithItems:button, nil];
     
     menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -141,6 +151,7 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"AFTERLIFE" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 6;
+    button.isEnabled = ( user.worldprogress >= button.tag );    
     CCMenu *menu = [CCMenu menuWithItems:button, nil];
     
     menu.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -180,7 +191,7 @@
             CCLOG(@"HALLOWEEN");
             break;
         default:
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene sceneWithWorld:item]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:item]]];
             break;
     }
 }

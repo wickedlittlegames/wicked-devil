@@ -35,7 +35,7 @@
     {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCSprite *bg = [CCSprite spriteWithFile:@"HomeScreen.png"];
+        CCSprite *bg = [CCSprite spriteWithFile:@"screen-start.png"];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
 
@@ -54,7 +54,7 @@
 }
 
 - (void)tap_start:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[WorldSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 @end

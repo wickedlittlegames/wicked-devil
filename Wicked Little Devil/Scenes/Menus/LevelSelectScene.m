@@ -57,9 +57,9 @@
         for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
         {
             CCMenuItemImage *button = [CCMenuItemImage
-                                       itemWithNormalImage:[NSString stringWithFormat:@"level.png",lvl]
-                                       selectedImage:[NSString stringWithFormat:@"level.png",lvl] 
-                                       disabledImage:[NSString stringWithFormat:@"level-locked.png",lvl] 
+                                       itemWithNormalImage:@"level.png"
+                                       selectedImage:@"level.png"
+                                       disabledImage:@"level-locked.png"
                                        target:self 
                                        selector:@selector(tap_level:)];
             button.tag = lvl;

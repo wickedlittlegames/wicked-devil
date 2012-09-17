@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "StartScene.h"
 #import "MKStoreManager.h"
+#import "SimpleAudioEngine.h"
 
 #import <Parse/Parse.h>
 

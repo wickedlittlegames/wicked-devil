@@ -131,7 +131,7 @@
     
     player.controllable = FALSE;
     player.velocity = ccp(0,0);
-
+    [self runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
     [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
 }
 

@@ -46,6 +46,18 @@
         [menu_back setPosition:ccp(30, 30)];
         [menu_back addChild:btn_back];
         [self addChild:menu_back];
+        
+        // Back Button
+        CCMenu *menu_store = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_store = [CCMenuItemImage
+                                itemWithNormalImage:@"Storebutton.png"
+                                selectedImage:@"Storebutton.png"
+                                disabledImage:@"Storebutton.png"
+                                target:self
+                                selector:@selector(tap_store:)];
+        [menu_store setPosition:ccp(30, screenSize.width - 40)];
+        [menu_store addChild:btn_store];
+        [self addChild:menu_store];
     }
 	return self;    
 }
@@ -56,6 +68,17 @@
     font = @"CrashLanding BB";
     fontsize = 36;
     
+    int total = (LEVELS_PER_WORLD * WORLDS_PER_GAME) * 3;
+    int player_score = 0;
+    for (int i; i <= WORLDS_PER_GAME; ++i)
+    {
+        player_score += [user getSoulsforWorld:i];
+    }
+                
+    CCLabelTTF *worldsscore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i",player_score,total] dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentRight fontName:font fontSize:fontsize];
+    worldsscore.position = ccp ( 0, screenSize.height - 80 );
+    [self addChild:worldsscore];
+    
     worlds = [NSMutableArray arrayWithCapacity:100];
     
     // HELL to HEAVEN WORLDS
@@ -65,7 +88,7 @@
     [worlds addObject:[self escapefromearth]];
     [worlds addObject:[self escapefromspace]];
     [worlds addObject:[self escapefromafterlife]];
-    [worlds addObject:[self halloween]];
+    //[worlds addObject:[self halloween]];
     
     scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
     [self addChild:scroller];

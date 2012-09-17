@@ -38,7 +38,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = 275;
+        float menu_y            = 285;
         int world_score_total   = [user getHighscoreforWorld:world];
         int world_souls_total   = 0;
         
@@ -50,9 +50,9 @@
         [self addChild:bg];
         
         // Collectable Button
-        CCLabelTTF *collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] dimensions:CGSizeMake(480, 100) hAlignment:UITextAlignmentLeft fontName:font fontSize:fontsize]; 
-        collected.position = ccp ( 20, screenSize.height - 20 );
-        [self addChild:collected];
+//        CCLabelTTF *collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] dimensions:CGSizeMake(480, 100) hAlignment:UITextAlignmentLeft fontName:font fontSize:fontsize]; 
+//        collected.position = ccp ( 20, screenSize.height - 20 );
+//        [self addChild:collected];
 
         for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
         {
@@ -145,16 +145,16 @@
             [menu addChild:button];
         }
         
-        [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+        [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,itemsPerRow,itemsPerRow,nil];
         menu.position = ccp(menu_x, menu_y);
         [self addChild:menu];
             
-        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World: %d",world_score_total] fontName:font fontSize:32];
-        world_score.position = ccp (90, 390);
+        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score_total] dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:font fontSize:32];
+        world_score.position = ccp (20, screenSize.height - 18);
         [self addChild:world_score];
         
         CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:32];
-        world_stars.position = ccp ( screenSize.width - 80, 390);
+        world_stars.position = ccp ( screenSize.width - 45, screenSize.height - 18);
         [self addChild:world_stars];
         
         // Back Button

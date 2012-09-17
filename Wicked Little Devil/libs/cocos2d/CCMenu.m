@@ -436,7 +436,7 @@ enum {
 		++columnsOccupied;
 
 		if(columnsOccupied >= rowColumns) {
-			y -= rowHeight + 30;
+			y -= rowHeight + 20;
 
 			columnsOccupied = 0;
 			rowColumns = 0;

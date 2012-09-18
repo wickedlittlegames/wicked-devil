@@ -94,8 +94,18 @@
             
             if ( button.isEnabled )
             {
-//                int souls = [user getSoulsforWorld:world level:lvl];
-//                world_souls_total += souls;
+                int souls = [user getSoulsforWorld:world level:lvl];
+                world_souls_total += souls;
+                
+                int soul_x = 7;
+                for (int s = 1; s <= souls; s++ )
+                {
+                    CCSprite *soul = [CCSprite spriteWithFile:@"item-bigcollectable.png"];
+                    soul.scale *= 0.67;
+                    soul.position = ccp(button.position.x + soul_x, button.position.y - 9);
+                    [button addChild:soul];
+                    soul_x += 21;
+                }
 //                int soul_x = 40;
 //                
 //                for (int s = 1; s <= 3; s++)

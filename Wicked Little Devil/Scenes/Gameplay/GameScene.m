@@ -48,6 +48,7 @@
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
+        menu.opacity = 0.0f;
         [self addChild:menu z:10];
 
         layer_bg        = [BGLayer node];

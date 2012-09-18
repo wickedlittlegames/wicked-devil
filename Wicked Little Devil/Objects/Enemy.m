@@ -120,7 +120,6 @@
 - (void) floatPlayer:(Player*)player
 {
     self.attacking = TRUE;
-    self.visible   = FALSE;
     
     self.position = ccp(player.position.x, player.position.y);
     [self setZOrder:4];

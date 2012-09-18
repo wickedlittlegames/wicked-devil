@@ -16,7 +16,7 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.jumpspeed = 7;        
+        self.jumpspeed = 7.5;
         self.health = 1.0;
         self.damage = 1.0;
         self.scale = 1.5;

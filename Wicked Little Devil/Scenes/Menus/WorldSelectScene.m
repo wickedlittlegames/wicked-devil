@@ -31,6 +31,7 @@
 	if( (self=[super init]) ) 
     {
         user = [[User alloc] init];
+        [user reset];
         
         // World Selection
         [self setup];
@@ -92,6 +93,13 @@
     
     scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
     [self addChild:scroller];
+}
+
+- (void) tap_store:(id)sender
+{
+    user.worldprogress = 6;
+    user.levelprogress = 12;
+    [user sync];
 }
 
 - (CCLayer*) escapefromhell

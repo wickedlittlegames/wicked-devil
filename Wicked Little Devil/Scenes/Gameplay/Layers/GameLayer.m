@@ -141,6 +141,10 @@
         
         if ( game.isGameover ) 
         {
+            if ( !game.player.isAlive )
+            {
+                [game.player dieAnimation];
+            }
             [self end:game];
         }
     }

@@ -10,6 +10,7 @@
 #import "CCScrollLayer.h"
 
 @class User;
+@class ShopScene;
 @interface WorldSelectScene : CCLayer 
 {
     User *user;

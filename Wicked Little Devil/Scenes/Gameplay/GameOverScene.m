@@ -176,21 +176,14 @@
 
 - (void) check_facebook_scores
 {
-    CCLOG(@"CHECKING FACEBOOK SCORES");
-    
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"123",@"message",nil];
-    CCLOG(@"%@",params);
+    //NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"123",@"message",nil];
+    //CCLOG(@"%@",params);
 
     //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andParams:params andHttpMethod:@"POST" andDelegate:self];
     //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andDelegate:self];
     
     
-    //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
-
-    
-    CCLOG(@"SENDING FACEBOOK MESSAGE");
-    
-    
+    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {

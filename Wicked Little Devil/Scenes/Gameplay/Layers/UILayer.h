@@ -12,12 +12,14 @@
 @interface UILayer : CCLayer 
 {
     CCMenu *pause_screen;
+    CCSprite *pause_bg;
+    CCSprite *bigcollect_empty, *bigcollect;
 }
 
 @property (nonatomic, assign) int world, level;
-@property (nonatomic, retain) CCLabelTTF *lbl_bigcollected;
 
 - (void) setupItemsforGame:(Game*)game;
 - (void) update:(Game*)game;
+- (void) showCollectableHasBeenCollected:(int)tmp_tag;
 
 @end

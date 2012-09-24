@@ -89,12 +89,11 @@
                                       disabledImage:@"btn-fb.png"
                                       target:self
                                       selector:@selector(tap_facebook)];
-        //[menu_others addChild:btn_achievements];
-        //[menu_others addChild:btn_leaderboard];
+        [menu_others addChild:btn_achievements];
+        [menu_others addChild:btn_leaderboard];
         [menu_others addChild:btn_facebooksignin];
-        [menu_others alignItemsHorizontallyWithPadding:10];
-        [menu_others setPosition:ccp(screenSize.width - 80, 15)];
-        
+        [menu_others alignItemsHorizontallyWithPadding:5];
+        [menu_others setPosition:ccp(screenSize.width - 60, 25)];
         [self addChild:menu_others];
         
         // MUTE

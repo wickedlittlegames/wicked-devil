@@ -9,19 +9,15 @@
 #import <GameKit/GameKit.h>
 
 #import "cocos2d.h"
-#import "AppDelegate.h"
-#import "CCScrollLayer.h"
 #import "GameCenterConstants.h"
 
 #import "ShopScene.h"
-#import "EquipScene.h"
-#import "SettingsScene.h"
 #import "GameScene.h"
 
 #import "User.h"
 
 @class WorldSelectScene;
-@interface LevelSelectScene : CCLayer <PF_FBRequestDelegate> 
+@interface LevelSelectScene : CCLayer
 {
     User *user;
     CCLabelTTF *lbl_user_collected;

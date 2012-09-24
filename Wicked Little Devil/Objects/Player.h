@@ -19,6 +19,7 @@
 @property (nonatomic, retain) CCAnimation *jumpAction, *fallAction, *fallFarAction, *explodeAction;
 
 - (BOOL) isAlive;
+- (void) dieAnimation;
 - (void) jump:(float)speed;
 - (void) movementwithGravity:(float)gravity;
 - (void) setupPowerup:(int)powerup;

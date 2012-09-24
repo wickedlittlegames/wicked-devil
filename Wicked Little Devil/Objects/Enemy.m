@@ -98,7 +98,6 @@
         default:
             if ( game.player.velocity.y > 0 )
             {
-                [game.player runAction:[CCFadeOut actionWithDuration:1.0f]];
                 [self damageToPlayer:game.player];
             }
             else
@@ -112,7 +111,6 @@
             self.active = NO;
             self.visible = NO;
             [game.fx start:0 position:[self worldBoundingBox].origin];
-            [game.player runAction:[CCFadeOut actionWithDuration:1.0f]];
             [self damageToPlayer:game.player];
             break;
         case 3: // water

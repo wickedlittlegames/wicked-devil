@@ -10,7 +10,7 @@
 #import "GameScene.h"
 
 @implementation UILayer
-@synthesize world, level, lbl_bigcollected;
+@synthesize world, level;
 
 - (id) init
 {
@@ -25,20 +25,13 @@
 {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     self.world = game.world;
-    self.level = game.level;
+    self.level = game.level;    
     
-    lbl_bigcollected = [CCLabelTTF labelWithString:@"0/3" dimensions:CGSizeMake(screenSize.width, 30) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:22];
-    lbl_bigcollected.position = ccp (screenSize.width/2, screenSize.height - 30);
-    [self addChild:lbl_bigcollected];
-    
-    CCMenuItem *button_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"CrashLanding BB" fontSize:14] target:self selector:@selector(tap_restart)];
-    CCMenu *menu_restart = [CCMenu menuWithItems:button_restart, nil];
-    [menu_restart  setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
-    
-    CCMenuItem *button_menu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MENU" fontName:@"CrashLanding BB" fontSize:14] target:self selector:@selector(tap_pause)];
-    CCMenu *menu_menu = [CCMenu menuWithItems:button_menu, nil];
-    [menu_menu  setPosition:ccp(screenSize.width - 120, screenSize.height - 25 )];    
-    
+    pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
+    pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
+    [self addChild:pause_bg];
+    pause_bg.visible = FALSE;
+
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
@@ -47,11 +40,30 @@
     [self addChild:pause_screen];
     pause_screen.visible = FALSE;
     
-    [self addChild:menu_restart z:100];
-    [self addChild:menu_menu z:100];
+    CCMenuItemImage *btn_reload = [CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" disabledImage:@"btn-pause.png" target:self selector:@selector(tap_reload)];
+    CCMenuItemImage *btn_menu   = [CCMenuItemImage itemWithNormalImage:@"btn-gameplay-menu.png" selectedImage:@"btn-gameplay-menu.png" disabledImage:@"btn-gameplay-menu.png" target:self selector:@selector(tap_pause)];
+    CCMenu *gameplay_menu = [CCMenu menuWithItems:btn_reload,btn_menu, nil];
+    [gameplay_menu alignItemsHorizontallyWithPadding:10];
+    gameplay_menu.position = ccp(screenSize.width - 40, screenSize.height - 25);
+    [self addChild:gameplay_menu];
+    
+    int x_mod = 25;
+    for (int i = 1; i <= 3; i++)
+    {
+        bigcollect_empty = [CCSprite spriteWithFile:@"icon-bigcollectable-empty.png"];
+        bigcollect_empty.position = ccp ( x_mod * i, screenSize.height - 25 );
+        bigcollect_empty.tag = i;
+        [self addChild:bigcollect_empty];
+        
+        bigcollect = [CCSprite spriteWithFile:@"icon-bigcollectable.png"];
+        bigcollect.position = ccp ( x_mod * i, screenSize.height - 25 );
+        bigcollect.visible = FALSE;
+        bigcollect.tag = i*10;
+        [self addChild:bigcollect];
+    }
 }
 
-- (void) tap_restart
+- (void) tap_reload
 {
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE]];
 }
@@ -60,12 +72,14 @@
 {
     [[CCDirector sharedDirector] pause];
     pause_screen.visible = TRUE;
+    pause_bg.visible = TRUE;
 }
 
 - (void) tap_unpause
 {
     [[CCDirector sharedDirector] resume];
-    pause_screen.visible = FALSE;    
+    pause_screen.visible = FALSE;
+    pause_bg.visible = FALSE;
 }
 
 - (void) tap_mainmenu
@@ -81,7 +95,18 @@
 
 - (void) update:(Game*)game
 {
-    [lbl_bigcollected setString:[NSString stringWithFormat:@"%i/3",game.player.bigcollected]];
+    if ( game.player.bigcollected == 1 && ![self getChildByTag:10].visible )
+    {
+        [self getChildByTag:10].visible = TRUE;
+    }
+    if ( game.player.bigcollected == 2 && ![self getChildByTag:20].visible )
+    {
+        [self getChildByTag:20].visible = TRUE;
+    }
+    if ( game.player.bigcollected == 3 && ![self getChildByTag:30].visible )
+    {
+        [self getChildByTag:30].visible = TRUE;
+    }
 }
 
 @end

@@ -145,18 +145,18 @@
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,itemsPerRow,itemsPerRow,nil];
         menu.position = ccp(menu_x, menu_y);
         [self addChild:menu];
-            
-//        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score_total] dimensions:CGSizeMake(screenSize.width - 5, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:20];
-//        world_score.position = ccp ( screenSize.width/2, screenSize.height - 40);
-//        [self addChild:world_score];
-        
+                    
         CCSprite *icon_bigcollectable = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         icon_bigcollectable.position = ccp (screenSize.width - 20, screenSize.height - 20);
         [self addChild:icon_bigcollectable z:100];
         
-        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d",world_souls_total,LEVELS_PER_WORLD*3] dimensions:CGSizeMake(screenSize.width - 75, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
-        world_score.position = ccp ( screenSize.width/2, screenSize.height - 22);
-        [self addChild:world_score z:100];
+        CCLabelTTF *world_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d",world_souls_total,LEVELS_PER_WORLD*3] dimensions:CGSizeMake(screenSize.width - 75, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        world_collected.position = ccp ( screenSize.width/2, screenSize.height - 22);
+        [self addChild:world_collected z:100];
+        
+        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score_total] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        world_score.position = ccp ( screenSize.width/2, 22 );
+        [self addChild:world_score];
         
         // Back Button
         CCMenu *menu_back = [CCMenu menuWithItems:nil];
@@ -194,6 +194,11 @@
 - (void) tap_back:(CCMenuItem*)sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+}
+
+- (void) tap_store:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 
 @end

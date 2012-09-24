@@ -94,7 +94,8 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene:[StartScene scene]]; 
+	[director_ pushScene:[StartScene scene]];
+    //[director_ pushScene:[GameScene sceneWithWorld:1 andLevel:1 isRestart:YES]];
 
 	return YES;
 }
@@ -104,7 +105,6 @@
 {
 	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
-
 
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application

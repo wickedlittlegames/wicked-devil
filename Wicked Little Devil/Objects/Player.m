@@ -59,6 +59,11 @@
     return ( self.health > 0.0 );
 }
 
+- (void) dieAnimation
+{
+    [self runAction:[CCFadeOut actionWithDuration:1.0f]];
+}
+
 - (void) jump:(float)speed
 {
     self.animating = NO;

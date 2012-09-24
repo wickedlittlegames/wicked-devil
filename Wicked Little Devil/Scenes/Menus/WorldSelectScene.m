@@ -9,6 +9,7 @@
 #import "WorldSelectScene.h"
 #import "LevelSelectScene.h"
 #import "StartScene.h"
+#import "ShopScene.h"
 #import "User.h"
 
 @implementation WorldSelectScene
@@ -71,12 +72,11 @@
     
     int total = (LEVELS_PER_WORLD * WORLDS_PER_GAME) * 3;
     int player_score = 0;
-    for (int i; i <= WORLDS_PER_GAME; ++i)
+    for (int i = 1; i <= WORLDS_PER_GAME; i++)
     {
-        for (int l; l<= LEVELS_PER_WORLD; ++l)
+        for (int l = 1; l<= LEVELS_PER_WORLD; l++)
         {
             player_score += [user getSoulsforWorld:i level:l];
-            CCLOG(@"SCORE: %i | %i : %i", i, l, player_score);
         }
     }
     
@@ -111,9 +111,7 @@
 
 - (void) tap_store:(id)sender
 {
-//    user.worldprogress = 6;
-//    user.levelprogress = 12;
-//    [user sync];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 
 - (CCLayer*) escapefromhell

@@ -34,9 +34,9 @@
         self.collected              = [udata integerForKey:@"collected"];
         self.items                  = [udata objectForKey:@"items"];
         
-        //[self _log];
+        [self _log];
         
-        //[self gameKitBlock];
+        [self gameKitBlock];
     }
     return self;
 }

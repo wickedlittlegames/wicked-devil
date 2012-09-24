@@ -18,7 +18,6 @@
 @property (nonatomic, retain) CCAction *action_vertical_repeat, *action_horizontal_repeat, *action_fall;
 
 - (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms;
-//- (void) setupMovement;
 - (void) setupHVMovement;
 
 

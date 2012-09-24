@@ -83,6 +83,8 @@
                     [player jump:player.jumpspeed];
                     [self fall];
                     break;
+                case 100:
+                    [player jump:20];
                 default:
                     [player jump:player.jumpspeed];
                     break;
@@ -95,7 +97,7 @@
 {
     if ( !self.animating )
     {
-//        [self runAction:self.action_fall];
+       // [self runAction:self.action_fall];
         self.animating = TRUE;
     }
 }
@@ -110,38 +112,6 @@
 {
     return YES;
 }
-
-//- (void) setupActions 
-//{
-//    id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-//    id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-//    id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-//    id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-//    self.action_horizontal_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-//    self.action_vertical_repeat = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
-//}
-//
-//- (void) setupMovement
-//{
-//    if ( !self.animating ) 
-//    {       
-//        switch (self.tag)
-//        {
-//            default:
-//                break;
-//            case 2:
-//                [self runAction:self.action_vertical_repeat];
-//                self.animating = TRUE;
-//                break;
-//            case 3:
-//                [self runAction:self.action_horizontal_repeat];
-//                self.animating = TRUE;                
-//                break;
-//        }
-//        
-//        self.animating = YES;
-//    }
-//}
 
 - (void) setupHVMovement
 {

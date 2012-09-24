@@ -10,7 +10,7 @@
 #import "GameScene.h"
 
 @implementation UILayer
-@synthesize world, level;
+@synthesize world, level, lbl_bigcollected;
 
 - (id) init
 {
@@ -27,16 +27,20 @@
     self.world = game.world;
     self.level = game.level;
     
-    CCMenuItem *button_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"Marker Felt" fontSize:14] target:self selector:@selector(tap_restart)];
+    lbl_bigcollected = [CCLabelTTF labelWithString:@"0/3" dimensions:CGSizeMake(screenSize.width, 30) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:22];
+    lbl_bigcollected.position = ccp (screenSize.width/2, screenSize.height - 30);
+    [self addChild:lbl_bigcollected];
+    
+    CCMenuItem *button_restart = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"RESTART" fontName:@"CrashLanding BB" fontSize:14] target:self selector:@selector(tap_restart)];
     CCMenu *menu_restart = [CCMenu menuWithItems:button_restart, nil];
     [menu_restart  setPosition:ccp(screenSize.width - 50, screenSize.height - 25 )];
     
-    CCMenuItem *button_menu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MENU" fontName:@"Marker Felt" fontSize:14] target:self selector:@selector(tap_pause)];
+    CCMenuItem *button_menu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MENU" fontName:@"CrashLanding BB" fontSize:14] target:self selector:@selector(tap_pause)];
     CCMenu *menu_menu = [CCMenu menuWithItems:button_menu, nil];
     [menu_menu  setPosition:ccp(screenSize.width - 120, screenSize.height - 25 )];    
     
-    CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_unpause)];
-    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"Marker Felt" fontSize:20] target:self selector:@selector(tap_mainmenu)];
+    CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
+    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
     [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [pause_screen alignItemsVerticallyWithPadding:10];
@@ -67,12 +71,17 @@
 - (void) tap_mainmenu
 {
     [[CCDirector sharedDirector] resume];
+    if ( ![SimpleAudioEngine sharedEngine].mute )
+    {
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+    }
     [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:world]];
 }
 
 - (void) update:(Game*)game
 {
-
+    [lbl_bigcollected setString:[NSString stringWithFormat:@"%i/3",game.player.bigcollected]];
 }
 
 @end

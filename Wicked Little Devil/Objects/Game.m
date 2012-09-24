@@ -14,4 +14,14 @@
 @implementation Game
 @synthesize isGameover, didWin, world, level, isStarted, isIntro, player, user, fx;
 
+-(id) init
+{
+	if( (self=[super init]) )
+    {
+        self.audioPlayer = [SimpleAudioEngine sharedEngine];
+    }
+    return self;
+}
+
+
 @end

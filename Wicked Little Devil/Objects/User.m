@@ -89,6 +89,7 @@
     [udata setBool:FALSE forKey:@"worlds_unlocked"];
     [udata setInteger:1 forKey:@"cache_current_world"];
     [udata setInteger:0 forKey:@"collected"];
+    [udata setBool:FALSE forKey:@"muted"];
     
     [udata setBool:TRUE forKey:@"created"];
     

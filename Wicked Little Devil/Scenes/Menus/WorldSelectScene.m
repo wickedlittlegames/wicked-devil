@@ -31,7 +31,7 @@
 	if( (self=[super init]) ) 
     {
         user = [[User alloc] init];
-        [user reset];
+        //[user reset];
         
         // World Selection
         [self setup];
@@ -39,24 +39,24 @@
         // Back Button
         CCMenu *menu_back = [CCMenu menuWithItems:nil];
         CCMenuItem *btn_back = [CCMenuItemImage 
-                                 itemWithNormalImage:@"button-back2.png"
-                                 selectedImage:@"button-back2.png"
-                                 disabledImage:@"button-back2.png"
+                                 itemWithNormalImage:@"btn-back.png"
+                                 selectedImage:@"btn-back.png"
+                                 disabledImage:@"btn-back.png"
                                  target:self 
                                  selector:@selector(tap_back:)];
-        [menu_back setPosition:ccp(30, 30)];
+        [menu_back setPosition:ccp(25, 25)];
         [menu_back addChild:btn_back];
         [self addChild:menu_back];
         
         // Back Button
         CCMenu *menu_store = [CCMenu menuWithItems:nil];
         CCMenuItem *btn_store = [CCMenuItemImage
-                                itemWithNormalImage:@"Storebutton.png"
-                                selectedImage:@"Storebutton.png"
-                                disabledImage:@"Storebutton.png"
+                                itemWithNormalImage:@"btn-powerup.png"
+                                selectedImage:@"btn-powerup.png"
+                                disabledImage:@"btn-powerup.png"
                                 target:self
                                 selector:@selector(tap_store:)];
-        [menu_store setPosition:ccp(30, screenSize.width - 40)];
+        [menu_store setPosition:ccp(25, screenSize.height - 25)];
         [menu_store addChild:btn_store];
         [self addChild:menu_store];
     }
@@ -73,12 +73,26 @@
     int player_score = 0;
     for (int i; i <= WORLDS_PER_GAME; ++i)
     {
-        player_score += [user getSoulsforWorld:i];
+        for (int l; l<= LEVELS_PER_WORLD; ++l)
+        {
+            player_score += [user getSoulsforWorld:i level:l];
+            CCLOG(@"SCORE: %i | %i : %i", i, l, player_score);
+        }
     }
-                
-    CCLabelTTF *worldsscore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i",player_score,total] dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentRight fontName:font fontSize:fontsize];
-    worldsscore.position = ccp ( 0, screenSize.height - 80 );
-    [self addChild:worldsscore];
+    
+    CCSprite *icon_bigcollectable = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
+    icon_bigcollectable.position = ccp (screenSize.width - 20, screenSize.height - 20);
+    [self addChild:icon_bigcollectable z:100];
+    
+    NSString *tmp_score = [NSString stringWithFormat:@"%i/%i", player_score, total];
+    CCLabelTTF *world_score = [CCLabelTTF labelWithString:tmp_score dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+    world_score.position = ccp ( screenSize.width/2, screenSize.height - 22);
+    [self addChild:world_score z:100];
+    
+    NSString *tmp_collectable = [NSString stringWithFormat:@"%i mini-souls",user.collected];
+    CCLabelTTF *collectables = [CCLabelTTF labelWithString:tmp_collectable fontName:font fontSize:fontsize];
+    collectables.position = ccp ( screenSize.width - 80, screenSize.height - 38);
+//    [self addChild:collectables];
     
     worlds = [NSMutableArray arrayWithCapacity:100];
     
@@ -97,14 +111,17 @@
 
 - (void) tap_store:(id)sender
 {
-    user.worldprogress = 6;
-    user.levelprogress = 12;
-    [user sync];
+//    user.worldprogress = 6;
+//    user.levelprogress = 12;
+//    [user sync];
 }
 
 - (CCLayer*) escapefromhell
 {
     CCLayer *layer = [CCLayer node];
+    CCSprite *bg = [CCSprite spriteWithFile:@"bg-menu-hell.png"];
+    bg.position = ccp (screenSize.width/2, screenSize.height/2);
+    [layer addChild:bg];
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"HELL" fontName:font fontSize:fontsize];
     CCMenuItemFont *button = [CCMenuItemFont itemWithLabel:label target:self selector:@selector(click:)];
     button.tag = 1;
@@ -190,13 +207,6 @@
     
     return layer;
 }
-
-/*
- 
- STILL WORKING ON REBUILDING THE MENUS AND MECHANICS. NEED TO ADD IN BUTTONS LIKE SETTINGS ETC
- 
- */
-
 
 - (CCLayer*) halloween
 {

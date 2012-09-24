@@ -6,6 +6,7 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
+#import "SimpleAudioEngine.h"
 #import "GameOverScene.h"
 
 @implementation GameOverScene
@@ -40,14 +41,16 @@
     if( (self=[super init]) ) 
     {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-        NSString *font = @"Marker Felt";
-        int fontsize = 18;
+        NSString *font = @"CrashLanding BB";
+        int fontsize = 24;
         
         user = [[User alloc] init];
-        
+
         CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
-        CCMenu *menu_back = [CCMenu menuWithItems:back, nil];
-        menu_back.position = ccp ( screenSize.width - 80, 10 );
+        CCMenuItem *next = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"NEXT" fontName:font fontSize:fontsize] target:self selector:@selector(tap_next)];
+        CCMenu *menu_back = [CCMenu menuWithItems:back, next,nil];
+        menu_back.position = ccp ( screenSize.width/2, 10 );
+        [menu_back alignItemsHorizontallyWithPadding:10];
         [self addChild:menu_back z:100];
         
         label_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",score] fontName:font fontSize:fontsize];
@@ -67,7 +70,37 @@
 
 - (void) tap_back
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute )
+    {
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+    }
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[LevelSelectScene sceneWithWorld:1]]];
+}
+
+- (void) tap_next
+{
+    int decider_world = 1;
+    int decider_level = 1;
+    if ( user.worldprogress == WORLDS_PER_GAME && user.levelprogress == LEVELS_PER_WORLD )
+    {
+        // show credits!, beat the game!
+    }
+    else
+    {
+        if ( user.levelprogress == LEVELS_PER_WORLD )
+        {
+            decider_level = 1;
+            decider_world = world+1;
+        }
+        else
+        {
+            decider_world = world;
+            decider_level = level + 1;
+        }
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:1.0f scene:[GameScene sceneWithWorld:decider_world andLevel:decider_level isRestart:NO]]];
+    }
 }
 
 #pragma mark === Score Animation Steps ===

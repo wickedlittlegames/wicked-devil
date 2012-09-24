@@ -38,7 +38,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = 285;
+        float menu_y            = 270;
         int world_score_total   = [user getHighscoreforWorld:world];
         int world_souls_total   = 0;
         
@@ -97,28 +97,15 @@
                 int souls = [user getSoulsforWorld:world level:lvl];
                 world_souls_total += souls;
                 
-                int soul_x = 7;
+                int soul_x = 13;
                 for (int s = 1; s <= souls; s++ )
                 {
                     CCSprite *soul = [CCSprite spriteWithFile:@"item-bigcollectable.png"];
-                    soul.scale *= 0.67;
-                    soul.position = ccp(button.position.x + soul_x, button.position.y - 9);
+                    soul.scale *= 0.40;
+                    soul.position = ccp(button.position.x + soul_x, button.position.y - 7);
                     [button addChild:soul];
-                    soul_x += 21;
+                    soul_x += 14;
                 }
-//                int soul_x = 40;
-//                
-//                for (int s = 1; s <= 3; s++)
-//                {
-//                    CCSprite *soul = [CCSprite spriteWithFile:@"BigCollectable-Empty.png"];
-//                    soul.position = ccp(button.position.x + (soul_x * s), button.position.y);
-//                    [button addChild:soul];
-//                }
-//                
-//                
-//                CCLabelTTF *lbl_level_souls = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",souls] fontName:font fontSize:16];
-//                lbl_level_souls.color = ccc3(0,0,0);
-//                lbl_level_souls.position = ccp (lbl_level_souls.position.x + 50, lbl_level_souls.position.y + 10);
             }
             
             CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",lvl] fontName:font fontSize:fontsize];
@@ -159,25 +146,40 @@
         menu.position = ccp(menu_x, menu_y);
         [self addChild:menu];
             
-        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score_total] dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:font fontSize:32];
-        world_score.position = ccp (20, screenSize.height - 18);
-        [self addChild:world_score];
+//        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score_total] dimensions:CGSizeMake(screenSize.width - 5, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:20];
+//        world_score.position = ccp ( screenSize.width/2, screenSize.height - 40);
+//        [self addChild:world_score];
         
-        CCLabelTTF *world_stars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d / %d",world_souls_total,LEVELS_PER_WORLD*3] fontName:font fontSize:32];
-        world_stars.position = ccp ( screenSize.width - 45, screenSize.height - 18);
-        [self addChild:world_stars];
+        CCSprite *icon_bigcollectable = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
+        icon_bigcollectable.position = ccp (screenSize.width - 20, screenSize.height - 20);
+        [self addChild:icon_bigcollectable z:100];
+        
+        CCLabelTTF *world_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d",world_souls_total,LEVELS_PER_WORLD*3] dimensions:CGSizeMake(screenSize.width - 75, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        world_score.position = ccp ( screenSize.width/2, screenSize.height - 22);
+        [self addChild:world_score z:100];
         
         // Back Button
         CCMenu *menu_back = [CCMenu menuWithItems:nil];
-        CCMenuItem *btn_back = [CCMenuItemImage 
-                                itemWithNormalImage:@"button-back2.png"
-                                selectedImage:@"button-back2.png"
-                                disabledImage:@"button-back2.png"
-                                target:self 
+        CCMenuItem *btn_back = [CCMenuItemImage
+                                itemWithNormalImage:@"btn-back.png"
+                                selectedImage:@"btn-back.png"
+                                disabledImage:@"btn-back.png"
+                                target:self
                                 selector:@selector(tap_back:)];
-        [menu_back setPosition:ccp(30, 30)];
+        [menu_back setPosition:ccp(25, 25)];
         [menu_back addChild:btn_back];
         [self addChild:menu_back];
+        
+        CCMenu *menu_store = [CCMenu menuWithItems:nil];
+        CCMenuItem *btn_store = [CCMenuItemImage
+                                 itemWithNormalImage:@"btn-powerup.png"
+                                 selectedImage:@"btn-powerup.png"
+                                 disabledImage:@"btn-powerup.png"
+                                 target:self
+                                 selector:@selector(tap_store:)];
+        [menu_store setPosition:ccp(25, screenSize.height - 25)];
+        [menu_store addChild:btn_store];
+        [self addChild:menu_store];
     }
     return self;
 }
@@ -192,65 +194,6 @@
 - (void) tap_back:(CCMenuItem*)sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
-}
-
-#pragma mark FACEBOOK STUFF - NEEDS MOVING
-
-- (void) tap_facebook
-{   
-    if ( user.isOnline )
-    {
-        NSArray *permissions = [NSArray arrayWithObjects:@"email,publish_actions", nil];
-        [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
-            if (!pfuser) {
-                NSLog(@"Uh oh. The user cancelled the Facebook login.");
-            } else if (pfuser.isNew) {
-
-                [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,name,email" andDelegate:self];
-                
-            } else {
-                
-                // show the picture in the corner
-                
-            }
-        }];
-    }
-}
-
-#pragma mark PARSE FACEBOOK
-
-- (void)request:(PF_FBRequest *)request didLoad:(id)result 
-{
-    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
-    [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"fbName"];
-    [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
-    
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:100] forKey:@"collected"];
-    [[PFUser currentUser] setObject:[NSNumber numberWithInt:0] forKey:@"worlds_unlocked"];    
-    
-    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if ( succeeded )
-        {
-            user.collected += 1000;
-            [user sync];
-        }
-        else 
-        {
-            NSLog(@"THERE WERE ERRORS: %@",error);
-        }
-    }];
-}
-
--(void)request:(PF_FBRequest *)request didFailWithError:(NSError *)error 
-{
-    if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"] isEqualToString: @"OAuthException"]) 
-    {
-        NSLog(@"The facebook token was invalidated:%@",error);
-    } 
-    else 
-    {
-        NSLog(@"Some other error:%@",error);
-    }
 }
 
 @end

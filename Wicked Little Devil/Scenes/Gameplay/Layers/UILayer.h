@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, assign) int world, level;
+@property (nonatomic, retain) CCLabelTTF *lbl_bigcollected;
 
 - (void) setupItemsforGame:(Game*)game;
 - (void) update:(Game*)game;

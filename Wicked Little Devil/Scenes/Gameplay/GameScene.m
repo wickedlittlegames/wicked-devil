@@ -39,7 +39,14 @@
         }
         
         User *user = [[User alloc] init];
-        game = [[Game alloc] init];        
+        game = [[Game alloc] init];
+
+        if ( !game.audioPlayer.mute )
+        {
+            [game.audioPlayer stopBackgroundMusic];
+            [game.audioPlayer playBackgroundMusic:@"bg-loop1.wav" loop:YES];
+        }
+        
         self.isTouchEnabled = YES;
         
         CCLOG(@"INIT: W: %i, L: %i", w, l);
@@ -78,6 +85,7 @@
         [layer_ui setupItemsforGame:game];   
         layer_game.world = w;
         layer_game.level = l;
+        
         
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
         float top = trigger_top.position.y + 100;

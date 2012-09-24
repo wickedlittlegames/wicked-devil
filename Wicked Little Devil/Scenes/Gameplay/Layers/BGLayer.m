@@ -21,17 +21,9 @@
 {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
-    CCSprite *middle = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle.png",world]];
-    CCSprite *middle2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-middle2.png",world]];
-    CCSprite *bottom = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background-%i-bottom.png",world]];
-
-    [middle setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [middle2 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [bottom setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    
-    [self addChild:middle z:2];
-    [self addChild:middle2 z:3];
-    [self addChild:bottom z:1];
+    //CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-%i.png", world]];
+    //[bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    //[self addChild:bg z:1];
 }
 
 @end

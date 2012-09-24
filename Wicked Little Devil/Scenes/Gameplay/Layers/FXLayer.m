@@ -18,9 +18,25 @@
     {
         self.effects = [CCArray arrayWithCapacity:100];
 
-        CCParticleSystemQuad *explosion = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
-        [self.effects addObject:explosion];
+        // 0 - mine explosion
+        CCParticleSystemQuad *fx0 = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:fx0];
         
+        // 1 - big collectable collect
+        CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:fx1];
+        
+        // 2 - big collectable zap to to left
+        CCParticleSystemQuad *fx2 = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:fx2];
+        
+        // 3 - angel blast
+        CCParticleSystemQuad *fx3 = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:fx3];
+        
+        // 4 - falling bricks
+        CCParticleSystemQuad *fx4 = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+        [self.effects addObject:fx4];
     }
 	return self;
 }

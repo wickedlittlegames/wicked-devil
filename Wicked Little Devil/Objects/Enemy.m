@@ -8,7 +8,7 @@
 // 2  = Mine
 // 3  = Bubble
 // 4  = Rockets
-// 5  = Debris
+// 5  = blackholes
 // 6  = Angel Laser of Death (from the top and sides and bottom)
 
 #import "Platform.h"
@@ -17,7 +17,7 @@
 #import "FXLayer.h"
 
 @implementation Enemy
-@synthesize type, active, speed_x, speed_y, health, damage, attacking, base_y;
+@synthesize type, active, speed_x, speed_y, health, damage, attacking, base_y, animating, batFlap;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -32,6 +32,10 @@
         self.speed_y = 1;
         self.attacking = FALSE;
         self.active = YES;
+        self.animating = NO;
+        
+        // update bat anim files
+        [self setupAnimations];
     }
     return self;
 }
@@ -44,7 +48,7 @@
             break;
         case 1: // bat wobble
             if ( self.base_y == 0 ) { self.base_y = self.position.y; }
-            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 2);
+            self.position = ccp(self.position.x + 0.2, self.position.y + sin((self.position.x+1)/10) * 2);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) 
             {
                 self.position = ccp(-70, self.base_y);
@@ -78,14 +82,12 @@
                 }
             }
             break;
-            case 6:
-                if ( !self.attacking ) 
-                {
-//                    [game.fx doEffect:1 atPosition:[self worldBoundingBox].origin];
-                    self.attacking = YES;
-                }
-                break;            
-//            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:player.position collisionCircleRadius:1] && !self.attacking )
+        case 4:
+            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:game.player.position collisionCircleRadius:1] && !self.attacking )
+            {
+                [self doAction:4 player:game];
+            }
+            break;
     }
 }
 
@@ -94,8 +96,17 @@
     switch (tag)
     {
         default:
+            if ( game.player.velocity.y > 0 )
+            {
+                [game.player runAction:[CCFadeOut actionWithDuration:1.0f]];
+                [self damageToPlayer:game.player];
+            }
+            else
+            {
+                [game.player jump:game.player.jumpspeed];
+            }
             self.active = NO;
-            [self damageToPlayer:game.player];
+            self.visible = NO;
             break;
         case 2: // mine
             self.active = NO;
@@ -108,13 +119,18 @@
             if ( !self.attacking ) [self floatPlayer:game.player];
             break;
         case 4: // generate rocket somewhere
+            [self shootRocket:game];
             break;
     }
 }
 
-- (void) explodeAtPosition:(CGPoint)positionex
+- (void) shootRocket:(Game*)game
 {
-
+    Enemy *rocket = [CCSprite spriteWithFile:@"enemy-rocket.png"];
+    rocket.position = ccp (self.position.x, 500);
+    [self addChild:rocket];
+    
+    [rocket runAction:[CCMoveTo actionWithDuration:2.0f position:ccp([game.player worldBoundingBox].origin.x, [game.player worldBoundingBox].origin.y - 300)]];
 }
 
 - (void) floatPlayer:(Player*)player
@@ -130,7 +146,6 @@
     
     player.controllable = FALSE;
     player.velocity = ccp(0,0);
-    [self runAction:[CCSequence actions:movedownwobble, moveupby, nil]];
     [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
 }
 
@@ -159,6 +174,33 @@
         return YES;
     
     return NO;
+}
+
+- (void) setupAnimations
+{
+//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
+//    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
+//    [self addChild:spriteSheet];
+//    
+//    NSMutableArray *flapAnimFrames = [NSMutableArray array];
+//    for(int i = 1; i <= 6; ++i) {
+//        [flapAnimFrames addObject:
+//         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+//          [NSString stringWithFormat:@"bat-flap%i.png", i]]];
+//    }
+//    
+//    self.batFlap = [CCAnimation animationWithSpriteFrames:flapAnimFrames delay:0.05f];
+//    
+//    if ( self.tag == 1 && !self.animating )
+//    {
+//        [self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.batFlap]]];
+//        self.animating = YES;
+//    }
+    
+    if (self.tag == 4)
+    {
+        self.opacity = 0.0f;
+    }
 }
 
 @end

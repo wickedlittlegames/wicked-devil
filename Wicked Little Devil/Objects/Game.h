@@ -6,12 +6,15 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
+#import "SimpleAudioEngine.h"
+
 @class FXLayer, Player, User;
-@interface Game : NSObject {}
+@interface Game : NSObject{}
 
 @property (nonatomic, assign) int world, level;
 @property (nonatomic, assign) bool isGameover, didWin, isStarted, isIntro;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) FXLayer *fx;
+@property (nonatomic, retain) SimpleAudioEngine *audioPlayer;
 @end

@@ -7,10 +7,9 @@
 //
 
 #import "cocos2d.h"
-#import "User.h"
-#import "LevelSelectScene.h"
-#import "GameScene.h"
+#import <Parse/Parse.h>
 
+@class User, LevelSelectScene, GameScene;
 @interface GameOverScene : CCLayer <PF_FBRequestDelegate> {
     User *user;
     int total;

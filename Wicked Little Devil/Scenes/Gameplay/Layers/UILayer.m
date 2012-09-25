@@ -8,6 +8,9 @@
 
 #import "UILayer.h"
 #import "GameScene.h"
+#import "LevelSelectScene.h"
+
+#import "Game.h"
 
 @implementation UILayer
 @synthesize world, level;

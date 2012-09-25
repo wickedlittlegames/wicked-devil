@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-@class Game, GameScene;
+@class Game;
 @interface UILayer : CCLayer 
 {
     CCMenu *pause_screen;

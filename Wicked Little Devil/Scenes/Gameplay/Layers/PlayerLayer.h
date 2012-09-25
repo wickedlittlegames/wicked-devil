@@ -8,8 +8,7 @@
 
 #import "cocos2d.h"
 
-#import "Player.h"
-
+@class Player;
 @interface PlayerLayer : CCLayer {}
 @property (nonatomic, retain) Player *player;
 

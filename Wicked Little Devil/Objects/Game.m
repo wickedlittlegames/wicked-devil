@@ -7,9 +7,6 @@
 //
 
 #import "Game.h"
-#import "Player.h"
-#import "User.h"
-
 
 @implementation Game
 @synthesize isGameover, didWin, world, level, isStarted, isIntro, player, user, fx;

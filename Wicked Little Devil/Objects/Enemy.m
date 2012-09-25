@@ -11,9 +11,7 @@
 // 5  = blackholes
 // 6  = Angel Laser of Death (from the top and sides and bottom)
 
-#import "Platform.h"
 #import "Game.h"
-#import "Enemy.h"
 #import "FXLayer.h"
 
 @implementation Enemy

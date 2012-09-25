@@ -8,7 +8,6 @@
 
 #import "BGLayer.h"
 
-
 @implementation BGLayer
 
 - (id) init

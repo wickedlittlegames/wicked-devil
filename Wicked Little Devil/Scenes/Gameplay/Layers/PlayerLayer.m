@@ -7,7 +7,7 @@
 //
 
 #import "PlayerLayer.h"
-
+#import "Player.h"
 
 @implementation PlayerLayer
 @synthesize player;

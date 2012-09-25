@@ -7,8 +7,14 @@
 //
 
 #import "SimpleAudioEngine.h"
+#import "User.h"
+#import "Player.h"
+#import "Platform.h"
+#import "Collectable.h"
+#import "Enemy.h"
+#import "Trigger.h"
+#import "FXLayer.h"
 
-@class FXLayer, Player, User;
 @interface Game : NSObject{}
 
 @property (nonatomic, assign) int world, level;

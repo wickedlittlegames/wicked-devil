@@ -7,17 +7,8 @@
 //
 
 #import "cocos2d.h"
-#import "CCBReader.h"
-#import "GameOverScene.h"
 
-#import "User.h"
-#import "Game.h"
-#import "BGLayer.h"
-#import "FXLayer.h"
-#import "PlayerLayer.h"
-#import "UILayer.h"
-#import "GameLayer.h"
-
+@class User, Game, BGLayer, FXLayer, PlayerLayer, UILayer, GameLayer, GameOverScene;
 @interface GameScene : CCLayer 
 {
     BGLayer     *layer_bg;

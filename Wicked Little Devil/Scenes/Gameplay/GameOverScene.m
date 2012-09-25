@@ -6,8 +6,11 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "SimpleAudioEngine.h"
 #import "GameOverScene.h"
+#import "GameScene.h"
+#import "LevelSelectScene.h"
+
+#import "Game.h"
 
 @implementation GameOverScene
 @synthesize score, timebonus, bigs, world, level;

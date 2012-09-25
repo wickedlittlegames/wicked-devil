@@ -8,6 +8,9 @@
 
 #import "GameLayer.h"
 #import "GameOverScene.h"
+#import "GameScene.h"
+
+#import "Game.h"
 
 @implementation GameLayer
 @synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters,  world, level;

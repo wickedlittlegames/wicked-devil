@@ -6,6 +6,15 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 #import "GameScene.h"
+#import "GameOverScene.h"
+#import "CCBReader.h"
+
+#import "BGLayer.h"
+#import "PlayerLayer.h"
+#import "UILayer.h"
+#import "GameLayer.h"
+
+#import "Game.h"
 
 @implementation GameScene
 @synthesize threshold; // floats

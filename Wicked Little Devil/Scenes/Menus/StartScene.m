@@ -117,36 +117,56 @@
 - (void) tap_facebook
 {
     // TO DO - DO SOMETHING WITH THIS FACEBOOK STUFF
-    SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-    {
-        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result){
-            
-            [fbController dismissViewControllerAnimated:YES completion:nil];
-            
-            switch(result){
-                case SLComposeViewControllerResultCancelled:
-                default:
-                {
-                    NSLog(@"Cancelled.....");
-                    
-                }
-                    break;
-                case SLComposeViewControllerResultDone:
-                {
-                    NSLog(@"Posted....");
-                }
-                    break;
-            }};
-        
-//        [fbController addImage:[UIImage imageNamed:@"1.jpg"]];
-        [fbController setInitialText:@"Check out this article."];
-        [fbController addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
-        [fbController setCompletionHandler:completionHandler];
-        AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-        
-        [[app navController] presentViewController:fbController animated:YES completion:nil];
-    }
+    // The permissions requested from the user
+//    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
+//                                 @"user_relationships",@"user_birthday",@"user_location",
+//                                 @"offline_access", nil];
+////    
+////    // Log in
+//    [PFFacebookUtils logInWithPermissions:permissionsArray
+//                                    block:^(PFUser *pfuser, NSError *error) {
+//                                        if (!pfuser) {
+//                                            if (!error) { // The user cancelled the login
+//                                                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+//                                            } else { // An error occurred
+//                                                NSLog(@"Uh oh. An error occurred: %@", error);
+//                                            }
+//                                        } else if (pfuser.isNew) { // Success - a new user was created
+//                                            NSLog(@"User with facebook signed up and logged in!");
+//                                        } else { // Success - an existing user logged in
+//                                            NSLog(@"User with facebook logged in!");
+//                                        }
+//                                    }];
+//    SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+//    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+//    {
+//        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result){
+//            
+//            [fbController dismissViewControllerAnimated:YES completion:nil];
+//            
+//            switch(result){
+//                case SLComposeViewControllerResultCancelled:
+//                default:
+//                {
+//                    NSLog(@"Cancelled.....");
+//                    
+//                }
+//                    break;
+//                case SLComposeViewControllerResultDone:
+//                {
+//                    NSLog(@"Posted....");
+//                }
+//                    break;
+//            }};
+//        
+////        [fbController addImage:[UIImage imageNamed:@"1.jpg"]];
+//        [fbController setInitialText:@"Check out this article."];
+//        [fbController addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
+//        [fbController setCompletionHandler:completionHandler];
+//        AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+//        
+//        [[app navController] presentViewController:fbController animated:YES completion:nil];
+//    }
 }
 
 #pragma mark GameKit delegate

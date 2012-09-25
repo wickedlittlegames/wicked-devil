@@ -1966,7 +1966,7 @@
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1995,7 +1995,7 @@
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface SimpleTableCell : UITableViewCell
-@property (nonatomic, weak) IBOutlet UILabel *label_title;
-@property (nonatomic, weak) IBOutlet UILabel *label_description;
-@property (nonatomic, weak) IBOutlet UILabel *label_price;
-@property (nonatomic, weak) IBOutlet UIImageView *image_thumbnail;
-@property (nonatomic, weak) IBOutlet UIButton *button_buy;
+@property (nonatomic, strong) IBOutlet UILabel *label_title;
+@property (nonatomic, strong) IBOutlet UILabel *label_description;
+@property (nonatomic, strong) IBOutlet UILabel *label_price;
+@property (nonatomic, strong) IBOutlet UIImageView *image_thumbnail;
+@property (nonatomic, strong) IBOutlet UIButton *button_buy;
 
 -(IBAction)buy:(id)sender;
 

@@ -18,8 +18,8 @@
 
 +(CCScene *) scene
 {
-	CCScene *scene = [CCScene node];
-	StartScene *current = [StartScene node];
+	CCScene *scene          = [CCScene node];
+	StartScene *current     = [StartScene node];
 	[scene addChild:current];
 	return scene;
 }
@@ -44,8 +44,9 @@
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [menu_social setPosition:ccp(screenSize.width - 60, 25)];
-        [menu_mute setPosition:ccp(25, 25)];        
+        [menu_mute setPosition:ccp(25, 25)];
+        [menu_social setPosition:ccp(screenSize.width - 60, 25)];        
+        [menu_social alignItemsHorizontallyWithPadding:10];
         
         [self addChild:bg];
         [self addChild:menu_start];
@@ -115,6 +116,7 @@
 
 - (void) tap_facebook
 {
+    // TO DO - DO SOMETHING WITH THIS FACEBOOK STUFF
     SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {

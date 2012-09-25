@@ -16,8 +16,8 @@
 
 +(CCScene *) scene
 {
-	CCScene *scene = [CCScene node];
-	WorldSelectScene *current = [WorldSelectScene node];
+	CCScene *scene              = [CCScene node];
+	WorldSelectScene *current   = [WorldSelectScene node];
 	[scene addChild:current];
 	return scene;
 }

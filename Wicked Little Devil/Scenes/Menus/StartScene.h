@@ -13,7 +13,6 @@
 {
     CCMenuItem *btn_mute, *btn_muted;
     User *user;
-    SimpleAudioEngine *audioPlayer;
 }
 +(CCScene *) scene;
 @end

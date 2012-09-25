@@ -35,7 +35,7 @@
             CCLayerColor *whiteflash = [CCLayerColor layerWithColor:ccc4(225, 225, 225, 225)];
             [self addChild:whiteflash z:1000];
             
-            [whiteflash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.5f], nil]];
+            [whiteflash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.4f], nil]];
         }
         
         User *user = [[User alloc] init];

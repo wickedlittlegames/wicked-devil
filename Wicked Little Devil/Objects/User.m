@@ -34,9 +34,9 @@
         self.collected              = [udata integerForKey:@"collected"];
         self.items                  = [udata objectForKey:@"items"];
         
-        [self _log];
+        //[self _log];
         
-        [self gameKitBlock];
+        //[self gameKitBlock];
     }
     return self;
 }
@@ -230,6 +230,20 @@
     }
     
     return tmp_score;
+}
+
+- (int) getSoulsforAll
+{
+    int tmp_souls = 0;
+    for (int i = 1; i <= WORLDS_PER_GAME; i++)
+    {
+        for (int l = 1; l<= LEVELS_PER_WORLD; l++)
+        {
+            tmp_souls += [self getSoulsforWorld:i level:l];
+        }
+    }
+    
+    return tmp_souls;
 }
 
 - (int) getSoulsforWorld:(int)w level:(int)l

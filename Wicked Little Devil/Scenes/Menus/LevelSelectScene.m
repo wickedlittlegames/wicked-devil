@@ -100,11 +100,11 @@
                 int soul_x = 13;
                 for (int s = 1; s <= souls; s++ )
                 {
-                    CCSprite *soul = [CCSprite spriteWithFile:@"item-bigcollectable.png"];
-                    soul.scale *= 0.40;
-                    soul.position = ccp(button.position.x + soul_x, button.position.y - 7);
+                    CCSprite *soul = [CCSprite spriteWithFile:@"icon-level-bigcollectable.png"];
+
+                    soul.position = ccp(button.position.x + soul_x, button.position.y - 2);
                     [button addChild:soul];
-                    soul_x += 14;
+                    soul_x += 17;
                 }
             }
             

@@ -6,12 +6,9 @@
 //  Copyright Wicked Little Websites 2012. All rights reserved.
 //
 
-#import "cocos2d.h"
 #import "AppDelegate.h"
 #import "StartScene.h"
 #import "MKStoreManager.h"
-#import "SimpleAudioEngine.h"
-
 #import <Parse/Parse.h>
 
 @implementation AppController
@@ -92,6 +89,9 @@
 
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+    
+    // Audio
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene:[StartScene scene]];

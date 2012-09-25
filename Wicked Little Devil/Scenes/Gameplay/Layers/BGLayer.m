@@ -21,9 +21,9 @@
 {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
-    //CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-%i.png", world]];
-    //[bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    //[self addChild:bg z:1];
+    CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
+    [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [self addChild:bg z:1];
 }
 
 @end

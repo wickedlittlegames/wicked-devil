@@ -17,7 +17,7 @@
 	if( (self=[super init]) ) 
     {
         player = [Player spriteWithFile:@"Demon_jumping_50X75_1.png"];
-        [player setPosition:ccp ( 160 , 110 )];
+        [player setPosition:ccp ( 320/2 , 130 )];
         [self addChild:player];              
     }
 	return self;

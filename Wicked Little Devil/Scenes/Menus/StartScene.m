@@ -12,21 +12,15 @@
 #import "StartScene.h"
 #import "WorldSelectScene.h"
 #import "Social/Social.h"
+#import "User.h"
 
 @implementation StartScene
 
 +(CCScene *) scene
 {
-    // Create a Scene
 	CCScene *scene = [CCScene node];
-    
-    // Grab the layers
 	StartScene *current = [StartScene node];
-    
-    // Fill the scene
 	[scene addChild:current];
-    
-    // Show the scene
 	return scene;
 }
 
@@ -34,107 +28,67 @@
 {
 	if( (self=[super init]) ) 
     {
-		CGSize screenSize = [[CCDirector sharedDirector] winSize];
+		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
         
-        CCSprite *bg = [CCSprite spriteWithFile:@"bg-home.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
+        CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
+        CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_achievements)];
+        CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_leaderboard)];
+        CCMenuItem *btn_facebooksignin  = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
+        btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"          selectedImage:@"btn-mute.png"       target:self selector:@selector(tap_mute)];
+        btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"         selectedImage:@"btn-muted.png"      target:self selector:@selector(tap_mute)];        
+        CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
+        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
+        CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
+        
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [self addChild:bg];
-
-        CCMenu *menu_start = [CCMenu menuWithItems:nil];
-        CCMenu *menu_others = [CCMenu menuWithItems:nil];
-        
-        CCMenuItem *btn_start = [CCMenuItemImage 
-                                 itemWithNormalImage:@"btn-start.png"
-                                 selectedImage:@"btn-start.png"
-                                 disabledImage:@"btn-start.png"
-                                 target:self 
-                                 selector:@selector(tap_start)];
-        [menu_start addChild:btn_start];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [menu_social setPosition:ccp(screenSize.width - 60, 25)];
+        [menu_mute setPosition:ccp(25, 25)];        
+        
+        [self addChild:bg];
         [self addChild:menu_start];
-        
-        
-        // ACHIEVEMENTS BUTTON
-        CCMenuItem *btn_achievements = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png" selectedImage:@"btn-gamecenter.png" block:^(id sender) {
-			
-            // upload achievements - TODO
-            
-			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-			achivementViewController.achievementDelegate = self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:achivementViewController animated:YES];
-			
-		}];
-        
-        // LEADERBOARD BUTTON
-        CCMenuItem *btn_leaderboard = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png" selectedImage:@"btn-gamecenter.png" block:^(id sender) {
-			
-            // upload leaderboard - TODO
-            GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-			leaderboardViewController.leaderboardDelegate = self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-			
-		}];
-
-        // FACEBOOK BUTTON
-        CCMenuItem *btn_facebooksignin = [CCMenuItemImage
-                                      itemWithNormalImage:@"btn-fb.png"
-                                      selectedImage:@"btn-fb.png"
-                                      disabledImage:@"btn-fb.png"
-                                      target:self
-                                      selector:@selector(tap_facebook)];
-        [menu_others addChild:btn_achievements];
-        [menu_others addChild:btn_leaderboard];
-        [menu_others addChild:btn_facebooksignin];
-        [menu_others alignItemsHorizontallyWithPadding:5];
-        [menu_others setPosition:ccp(screenSize.width - 60, 25)];
-        [self addChild:menu_others];
-        
-        // MUTE
-        CCMenu *menu_mute = [CCMenu menuWithItems:nil];
-        btn_mute = [CCMenuItemImage
-                                          itemWithNormalImage:@"btn-mute.png"
-                                          selectedImage:@"btn-mute.png"
-                                          disabledImage:@"btn-mute.png"
-                                          target:self
-                                          selector:@selector(tap_mute)];
-        btn_muted = [CCMenuItemImage
-                    itemWithNormalImage:@"btn-muted.png"
-                    selectedImage:@"btn-muted.png"
-                    disabledImage:@"btn-muted.png"
-                    target:self
-                    selector:@selector(tap_mute)];
-        [menu_mute addChild:btn_mute];
-        [menu_mute addChild:btn_muted];
-        [menu_mute setPosition:ccp(25, 25)];
-        
-        if ( ![SimpleAudioEngine sharedEngine].isBackgroundMusicPlaying )
-        {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
-        }
-        [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
-        if ( [SimpleAudioEngine sharedEngine].mute )
-        {
-            btn_muted.visible = YES;
-        }
-        else
-        {
-            btn_mute.visible = YES;
-        }
+        [self addChild:menu_social];
         [self addChild:menu_mute];
+        
+        [self setMute];
     }
 	return self;    
 }
 
+- (void) setMute
+{
+    [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
+    if ( [SimpleAudioEngine sharedEngine].mute )   btn_muted.visible    = YES;
+    else                                           btn_mute.visible     = YES;
+}
+
+#pragma mark TAPS
+
 - (void) tap_start
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+}
+
+- (void) tap_leaderboard
+{
+    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+    leaderboardViewController.leaderboardDelegate = self;
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    
+    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+}
+
+- (void) tap_achievements
+{
+    GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+    achivementViewController.achievementDelegate = self;
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    
+    [[app navController] presentModalViewController:achivementViewController animated:YES];
 }
 
 - (void) tap_mute

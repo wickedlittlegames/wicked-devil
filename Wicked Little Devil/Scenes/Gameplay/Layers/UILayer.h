@@ -20,6 +20,5 @@
 
 - (void) setupItemsforGame:(Game*)game;
 - (void) update:(Game*)game;
-- (void) showCollectableHasBeenCollected:(int)tmp_tag;
 
 @end

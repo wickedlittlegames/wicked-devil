@@ -35,5 +35,6 @@
 - (int) getHighscoreforWorld:(int)w level:(int)l;
 - (int) getSoulsforWorld:(int)w;
 - (int) getSoulsforWorld:(int)w level:(int)l;
+- (int) getSoulsforAll;
 
 @end

@@ -68,9 +68,10 @@
         [layer_game createWorldWithObjects:[layer_game children]];
         
         collab = [CCLayer node];
+        [self addChild:layer_bg];        
         [self addChild:collab];
         
-        [collab addChild:layer_bg];
+        //[collab addChild:layer_bg];
         [collab addChild:layer_fx];
         [collab addChild:layer_game];
         [collab addChild:layer_player];
@@ -88,7 +89,7 @@
         
         
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
-        float top = trigger_top.position.y + 100;
+        float top = trigger_top.position.y;
         
         [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];

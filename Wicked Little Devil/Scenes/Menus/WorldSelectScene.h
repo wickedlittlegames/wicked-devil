@@ -13,14 +13,13 @@
 @class ShopScene;
 @interface WorldSelectScene : CCLayer 
 {
-    User *user;
-    
     CGSize screenSize;
-    NSMutableArray *worlds;
     NSString *font;
     int fontsize;
     
-    CCScrollLayer *scroller;    
+    User *user;
+    NSMutableArray *worlds;
+    CCScrollLayer *scroller;
 }
 
 +(CCScene *) scene;

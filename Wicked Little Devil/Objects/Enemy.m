@@ -33,6 +33,7 @@
         self.attacking = FALSE;
         self.active = YES;
         self.animating = NO;
+        CCLOG(@"ENEMY");
         
         // update bat anim files
         [self setupAnimations];
@@ -48,7 +49,7 @@
             break;
         case 1: // bat wobble
             if ( self.base_y == 0 ) { self.base_y = self.position.y; }
-            self.position = ccp(self.position.x + 0.2, self.position.y + sin((self.position.x+1)/10) * 2);
+            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 10);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) 
             {
                 self.position = ccp(-70, self.base_y);
@@ -176,28 +177,24 @@
 
 - (void) setupAnimations
 {
-//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
-//    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
-//    [self addChild:spriteSheet];
-//    
-//    NSMutableArray *flapAnimFrames = [NSMutableArray array];
-//    for(int i = 1; i <= 6; ++i) {
-//        [flapAnimFrames addObject:
-//         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-//          [NSString stringWithFormat:@"bat-flap%i.png", i]]];
-//    }
-//    
-//    self.batFlap = [CCAnimation animationWithSpriteFrames:flapAnimFrames delay:0.05f];
-//    
-//    if ( self.tag == 1 && !self.animating )
-//    {
-//        [self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.batFlap]]];
-//        self.animating = YES;
-//    }
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
+    //CCSpriteBatchNode *spriteSheet3 = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
+//    [self addChild:spritesheet3];
     
-    if (self.tag == 4)
+    NSMutableArray *flapAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 7; ++i) {
+        [flapAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"bat-flap%i.png", i]]];
+        CCLOG(@"bat-flap%i.png", i);
+    }
+    
+    self.batFlap = [CCAnimation animationWithSpriteFrames:flapAnimFrames delay:0.05f];
+    
+    if ( self.tag == 1 && !self.animating )
     {
-        self.opacity = 0.0f;
+        [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.batFlap], nil]];
+        self.animating = YES;
     }
 }
 

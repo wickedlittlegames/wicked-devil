@@ -29,6 +29,8 @@
     
     for (CCNode* node in self.children)
     {
+        [node setPosition:ccp(node.position.x/2, node.position.y)];
+        
         if ([node isKindOfClass: [Platform class]])
         {
             [platforms addObject:node];
@@ -48,7 +50,6 @@
         if ([node isKindOfClass: [Enemy class]])
         {
             [enemies addObject:node];
-            node.tag = 4;
         }
         if ([node isKindOfClass: [Trigger class]])
         {
@@ -96,8 +97,8 @@
             game.player.bigcollected++;
             game.player.score += 500;
             // do effect of collecting AND going to the top left
-            [game.fx start:1 position:[bigcollectable worldBoundingBox].origin];
-            [game.fx start:2 position:[bigcollectable worldBoundingBox].origin];
+            //[game.fx start:1 position:[bigcollectable worldBoundingBox].origin];
+            //[game.fx start:2 position:[bigcollectable worldBoundingBox].origin];
         }
     }
     

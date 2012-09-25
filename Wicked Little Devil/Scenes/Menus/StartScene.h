@@ -6,12 +6,9 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 #import <GameKit/GameKit.h>
-#import "SimpleAudioEngine.h"
 #import "cocos2d.h"
-#import "LevelSelectScene.h"
-#import "User.h"
-#import "GameScene.h"
 
+@class User;
 @interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
     CCMenuItem *btn_mute, *btn_muted;

@@ -39,86 +39,6 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string>Trigger</string>
-				<key>displayName</key>
-				<string>Trigger</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>320</real>
-							<real>900</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.49216258525848389</real>
-							<real>-0.065762355923652649</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>7.6702499389648438</real>
-							<real>0.10000000149011612</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>visible</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Resources/Global Images/Start-button.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>opacity</string>
-						<key>type</key>
-						<string>Byte</string>
-						<key>value</key>
-						<integer>0</integer>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
 				<string>Platform</string>
 				<key>displayName</key>
 				<string>Platform</string>
@@ -399,14 +319,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>tag</string>
-						<key>type</key>
-						<string>Integer</string>
-						<key>value</key>
-						<integer>1</integer>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>visible</string>
 						<key>type</key>
 						<string>Check</string>
@@ -432,6 +344,87 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
+				<string>Platform</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>320</real>
+							<real>700</real>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>1</integer>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>ingame-platform-normal.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<integer>0</integer>
+							<integer>244</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
 				<string>BigCollectable</string>
 				<key>displayName</key>
 				<string>BigCollectable</string>
@@ -449,7 +442,7 @@
 						<key>value</key>
 						<array>
 							<real>320</real>
-							<real>268</real>
+							<real>391.625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -510,7 +503,7 @@
 						<key>value</key>
 						<array>
 							<real>320</real>
-							<real>388</real>
+							<real>510.625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -571,7 +564,7 @@
 						<key>value</key>
 						<array>
 							<real>320</real>
-							<real>509</real>
+							<real>629.625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -615,6 +608,75 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
+				<string>Trigger</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>320</real>
+							<real>930</real>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>7.9107232093811035</real>
+							<real>0.62693297863006592</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>ingame-platform-normal.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>opacity</string>
+						<key>type</key>
+						<string>Byte</string>
+						<key>value</key>
+						<integer>0</integer>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
 				<string>CCSprite</string>
@@ -631,8 +693,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>454.47265625</real>
-							<real>270.87109375</real>
+							<real>468.3359375</real>
+							<real>398.75</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -672,7 +734,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>GameLayer</string>
+		<string></string>
 		<key>displayName</key>
 		<string>GameLayer</string>
 		<key>memberVarAssignmentName</key>
@@ -691,17 +753,6 @@
 					<real>100</real>
 					<real>100</real>
 					<integer>1</integer>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>anchorPoint</string>
-				<key>type</key>
-				<string>Point</string>
-				<key>value</key>
-				<array>
-					<real>0.0</real>
-					<real>0.0</real>
 				</array>
 			</dict>
 			<dict>
@@ -761,7 +812,7 @@
 				<key>type</key>
 				<string>Check</string>
 				<key>value</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -787,7 +838,7 @@
 			<key>height</key>
 			<integer>960</integer>
 			<key>name</key>
-			<string>iPhone Portrait</string>
+			<string>iPhone Landscape</string>
 			<key>scale</key>
 			<real>1</real>
 			<key>width</key>
@@ -818,6 +869,6 @@
 		</dict>
 	</array>
 	<key>stageBorder</key>
-	<integer>3</integer>
+	<integer>0</integer>
 </dict>
 </plist>

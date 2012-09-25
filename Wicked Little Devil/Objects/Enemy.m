@@ -21,7 +21,7 @@
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        [self setupAnimations];
+        //[self setupAnimations];
     }
     return self;
 }
@@ -137,7 +137,6 @@
     {
         [self runAction:repeater];
     }
-    
 }
 
 @end

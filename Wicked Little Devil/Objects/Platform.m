@@ -67,26 +67,29 @@
 {
     if ( self.visible && game.player.velocity.y < 0 )
     {
-        switch (self.tag)
+        if ( [self intersectCheck:game] )
         {
-            default: // NORMAL & MOVING PLATFORMS
-                [game.player jump:game.player.jumpspeed];
-                break;
-            case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
-                [game.player jump:game.player.jumpspeed*1.75];
-                break;
-            case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
-                [game.player jump:game.player.jumpspeed];
-                [self action:self.tag game:game platforms:platforms];
-                break;
-            case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                [game.player jump:game.player.jumpspeed];
-                self.health = self.health - game.player.damage;
-                if ( self.health <= 0 )
-                {
+            switch (self.tag)
+            {
+                default: // NORMAL & MOVING PLATFORMS
+                    [game.player jump:game.player.jumpspeed];
+                    break;
+                case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
+                    [game.player jump:game.player.jumpspeed*1.75];
+                    break;
+                case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
+                    [game.player jump:game.player.jumpspeed];
                     [self action:self.tag game:game platforms:platforms];
-                }
-                break;
+                    break;
+                case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
+                    [game.player jump:game.player.jumpspeed];
+                    self.health = self.health - game.player.damage;
+                    if ( self.health <= 0 )
+                    {
+                        [self action:self.tag game:game platforms:platforms];
+                    }
+                    break;
+            }
         }
     }
 }

@@ -34,7 +34,7 @@
         self.animating = NO;
         self.falling = NO;
         
-        [self setupAnimations];
+        //[self setupAnimations];
     }
     return self;
 }
@@ -67,27 +67,27 @@
 
 - (void) animate:(int)animation_id
 {
-    if ( !self.animating )
-    {
-        self.animating = YES;
-        
-        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
-        switch (animation_id)
-        {
-            case 1: // jump
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
-                break;
-            case 2:
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fall], nil]];
-                break;
-            case 3:
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
-                break;
-            case 4:
-                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
-                break;
-        }
-    }
+//    if ( !self.animating )
+//    {
+//        self.animating = YES;
+//        
+//        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
+//        switch (animation_id)
+//        {
+//            case 1: // jump
+//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
+//                break;
+//            case 2:
+//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fall], nil]];
+//                break;
+//            case 3:
+//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
+//                break;
+//            case 4:
+//                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
+//                break;
+//        }
+//    }
 }
 
 - (void) end_animate

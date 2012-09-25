@@ -80,8 +80,8 @@
             [platform removeFromParentAndCleanup:YES];
         }
 
-        if ( game.player.controllable ) [platform intersectionCheck:game.player platforms:platforms];
-        [platform setupHVMovement];
+        if ( game.player.controllable ) [platform isIntersectingPlayer:game platforms:platforms];
+        [platform move];
     }
     
     CCARRAY_FOREACH(collectables, collectable)

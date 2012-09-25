@@ -9,15 +9,14 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-@class Player;
+@class Game;
 @interface Platform : CCSprite {}
+
 @property (nonatomic, assign) float health;
-@property (nonatomic, assign) NSString *type;
-@property (nonatomic, assign) BOOL animating, toggled, active;
-@property (nonatomic, retain) CCAction *action_vertical_repeat, *action_horizontal_repeat, *action_fall;
+@property (nonatomic, assign) BOOL animating, toggled;
 
-- (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms;
-- (void) setupHVMovement;
-
+- (void) isIntersectingPlayer:(Game*)game platforms:(CCArray*)platforms;
+- (void) move;
+- (void) action:(int)action_id game:(Game*)game platforms:(CCArray*)platforms;
 
 @end

@@ -26,15 +26,13 @@
     return self;
 }
 
-
-
 - (void) move
 {
     switch (self.tag)
     {
         default: break;
-        case 1: // bat wobble
-            self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 10);
+        case 1: // BAT: Wave motion up and down
+			self.position = ccp(self.position.x + 2, self.position.y + sin((self.position.x+2)/10) * 15);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
             break;
     }
@@ -70,15 +68,15 @@
             game.player.health--;
             self.visible = NO;
             break;
-        case 3: // BUBBLE: Floats the player up
+        case 3: // !!TODO!! BUBBLE: Floats the player up
             self.running = YES;
             break;
-        case 4: // ROCKET: Shoots rocket at target player area
+        case 4: // !!TODO!! ROCKET: Shoots rocket at target player area
             self.running = YES;
             break;
-        case 5: // PLANET: TBA
+        case 5: // !!TODO!! PLANET: TBA
             break;
-        case 6: // ANGEL: TBA
+        case 6: // !!TODO!! ANGEL: TBA
             break;
         default: break;
     }
@@ -132,41 +130,14 @@
           [NSString stringWithFormat:@"bat_flap%i.png", i]]];
     }
     
-    self.anim_flap      = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.05f];
+    self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.05f];
+    CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:[CCAnimate actionWithAnimation:self.anim_flap]]];
+    
     if ( self.tag == 1 && self.animating )
     {
-        [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_flap], nil]];
+        [self runAction:repeater];
     }
+    
 }
-
-
-
-//
-//- (void) floatPlayer:(Player*)player
-//{
-//    self.attacking = TRUE;
-//    
-//    self.position = ccp(player.position.x, player.position.y);
-//    [self setZOrder:4];
-//        
-//    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
-//    id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
-//    id killfloat = [CCCallFuncND actionWithTarget:self selector:@selector(killFloat:data:) data:(void*)player];
-//    
-//    player.controllable = FALSE;
-//    player.velocity = ccp(0,0);
-//    [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
-//}
-//
-//- (void) killFloat:(id)sender data:(id)data
-//{
-//    Player *player = data;
-//    player.controllable = TRUE;
-//    self.visible = FALSE;
-//    self.active = FALSE;
-//    [self removeFromParentAndCleanup:YES];
-//}
-//
-
 
 @end

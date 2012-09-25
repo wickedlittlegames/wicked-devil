@@ -21,102 +21,24 @@
 //  73    = timed - 30 seconds
 
 #import "Platform.h"
-#import "Player.h"
+#import "Game.h"
 
 @implementation Platform
-@synthesize health, type, animating, toggled, active;
-@synthesize action_vertical_repeat, action_horizontal_repeat, action_fall;
+@synthesize health, animating, toggled;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        self.health = 2.0;
-        self.active = TRUE;
-        
-        // [self setupActions];
-//        [self setupMovement];
+        self.health = 1.0;
     }
     return self;
 }
 
-- (void) intersectionCheck:(Player*)player platforms:(CCArray*)platforms
-{
-    if ( player.velocity.y < 0  && self.active)
-    {
-        float max_x = self.position.x - self.contentSize.width/2 - 10;
-        float min_x = self.position.x + self.contentSize.width/2 + 10;
-        float min_y = self.position.y + (self.contentSize.height+player.contentSize.height)/2 - 1;
 
-        if(player.position.x > max_x &&
-           player.position.x < min_x &&
-           player.position.y > self.position.y &&
-           player.position.y < min_y)
-        {
-            player.last_platform_touched = self;
-            
-            switch (self.tag)
-            {
-                case 1: // bigger jump
-                    [player jump:player.jumpspeed*1.75];
-                    break;
-                case 5: // toggle
-                    [player jump:player.jumpspeed];
-                    for (Platform *tmpPlatform in platforms)
-                    {
-                        switch (tmpPlatform.tag)
-                        {
-                            case 51:
-                                tmpPlatform.visible = player.toggled_platform;
-                                tmpPlatform.active = tmpPlatform.visible;
-                                break;
-                            case 52:
-                                tmpPlatform.visible = !player.toggled_platform; 
-                                tmpPlatform.active = tmpPlatform.visible;                                
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    player.toggled_platform = !player.toggled_platform;
-                    break;
-                case 6: 
-                    [player jump:player.jumpspeed];
-                    [self fall];
-                    break;
-                case 100:
-                    [player jump:20];
-                default:
-                    [player jump:player.jumpspeed];
-                    break;
-            }
-        }
-    }
-}
-
-- (void) fall
+- (void) move
 {
     if ( !self.animating )
-    {
-       // [self runAction:self.action_fall];
-        self.animating = TRUE;
-    }
-}
-
-- (void) die
-{
-    self.visible = FALSE;
-    [self removeFromParentAndCleanup:YES];
-}
-
-- (BOOL) isActive
-{
-    return YES;
-}
-
-- (void) setupHVMovement
-{
-    if ( self.animating == FALSE )
     {
         if (self.tag == 2)
         {
@@ -128,9 +50,6 @@
             
             self.animating = TRUE;
         }
-    }
-    if ( self.animating == FALSE )
-    {
         if (self.tag == 3)
         {
             id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
@@ -144,5 +63,87 @@
     }
 }
 
+- (void) isIntersectingPlayer:(Game*)game platforms:(CCArray*)platforms
+{
+    if ( self.visible && game.player.velocity.y < 0 )
+    {
+        switch (self.tag)
+        {
+            default: // NORMAL & MOVING PLATFORMS
+                [game.player jump:game.player.jumpspeed];
+                break;
+            case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
+                [game.player jump:game.player.jumpspeed*1.75];
+                break;
+            case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
+                [game.player jump:game.player.jumpspeed];
+                [self action:self.tag game:game platforms:platforms];
+                break;
+            case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
+                [game.player jump:game.player.jumpspeed];
+                self.health = self.health - game.player.damage;
+                if ( self.health <= 0 )
+                {
+                    [self action:self.tag game:game platforms:platforms];
+                }
+                break;
+        }
+    }
+}
+
+- (void) action:(int)action_id game:(Game*)game platforms:(CCArray*)platforms
+{
+    if (action_id == 5) // TOGGLEABLE 
+    {
+        for (Platform *tmpPlatform in platforms)
+        {
+            switch (tmpPlatform.tag)
+            {
+                case 51:
+                    tmpPlatform.visible = game.player.toggled_platform;
+                    break;
+                case 52:
+                    tmpPlatform.visible = !game.player.toggled_platform;
+                    break;
+                default:
+                    break;
+            }
+        }
+        game.player.toggled_platform = !game.player.toggled_platform;
+    }
+    
+    if (action_id == 6 && !self.animating ) // BREAKABLE
+    {
+        self.animating = TRUE;
+        
+        id move = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-600)];
+        id ease = [CCEaseSineIn actionWithAction:move];
+        id end  = [CCCallFunc actionWithTarget:self selector:@selector(end_action)];
+        
+        [self runAction:[CCSequence actions:ease, end, nil]];
+    }
+}
+
+- (void) end_action
+{
+    self.visible = FALSE;
+    [self stopAllActions];
+    [self removeAllChildrenWithCleanup:YES];
+}
+
+- (bool) intersectCheck:(Game*)game
+{
+    float max_x = self.position.x - self.contentSize.width/2 - 10;
+    float min_x = self.position.x + self.contentSize.width/2 + 10;
+    float min_y = self.position.y + (self.contentSize.height+game.player.contentSize.height)/2 - 1;
+    
+    if(game.player.position.x > max_x &&
+       game.player.position.x < min_x &&
+       game.player.position.y > self.position.y &&
+       game.player.position.y < min_y)
+        return YES;
+    
+    return NO;
+}
 
 @end

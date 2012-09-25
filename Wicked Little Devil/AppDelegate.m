@@ -91,7 +91,7 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
     // Audio
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene:[StartScene scene]];

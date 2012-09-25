@@ -9,14 +9,14 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-#import "Player.h"
-
+@class Player;
 @interface Collectable : CCSprite {}
     
 - (BOOL) isIntersectingPlayer:(Player*)player;
 
 @end
 
+@class Player;
 @interface BigCollectable : CCSprite {} 
 
 - (BOOL) isIntersectingPlayer:(Player*)player;

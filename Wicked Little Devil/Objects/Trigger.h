@@ -7,10 +7,10 @@
 //
 
 #import "cocos2d.h"
-#import "Player.h"
+#import "CCNode+CoordHelpers.h"
 
+@class Player;
 @interface Trigger : CCSprite {}
-
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
 

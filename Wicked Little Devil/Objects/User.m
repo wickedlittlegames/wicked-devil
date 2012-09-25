@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, gameKitHelper, powerup, powerups, worlds_unlocked, cache_current_world, offline;
+@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, gameKitHelper, powerup, powerups, cache_current_world;
 
 #pragma mark User creation/persistance methods
 
@@ -29,14 +29,9 @@
         self.levelprogress          = [udata integerForKey:@"levelprogress"];
         self.worldprogress          = [udata integerForKey:@"worldprogress"];
         self.powerup                = [udata integerForKey:@"powerup"];
-        self.worlds_unlocked        = [udata boolForKey:@"worlds_unlocked"];
         self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
         self.collected              = [udata integerForKey:@"collected"];
         self.items                  = [udata objectForKey:@"items"];
-        
-        //[self _log];
-        
-        //[self gameKitBlock];
     }
     return self;
 }
@@ -63,7 +58,7 @@
     // items
     NSArray *contentArray = [[NSDictionary 
                               dictionaryWithContentsOfFile:[[NSBundle mainBundle] 
-                                                            pathForResource:@"Cards" 
+                                                            pathForResource:@"Powerups" 
                                                             ofType:@"plist"]
                               ] objectForKey:@"Powerups"];
     
@@ -86,7 +81,6 @@
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];
     [udata setInteger:0 forKey:@"powerup"];
-    [udata setBool:FALSE forKey:@"worlds_unlocked"];
     [udata setInteger:1 forKey:@"cache_current_world"];
     [udata setInteger:0 forKey:@"collected"];
     [udata setBool:FALSE forKey:@"muted"];
@@ -107,7 +101,6 @@
 {
     [udata setInteger:self.levelprogress forKey:@"levelprogress"];
     [udata setInteger:self.worldprogress forKey:@"worldprogress"];
-    [udata setBool:self.worlds_unlocked forKey:@"worlds_unlocked"];
     [udata setInteger:self.collected forKey:@"collected"];
     [udata setInteger:self.powerup forKey:@"powerup"];
     [udata synchronize];
@@ -267,7 +260,6 @@
     CCLOG(@"World Progress: %i",self.worldprogress);    
     CCLOG(@"Level Progress: %i",self.levelprogress);    
     CCLOG(@"Powerup: %i",self.powerup);    
-    CCLOG(@"Worlds Unlocked: %d",self.worlds_unlocked);    
     CCLOG(@"Cache Current World: %i",self.cache_current_world);    
     CCLOG(@"Collected: %i",self.collected);    
     CCLOG(@"ParseDeets: %@",[PFUser currentUser]);

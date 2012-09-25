@@ -30,16 +30,16 @@
          landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Wicked Little Devil/Objects/Player.m"
-         timestampString = "368717374.243579"
+         timestampString = "370273073.371548"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
-         landmarkName = "-movementwithGravity:"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-jump:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -12,12 +12,15 @@
 @class Game;
 @interface Enemy : CCSprite {}
 
-@property (nonatomic,assign) bool active, attacking, animating;
-@property (nonatomic,retain) NSString *type;
-@property (nonatomic,assign) float speed_x, speed_y, health, damage, base_y;
-@property (nonatomic, retain) CCAnimation *batFlap;
+// move enemy
+// check for intersection
+// if intersect, do an action
+
+@property (nonatomic, assign) bool animating, running;
+@property (nonatomic, retain) CCAnimation *anim_flap;
 
 - (void) isIntersectingPlayer:(Game*)game;
-- (void) doMovement;
+- (void) move;
+- (void) action:(int)action_id game:(Game*)game;
 
 @end

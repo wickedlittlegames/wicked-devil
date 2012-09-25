@@ -6,7 +6,6 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "SimpleAudioEngine.h"
 #import "User.h"
 #import "Player.h"
 #import "Platform.h"
@@ -14,6 +13,7 @@
 #import "Enemy.h"
 #import "Trigger.h"
 #import "FXLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface Game : NSObject{}
 
@@ -22,5 +22,4 @@
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) FXLayer *fx;
-@property (nonatomic, retain) SimpleAudioEngine *audioPlayer;
 @end

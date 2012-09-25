@@ -315,6 +315,7 @@
 		9CABCF7E1611D76D006DFDE9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF7B1611D76D006DFDE9 /* Default-568h@2x.png */; };
 		9CABCF7F1611D76D006DFDE9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF7C1611D76D006DFDE9 /* Default.png */; };
 		9CABCF801611D76D006DFDE9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF7D1611D76D006DFDE9 /* Default@2x.png */; };
+		9CABCF831611E911006DFDE9 /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABCF811611E910006DFDE9 /* Trigger.m */; };
 		9CACDF5615B8199200E8F518 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACDF5515B8199200E8F518 /* Game.m */; };
 		9CB880DE15F686660080EB36 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
@@ -347,7 +348,6 @@
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
 		9CFF0B77158A7D0C000AA4E0 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */; };
 		9CFF0B79158A7D0C000AA4E0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B71158A7D0C000AA4E0 /* Player.m */; };
-		9CFF0B7A158A7D0C000AA4E0 /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B73158A7D0C000AA4E0 /* Trigger.m */; };
 		9CFF0B7B158A7D0C000AA4E0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B75158A7D0C000AA4E0 /* User.m */; };
 /* End PBXBuildFile section */
 
@@ -672,6 +672,8 @@
 		9CABCF7B1611D76D006DFDE9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9CABCF7C1611D76D006DFDE9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9CABCF7D1611D76D006DFDE9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9CABCF811611E910006DFDE9 /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trigger.m; path = Objects/Trigger.m; sourceTree = "<group>"; };
+		9CABCF821611E910006DFDE9 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = Objects/Trigger.h; sourceTree = "<group>"; };
 		9CACDF5415B8199100E8F518 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Objects/Game.h; sourceTree = "<group>"; };
 		9CACDF5515B8199200E8F518 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Objects/Game.m; sourceTree = "<group>"; };
 		9CB880DD15F686660080EB36 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -734,8 +736,6 @@
 		9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = Objects/Enemy.m; sourceTree = "<group>"; };
 		9CFF0B70158A7D0C000AA4E0 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Objects/Player.h; sourceTree = "<group>"; };
 		9CFF0B71158A7D0C000AA4E0 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Objects/Player.m; sourceTree = "<group>"; };
-		9CFF0B72158A7D0C000AA4E0 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = Objects/Trigger.h; sourceTree = "<group>"; };
-		9CFF0B73158A7D0C000AA4E0 /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trigger.m; path = Objects/Trigger.m; sourceTree = "<group>"; };
 		9CFF0B74158A7D0C000AA4E0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Objects/User.h; sourceTree = "<group>"; };
 		9CFF0B75158A7D0C000AA4E0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Objects/User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1404,14 +1404,14 @@
 		9CBF4813156F8F8600896EBF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				9CABCF811611E910006DFDE9 /* Trigger.m */,
+				9CABCF821611E910006DFDE9 /* Trigger.h */,
 				9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */,
 				9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */,
 				9CFF0B6C158A7D0C000AA4E0 /* Enemy.h */,
 				9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */,
 				9CFF0B70158A7D0C000AA4E0 /* Player.h */,
 				9CFF0B71158A7D0C000AA4E0 /* Player.m */,
-				9CFF0B72158A7D0C000AA4E0 /* Trigger.h */,
-				9CFF0B73158A7D0C000AA4E0 /* Trigger.m */,
 				9CFF0B74158A7D0C000AA4E0 /* User.h */,
 				9CFF0B75158A7D0C000AA4E0 /* User.m */,
 				9CFF0B67158A7CB7000AA4E0 /* Platform.h */,
@@ -1762,7 +1762,6 @@
 				9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */,
 				9CFF0B77158A7D0C000AA4E0 /* Enemy.m in Sources */,
 				9CFF0B79158A7D0C000AA4E0 /* Player.m in Sources */,
-				9CFF0B7A158A7D0C000AA4E0 /* Trigger.m in Sources */,
 				9CFF0B7B158A7D0C000AA4E0 /* User.m in Sources */,
 				9C84ED431594BFD40083DF40 /* Reachability.m in Sources */,
 				9CDF942B15B561CA0017E58B /* BGLayer.m in Sources */,
@@ -1793,6 +1792,7 @@
 				9CD93A3B15F632E2001B0D50 /* CCNode+CCBRelativePositioning.m in Sources */,
 				9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */,
 				9CABCF761611D653006DFDE9 /* CCNode+CoordHelpers.m in Sources */,
+				9CABCF831611E911006DFDE9 /* Trigger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1961,10 +1961,12 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wicked Little Devil/Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
+				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1990,10 +1992,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wicked Little Devil/Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"Wicked Little Devil/libs/kazmath/include\"",
 				);
+				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;

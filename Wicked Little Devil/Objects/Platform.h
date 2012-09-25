@@ -9,8 +9,7 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-#import "Player.h"
-
+@class Player;
 @interface Platform : CCSprite {}
 @property (nonatomic, assign) float health;
 @property (nonatomic, assign) NSString *type;

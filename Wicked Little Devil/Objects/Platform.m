@@ -21,6 +21,7 @@
 //  73    = timed - 30 seconds
 
 #import "Platform.h"
+#import "Player.h"
 
 @implementation Platform
 @synthesize health, type, animating, toggled, active;

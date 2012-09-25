@@ -186,7 +186,7 @@
     //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/scores" andDelegate:self];
     
     
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+    //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {

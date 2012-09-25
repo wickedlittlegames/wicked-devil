@@ -7,6 +7,7 @@
 //
 
 #import "Collectable.h"
+#import "Player.h"
 
 @implementation Collectable
 

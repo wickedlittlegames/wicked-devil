@@ -15,159 +15,105 @@
 #import "FXLayer.h"
 
 @implementation Enemy
-@synthesize type, active, speed_x, speed_y, health, damage, attacking, base_y, animating, batFlap;
+@synthesize animating, running;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
-        self.active = FALSE;
-        
-        // defaults
-        self.health = 1;
-        self.damage = 1;
-        self.speed_x = 1;
-        self.speed_y = 1;
-        self.attacking = FALSE;
-        self.active = YES;
-        self.animating = NO;
-        CCLOG(@"ENEMY");
-        
-        // update bat anim files
         [self setupAnimations];
     }
     return self;
 }
 
-- (void) doMovement
+
+
+- (void) move
 {
     switch (self.tag)
     {
-        default: // just move down the screen
-            break;
+        default: break;
         case 1: // bat wobble
-            if ( self.base_y == 0 ) { self.base_y = self.position.y; }
             self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+1)/10) * 10);
-            if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) 
-            {
-                self.position = ccp(-70, self.base_y);
-            }
+            if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
             break;
     }
 }
 
 - (void) isIntersectingPlayer:(Game*)game
 {
-    switch (self.tag)
+    if ( self.visible && !self.running )
     {
-        default: // all normal hit then die enemies
-            if ( self.visible && self.health > 0)
-            {
-                CGSize enemy_size = self.contentSize;
-                CGPoint enemy_pos = self.position;
-                CGSize player_size     = game.player.contentSize; 
-                CGPoint player_pos     = game.player.position;
-                
-                float max_x = enemy_pos.x - enemy_size.width/2 - 10;
-                float min_x = enemy_pos.x + enemy_size.width/2 + 10;
-                float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
-                
-                if(player_pos.x > max_x &&
-                   player_pos.x < min_x &&
-                   player_pos.y > enemy_pos.y &&
-                   player_pos.y < min_y)
-                {
-                    [self doAction:self.tag player:game];
-                }
-            }
-            break;
-        case 4:
-            if ( [self radiusCheck:self.position withRadius:70 collisionWithCircle:game.player.position collisionCircleRadius:1] && !self.attacking )
-            {
-                [self doAction:4 player:game];
-            }
-            break;
+        switch (self.tag)
+        {
+            default: // simple interaction, kill player
+                if ( [self intersectCheck:game] )   [self action:self.tag game:game];
+                break;
+            case 4:  // rocket blast
+                if ( [self radiusCheck:game] )      [self action:self.tag game:game];
+                break;
+        }
     }
 }
 
-- (void) doAction:(int)tag player:(Game*)game
-{   
-    switch (tag)
+- (void) action:(int)action_id game:(Game*)game
+{
+    switch(action_id)
     {
-        default:
-            if ( game.player.velocity.y > 0 )
-            {
-                [self damageToPlayer:game.player];
-            }
-            else
-            {
-                [game.player jump:game.player.jumpspeed];
-            }
-            self.active = NO;
+        case 1: // BAT: Jump ontop, or die below
+            if ( game.player.velocity.y > 0 ) game.player.health--;
+            else [game.player jump:game.player.jumpspeed];
             self.visible = NO;
             break;
-        case 2: // mine
-            self.active = NO;
-            self.visible = NO;
+        case 2: // MINE: Any time touched, blows up
             [game.fx start:0 position:[self worldBoundingBox].origin];
-            [self damageToPlayer:game.player];
+            game.player.health--;
+            self.visible = NO;
             break;
-        case 3: // water
-            if ( !self.attacking ) [self floatPlayer:game.player];
+        case 3: // BUBBLE: Floats the player up
+            self.running = YES;
             break;
-        case 4: // generate rocket somewhere
-            [self shootRocket:game];
+        case 4: // ROCKET: Shoots rocket at target player area
+            self.running = YES;
             break;
+        case 5: // PLANET: TBA
+            break;
+        case 6: // ANGEL: TBA
+            break;
+        default: break;
     }
 }
 
-- (void) shootRocket:(Game*)game
+- (bool) intersectCheck:(Game*)game
 {
-    Enemy *rocket = [CCSprite spriteWithFile:@"enemy-rocket.png"];
-    rocket.position = ccp (self.position.x, 500);
-    [self addChild:rocket];
+    CGSize enemy_size       = self.contentSize;
+    CGPoint enemy_pos       = self.position;
+    CGSize player_size      = game.player.contentSize;
+    CGPoint player_pos      = game.player.position;
     
-    [rocket runAction:[CCMoveTo actionWithDuration:2.0f position:ccp([game.player worldBoundingBox].origin.x, [game.player worldBoundingBox].origin.y - 300)]];
-}
-
-- (void) floatPlayer:(Player*)player
-{
-    self.attacking = TRUE;
+    float max_x = enemy_pos.x - enemy_size.width/2 - 10;
+    float min_x = enemy_pos.x + enemy_size.width/2 + 10;
+    float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
     
-    self.position = ccp(player.position.x, player.position.y);
-    [self setZOrder:4];
-        
-    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
-    id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
-    id killfloat = [CCCallFuncND actionWithTarget:self selector:@selector(killFloat:data:) data:(void*)player];
-    
-    player.controllable = FALSE;
-    player.velocity = ccp(0,0);
-    [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
+    if(player_pos.x > max_x &&
+       player_pos.x < min_x &&
+       player_pos.y > enemy_pos.y &&
+       player_pos.y < min_y)
+        return YES;
+
+    return NO;
 }
 
-- (void) killFloat:(id)sender data:(id)data
+- (bool) radiusCheck:(Game*)game
 {
-    Player *player = data;
-    player.controllable = TRUE;
-    self.visible = FALSE;
-    self.active = FALSE;
-    [self removeFromParentAndCleanup:YES];
-}
-
-- (void) damageToPlayer:(Player*)player
-{
-    player.health = player.health - self.damage;
-}
-
-- (BOOL) radiusCheck:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo 
-{
-    float xdif = circlePoint.x - circlePointTwo.x;
-    float ydif = circlePoint.y - circlePointTwo.y;
+    float xdif = self.position.x - game.player.position.x;
+    float ydif = self.position.y - game.player.position.y;
+    float radius = 70;
+    float radiusTwo = 1;
     
     float distance = sqrt(xdif*xdif+ydif*ydif);
     
-    if(distance <= radius+radiusTwo) 
+    if(distance <= radius+radiusTwo)
         return YES;
     
     return NO;
@@ -176,24 +122,51 @@
 - (void) setupAnimations
 {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
-    //CCSpriteBatchNode *spriteSheet3 = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
-//    [self addChild:spritesheet3];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
+    [self addChild:spriteSheet];
     
-    NSMutableArray *flapAnimFrames = [NSMutableArray array];
+    NSMutableArray *arr_anim_flap = [NSMutableArray array];
     for(int i = 1; i <= 7; ++i) {
-        [flapAnimFrames addObject:
+        [arr_anim_flap addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"bat-flap%i.png", i]]];
-        CCLOG(@"bat-flap%i.png", i);
+          [NSString stringWithFormat:@"bat_flap%i.png", i]]];
     }
     
-    self.batFlap = [CCAnimation animationWithSpriteFrames:flapAnimFrames delay:0.05f];
-    
-    if ( self.tag == 1 && !self.animating )
+    self.anim_flap      = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.05f];
+    if ( self.tag == 1 && self.animating )
     {
-        [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.batFlap], nil]];
-        self.animating = YES;
+        [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_flap], nil]];
     }
 }
+
+
+
+//
+//- (void) floatPlayer:(Player*)player
+//{
+//    self.attacking = TRUE;
+//    
+//    self.position = ccp(player.position.x, player.position.y);
+//    [self setZOrder:4];
+//        
+//    id movedownwobble = [CCMoveBy actionWithDuration:0.1 position:ccp(0,-10)];
+//    id moveupby = [CCMoveBy actionWithDuration:5 position:ccp(0,400)];
+//    id killfloat = [CCCallFuncND actionWithTarget:self selector:@selector(killFloat:data:) data:(void*)player];
+//    
+//    player.controllable = FALSE;
+//    player.velocity = ccp(0,0);
+//    [player runAction:[CCSequence actions:movedownwobble, moveupby, killfloat, nil]];
+//}
+//
+//- (void) killFloat:(id)sender data:(id)data
+//{
+//    Player *player = data;
+//    player.controllable = TRUE;
+//    self.visible = FALSE;
+//    self.active = FALSE;
+//    [self removeFromParentAndCleanup:YES];
+//}
+//
+
 
 @end

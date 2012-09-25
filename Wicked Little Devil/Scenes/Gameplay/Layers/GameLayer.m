@@ -121,14 +121,13 @@
     
     CCARRAY_FOREACH(enemies, enemy)
     {
-        if ([enemy worldBoundingBox].origin.y < -80 && enemy.active && !game.isIntro )
+        if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
         {
             enemy.visible = NO;
-            enemy.active = NO;
         }
         
         [enemy isIntersectingPlayer:game];
-        [enemy doMovement];
+        [enemy move];
     }
 }
 
@@ -147,7 +146,7 @@
         {
             if ( !game.player.isAlive )
             {
-                [game.player dieAnimation];
+                [game.player animate:4];
             }
             [self end:game];
         }

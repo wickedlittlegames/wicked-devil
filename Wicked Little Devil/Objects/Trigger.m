@@ -7,7 +7,7 @@
 //
 
 #import "Trigger.h"
-#import "CCNode+CoordHelpers.h"
+#import "Player.h"
 
 @implementation Trigger
 

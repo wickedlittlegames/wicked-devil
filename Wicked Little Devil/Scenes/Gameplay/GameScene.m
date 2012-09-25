@@ -50,10 +50,10 @@
         User *user = [[User alloc] init];
         game = [[Game alloc] init];
 
-        if ( !game.audioPlayer.mute )
+        if ( ![SimpleAudioEngine sharedEngine].mute )
         {
-            [game.audioPlayer stopBackgroundMusic];
-            [game.audioPlayer playBackgroundMusic:@"bg-loop1.wav" loop:YES];
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-loop1.wav" loop:YES];
         }
         
         self.isTouchEnabled = YES;
@@ -136,7 +136,7 @@
             if ( !game.isGameover )
             {                                
                 // Player Layer Interactions
-                if ( game.player.controllable ) [game.player movementwithGravity:0.18];
+                if ( game.player.controllable ) [game.player move];
                 
                 // UI Layer Interactions
                 [layer_ui update:game];

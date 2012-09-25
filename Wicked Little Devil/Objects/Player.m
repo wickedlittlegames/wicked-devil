@@ -9,7 +9,9 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, stats, collected, bigcollected, jumpspeed, modifier_gravity, score, last_platform_touched, controllable, toggled_platform, jumpAction, animating, fallAction, fallFarAction, explodeAction, falling;
+@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, modifier_gravity, score;
+@synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
+@synthesize anim_jump, anim_fall, anim_fallfar;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -17,14 +19,16 @@
     {
         self.velocity = ccp ( 0 , 0 );
         self.jumpspeed = 7.0;
+        self.gravity = 0.18;
+        self.modifier_gravity = 0;
         self.health = 1.0;
         self.damage = 1.0;
-        self.scale = 1.5;
         self.collected = 0;
         self.bigcollected = 0;
-        self.modifier_gravity = 0;
         self.score = 0;
         self.last_platform_touched = NULL;
+        
+        // redo
         self.controllable = NO;
         self.toggled_platform = NO;
         self.animating = NO;
@@ -35,109 +39,103 @@
     return self;
 }
 
-- (void) movementwithGravity:(float)gravity
+- (void) move
 {
-    self.velocity = ccp( self.velocity.x, self.velocity.y - (gravity + modifier_gravity) );
+    self.velocity = ccp( self.velocity.x, self.velocity.y - (self.gravity + self.modifier_gravity) );
     self.position = ccp(self.position.x, self.position.y + self.velocity.y);
     
-    if ( self.velocity.y < 0 && self.velocity.y > -5) 
+    if ( self.velocity.y < 0 && self.velocity.y > -5)
     {
-        [self animationRunner:2]; 
+        [self animate:2];
     }
-    
-    if ( self.velocity.y < -8.5  && !self.falling ) 
+
+    if ( self.velocity.y < -8.5  && !self.falling )
     {
         self.animating = NO;
         self.falling = YES;
-        CCLOG(@"VELOCITY: %f", self.velocity.y); 
-        [self animationRunner:3];
+        [self animate:3];
     }
-}
-
-- (BOOL) isAlive
-{
-    return ( self.health > 0.0 );
-}
-
-- (void) dieAnimation
-{
-    [self runAction:[CCFadeOut actionWithDuration:1.0f]];
 }
 
 - (void) jump:(float)speed
 {
     self.animating = NO;
-    self.falling = NO;
-    [self animationRunner:1];
+    [self animate:1];
     
     self.velocity = ccp (self.velocity.x, speed);
 }
 
-- (void) animationRunner:(int)which
+- (void) animate:(int)animation_id
 {
     if ( !self.animating )
     {
         self.animating = YES;
         
-        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(killAnimation)];
-        switch (which)
+        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
+        switch (animation_id)
         {
             case 1: // jump
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.jumpAction], stopAnimation, nil]];
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
                 break;
             case 2:
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.fallAction], nil]];
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fall], nil]];
                 break;
             case 3:
-                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.fallFarAction], nil]];
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
+                break;
+            case 4:
+                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
                 break;
         }
     }
 }
 
-- (void) killAnimation
+- (void) end_animate
 {
     self.animating = NO;
+    [self stopAllActions];
 }
 
+- (bool) isAlive
+{
+    return ( self.health > 0.0 );
+}
 
+- (bool) isControllable
+{
+    return self.controllable;
+}
 
 - (void) setupAnimations
 {
-    // JUMP
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"DevilAnim.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"DevilAnim.png"];
     [self addChild:spriteSheet];
     
-    NSMutableArray *jumpAnimFrames = [NSMutableArray array];
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
     for(int i = 1; i <= 6; ++i) {
-        [jumpAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"jump%i.png", i]]];
-    }
-
-    NSMutableArray *fallFarAnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 6; ++i) {
-        [fallFarAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"fallingforever%i.png", i]]];
-    }
-    
-    // JUMP
-//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"DevilAnimFall.plist"];
-//    CCSpriteBatchNode *spriteSheet2 = [CCSpriteBatchNode batchNodeWithFile:@"DevilAnimFall.png"];
-//    [self addChild:spriteSheet2];
-    
-    NSMutableArray *fallAnimFrames = [NSMutableArray array];
-    for(int i = 6; i >= 1; --i) {
-        [fallAnimFrames addObject:
+        [arr_anim_jump addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
           [NSString stringWithFormat:@"jump%i.png", i]]];
     }
     
-    self.jumpAction = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.05f];
-    self.fallAction = [CCAnimation animationWithSpriteFrames:fallAnimFrames delay:0.05f];    
-    self.fallFarAction = [CCAnimation animationWithSpriteFrames:fallFarAnimFrames delay:0.05f];
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
 }
 
 - (void) setupPowerup:(int)powerup

@@ -11,6 +11,7 @@
 #import "Platform.h"
 #import "Collectable.h"
 #import "Enemy.h"
+#import "Projectile.h"
 #import "Trigger.h"
 #import "FXLayer.h"
 #import "SimpleAudioEngine.h"

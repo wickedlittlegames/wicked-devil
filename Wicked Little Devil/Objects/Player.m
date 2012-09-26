@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, modifier_gravity, score;
+@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score;
 @synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
 @synthesize anim_jump, anim_fall, anim_fallfar;
 
@@ -18,6 +18,7 @@
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
+        self.drag = ccp ( 0, 0 );
         self.jumpspeed = 7.0;
         self.gravity = 0.18;
         self.modifier_gravity = 0;
@@ -42,7 +43,7 @@
 - (void) move
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y - (self.gravity + self.modifier_gravity) );
-    self.position = ccp(self.position.x, self.position.y + self.velocity.y);
+    self.position = ccp((self.position.x) + self.drag.x, (self.position.y + self.velocity.y) + self.drag.y);
     
     if ( self.velocity.y < 0 && self.velocity.y > -5)
     {

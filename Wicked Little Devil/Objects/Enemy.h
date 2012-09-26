@@ -18,9 +18,11 @@
 
 @property (nonatomic, assign) bool animating, running;
 @property (nonatomic, retain) CCAnimation *anim_flap;
+@property (nonatomic, retain) CCArray *projectiles, *fx;
 
 - (void) isIntersectingPlayer:(Game*)game;
 - (void) move;
 - (void) action:(int)action_id game:(Game*)game;
+- (void) setupAnimations;
 
 @end

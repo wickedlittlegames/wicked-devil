@@ -148,16 +148,16 @@
         [udata setObject:highscore forKey:@"highscores"];
         [udata synchronize];
         // Updating Parse
-        if ( self.isConnectedToFacebook )
-        {   
-            PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-            [highscore setObject:[PFUser currentUser] forKey:@"user"];
-            [highscore setObject:[[PFUser currentUser] valueForKey:@"fbId"] forKey:@"fbId"];
-            [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
-            [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
-            [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-            [highscore saveInBackground];
-        }
+//        if ( self.isConnectedToFacebook )
+//        {   
+//            PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
+//            [highscore setObject:[PFUser currentUser] forKey:@"user"];
+//            [highscore setObject:[[PFUser currentUser] valueForKey:@"fbId"] forKey:@"fbId"];
+//            [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
+//            [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
+//            [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+//            [highscore saveInBackground];
+//        }
     }
 
 }

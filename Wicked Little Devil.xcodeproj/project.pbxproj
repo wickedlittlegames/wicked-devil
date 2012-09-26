@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FD12F16130AFE007BDFD6 /* Projectile.m */; };
+		9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1321613251C007BDFD6 /* AngelBlast.plist */; };
+		9C0FD1351613251C007BDFD6 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1331613251C007BDFD6 /* particleTexture.png */; };
+		9C0FD13816132C6D007BDFD6 /* BatAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13616132C6D007BDFD6 /* BatAnim.plist */; };
+		9C0FD13916132C6D007BDFD6 /* BatAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13716132C6D007BDFD6 /* BatAnim.png */; };
+		9C0FD13F16132E2D007BDFD6 /* world-1-level-3.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13A16132E2D007BDFD6 /* world-1-level-3.ccbi */; };
+		9C0FD14016132E2D007BDFD6 /* world-1-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13B16132E2D007BDFD6 /* world-1-level-4.ccbi */; };
+		9C0FD14116132E2D007BDFD6 /* world-1-level-5.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13C16132E2D007BDFD6 /* world-1-level-5.ccbi */; };
+		9C0FD14216132E2D007BDFD6 /* world-1-level-6.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13D16132E2D007BDFD6 /* world-1-level-6.ccbi */; };
+		9C0FD14316132E2D007BDFD6 /* world-1-level-7.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD13E16132E2D007BDFD6 /* world-1-level-7.ccbi */; };
+		9C0FD1451613312C007BDFD6 /* ingame-rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1441613312C007BDFD6 /* ingame-rocket.png */; };
+		9C0FD148161331B0007BDFD6 /* RocketBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD146161331B0007BDFD6 /* RocketBlast.plist */; };
+		9C0FD149161331B0007BDFD6 /* RocketBlast.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD147161331B0007BDFD6 /* RocketBlast.png */; };
 		9C142167156E68560011C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142166156E68560011C992 /* QuartzCore.framework */; };
 		9C142169156E68560011C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C142168156E68560011C992 /* OpenGLES.framework */; };
 		9C14216B156E68560011C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C14216A156E68560011C992 /* OpenAL.framework */; };
@@ -352,6 +365,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C0FD12E16130AFE007BDFD6 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Objects/Projectile.h; sourceTree = "<group>"; };
+		9C0FD12F16130AFE007BDFD6 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Objects/Projectile.m; sourceTree = "<group>"; };
+		9C0FD1321613251C007BDFD6 /* AngelBlast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AngelBlast.plist; sourceTree = "<group>"; };
+		9C0FD1331613251C007BDFD6 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
+		9C0FD13616132C6D007BDFD6 /* BatAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BatAnim.plist; sourceTree = "<group>"; };
+		9C0FD13716132C6D007BDFD6 /* BatAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BatAnim.png; sourceTree = "<group>"; };
+		9C0FD13A16132E2D007BDFD6 /* world-1-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-3.ccbi"; sourceTree = "<group>"; };
+		9C0FD13B16132E2D007BDFD6 /* world-1-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-4.ccbi"; sourceTree = "<group>"; };
+		9C0FD13C16132E2D007BDFD6 /* world-1-level-5.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-5.ccbi"; sourceTree = "<group>"; };
+		9C0FD13D16132E2D007BDFD6 /* world-1-level-6.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-6.ccbi"; sourceTree = "<group>"; };
+		9C0FD13E16132E2D007BDFD6 /* world-1-level-7.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-7.ccbi"; sourceTree = "<group>"; };
+		9C0FD1441613312C007BDFD6 /* ingame-rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-rocket.png"; sourceTree = "<group>"; };
+		9C0FD146161331B0007BDFD6 /* RocketBlast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RocketBlast.plist; sourceTree = "<group>"; };
+		9C0FD147161331B0007BDFD6 /* RocketBlast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RocketBlast.png; sourceTree = "<group>"; };
 		9C142162156E68560011C992 /* Wicked Devil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wicked Devil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C142166156E68560011C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C142168156E68560011C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1277,6 +1304,11 @@
 		9CABCEFE1611D5EA006DFDE9 /* LEVELS */ = {
 			isa = PBXGroup;
 			children = (
+				9C0FD13A16132E2D007BDFD6 /* world-1-level-3.ccbi */,
+				9C0FD13B16132E2D007BDFD6 /* world-1-level-4.ccbi */,
+				9C0FD13C16132E2D007BDFD6 /* world-1-level-5.ccbi */,
+				9C0FD13D16132E2D007BDFD6 /* world-1-level-6.ccbi */,
+				9C0FD13E16132E2D007BDFD6 /* world-1-level-7.ccbi */,
 				9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */,
 				9CABCF001611D5EA006DFDE9 /* world-1-level-2.ccbi */,
 			);
@@ -1321,6 +1353,8 @@
 		9CABCF0C1611D5EA006DFDE9 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				9C0FD13616132C6D007BDFD6 /* BatAnim.plist */,
+				9C0FD13716132C6D007BDFD6 /* BatAnim.png */,
 				9CABCF0D1611D5EA006DFDE9 /* DevilAnim.plist */,
 				9CABCF0E1611D5EA006DFDE9 /* DevilAnim.png */,
 			);
@@ -1349,6 +1383,7 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9C0FD1441613312C007BDFD6 /* ingame-rocket.png */,
 				9CABCF1A1611D5EA006DFDE9 /* helpertext-collectsouls.png */,
 				9CABCF1B1611D5EA006DFDE9 /* ingame-big-collectable.png */,
 				9CABCF1C1611D5EA006DFDE9 /* ingame-devil.png */,
@@ -1396,6 +1431,10 @@
 		9CABCF3C1611D5EA006DFDE9 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				9C0FD146161331B0007BDFD6 /* RocketBlast.plist */,
+				9C0FD147161331B0007BDFD6 /* RocketBlast.png */,
+				9C0FD1321613251C007BDFD6 /* AngelBlast.plist */,
+				9C0FD1331613251C007BDFD6 /* particleTexture.png */,
 			);
 			name = SFX;
 			path = Resources/SFX;
@@ -1418,6 +1457,8 @@
 				9CFF0B68158A7CB7000AA4E0 /* Platform.m */,
 				9CACDF5415B8199100E8F518 /* Game.h */,
 				9CACDF5515B8199200E8F518 /* Game.m */,
+				9C0FD12E16130AFE007BDFD6 /* Projectile.h */,
+				9C0FD12F16130AFE007BDFD6 /* Projectile.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1744,6 +1785,18 @@
 				9CABCF7E1611D76D006DFDE9 /* Default-568h@2x.png in Resources */,
 				9CABCF7F1611D76D006DFDE9 /* Default.png in Resources */,
 				9CABCF801611D76D006DFDE9 /* Default@2x.png in Resources */,
+				9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */,
+				9C0FD1351613251C007BDFD6 /* particleTexture.png in Resources */,
+				9C0FD13816132C6D007BDFD6 /* BatAnim.plist in Resources */,
+				9C0FD13916132C6D007BDFD6 /* BatAnim.png in Resources */,
+				9C0FD13F16132E2D007BDFD6 /* world-1-level-3.ccbi in Resources */,
+				9C0FD14016132E2D007BDFD6 /* world-1-level-4.ccbi in Resources */,
+				9C0FD14116132E2D007BDFD6 /* world-1-level-5.ccbi in Resources */,
+				9C0FD14216132E2D007BDFD6 /* world-1-level-6.ccbi in Resources */,
+				9C0FD14316132E2D007BDFD6 /* world-1-level-7.ccbi in Resources */,
+				9C0FD1451613312C007BDFD6 /* ingame-rocket.png in Resources */,
+				9C0FD148161331B0007BDFD6 /* RocketBlast.plist in Resources */,
+				9C0FD149161331B0007BDFD6 /* RocketBlast.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,6 +1846,7 @@
 				9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */,
 				9CABCF761611D653006DFDE9 /* CCNode+CoordHelpers.m in Sources */,
 				9CABCF831611E911006DFDE9 /* Trigger.m in Sources */,
+				9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

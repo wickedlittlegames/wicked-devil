@@ -64,7 +64,7 @@
         [label_score_type setPosition:ccp(screenSize.width/2, screenSize.height/2 + 40)];
         [self addChild:label_score_type];
         
-        if ( user.isConnectedToFacebook ) [self check_facebook_scores];
+        //if ( user.isConnectedToFacebook ) [self check_facebook_scores];
     }
     return self;
 }
@@ -113,11 +113,11 @@
     CCLOG(@"BIGS:%i",bigs);
     if ( bigs >= 1 )
     {
-        int facebook_bonus = ( user.isConnectedToFacebook ? 200 : 0 );
+        //int facebook_bonus = ( user.isConnectedToFacebook ? 200 : 0 );
         
-        total = (score * bigs) + timebonus + facebook_bonus;
+        total = (score * bigs) + timebonus;
         
-        CCLOG(@"SCORE IS: %i (basic: %i, bigs: %i, timebonus: %i, fb: %i)", total, score, bigs, timebonus, facebook_bonus);
+//        CCLOG(@"SCORE IS: %i (basic: %i, bigs: %i, timebonus: %i, fb: %i)", total, score, bigs, timebonus);
         [label_score setString:[NSString stringWithFormat:@"%i",total]];
         
         // Step through the animations for the scores
@@ -189,42 +189,42 @@
     //[[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
 }
 
-- (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    CCLOG(@"REQUEST");
-    CCLOG(@"%@",request);
-    CCLOG(@"RESULT:");
-    CCLOG(@"%@", result);
-    
-    // Assuming no errors, result will be an NSDictionary of your user's friends
-    NSArray *friendObjects = [result objectForKey:@"data"];
-    friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
-    // Create a list of friends' Facebook IDs
-    for (NSDictionary *friendObject in friendObjects) {
-        [friendIds addObject:[friendObject objectForKey:@"id"]];
-    }
-    
-    // Construct a PFUser query that will find friends whose facebook ids are contained
-    // in the current user's friend list.
-    PFQuery *friendQuery = [PFUser query];
-    [friendQuery whereKey:@"fbId" containedIn:friendIds];
-    
-    // findObjects will return a list of PFUsers that are friends with the current user
-    friendUsers = [friendQuery findObjects];
-    
-    CCLOG(@"FRIENDS: %@", friendIds);
-    CCLOG(@"FRIEND USERS: %@", friendUsers);
-
-    NSMutableArray *scoreUsers = [NSMutableArray arrayWithCapacity:[friendUsers count]];
-    
-    for (int i = 0; i < [friendUsers count]; i++ )
-    {
-        PFQuery *scoreQuery = [PFQuery queryWithClassName:@"Highscore"];
-        [scoreQuery whereKey:@"world" equalTo:[NSNumber numberWithInt:world]];
-        [scoreQuery whereKey:@"level" equalTo:[NSNumber numberWithInt:level]];
-        [scoreQuery whereKey:@"fbId" equalTo:[[friendUsers objectAtIndex:i] valueForKey:@"fbId"]];
-        CCLOG(@"SCORE QUERY RESULT:%@",[scoreQuery findObjects]);
-        [scoreUsers addObject:[scoreQuery findObjects]];
-    }
-}
+//- (void)request:(PF_FBRequest *)request didLoad:(id)result {
+////    CCLOG(@"REQUEST");
+////    CCLOG(@"%@",request);
+////    CCLOG(@"RESULT:");
+////    CCLOG(@"%@", result);
+////    
+////    // Assuming no errors, result will be an NSDictionary of your user's friends
+////    NSArray *friendObjects = [result objectForKey:@"data"];
+////    friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+////    // Create a list of friends' Facebook IDs
+////    for (NSDictionary *friendObject in friendObjects) {
+////        [friendIds addObject:[friendObject objectForKey:@"id"]];
+////    }
+////    
+////    // Construct a PFUser query that will find friends whose facebook ids are contained
+////    // in the current user's friend list.
+////    PFQuery *friendQuery = [PFUser query];
+////    [friendQuery whereKey:@"fbId" containedIn:friendIds];
+////    
+////    // findObjects will return a list of PFUsers that are friends with the current user
+////    friendUsers = [friendQuery findObjects];
+////    
+////    CCLOG(@"FRIENDS: %@", friendIds);
+////    CCLOG(@"FRIEND USERS: %@", friendUsers);
+////
+////    NSMutableArray *scoreUsers = [NSMutableArray arrayWithCapacity:[friendUsers count]];
+////    
+////    for (int i = 0; i < [friendUsers count]; i++ )
+////    {
+////        PFQuery *scoreQuery = [PFQuery queryWithClassName:@"Highscore"];
+////        [scoreQuery whereKey:@"world" equalTo:[NSNumber numberWithInt:world]];
+////        [scoreQuery whereKey:@"level" equalTo:[NSNumber numberWithInt:level]];
+////        [scoreQuery whereKey:@"fbId" equalTo:[[friendUsers objectAtIndex:i] valueForKey:@"fbId"]];
+////        CCLOG(@"SCORE QUERY RESULT:%@",[scoreQuery findObjects]);
+////        [scoreUsers addObject:[scoreQuery findObjects]];
+////    }
+//}
 
 @end

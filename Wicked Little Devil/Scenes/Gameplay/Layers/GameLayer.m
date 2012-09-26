@@ -70,6 +70,8 @@
     BigCollectable *bigcollectable = nil;
     Trigger *trigger = nil;
     Enemy *enemy = nil;
+    Projectile *projectile = nil;
+    EnemyFX *fx = nil;
     
     CCARRAY_FOREACH(platforms, platform)
     {           
@@ -121,6 +123,14 @@
     
     CCARRAY_FOREACH(enemies, enemy)
     {
+        if ( self.level == 2 )             enemy.tag = 1;
+        if ( self.level == 3 )             enemy.tag = 2;
+        if ( self.level == 4 )             enemy.tag = 3;
+        if ( self.level == 5 )             enemy.tag = 4; enemy.opacity = 0;
+        if ( self.level == 6 )             enemy.tag = 5;
+        if ( self.level == 7 )             enemy.tag = 6;
+
+        if ( !enemy.animating ) [enemy setupAnimations];
         if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
         {
             enemy.visible = NO;
@@ -128,6 +138,33 @@
         
         [enemy isIntersectingPlayer:game];
         [enemy move];
+        
+        // Projectile movement
+        if ( enemy.visible && enemy.projectiles.count >= 1 )
+        {
+            CCARRAY_FOREACH(enemy.projectiles, projectile)
+            {
+                if ( [projectile isIntersectingPlayer:game.player] )
+                {
+                    [game.fx start:1 position:[projectile worldBoundingBox].origin];
+                    projectile.visible = NO;
+                    [enemy removeChildByTag:1111 cleanup:YES];
+                    game.player.health--;
+                }
+            }   
+        }
+        
+        // FX check
+        if ( !enemy.visible && enemy.fx.count >= 1 )
+        {
+            CCARRAY_FOREACH(enemy.fx, fx)
+            {
+                if ( [fx isIntersectingPlayer:game.player] )
+                {
+                    game.player.health--;
+                }
+            }
+        }
     }
 }
 

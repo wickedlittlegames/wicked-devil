@@ -135,11 +135,13 @@
 - (void) action_shoot_rocket:(Game*)game
 {
     self.running = YES;
+    [game.fx showWarningAtPosition:ccp([self worldBoundingBox].origin.x,[[CCDirector sharedDirector] winSize].height)];
     
     // SHOOT A ROCKET AT THE PLAYER
     Projectile *projectile = [Projectile spriteWithFile:@"ingame-rocket.png"];
     [projectile setPosition:ccp([self worldBoundingBox].origin.x, [self worldBoundingBox].origin.y + 300)];
     
+    // Rocket trail
     EnemyFX *rocket_fx = [EnemyFX particleWithFile:@"RocketBlast.plist"];
     [rocket_fx setPosition:ccp([self worldBoundingBox].origin.x, [self worldBoundingBox].origin.y + 315)];
     rocket_fx.tag = 1111;
@@ -172,27 +174,7 @@
                            nil]];
     [rocket_fx runAction:[CCSequence actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
-                           [CCCallFuncN actionWithTarget:self selector:@selector(action_end_projectile:)],
                            nil]];
-}
-
-- (void) action_angel_blast
-{
-    CCLOG(@"BLASTING");
-    EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];
-    [tmp_fx setPosition:[self worldBoundingBox].origin];
-    [self.fx addObject:tmp_fx];
-    
-    if ( ![self getChildByTag:1234] )
-    {
-        CCLOG(@"ADDING ORIGINAL FX");
-        [self addChild:tmp_fx z:10 tag:1234];
-    }
-    else
-    {
-        CCLOG(@"NOT ADDING - RESETTING");        
-        [tmp_fx resetSystem];
-    }
 }
 
 - (void) action_end_item
@@ -270,12 +252,10 @@
                                
                                if ( ![self getChildByTag:1234] )
                                {
-                                   CCLOG(@"ADDING ORIGINAL FX");
                                    [self addChild:tmp_fx z:10 tag:1234];
                                }
                                else
                                {
-                                   CCLOG(@"NOT ADDING - RESETTING");        
                                    [tmp_fx resetSystem];
                                }
 

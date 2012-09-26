@@ -19,7 +19,7 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible );
+    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible );
 }
 
 @end

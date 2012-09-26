@@ -13,5 +13,6 @@
 
 - (void) start:(int)effect position:(CGPoint)pos;
 - (void) stopAll;
+- (void) showWarningAtPosition:(CGPoint)tmp_pos;
 
 @end

@@ -79,12 +79,10 @@
         collab = [CCLayer node];
         [self addChild:layer_bg];        
         [self addChild:collab];
-        
-        //[collab addChild:layer_bg];
-        [collab addChild:layer_fx];
         [collab addChild:layer_game];
         [collab addChild:layer_player];
         [self addChild:layer_ui];
+        [collab addChild:layer_fx];
         
         game.player = layer_player.player;
         game.user = user;

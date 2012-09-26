@@ -166,8 +166,8 @@
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    streak = [CCMotionStreak streakWithFade:0.5 minSeg:0.1 width:10 color:ccWHITE textureFilename:@"ingame-collectable-small.png"];
-    [self addChild:streak z:1];
+    streak = [CCMotionStreak streakWithFade:0.5 minSeg:0.1 width:10 color:ccWHITE textureFilename:@"ingame-small-collectable.png"];
+    [self addChild:streak z:1000];
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

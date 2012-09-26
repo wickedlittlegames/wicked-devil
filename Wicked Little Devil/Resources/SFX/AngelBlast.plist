@@ -69,7 +69,7 @@
 	<key>sourcePositionVariancex</key>
 	<real>0</real>
 	<key>sourcePositionVariancey</key>
-	<real>30</real>
+	<integer>1</integer>
 	<key>sourcePositionx</key>
 	<integer>0</integer>
 	<key>sourcePositiony</key>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>angle</key>
-	<real>91.23000335693359</real>
+	<real>-91.23000335693359</real>
 	<key>angleVariance</key>
-	<real>12.32999992370605</real>
+	<real>12.3299999237061</real>
 	<key>blendFuncDestination</key>
 	<integer>1</integer>
 	<key>blendFuncSource</key>

@@ -126,7 +126,7 @@
         if ( self.level == 2 )             enemy.tag = 1;
         if ( self.level == 3 )             enemy.tag = 2;
         if ( self.level == 4 )             enemy.tag = 3;
-        if ( self.level == 5 )             enemy.tag = 4; enemy.opacity = 0;
+        if ( self.level == 5 )             { enemy.tag = 4; enemy.opacity = 0; }
         if ( self.level == 6 )             enemy.tag = 5;
         if ( self.level == 7 )             enemy.tag = 6;
 

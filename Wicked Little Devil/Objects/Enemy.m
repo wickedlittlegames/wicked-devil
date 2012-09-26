@@ -33,7 +33,7 @@
     {
         default: break;
         case 1: // BAT: Wave motion up and down
-			self.position = ccp(self.position.x + 0.5, self.position.y + sin((self.position.x+2)/10) * 0.5);
+			self.position = ccp(self.position.x + 0.2, self.position.y);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
             break;
     }
@@ -94,6 +94,10 @@
 {
     game.player.drag = ccp ( 0, 0 );
     game.player.velocity = ccp ( 0, 0 );
+    // uncomment this when there are children of blackhole
+    //CCSprite *blackhole_child = (CCSprite *)[self getChildByTag:1];
+    //[game.player setPosition:[blackhole_child worldBoundingBox].origin];
+    
     [game.player setPosition:ccp(game.player.position.x + 150, game.player.position.y + 150)];
     // TODO: SEND ANIMATION OF PORTAL ENTRY [game.player animate:4];
     self.running = YES;
@@ -152,7 +156,7 @@
     int realX = [[CCDirector sharedDirector] winSize].width + (projectile.contentSize.width/2);
     float ratio = (float) offY / (float) offX;
     int realY = (realX * ratio) + projectile.position.y;
-    CGPoint realDest = ccp([self worldBoundingBox].origin.x, realY);
+    CGPoint realDest = ccp(([self worldBoundingBox].origin.x) + self.contentSize.width/2, realY);
     
     // Determine the length of how far we're shooting
     int offRealX = realX - projectile.position.x;
@@ -255,7 +259,7 @@
           [NSString stringWithFormat:@"bat-flap%i.png", i]]];
     }
     
-    self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.05f];
+    self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.25f];
     CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.anim_flap]];
     
     EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];

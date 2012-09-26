@@ -69,7 +69,7 @@
             self.visible = NO;
             break;
         case 2: // MINE: Any time touched, blows up
-            [game.fx start:0 position:[self worldBoundingBox].origin];
+            [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
             game.player.health--;
             self.visible = NO;
             break;

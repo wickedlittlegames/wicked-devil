@@ -24,6 +24,7 @@
     CGSize screenSize;
     
     CCMenu *menu; // temp
+    CCMotionStreak *streak;
 }
 
 @property (nonatomic, assign) float threshold;

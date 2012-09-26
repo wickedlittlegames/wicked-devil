@@ -23,4 +23,5 @@
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) FXLayer *fx;
+@property (nonatomic, assign) CGPoint touch;
 @end

@@ -49,7 +49,6 @@
     {
         [self addChild:fx z:10 tag:effect];
     }
-    
     else 
     { 
         [fx resetSystem]; 
@@ -63,7 +62,6 @@
     {
         [tmp_fx stopSystem];
     }
-
 }
 
 - (void) showWarningAtPosition:(CGPoint)tmp_pos
@@ -77,7 +75,6 @@
     id killSprite = [CCCallBlock actionWithBlock:^(void){ [self removeFromParentAndCleanup:YES]; } ];
     
     [warning runAction:[CCSequence actions:delay, fadeOut, killSprite, nil]];
-    
 }
 
 @end

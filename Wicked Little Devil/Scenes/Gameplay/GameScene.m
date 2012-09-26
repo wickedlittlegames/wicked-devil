@@ -164,6 +164,12 @@
     }
 }
 
+- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    streak = [CCMotionStreak streakWithFade:0.5 minSeg:0.1 width:10 color:ccWHITE textureFilename:@"ingame-collectable-small.png"];
+    [self addChild:streak z:1];
+}
+
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for( UITouch *touch in touches ) 
@@ -179,6 +185,8 @@
         {
             CGPoint location = [touch locationInView: [touch view]];
             location_touch = location;
+            [streak setPosition:location_touch];
+            [streak reset];
         }
     }
 }

@@ -135,7 +135,7 @@
 - (void) action_shoot_rocket:(Game*)game
 {
     self.running = YES;
-    [game.fx showWarningAtPosition:ccp([self worldBoundingBox].origin.x,[[CCDirector sharedDirector] winSize].height)];
+    [game.fx showWarningAtPosition:ccp([self worldBoundingBox].origin.x,[[CCDirector sharedDirector] winSize].height - 20)];
     
     // SHOOT A ROCKET AT THE PLAYER
     Projectile *projectile = [Projectile spriteWithFile:@"ingame-rocket.png"];
@@ -164,7 +164,7 @@
     int offRealX = realX - projectile.position.x;
     int offRealY = realY - projectile.position.y;
     float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-    float velocity = 300/1; // 480pixels/1sec
+    float velocity = 400/1; // 480pixels/1sec
     float realMoveDuration = length/velocity;
 
     // Move projectile to actual endpoint

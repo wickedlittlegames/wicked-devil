@@ -69,13 +69,14 @@
 - (void) showWarningAtPosition:(CGPoint)tmp_pos
 {
     CCSprite *warning = [CCSprite spriteWithFile:@"helpertext-collectsouls.png"];
-    [warning setPosition:tmp_pos];
+    [warning setPosition:ccp(tmp_pos.x + 10, tmp_pos.y)];
     [self addChild:warning];
     
-    id fadeOut = [CCFadeOut actionWithDuration:1.0];
+    id delay = [CCDelayTime actionWithDuration:2.0];
+    id fadeOut = [CCFadeOut actionWithDuration:0.5];
     id killSprite = [CCCallBlock actionWithBlock:^(void){ [self removeFromParentAndCleanup:YES]; } ];
     
-    [warning runAction:[CCSequence actions:fadeOut, killSprite, nil]];
+    [warning runAction:[CCSequence actions:delay, fadeOut, killSprite, nil]];
     
 }
 

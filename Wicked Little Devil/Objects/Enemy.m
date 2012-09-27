@@ -64,8 +64,7 @@
     {
         case 1: // BAT: Jump ontop, or die below
             if ( game.player.velocity.y > 0 ) { game.player.health--; if ( game.player.health <= 0 ) { game.player.animating = NO; [game.player animate:4]; } }
-            else [game.player jump:game.player.jumpspeed];
-            [self action_bat_hit];
+            else { [game.player jump:game.player.jumpspeed]; [self action_bat_hit]; }
             break;
         case 2: // MINE: Any time touched, blows up
             [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
@@ -90,7 +89,7 @@
 {
     // TODO: Needs tweaking to make look nicer
     id up   = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,50)]];
-    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-300)]];
+    id down = [CCEaseOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-250)]];
     id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
     [self runAction:[CCSequence actions:up,down,end, nil]];
@@ -156,16 +155,20 @@
     int offRealX = realX - projectile.position.x;
     int offRealY = realY - projectile.position.y;
     float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-    float velocity = 400/1; // 480pixels/1sec
+    float velocity = 350/1; // 480pixels/1sec
     float realMoveDuration = length/velocity;
+    
+    id action_end = [CCCallBlock actionWithBlock:^(void) { projectile.visible = NO; }];
+    id fx_end     = [CCCallBlock actionWithBlock:^(void) { [rocket_fx stopSystem]; [rocket_fx removeFromParentAndCleanup:YES]; }];
 
     // Move projectile to actual endpoint
     [projectile runAction:[CCSequence actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
-                           [CCCallFuncN actionWithTarget:self selector:@selector(action_end_projectile:)],
+                           action_end,
                            nil]];
     [rocket_fx runAction:[CCSequence actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+                           fx_end,
                            nil]];
 }
 
@@ -173,14 +176,6 @@
 {
     self.visible = NO;
     self.running = NO;
-}
-
-- (void) action_end_projectile:(id)sender
-{
-    Projectile *sprite = (Projectile*)sender;
-    self.visible = NO;
-    [self.projectiles removeAllObjects];
-    [sprite removeFromParentAndCleanup:YES];
 }
 
 - (bool) intersectCheck:(Game*)game
@@ -207,7 +202,7 @@
 {
     float xdif = self.position.x - game.player.position.x;
     float ydif = self.position.y - game.player.position.y;
-    float radius = 100;
+    float radius = 30;
     float radiusTwo = 1;
     
     float distance = sqrt(xdif*xdif+ydif*ydif);

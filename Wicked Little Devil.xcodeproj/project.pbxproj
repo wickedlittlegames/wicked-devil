@@ -273,12 +273,15 @@
 		9C9220B01613AC2000FAEE8F /* AnimExplosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220AE1613AC2000FAEE8F /* AnimExplosion.png */; };
 		9C9220B21613AEE700FAEE8F /* ingame-mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B11613AEE700FAEE8F /* ingame-mine.png */; };
 		9C9220BA1614501F00FAEE8F /* platform-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B51614501F00FAEE8F /* platform-broken.png */; };
-		9C9220BB1614501F00FAEE8F /* platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B61614501F00FAEE8F /* platform-normal.png */; };
+		9C9220BB1614501F00FAEE8F /* ingame-platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B61614501F00FAEE8F /* ingame-platform-normal.png */; };
 		9C9220BC1614501F00FAEE8F /* platform-moving.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B71614501F00FAEE8F /* platform-moving.png */; };
 		9C9220BD1614501F00FAEE8F /* platform-jump.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B81614501F00FAEE8F /* platform-jump.png */; };
 		9C9220BE1614501F00FAEE8F /* platform-trigger.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B91614501F00FAEE8F /* platform-trigger.png */; };
 		9C9220C01614594500FAEE8F /* ingame-bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220BF1614594500FAEE8F /* ingame-bubble.png */; };
 		9C9220C21614599B00FAEE8F /* ingame-bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220C11614599B00FAEE8F /* ingame-bat.png */; };
+		9C9220C81614836000FAEE8F /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9220C71614835F00FAEE8F /* GameOverScene.m */; };
+		9C9220CF1614895700FAEE8F /* AnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220CD1614895700FAEE8F /* AnimDevil.png */; };
+		9C9220D01614895700FAEE8F /* AnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220CE1614895700FAEE8F /* AnimDevil.plist */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CABCF3D1611D5EA006DFDE9 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */; };
@@ -291,8 +294,6 @@
 		9CABCF441611D5EA006DFDE9 /* bg-loop3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF081611D5EA006DFDE9 /* bg-loop3.wav */; };
 		9CABCF451611D5EA006DFDE9 /* bg-loop4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF091611D5EA006DFDE9 /* bg-loop4.wav */; };
 		9CABCF461611D5EA006DFDE9 /* bg-main.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF0A1611D5EA006DFDE9 /* bg-main.wav */; };
-		9CABCF471611D5EA006DFDE9 /* DevilAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF0D1611D5EA006DFDE9 /* DevilAnim.plist */; };
-		9CABCF481611D5EA006DFDE9 /* DevilAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF0E1611D5EA006DFDE9 /* DevilAnim.png */; };
 		9CABCF491611D5EA006DFDE9 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF101611D5EA006DFDE9 /* fps_images-hd.png */; };
 		9CABCF4A1611D5EA006DFDE9 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF111611D5EA006DFDE9 /* fps_images-ipadhd.png */; };
 		9CABCF4B1611D5EA006DFDE9 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF121611D5EA006DFDE9 /* fps_images.png */; };
@@ -353,13 +354,14 @@
 		9CDF942C15B561CA0017E58B /* FXLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942215B561CA0017E58B /* FXLayer.m */; };
 		9CDF942F15B561CA0017E58B /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942815B561CA0017E58B /* PlayerLayer.m */; };
 		9CDF943015B561CA0017E58B /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942A15B561CA0017E58B /* UILayer.m */; };
-		9CDF943515B561DC0017E58B /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943215B561DC0017E58B /* GameOverScene.m */; };
 		9CDF944315B561EE0017E58B /* EquipScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943815B561EE0017E58B /* EquipScene.m */; };
 		9CDF944415B561EE0017E58B /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943A15B561EE0017E58B /* LevelSelectScene.m */; };
 		9CDF944615B561EE0017E58B /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF943E15B561EE0017E58B /* ShopScene.m */; };
 		9CDF944715B561EE0017E58B /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944015B561EE0017E58B /* StartScene.m */; };
 		9CDF944C15B561FA0017E58B /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF944A15B561FA0017E58B /* SimpleTableCell.m */; };
 		9CDF944D15B561FA0017E58B /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */; };
+		9CE3239B16148BEA00F10DF4 /* bg-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE3239A16148BEA00F10DF4 /* bg-home.png */; };
+		9CE3239D16148CCC00F10DF4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE3239C16148CCC00F10DF4 /* Begin-Button.png */; };
 		9CE614B215B70B3A00AF1C78 /* MKSKProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614A915B70B3A00AF1C78 /* MKSKProduct.m */; };
 		9CE614B315B70B3A00AF1C78 /* MKSKSubscriptionProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614AB15B70B3A00AF1C78 /* MKSKSubscriptionProduct.m */; };
 		9CE614B415B70B3A00AF1C78 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CE614AD15B70B3A00AF1C78 /* MKStoreKitConfigs.plist */; };
@@ -651,12 +653,15 @@
 		9C9220AE1613AC2000FAEE8F /* AnimExplosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimExplosion.png; sourceTree = "<group>"; };
 		9C9220B11613AEE700FAEE8F /* ingame-mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-mine.png"; sourceTree = "<group>"; };
 		9C9220B51614501F00FAEE8F /* platform-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-broken.png"; sourceTree = "<group>"; };
-		9C9220B61614501F00FAEE8F /* platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal.png"; sourceTree = "<group>"; };
+		9C9220B61614501F00FAEE8F /* ingame-platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-platform-normal.png"; sourceTree = "<group>"; };
 		9C9220B71614501F00FAEE8F /* platform-moving.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-moving.png"; sourceTree = "<group>"; };
 		9C9220B81614501F00FAEE8F /* platform-jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-jump.png"; sourceTree = "<group>"; };
 		9C9220B91614501F00FAEE8F /* platform-trigger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-trigger.png"; sourceTree = "<group>"; };
 		9C9220BF1614594500FAEE8F /* ingame-bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-bubble.png"; sourceTree = "<group>"; };
 		9C9220C11614599B00FAEE8F /* ingame-bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-bat.png"; sourceTree = "<group>"; };
+		9C9220C71614835F00FAEE8F /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverScene.m; path = Scenes/Gameplay/GameOverScene.m; sourceTree = "<group>"; };
+		9C9220CD1614895700FAEE8F /* AnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDevil.png; sourceTree = "<group>"; };
+		9C9220CE1614895700FAEE8F /* AnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDevil.plist; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -671,8 +676,6 @@
 		9CABCF081611D5EA006DFDE9 /* bg-loop3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bg-loop3.wav"; sourceTree = "<group>"; };
 		9CABCF091611D5EA006DFDE9 /* bg-loop4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bg-loop4.wav"; sourceTree = "<group>"; };
 		9CABCF0A1611D5EA006DFDE9 /* bg-main.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bg-main.wav"; sourceTree = "<group>"; };
-		9CABCF0D1611D5EA006DFDE9 /* DevilAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevilAnim.plist; sourceTree = "<group>"; };
-		9CABCF0E1611D5EA006DFDE9 /* DevilAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevilAnim.png; sourceTree = "<group>"; };
 		9CABCF101611D5EA006DFDE9 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		9CABCF111611D5EA006DFDE9 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		9CABCF121611D5EA006DFDE9 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -749,7 +752,6 @@
 		9CDF942915B561CA0017E58B /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILayer.h; path = Scenes/Gameplay/Layers/UILayer.h; sourceTree = "<group>"; };
 		9CDF942A15B561CA0017E58B /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayer.m; path = Scenes/Gameplay/Layers/UILayer.m; sourceTree = "<group>"; };
 		9CDF943115B561DC0017E58B /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = Scenes/Gameplay/GameOverScene.h; sourceTree = "<group>"; };
-		9CDF943215B561DC0017E58B /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverScene.m; path = Scenes/Gameplay/GameOverScene.m; sourceTree = "<group>"; };
 		9CDF943715B561EE0017E58B /* EquipScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EquipScene.h; path = Scenes/Menus/EquipScene.h; sourceTree = "<group>"; };
 		9CDF943815B561EE0017E58B /* EquipScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EquipScene.m; path = Scenes/Menus/EquipScene.m; sourceTree = "<group>"; };
 		9CDF943915B561EE0017E58B /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = Scenes/Menus/LevelSelectScene.h; sourceTree = "<group>"; };
@@ -761,6 +763,8 @@
 		9CDF944915B561FA0017E58B /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableCell.h; path = "Scenes/UI Items/SimpleTableCell.h"; sourceTree = "<group>"; };
 		9CDF944A15B561FA0017E58B /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableCell.m; path = "Scenes/UI Items/SimpleTableCell.m"; sourceTree = "<group>"; };
 		9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleTableCell.xib; path = "Scenes/UI Items/SimpleTableCell.xib"; sourceTree = "<group>"; };
+		9CE3239A16148BEA00F10DF4 /* bg-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-home.png"; sourceTree = "<group>"; };
+		9CE3239C16148CCC00F10DF4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9CE614A815B70B3A00AF1C78 /* MKSKProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSKProduct.h; sourceTree = "<group>"; };
 		9CE614A915B70B3A00AF1C78 /* MKSKProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSKProduct.m; sourceTree = "<group>"; };
 		9CE614AA15B70B3A00AF1C78 /* MKSKSubscriptionProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSKSubscriptionProduct.h; sourceTree = "<group>"; };
@@ -1299,7 +1303,7 @@
 				9CA61BA315B5655300B447E9 /* GameScene.h */,
 				9CA61BA415B5655300B447E9 /* GameScene.m */,
 				9CDF943115B561DC0017E58B /* GameOverScene.h */,
-				9CDF943215B561DC0017E58B /* GameOverScene.m */,
+				9C9220C71614835F00FAEE8F /* GameOverScene.m */,
 			);
 			name = Gameplay;
 			sourceTree = "<group>";
@@ -1375,10 +1379,10 @@
 		9CABCF0C1611D5EA006DFDE9 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				9C9220CD1614895700FAEE8F /* AnimDevil.png */,
+				9C9220CE1614895700FAEE8F /* AnimDevil.plist */,
 				9C0FD13616132C6D007BDFD6 /* BatAnim.plist */,
 				9C0FD13716132C6D007BDFD6 /* BatAnim.png */,
-				9CABCF0D1611D5EA006DFDE9 /* DevilAnim.plist */,
-				9CABCF0E1611D5EA006DFDE9 /* DevilAnim.png */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1406,7 +1410,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9220B51614501F00FAEE8F /* platform-broken.png */,
-				9C9220B61614501F00FAEE8F /* platform-normal.png */,
+				9C9220B61614501F00FAEE8F /* ingame-platform-normal.png */,
 				9C9220B71614501F00FAEE8F /* platform-moving.png */,
 				9C9220B81614501F00FAEE8F /* platform-jump.png */,
 				9C9220B91614501F00FAEE8F /* platform-trigger.png */,
@@ -1426,6 +1430,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CE3239C16148CCC00F10DF4 /* Begin-Button.png */,
+				9CE3239A16148BEA00F10DF4 /* bg-home.png */,
 				9C9220A816139DEA00FAEE8F /* bg-topbar.png */,
 				9CABCF201611D5EA006DFDE9 /* bg-menu-afterlife.png */,
 				9CABCF211611D5EA006DFDE9 /* bg-menu-hell.png */,
@@ -1771,8 +1777,6 @@
 				9CABCF441611D5EA006DFDE9 /* bg-loop3.wav in Resources */,
 				9CABCF451611D5EA006DFDE9 /* bg-loop4.wav in Resources */,
 				9CABCF461611D5EA006DFDE9 /* bg-main.wav in Resources */,
-				9CABCF471611D5EA006DFDE9 /* DevilAnim.plist in Resources */,
-				9CABCF481611D5EA006DFDE9 /* DevilAnim.png in Resources */,
 				9CABCF491611D5EA006DFDE9 /* fps_images-hd.png in Resources */,
 				9CABCF4A1611D5EA006DFDE9 /* fps_images-ipadhd.png in Resources */,
 				9CABCF4B1611D5EA006DFDE9 /* fps_images.png in Resources */,
@@ -1835,12 +1839,16 @@
 				9C9220B01613AC2000FAEE8F /* AnimExplosion.png in Resources */,
 				9C9220B21613AEE700FAEE8F /* ingame-mine.png in Resources */,
 				9C9220BA1614501F00FAEE8F /* platform-broken.png in Resources */,
-				9C9220BB1614501F00FAEE8F /* platform-normal.png in Resources */,
+				9C9220BB1614501F00FAEE8F /* ingame-platform-normal.png in Resources */,
 				9C9220BC1614501F00FAEE8F /* platform-moving.png in Resources */,
 				9C9220BD1614501F00FAEE8F /* platform-jump.png in Resources */,
 				9C9220BE1614501F00FAEE8F /* platform-trigger.png in Resources */,
 				9C9220C01614594500FAEE8F /* ingame-bubble.png in Resources */,
 				9C9220C21614599B00FAEE8F /* ingame-bat.png in Resources */,
+				9C9220CF1614895700FAEE8F /* AnimDevil.png in Resources */,
+				9C9220D01614895700FAEE8F /* AnimDevil.plist in Resources */,
+				9CE3239B16148BEA00F10DF4 /* bg-home.png in Resources */,
+				9CE3239D16148CCC00F10DF4 /* Begin-Button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1865,7 +1873,6 @@
 				9CDF942C15B561CA0017E58B /* FXLayer.m in Sources */,
 				9CDF942F15B561CA0017E58B /* PlayerLayer.m in Sources */,
 				9CDF943015B561CA0017E58B /* UILayer.m in Sources */,
-				9CDF943515B561DC0017E58B /* GameOverScene.m in Sources */,
 				9CDF944315B561EE0017E58B /* EquipScene.m in Sources */,
 				9CDF944415B561EE0017E58B /* LevelSelectScene.m in Sources */,
 				9CDF944615B561EE0017E58B /* ShopScene.m in Sources */,
@@ -1891,6 +1898,7 @@
 				9CABCF761611D653006DFDE9 /* CCNode+CoordHelpers.m in Sources */,
 				9CABCF831611E911006DFDE9 /* Trigger.m in Sources */,
 				9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */,
+				9C9220C81614836000FAEE8F /* GameOverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

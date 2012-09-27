@@ -63,7 +63,7 @@
     switch(action_id)
     {
         case 1: // BAT: Jump ontop, or die below
-            if ( game.player.velocity.y > 0 ) game.player.health--;
+            if ( game.player.velocity.y > 0 ) { game.player.health--; if ( game.player.health <= 0 ) { game.player.animating = NO; [game.player animate:4]; } }
             else [game.player jump:game.player.jumpspeed];
             [self action_bat_hit];
             break;

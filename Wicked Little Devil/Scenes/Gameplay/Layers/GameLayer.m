@@ -165,10 +165,6 @@
         
         if ( game.isGameover ) 
         {
-            if ( !game.player.isAlive )
-            {
-                [game.player animate:4];
-            }
             [self end:game];
         }
     }

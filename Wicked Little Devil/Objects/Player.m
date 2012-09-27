@@ -20,6 +20,7 @@
         self.velocity = ccp ( 0 , 0 );
         self.drag = ccp ( 0, 0 );
         self.jumpspeed = 7.0;
+        self.scale *= 1.5;
         self.gravity = 0.18;
         self.modifier_gravity = 0;
         self.health = 1.0;
@@ -35,7 +36,7 @@
         self.animating = NO;
         self.falling = NO;
         
-        //[self setupAnimations];
+        [self setupAnimations];
     }
     return self;
 }
@@ -72,21 +73,22 @@
     {
         self.animating = YES;
         
-//        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
+        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
         switch (animation_id)
         {
-//            case 1: // jump
-//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
-//                break;
-//            case 2:
-//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fall], nil]];
-//                break;
-//            case 3:
-//                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
-//                break;
+            case 1: // jump
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
+                break;
+            case 2:
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fall], nil]];
+                break;
+            case 3:
+                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
+                break;
             case 4:
-//                [self runAction:[CCSpawn actions:[CCAnimate actionWithAnimation:self.anim_die], [CCFadeOut actionWithDuration:1.0f], nil]];
-                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
+                CCLOG(@"RUNNING");
+               [self runAction:[CCSpawn actions:[CCAnimate actionWithAnimation:self.anim_die], [CCFadeOut actionWithDuration:0.5f], nil]];
+                //[self runAction:[CCFadeOut actionWithDuration:1.0f]];
                 break;
         }
     }
@@ -95,7 +97,7 @@
 - (void) end_animate
 {
     self.animating = NO;
-    [self stopAllActions];
+    //[self stopAllActions];
 }
 
 - (bool) isAlive
@@ -110,8 +112,8 @@
 
 - (void) setupAnimations
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"DevilAnim.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"DevilAnim.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil.png"];
     [self addChild:spriteSheet];
     
     NSMutableArray *arr_anim_jump = [NSMutableArray array];
@@ -145,7 +147,7 @@
     self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
     self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
     self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
-    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
 }
 
 - (void) setupPowerup:(int)powerup

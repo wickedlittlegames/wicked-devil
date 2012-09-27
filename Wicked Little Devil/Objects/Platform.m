@@ -89,6 +89,10 @@
                         [self action:self.tag game:game platforms:platforms];
                     }
                     break;
+                case 100: // End of level platform
+                    [game.player jump:game.player.jumpspeed*1.5];
+                    [self action:100 game:game platforms:platforms];
+                    break;
             }
         }
     }
@@ -124,6 +128,20 @@
         id end  = [CCCallFunc actionWithTarget:self selector:@selector(end_action)];
         
         [self runAction:[CCSequence actions:ease, end, nil]];
+    }
+    
+    if ( action_id == 100 && !self.animating )
+    {
+        self.animating = TRUE;
+        
+        id delay    = [CCDelayTime actionWithDuration:1.5];
+        id endgame  = [CCCallBlock actionWithBlock:^(void)
+                    {
+                          game.isGameover = YES;
+                          game.didWin = ( game.player.bigcollected >= 1 ? TRUE : FALSE );
+                    }];
+        
+        [self runAction:[CCSequence actions:delay, endgame, nil]];
     }
 }
 

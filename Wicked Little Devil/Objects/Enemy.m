@@ -52,8 +52,7 @@
                 if ( [self radiusCheck:game] )      [self action:self.tag game:game];
                 break;
             case 5: // black hole, add drag to the controls
-                if ( [self intersectCheck:game]) [self action:self.tag*2 game:game];
-                //if ( [self radiusCheck:game] )      { [self action:self.tag game:game]; } else { game.player.drag = ccp(0,0); }
+                if ( [self intersectCheck:game]) [self action:self.tag game:game];
                 break;
         }
     }
@@ -66,7 +65,7 @@
         case 1: // BAT: Jump ontop, or die below
             if ( game.player.velocity.y > 0 ) game.player.health--;
             else [game.player jump:game.player.jumpspeed];
-            self.visible = NO;
+            [self action_bat_hit];
             break;
         case 2: // MINE: Any time touched, blows up
             [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
@@ -81,36 +80,30 @@
             [self action_shoot_rocket:game];
             break;
         case 5: // !!TODO!! SPACE: Blackhole draws player in and transports player to a new location
-            [self action_drag_player:game];
-            break;
-        case 10: // SPACE part 2: Transports player to a new location
             [self action_teleport_player:game];
             break;
         default: break;
     }
 }
 
-- (void) action_teleport_player:(Game*)game
+- (void) action_bat_hit
 {
-    game.player.drag = ccp ( 0, 0 );
-    game.player.velocity = ccp ( 0, 0 );
-    // uncomment this when there are children of blackhole
-//    Enemy *blackhole_child = (Enemy *)[self getChildByTag:1000];
-//    [game.player setPosition:[blackhole_child worldBoundingBox].origin];
+    id up = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,100)]];
+    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1 position:ccp(0,-400)]];
+    id end = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
-    [game.player setPosition:ccp(game.player.position.x + 150, game.player.position.y + 150)];
-    // TODO: SEND ANIMATION OF PORTAL ENTRY [game.player animate:4];
-    self.running = YES;
+    [self runAction:[CCSequence actions:up,down,end, nil]];
+    
 }
 
-- (void) action_drag_player:(Game*)game
+- (void) action_teleport_player:(Game*)game
 {
-    float diff_x = game.player.position.x - [self worldBoundingBox].origin.x; // -100
-    float diff_y = game.player.position.y - [self worldBoundingBox].origin.y; // 200
-    float drag_factor = 50;
+    game.player.velocity = ccp ( 0, 0 );
     
-    CGPoint _drag = CGPointMake( diff_x/drag_factor, diff_y/drag_factor );
-    game.player.drag = _drag;
+    CCSprite *blackhole_child = (CCSprite *)[self getChildByTag:1000];
+    [game.player setPosition:[blackhole_child worldBoundingBox].origin];
+    
+    game.touch = ccp ( game.player.position.x, game.touch.y );
 }
 
 - (void) action_bubble_float:(Game*)game

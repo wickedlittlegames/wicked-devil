@@ -68,13 +68,13 @@
 
 - (void) animate:(int)animation_id
 {
-//    if ( !self.animating )
-//    {
-//        self.animating = YES;
-//        
+    if ( !self.animating )
+    {
+        self.animating = YES;
+        
 //        CCCallFunc *stopAnimation = [CCCallFunc actionWithTarget:self selector:@selector(end_animate)];
-//        switch (animation_id)
-//        {
+        switch (animation_id)
+        {
 //            case 1: // jump
 //                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_jump], stopAnimation, nil]];
 //                break;
@@ -84,11 +84,12 @@
 //            case 3:
 //                [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
 //                break;
-//            case 4:
-//                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
-//                break;
-//        }
-//    }
+            case 4:
+//                [self runAction:[CCSpawn actions:[CCAnimate actionWithAnimation:self.anim_die], [CCFadeOut actionWithDuration:1.0f], nil]];
+                [self runAction:[CCFadeOut actionWithDuration:1.0f]];
+                break;
+        }
+    }
 }
 
 - (void) end_animate

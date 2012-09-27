@@ -155,18 +155,12 @@
 {
     if ( game.player.controllable )
     {
-        float diff = location_touch.x - game.player.position.x;
+        float diff = game.touch.x - game.player.position.x;
         if (diff > 4)  diff = 4;
         if (diff < -4) diff = -4;
         CGPoint new_player_location = CGPointMake(game.player.position.x + diff, game.player.position.y);
         game.player.position = new_player_location;
     }
-}
-
-- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    streak = [CCMotionStreak streakWithFade:0.5 minSeg:0.1 width:10 color:ccWHITE textureFilename:@"ingame-small-collectable.png"];
-    [self addChild:streak z:1000];
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -183,9 +177,7 @@
         if ( game.player.controllable )
         {
             CGPoint location = [touch locationInView: [touch view]];
-            location_touch = location;
-            [streak setPosition:location_touch];
-            [streak reset];
+            game.touch = location;
         }
     }
 }
@@ -196,7 +188,7 @@
     game.isGameover = NO;
     game.player.controllable = YES;
     game.isIntro = NO;
-    location_touch = game.player.position;
+    game.touch = game.player.position;
     menu.visible = NO;
     
     [game.player jump:game.player.jumpspeed];

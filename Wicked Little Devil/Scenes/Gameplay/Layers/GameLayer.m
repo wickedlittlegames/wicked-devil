@@ -98,29 +98,15 @@
         if ( [bigcollectable isIntersectingPlayer:game.player] )
         {
             game.player.bigcollected++;
-            game.player.score += 500;
+            game.player.score += 1000;
             // do effect of collecting AND going to the top left
-            //[game.fx start:1 position:[bigcollectable worldBoundingBox].origin];
-            //[game.fx start:2 position:[bigcollectable worldBoundingBox].origin];
+            [game.fx start:1 position:[bigcollectable worldBoundingBox].origin];
         }
     }
-    
-    CCARRAY_FOREACH(triggers, trigger)
-    {
-        if ( [trigger isIntersectingPlayer:game.player] )
-        {
-            switch (trigger.tag)
-            {
-                default:
-                    game.isGameover = YES;
-                    game.didWin = ( game.player.bigcollected >= 1 ? TRUE : FALSE );
-                    break;
-            }
-        }
-    }
-    
+        
     CCARRAY_FOREACH(enemies, enemy)
     {
+        // tmp
         if ( self.level == 2 )             enemy.tag = 1;
         if ( self.level == 3 )             enemy.tag = 2;
         if ( self.level == 4 )             enemy.tag = 3;

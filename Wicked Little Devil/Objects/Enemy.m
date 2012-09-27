@@ -79,7 +79,7 @@
         case 4: // ROCKET: Shoots rocket at target player area
             [self action_shoot_rocket:game];
             break;
-        case 5: // !!TODO!! SPACE: Blackhole draws player in and transports player to a new location
+        case 5: // SPACE: Blackhole draws player in and transports player to a new location
             [self action_teleport_player:game];
             break;
         default: break;
@@ -88,12 +88,12 @@
 
 - (void) action_bat_hit
 {
-    id up = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,100)]];
-    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1 position:ccp(0,-400)]];
-    id end = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
+    // TODO: Needs tweaking to make look nicer
+    id up   = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,50)]];
+    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-300)]];
+    id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
     [self runAction:[CCSequence actions:up,down,end, nil]];
-    
 }
 
 - (void) action_teleport_player:(Game*)game
@@ -220,57 +220,54 @@
 
 - (void) setupAnimations
 {
-    if ( self.tag == 1 || self.tag == 6 )
-    {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
-    [self addChild:spriteSheet];
-    
-    NSMutableArray *arr_anim_flap = [NSMutableArray array];
-    for(int i = 1; i <= 7; ++i) {
-        [arr_anim_flap addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"bat-flap%i.png", i]]];
-    }
-    
-    self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.25f];
-    CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.anim_flap]];
-    
-    EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];
-    id anim_angel_blast = [CCCallBlock actionWithBlock:^(void)
-                           {
-                               [tmp_fx setPosition:self.position];
-                               [self.fx addObject:tmp_fx];
-                               
-                               if ( ![self getChildByTag:1234] )
-                               {
-                                   [self addChild:tmp_fx z:10 tag:1234];
-                               }
-                               else
-                               {
-                                   [tmp_fx resetSystem];
-                               }
-
-                           }];
-    id anim_angel_blast_stop = [CCCallBlock actionWithBlock:^(void)
-                           {
-                               [tmp_fx stopSystem];
-                           }];
-    id anim_angel_blast_delay = [CCDelayTime actionWithDuration:4];
-    id anim_angel = [CCRepeatForever actionWithAction:[CCSequence actions:anim_angel_blast, anim_angel_blast_delay, anim_angel_blast_stop, anim_angel_blast_delay, nil]];
-//    
     if ( self.tag == 1 && !self.animating )
     {
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
+        [self addChild:spriteSheet];
+        
+        NSMutableArray *arr_anim_flap = [NSMutableArray array];
+        for(int i = 1; i <= 7; ++i)
+        {
+            [arr_anim_flap addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"bat-flap%i.png", i]]];
+        }
+        
+        self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.1f];
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.anim_flap]];
+        
         [self runAction:repeater];
         self.animating = YES;
     }
-//
+    
     if ( self.tag == 6 && !self.animating )
     {
-        CCLOG(@"RUNNING ANGEL ANIM");
+        EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];
+        id anim_angel_blast = [CCCallBlock actionWithBlock:^(void)
+                               {
+                                   [tmp_fx setPosition:self.position];
+                                   [self.fx addObject:tmp_fx];
+                                   
+                                   if ( ![self getChildByTag:1234] )
+                                   {
+                                       [self addChild:tmp_fx z:10 tag:1234];
+                                   }
+                                   else
+                                   {
+                                       [tmp_fx resetSystem];
+                                   }
+                                   
+                               }];
+        id anim_angel_blast_stop = [CCCallBlock actionWithBlock:^(void)
+                                    {
+                                        [tmp_fx stopSystem];
+                                    }];
+        id anim_angel_blast_delay = [CCDelayTime actionWithDuration:4];
+        id anim_angel = [CCRepeatForever actionWithAction:[CCSequence actions:anim_angel_blast, anim_angel_blast_delay, anim_angel_blast_stop, anim_angel_blast_delay, nil]];
+        
         [self runAction:anim_angel];
         self.animating = YES;
-    }
     }
 }
 

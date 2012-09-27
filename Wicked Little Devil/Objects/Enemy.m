@@ -131,7 +131,6 @@
     [game.player runAction:[CCSequence actions:floatup_player, end_action_player, nil]];
 }
 
-
 - (void) action_shoot_rocket:(Game*)game
 {
     self.running = YES;

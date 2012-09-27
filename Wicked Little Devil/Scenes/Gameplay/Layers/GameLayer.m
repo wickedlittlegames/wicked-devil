@@ -32,8 +32,6 @@
     
     for (CCNode* node in self.children)
     {
-        //[node setPosition:ccp(node.position.x/2, node.position.y)];
-        
         if ([node isKindOfClass: [Platform class]])
         {
             [platforms addObject:node];
@@ -53,7 +51,6 @@
         if ([node isKindOfClass: [Enemy class]])
         {
             [enemies addObject:node];
-            //node.scale *= 2;
         }
         if ([node isKindOfClass: [Trigger class]])
         {

@@ -11,7 +11,7 @@
 @implementation Player
 @synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score;
 @synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
-@synthesize anim_jump, anim_fall, anim_fallfar;
+@synthesize anim_jump, anim_fall, anim_fallfar, anim_die;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -134,9 +134,17 @@
           [NSString stringWithFormat:@"fall_far%i.png", i]]];
     }
     
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
     self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
     self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
     self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.05f];
 }
 
 - (void) setupPowerup:(int)powerup

@@ -42,18 +42,15 @@
 
 - (void) start:(int)effect position:(CGPoint)pos
 {
-    CCLOG(@"FIRING");
     CCParticleSystemQuad *fx = [self.effects objectAtIndex:effect];
     [fx setPosition:pos];
     
     if ( ![self getChildByTag:effect] ) 
     {
-        CCLOG(@"ADDING");        
         [self addChild:fx z:1001 tag:effect];
     }
     else 
     {
-            CCLOG(@"REsettinh");
         [fx resetSystem];
     }
 }

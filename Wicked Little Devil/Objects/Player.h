@@ -15,7 +15,7 @@
 @property (nonatomic, assign) int collected, bigcollected, score;
 @property (nonatomic, retain) id last_platform_touched;
 @property (nonatomic, assign) BOOL controllable, toggled_platform, animating, falling;
-@property (nonatomic, retain) CCAnimation *anim_jump, *anim_fall, *anim_fallfar;
+@property (nonatomic, retain) CCAnimation *anim_jump, *anim_fall, *anim_fallfar, *anim_die;
 
 - (void) jump:(float)speed;
 - (void) move;

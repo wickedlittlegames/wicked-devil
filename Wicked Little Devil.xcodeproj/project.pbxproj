@@ -267,6 +267,17 @@
 		9C84ED4F1594C50A0083DF40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4E1594C50A0083DF40 /* Security.framework */; };
 		9C8DC251157F66C300760A04 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC250157F66C300760A04 /* GameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C912DB21610659300928FA5 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C912DB11610659200928FA5 /* Social.framework */; };
+		9C9220A916139DEA00FAEE8F /* bg-topbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220A816139DEA00FAEE8F /* bg-topbar.png */; };
+		9C9220AC1613A70C00FAEE8F /* ingame-rocket-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220AB1613A70C00FAEE8F /* ingame-rocket-warning.png */; };
+		9C9220AF1613AC2000FAEE8F /* AnimExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220AD1613AC2000FAEE8F /* AnimExplosion.plist */; };
+		9C9220B01613AC2000FAEE8F /* AnimExplosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220AE1613AC2000FAEE8F /* AnimExplosion.png */; };
+		9C9220B21613AEE700FAEE8F /* ingame-mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B11613AEE700FAEE8F /* ingame-mine.png */; };
+		9C9220B41613B66600FAEE8F /* ingame-platform-normal-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B31613B66600FAEE8F /* ingame-platform-normal-hd.png */; };
+		9C9220BA1614501F00FAEE8F /* platform-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B51614501F00FAEE8F /* platform-broken.png */; };
+		9C9220BB1614501F00FAEE8F /* platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B61614501F00FAEE8F /* platform-normal.png */; };
+		9C9220BC1614501F00FAEE8F /* platform-moving.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B71614501F00FAEE8F /* platform-moving.png */; };
+		9C9220BD1614501F00FAEE8F /* platform-jump.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B81614501F00FAEE8F /* platform-jump.png */; };
+		9C9220BE1614501F00FAEE8F /* platform-trigger.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220B91614501F00FAEE8F /* platform-trigger.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CABCF3D1611D5EA006DFDE9 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */; };
@@ -293,7 +304,6 @@
 		9CABCF521611D5EA006DFDE9 /* helpertext-collectsouls.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF1A1611D5EA006DFDE9 /* helpertext-collectsouls.png */; };
 		9CABCF531611D5EA006DFDE9 /* ingame-big-collectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF1B1611D5EA006DFDE9 /* ingame-big-collectable.png */; };
 		9CABCF541611D5EA006DFDE9 /* ingame-devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF1C1611D5EA006DFDE9 /* ingame-devil.png */; };
-		9CABCF551611D5EA006DFDE9 /* ingame-platform-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF1D1611D5EA006DFDE9 /* ingame-platform-normal.png */; };
 		9CABCF561611D5EA006DFDE9 /* ingame-small-collectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF1E1611D5EA006DFDE9 /* ingame-small-collectable.png */; };
 		9CABCF571611D5EA006DFDE9 /* bg-menu-afterlife.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF201611D5EA006DFDE9 /* bg-menu-afterlife.png */; };
 		9CABCF581611D5EA006DFDE9 /* bg-menu-hell.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF211611D5EA006DFDE9 /* bg-menu-hell.png */; };
@@ -634,6 +644,17 @@
 		9C8DC24F157F66C300760A04 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		9C8DC250157F66C300760A04 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		9C912DB11610659200928FA5 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		9C9220A816139DEA00FAEE8F /* bg-topbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-topbar.png"; sourceTree = "<group>"; };
+		9C9220AB1613A70C00FAEE8F /* ingame-rocket-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-rocket-warning.png"; sourceTree = "<group>"; };
+		9C9220AD1613AC2000FAEE8F /* AnimExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimExplosion.plist; sourceTree = "<group>"; };
+		9C9220AE1613AC2000FAEE8F /* AnimExplosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimExplosion.png; sourceTree = "<group>"; };
+		9C9220B11613AEE700FAEE8F /* ingame-mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-mine.png"; sourceTree = "<group>"; };
+		9C9220B31613B66600FAEE8F /* ingame-platform-normal-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-platform-normal-hd.png"; sourceTree = "<group>"; };
+		9C9220B51614501F00FAEE8F /* platform-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-broken.png"; sourceTree = "<group>"; };
+		9C9220B61614501F00FAEE8F /* platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-normal.png"; sourceTree = "<group>"; };
+		9C9220B71614501F00FAEE8F /* platform-moving.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-moving.png"; sourceTree = "<group>"; };
+		9C9220B81614501F00FAEE8F /* platform-jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-jump.png"; sourceTree = "<group>"; };
+		9C9220B91614501F00FAEE8F /* platform-trigger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-trigger.png"; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -662,7 +683,6 @@
 		9CABCF1A1611D5EA006DFDE9 /* helpertext-collectsouls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "helpertext-collectsouls.png"; sourceTree = "<group>"; };
 		9CABCF1B1611D5EA006DFDE9 /* ingame-big-collectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-big-collectable.png"; sourceTree = "<group>"; };
 		9CABCF1C1611D5EA006DFDE9 /* ingame-devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-devil.png"; sourceTree = "<group>"; };
-		9CABCF1D1611D5EA006DFDE9 /* ingame-platform-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-platform-normal.png"; sourceTree = "<group>"; };
 		9CABCF1E1611D5EA006DFDE9 /* ingame-small-collectable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-small-collectable.png"; sourceTree = "<group>"; };
 		9CABCF201611D5EA006DFDE9 /* bg-menu-afterlife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menu-afterlife.png"; sourceTree = "<group>"; };
 		9CABCF211611D5EA006DFDE9 /* bg-menu-hell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-menu-hell.png"; sourceTree = "<group>"; };
@@ -1383,11 +1403,18 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9C9220B51614501F00FAEE8F /* platform-broken.png */,
+				9C9220B61614501F00FAEE8F /* platform-normal.png */,
+				9C9220B71614501F00FAEE8F /* platform-moving.png */,
+				9C9220B81614501F00FAEE8F /* platform-jump.png */,
+				9C9220B91614501F00FAEE8F /* platform-trigger.png */,
+				9C9220B31613B66600FAEE8F /* ingame-platform-normal-hd.png */,
+				9C9220B11613AEE700FAEE8F /* ingame-mine.png */,
+				9C9220AB1613A70C00FAEE8F /* ingame-rocket-warning.png */,
 				9C0FD1441613312C007BDFD6 /* ingame-rocket.png */,
 				9CABCF1A1611D5EA006DFDE9 /* helpertext-collectsouls.png */,
 				9CABCF1B1611D5EA006DFDE9 /* ingame-big-collectable.png */,
 				9CABCF1C1611D5EA006DFDE9 /* ingame-devil.png */,
-				9CABCF1D1611D5EA006DFDE9 /* ingame-platform-normal.png */,
 				9CABCF1E1611D5EA006DFDE9 /* ingame-small-collectable.png */,
 			);
 			path = Ingame;
@@ -1396,6 +1423,7 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C9220A816139DEA00FAEE8F /* bg-topbar.png */,
 				9CABCF201611D5EA006DFDE9 /* bg-menu-afterlife.png */,
 				9CABCF211611D5EA006DFDE9 /* bg-menu-hell.png */,
 				9CABCF221611D5EA006DFDE9 /* bg-menu-land.png */,
@@ -1431,6 +1459,8 @@
 		9CABCF3C1611D5EA006DFDE9 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				9C9220AD1613AC2000FAEE8F /* AnimExplosion.plist */,
+				9C9220AE1613AC2000FAEE8F /* AnimExplosion.png */,
 				9C0FD146161331B0007BDFD6 /* RocketBlast.plist */,
 				9C0FD147161331B0007BDFD6 /* RocketBlast.png */,
 				9C0FD1321613251C007BDFD6 /* AngelBlast.plist */,
@@ -1752,7 +1782,6 @@
 				9CABCF521611D5EA006DFDE9 /* helpertext-collectsouls.png in Resources */,
 				9CABCF531611D5EA006DFDE9 /* ingame-big-collectable.png in Resources */,
 				9CABCF541611D5EA006DFDE9 /* ingame-devil.png in Resources */,
-				9CABCF551611D5EA006DFDE9 /* ingame-platform-normal.png in Resources */,
 				9CABCF561611D5EA006DFDE9 /* ingame-small-collectable.png in Resources */,
 				9CABCF571611D5EA006DFDE9 /* bg-menu-afterlife.png in Resources */,
 				9CABCF581611D5EA006DFDE9 /* bg-menu-hell.png in Resources */,
@@ -1797,6 +1826,17 @@
 				9C0FD1451613312C007BDFD6 /* ingame-rocket.png in Resources */,
 				9C0FD148161331B0007BDFD6 /* RocketBlast.plist in Resources */,
 				9C0FD149161331B0007BDFD6 /* RocketBlast.png in Resources */,
+				9C9220A916139DEA00FAEE8F /* bg-topbar.png in Resources */,
+				9C9220AC1613A70C00FAEE8F /* ingame-rocket-warning.png in Resources */,
+				9C9220AF1613AC2000FAEE8F /* AnimExplosion.plist in Resources */,
+				9C9220B01613AC2000FAEE8F /* AnimExplosion.png in Resources */,
+				9C9220B21613AEE700FAEE8F /* ingame-mine.png in Resources */,
+				9C9220B41613B66600FAEE8F /* ingame-platform-normal-hd.png in Resources */,
+				9C9220BA1614501F00FAEE8F /* platform-broken.png in Resources */,
+				9C9220BB1614501F00FAEE8F /* platform-normal.png in Resources */,
+				9C9220BC1614501F00FAEE8F /* platform-moving.png in Resources */,
+				9C9220BD1614501F00FAEE8F /* platform-jump.png in Resources */,
+				9C9220BE1614501F00FAEE8F /* platform-trigger.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,7 @@
     
     for (CCNode* node in self.children)
     {
-        [node setPosition:ccp(node.position.x/2, node.position.y)];
+        //[node setPosition:ccp(node.position.x/2, node.position.y)];
         
         if ([node isKindOfClass: [Platform class]])
         {
@@ -53,6 +53,7 @@
         if ([node isKindOfClass: [Enemy class]])
         {
             [enemies addObject:node];
+            //node.scale *= 2;
         }
         if ([node isKindOfClass: [Trigger class]])
         {
@@ -146,7 +147,7 @@
             {
                 if ( [projectile isIntersectingPlayer:game.player] )
                 {
-                    [game.fx start:1 position:[projectile worldBoundingBox].origin];
+                    [game.fx start:1 position:[game.player worldBoundingBox].origin];
                     projectile.visible = NO;
                     [enemy removeChildByTag:1111 cleanup:YES];
                     game.player.health--;

@@ -34,6 +34,10 @@
     pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [self addChild:pause_bg];
     pause_bg.visible = FALSE;
+    
+    CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
+    [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
+    [self addChild:uibg];
 
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
@@ -47,19 +51,29 @@
     CCMenuItemImage *btn_menu   = [CCMenuItemImage itemWithNormalImage:@"btn-gameplay-menu.png" selectedImage:@"btn-gameplay-menu.png" disabledImage:@"btn-gameplay-menu.png" target:self selector:@selector(tap_pause)];
     CCMenu *gameplay_menu = [CCMenu menuWithItems:btn_reload,btn_menu, nil];
     [gameplay_menu alignItemsHorizontallyWithPadding:10];
-    gameplay_menu.position = ccp(screenSize.width - 40, screenSize.height - 25);
+    gameplay_menu.position = ccp(screenSize.width - 45, screenSize.height - 16);
     [self addChild:gameplay_menu];
     
-    int x_mod = 25;
+    int x_one = 15;
+    int x_two = 45;
+    int x_three = 75;
+    int x = 0;
+    
     for (int i = 1; i <= 3; i++)
     {
+        switch (i)
+        {
+            case 1: x = x_one; break;
+            case 2: x = x_two; break;
+            case 3: x = x_three; break;
+        }
         bigcollect_empty = [CCSprite spriteWithFile:@"icon-bigcollectable-empty.png"];
-        bigcollect_empty.position = ccp ( x_mod * i, screenSize.height - 25 );
+        bigcollect_empty.position = ccp ( x, screenSize.height - 16 );
         bigcollect_empty.tag = i;
         [self addChild:bigcollect_empty];
         
         bigcollect = [CCSprite spriteWithFile:@"icon-bigcollectable.png"];
-        bigcollect.position = ccp ( x_mod * i, screenSize.height - 25 );
+        bigcollect.position = ccp ( x, screenSize.height - 16 );
         bigcollect.visible = FALSE;
         bigcollect.tag = i*10;
         [self addChild:bigcollect];
@@ -100,15 +114,36 @@
 {
     if ( game.player.bigcollected == 1 && ![self getChildByTag:10].visible )
     {
-        [self getChildByTag:10].visible = TRUE;
+        id scaleXAction = [CCScaleTo   actionWithDuration:.25f scaleX:self.scaleX scaleY:self.scaleY];
+        id skewAction   = [CCSkewBy    actionWithDuration:.25f skewX:0.0f skewY:self.scaleY];
+
+        CCSprite *tmp_sprite = (CCSprite*)[self getChildByTag:10];
+        tmp_sprite.scaleX = 0.0f;
+        tmp_sprite.skewX = 0.0f;
+        tmp_sprite.visible = TRUE;
+        [tmp_sprite runAction:[CCSpawn actions:scaleXAction, skewAction, nil]];
     }
     if ( game.player.bigcollected == 2 && ![self getChildByTag:20].visible )
     {
-        [self getChildByTag:20].visible = TRUE;
+        id scaleXAction = [CCScaleTo   actionWithDuration:.25f scaleX:self.scaleX scaleY:self.scaleY];
+        id skewAction   = [CCSkewBy    actionWithDuration:.25f skewX:0.0f skewY:self.scaleY];
+        
+        CCSprite *tmp_sprite = (CCSprite*)[self getChildByTag:20];
+        tmp_sprite.scaleX = 0.0f;
+        tmp_sprite.skewX = 0.0f;
+        tmp_sprite.visible = TRUE;
+        [tmp_sprite runAction:[CCSpawn actions:scaleXAction, skewAction, nil]];
     }
     if ( game.player.bigcollected == 3 && ![self getChildByTag:30].visible )
     {
-        [self getChildByTag:30].visible = TRUE;
+        id scaleXAction = [CCScaleTo   actionWithDuration:.25f scaleX:self.scaleX scaleY:self.scaleY];
+        id skewAction   = [CCSkewBy    actionWithDuration:.25f skewX:0.0f skewY:self.scaleY];
+        
+        CCSprite *tmp_sprite = (CCSprite*)[self getChildByTag:30];
+        tmp_sprite.scaleX = 0.0f;
+        tmp_sprite.skewX = 0.0f;
+        tmp_sprite.visible = TRUE;
+        [tmp_sprite runAction:[CCSpawn actions:scaleXAction, skewAction, nil]];
     }
 }
 

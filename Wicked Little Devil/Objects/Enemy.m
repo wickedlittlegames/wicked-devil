@@ -95,8 +95,8 @@
     game.player.drag = ccp ( 0, 0 );
     game.player.velocity = ccp ( 0, 0 );
     // uncomment this when there are children of blackhole
-    //CCSprite *blackhole_child = (CCSprite *)[self getChildByTag:1];
-    //[game.player setPosition:[blackhole_child worldBoundingBox].origin];
+//    Enemy *blackhole_child = (Enemy *)[self getChildByTag:1000];
+//    [game.player setPosition:[blackhole_child worldBoundingBox].origin];
     
     [game.player setPosition:ccp(game.player.position.x + 150, game.player.position.y + 150)];
     // TODO: SEND ANIMATION OF PORTAL ENTRY [game.player animate:4];
@@ -135,7 +135,7 @@
 - (void) action_shoot_rocket:(Game*)game
 {
     self.running = YES;
-    [game.fx showWarningAtPosition:ccp([self worldBoundingBox].origin.x,[[CCDirector sharedDirector] winSize].height - 20)];
+    [game.fx showWarningAtPosition:ccp(([self worldBoundingBox].origin.x + [self contentSize].width/2) - 7,[[CCDirector sharedDirector] winSize].height - 42)];
     
     // SHOOT A ROCKET AT THE PLAYER
     Projectile *projectile = [Projectile spriteWithFile:@"ingame-rocket.png"];

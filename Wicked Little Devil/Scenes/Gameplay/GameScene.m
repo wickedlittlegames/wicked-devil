@@ -80,9 +80,9 @@
         [self addChild:layer_bg];        
         [self addChild:collab];
         [collab addChild:layer_game];
+        [collab addChild:layer_fx];        
         [collab addChild:layer_player];
         [self addChild:layer_ui];
-        [collab addChild:layer_fx];
         
         game.player = layer_player.player;
         game.user = user;
@@ -93,7 +93,6 @@
         [layer_ui setupItemsforGame:game];   
         layer_game.world = w;
         layer_game.level = l;
-        
         
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
         float top = trigger_top.position.y;

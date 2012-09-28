@@ -8,18 +8,17 @@
 
 #import "cocos2d.h"
 
-@class User, LevelSelectScene, GameScene;
-@interface GameOverScene : CCLayer {
-    User *user;
-    int total;
-    CCLabelTTF *label_score;
-    CCLabelTTF *label_score_type;
-    NSArray *friendUsers;
-    NSMutableArray *friendIds;
+@class LevelSelectScene, GameScene, Game;
+@interface GameOverScene : CCLayer
+{
+    int timebonus, totalscore, tmp_player_score, tmp_score_increment, collectedbonus, basicscore;
+    CCLabelTTF *label_score, *label_subscore;
+    CCMenu *menu;
 }
-@property (nonatomic, assign) int score, timebonus, bigs, world, level;
 
-+(CCScene *) sceneWithScore:(int)_score timebonus:(int)_timebonus bigs:(int)_bigs forWorld:(int)_world andLevel:(int)_level;
-- (void) do_scores;
+@property (nonatomic, assign) Game *tmp_game;
+
++(CCScene *) sceneWithGame:(Game*)game;
+- (id) initWithGame:(Game*)game;
 
 @end

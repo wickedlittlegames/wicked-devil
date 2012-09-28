@@ -9,7 +9,7 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score;
+@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score, time;
 @synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
 @synthesize anim_jump, anim_fall, anim_fallfar, anim_die;
 
@@ -28,6 +28,7 @@
         self.collected = 0;
         self.bigcollected = 0;
         self.score = 0;
+        self.time = 0;
         self.last_platform_touched = NULL;
         
         // redo

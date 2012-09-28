@@ -66,7 +66,6 @@
     Platform *platform = nil;
     Collectable *collectable = nil;
     BigCollectable *bigcollectable = nil;
-    Trigger *trigger = nil;
     Enemy *enemy = nil;
     Projectile *projectile = nil;
     EnemyFX *fx = nil;
@@ -197,12 +196,7 @@
         }
         [game.user sync];
 
-        [[CCDirector sharedDirector] replaceScene:[GameOverScene 
-                                                   sceneWithScore:game.player.score 
-                                                   timebonus:100 
-                                                   bigs:game.player.bigcollected 
-                                                   forWorld:game.world 
-                                                   andLevel:game.level]];
+        [[CCDirector sharedDirector] replaceScene:[GameOverScene sceneWithGame:game]];
     }
     else 
     {

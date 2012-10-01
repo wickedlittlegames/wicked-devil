@@ -55,6 +55,8 @@
         [worlds addObject:[self space]];
         [worlds addObject:[self afterlife]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
+        [scroller selectPage:user.cache_current_world-1];
+        
         
         // Put the children to the screen
         [self addChild:scroller];               // World scroller to go through the level
@@ -70,6 +72,8 @@
 
 - (void) tap_world:(CCMenuItemFont*)sender
 {
+    user.cache_current_world = sender.tag;
+    [user sync_cache_current_world];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:sender.tag]]];
 }
 

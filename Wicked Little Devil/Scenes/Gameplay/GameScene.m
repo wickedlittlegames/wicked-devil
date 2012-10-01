@@ -59,8 +59,8 @@
         self.isTouchEnabled = YES;
         
         CCLOG(@"INIT: W: %i, L: %i", w, l);
-//        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
-        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-2.ccbi",w];
+        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
+//        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-2.ccbi",w];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
@@ -102,17 +102,17 @@
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         
         // INTRO
-        if ( !game.isIntro && !restart)
-        {
-            game.isIntro = YES;
-            float time_for_anim = top/400;
-
-            id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
-            id ease = [CCEaseSineOut actionWithAction:move];
-        
-            [collab setPosition:ccp(0,-top)];
-            [collab runAction: ease];
-        }
+//        if ( !game.isIntro && !restart)
+//        {
+//            game.isIntro = YES;
+//            float time_for_anim = top/400;
+//
+//            id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
+//            id ease = [CCEaseSineOut actionWithAction:move];
+//        
+//            [collab setPosition:ccp(0,-top)];
+//            [collab runAction: ease];
+//        }
         
         [self schedule:@selector(update:)];
     }

@@ -24,7 +24,7 @@
 #import "Game.h"
 
 @implementation Platform
-@synthesize health, animating, toggled;
+@synthesize health, animating, toggled, end_fx_added;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -134,7 +134,7 @@
     {
         self.animating = TRUE;
         
-        id delay    = [CCDelayTime actionWithDuration:1.5];
+        id delay    = [CCDelayTime actionWithDuration:1.0];
         id endgame  = [CCCallBlock actionWithBlock:^(void)
                     {
                           game.isGameover = YES;

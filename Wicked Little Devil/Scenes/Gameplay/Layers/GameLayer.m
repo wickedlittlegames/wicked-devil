@@ -71,7 +71,13 @@
     EnemyFX *fx = nil;
     
     CCARRAY_FOREACH(platforms, platform)
-    {           
+    {
+        if (!platform.end_fx_added && platform.tag == 100)
+        {
+            //CCLOG(@"TEST");
+            //[game.fx start:5 position:ccp([platform worldBoundingBox].origin.x + [platform contentSize].width/2, [platform worldBoundingBox].origin.y + 10)];
+            platform.end_fx_added = YES;
+        }
         if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
         {
             platform.visible = NO;
@@ -99,7 +105,7 @@
             game.player.bigcollected++;
             game.player.score += 1000;
             // do effect of collecting AND going to the top left
-            [game.fx start:1 position:[bigcollectable worldBoundingBox].origin];
+            [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
         }
     }
         

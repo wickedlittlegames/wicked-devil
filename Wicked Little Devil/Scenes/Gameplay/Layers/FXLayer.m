@@ -22,7 +22,7 @@
         [self.effects addObject:fx0];
         
         // 1 - big collectable collect
-        CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"AnimExplosion.plist"];
+        CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"CollectedBig.plist"];
         [self.effects addObject:fx1];
         
         // 2 - big collectable zap to to left
@@ -36,6 +36,10 @@
         // 4 - falling bricks
         CCParticleSystemQuad *fx4 = [CCParticleSystemQuad particleWithFile:@"AnimExplosion.plist"];
         [self.effects addObject:fx4];
+        
+        // 5 - portal at top
+        CCParticleSystemQuad *fx5 = [CCParticleSystemQuad particleWithFile:@"LastPlatform.plist"];
+        [self.effects addObject:fx5];
     }
 	return self;
 }

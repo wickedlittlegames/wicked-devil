@@ -17,8 +17,8 @@
 	if( (self=[super init]) ) 
     {
         player = [Player spriteWithFile:@"ingame-devil.png"];
-        [player setPosition:ccp ( 320/2 , 40 )];
-        [self addChild:player];              
+        [player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , 60 )];
+        [self addChild:player];
     }
 	return self;
 }

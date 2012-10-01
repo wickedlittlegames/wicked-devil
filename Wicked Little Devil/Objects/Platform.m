@@ -156,7 +156,7 @@
 {
     float max_x = self.position.x - self.contentSize.width/2 - 10;
     float min_x = self.position.x + self.contentSize.width/2 + 10;
-    float min_y = self.position.y + (self.contentSize.height+game.player.contentSize.height)/2 - 1;
+    float min_y = self.position.y + (self.contentSize.height+game.player.contentSize.height)/2 - 5; // was /2 - 1;
     
     if(game.player.position.x > max_x &&
        game.player.position.x < min_x &&

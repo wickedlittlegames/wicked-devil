@@ -34,7 +34,6 @@
          basicscore = (game.player.bigcollected * 1000);
          timebonus = 0;
          collectedbonus = (game.player.collected * 10);
-         //collectedbonus = 2000;
          if ( game.player.time < 30 )
          {
              timebonus = (30 - game.player.time) * 100;
@@ -76,6 +75,7 @@
                  [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:decider_world andLevel:decider_level isRestart:NO]]];
              }
          }];
+         btn_next.tag = 2;
          
          CCMenuItemImage *btn_mainmenu = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender) {
              if ( ![SimpleAudioEngine sharedEngine].mute )
@@ -103,21 +103,37 @@
          label_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SCORE: %i",basicscore] dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentCenter fontName:@"Crashlanding BB" fontSize:30];
          [label_score setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [self addChild:label_score];
-         
-         game.player.collected = 2000;
-         
+
          label_subscore = [CCLabelTTF labelWithString:@" " dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentCenter fontName:@"Crashlanding BB" fontSize:24];
          [label_subscore setPosition:ccp(screenSize.width/2, screenSize.height/2 - 60)];
          [self addChild:label_subscore];
          
-        [self do_scores];
+         if ( game.player.bigcollected >= 1 )
+         {
+            [self do_scores];
+         }
+         else
+         {
+             [self didnt_win];
+         }
      }
      return self;
  }
 
 
 //#pragma mark === Score Animation Steps ===
-//
+
+- (void) didnt_win
+{
+    CCLabelTTF *label_didntwin = [CCLabelTTF labelWithString:@"Didn't collect any" dimensions:CGSizeMake([[CCDirector sharedDirector] winSize].width, 100) hAlignment:kCCTextAlignmentCenter fontName:@"Crashlanding BB" fontSize:30];
+    [label_didntwin setPosition:ccp([[CCDirector sharedDirector] winSize].width/2, [[CCDirector sharedDirector] winSize].height/2)];
+    [self addChild:label_didntwin];
+
+    [menu removeChildByTag:2 cleanup:YES];
+    [menu runAction:[CCFadeIn actionWithDuration:1.0f]];
+}
+
+
 - (void) do_scores
 {
     tmp_player_score = basicscore;
@@ -201,15 +217,28 @@
         
         if (totalscore > [self.tmp_game.user getHighscoreforWorld:self.tmp_game.world level:self.tmp_game.level])
         {
-            CCSprite *highscoreSprite = [CCSprite spriteWithFile:@"highscore-image.png"];
-            highscoreSprite.position = ccp ( [[CCDirector sharedDirector] winSize].width + 100, [[CCDirector sharedDirector] winSize].height - 400 );
-            [self addChild:highscoreSprite];
-            [highscoreSprite runAction:[CCMoveTo actionWithDuration:2.0f position:ccp([[CCDirector sharedDirector] winSize].width - 100, highscoreSprite.position.y)]];
+            [self showHighscorePanel];
         }
         
-        if ( self.tmp_game.player.collected > 0)  [label_subscore runAction:[CCFadeOut actionWithDuration:1.0f]];
+        if ( self.tmp_game.player.collected > 0 )  [label_subscore runAction:[CCFadeOut actionWithDuration:1.0f]];
         [menu runAction:[CCFadeIn actionWithDuration:1.5f]];
     }
+}
+
+- (void) showHighscorePanel
+{
+    CCSprite *highscoreSprite = [CCSprite spriteWithFile:@"highscore-image.png"];
+    highscoreSprite.position = ccp ( [[CCDirector sharedDirector] winSize].width + 100, [[CCDirector sharedDirector] winSize].height - 400 );
+    [self addChild:highscoreSprite];
+    [highscoreSprite runAction:[CCMoveTo actionWithDuration:2.0f position:ccp([[CCDirector sharedDirector] winSize].width - 100, highscoreSprite.position.y)]];
+    
+    CCMenu *tweet_menu = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-highscore-tweet.png" selectedImage:@"btn-highscore-tweet.png" block:^(id sender) {
+        // tweet stuff
+    }], nil];
+    [tweet_menu setPosition:ccp( 80, -80 )];
+    [self addChild:tweet_menu];
+
+    [tweet_menu runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0f], [CCMoveTo actionWithDuration:0.5 position:ccp(tweet_menu.position.x, 80)], nil]];
 }
 
 @end

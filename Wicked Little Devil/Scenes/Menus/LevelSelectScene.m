@@ -134,7 +134,7 @@
         [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
-        [menu_store             setPosition:ccp(25, screenSize.height - 25)];
+        //[menu_store             setPosition:ccp(25, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [label_world_score      setPosition:ccp(screenSize.width/2, 22 )];

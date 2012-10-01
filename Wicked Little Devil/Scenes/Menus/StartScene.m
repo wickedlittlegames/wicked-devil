@@ -30,22 +30,22 @@
     {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
+        //[user reset];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
-        CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_leaderboard)];
         CCMenuItem *btn_facebooksignin  = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
-        btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"          selectedImage:@"btn-mute.png"       target:self selector:@selector(tap_mute)];
-        btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"         selectedImage:@"btn-muted.png"      target:self selector:@selector(tap_mute)];        
+        btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
+        btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
         CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
-        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
+        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 60, 25)];        
+        [menu_social setPosition:ccp(screenSize.width - 60, 25)];
         [menu_social alignItemsHorizontallyWithPadding:10];
         
         [self addChild:bg];
@@ -116,57 +116,7 @@
 
 - (void) tap_facebook
 {
-    // TO DO - DO SOMETHING WITH THIS FACEBOOK STUFF
-    // The permissions requested from the user
-//    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
-//                                 @"user_relationships",@"user_birthday",@"user_location",
-//                                 @"offline_access", nil];
-////    
-////    // Log in
-//    [PFFacebookUtils logInWithPermissions:permissionsArray
-//                                    block:^(PFUser *pfuser, NSError *error) {
-//                                        if (!pfuser) {
-//                                            if (!error) { // The user cancelled the login
-//                                                NSLog(@"Uh oh. The user cancelled the Facebook login.");
-//                                            } else { // An error occurred
-//                                                NSLog(@"Uh oh. An error occurred: %@", error);
-//                                            }
-//                                        } else if (pfuser.isNew) { // Success - a new user was created
-//                                            NSLog(@"User with facebook signed up and logged in!");
-//                                        } else { // Success - an existing user logged in
-//                                            NSLog(@"User with facebook logged in!");
-//                                        }
-//                                    }];
-//    SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-//    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-//    {
-//        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result){
-//            
-//            [fbController dismissViewControllerAnimated:YES completion:nil];
-//            
-//            switch(result){
-//                case SLComposeViewControllerResultCancelled:
-//                default:
-//                {
-//                    NSLog(@"Cancelled.....");
-//                    
-//                }
-//                    break;
-//                case SLComposeViewControllerResultDone:
-//                {
-//                    NSLog(@"Posted....");
-//                }
-//                    break;
-//            }};
-//        
-////        [fbController addImage:[UIImage imageNamed:@"1.jpg"]];
-//        [fbController setInitialText:@"Check out this article."];
-//        [fbController addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
-//        [fbController setCompletionHandler:completionHandler];
-//        AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-//        
-//        [[app navController] presentViewController:fbController animated:YES completion:nil];
-//    }
+    // STUFF WITH THINGS
 }
 
 #pragma mark GameKit delegate

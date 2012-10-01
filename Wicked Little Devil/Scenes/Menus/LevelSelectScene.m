@@ -33,7 +33,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = 270;
+        float menu_y            = 275;
         int world_score              = [user getHighscoreforWorld:world];
         int big_collectables_total   = (LEVELS_PER_WORLD * 3);
         int big_collectables_player  = 0;
@@ -134,7 +134,7 @@
         [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
-        //[menu_store             setPosition:ccp(25, screenSize.height - 25)];
+        [menu_store             setPosition:ccp(25, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [label_world_score      setPosition:ccp(screenSize.width/2, 22 )];
@@ -142,7 +142,7 @@
         [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
-        [self addChild:menu_store];
+        //[self addChild:menu_store];
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];
         [self addChild:label_world_score];
@@ -154,7 +154,7 @@
 
 - (void) tap_level:(CCMenuItem*)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE restartMusic:YES]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender

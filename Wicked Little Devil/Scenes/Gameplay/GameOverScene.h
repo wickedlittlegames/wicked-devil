@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic, assign) Game *tmp_game;
+@property (nonatomic, assign) BOOL runningAnims, moved;
 
 +(CCScene *) sceneWithGame:(Game*)game;
 - (id) initWithGame:(Game*)game;

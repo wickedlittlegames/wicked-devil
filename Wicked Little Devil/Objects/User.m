@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, gameKitHelper, powerup, powerups, cache_current_world;
+@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, gameKitHelper, powerup, powerups, cache_current_world, gameprogress;
 
 #pragma mark User creation/persistance methods
 
@@ -28,6 +28,7 @@
         self.souls                  = [udata objectForKey:@"souls"];
         self.levelprogress          = [udata integerForKey:@"levelprogress"];
         self.worldprogress          = [udata integerForKey:@"worldprogress"];
+        self.gameprogress           = [udata objectForKey:@"gameprogress"];
         self.powerup                = [udata integerForKey:@"powerup"];
         self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
         self.collected              = [udata integerForKey:@"collected"];
@@ -38,13 +39,11 @@
 
 - (void) create
 {
-    CCLOG(@"CREATING USER");
-    
-    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
-    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:WORLDS_PER_GAME];
+    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:100];
+    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:100];
     for (int w = 1; w <= WORLDS_PER_GAME; w++)
     {
-        NSMutableArray *w = [NSMutableArray arrayWithCapacity:LEVELS_PER_WORLD];
+        NSMutableArray *w = [NSMutableArray arrayWithCapacity:100];
         for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
         {
             [w addObject:[NSNumber numberWithInt:0]];
@@ -54,6 +53,19 @@
     }
     NSArray *worlds = tmp_worlds;
     NSArray *world_souls = tmp_worlds_souls;
+    
+    
+    NSMutableArray *tmpworldprogress = [NSMutableArray arrayWithCapacity:100];
+    for (int w = 1; w <= WORLDS_PER_GAME; w++ )
+    {
+        NSMutableArray *tmp_wp = [NSMutableArray arrayWithCapacity:100];
+        for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
+        {
+            if ( lvl == 1  && w == 1 ) { [tmp_wp addObject:[NSNumber numberWithInt:1]]; }
+            else { [tmp_wp addObject:[NSNumber numberWithInt:0]]; }
+        }
+        [tmpworldprogress addObject:tmp_wp];
+    }
     
     // items
     NSArray *contentArray = [[NSDictionary 
@@ -80,6 +92,7 @@
     [udata setObject:world_souls forKey:@"souls"];
     [udata setInteger:1 forKey:@"levelprogress"];
     [udata setInteger:1 forKey:@"worldprogress"];
+    [udata setObject:tmpworldprogress forKey:@"gameprogress"];
     [udata setInteger:0 forKey:@"powerup"];
     [udata setInteger:1 forKey:@"cache_current_world"];
     [udata setInteger:0 forKey:@"collected"];
@@ -147,19 +160,7 @@
         NSArray *highscore = highscores_tmp;
         [udata setObject:highscore forKey:@"highscores"];
         [udata synchronize];
-        // Updating Parse
-//        if ( self.isConnectedToFacebook )
-//        {   
-//            PFObject *highscore = [PFObject objectWithClassName:@"Highscore"];
-//            [highscore setObject:[PFUser currentUser] forKey:@"user"];
-//            [highscore setObject:[[PFUser currentUser] valueForKey:@"fbId"] forKey:@"fbId"];
-//            [highscore setObject:[NSNumber numberWithInt:w] forKey:@"world"];
-//            [highscore setObject:[NSNumber numberWithInt:l] forKey:@"level"];
-//            [highscore setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-//            [highscore saveInBackground];
-//        }
     }
-
 }
 - (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
 {

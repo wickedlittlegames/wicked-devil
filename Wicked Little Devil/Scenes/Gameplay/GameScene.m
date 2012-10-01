@@ -21,19 +21,19 @@
 
 #pragma mark === Init ===
 
-+(CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart
++(CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart restartMusic:(BOOL)restartMusic
 {
     // Create a Scene
 	CCScene *scene = [CCScene node];
     
-    GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l withRestart:restart];
+    GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l withRestart:restart restartMusic:restartMusic];
     [scene addChild:layer];
 
     // Show the scene
 	return scene;
 }
 
-- (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart
+- (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart restartMusic:(BOOL)restartMusic
 {
 	if( (self=[super init]) ) 
     {
@@ -52,15 +52,17 @@
 
         if ( ![SimpleAudioEngine sharedEngine].mute )
         {
-            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-loop1.wav" loop:YES];
+            if ( restartMusic )
+            {
+                [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+                [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"bg-loop%i.wav",w] loop:YES];
+            }
         }
         
         self.isTouchEnabled = YES;
         
         CCLOG(@"INIT: W: %i, L: %i", w, l);
         NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
-//        NSString *file_level = [NSString stringWithFormat:@"world-%i-level-2.ccbi",w];
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];
         menu = [CCMenu menuWithItems:launchButton, nil];
@@ -102,17 +104,17 @@
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         
         // INTRO
-//        if ( !game.isIntro && !restart)
-//        {
-//            game.isIntro = YES;
-//            float time_for_anim = top/400;
-//
-//            id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
-//            id ease = [CCEaseSineOut actionWithAction:move];
-//        
-//            [collab setPosition:ccp(0,-top)];
-//            [collab runAction: ease];
-//        }
+        if ( !game.isIntro && !restart)
+        {
+            game.isIntro = YES;
+            float time_for_anim = top/400;
+
+            id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
+            id ease = [CCEaseSineOut actionWithAction:move];
+        
+            [collab setPosition:ccp(0,-top)];
+            [collab runAction: ease];
+        }
         
         [self schedule:@selector(update:)];
     }
@@ -145,6 +147,7 @@
             else 
             {
                 [self unschedule:@selector(update:)];
+                [self unschedule:@selector(countdown:)];
             }
         }
     }
@@ -184,15 +187,25 @@
 }
 
 - (void)tap_launch:(id)sender
-{ 
-    game.isStarted = YES;
-    game.isGameover = NO;
-    game.player.controllable = YES;
-    game.isIntro = NO;
-    game.touch = game.player.position;
-    menu.visible = NO;
-    
-    [game.player jump:game.player.jumpspeed];
+{
+    if ( !game.isIntro )
+    {
+        game.isStarted = YES;
+        game.isGameover = NO;
+        game.player.controllable = YES;
+        game.isIntro = NO;
+        game.touch = game.player.position;
+        menu.visible = NO;
+
+        [game.player jump:game.player.jumpspeed];
+        [self schedule:@selector(countdown:) interval:1.0f];
+    }
 }
+
+- (void)countdown:(ccTime)dt
+{
+    game.player.time++;
+}
+
 
 @end

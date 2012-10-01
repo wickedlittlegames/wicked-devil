@@ -11,12 +11,12 @@
 #import "GameKitHelper.h"
 #import "GameCenterConstants.h"
 
-@interface User : NSObject <GameKitHelperProtocol, PF_FBRequestDelegate> {}
+@interface User : NSObject <GameKitHelperProtocol> {}
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, retain) GameKitHelper *gameKitHelper;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world;
-@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups, *items;
+@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected

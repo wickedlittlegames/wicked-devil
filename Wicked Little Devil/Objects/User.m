@@ -54,7 +54,7 @@
     NSArray *worlds = tmp_worlds;
     NSArray *world_souls = tmp_worlds_souls;
     
-    
+    // new world progress
     NSMutableArray *tmpworldprogress = [NSMutableArray arrayWithCapacity:100];
     for (int w = 1; w <= WORLDS_PER_GAME; w++ )
     {
@@ -147,6 +147,17 @@
     self.items = [udata objectForKey:@"items"];    
 }
 
+- (void) setGameProgressforWorld:(int)w level:(int)l
+{
+    NSMutableArray *gameprogress_tmp = [self.gameprogress mutableCopy];
+    NSMutableArray *tmp = [[gameprogress_tmp objectAtIndex:w-1] mutableCopy];
+    [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:1]];
+    [gameprogress_tmp replaceObjectAtIndex:w-1 withObject:tmp];
+    NSArray *new_gameprogress = gameprogress_tmp;
+    [udata setObject:new_gameprogress forKey:@"gameprogress"];
+    [udata synchronize];
+}
+
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
     NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
@@ -162,6 +173,7 @@
         [udata synchronize];
     }
 }
+
 - (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
 {
     NSMutableArray *souls_tmp = [[udata objectForKey:@"souls"] mutableCopy];
@@ -207,6 +219,21 @@
     }
     
     return tmp_score;
+}
+
+- (int) getGameProgressforWorld:(int)w level:(int)l
+{
+    NSMutableArray *tmp = [udata objectForKey:@"gameprogress"];
+    NSMutableArray *tmp2 = [tmp objectAtIndex:w-1];
+    int tmp_progress = 0;
+    
+    if ( [[tmp2 objectAtIndex:l-1] intValue] == 1)
+    {
+        tmp_progress = 1;
+    }
+    
+    return tmp_progress;
+    
 }
 
 - (int) getSoulsforWorld:(int)w

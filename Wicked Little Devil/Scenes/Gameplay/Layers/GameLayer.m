@@ -190,6 +190,7 @@
         
         [game.user setHighscore:score world:game.world level:game.level];
         [game.user setSouls:souls world:game.world level:game.level];
+        [game.user setGameProgressforWorld:game.world level:game.level];
         
         if (game.level == game.user.levelprogress)
         {

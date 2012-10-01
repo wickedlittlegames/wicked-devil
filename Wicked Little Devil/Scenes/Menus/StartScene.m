@@ -30,7 +30,7 @@
     {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
-        //[user reset];
+        [user reset];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];

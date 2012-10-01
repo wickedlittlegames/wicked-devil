@@ -29,11 +29,13 @@
 - (void) buyItem:(int)item;
 - (void) setHighscore:(int)score world:(int)w level:(int)l;
 - (void) setSouls:(int)souls world:(int)w level:(int)l;
+- (void) setGameProgressforWorld:(int)w level:(int)l;
 
 - (int) getHighscoreforWorld:(int)w;
 - (int) getHighscoreforWorld:(int)w level:(int)l;
 - (int) getSoulsforWorld:(int)w;
 - (int) getSoulsforWorld:(int)w level:(int)l;
 - (int) getSoulsforAll;
+- (int) getGameProgressforWorld:(int)w level:(int)l;
 
 @end

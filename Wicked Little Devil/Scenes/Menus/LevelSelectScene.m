@@ -47,30 +47,9 @@
             CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-level.png" selectedImage:@"btn-level.png" disabledImage:@"btn-level-locked.png" target:self selector:@selector(tap_level:)];
             button.tag = lvl; button.userData = (int*)world; button.isEnabled = FALSE;
             
-            if ( world == 1 )
+            if ( [user getGameProgressforWorld:world level:lvl] == 1 )
             {
                 button.isEnabled = TRUE;
-                if ( user.worldprogress > 1 )
-                {
-                    button.isEnabled = TRUE;
-                }
-                else 
-                {
-                    button.isEnabled = ( user.levelprogress >= lvl );
-                }
-            }
-            
-            if ( user.worldprogress > world )
-            {
-                button.isEnabled = TRUE;
-            }
-            else if ( user.worldprogress < world )
-            {
-                button.isEnabled = FALSE;
-            }
-            else if ( user.worldprogress == world )
-            {
-                button.isEnabled = ( user.levelprogress >= lvl );
             }
             
             if ( button.isEnabled )

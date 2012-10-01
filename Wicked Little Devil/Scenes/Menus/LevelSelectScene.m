@@ -121,7 +121,7 @@
         [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
-        //[self addChild:menu_store];
+        [self addChild:menu_store];
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];
         [self addChild:label_world_score];

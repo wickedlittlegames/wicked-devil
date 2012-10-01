@@ -19,6 +19,7 @@
     {
         self.velocity = ccp ( 0 , 0 );
         self.drag = ccp ( 0, 0 );
+        self.scale = 1.25;
         self.jumpspeed = 5.5;
         self.gravity = 0.18;
         self.modifier_gravity = 0;

@@ -123,7 +123,7 @@
          [label_score setColor:ccc3(205, 51, 51)];
          [self addChild:label_score];
 
-         label_subscore = [CCLabelTTF labelWithString:@" " dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:48];
+         label_subscore = [CCLabelTTF labelWithString:@" " dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
          [label_subscore setPosition:ccp(20, label_score.position.y - 45)];
          label_subscore.anchorPoint = ccp(0,0);
          [label_subscore setColor:ccc3(24, 107, 18)];
@@ -132,7 +132,9 @@
          
          if ( game.player.bigcollected >= 1 )
          {
-            [self do_scores];
+            tmp_player_score = 0;
+            tmp_score_increment = basicscore;
+            [self schedule: @selector(general_tick) interval: 1.0f/60.0f];
          }
          else
          {
@@ -149,6 +151,38 @@
 {
     [menu removeChildByTag:2 cleanup:YES];
     [menu runAction:[CCFadeIn actionWithDuration:1.0f]];
+}
+
+- (void) general_tick
+{
+    if ( tmp_score_increment > 0 )
+    {
+        if (tmp_score_increment >= 1000 )
+        {
+            tmp_score_increment -= 100;
+            tmp_player_score += 100;
+        }
+        else if ( tmp_score_increment >= 100 && tmp_score_increment < 1000 )
+        {
+            tmp_score_increment -= 50;
+            tmp_player_score += 50;
+        }
+        else
+        {
+            tmp_score_increment -= 1;
+            tmp_player_score += 1;
+        }
+        
+        [label_score setString:[NSString stringWithFormat:@"SCORE: %i",tmp_player_score]];
+        [label_subscore setString:[NSString stringWithFormat:@"SOUL BONUS: %i", tmp_score_increment]];
+    }
+    else
+    {
+        [self unschedule: @selector(general_tick)];
+        [label_subscore runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5f], [CCCallBlock actionWithBlock:^(void) {
+            [self do_scores];
+        }], nil]];
+    }
 }
 
 

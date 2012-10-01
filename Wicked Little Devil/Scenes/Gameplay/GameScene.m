@@ -113,7 +113,7 @@
             id ease = [CCEaseSineOut actionWithAction:move];
         
             [collab setPosition:ccp(0,-top)];
-            [collab runAction: ease];
+            [collab runAction: [CCSequence actions:ease, [CCCallBlock actionWithBlock:^(void) {game.isIntro = NO;}], nil]];
         }
         
         [self schedule:@selector(update:)];

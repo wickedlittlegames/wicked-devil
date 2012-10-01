@@ -1,6 +1,7 @@
 #pragma mark === GAME CENTRIC NUMBERS ===
 #define LEVELS_PER_WORLD 20
 #define WORLDS_PER_GAME  6 // REDUCED FROM 6 to 4 FOR LAUNCH
+#define PLAYER_CONTROL_SPEED 4
 
 #pragma mark === IN APP PURCHASE IDS ===
     

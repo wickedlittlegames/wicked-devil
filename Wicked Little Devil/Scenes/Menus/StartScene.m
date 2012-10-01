@@ -74,6 +74,8 @@
 
 - (void) tap_leaderboard
 {
+    [self reportLeaderboardHighscores];
+    
     GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
     leaderboardViewController.leaderboardDelegate = self;
     
@@ -131,6 +133,35 @@
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+
+- (void) reportLeaderboardHighscores
+{
+    if([[[UIDevice currentDevice] systemVersion] compare:@"4.3" options:NSNumericSearch] == NSOrderedDescending)
+    {
+        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+        [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+            if(localPlayer.isAuthenticated)
+            {
+                for (int i = 1; i <= WORLDS_PER_GAME; i++)
+                {
+                    int tmp_highscore_for_world = [user getHighscoreforWorld:i];
+                    if (tmp_highscore_for_world > 0)
+                    {
+                        GKScore *scoreReporter = [[GKScore alloc] initWithCategory:[NSString stringWithFormat:@"%i",i]];
+                        scoreReporter.value = tmp_highscore_for_world;
+                        
+                        [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+                           if (error != nil )
+                           {
+                               // do error report
+                           }
+                        }];
+                    }
+                }
+            }
+        }];
+    }
 }
 
 @end

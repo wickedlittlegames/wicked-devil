@@ -160,8 +160,8 @@
     if ( game.player.controllable )
     {
         float diff = game.touch.x - game.player.position.x;
-        if (diff > 4)  diff = 4;
-        if (diff < -4) diff = -4;
+        if (diff > PLAYER_CONTROL_SPEED)  diff = PLAYER_CONTROL_SPEED;
+        if (diff < -PLAYER_CONTROL_SPEED) diff = -PLAYER_CONTROL_SPEED;
         CGPoint new_player_location = CGPointMake(game.player.position.x + diff, game.player.position.y);
         game.player.position = new_player_location;
     }

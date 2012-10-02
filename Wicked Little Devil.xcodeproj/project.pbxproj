@@ -368,6 +368,7 @@
 		9CBFBDBE161A32FB008512E4 /* bg-gameover-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDBB161A32FB008512E4 /* bg-gameover-1.png */; };
 		9CBFBDBF161A32FB008512E4 /* bg-gameover-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDBC161A32FB008512E4 /* bg-gameover-2.png */; };
 		9CBFBDC0161A32FB008512E4 /* bg-gameover-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDBD161A32FB008512E4 /* bg-gameover-3.png */; };
+		9CCD8881161BA9AB00CEA6D8 /* world-2-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
 		9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1615F632E2001B0D50 /* CCBActionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -779,6 +780,7 @@
 		9CBFBDBB161A32FB008512E4 /* bg-gameover-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-1.png"; sourceTree = "<group>"; };
 		9CBFBDBC161A32FB008512E4 /* bg-gameover-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-2.png"; sourceTree = "<group>"; };
 		9CBFBDBD161A32FB008512E4 /* bg-gameover-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-3.png"; sourceTree = "<group>"; };
+		9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-2-level-1.ccbi"; sourceTree = "<group>"; };
 		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
 		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
 		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
@@ -1380,6 +1382,7 @@
 		9CABCEFE1611D5EA006DFDE9 /* LEVELS */ = {
 			isa = PBXGroup;
 			children = (
+				9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */,
 				9C9E86B11618C4D1001CAC21 /* world-1-level-2.ccbi */,
 				9C9E86B21618C4D1001CAC21 /* world-1-level-3.ccbi */,
 				9C9E86B31618C4D1001CAC21 /* world-1-level-4.ccbi */,
@@ -1949,6 +1952,7 @@
 				9CBFBDBE161A32FB008512E4 /* bg-gameover-1.png in Resources */,
 				9CBFBDBF161A32FB008512E4 /* bg-gameover-2.png in Resources */,
 				9CBFBDC0161A32FB008512E4 /* bg-gameover-3.png in Resources */,
+				9CCD8881161BA9AB00CEA6D8 /* world-2-level-1.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

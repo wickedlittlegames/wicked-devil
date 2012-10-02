@@ -33,7 +33,7 @@
     {
         default: break;
         case 1: // BAT: Wave motion up and down
-			self.position = ccp(self.position.x + 0.2, self.position.y);
+			self.position = ccp(self.position.x + 1, self.position.y);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
             break;
     }
@@ -63,8 +63,21 @@
     switch(action_id)
     {
         case 1: // BAT: Jump ontop, or die below
-            if ( game.player.velocity.y > 0 ) { game.player.health--; if ( game.player.health <= 0 ) { game.player.animating = NO; [game.player animate:4]; } }
-            else { [game.player jump:game.player.jumpspeed]; [self action_bat_hit]; }
+            if ( game.player.velocity.y > 0 )
+            {
+                game.player.health--;
+                if ( game.player.health <= 0 )
+                {
+                    game.player.animating = NO;
+                    [game.player animate:4];
+                }
+            }
+            else
+            {
+                self.running = YES;
+                [game.player jump:game.player.jumpspeed];
+                [self action_bat_hit];
+            }
             break;
         case 2: // MINE: Any time touched, blows up
             [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
@@ -187,7 +200,7 @@
     
     float max_x = enemy_pos.x - enemy_size.width/2 - 10;
     float min_x = enemy_pos.x + enemy_size.width/2 + 10;
-    float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 1;
+    float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 - 3;
     
     if(player_pos.x > max_x &&
        player_pos.x < min_x &&

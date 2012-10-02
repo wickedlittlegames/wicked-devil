@@ -60,6 +60,16 @@
             
             self.animating = TRUE;
         }
+        if (self.tag == 33)
+        {
+            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+            
+            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+            [self runAction:repeater];
+            
+            self.animating = TRUE;
+        }
     }
 }
 
@@ -75,7 +85,7 @@
                     [game.player jump:game.player.jumpspeed];
                     break;
                 case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
-                    [game.player jump:game.player.jumpspeed*1.75];
+                    [game.player jump:game.player.jumpspeed*1.95];
                     break;
                 case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
                     [game.player jump:game.player.jumpspeed];

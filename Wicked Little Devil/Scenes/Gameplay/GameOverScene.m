@@ -41,7 +41,7 @@
          final_score        = souls_score + timebonus_score;
          next_world         = 1;
          next_level         = 1;
-         
+                  
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
@@ -63,9 +63,12 @@
                  next_level = game.level + 1;
                  next_world = game.world;
              }
+
              game.user.worldprogress = next_world;
              game.user.levelprogress = next_level;
+             
              [game.user setGameProgressforWorld:next_world level:next_level];
+             [game.user sync];
          }
          else
          {
@@ -219,11 +222,11 @@
         {
             CCSprite *highscoreSprite   = [CCSprite spriteWithFile:@"ui-newhighscore.png"];
             highscoreSprite.position    = ccp ( [[CCDirector sharedDirector] winSize].width/2, [[CCDirector sharedDirector] winSize].height - 225 );
+            if (doAnim) highscoreSprite.scale = 5;
             [self addChild:highscoreSprite];
             
             if ( doAnim )
             {
-                highscoreSprite.scale = 5;
                 [highscoreSprite runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.2f],[CCScaleTo actionWithDuration:0.2f scale:1], nil]];
             }
         }

@@ -55,6 +55,7 @@
         if ([node isKindOfClass: [Trigger class]])
         {
             [triggers addObject:node];
+            node.visible = NO;
         }
     }
 }

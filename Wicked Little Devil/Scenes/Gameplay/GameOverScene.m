@@ -189,7 +189,7 @@
         tmp_score_increment -= 1;
         tmp_score += 100;
         
-        NSString *tmp_str_timebonus = ( timebonus >= 10 ? [NSString stringWithFormat:@"TIME BONUS: 0:%i", tmp_score_increment] : [NSString stringWithFormat:@"TIME BONUS: 0:0%i",tmp_score_increment]);
+        NSString *tmp_str_timebonus = ( tmp_score_increment >= 10 ? [NSString stringWithFormat:@"TIME BONUS: 0:%i", tmp_score_increment] : [NSString stringWithFormat:@"TIME BONUS: 0:0%i",tmp_score_increment]);
 
         [label_score    setString:[NSString stringWithFormat:@"SCORE: %i",tmp_score]];
         [label_subscore setString:tmp_str_timebonus];

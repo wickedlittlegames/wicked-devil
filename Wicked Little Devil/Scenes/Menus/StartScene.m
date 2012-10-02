@@ -30,7 +30,7 @@
     {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
-        [user reset];
+        //[user reset];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
@@ -41,14 +41,26 @@
         CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
         CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
+        CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
+        CCSprite *devil                 = [CCSprite spriteWithFile:@"jump1.png"];
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [devil setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [homeFX setPosition:ccp(screenSize.width/2, 0)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 60, 25)];
-        [menu_social alignItemsHorizontallyWithPadding:10];
+        [menu_social setPosition:ccp(screenSize.width - 45, 25)];
+        [menu_social alignItemsHorizontallyWithPadding:5];
+        
+        if ( ![user.udata boolForKey:@"MUTED"] )
+        {
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+        }
         
         [self addChild:bg];
+        [self addChild:devil];
+        [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:menu_social];
         [self addChild:menu_mute];

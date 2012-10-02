@@ -92,6 +92,7 @@
         game.world = w;
         game.level = l;
         game.fx = layer_fx;
+        game.pastScore = [user getHighscoreforWorld:w level:l];
         [game.player setupPowerup:user.powerup];
         [layer_ui setupItemsforGame:game];   
         layer_game.world = w;

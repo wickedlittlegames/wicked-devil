@@ -185,12 +185,11 @@
     {
         game.user.collected += game.player.collected;
 
-        int score = game.player.score * game.player.bigcollected;
+        int score = (game.player.bigcollected * 1000) + ((30 - game.player.time) * 100);
         int souls = game.player.bigcollected;
         
         [game.user setHighscore:score world:game.world level:game.level];
         [game.user setSouls:souls world:game.world level:game.level];
-        [game.user setGameProgressforWorld:game.world level:game.level];
         
         if (game.level == game.user.levelprogress)
         {
@@ -201,6 +200,7 @@
                 game.user.levelprogress = 1;
             }
         }
+        [game.user setGameProgressforWorld:game.user.worldprogress level:game.user.levelprogress];        
         [game.user sync];
 
         [[CCDirector sharedDirector] replaceScene:[GameOverScene sceneWithGame:game]];

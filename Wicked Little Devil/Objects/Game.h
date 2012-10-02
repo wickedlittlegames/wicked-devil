@@ -18,7 +18,7 @@
 
 @interface Game : NSObject{}
 
-@property (nonatomic, assign) int world, level;
+@property (nonatomic, assign) int world, level, pastScore;
 @property (nonatomic, assign) bool isGameover, didWin, isStarted, isIntro;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;

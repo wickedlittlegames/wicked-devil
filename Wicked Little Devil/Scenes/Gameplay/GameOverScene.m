@@ -45,11 +45,51 @@
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
+         
+         if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
+         {
+             if ( game.level == LEVELS_PER_WORLD )
+             {
+                 next_level = 1;
+                 next_world = game.world + 1;
+                 
+                 if ( next_world > WORLDS_PER_GAME )
+                 {
+                     next_world = 1;
+                 }
+             }
+             else
+             {
+                 next_level = game.level + 1;
+                 next_world = game.world;
+             }
+             game.user.worldprogress = next_world;
+             game.user.levelprogress = next_level;
+             [game.user setGameProgressforWorld:next_world level:next_level];
+         }
+         else
+         {
+             if ( game.level == LEVELS_PER_WORLD )
+             {
+                 next_level = 1;
+                 next_world = game.world + 1;
+                 
+                 if ( next_world > WORLDS_PER_GAME )
+                 {
+                     next_world = 1;
+                 }
+             }
+             else
+             {
+                 next_level = game.level + 1;
+                 next_world = game.world;
+             }
+         }
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
-         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {}];
+         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:NO]]]; }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
 
@@ -122,7 +162,7 @@
                                        [CCFadeIn actionWithDuration:0.2f],
                                        [CCCallBlock actionWithBlock:^(void)
                                         {
-                                            [self schedule: @selector(soul_bonus_tick) interval: 1.0f/60.0f];
+                                            [self schedule: @selector(time_bonus_tick) interval: 1.0f/60.0f];
                                         }],nil]];
         }
         else

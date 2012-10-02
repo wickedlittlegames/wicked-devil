@@ -30,7 +30,7 @@
     {
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
-        //[user reset];
+        [user reset];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
@@ -42,10 +42,10 @@
         CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
-        CCSprite *devil                 = [CCSprite spriteWithFile:@"jump1.png"];
+        //CCSprite *devil                 = [CCSprite spriteWithFile:@"jump1.png"];
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [devil setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        //[devil setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
@@ -59,7 +59,7 @@
         }
         
         [self addChild:bg];
-        [self addChild:devil];
+        //[self addChild:devil];
         [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:menu_social];

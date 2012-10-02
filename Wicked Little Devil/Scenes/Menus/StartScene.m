@@ -73,8 +73,8 @@
 - (void) setMute
 {
     [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
-    if ( [SimpleAudioEngine sharedEngine].mute )   btn_muted.visible    = YES;
-    else                                           btn_mute.visible     = YES;
+    if ( [SimpleAudioEngine sharedEngine].mute )   { btn_muted.visible    = YES; btn_mute.visible = NO; }
+    else                                           { btn_mute.visible     = YES; btn_muted.visible = NO; }
 }
 
 #pragma mark TAPS
@@ -87,6 +87,7 @@
 - (void) tap_leaderboard
 {
     [self reportLeaderboardHighscores];
+    // Show panel to see it's loading the score to game center
     
     GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
     leaderboardViewController.leaderboardDelegate = self;
@@ -160,7 +161,7 @@
                     int tmp_highscore_for_world = [user getHighscoreforWorld:i];
                     if (tmp_highscore_for_world > 0)
                     {
-                        GKScore *scoreReporter = [[GKScore alloc] initWithCategory:[NSString stringWithFormat:@"%i",i]];
+                        GKScore *scoreReporter = [[GKScore alloc] initWithCategory:[NSString stringWithFormat:@"WLD_%i",i]];
                         scoreReporter.value = tmp_highscore_for_world;
                         
                         [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {

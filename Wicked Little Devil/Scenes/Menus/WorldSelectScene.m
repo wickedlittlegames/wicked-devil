@@ -59,7 +59,7 @@
         
         // Put the children to the screen
         [self addChild:scroller];               // World scroller to go through the level
-        [self addChild:menu_store];             // back button
+        //[self addChild:menu_store];             // back button
         [self addChild:menu_back];              // store button
         [self addChild:icon_bigcollectable];    // icon for big collectable near the world collected total
         [self addChild:label_bigcollected];     // label for collected total - eg: 3/360

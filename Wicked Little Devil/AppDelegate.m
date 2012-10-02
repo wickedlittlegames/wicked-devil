@@ -22,7 +22,7 @@
     
     [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
     
-    [MKStoreManager sharedManager];
+    //[MKStoreManager sharedManager];
 
     // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

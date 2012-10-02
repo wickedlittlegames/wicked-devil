@@ -11,7 +11,8 @@
 @class LevelSelectScene, GameScene, Game;
 @interface GameOverScene : CCLayer
 {
-    int timebonus, totalscore, tmp_player_score, tmp_score_increment, collectedbonus, basicscore;
+    int souls, souls_score, collected, timebonus, timebonus_score, final_score, next_world, next_level, tmp_score_increment, tmp_score;
+
     CCLabelTTF *label_score, *label_subscore;
     CCMenu *menu;
 }

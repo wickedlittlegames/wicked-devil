@@ -183,35 +183,13 @@
 {
     if (game.didWin)
     {
-        game.user.collected += game.player.collected;
-
-        int score = (game.player.bigcollected * 1000) + ((30 - game.player.time) * 100);
-        int souls = game.player.bigcollected;
-        
-        [game.user setHighscore:score world:game.world level:game.level];
-        [game.user setSouls:souls world:game.world level:game.level];
-        
-        if (game.level == game.user.levelprogress)
-        {
-            game.user.levelprogress = game.user.levelprogress + 1;
-            if (game.user.levelprogress > LEVELS_PER_WORLD)
-            {
-                game.user.worldprogress = game.user.worldprogress + 1;
-                game.user.levelprogress = 1;
-            }
-        }
-        [game.user setGameProgressforWorld:game.user.worldprogress level:game.user.levelprogress];        
-        [game.user sync];
-
         [[CCDirector sharedDirector] replaceScene:[GameOverScene sceneWithGame:game]];
     }
     else 
     {
         
         id delay = [CCDelayTime actionWithDuration:1.0];
-        
         CCAction *endfunc = [CCCallFunc actionWithTarget:self selector:@selector(gotogameover)];
-        
         [self runAction:[CCSequence actions:delay, endfunc, nil]];
     }
 }

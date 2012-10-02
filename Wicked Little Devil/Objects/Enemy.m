@@ -89,7 +89,7 @@
 {
     // TODO: Needs tweaking to make look nicer
     id up   = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,50)]];
-    id down = [CCEaseOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-250)]];
+    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-250)]];
     id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
     [self runAction:[CCSequence actions:up,down,end, nil]];

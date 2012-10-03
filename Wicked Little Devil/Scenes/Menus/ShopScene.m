@@ -17,17 +17,10 @@
 
 +(CCScene *) scene
 {
-    // Create a Scene
-	CCScene *scene = [CCScene node];
-    
-    // Grab the layers
-	ShopScene *current = [ShopScene node];
-    
-    // Fill the scene
-	[scene addChild:current];
-    
-    // Show the scene
-	return scene;
+    CCScene *scene = [CCScene node];
+    ShopScene *current = [ShopScene node];
+    [scene addChild:current];
+    return scene;
 }
 
 -(id) init
@@ -43,16 +36,28 @@
         layer_equip = [CCLayer node];
         layer_shop  = [CCLayer node];
         
+        // |        |                               |               |
+        // |        | Title                         |               |
+        // | IMAGE  |                               | EQUIP / BUY   |
+        // |        | Description of what it does   |               |
+        // |        |                               |               |
+        
+        app     = (AppController*)[[UIApplication sharedApplication] delegate];
+        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
+        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
+        
+        SKProductsRequest *request = [[SKProductsRequest alloc] init];
+        SKProductsResponse *response = [[SKProductsResponse alloc] init];
+        
+        [[MKStoreManager sharedManager] productsRequest:request didReceiveResponse:response];
+        CCLOG(@"%@",response);
         
         
         
+        data    = [NSArray arrayWithObjects:@"1,000 Souls", @"2,500 Souls", @"5,000 Souls", @"10,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];
         
         
-        app = (AppController*)[[UIApplication sharedApplication] delegate];
-        view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
-        data = [NSArray arrayWithObjects:@"1,000 Souls", @"2,500 Souls", @"5,000 Souls", @"10,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];        
-        data2 = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.29",@"£1.99", @"£2.99", @"£4.99",nil];
+        data2   = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.29",@"£1.99", @"£2.99", @"£4.99",nil];
         
         table.dataSource = self;
         table.delegate   = self;
@@ -71,6 +76,23 @@
     }
     return self;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void) tap_back
 {

@@ -2,7 +2,7 @@
 #define LEVELS_PER_WORLD 20
 #define WORLDS_PER_GAME  12
 #define CURRENT_WORLDS_PER_GAME 4
-#define PLAYER_CONTROL_SPEED 2.9 // drag - increase from 4 to 6
+#define PLAYER_CONTROL_SPEED 2.9 // drag - was 4
 
 #pragma mark === IN APP PURCHASE IDS ===
     

@@ -21,7 +21,11 @@
     AppController *app;
     CCLabelTTF *lbl_user_collected;
     User *user;
+    
+    
+    CCLayer *layer_shop, *layer_equip;
 }
+
 +(CCScene *) scene;
 - (void) tap_purchase:(int)item;
 @end

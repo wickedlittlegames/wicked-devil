@@ -371,6 +371,8 @@
 		9CCD8881161BA9AB00CEA6D8 /* world-2-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */; };
 		9CCD8886161C5ECE00CEA6D8 /* MKInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CCD8887161C5ECE00CEA6D8 /* MKInfoPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */; };
+		9CCD888A161C70F100CEA6D8 /* btn-achievements.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8888161C70F100CEA6D8 /* btn-achievements.png */; };
+		9CCD888B161C70F100CEA6D8 /* btn-leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8889161C70F100CEA6D8 /* btn-leaderboard.png */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
 		9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1615F632E2001B0D50 /* CCBActionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -786,6 +788,8 @@
 		9CCD8883161C5ECE00CEA6D8 /* MKInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInfoPanel.h; sourceTree = "<group>"; };
 		9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInfoPanel.m; sourceTree = "<group>"; };
 		9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKInfoPanel.xib; sourceTree = "<group>"; };
+		9CCD8888161C70F100CEA6D8 /* btn-achievements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-achievements.png"; sourceTree = "<group>"; };
+		9CCD8889161C70F100CEA6D8 /* btn-leaderboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-leaderboard.png"; sourceTree = "<group>"; };
 		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
 		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
 		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
@@ -1501,6 +1505,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CCD8888161C70F100CEA6D8 /* btn-achievements.png */,
+				9CCD8889161C70F100CEA6D8 /* btn-leaderboard.png */,
 				9CBFBDBB161A32FB008512E4 /* bg-gameover-1.png */,
 				9CBFBDBC161A32FB008512E4 /* bg-gameover-2.png */,
 				9CBFBDBD161A32FB008512E4 /* bg-gameover-3.png */,
@@ -1962,6 +1968,8 @@
 				9CBFBDC0161A32FB008512E4 /* bg-gameover-3.png in Resources */,
 				9CCD8881161BA9AB00CEA6D8 /* world-2-level-1.ccbi in Resources */,
 				9CCD8887161C5ECE00CEA6D8 /* MKInfoPanel.xib in Resources */,
+				9CCD888A161C70F100CEA6D8 /* btn-achievements.png in Resources */,
+				9CCD888B161C70F100CEA6D8 /* btn-leaderboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

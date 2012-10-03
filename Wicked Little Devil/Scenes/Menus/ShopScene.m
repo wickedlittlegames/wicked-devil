@@ -32,12 +32,21 @@
 
 -(id) init
 {
-    if( (self=[super init]) ) {
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        NSString *font = @"Marker Felt";
-        int fontsize = 18;
-        
+    if( (self=[super init]) )
+    {
         user = [[User alloc] init];
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        NSString *font = @"CrashLanding BB";
+        int fontsize = 18;
+
+        // NEED TWO LAYERS, ONE WITH EQUIPS, ONE WITH PURCHASE
+        layer_equip = [CCLayer node];
+        layer_shop  = [CCLayer node];
+        
+        
+        
+        
+        
         
         app = (AppController*)[[UIApplication sharedApplication] delegate];
         view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];

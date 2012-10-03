@@ -92,7 +92,7 @@
         self.titleLabel.font = [UIFont fontWithName:@"Helvetica"
                                                size:16];
         self.titleLabel.textColor = RGBA(205, 51, 51, 1.0);
-        self.thumbImage.image = [UIImage imageNamed:@"btn-gamecenter.png"];   
+        self.thumbImage.image = [UIImage imageNamed:@"btn-achievements.png"];   
         self.detailLabel.textColor = RGBA(255, 255, 255, 1.0);
         self.detailLabel.font = [UIFont fontWithName:@"CrashLanding BB"
                                                 size:36];

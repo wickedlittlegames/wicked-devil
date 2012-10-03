@@ -6,6 +6,7 @@
 //
 
 #import "cocos2d.h"
+#import "User.h"
 #import <GameKit/GameKit.h>
 
 @protocol GameKitHelperProtocol

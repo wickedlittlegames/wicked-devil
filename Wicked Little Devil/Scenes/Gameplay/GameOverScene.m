@@ -46,10 +46,6 @@
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
-         game.user.deaths    += game.player.deaths;
-         game.user.jumps     += game.player.jumps;
-         
-         [game.user check_achiements];
          
          bool restartAudioToggle = FALSE;
          
@@ -98,6 +94,9 @@
              }
          }
          
+         game.user.cache_current_world = next_world;
+         [game.user sync_cache_current_world];
+         [game.user check_achiements];
          [game.user sync];
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];

@@ -29,18 +29,19 @@
 {
 	if( (self=[super init]) ) 
     {
-        GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
+        gkHelper = [GameKitHelper sharedGameKitHelper];
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
 
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
         //[user reset];
+        //[gkHelper resetAchievements];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
-        CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_achievements)];
-        CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-gamecenter.png"    selectedImage:@"btn-gamecenter.png" target:self selector:@selector(tap_leaderboard)];
+        CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
+        CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         CCMenuItem *btn_facebooksignin  = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
@@ -53,7 +54,7 @@
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 45, 25)];
+        [menu_social setPosition:ccp(screenSize.width - 63, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
@@ -63,7 +64,6 @@
         }
         
         [self addChild:bg];
-        //[self addChild:devil];
         [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:menu_social];
@@ -71,7 +71,7 @@
         
         [self setMute];
     }
-	return self;    
+	return self;
 }
 
 - (void) setMute
@@ -158,8 +158,6 @@
 
 - (void) reportLeaderboardHighscores
 {
-    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-    
     for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
     {
         int tmp_highscore_for_world = [user getHighscoreforWorld:i];
@@ -172,7 +170,7 @@
 
 - (void) reportAchievements
 {
-    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
+    [gkHelper reportCachedAchievements];
     
     if ( user.ach_first_play && !user.sent_ach_first_play )
     {
@@ -250,7 +248,6 @@
     
     if (localPlayer.authenticated)
     {
-        GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
         [gkHelper getLocalPlayerFriends];
         //[gkHelper resetAchievements];
     }
@@ -258,7 +255,6 @@
 -(void) onFriendListReceived:(NSArray*)friends
 {
     CCLOG(@"onFriendListReceived: %@", [friends description]);
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
     [gkHelper getPlayerInfo:friends];
 }
 -(void) onPlayerInfoReceived:(NSArray*)players
@@ -272,7 +268,6 @@
 -(void) onScoresReceived:(NSArray*)scores
 {
     CCLOG(@"onScoresReceived: %@", [scores description]);
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
     [gkHelper showAchievements];
 }
 -(void) onAchievementReported:(GKAchievement*)achievement
@@ -290,8 +285,6 @@
 -(void) onLeaderboardViewDismissed
 {
     CCLOG(@"onLeaderboardViewDismissed");
-    
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
     [gkHelper retrieveTopTenAllTimeGlobalScores];
 }
 -(void) onAchievementsViewDismissed

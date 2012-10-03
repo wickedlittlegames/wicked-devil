@@ -23,7 +23,7 @@
  */
 
 #import "GameKitHelper.h"
-
+#import "User.h"
 static NSString* kCachedAchievementsFile = @"CachedAchievements.archive";
 
 @interface GameKitHelper (Private)

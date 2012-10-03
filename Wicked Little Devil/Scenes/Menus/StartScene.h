@@ -13,6 +13,7 @@
 @interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol>
 {
     CCMenuItem *btn_mute, *btn_muted;
+    GameKitHelper *gkHelper;
     User *user;
 }
 +(CCScene *) scene;

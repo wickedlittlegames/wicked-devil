@@ -32,7 +32,7 @@
         font            = @"CrashLanding BB";
         fontsize        = 36;
         worlds          = [NSMutableArray arrayWithCapacity:100];
-        int big_collectables_total  = (LEVELS_PER_WORLD * WORLDS_PER_GAME) * 3;
+        int big_collectables_total  = (LEVELS_PER_WORLD * CURRENT_WORLDS_PER_GAME) * 3;
         int big_collectables_player = [user getSoulsforAll];
         
         // Object creation area

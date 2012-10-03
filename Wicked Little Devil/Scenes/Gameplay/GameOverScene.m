@@ -9,6 +9,7 @@
 #import "GameOverScene.h"
 #import "GameScene.h"
 #import "LevelSelectScene.h"
+#import "MKInfoPanel.h"
 
 #import "Game.h"
 
@@ -45,6 +46,12 @@
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
+         game.user.deaths    += game.player.deaths;
+         game.user.jumps     += game.player.jumps;
+         
+         [game.user check_achiements];
+         
+         bool restartAudioToggle = FALSE;
          
          if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
          {
@@ -53,9 +60,10 @@
                  next_level = 1;
                  next_world = game.world + 1;
                  
-                 if ( next_world > WORLDS_PER_GAME )
+                 if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
                      next_world = 1;
+                     restartAudioToggle = TRUE;
                  }
              }
              else
@@ -77,9 +85,10 @@
                  next_level = 1;
                  next_world = game.world + 1;
                  
-                 if ( next_world > WORLDS_PER_GAME )
+                 if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
                      next_world = 1;
+                     restartAudioToggle = TRUE;
                  }
              }
              else
@@ -88,11 +97,13 @@
                  next_world = game.world;
              }
          }
+         
+         [game.user sync];
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
-         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:NO]]]; }];
+         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
 

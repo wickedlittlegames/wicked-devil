@@ -161,11 +161,13 @@
         
         if ( game.isGameover ) 
         {
+            if ( !game.player.isAlive ) { game.player.deaths++; }
             [self end:game];
         }
     }
     else 
     {
+        if ( !game.player.isAlive ) { game.player.deaths++; }
         [self end:game];
     }
 }

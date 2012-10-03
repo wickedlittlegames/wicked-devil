@@ -5,26 +5,32 @@
 //  Created by Andrew Girvan on 28/05/2012.
 //  Copyright (c) 2012 Wicked Little Websites. All rights reserved.
 //
+
 #import <SystemConfiguration/SystemConfiguration.h>
-#import <Parse/Parse.h>
 #import "Reachability.h"
-#import "GameKitHelper.h"
 #import "GameCenterConstants.h"
 
-@interface User : NSObject <GameKitHelperProtocol> {}
+@interface User : NSObject {}
 
 @property (nonatomic, retain) NSUserDefaults *udata;
-@property (nonatomic, retain) GameKitHelper *gameKitHelper;
-@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world;
+@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps;
 @property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress;
+@property (nonatomic, assign) BOOL ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4;
+@property (nonatomic, assign) BOOL ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls;
+@property (nonatomic, assign) BOOL ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666;
+@property (nonatomic, assign) BOOL sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4;
+@property (nonatomic, assign) BOOL sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls;
+@property (nonatomic, assign) BOOL sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected
 - (void) sync_cache_current_world;
 - (void) reset; // resetUser
 
+- (void) check_achiements;
+- (void) sync_achievements;
+
 - (BOOL) isOnline; // is connected to internet
-- (BOOL) isConnectedToFacebook; // can collect
 
 - (void) buyItem:(int)item;
 - (void) setHighscore:(int)score world:(int)w level:(int)l;

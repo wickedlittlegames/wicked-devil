@@ -75,8 +75,6 @@
     {
         if (!platform.end_fx_added && platform.tag == 100)
         {
-            //CCLOG(@"TEST");
-            //[game.fx start:5 position:ccp([platform worldBoundingBox].origin.x + [platform contentSize].width/2, [platform worldBoundingBox].origin.y + 10)];
             platform.end_fx_added = YES;
         }
         if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
@@ -112,14 +110,6 @@
         
     CCARRAY_FOREACH(enemies, enemy)
     {
-        // tmp
-        if ( self.level == 2 )             enemy.tag = 1;
-        if ( self.level == 3 )             enemy.tag = 2;
-        if ( self.level == 4 )             enemy.tag = 3;
-        if ( self.level == 5 )             { enemy.tag = 4; enemy.opacity = 0; }
-        if ( self.level == 6 )             enemy.tag = 5;
-        if ( self.level == 7 )             enemy.tag = 6;
-
         if ( !enemy.animating ) [enemy setupAnimations];
         if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
         {

@@ -37,7 +37,7 @@
         
         // Object creation area
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
-        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];        
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];  icon_collectable.scale = 2;      
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
@@ -47,7 +47,7 @@
         [menu_back              setPosition:ccp(25, 25)];
         [menu_store             setPosition:ccp(25, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
-        [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 22)];
+        [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         

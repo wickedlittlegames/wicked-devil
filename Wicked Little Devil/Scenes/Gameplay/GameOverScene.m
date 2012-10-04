@@ -98,6 +98,7 @@
          [game.user sync_cache_current_world];
          [game.user check_achiements];
          [game.user sync];
+         
          if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
          {
              NSString *requestPath = @"me/scores?score=12345";
@@ -298,6 +299,7 @@
 - (void) request:(PF_FBRequest *)request didLoad:(id)result
 {
     CCLOG(@"SCORE LOGGED");
+    CCLOG(@"RESULT: %@", result);
 }
 
 @end

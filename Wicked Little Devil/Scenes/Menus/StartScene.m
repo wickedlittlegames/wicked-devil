@@ -71,28 +71,33 @@
         [self addChild:menu_mute];
         
         [self setMute];
+        CCLOG(@"User image: %@", user.facebook_image);
         [self setFacebookImage];
+        CCLOG(@"User image: %@", user.facebook_image);        
     }
 	return self;
 }
 
 - (void) getFacebookImage
 {
+    CCLOG(@"GETING IMAGE");
     NSString *requestPath = @"me/?fields=name,location,gender,picture";
     [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
 }
 
 - (void) setFacebookImage
 {
+    CCLOG(@"SETTING IMAGE");
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         if ( user.facebook_image == NULL )
         {
             [self getFacebookImage];
+    CCLOG(@"caling fb");            
         }
         else
         {
-            
+                CCLOG(@"getting from cache");
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
         }
@@ -100,6 +105,7 @@
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {
+    CCLOG(@"REQEUESTING");
     NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
     imageData = [[NSMutableData alloc] init]; // the image will be loaded in here
 
@@ -109,19 +115,13 @@
                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                         timeoutInterval:2];
     
-    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest
-                                                        delegate:self];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-        });
-    });
+    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest
+                                                    delegate:self];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    CCLOG(@"dling");    
     [imageData appendData:data];
     user.facebook_image = imageData;
     [user sync_facebook];
@@ -129,6 +129,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    CCLOG(@"dld");        
     CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
     [btn_facebooksignin setNormalImage:fbimage];
 }
@@ -155,9 +156,9 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-            GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-            achivementViewController.achievementDelegate = self;
-            [[app navController] presentModalViewController:achivementViewController animated:YES];
+            GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+            leaderboardViewController.leaderboardDelegate = self;
+            [[app navController] presentModalViewController:leaderboardViewController animated:YES];
         });
     });
 }
@@ -230,10 +231,12 @@
                 }
                 else if (pfuser.isNew)
                 {
+                    CCLOG(@"NEW USER");
                     [self getFacebookImage];
                 }
                 else
                 {
+                    CCLOG(@"NOT NEW USER - BUT BACK");
                     [self getFacebookImage];
                 }
             }

@@ -4,12 +4,40 @@
 <dict>
 	<key>Consumables</key>
 	<dict>
-		<key>com.wickedlittlegames.wickeddevil.1000soul</key>
+		<key>IAP_1000soul</key>
 		<dict>
 			<key>Count</key>
-			<integer>1000</integer>
+			<integer>2000</integer>
 			<key>Name</key>
-			<string>collected</string>
+			<string>souls_collected</string>
+		</dict>
+		<key>IAP_5000soul</key>
+		<dict>
+			<key>Count</key>
+			<integer>5000</integer>
+			<key>Name</key>
+			<string>souls_collected</string>
+		</dict>
+		<key>IAP_10000soul</key>
+		<dict>
+			<key>Count</key>
+			<integer>10000</integer>
+			<key>Name</key>
+			<string>souls_collected</string>
+		</dict>
+		<key>IAP_50000soul</key>
+		<dict>
+			<key>Count</key>
+			<integer>50000</integer>
+			<key>Name</key>
+			<string>souls_collected</string>
+		</dict>
+		<key>IAP_100000soul</key>
+		<dict>
+			<key>Count</key>
+			<integer>100000</integer>
+			<key>Name</key>
+			<string>souls_collected</string>
 		</dict>
 	</dict>
 </dict>

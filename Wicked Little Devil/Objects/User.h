@@ -21,10 +21,13 @@
 @property (nonatomic, assign) BOOL sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4;
 @property (nonatomic, assign) BOOL sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls;
 @property (nonatomic, assign) BOOL sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
+@property (nonatomic, assign) NSMutableData *facebook_image;
+@property (nonatomic, assign) NSString *facebook_id;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected
 - (void) sync_cache_current_world;
+- (void) sync_facebook;
 - (void) reset; // resetUser
 
 - (void) check_achiements;

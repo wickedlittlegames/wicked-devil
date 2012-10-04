@@ -4,15 +4,6 @@
 #define CURRENT_WORLDS_PER_GAME 4
 #define PLAYER_CONTROL_SPEED 2.9 // drag - was 4
 
-#pragma mark === IN APP PURCHASE IDS ===
-    
-#define IAP_1000        1      //  .69
-#define IAP_2500        2      //  .99
-#define IAP_5000        3      // 1.29
-#define IAP_10000       4      // 1.99
-#define IAP_50000       5      // 2.99
-#define IAP_100000      6      // 4.99
-
 #pragma mark === ACHIEVEMENT IDS ===
 
 #define ACV_FIRST_PLAY 1 // first time the game is played "First Impressions" // track if played level 1 - world 1  - 10
@@ -28,6 +19,3 @@
 #define ACV_DIED_100_TIMES 13 // died 100 times "It's Safer in Hell" // when user.died = 100 - 20
 #define ACV_1000JUMPSONPLATFORM 14 // jumped on 1000 platforms "Van Halen Would Be Proud" when user.jumped = 1000 - 50
 #define ACV_COLLECTED_666_SOULS 20 // collected 666 souls "The Number Of The Beast" - 666 souls - 20
-
-
-// 1000 to play with

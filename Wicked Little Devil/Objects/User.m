@@ -13,7 +13,7 @@
 @implementation User
 @synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, powerup, powerups, cache_current_world, gameprogress, deaths, jumps;
 @synthesize ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls, ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666, sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4, sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls, sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
-
+@synthesize facebook_id, facebook_image;
 #pragma mark User creation/persistance methods
 
 -(id) init
@@ -37,6 +37,8 @@
         self.deaths                 = [udata integerForKey:@"deaths"];
         self.jumps                  = [udata integerForKey:@"jumps"];
         self.items                  = [udata objectForKey:@"items"];
+        self.facebook_id            = [udata objectForKey:@"facebook_id"];
+        self.facebook_image         = [udata objectForKey:@"facebook_image"];
         
         [self setupAchievements];
     }
@@ -130,6 +132,12 @@
     [udata synchronize];
 }
 
+- (void) sync_facebook
+{
+    [udata setObject:self.facebook_id forKey:@"facebook_id"];
+    [udata setObject:self.facebook_image forKey:@"facebook_image"];
+    [udata synchronize];
+}
 - (void) sync_cache_current_world
 {
     [udata setInteger:self.cache_current_world forKey:@"cache_current_world"];

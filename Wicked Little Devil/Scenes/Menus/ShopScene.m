@@ -12,6 +12,7 @@
 #import "CCScrollLayer.h"
 #import "SimpleTableCell.h"
 #import "MKStoreManager.h"
+#import "WorldSelectScene.h"
 
 @implementation ShopScene
 
@@ -27,6 +28,9 @@
 {
     if( (self=[super init]) )
     {
+        MKStoreObserver *observer = [[MKStoreObserver alloc] init];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
+
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
@@ -36,28 +40,25 @@
         layer_equip = [CCLayer node];
         layer_shop  = [CCLayer node];
         
-        // |        |                               |               |
-        // |        | Title                         |               |
-        // | IMAGE  |                               | EQUIP / BUY   |
-        // |        | Description of what it does   |               |
-        // |        |                               |               |
-        
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
         
-        SKProductsRequest *request = [[SKProductsRequest alloc] init];
-        SKProductsResponse *response = [[SKProductsResponse alloc] init];
+        data    = [NSArray arrayWithObjects:
+                   @"Handful o' Souls: 2,000 Souls",
+                   @"Bag o'Souls: 5,000 Souls",
+                   @"Chalice o'Souls: 10,000 Souls",
+                   @"Truck-load o'Souls: 50,000 Souls",
+                   @"Illustrious Treasure Chest o'Souls: 100,000 Souls",
+                   nil];
         
-        [[MKStoreManager sharedManager] productsRequest:request didReceiveResponse:response];
-        CCLOG(@"%@",response);
-        
-        
-        
-        data    = [NSArray arrayWithObjects:@"1,000 Souls", @"2,500 Souls", @"5,000 Souls", @"10,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];
-        
-        
-        data2   = [NSArray arrayWithObjects:@"£0.69",@"£0.99",@"£1.29",@"£1.99", @"£2.99", @"£4.99",nil];
+        data2   = [NSArray arrayWithObjects:
+                   @"£0.69",
+                   @"£1.49",
+                   @"£1.99",
+                   @"£2.49",
+                   @"£2.99",
+                   nil];
         
         table.dataSource = self;
         table.delegate   = self;
@@ -77,39 +78,46 @@
     return self;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - (void) tap_back
 {
     [view removeFromSuperview];
-//    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_purchase:(int)item
 {
-    CCLOG(@"PURCHASING");
-    [[MKStoreManager sharedManager] buyFeature:IAP_SOUL 
+    NSString *feature = @"";
+    int collectedincrease = 0;
+    switch(item)
+    {
+        case 0:
+            feature = IAP_2000soul; collectedincrease = 2000;
+            break;
+        case 1:
+            feature = IAP_5000soul; collectedincrease = 5000;
+            break;
+        case 2:
+            feature = IAP_10000soul; collectedincrease = 10000;
+            break;
+        case 3:
+            feature = IAP_50000soul; collectedincrease = 50000;
+            break;
+        case 4:
+            feature = IAP_100000soul; collectedincrease = 100000;
+            break;
+        default:break;
+    }
+    
+    
+    CCLOG(@"PURCHASING: %@", feature);
+    
+    [[MKStoreManager sharedManager] buyFeature:feature
                                     onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
          NSLog(@"Purchased: %@", purchasedFeature);
         user = [[User alloc] init];
         CCLOG(@"USER COLLECTED %i", user.collected);
-        user.collected += 1000;
+        user.collected += collectedincrease;
         [user sync];
         
         [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",user.collected]];
@@ -168,9 +176,8 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.label_title.text = [data objectAtIndex:indexPath.row];
-    cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
     cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
-    cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+    cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
     cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
 
 

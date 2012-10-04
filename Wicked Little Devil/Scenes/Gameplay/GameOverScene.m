@@ -98,6 +98,11 @@
          [game.user sync_cache_current_world];
          [game.user check_achiements];
          [game.user sync];
+         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+         {
+             NSString *requestPath = @"me/scores?score=12345";
+             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
+         }
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
@@ -105,6 +110,9 @@
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
+         CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png" selectedImage:@"btn-reply.png" block:^(id sender){}];
+         CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender){}];
+         CCMenu *share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
 
          btn_next.anchorPoint               = ccp(0,0.5f);
          btn_replay.anchorPoint             = ccp(0,0.5f);
@@ -119,6 +127,7 @@
          [bg    setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [label_score setPosition:ccp(10, screenSize.height - 220)];
          [label_subscore setPosition:ccp(10, label_score.position.y - 60)];
+         [share_menu setPosition:ccp(screenSize.width/2, 50)];
     
          [label_score setColor:ccc3(205, 51, 51)];
          [label_subscore setColor:ccc3(24, 107, 18)];
@@ -128,6 +137,7 @@
          [self addChild:bg];
          [self addChild:label_score];
          [self addChild:label_subscore];
+         [self addChild:share_menu];
          
          tmp_score = 0;
          tmp_score_increment = souls_score;
@@ -283,6 +293,11 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
     }
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:self.tmp_game.world]]];
+}
+
+- (void) request:(PF_FBRequest *)request didLoad:(id)result
+{
+    CCLOG(@"SCORE LOGGED");
 }
 
 @end

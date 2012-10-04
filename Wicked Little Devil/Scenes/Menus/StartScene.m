@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "StartScene.h"
 #import "WorldSelectScene.h"
-#import "Social/Social.h"
+#import "MBProgressHUD.h"
 #import "User.h"
 
 @implementation StartScene
@@ -33,6 +33,7 @@
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
 
+        app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
         //[user reset];
@@ -42,7 +43,7 @@
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
         CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
-        CCMenuItem *btn_facebooksignin  = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
+        btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
         CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
@@ -70,8 +71,66 @@
         [self addChild:menu_mute];
         
         [self setMute];
+        [self setFacebookImage];
     }
 	return self;
+}
+
+- (void) getFacebookImage
+{
+    NSString *requestPath = @"me/?fields=name,location,gender,picture";
+    [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
+}
+
+- (void) setFacebookImage
+{
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        if ( user.facebook_image == NULL )
+        {
+            [self getFacebookImage];
+        }
+        else
+        {
+            
+            CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+            [btn_facebooksignin setNormalImage:fbimage];
+        }
+    }
+}
+
+- (void)request:(PF_FBRequest *)request didLoad:(id)result {
+    NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
+    imageData = [[NSMutableData alloc] init]; // the image will be loaded in here
+
+    NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL]
+                            cachePolicy:NSURLRequestUseProtocolCachePolicy
+                        timeoutInterval:2];
+    
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest
+                                                        delegate:self];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+        });
+    });
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [imageData appendData:data];
+    user.facebook_image = imageData;
+    [user sync_facebook];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+    [btn_facebooksignin setNormalImage:fbimage];
 }
 
 - (void) setMute
@@ -90,29 +149,32 @@
 
 - (void) tap_leaderboard
 {
-    [self reportLeaderboardHighscores];
-    // Show panel to see it's loading the score to game center    
-    
-    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-    leaderboardViewController.leaderboardDelegate = self;
-    
-    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-    
-    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self reportLeaderboardHighscores];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+            GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+            achivementViewController.achievementDelegate = self;
+            [[app navController] presentModalViewController:achivementViewController animated:YES];
+        });
+    });
 }
 
 - (void) tap_achievements
 {
-    [self reportAchievements];
-    // Show panel to see it's loading the score to game center
-
-    
-    GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-    achivementViewController.achievementDelegate = self;
-    
-    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-    
-    [[app navController] presentModalViewController:achivementViewController animated:YES];
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self reportAchievements];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+            GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+            achivementViewController.achievementDelegate = self;
+            [[app navController] presentModalViewController:achivementViewController animated:YES];
+        });
+    });
 }
 
 - (void) tap_mute
@@ -139,20 +201,55 @@
 
 - (void) tap_facebook
 {
-    // STUFF WITH THINGS
+        CCLOG(@"tapped fb");        
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        CCLOG(@"logging out");
+        [PFUser logOut];
+        user.facebook_image = NULL;
+        user.facebook_id    = NULL;
+        [user sync_facebook];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[StartScene scene]]];
+    }
+    else
+    {
+        CCLOG(@"checking for facebook user login status");            
+        NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
+        CCLOG(@"GOT THE ARRAY");
+        [PFFacebookUtils logInWithPermissions:permissionsArray
+            block:^(PFUser *pfuser, NSError *error) {
+                if (!pfuser) {
+                    if (!error)
+                    {
+                        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                    }
+                    else
+                    {
+                        NSLog(@"Uh oh. An error occurred: %@", error);
+                    }
+                }
+                else if (pfuser.isNew)
+                {
+                    [self getFacebookImage];
+                }
+                else
+                {
+                    [self getFacebookImage];
+                }
+            }
+        ];
+    }
 }
 
 #pragma mark GameKit delegate
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 

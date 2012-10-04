@@ -35,8 +35,12 @@
 // To avoid making mistakes map plist entries to macros on this page.
 // when you include MKStoreManager in your clss, these macros get defined there
 
-#define kConsumableBaseFeatureId @"com.wickedlittlegames.wickeddevil."
-#define IAP_SOUL @"com.wickedlittlegames.wickeddevil.1000soul"
+#define kConsumableBaseFeatureId    @"com.wickedlittlegames.wickeddevil."
+#define IAP_2000soul                @"IAP_1000soul"           //  .69 Handful o'Souls // prod id for this is IAP_1000soul
+#define IAP_5000soul                @"IAP_5000soul"           // 1.49 Bag o'Souls
+#define IAP_10000soul               @"IAP_10000soul"          // 1.99 Chalice o'Souls
+#define IAP_50000soul               @"IAP_50000soul"          // 2.49 Truck-load o'Souls
+#define IAP_100000soul              @"IAP_100000soul"         // 3.99 Illustrious Treasure Chest o'Souls
 
 #define SERVER_PRODUCT_MODEL 0
 #define OWN_SERVER nil

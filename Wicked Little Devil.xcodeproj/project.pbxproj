@@ -253,6 +253,7 @@
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
 		9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */; };
 		9C3006591619DC63002C3E77 /* btn-muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3006581619DC63002C3E77 /* btn-muted.png */; };
+		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
@@ -664,6 +665,7 @@
 		9C1423F1156E69540011C992 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9C3006581619DC63002C3E77 /* btn-muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-muted.png"; sourceTree = "<group>"; };
+		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C441927161EE79200563087 /* Twitter.framework in Frameworks */,
 				9CB9022E161D9D4300481AD4 /* AdSupport.framework in Frameworks */,
 				9CB9022C161D9D3900481AD4 /* Accounts.framework in Frameworks */,
 				9C912DB21610659300928FA5 /* Social.framework in Frameworks */,
@@ -926,6 +929,7 @@
 		9C142165156E68560011C992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C441926161EE79200563087 /* Twitter.framework */,
 				9CB9022D161D9D4300481AD4 /* AdSupport.framework */,
 				9CB9022B161D9D3900481AD4 /* Accounts.framework */,
 				9CB90229161D9CE300481AD4 /* Parse.framework */,

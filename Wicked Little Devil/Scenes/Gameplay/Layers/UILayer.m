@@ -45,6 +45,9 @@
     [self addChild:uibg];
     [self addChild:gamenumber];    
 
+    // TODO: ADD BUTTONS TO THE PAUSE UI
+    
+    
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];

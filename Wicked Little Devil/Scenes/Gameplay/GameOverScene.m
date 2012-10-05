@@ -10,6 +10,8 @@
 #import "GameScene.h"
 #import "LevelSelectScene.h"
 #import "MKInfoPanel.h"
+#import "AppDelegate.h"
+#import <Twitter/Twitter.h>
 
 #import "Game.h"
 
@@ -47,7 +49,7 @@
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
          
-         // MOVE INTO NEW SCREEN
+         // MOVE INTO NEW SCREEN WHEN PLAYERS CLICK THE FACEBOOK BUTTON
          int gamescore = 0;
          for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
          {
@@ -305,6 +307,29 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
     }
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:self.tmp_game.world]]];
+}
+
+- (void) tap_twitter
+{
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+
+    if ( [TWTweetComposeViewController canSendTweet] )
+    {
+        // Create the view controller
+        TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+        [twitter setInitialText:[NSString stringWithFormat:@"I just scored %i on World %i, Level %i on Wicked Devil for iOS http://bit.ly/wickeddevil", final_score,self.tmp_game.world, self.tmp_game.level]];
+        [[app navController] presentModalViewController:twitter animated:YES];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 - (void) request:(PF_FBRequest *)request didLoad:(id)result

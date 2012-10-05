@@ -45,23 +45,34 @@
     [self addChild:uibg];
     [self addChild:gamenumber];    
 
-    // TODO: ADD BUTTONS TO THE PAUSE UI
-    
-    
-    CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
-    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
+    NSString *highscore = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:world level:level]];
+    NSString *gamenumber_pause = [NSString stringWithFormat:@"%i - %i",world,level];
+    CCLabelTTF *label_resume = [CCLabelTTF labelWithString:@"RESUME GAME" fontName:@"CrashLanding BB" fontSize:36];
+    CCLabelTTF *label_levelselect = [CCLabelTTF labelWithString:@"BACK TO LEVEL SELECT" fontName:@"CrashLanding BB" fontSize:36];
+    [label_resume setColor:ccc3(205, 51, 51)];
+    [label_levelselect setColor:ccc3(205, 51, 51)];    
+    CCLabelTTF *label_gamenumber = [CCLabelTTF labelWithString:gamenumber_pause dimensions:CGSizeMake(screenSize.width, 30) hAlignment:kCCTextAlignmentLeft fontName:@"CrashLanding BB" fontSize:30.0f];
+    CCLabelTTF *label_best = [CCLabelTTF labelWithString:highscore dimensions:CGSizeMake(screenSize.width, 30) hAlignment:kCCTextAlignmentRight fontName:@"CrashLanding BB" fontSize:30.0f];
+    CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:label_resume target:self selector:@selector(tap_unpause)];
+    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
+    label_best.anchorPoint = ccp(0,0);
+    label_gamenumber.anchorPoint = ccp(0,0);
+    [label_best setPosition:ccp(0, screenSize.height - 143)];
+    [label_gamenumber setPosition:label_best.position];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
-    [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [pause_screen alignItemsHorizontallyWithPadding:10];
-    [self addChild:pause_screen];
-    pause_screen.visible = FALSE;
+    [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
+    [pause_screen alignItemsVerticallyWithPadding:-3];
+    [pause_bg addChild:label_best];
+    [pause_bg addChild:label_gamenumber];
+    [pause_bg addChild:pause_screen];
     
     CCMenuItemImage *btn_reload = [CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" disabledImage:@"btn-pause.png" target:self selector:@selector(tap_reload)];
     CCMenuItemImage *btn_menu   = [CCMenuItemImage itemWithNormalImage:@"btn-gameplay-menu.png" selectedImage:@"btn-gameplay-menu.png" disabledImage:@"btn-gameplay-menu.png" target:self selector:@selector(tap_pause)];
     CCMenu *gameplay_menu = [CCMenu menuWithItems:btn_reload,btn_menu, nil];
-    [gameplay_menu alignItemsHorizontallyWithPadding:10];
-    gameplay_menu.position = ccp(screenSize.width - 45, screenSize.height - 16);
+    [gameplay_menu alignItemsHorizontallyWithPadding:20];
+    gameplay_menu.position = ccp(screenSize.width - 48, screenSize.height - 16);
     [self addChild:gameplay_menu];
+    
     
     int x_one = 15;
     int x_two = 45;
@@ -97,14 +108,12 @@
 - (void) tap_pause
 {
     [[CCDirector sharedDirector] pause];
-    pause_screen.visible = TRUE;
     pause_bg.visible = TRUE;
 }
 
 - (void) tap_unpause
 {
     [[CCDirector sharedDirector] resume];
-    pause_screen.visible = FALSE;
     pause_bg.visible = FALSE;
 }
 

@@ -50,6 +50,7 @@
         CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
+        CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
@@ -57,6 +58,7 @@
         [menu_mute setPosition:ccp(25, 25)];
         [menu_social setPosition:ccp(screenSize.width - 63, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
+        [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {
@@ -67,6 +69,7 @@
         [self addChild:bg];
         [self addChild:homeFX];
         [self addChild:menu_start];
+        [self addChild:behind_fb];
         [self addChild:menu_social];
         [self addChild:menu_mute];
         
@@ -227,6 +230,8 @@
                 else if (pfuser.isNew)
                 {
                     [self getFacebookImage];
+                    user.collected += 500;
+                    [user sync];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }
                 else

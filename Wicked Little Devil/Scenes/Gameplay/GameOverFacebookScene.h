@@ -9,8 +9,12 @@
 #import "cocos2d.h"
 #import <Parse/Parse.h>
 
-@class Game, GameOverScene;
-@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate> {}
+@class Game, GameOverScene, AppController;
+@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate>
+{
+    AppController *app;
+}
+@property (nonatomic, assign) int request_tag;
 
 +(CCScene *) sceneWithGame:(Game*)game;
 - (id) initWithGame:(Game*)game;

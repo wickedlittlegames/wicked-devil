@@ -307,6 +307,7 @@
 		9C9E86DE1618C529001CAC21 /* btn-nextlevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E86DA1618C529001CAC21 /* btn-nextlevel.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
+		9CAAFC7A161F22F00046B4E4 /* btn-behind-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAAFC79161F22F00046B4E4 /* btn-behind-fb.png */; };
 		9CABCF3D1611D5EA006DFDE9 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */; };
 		9CABCF3F1611D5EA006DFDE9 /* Powerups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF011611D5EA006DFDE9 /* Powerups.plist */; };
 		9CABCF401611D5EA006DFDE9 /* CrashLandingBB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */; };
@@ -726,6 +727,7 @@
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
 		9CA61BA715B566BB00B447E9 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Scenes/Gameplay/Layers/GameLayer.m; sourceTree = "<group>"; };
+		9CAAFC79161F22F00046B4E4 /* btn-behind-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-behind-fb.png"; path = "../../../../../../../../../Desktop/btn-behind-fb.png"; sourceTree = "<group>"; };
 		9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
 		9CABCF011611D5EA006DFDE9 /* Powerups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Powerups.plist; sourceTree = "<group>"; };
 		9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB.ttf; sourceTree = "<group>"; };
@@ -1531,6 +1533,7 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CAAFC79161F22F00046B4E4 /* btn-behind-fb.png */,
 				9CCD888C161C7DE900CEA6D8 /* ui-collectable.png */,
 				9CCD8888161C70F100CEA6D8 /* btn-achievements.png */,
 				9CCD8889161C70F100CEA6D8 /* btn-leaderboard.png */,
@@ -1998,6 +2001,7 @@
 				9CCD888A161C70F100CEA6D8 /* btn-achievements.png in Resources */,
 				9CCD888B161C70F100CEA6D8 /* btn-leaderboard.png in Resources */,
 				9CCD888D161C7DE900CEA6D8 /* ui-collectable.png in Resources */,
+				9CAAFC7A161F22F00046B4E4 /* btn-behind-fb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

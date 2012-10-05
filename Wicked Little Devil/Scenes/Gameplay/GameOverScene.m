@@ -135,7 +135,11 @@
          [self addChild:bg];
          [self addChild:label_score];
          [self addChild:label_subscore];
-         [self addChild:share_menu];
+         
+         if ( [game.user isOnline] )
+         {
+             [self addChild:share_menu];
+         }
          
          tmp_score = 0;
          tmp_score_increment = souls_score;

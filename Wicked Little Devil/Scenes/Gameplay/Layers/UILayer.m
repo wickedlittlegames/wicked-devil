@@ -57,7 +57,7 @@
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
     label_best.anchorPoint = ccp(0,0);
     label_gamenumber.anchorPoint = ccp(0,0);
-    [label_best setPosition:ccp(0, screenSize.height - 143)];
+    [label_best setPosition:ccp(0, screenSize.height - 149)];
     [label_gamenumber setPosition:label_best.position];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
     [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];

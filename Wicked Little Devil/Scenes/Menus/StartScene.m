@@ -36,8 +36,8 @@
         app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
-        //[user reset];
-        //[gkHelper resetAchievements];
+        //[user reset];        
+        ///[gkHelper resetAchievements];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
@@ -71,33 +71,27 @@
         [self addChild:menu_mute];
         
         [self setMute];
-        CCLOG(@"User image: %@", user.facebook_image);
         [self setFacebookImage];
-        CCLOG(@"User image: %@", user.facebook_image);        
     }
 	return self;
 }
 
 - (void) getFacebookImage
 {
-    CCLOG(@"GETING IMAGE");
     NSString *requestPath = @"me/?fields=name,location,gender,picture";
     [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
 }
 
 - (void) setFacebookImage
 {
-    CCLOG(@"SETTING IMAGE");
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         if ( user.facebook_image == NULL )
         {
             [self getFacebookImage];
-    CCLOG(@"caling fb");            
         }
         else
         {
-                CCLOG(@"getting from cache");
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
         }
@@ -105,10 +99,16 @@
 }
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    CCLOG(@"REQEUESTING");
     NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
     imageData = [[NSMutableData alloc] init]; // the image will be loaded in here
 
+    if ( user.facebook_id == NULL )
+    {
+        user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
+        [user sync_facebook];
+    }
+
+    
     NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL]
@@ -121,7 +121,6 @@
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    CCLOG(@"dling");    
     [imageData appendData:data];
     user.facebook_image = imageData;
     [user sync_facebook];
@@ -129,7 +128,6 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    CCLOG(@"dld");        
     CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
     [btn_facebooksignin setNormalImage:fbimage];
 }
@@ -202,10 +200,8 @@
 
 - (void) tap_facebook
 {
-        CCLOG(@"tapped fb");        
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
-        CCLOG(@"logging out");
         [PFUser logOut];
         user.facebook_image = NULL;
         user.facebook_id    = NULL;
@@ -214,9 +210,8 @@
     }
     else
     {
-        CCLOG(@"checking for facebook user login status");            
+        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
-        CCLOG(@"GOT THE ARRAY");
         [PFFacebookUtils logInWithPermissions:permissionsArray
             block:^(PFUser *pfuser, NSError *error) {
                 if (!pfuser) {
@@ -231,13 +226,13 @@
                 }
                 else if (pfuser.isNew)
                 {
-                    CCLOG(@"NEW USER");
                     [self getFacebookImage];
+                    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }
                 else
                 {
-                    CCLOG(@"NOT NEW USER - BUT BACK");
                     [self getFacebookImage];
+                    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }
             }
         ];

@@ -28,7 +28,12 @@
 {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     self.world = game.world;
-    self.level = game.level;    
+    self.level = game.level;
+    
+    CCLabelTTF *gamenumber = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",world,level] fontName:@"CrashLanding BB" fontSize:24];
+    gamenumber.color = ccBLACK;
+    [gamenumber setPosition:ccp(screenSize.width/2,screenSize.height - 15)];
+
     
     pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
     pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -38,12 +43,13 @@
     CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
     [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
     [self addChild:uibg];
+    [self addChild:gamenumber];    
 
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK TO GAME" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"MAIN MENU" fontName:@"CrashLanding BB" fontSize:20] target:self selector:@selector(tap_mainmenu)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
     [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [pause_screen alignItemsVerticallyWithPadding:10];
+    [pause_screen alignItemsHorizontallyWithPadding:10];
     [self addChild:pause_screen];
     pause_screen.visible = FALSE;
     

@@ -47,6 +47,23 @@
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
          
+         // MOVE INTO NEW SCREEN
+         int gamescore = 0;
+         for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
+         {
+             gamescore += [game.user getHighscoreforWorld:i];
+         }
+         
+         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+         {
+             NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                           [NSString stringWithFormat:@"%i",gamescore], @"score",
+                                           [[PFFacebookUtils session] accessToken],@"access_token",
+                                           nil];
+             NSString *requestPath = [NSString stringWithFormat:@"%@/scores",game.user.facebook_id];
+             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andParams:param andHttpMethod:@"POST" andDelegate:self];
+         }         
+         
          bool restartAudioToggle = FALSE;
          
          if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
@@ -98,12 +115,6 @@
          [game.user sync_cache_current_world];
          [game.user check_achiements];
          [game.user sync];
-         
-         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-         {
-             NSString *requestPath = @"me/scores?score=12345";
-             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
-         }
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
@@ -298,6 +309,7 @@
 
 - (void) request:(PF_FBRequest *)request didLoad:(id)result
 {
+    CCLOG(@"REQUEST: %@",request);
     CCLOG(@"SCORE LOGGED");
     CCLOG(@"RESULT: %@", result);
 }

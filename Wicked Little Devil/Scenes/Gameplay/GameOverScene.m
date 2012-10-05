@@ -9,6 +9,7 @@
 #import "GameOverScene.h"
 #import "GameScene.h"
 #import "LevelSelectScene.h"
+#import "GameOverFacebookScene.h"
 #import "MKInfoPanel.h"
 #import "AppDelegate.h"
 #import <Twitter/Twitter.h>
@@ -48,23 +49,6 @@
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
-         
-         // MOVE INTO NEW SCREEN WHEN PLAYERS CLICK THE FACEBOOK BUTTON
-         int gamescore = 0;
-         for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
-         {
-             gamescore += [game.user getHighscoreforWorld:i];
-         }
-         
-         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-         {
-             NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                           [NSString stringWithFormat:@"%i",gamescore], @"score",
-                                           [[PFFacebookUtils session] accessToken],@"access_token",
-                                           nil];
-             NSString *requestPath = [NSString stringWithFormat:@"%@/scores",game.user.facebook_id];
-             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andParams:param andHttpMethod:@"POST" andDelegate:self];
-         }         
          
          bool restartAudioToggle = FALSE;
          
@@ -125,7 +109,7 @@
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
          CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png" selectedImage:@"btn-reply.png" block:^(id sender){ [self tap_twitter]; }];
-         CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender){}];
+         CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender){ [self tap_facebook]; }];
          CCMenu *share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
 
          btn_next.anchorPoint               = ccp(0,0.5f);
@@ -332,11 +316,9 @@
     }
 }
 
-- (void) request:(PF_FBRequest *)request didLoad:(id)result
+- (void) tap_facebook
 {
-    CCLOG(@"REQUEST: %@",request);
-    CCLOG(@"SCORE LOGGED");
-    CCLOG(@"RESULT: %@", result);
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverFacebookScene sceneWithGame:self.tmp_game]]];
 }
 
 @end

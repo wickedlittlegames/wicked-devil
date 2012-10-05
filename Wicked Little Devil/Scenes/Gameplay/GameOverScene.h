@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 #import <Parse/Parse.h>
 
-@class LevelSelectScene, GameScene, Game, AppController;
+@class LevelSelectScene, GameScene, Game, AppController, GameOverFacebookScene;
 @interface GameOverScene : CCLayer <PF_FBRequestDelegate>
 {
     int souls, souls_score, collected, timebonus, timebonus_score, final_score, next_world, next_level, tmp_score_increment, tmp_score;

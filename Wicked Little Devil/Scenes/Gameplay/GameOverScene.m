@@ -124,7 +124,7 @@
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
-         CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png" selectedImage:@"btn-reply.png" block:^(id sender){}];
+         CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png" selectedImage:@"btn-reply.png" block:^(id sender){ [self tap_twitter]; }];
          CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender){}];
          CCMenu *share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
 

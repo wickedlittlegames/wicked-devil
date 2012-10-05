@@ -15,3 +15,9 @@
 - (BOOL) isIntersectingPlayer:(Player*)player;
 
 @end
+
+
+@interface Tip : CCSprite {}
+@property (nonatomic, assign) bool faded;
+
+@end

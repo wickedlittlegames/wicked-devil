@@ -13,7 +13,7 @@
 #import "Game.h"
 
 @implementation GameLayer
-@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters,  world, level;
+@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters,  world, level, tips;
 
 - (id) init
 {
@@ -24,11 +24,12 @@
 - (void) createWorldWithObjects:(CCArray*)gameObjects
 {
     platforms       = [CCArray arrayWithCapacity:100];
-    collectables    = [CCArray arrayWithCapacity:100];
+    collectables    = [CCArray arrayWithCapacity:500];
     bigcollectables = [CCArray arrayWithCapacity:3];
     enemies         = [CCArray arrayWithCapacity:100];
     triggers        = [CCArray arrayWithCapacity:100];
     emitters        = [CCArray arrayWithCapacity:100];
+    tips            = [CCArray arrayWithCapacity:100];
     
     for (CCNode* node in self.children)
     {
@@ -57,6 +58,10 @@
             [triggers addObject:node];
             node.visible = NO;
         }
+        if ([node isKindOfClass: [Tip class]])
+        {
+            [tips addObject:node];
+        }
     }
 }
 
@@ -70,6 +75,19 @@
     Enemy *enemy = nil;
     Projectile *projectile = nil;
     EnemyFX *fx = nil;
+    Tip *tip = nil;
+    
+    CCARRAY_FOREACH(tips, tip)
+    {
+        if (!tip.faded)
+        {
+            [tip runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],[CCFadeOut actionWithDuration:1.0f],[CCCallBlock actionWithBlock:^(void){
+                tip.faded = YES;
+                [tip removeFromParentAndCleanup:YES];
+                [tips removeObject:tip];
+            }],nil]];
+        }
+    }
     
     CCARRAY_FOREACH(platforms, platform)
     {

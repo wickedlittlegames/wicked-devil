@@ -11,6 +11,7 @@
 
 @implementation Trigger
 
+
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect])) {}
@@ -22,4 +23,14 @@
     return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && player.velocity.y < 0 && self.visible );
 }
 
+@end
+
+@implementation Tip
+@synthesize  faded;
+
+-(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
+{
+    if( (self=[super initWithTexture:texture rect:rect])) {}
+    return self;
+}
 @end

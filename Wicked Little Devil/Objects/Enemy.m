@@ -121,9 +121,8 @@
 
 - (void) action_bat_hit
 {
-    // TODO: Needs tweaking to make look nicer
-    id up   = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,50)]];
-    id down = [CCEaseBackOut actionWithAction:[CCMoveBy actionWithDuration:1.5 position:ccp(0,-250)]];
+    id up   = [CCEaseExponentialOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,30)]];
+    id down = [CCEaseExponentialIn actionWithAction:[CCMoveBy actionWithDuration:2.5 position:ccp(0,-250)]];
     id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
     [self runAction:[CCSequence actions:up,down,end, nil]];

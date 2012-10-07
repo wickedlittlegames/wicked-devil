@@ -119,6 +119,8 @@
 
 - (void) tap_mainmenu
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    
     [[CCDirector sharedDirector] resume];
     if ( ![SimpleAudioEngine sharedEngine].mute )
     {

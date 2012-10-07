@@ -10,6 +10,7 @@
 #import "LevelSelectScene.h"
 #import "StartScene.h"
 #import "ShopScene.h"
+#import "EquipScene.h"
 #import "User.h"
 
 @implementation WorldSelectScene
@@ -41,7 +42,7 @@
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
-        CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_store:)],nil];
+        CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_equip:)],nil];
         CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_store:)],nil];
         
         // Positioning
@@ -80,18 +81,30 @@
 
 - (void) tap_world:(CCMenuItemFont*)sender
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     user.cache_current_world = sender.tag;
     [user sync_cache_current_world];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:sender.tag]]];
 }
 
+- (void) tap_equip:(id)sender
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+}
+
 - (void) tap_store:(id)sender
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
 }
 
@@ -125,6 +138,13 @@
     
     [layer addChild:bg];
     [layer addChild:menu];
+    
+    if ( !button.isEnabled )
+    {
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+        locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+        [layer addChild:locked_sprite];
+    }
     
     return layer;
 }

@@ -103,9 +103,9 @@
          [game.user sync];
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
-         CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
+         CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];} }];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
-         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; }];
+         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];} }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:70];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
          CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-tweet-score.png" selectedImage:@"btn-tweet-score.png" block:^(id sender){ [self tap_twitter]; }];
@@ -371,6 +371,8 @@
 
 - (void) restartAudio
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    
     if ( ![SimpleAudioEngine sharedEngine].mute )
     {
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
@@ -381,6 +383,8 @@
 
 - (void) tap_twitter
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 
     if ( [TWTweetComposeViewController canSendTweet] )
@@ -404,6 +408,8 @@
 
 - (void) tap_facebook
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverFacebookScene sceneWithGame:self.tmp_game]]];
 }
 

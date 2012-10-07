@@ -140,16 +140,19 @@
 
 - (void) tap_level:(CCMenuItem*)sender
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE restartMusic:YES]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_store:(id)sender
 {
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 

@@ -36,9 +36,9 @@
         app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
-        CCLOG(@"%i",user.jumps);
-        //[user reset];        
-        ///[gkHelper resetAchievements];
+        //CCLOG(@"%i",user.jumps);
+        [user reset];
+        [gkHelper resetAchievements];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
@@ -154,11 +154,13 @@
 
 - (void) tap_start
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_leaderboard
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
     [self reportLeaderboardHighscores];
     GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
     leaderboardViewController.leaderboardDelegate = self;
@@ -167,6 +169,7 @@
 
 - (void) tap_achievements
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
     [self reportAchievements];
     GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
     achivementViewController.achievementDelegate = self;
@@ -175,6 +178,8 @@
 
 - (void) tap_mute
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     bool current_mute_status = [user.udata boolForKey:@"MUTED"];
     
     if ( current_mute_status == 0 )
@@ -197,6 +202,8 @@
 
 - (void) tap_facebook
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         [PFUser logOut];

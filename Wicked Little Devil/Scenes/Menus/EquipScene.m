@@ -1,153 +1,218 @@
 //
-//  EquipScene.m
+//  OptionsScene.m
 //  Wicked Little Devil
 //
-//  Created by Andrew Girvan on 13/07/2012.
+//  This scene shows the store for purchasing objects (individual or pack)
+//
+//  Created by Andrew Girvan on 06/06/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
 #import "EquipScene.h"
-#import "LevelSelectScene.h"
-
+#import "CCScrollLayer.h"
+#import "SimpleTableCell.h"
+#import "MKStoreManager.h"
+#import "WorldSelectScene.h"
 
 @implementation EquipScene
 
 +(CCScene *) scene
 {
-    // Create a Scene
-	CCScene *scene = [CCScene node];
-    
-    // Grab the layers
-	EquipScene *current = [EquipScene node];
-    
-    // Fill the scene
-	[scene addChild:current];
-    
-    // Show the scene
-	return scene;
+    CCScene *scene = [CCScene node];
+    EquipScene *current = [EquipScene node];
+    [scene addChild:current];
+    return scene;
 }
 
 -(id) init
 {
-    if( (self=[super init]) ) {
+    if( (self=[super init]) )
+    {
+        MKStoreObserver *observer = [[MKStoreObserver alloc] init];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
         
-        screenSize = [CCDirector sharedDirector].winSize;
         user = [[User alloc] init];
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        NSString *font = @"CrashLanding BB";
         
-        // Place the cards available for purchasing
-        [self setup_cards];
+        //        // NEED TWO LAYERS, ONE WITH EQUIPS, ONE WITH PURCHASE
+        //        layer_equip = [CCLayer node];
+        //        layer_shop  = [CCLayer node];
+        //
+        app     = (AppController*)[[UIApplication sharedApplication] delegate];
+        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
+        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
-        // Back Button
-        CCMenu *menu_back = [CCMenu menuWithItems:[CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:@"Marker Felt" fontSize:18] target:self selector:@selector(tap_back)], nil];
-        menu_back.position = ccp ( screenSize.width - 80, 10 );
-        [self addChild:menu_back];
+        data    = [NSArray arrayWithObjects:
+                   @"Handful o' Souls",
+                   @"Bag o'Souls",
+                   @"Chalice o'Souls",
+                   @"Truck-load o'Souls",
+                   @"Chest o'Souls",
+                   nil];
+        
+        data2   = [NSArray arrayWithObjects:
+                   @"£0.69",
+                   @"£1.49",
+                   @"£1.99",
+                   @"£2.49",
+                   @"£2.99",
+                   nil];
+        
+        data3   = [NSArray arrayWithObjects:
+                   @"Buy 2,000 Souls",
+                   @"Buy 5,000 Souls",
+                   @"Buy 10,000 Souls",
+                   @"Buy 50,000 Souls",
+                   @"Buy 100,000 Souls",
+                   nil];
+        
+        table.dataSource = self;
+        table.delegate   = self;
+        [view addSubview:table];
+        [app.window addSubview:view];
+        
+        
+        CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
+        [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:bg];
+        
+        CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
+        [menu_back              setPosition:ccp(25, 25)];
+        [self addChild:menu_back z:1000];
+        
+        // Collectable Button
+        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
+        [lbl_user_collected setPosition:ccp ( screenSize.width/2, screenSize.height - 85 )];
+        [self addChild:lbl_user_collected z:100];
     }
     return self;
 }
 
-- (void) setup_cards
+- (void) tap_back
 {
-    NSString *font = @"Arial";
-    int fontsize = 18;
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
     
-    // Pull in the Cards plist
-    NSArray *contentArray = [[NSDictionary 
-                              dictionaryWithContentsOfFile:[[NSBundle mainBundle] 
-                                                            pathForResource:@"Cards" 
-                                                            ofType:@"plist"]
-                              ] objectForKey:@"Powerups"];
+    [view removeFromSuperview];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+}
+
+- (void) tap_purchase:(int)item
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
     
-    NSMutableArray *cards = [NSMutableArray arrayWithCapacity:[contentArray count]];
+    NSString *feature = @"";
+    int collectedincrease = 0;
+    switch(item)
+    {
+        case 0:
+            feature = IAP_2000soul; collectedincrease = 2000;
+            break;
+        case 1:
+            feature = IAP_5000soul; collectedincrease = 5000;
+            break;
+        case 2:
+            feature = IAP_10000soul; collectedincrease = 10000;
+            break;
+        case 3:
+            feature = IAP_50000soul; collectedincrease = 50000;
+            break;
+        case 4:
+            feature = IAP_100000soul; collectedincrease = 100000;
+            break;
+        default:break;
+    }
     
-    for (int i = 0; i <[contentArray count]; i++ )
-    {
-        // Grab the powerup contents
-        NSDictionary *dict = [contentArray objectAtIndex:i]; //name, description, cost, unlocked, image
-        
-        // Set up a new layer for the card
-        CCLayer *card = [CCLayer node];
-        
-        // Set up the background image for the card
-        CCSprite *image = [CCSprite spriteWithFile:@"card.png"];
-        image.position = ccp ( screenSize.width/2, screenSize.height/2 );
-        [card addChild:image];
-        
-        // Show title
-        CCLabelTTF *label_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[dict valueForKey:@"Name"]] fontName:font fontSize:fontsize];
-        [label_name setPosition:ccp ( 320/2,480/2 )];
-        [card addChild:label_name];
-        
-        // buttons for equip or purchase
-        CCMenuItem *btn_equip = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Equip" fontName:font fontSize:fontsize] target:self selector:@selector(tap_equip:)];
-        CCMenuItem *btn_buy = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Purchase" fontName:font fontSize:fontsize] target:self selector:@selector(tap_buy:)];    
-        CCMenuItem *btn_demo = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"Demo" fontName:font fontSize:fontsize] target:self selector:@selector(tap_demob:)];    
-        btn_equip.tag = i;
-        btn_buy.tag = i;
-        btn_buy.userObject = [NSNumber numberWithInt:100];
-        btn_demo.tag = i;
-        
-        if ( [[user.items objectAtIndex:i] intValue] == 1 )
-        {
-            btn_buy.visible = FALSE;
-            btn_equip.visible = TRUE;
-            btn_demo.visible = FALSE;
-            
-            btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
-        }
-        else 
-        {
-            btn_buy.visible = TRUE;
-            btn_equip.visible = FALSE;
-            btn_demo.visible = TRUE;
-        }
-        
-        if ( i == 0 )
-        {
-            btn_buy.visible = FALSE;
-            btn_demo.visible = FALSE;
-            btn_equip.visible = (user.powerup == i ? FALSE : TRUE );
-        }
-        
-        // Place the menu on the screen
-        CCMenu *menu = [CCMenu menuWithItems:btn_equip, btn_buy, btn_demo, nil];
-        [menu alignItemsHorizontallyWithPadding:20];
-        menu.position = ccp ( screenSize.width/2, 80 );
-        [card addChild:menu];
-        
-        // Add the card object to the array
-        [cards addObject:card];
-    }
-
-    // Place the scroller
-    CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:cards widthOffset: 20];
-    [self addChild:scroller];
+    
+    CCLOG(@"PURCHASING: %@", feature);
+    
+    [[MKStoreManager sharedManager] buyFeature:feature
+                                    onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
+     {
+         NSLog(@"Purchased: %@", purchasedFeature);
+         user = [[User alloc] init];
+         CCLOG(@"USER COLLECTED %i", user.collected);
+         user.collected += collectedincrease;
+         [user sync];
+         
+         [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",user.collected]];
+         
+         CCLOG(@"USER COLLECTED %i", user.collected);
+     }
+                                   onCancelled:^
+     {
+         NSLog(@"User Cancelled Transaction");
+     }];
 }
 
-- (void) tap_equip:(CCMenuItem*)sender
+
+#pragma mark UITableView code
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    user.powerup = sender.tag;
-    [user sync];
+    return nil;
 }
 
-- (void) tap_buy:(CCMenuItem*)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    CCLOG(@"TAPPED BUY | TODO: SET UP BUY");    
-    int cost = [sender.userObject intValue];
-    if ( user.collected >= cost )
-    {
-        user.collected -= cost;
-        [user buyItem:sender.tag];
-        [user sync];
-    }
-    else 
-    {
-        CCLOG(@"NOT ENOUGH MONEY");
-    }
+    return [data count];
+}
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-- (void) tap_demo:(id)sender
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CCLOG(@"PLAY A DEMO VIDEO OF THE POWERUP IN ACTION");
+	return 60;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.scrollEnabled = NO;
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableCell";
+    
+    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    //    int section = [indexPath section];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_description.text = [data3 objectAtIndex:indexPath.row];
+    cell.label_title.text = [data objectAtIndex:indexPath.row];
+    cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+    cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
+    cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
+    cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
+    
+    
+    //    switch (section) {
+    //        case 0:
+    //            cell.label_title.text = [data objectAtIndex:indexPath.row];
+    //            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
+    //            cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+    //            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+    //            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
+    //            break;
+    //        case 1:
+    //            cell.label_title.text = [data2 objectAtIndex:indexPath.row];
+    //            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
+    //            cell.label_price.text    = @"2000";
+    //            [cell.button_buy setEnabled:NO];
+    //            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
+    //            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];            
+    //            break;
+    //    }
+    
+    return cell;
+}
+
 
 @end

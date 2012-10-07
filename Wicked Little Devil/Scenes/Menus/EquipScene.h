@@ -1,21 +1,33 @@
 //
-//  EquipScene.h
+//  ShopScene.h
 //  Wicked Little Devil
 //
-//  Created by Andrew Girvan on 13/07/2012.
+//  Created by Andrew Girvan on 06/06/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
 #import "cocos2d.h"
 #import "CCScrollLayer.h"
+#import "LevelSelectScene.h"
+#import "AppDelegate.h"
+#import "MKStoreManager.h"
 
 #import "User.h"
 
-@interface EquipScene : CCLayer 
+@interface EquipScene : CCLayer <UITableViewDelegate, UITableViewDataSource>
 {
+    UIView *view;
+    UITableView *table;
+    NSArray *data, *data2, *data3;
+    NSArray *items, *descriptions, *prices;
+    AppController *app;
+    CCLabelTTF *lbl_user_collected;
     User *user;
-    CGSize screenSize;
+    
+    
+    CCLayer *layer_shop, *layer_equip;
 }
 
 +(CCScene *) scene;
+- (void) tap_purchase:(int)item;
 @end

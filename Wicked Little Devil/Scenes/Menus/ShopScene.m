@@ -34,22 +34,21 @@
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
-        int fontsize = 18;
 
-        // NEED TWO LAYERS, ONE WITH EQUIPS, ONE WITH PURCHASE
-        layer_equip = [CCLayer node];
-        layer_shop  = [CCLayer node];
-        
+//        // NEED TWO LAYERS, ONE WITH EQUIPS, ONE WITH PURCHASE
+//        layer_equip = [CCLayer node];
+//        layer_shop  = [CCLayer node];
+//        
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
-        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
-        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 60)];
+        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
+        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
         data    = [NSArray arrayWithObjects:
-                   @"Handful o' Souls: 2,000 Souls",
-                   @"Bag o'Souls: 5,000 Souls",
-                   @"Chalice o'Souls: 10,000 Souls",
-                   @"Truck-load o'Souls: 50,000 Souls",
-                   @"Illustrious Treasure Chest o'Souls: 100,000 Souls",
+                   @"Handful o' Souls",
+                   @"Bag o'Souls",
+                   @"Chalice o'Souls",
+                   @"Truck-load o'Souls",
+                   @"Chest o'Souls",
                    nil];
         
         data2   = [NSArray arrayWithObjects:
@@ -60,19 +59,31 @@
                    @"£2.99",
                    nil];
         
+        data3   = [NSArray arrayWithObjects:
+                   @"Buy 2,000 Souls",
+                   @"Buy 5,000 Souls",
+                   @"Buy 10,000 Souls",
+                   @"Buy 50,000 Souls",
+                   @"Buy 100,000 Souls",
+                   nil];
+        
         table.dataSource = self;
         table.delegate   = self;
         [view addSubview:table];
         [app.window addSubview:view];
+
         
-        CCMenuItem *back = [CCMenuItemFont itemWithLabel:[CCLabelTTF labelWithString:@"BACK" fontName:font fontSize:fontsize] target:self selector:@selector(tap_back)];
-        CCMenu *menu = [CCMenu menuWithItems:back, nil];
-        menu.position = ccp ( screenSize.width - 80, 10 );
-        [self addChild:menu z:100];
+        CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
+        [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:bg];
+        
+        CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
+        [menu_back              setPosition:ccp(25, 25)];
+        [self addChild:menu_back z:1000];
         
         // Collectable Button
-        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:fontsize];
-        [lbl_user_collected setPosition:ccp ( lbl_user_collected.contentSize.width - 20, 10 )];
+        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
+        [lbl_user_collected setPosition:ccp ( screenSize.width/2, screenSize.height - 85 )];
         [self addChild:lbl_user_collected z:100];
     }
     return self;
@@ -80,12 +91,16 @@
 
 - (void) tap_back
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    
     [view removeFromSuperview];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_purchase:(int)item
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    
     NSString *feature = @"";
     int collectedincrease = 0;
     switch(item)
@@ -135,19 +150,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    //switch (section) {
-    //    case 0: return  @"Currency"; break;
-    //    case 1: return  @"Misc"; break;
-    //}
-    return @"Currency";
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //switch (section){
-      //  case 0: return [data count]; break;
-       // case 1: return [data2 count]; break;
-    //}
     return [data count];
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView 
@@ -157,12 +164,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 78;
+	return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.scrollEnabled = NO;
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     
@@ -174,9 +183,12 @@
     } 
 //    int section = [indexPath section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_description.text = [data3 objectAtIndex:indexPath.row];
     cell.label_title.text = [data objectAtIndex:indexPath.row];
+    cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
     cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+    cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
     cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
 

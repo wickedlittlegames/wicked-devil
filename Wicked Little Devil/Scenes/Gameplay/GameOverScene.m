@@ -40,9 +40,9 @@
          souls              = game.player.bigcollected;
          souls_score        = souls * 1000;
          collected          = game.player.collected;
-         timebonus          = (30 - game.player.time);
+         timebonus          = (game.timelimit - game.player.time);
          timebonus_score    = (timebonus * 100);
-         final_score        = souls_score + timebonus_score;
+         final_score        = (souls_score + timebonus_score) + (collected * 10);
          next_world         = 1;
          next_level         = 1;
                   
@@ -106,11 +106,13 @@
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]];}];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; }];
-         label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:74];
+         label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:70];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
-         CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png" selectedImage:@"btn-reply.png" block:^(id sender){ [self tap_twitter]; }];
-         CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png" selectedImage:@"btn-levelselect.png" block:^(id sender){ [self tap_facebook]; }];
-         CCMenu *share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
+         CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-tweet-score.png" selectedImage:@"btn-tweet-score.png" block:^(id sender){ [self tap_twitter]; }];
+         CCMenuItemImage *share_facebook    = [CCMenuItemImage itemWithNormalImage:@"btn-fb-score.png" selectedImage:@"btn-fb-score.png" block:^(id sender){ [self tap_facebook]; }];
+         share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
+         share_facebook.visible = NO;
+         [share_menu alignItemsHorizontallyWithPadding:10];
 
          btn_next.anchorPoint               = ccp(0,0.5f);
          btn_replay.anchorPoint             = ccp(0,0.5f);
@@ -125,7 +127,8 @@
          [bg    setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [label_score setPosition:ccp(10, screenSize.height - 220)];
          [label_subscore setPosition:ccp(10, label_score.position.y - 60)];
-         [share_menu setPosition:ccp(screenSize.width/2, 50)];
+         [share_menu setPosition:ccp(screenSize.width/2, 20)];
+         share_menu.opacity = 0;
     
          [label_score setColor:ccc3(205, 51, 51)];
          [label_subscore setColor:ccc3(24, 107, 18)];
@@ -135,11 +138,6 @@
          [self addChild:bg];
          [self addChild:label_score];
          [self addChild:label_subscore];
-         
-         if ( [game.user isOnline] )
-         {
-             [self addChild:share_menu];
-         }
          
          tmp_score = 0;
          tmp_score_increment = souls_score;
@@ -151,6 +149,11 @@
                                      {
                                          [self schedule: @selector(soul_bonus_tick) interval: 1.0f/60.0f];
                                      }],nil]];
+         
+         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+         {
+             share_facebook.visible = YES;
+         }
      }
      return self;
  }
@@ -181,7 +184,7 @@
                                        [CCFadeOut actionWithDuration:0.2f],
                                        [CCCallBlock actionWithBlock:^(void)
                                         {
-                                            NSString *str_timebonus = ( timebonus >= 10 ? [NSString stringWithFormat:@"TIME BONUS: 0:%i", timebonus] : [NSString stringWithFormat:@"TIME BONUS: 0:0%i",timebonus]);
+                                            NSString *str_timebonus = [NSString stringWithFormat:@"TIME BONUS: %i secs", timebonus];
                                             [label_subscore setString:str_timebonus];
                                         }],
                                        [CCFadeIn actionWithDuration:0.2f],
@@ -214,7 +217,7 @@
         tmp_score_increment -= 1;
         tmp_score += 100;
         
-        NSString *tmp_str_timebonus = ( tmp_score_increment >= 10 ? [NSString stringWithFormat:@"TIME BONUS: 0:%i", tmp_score_increment] : [NSString stringWithFormat:@"TIME BONUS: 0:0%i",tmp_score_increment]);
+        NSString *tmp_str_timebonus = [NSString stringWithFormat:@"TIME BONUS: %i secs", tmp_score_increment];
 
         [label_score    setString:[NSString stringWithFormat:@"SCORE: %i",tmp_score]];
         [label_subscore setString:tmp_str_timebonus];
@@ -222,6 +225,71 @@
     else
     {
         [self unschedule:@selector(time_bonus_tick)];
+
+        tmp_score = souls_score + timebonus_score;
+        tmp_score_increment = tmp_game.player.collected;
+        
+        if ( collected > 0 )
+        {
+            [label_subscore runAction:[CCSequence actions:
+                                       [CCDelayTime actionWithDuration:0.2f],
+                                       [CCFadeOut actionWithDuration:0.2f],
+                                       [CCCallBlock actionWithBlock:^(void)
+                                        {
+                                            NSString *str_timebonus = [NSString stringWithFormat:@"COLLECTED BONUS: %i", collected];
+                                            [label_subscore setString:str_timebonus];
+                                        }],
+                                       [CCFadeIn actionWithDuration:0.2f],
+                                       [CCCallBlock actionWithBlock:^(void)
+                                        {
+                                            [self schedule: @selector(collectable_bonus_tick) interval: 1.0f/60.0f];
+                                        }],nil]];
+        }
+        else
+        {
+            // GO TO LAST STEP
+            [label_subscore runAction:[CCSequence actions:
+                                       [CCDelayTime actionWithDuration:0.2f],
+                                       [CCFadeOut actionWithDuration:0.2f],
+                                       [CCCallBlock actionWithBlock:^(void) { [self showHighscorePanelwithAnim:YES]; }],
+                                       [CCDelayTime actionWithDuration:0.2f],
+                                       [CCCallBlock actionWithBlock:^(void)
+                                        {
+                                            self.runningAnims = NO;
+                                            [self showMenuPanelwithAnim:YES];
+                                        }],nil]];
+        }
+
+////        collected
+//        
+//        [label_subscore runAction:[CCSequence actions:
+//                                   [CCDelayTime actionWithDuration:0.2f],
+//                                   [CCFadeOut actionWithDuration:0.2f],
+//                                   [CCCallBlock actionWithBlock:^(void) { [self showHighscorePanelwithAnim:YES]; }],
+//                                   [CCDelayTime actionWithDuration:0.2f],
+//                                   [CCCallBlock actionWithBlock:^(void)
+//                                    {
+//                                        self.runningAnims = NO;
+//                                        [self showMenuPanelwithAnim:YES];
+//                                    }],nil]];
+    }
+}
+
+- (void) collectable_bonus_tick
+{
+    if ( tmp_score_increment > 0 )
+    {
+        tmp_score_increment -= 1;
+        tmp_score += 10;
+        
+        NSString *tmp_str_timebonus = [NSString stringWithFormat:@"COLLECTED BONUS: %i", tmp_score_increment];
+        
+        [label_score    setString:[NSString stringWithFormat:@"SCORE: %i",tmp_score]];
+        [label_subscore setString:tmp_str_timebonus];
+    }
+    else
+    {
+        [self unschedule:@selector(collectable_bonus_tick)];
         
         [label_subscore runAction:[CCSequence actions:
                                    [CCDelayTime actionWithDuration:0.2f],
@@ -235,6 +303,7 @@
                                     }],nil]];
     }
 }
+
 
 - (void) showHighscorePanelwithAnim:(BOOL)doAnim
 {
@@ -258,9 +327,14 @@
 - (void) showMenuPanelwithAnim:(BOOL)doAnim
 {
     [self addChild:menu];
+    [self addChild:share_menu];
     if ( doAnim )
     {
+        if ( [tmp_game.user isOnline] )
+        {
+        }
         [menu runAction:[CCFadeIn actionWithDuration:0.2f]];
+        [share_menu runAction:[CCFadeIn actionWithDuration:0.2f]];        
     }
     else
     {
@@ -270,6 +344,7 @@
         // Stop all actions
         [self unschedule:@selector(soul_bonus_tick)];
         [self unschedule:@selector(time_bonus_tick)];
+        [self unschedule:@selector(collectable_bonus_tick)];        
         [menu stopAllActions];
         [label_subscore stopAllActions];
         [label_score stopAllActions];
@@ -281,6 +356,13 @@
         // Set all the strings
         [label_score setString:[NSString stringWithFormat:@"SCORE: %i",final_score]];
         menu.opacity = 225;
+        
+        
+        if ( [tmp_game.user isOnline] )
+        {
+            share_menu.opacity = 255;
+        }
+        
     }
 }
 

@@ -81,7 +81,7 @@
         {
             switch (self.tag)
             {
-                default: // NORMAL & MOVING PLATFORMS
+                default: // NORMAL & MOVING PLATFORMS]
                     [game.player jump:game.player.jumpspeed];
                     break;
                 case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher

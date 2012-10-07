@@ -18,6 +18,7 @@
     User *user;
     AppController *app;
     CCMenuItemSprite *btn_facebooksignin;
+    CCSprite *prompt_facebook;
     CCSprite *bg_behind_fb;
     
     NSMutableData *imageData;

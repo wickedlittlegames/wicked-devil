@@ -81,10 +81,8 @@
     {
         if (!tip.faded)
         {
-            [tip runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],[CCFadeOut actionWithDuration:1.0f],[CCCallBlock actionWithBlock:^(void){
+            [tip runAction:[CCSequence actions:[CCFadeOut actionWithDuration:2.0f],[CCCallBlock actionWithBlock:^(void){
                 tip.faded = YES;
-                [tip removeFromParentAndCleanup:YES];
-                [tips removeObject:tip];
             }],nil]];
         }
     }
@@ -108,10 +106,20 @@
     
     CCARRAY_FOREACH(collectables, collectable)
     {
+        if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
+        {
+            collectable.visible = NO;
+            [collectables removeObject:collectable];
+            [collectable removeFromParentAndCleanup:YES];
+        }
         if ( [collectable isIntersectingPlayer:game.player] )
         {
             game.player.collected++;
             game.player.score++;
+            if ( ![SimpleAudioEngine sharedEngine].mute )
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"collect-single2.wav"];
+            }
         }
     }
     
@@ -121,8 +129,11 @@
         {
             game.player.bigcollected++;
             game.player.score += 1000;
-            // do effect of collecting AND going to the top left
             [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
+            if ( ![SimpleAudioEngine sharedEngine].mute )
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.wav",game.player.bigcollected]];
+            }            
         }
     }
         
@@ -181,6 +192,7 @@
         {
             if ( !game.player.isAlive ) { game.user.deaths++; }
             game.user.jumps     += game.player.jumps;
+            [game.user sync];            
             [self end:game];
         }
     }
@@ -188,6 +200,7 @@
     {
         if ( !game.player.isAlive ) { game.player.deaths++; }
         game.user.jumps     += game.player.jumps;
+        [game.user sync];
         [self end:game];
     }
 }

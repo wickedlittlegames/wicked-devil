@@ -254,6 +254,7 @@
 		9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */; };
 		9C3006591619DC63002C3E77 /* btn-muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3006581619DC63002C3E77 /* btn-muted.png */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9C57483E1621D7A80008C1E5 /* ui-prompt-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C57483D1621D7A80008C1E5 /* ui-prompt-facebook.png */; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
@@ -381,6 +382,19 @@
 		9CCD888B161C70F100CEA6D8 /* btn-leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8889161C70F100CEA6D8 /* btn-leaderboard.png */; };
 		9CCD888D161C7DE900CEA6D8 /* ui-collectable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD888C161C7DE900CEA6D8 /* ui-collectable.png */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
+		9CD15B231621DCD00066A7A2 /* btn-fb-score.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B211621DCD00066A7A2 /* btn-fb-score.png */; };
+		9CD15B241621DCD00066A7A2 /* btn-tweet-score.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B221621DCD00066A7A2 /* btn-tweet-score.png */; };
+		9CD15B271621E75B0066A7A2 /* bg-facebook-compare.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B261621E75B0066A7A2 /* bg-facebook-compare.png */; };
+		9CD15B2C1621ECF00066A7A2 /* tip-small-souls-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B2A1621ECF00066A7A2 /* tip-small-souls-hd.png */; };
+		9CD15B2D1621ECF00066A7A2 /* tip-small-souls.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B2B1621ECF00066A7A2 /* tip-small-souls.png */; };
+		9CD15B2F1621FC1A0066A7A2 /* bg-world-hell-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B2E1621FC1A0066A7A2 /* bg-world-hell-new.png */; };
+		9CD15B321621FE3F0066A7A2 /* bg-coming-soon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B301621FE3F0066A7A2 /* bg-coming-soon.png */; };
+		9CD15B331621FE3F0066A7A2 /* bg-world-underground-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B311621FE3F0066A7A2 /* bg-world-underground-new.png */; };
+		9CD15B39162227A30066A7A2 /* collect1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B36162227A30066A7A2 /* collect1.wav */; };
+		9CD15B3A162227A30066A7A2 /* collect2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B37162227A30066A7A2 /* collect2.wav */; };
+		9CD15B3B162227A30066A7A2 /* collect3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B38162227A30066A7A2 /* collect3.wav */; };
+		9CD15B3D162228670066A7A2 /* collect-single.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B3C162228670066A7A2 /* collect-single.wav */; };
+		9CD15B3F162229330066A7A2 /* collect-single2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B3E162229330066A7A2 /* collect-single2.wav */; };
 		9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1615F632E2001B0D50 /* CCBActionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3815F632E2001B0D50 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1A15F632E2001B0D50 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -668,6 +682,7 @@
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9C3006581619DC63002C3E77 /* btn-muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-muted.png"; sourceTree = "<group>"; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		9C57483D1621D7A80008C1E5 /* ui-prompt-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-prompt-facebook.png"; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -809,6 +824,19 @@
 		9CCD8892161C93BA00CEA6D8 /* Wicked Devil.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Wicked Devil.entitlements"; sourceTree = "<group>"; };
 		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
 		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
+		9CD15B211621DCD00066A7A2 /* btn-fb-score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-fb-score.png"; sourceTree = "<group>"; };
+		9CD15B221621DCD00066A7A2 /* btn-tweet-score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-tweet-score.png"; sourceTree = "<group>"; };
+		9CD15B261621E75B0066A7A2 /* bg-facebook-compare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-facebook-compare.png"; sourceTree = "<group>"; };
+		9CD15B2A1621ECF00066A7A2 /* tip-small-souls-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-small-souls-hd.png"; sourceTree = "<group>"; };
+		9CD15B2B1621ECF00066A7A2 /* tip-small-souls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-small-souls.png"; sourceTree = "<group>"; };
+		9CD15B2E1621FC1A0066A7A2 /* bg-world-hell-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-hell-new.png"; sourceTree = "<group>"; };
+		9CD15B301621FE3F0066A7A2 /* bg-coming-soon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-coming-soon.png"; sourceTree = "<group>"; };
+		9CD15B311621FE3F0066A7A2 /* bg-world-underground-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-underground-new.png"; sourceTree = "<group>"; };
+		9CD15B36162227A30066A7A2 /* collect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collect1.wav; sourceTree = "<group>"; };
+		9CD15B37162227A30066A7A2 /* collect2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collect2.wav; sourceTree = "<group>"; };
+		9CD15B38162227A30066A7A2 /* collect3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collect3.wav; sourceTree = "<group>"; };
+		9CD15B3C162228670066A7A2 /* collect-single.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "collect-single.wav"; sourceTree = "<group>"; };
+		9CD15B3E162229330066A7A2 /* collect-single2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "collect-single2.wav"; sourceTree = "<group>"; };
 		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
 		9CD93A1615F632E2001B0D50 /* CCBActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBActionManager.m; sourceTree = "<group>"; };
 		9CD93A1715F632E2001B0D50 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -1460,6 +1488,11 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9CD15B3E162229330066A7A2 /* collect-single2.wav */,
+				9CD15B3C162228670066A7A2 /* collect-single.wav */,
+				9CD15B36162227A30066A7A2 /* collect1.wav */,
+				9CD15B37162227A30066A7A2 /* collect2.wav */,
+				9CD15B38162227A30066A7A2 /* collect3.wav */,
 				9CABCF061611D5EA006DFDE9 /* bg-loop1.wav */,
 				9CABCF071611D5EA006DFDE9 /* bg-loop2.wav */,
 				9CABCF081611D5EA006DFDE9 /* bg-loop3.wav */,
@@ -1517,6 +1550,8 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9CD15B2A1621ECF00066A7A2 /* tip-small-souls-hd.png */,
+				9CD15B2B1621ECF00066A7A2 /* tip-small-souls.png */,
 				9CBFBDB1161A2A07008512E4 /* jump1.png */,
 				9C9E86A91618C3BD001CAC21 /* TipsSprites-hd.plist */,
 				9C9E86AA1618C3BD001CAC21 /* TipsSprites-hd.png */,
@@ -1533,6 +1568,13 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CD15B301621FE3F0066A7A2 /* bg-coming-soon.png */,
+				9CD15B311621FE3F0066A7A2 /* bg-world-underground-new.png */,
+				9CD15B2E1621FC1A0066A7A2 /* bg-world-hell-new.png */,
+				9CD15B261621E75B0066A7A2 /* bg-facebook-compare.png */,
+				9CD15B211621DCD00066A7A2 /* btn-fb-score.png */,
+				9CD15B221621DCD00066A7A2 /* btn-tweet-score.png */,
+				9C57483D1621D7A80008C1E5 /* ui-prompt-facebook.png */,
 				9CAAFC7C161F30250046B4E4 /* btn-behind-fb.png */,
 				9CCD888C161C7DE900CEA6D8 /* ui-collectable.png */,
 				9CCD8888161C70F100CEA6D8 /* btn-achievements.png */,
@@ -2002,6 +2044,20 @@
 				9CCD888B161C70F100CEA6D8 /* btn-leaderboard.png in Resources */,
 				9CCD888D161C7DE900CEA6D8 /* ui-collectable.png in Resources */,
 				9CAAFC7D161F30250046B4E4 /* btn-behind-fb.png in Resources */,
+				9C57483E1621D7A80008C1E5 /* ui-prompt-facebook.png in Resources */,
+				9CD15B231621DCD00066A7A2 /* btn-fb-score.png in Resources */,
+				9CD15B241621DCD00066A7A2 /* btn-tweet-score.png in Resources */,
+				9CD15B271621E75B0066A7A2 /* bg-facebook-compare.png in Resources */,
+				9CD15B2C1621ECF00066A7A2 /* tip-small-souls-hd.png in Resources */,
+				9CD15B2D1621ECF00066A7A2 /* tip-small-souls.png in Resources */,
+				9CD15B2F1621FC1A0066A7A2 /* bg-world-hell-new.png in Resources */,
+				9CD15B321621FE3F0066A7A2 /* bg-coming-soon.png in Resources */,
+				9CD15B331621FE3F0066A7A2 /* bg-world-underground-new.png in Resources */,
+				9CD15B39162227A30066A7A2 /* collect1.wav in Resources */,
+				9CD15B3A162227A30066A7A2 /* collect2.wav in Resources */,
+				9CD15B3B162227A30066A7A2 /* collect3.wav in Resources */,
+				9CD15B3D162228670066A7A2 /* collect-single.wav in Resources */,
+				9CD15B3F162229330066A7A2 /* collect-single2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

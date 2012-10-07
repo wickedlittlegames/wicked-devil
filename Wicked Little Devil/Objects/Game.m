@@ -9,6 +9,6 @@
 #import "Game.h"
 
 @implementation Game
-@synthesize isGameover, didWin, world, level, isStarted, isIntro, player, user, fx, touch, pastScore;
+@synthesize isGameover, didWin, world, level, isStarted, isIntro, player, user, fx, touch, pastScore, timelimit;
 
 @end

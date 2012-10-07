@@ -97,9 +97,19 @@
         [layer_ui setupItemsforGame:game];   
         layer_game.world = w;
         layer_game.level = l;
+        game.timelimit = 30;
         
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
         float top = trigger_top.position.y;
+        
+        if ( top > 2500 )
+        {
+            game.timelimit = 60;
+        }
+        if ( top > 5000 )
+        {
+            game.timelimit = 90;
+        }
         
         [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
@@ -108,7 +118,7 @@
         if ( !game.isIntro && !restart)
         {
             game.isIntro = YES;
-            float time_for_anim = top/400;
+            float time_for_anim = top/400; 
 
             id move = [CCMoveTo actionWithDuration:time_for_anim position:ccp(0,0)];
             id ease = [CCEaseSineOut actionWithAction:move];

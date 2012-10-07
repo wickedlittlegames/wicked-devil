@@ -12,10 +12,10 @@
 @class LevelSelectScene, GameScene, Game, AppController, GameOverFacebookScene;
 @interface GameOverScene : CCLayer <PF_FBRequestDelegate>
 {
-    int souls, souls_score, collected, timebonus, timebonus_score, final_score, next_world, next_level, tmp_score_increment, tmp_score;
+    int souls, souls_score, collected, timebonus, timebonus_score, final_score, next_world, next_level, tmp_score_increment, tmp_score, timebonus_change,tmp_score_increment2;
 
     CCLabelTTF *label_score, *label_subscore;
-    CCMenu *menu;
+    CCMenu *menu, *share_menu;
 }
 
 @property (nonatomic, assign) Game *tmp_game;

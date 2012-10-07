@@ -36,6 +36,7 @@
         app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
+        CCLOG(@"%i",user.jumps);
         //[user reset];        
         ///[gkHelper resetAchievements];
         
@@ -43,6 +44,7 @@
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
         CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
+        prompt_facebook       = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
@@ -59,6 +61,8 @@
         [menu_social setPosition:ccp(screenSize.width - 63, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
+        [prompt_facebook setPosition:ccp(screenSize.width - 90, 80)];
+
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {
@@ -72,9 +76,11 @@
         [self addChild:behind_fb];
         [self addChild:menu_social];
         [self addChild:menu_mute];
+        [self addChild:prompt_facebook];
         
         [self setMute];
         [self setFacebookImage];
+        
     }
 	return self;
 }
@@ -95,6 +101,8 @@
         }
         else
         {
+            prompt_facebook.visible = FALSE;
+            
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
         }
@@ -151,32 +159,18 @@
 
 - (void) tap_leaderboard
 {
-    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self reportLeaderboardHighscores];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-            GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-            leaderboardViewController.leaderboardDelegate = self;
-            [[app navController] presentModalViewController:leaderboardViewController animated:YES];
-        });
-    });
+    [self reportLeaderboardHighscores];
+    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+    leaderboardViewController.leaderboardDelegate = self;
+    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
 }
 
 - (void) tap_achievements
 {
-    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self reportAchievements];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-            GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-            achivementViewController.achievementDelegate = self;
-            [[app navController] presentModalViewController:achivementViewController animated:YES];
-        });
-    });
+    [self reportAchievements];
+    GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
+    achivementViewController.achievementDelegate = self;
+    [[app navController] presentModalViewController:achivementViewController animated:YES];
 }
 
 - (void) tap_mute
@@ -231,11 +225,13 @@
                 {
                     [self getFacebookImage];
                     user.collected += 500;
+                    prompt_facebook.visible = FALSE;
                     [user sync];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }
                 else
                 {
+                    prompt_facebook.visible = FALSE;
                     [self getFacebookImage];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }

@@ -42,12 +42,12 @@
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_store:)],nil];
-        CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_store:)],nil];
+        CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_store:)],nil];
         
         // Positioning
         [menu_back              setPosition:ccp(25, 25)];
         [menu_equip             setPosition:ccp(25, screenSize.height - 25)];
-        [menu_store             setPosition:ccp(65, screenSize.height - 25)];
+        [menu_store             setPosition:ccp(70, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];

@@ -395,6 +395,7 @@
 		9CD15B3B162227A30066A7A2 /* collect3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B38162227A30066A7A2 /* collect3.wav */; };
 		9CD15B3D162228670066A7A2 /* collect-single.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B3C162228670066A7A2 /* collect-single.wav */; };
 		9CD15B3F162229330066A7A2 /* collect-single2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B3E162229330066A7A2 /* collect-single2.wav */; };
+		9CD15B41162234A80066A7A2 /* btn-store-world.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD15B40162234A80066A7A2 /* btn-store-world.png */; };
 		9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1615F632E2001B0D50 /* CCBActionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CD93A3815F632E2001B0D50 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1A15F632E2001B0D50 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -837,6 +838,7 @@
 		9CD15B38162227A30066A7A2 /* collect3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collect3.wav; sourceTree = "<group>"; };
 		9CD15B3C162228670066A7A2 /* collect-single.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "collect-single.wav"; sourceTree = "<group>"; };
 		9CD15B3E162229330066A7A2 /* collect-single2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "collect-single2.wav"; sourceTree = "<group>"; };
+		9CD15B40162234A80066A7A2 /* btn-store-world.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-store-world.png"; sourceTree = "<group>"; };
 		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
 		9CD93A1615F632E2001B0D50 /* CCBActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBActionManager.m; sourceTree = "<group>"; };
 		9CD93A1715F632E2001B0D50 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -1568,6 +1570,7 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CD15B40162234A80066A7A2 /* btn-store-world.png */,
 				9CD15B301621FE3F0066A7A2 /* bg-coming-soon.png */,
 				9CD15B311621FE3F0066A7A2 /* bg-world-underground-new.png */,
 				9CD15B2E1621FC1A0066A7A2 /* bg-world-hell-new.png */,
@@ -2058,6 +2061,7 @@
 				9CD15B3B162227A30066A7A2 /* collect3.wav in Resources */,
 				9CD15B3D162228670066A7A2 /* collect-single.wav in Resources */,
 				9CD15B3F162229330066A7A2 /* collect-single2.wav in Resources */,
+				9CD15B41162234A80066A7A2 /* btn-store-world.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

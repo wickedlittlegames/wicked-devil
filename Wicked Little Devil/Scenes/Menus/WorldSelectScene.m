@@ -74,7 +74,7 @@
         [self addChild:label_bigcollected];     // label for collected total - eg: 3/360
         [self addChild:label_collected];
     }
-	return self;    
+	return self;
 }
 
 #pragma mark TAPS

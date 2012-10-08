@@ -213,25 +213,10 @@
 
 - (bool) intersectCheck:(Game*)game
 {
-    CGSize enemy_size       = self.contentSize;
-    CGPoint enemy_pos       = self.position;
-    //CGSize player_size      = game.player.contentSize;
-    CGPoint player_pos      = game.player.position;
-    
-    float max_x = enemy_pos.x - enemy_size.width/2 - 10;
-    float min_x = enemy_pos.x + enemy_size.width/2 + 10;
-    float min_y = enemy_pos.y;
-    
-    if(player_pos.x > max_x &&
-       player_pos.x < min_x &&
-       player_pos.y > enemy_pos.y &&
-       player_pos.y < min_y)
-        return YES;
-
-    return NO;
+    return CGRectIntersectsRect([self worldBoundingBox], [game.player worldBoundingBox]);
 }
 
-- (bool) radiusCheck:(Game*)game
+- (bool) radiusCheck:(Game*)game 
 {
     float xdif = self.position.x - game.player.position.x;
     float ydif = self.position.y - game.player.position.y;

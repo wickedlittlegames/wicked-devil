@@ -45,7 +45,7 @@
     [label_resume setColor:ccc3(205, 51, 51)];
     [label_levelselect setColor:ccc3(205, 51, 51)];    
     CCLabelTTF *label_gamenumber = [CCLabelTTF labelWithString:gamenumber_pause dimensions:CGSizeMake(screenSize.width -5, 30) hAlignment:kCCTextAlignmentLeft fontName:@"CrashLanding BB" fontSize:30.0f];
-    CCLabelTTF *label_best = [CCLabelTTF labelWithString:highscore dimensions:CGSizeMake(screenSize.width, 30) hAlignment:kCCTextAlignmentRight fontName:@"CrashLanding BB" fontSize:30.0f];
+    CCLabelTTF *label_best = [CCLabelTTF labelWithString:highscore dimensions:CGSizeMake(screenSize.width - 7, 30) hAlignment:kCCTextAlignmentRight fontName:@"CrashLanding BB" fontSize:30.0f];
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:label_resume target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
     label_best.anchorPoint = ccp(0,0);

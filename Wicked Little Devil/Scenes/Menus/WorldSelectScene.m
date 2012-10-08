@@ -58,9 +58,9 @@
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
-        [worlds addObject:[self land]];
-        [worlds addObject:[self space]];
-        [worlds addObject:[self afterlife]];
+        //[worlds addObject:[self land]];
+        //[worlds addObject:[self space]];
+        //[worlds addObject:[self afterlife]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world-1];
         
@@ -186,7 +186,6 @@
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    //CCSprite *bg            = [CCSprite spriteWithFile:@"bg-menu-space-comingsoon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 5; button.opacity = 0; button.scale *= 2; //button.isEnabled = ( user.worldprogress >= button.tag );
     button.isEnabled = FALSE;
@@ -205,7 +204,6 @@
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    //CCSprite *bg            = [CCSprite spriteWithFile:@"bg-menu-afterlife-comingsoon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 6; button.opacity = 0; button.scale *= 2; //button.isEnabled = ( user.worldprogress >= button.tag );
     button.isEnabled = FALSE;

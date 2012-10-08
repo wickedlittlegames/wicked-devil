@@ -116,10 +116,6 @@
         {
             game.player.collected++;
             game.player.score++;
-            if ( ![SimpleAudioEngine sharedEngine].mute )
-            {
-                [[SimpleAudioEngine sharedEngine] playEffect:@"collect-single2.wav"];
-            }
         }
     }
     
@@ -213,7 +209,6 @@
     }
     else 
     {
-        
         id delay = [CCDelayTime actionWithDuration:1.0];
         CCAction *endfunc = [CCCallFunc actionWithTarget:self selector:@selector(gotogameover)];
         [self runAction:[CCSequence actions:delay, endfunc, nil]];

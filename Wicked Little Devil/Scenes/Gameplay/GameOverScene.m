@@ -128,7 +128,7 @@
          [label_score setPosition:ccp(10, screenSize.height - 220)];
          [label_subscore setPosition:ccp(10, label_score.position.y - 60)];
          [share_menu setPosition:ccp(screenSize.width/2, 20)];
-         share_menu.opacity = 0;
+         share_menu.visible = NO;
     
          [label_score setColor:ccc3(205, 51, 51)];
          [label_subscore setColor:ccc3(24, 107, 18)];
@@ -360,7 +360,7 @@
         
         if ( [tmp_game.user isOnline] )
         {
-            share_menu.opacity = 255;
+            share_menu.visible = YES;
         }
         
     }

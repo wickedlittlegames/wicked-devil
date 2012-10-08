@@ -122,7 +122,7 @@
 - (void) action_bat_hit
 {
     id up   = [CCEaseExponentialOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,30)]];
-    id down = [CCEaseExponentialIn actionWithAction:[CCMoveBy actionWithDuration:2.5 position:ccp(0,-250)]];
+    id down = [CCEaseExponentialIn actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,-250)]];
     id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
     
     [self runAction:[CCSequence actions:up,down,end, nil]];
@@ -215,12 +215,12 @@
 {
     CGSize enemy_size       = self.contentSize;
     CGPoint enemy_pos       = self.position;
-    CGSize player_size      = game.player.contentSize;
+    //CGSize player_size      = game.player.contentSize;
     CGPoint player_pos      = game.player.position;
     
     float max_x = enemy_pos.x - enemy_size.width/2 - 10;
     float min_x = enemy_pos.x + enemy_size.width/2 + 10;
-    float min_y = enemy_pos.y + (enemy_size.height+player_size.height)/2 + 3;
+    float min_y = enemy_pos.y;
     
     if(player_pos.x > max_x &&
        player_pos.x < min_x &&

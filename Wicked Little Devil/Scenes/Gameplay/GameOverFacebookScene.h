@@ -10,9 +10,17 @@
 #import <Parse/Parse.h>
 
 @class Game, GameOverScene, AppController;
-@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate>
+@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate, NSURLConnectionDelegate,UITableViewDelegate, UITableViewDataSource>
 {
     AppController *app;
+    UIView *view;
+    UITableView *table;
+    NSArray *fbdata, *fbdata2, *fbdata3;
+    NSString *fb_score1, *fb_score2, *fb_score3;
+    NSString *fb_name1, *fb_name2, *fb_name3;
+    
+    NSMutableData *imageData, *imageData2, *imageData3;
+    NSURLConnection *urlConnection,*urlConnection2,*urlConnection3;
 }
 @property (nonatomic, assign) int request_tag;
 

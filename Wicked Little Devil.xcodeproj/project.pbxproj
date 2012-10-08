@@ -367,6 +367,8 @@
 		9C5F89981622DC9F00C001E4 /* ui-prompt-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F89281622DC9F00C001E4 /* ui-prompt-facebook.png */; };
 		9C5F899B1622DCC000C001E4 /* jump1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F89991622DCC000C001E4 /* jump1-hd.png */; };
 		9C5F899C1622DCC000C001E4 /* jump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F899A1622DCC000C001E4 /* jump1.png */; };
+		9C5F89A31623094E00C001E4 /* ingame-mine-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F89A11623094E00C001E4 /* ingame-mine-hd.png */; };
+		9C5F89A41623094E00C001E4 /* ingame-mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F89A21623094E00C001E4 /* ingame-mine.png */; };
 		9C6149571577AF6100A6FF33 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6149551577AF6100A6FF33 /* CCScrollLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
@@ -857,6 +859,8 @@
 		9C5F89281622DC9F00C001E4 /* ui-prompt-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-prompt-facebook.png"; sourceTree = "<group>"; };
 		9C5F89991622DCC000C001E4 /* jump1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump1-hd.png"; sourceTree = "<group>"; };
 		9C5F899A1622DCC000C001E4 /* jump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump1.png; sourceTree = "<group>"; };
+		9C5F89A11623094E00C001E4 /* ingame-mine-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-mine-hd.png"; sourceTree = "<group>"; };
+		9C5F89A21623094E00C001E4 /* ingame-mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame-mine.png"; sourceTree = "<group>"; };
 		9C6149541577AF6100A6FF33 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		9C6149551577AF6100A6FF33 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1676,6 +1680,8 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9C5F89A11623094E00C001E4 /* ingame-mine-hd.png */,
+				9C5F89A21623094E00C001E4 /* ingame-mine.png */,
 				9C5F89991622DCC000C001E4 /* jump1-hd.png */,
 				9C5F899A1622DCC000C001E4 /* jump1.png */,
 				9C9E86A91618C3BD001CAC21 /* TipsSprites-hd.plist */,
@@ -2306,6 +2312,8 @@
 				9C5F89981622DC9F00C001E4 /* ui-prompt-facebook.png in Resources */,
 				9C5F899B1622DCC000C001E4 /* jump1-hd.png in Resources */,
 				9C5F899C1622DCC000C001E4 /* jump1.png in Resources */,
+				9C5F89A31623094E00C001E4 /* ingame-mine-hd.png in Resources */,
+				9C5F89A41623094E00C001E4 /* ingame-mine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

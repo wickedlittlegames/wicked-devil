@@ -129,47 +129,47 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if(connection == urlConnection){
-        CCLabelTTF *fbname1 = [CCLabelTTF labelWithString:fb_name1 dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbname1.position = ccp( 60,[[CCDirector sharedDirector] winSize].height - 260);
-        fbname1.color = ccBLACK;        
-        [self addChild:fbname1];
-        
         CCLabelTTF *fbscore1 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",fb_score1] dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbscore1.position = ccp( 60,fbname1.position.y - 20);
-        fbscore1.color = ccBLACK;
+        fbscore1.position = ccp( 60,[[CCDirector sharedDirector] winSize].height - 260);
+        fbscore1.color = ccc3(205, 51, 51);
         [self addChild:fbscore1];
         
+        CCLabelTTF *fbname1 = [CCLabelTTF labelWithString:fb_name1 dimensions:CGSizeMake(180/2, 100) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:28];
+        fbname1.position = ccp( 60,fbscore1.position.y - 20);
+        fbname1.color = ccBLACK;
+        [self addChild:fbname1];
+                
         CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData].CGImage key:@"facebook_image1"];
         [fbimage setPosition:ccp(60,[[CCDirector sharedDirector] winSize].height - 119)];
         [self resizeSprite:fbimage toWidth:180/2 toHeight:159/2];
         [self addChild:fbimage];
     }
     else if(connection == urlConnection2){
-        CCLabelTTF *fbname2 = [CCLabelTTF labelWithString:fb_name2 dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbname2.position = ccp( 161,[[CCDirector sharedDirector] winSize].height - 260);
+        CCLabelTTF *fbscore2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",fb_score2] dimensions:CGSizeMake(180/2, 100) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
+        fbscore2.position = ccp( 161,[[CCDirector sharedDirector] winSize].height - 260);
+        fbscore2.color = ccc3(205, 51, 51);
+        [self addChild:fbscore2];
+        
+        CCLabelTTF *fbname2 = [CCLabelTTF labelWithString:fb_name2 dimensions:CGSizeMake(180/2, 100) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:28];
+        fbname2.position = ccp( 161,fbscore2.position.y - 20);
         fbname2.color = ccBLACK;
         [self addChild:fbname2];
         
-        CCLabelTTF *fbscore2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",fb_score2] dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbscore2.position = ccp( 161,fbscore2.position.y - 20);
-        fbscore2.color = ccBLACK;
-        [self addChild:fbscore2];
-
         CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData2].CGImage key:@"facebook_image2"];
         [fbimage setPosition:ccp(161,[[CCDirector sharedDirector] winSize].height - 119)];
         [self resizeSprite:fbimage toWidth:180/2 toHeight:159/2];
         [self addChild:fbimage];
     }
     else if(connection == urlConnection3){
-        CCLabelTTF *fbname3 = [CCLabelTTF labelWithString:fb_name3 dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbname3.position = ccp( 261,[[CCDirector sharedDirector] winSize].height - 260);
+        CCLabelTTF *fbscore3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",fb_score3] dimensions:CGSizeMake(180/2, 100) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
+        fbscore3.position = ccp( 261,[[CCDirector sharedDirector] winSize].height - 260);
+        fbscore3.color = ccc3(205, 51, 51);
+        [self addChild:fbscore3];
+        
+        CCLabelTTF *fbname3 = [CCLabelTTF labelWithString:fb_name3 dimensions:CGSizeMake(180/2, 100) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:28];
+        fbname3.position = ccp( 261,fbscore3.position.y - 20);
         fbname3.color = ccBLACK;
         [self addChild:fbname3];
-        
-        CCLabelTTF *fbscore3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",fb_score3] dimensions:CGSizeMake(180/2, 50) alignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-        fbscore3.position = ccp( 261,fbname3.position.y - 20);
-        fbscore3.color = ccBLACK;
-        [self addChild:fbscore3];
 
         CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData3].CGImage key:@"facebook_image3"];
         [fbimage setPosition:ccp(261,[[CCDirector sharedDirector] winSize].height - 119)];

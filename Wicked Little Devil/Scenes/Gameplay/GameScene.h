@@ -23,13 +23,13 @@
     CGPoint location_touch;
     CGSize screenSize;
     
-    CCMenu *menu; // temp
+    CCMenu *menu;
     CCMotionStreak *streak;
 }
 
 @property (nonatomic, assign) float threshold;
 
-+(CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
++ (CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
 - (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
 
 @end

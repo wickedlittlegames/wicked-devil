@@ -15,14 +15,7 @@
 @implementation UILayer
 @synthesize world, level;
 
-- (id) init
-{
-	if( (self=[super init]) ) 
-    {
-
-    }
-	return self;
-}
+- (id) init {if( (self=[super init]) ) {} return self;}
 
 - (void) setupItemsforGame:(Game*)game
 {

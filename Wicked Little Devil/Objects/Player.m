@@ -116,18 +116,9 @@
 
 - (void) setupAnimations
 {
-    if( ![[CCDirector sharedDirector] enableRetinaDisplay:YES] )
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil.plist"];
-        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil.png"];
-        [self addChild:spriteSheet];
-    }
-    else
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil-hd.plist"];
-        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil-hd.png"];
-        [self addChild:spriteSheet];
-    }
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil.png"];
+    [self addChild:spriteSheet];
     
     NSMutableArray *arr_anim_jump = [NSMutableArray array];
     for(int i = 1; i <= 6; ++i) {

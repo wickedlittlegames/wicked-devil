@@ -40,15 +40,27 @@
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
         data    = [NSArray arrayWithObjects:
-                   @"Wicked Little Devil",
+                   @"Second Chance",
                    @"Bigger Jump",
                    @"Double Health",
+                   @"Light Feet",
+                   @"Dubstep Platforms",
+                   @"Little Devil",
+                   @"Blue Devil",
+                   @"Green Devil",
+                   @"Yellow Devil",                   
                    nil];
         
         data2   = [NSArray arrayWithObjects:
+                   @"3500",
+                   @"5000",
+                   @"7500",
+                   @"7500",
+                   @"8000",
                    @"1500",
-                   @"3500",
-                   @"3500",
+                   @"1500",
+                   @"1500",
+                   @"1500",                   
                    nil];
         
         data3   = [NSArray arrayWithObjects:
@@ -57,6 +69,10 @@
                    @"Double your chances of completing a level with enemies...",
                    @"Buy 50,000 Souls",
                    @"Buy 100,000 Souls",
+                   @"Buy 100,000 Souls",
+                   @"Buy 100,000 Souls",
+                   @"Buy 100,000 Souls",
+                   @"Buy 100,000 Souls",                   
                    nil];
         
         table.dataSource = self;
@@ -163,7 +179,7 @@
 {
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
-    tableView.scrollEnabled = NO;
+    //tableView.scrollEnabled = NO;
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     

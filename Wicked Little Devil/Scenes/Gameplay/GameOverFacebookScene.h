@@ -15,7 +15,8 @@
     AppController *app;
     UIView *view;
     UITableView *table;
-    NSArray *fbdata, *fbdata2, *fbdata3;
+    NSMutableArray *fbdata, *fbdata2, *fbdata3;
+    
     NSString *fb_score1, *fb_score2, *fb_score3;
     NSString *fb_name1, *fb_name2, *fb_name3;
     

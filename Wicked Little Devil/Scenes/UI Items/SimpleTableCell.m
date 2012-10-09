@@ -30,8 +30,7 @@
 
 -(IBAction)buy:(id)sender
 {
-    ShopScene *shopscene = [ShopScene alloc];
-    [shopscene tap_purchase:200];
+    
 }
 
 @end

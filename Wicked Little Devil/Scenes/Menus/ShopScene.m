@@ -12,6 +12,7 @@
 #import "CCScrollLayer.h"
 #import "SimpleTableCell.h"
 #import "MKStoreManager.h"
+#import "MBProgressHUD.h"
 #import "WorldSelectScene.h"
 
 @implementation ShopScene
@@ -35,10 +36,13 @@
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
 
-//        // NEED TWO LAYERS, ONE WITH EQUIPS, ONE WITH PURCHASE
-//        layer_equip = [CCLayer node];
-//        layer_shop  = [CCLayer node];
-//        
+        NSDictionary *prices = [[MKStoreManager sharedManager] pricesDictionary];
+        NSString *upgradePrice1 = [prices objectForKey:IAP_2000soul];
+        NSString *upgradePrice2 = [prices objectForKey:IAP_5000soul];
+        NSString *upgradePrice3 = [prices objectForKey:IAP_10000soul];
+        NSString *upgradePrice4 = [prices objectForKey:IAP_50000soul];
+        NSString *upgradePrice5 = [prices objectForKey:IAP_100000soul];
+        
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
@@ -52,11 +56,7 @@
                    nil];
         
         data2   = [NSArray arrayWithObjects:
-                   @"£0.69",
-                   @"£1.49",
-                   @"£1.99",
-                   @"£2.49",
-                   @"£2.99",
+                   upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5,
                    nil];
         
         data3   = [NSArray arrayWithObjects:
@@ -72,7 +72,6 @@
         [view addSubview:table];
         [app.window addSubview:view];
 
-        
         CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
         [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [self addChild:bg];
@@ -97,13 +96,15 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
-- (void) tap_purchase:(int)item
+- (void) tap_purchase:(id) sender
 {
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    UIButton *button = (UIButton*)sender;
     
     NSString *feature = @"";
     int collectedincrease = 0;
-    switch(item)
+    switch(button.tag)
     {
         case 0:
             feature = IAP_2000soul; collectedincrease = 2000;
@@ -123,26 +124,64 @@
         default:break;
     }
     
-    
-    CCLOG(@"PURCHASING: %@", feature);
-    
+    tmp_collectables = user.collected;
+    tmp_collectable_increment = collectedincrease;
+
     [[MKStoreManager sharedManager] buyFeature:feature
                                     onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
-         NSLog(@"Purchased: %@", purchasedFeature);
         user = [[User alloc] init];
-        CCLOG(@"USER COLLECTED %i", user.collected);
         user.collected += collectedincrease;
         [user sync];
-        
-        [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",user.collected]];
-        
-        CCLOG(@"USER COLLECTED %i", user.collected);        
+        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+        [self schedule: @selector(collectable_add_tick) interval: 1.0f/60.0f];
     }
-    onCancelled:^
-    {
-         NSLog(@"User Cancelled Transaction");
+    onCancelled:^{
+        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Transaction Canceled"
+                                  message:@"There appears to have been a problem with the transaction."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
     }];
+}
+
+- (void) collectable_add_tick
+{
+    if ( tmp_collectable_increment > 0 )
+    {
+        if (tmp_collectable_increment > 500)
+		{
+            tmp_collectable_increment -= 500;
+            tmp_collectables += 500;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+
+        if (tmp_collectable_increment > 100)
+		{
+            tmp_collectable_increment -= 100;
+            tmp_collectables += 100;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+        if (tmp_collectable_increment > 10)
+		{
+            tmp_collectable_increment -= 10;
+            tmp_collectables += 10;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+        else
+		{
+            tmp_collectable_increment --;
+            tmp_collectables ++;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+    }
+    else
+    {
+        [self unschedule: @selector(collectable_add_tick)];
+    }
 }
 
 
@@ -181,7 +220,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     } 
-//    int section = [indexPath section];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
@@ -190,27 +229,9 @@
     cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
-    cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
+    cell.button_buy.tag = indexPath.row;
+    [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
 
-
-//    switch (section) {
-//        case 0:
-//            cell.label_title.text = [data objectAtIndex:indexPath.row];
-//            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-//            cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
-//            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-//            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
-//            break;
-//        case 1:
-//            cell.label_title.text = [data2 objectAtIndex:indexPath.row];
-//            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-//            cell.label_price.text    = @"2000";
-//            [cell.button_buy setEnabled:NO];
-//            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-//            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];            
-//            break;
-//    }
-        
     return cell;
 }
 

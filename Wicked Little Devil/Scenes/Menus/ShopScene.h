@@ -19,14 +19,13 @@
     UIView *view;
     UITableView *table;
     NSArray *data, *data2, *data3;
-    AppController *app;
+    AppController *app, *appHUD;
     CCLabelTTF *lbl_user_collected;
     User *user;
-    
-    
+    bool purchased;
+    int tmp_collectables, tmp_collectable_increment;
     CCLayer *layer_shop, *layer_equip;
 }
 
 +(CCScene *) scene;
-- (void) tap_purchase:(int)item;
 @end

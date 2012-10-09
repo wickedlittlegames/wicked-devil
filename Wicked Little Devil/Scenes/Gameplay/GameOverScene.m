@@ -332,6 +332,7 @@
     {
         if ( [tmp_game.user isOnline] )
         {
+            share_menu.visible = YES;
         }
         [menu runAction:[CCFadeIn actionWithDuration:0.2f]];
         [share_menu runAction:[CCFadeIn actionWithDuration:0.2f]];        

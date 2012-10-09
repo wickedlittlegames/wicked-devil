@@ -66,7 +66,7 @@
         
         // Put the children to the screen
         [self addChild:scroller];               // World scroller to go through the level
-        [self addChild:menu_store];             // back button
+        if ( user.isOnline ) { [self addChild:menu_store]; }
         [self addChild:menu_equip];
         [self addChild:menu_back];              // store button
         [self addChild:icon_bigcollectable];    // icon for big collectable near the world collected total

@@ -103,6 +103,11 @@
         case 2: // MINE: Any time touched, blows up
             [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
             game.player.health--;
+            if ( game.player.health <= 0 )
+            {
+                game.player.animating = NO;
+                [game.player animate:4];
+            }
             self.visible = NO;
             break;
         case 3: // BUBBLE: Floats the player up

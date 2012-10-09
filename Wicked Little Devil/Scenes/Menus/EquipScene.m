@@ -40,25 +40,21 @@
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
         data    = [NSArray arrayWithObjects:
-                   @"Handful o' Souls",
-                   @"Bag o'Souls",
-                   @"Chalice o'Souls",
-                   @"Truck-load o'Souls",
-                   @"Chest o'Souls",
+                   @"Wicked Little Devil",
+                   @"Bigger Jump",
+                   @"Double Health",
                    nil];
         
         data2   = [NSArray arrayWithObjects:
-                   @"£0.69",
-                   @"£1.49",
-                   @"£1.99",
-                   @"£2.49",
-                   @"£2.99",
+                   @"1500",
+                   @"3500",
+                   @"3500",
                    nil];
         
         data3   = [NSArray arrayWithObjects:
-                   @"Buy 2,000 Souls",
-                   @"Buy 5,000 Souls",
-                   @"Buy 10,000 Souls",
+                   @"Turn into a Little Devil",
+                   @"Jump higher than ever!",
+                   @"Double your chances of completing a level with enemies...",
                    @"Buy 50,000 Souls",
                    @"Buy 100,000 Souls",
                    nil];

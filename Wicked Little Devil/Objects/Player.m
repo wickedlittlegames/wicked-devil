@@ -93,9 +93,7 @@
                 [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:self.anim_fallfar], nil]];
                 break;
             case 4:
-                CCLOG(@"RUNNING");
                [self runAction:[CCSpawn actions:[CCAnimate actionWithAnimation:self.anim_die], [CCFadeOut actionWithDuration:0.5f], nil]];
-                //[self runAction:[CCFadeOut actionWithDuration:1.0f]];
                 break;
         }
     }

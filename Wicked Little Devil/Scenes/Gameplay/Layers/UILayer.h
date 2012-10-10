@@ -14,9 +14,10 @@
     CCMenu *pause_screen;
     CCSprite *pause_bg;
     CCSprite *bigcollect_empty, *bigcollect;
+    CCMenu *menu_second_chance;
 }
 
-@property (nonatomic, assign) int world, level;
+@property (nonatomic, assign) int world, level, saves;
 
 - (void) setupItemsforGame:(Game*)game;
 - (void) update:(Game*)game;

@@ -13,7 +13,7 @@
 #import "Game.h"
 
 @implementation UILayer
-@synthesize world, level;
+@synthesize world, level, saves;
 
 - (id) init {if( (self=[super init]) ) {} return self;}
 
@@ -22,14 +22,17 @@
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     self.world = game.world;
     self.level = game.level;
+    self.saves = 0;
     
-    CCLOG(@"USER POWERUPS: %i | SET: %i", game.user.powerup, game.user.bought_powerups );
+    if (game.user.bought_powerups && game.user.powerup == 0) self.saves = 1;
+    if (game.user.bought_powerups && game.user.powerup == 1) self.saves = 2;
+    if (game.user.bought_powerups && game.user.powerup == 2) self.saves = 3;
+    if (game.user.bought_powerups && game.user.powerup == 3) self.saves = 10;
     
     CCLabelTTF *gamenumber = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",world,level] fontName:@"CrashLanding BB" fontSize:24];
     gamenumber.color = ccBLACK;
     [gamenumber setPosition:ccp(screenSize.width/2,screenSize.height - 15)];
 
-    
     pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
     pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [self addChild:pause_bg];
@@ -40,53 +43,18 @@
     [self addChild:uibg];
     [self addChild:gamenumber];
     
-    
-    //  Lucky Devil I - 0
-    if ( game.user.powerup == 0 && game.user.bought_powerups )
-    {
-        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
-            [game.player jump:game.player.jumpspeed];
-            menu_second_chance.visible = FALSE;
-        }], nil];
-        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-        [self addChild:menu_second_chance];
-    }
-    
-    //	Lucky Devil II - 1
-    if ( game.user.powerup == 1 && game.user.bought_powerups )
-    {
-        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
-            CCLOG(@"HIT THIS");
-            [game.player jump:game.player.jumpspeed];
-            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
-        }], nil];
-        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-        [self addChild:menu_second_chance];
-    }
-    
-    //	Lucky Devil III - 2
-    if ( game.user.powerup == 3 && game.user.bought_powerups )
-    {
-        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
-            CCLOG(@"HIT THIS");
-            [game.player jump:game.player.jumpspeed];
-            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
-        }], nil];
-        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-        [self addChild:menu_second_chance];
-    }
-    
-    //	Lucky Devil IV - 4
-    if ( game.user.powerup == 4 && game.user.bought_powerups )
-    {
-        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
-            CCLOG(@"HIT THIS");
-            [game.player jump:game.player.jumpspeed];
-            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
-        }], nil];
-        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-        [self addChild:menu_second_chance];
-    }
+    menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
+        [game.player jump:game.player.jumpspeed];
+        self.saves--;
+        
+        if ( self.saves == 0 )
+        {
+            menu_second_chance.visible = NO;
+        }
+    }], nil];
+    [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    menu_second_chance.visible = FALSE;
+    [self addChild:menu_second_chance];
 
     NSString *highscore = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:world level:level]];
     NSString *gamenumber_pause = [NSString stringWithFormat:@"%i - %i",world,level];
@@ -174,7 +142,15 @@
 }
 
 - (void) update:(Game*)game
-{
+{ 
+    if ( game.player.velocity.y < -6.5 && self.saves > 0 )
+    {
+        menu_second_chance.visible = YES;
+    }
+    else
+    {
+        menu_second_chance.visible = NO;
+    }
     if ( game.player.bigcollected == 1 && ![self getChildByTag:10].visible )
     {
         id scaleXAction = [CCScaleTo   actionWithDuration:.25f scaleX:self.scaleX scaleY:self.scaleY];

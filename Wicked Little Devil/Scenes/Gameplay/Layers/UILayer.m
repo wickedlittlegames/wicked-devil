@@ -23,6 +23,8 @@
     self.world = game.world;
     self.level = game.level;
     
+    CCLOG(@"USER POWERUPS: %i | SET: %i", game.user.powerup, game.user.bought_powerups );
+    
     CCLabelTTF *gamenumber = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i - %i",world,level] fontName:@"CrashLanding BB" fontSize:24];
     gamenumber.color = ccBLACK;
     [gamenumber setPosition:ccp(screenSize.width/2,screenSize.height - 15)];
@@ -36,7 +38,55 @@
     CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
     [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
     [self addChild:uibg];
-    [self addChild:gamenumber];    
+    [self addChild:gamenumber];
+    
+    
+    //  Lucky Devil I - 0
+    if ( game.user.powerup == 0 && game.user.bought_powerups )
+    {
+        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
+            [game.player jump:game.player.jumpspeed];
+            menu_second_chance.visible = FALSE;
+        }], nil];
+        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:menu_second_chance];
+    }
+    
+    //	Lucky Devil II - 1
+    if ( game.user.powerup == 1 && game.user.bought_powerups )
+    {
+        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
+            CCLOG(@"HIT THIS");
+            [game.player jump:game.player.jumpspeed];
+            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
+        }], nil];
+        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:menu_second_chance];
+    }
+    
+    //	Lucky Devil III - 2
+    if ( game.user.powerup == 3 && game.user.bought_powerups )
+    {
+        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
+            CCLOG(@"HIT THIS");
+            [game.player jump:game.player.jumpspeed];
+            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
+        }], nil];
+        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:menu_second_chance];
+    }
+    
+    //	Lucky Devil IV - 4
+    if ( game.user.powerup == 4 && game.user.bought_powerups )
+    {
+        CCMenu *menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
+            CCLOG(@"HIT THIS");
+            [game.player jump:game.player.jumpspeed];
+            //[menu_second_chance_2 removeFromParentAndCleanup:YES];
+        }], nil];
+        [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [self addChild:menu_second_chance];
+    }
 
     NSString *highscore = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:world level:level]];
     NSString *gamenumber_pause = [NSString stringWithFormat:@"%i - %i",world,level];

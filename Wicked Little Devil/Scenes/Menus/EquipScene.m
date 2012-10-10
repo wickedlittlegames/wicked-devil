@@ -39,44 +39,67 @@
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
-        data    = [NSArray arrayWithObjects:
-                   @"Lucky Devil",
-                   @"Bigger Jump",
-                   @"Double Health",
-                   @"Light Feet",
-                   @"Dubstep Platforms",
-                   @"Extremely Lucky Devil",                   
-                   @"Little Devil",
-                   @"Blue Devil",
-                   @"Green Devil",
-                   @"Yellow Devil",                   
-                   nil];
+        // Pull in the Cards plist
+        NSArray *contentArray = [[NSDictionary
+                                  dictionaryWithContentsOfFile:[[NSBundle mainBundle]
+                                                                pathForResource:@"Powerups"
+                                                                ofType:@"plist"]
+                                  ] objectForKey:@"Powerups"];
+        CCLOG(@"USER POWERUPS: %@",user.items);
+        CCLOG(@"POWERUPS: %@",contentArray);
+        data = [NSMutableArray arrayWithCapacity:100];
+        data2 = [NSMutableArray arrayWithCapacity:100];
+        data3 = [NSMutableArray arrayWithCapacity:100];
         
-        data2   = [NSArray arrayWithObjects:
-                   @"3500",
-                   @"5000",
-                   @"7500",
-                   @"7500",
-                   @"8000",
-                   @"10000",                                     
-                   @"1500",
-                   @"1500",
-                   @"1500",
-                   @"1500",                   
-                   nil];
+        for (int i = 0; i <[contentArray count]; i++ )
+        {
+            CCLOG(@"%i",i);
+            // Grab the powerup contents
+            NSDictionary *dict = [contentArray objectAtIndex:i]; //name, description, cost, unlocked, image
+            [data addObject:[dict objectForKey:@"Name"]];
+            [data2 addObject:[dict objectForKey:@"Cost"]];
+            [data3 addObject:[dict objectForKey:@"Description"]];;
+            
+        }
         
-        data3   = [NSArray arrayWithObjects:
-                   @"Save yourself from falling, once per level.",
-                   @"Jump higher than ever!",
-                   @"Double your chances of completing a level with enemies...",
-                   @"Orange/Falling platforms take one more bounce to fall",
-                   @"Each platform jump creates a new dubstep sound",
-                   @"3x second chances!",                   
-                   @"Turn into a Wicked Little Devil",
-                   @"Become a Blue Devil",
-                   @"Become a Green Devil",
-                   @"Become a Yellow Devil",                   
-                   nil];
+//        data    = [NSArray arrayWithObjects:
+//                   @"Lucky Devil",
+//                   @"Bigger Jump",
+//                   @"Double Health",
+//                   @"Light Feet",
+//                   @"Dubstep Platforms",
+//                   @"Extremely Lucky Devil",                   
+//                   @"Little Devil",
+//                   @"Blue Devil",
+//                   @"Green Devil",
+//                   @"Yellow Devil",                   
+//                   nil];
+//        
+//        data2   = [NSArray arrayWithObjects:
+//                   @"3500",
+//                   @"5000",
+//                   @"7500",
+//                   @"7500",
+//                   @"8000",
+//                   @"10000",                                     
+//                   @"1500",
+//                   @"1500",
+//                   @"1500",
+//                   @"1500",                   
+//                   nil];
+//        
+//        data3   = [NSArray arrayWithObjects:
+//                   @"Save yourself from falling, once per level.",
+//                   @"Jump higher than ever!",
+//                   @"Double your chances of completing a level with enemies...",
+//                   @"Orange/Falling platforms take one more bounce to fall",
+//                   @"Each platform jump creates a new dubstep sound",
+//                   @"3x second chances!",                   
+//                   @"Turn into a Wicked Little Devil",
+//                   @"Become a Blue Devil",
+//                   @"Become a Green Devil",
+//                   @"Become a Yellow Devil",                   
+//                   nil];
         
         table.dataSource = self;
         table.delegate   = self;
@@ -108,52 +131,40 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
-- (void) tap_purchase:(int)item
+- (void) tap_purchase:(UIButton*)sender
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
-    
-    NSString *feature = @"";
-    int collectedincrease = 0;
-    switch(item)
+    int item = sender.tag;
+    int cost = [[data2 objectAtIndex:item] intValue];
+
+    if ( user.collected >= cost )
     {
-        case 0:
-            feature = IAP_2000soul; collectedincrease = 2000;
-            break;
-        case 1:
-            feature = IAP_5000soul; collectedincrease = 5000;
-            break;
-        case 2:
-            feature = IAP_10000soul; collectedincrease = 10000;
-            break;
-        case 3:
-            feature = IAP_50000soul; collectedincrease = 50000;
-            break;
-        case 4:
-            feature = IAP_100000soul; collectedincrease = 100000;
-            break;
-        default:break;
+        user.collected -= cost;
+        [user buyItem:sender.tag];
+        [user sync];
+        
+        // do animation
     }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Not Enough Souls!"
+                                  message:@"You need to collect more Souls to afford this powerup."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+
+}
+
+- (void) tap_equip:(UIButton*)sender
+{
+    user.bought_powerups = TRUE;
+    user.powerup = sender.tag;
+    [user sync];
     
-    
-    CCLOG(@"PURCHASING: %@", feature);
-    
-    [[MKStoreManager sharedManager] buyFeature:feature
-                                    onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
-     {
-         NSLog(@"Purchased: %@", purchasedFeature);
-         user = [[User alloc] init];
-         CCLOG(@"USER COLLECTED %i", user.collected);
-         user.collected += collectedincrease;
-         [user sync];
-         
-         [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",user.collected]];
-         
-         CCLOG(@"USER COLLECTED %i", user.collected);
-     }
-                                   onCancelled:^
-     {
-         NSLog(@"User Cancelled Transaction");
-     }];
+    // update UI
+    CCLOG(@"UPDATE THE UI");
 }
 
 
@@ -175,36 +186,49 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 60;
+	return 75;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     //tableView.scrollEnabled = NO;
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
+
     SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    //    int section = [indexPath section];
+    ;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    CCLOG(@"%@",[data3 objectAtIndex:indexPath.row]);
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
     cell.label_title.text = [data objectAtIndex:indexPath.row];
     cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
-    cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
+    cell.label_price.text    = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
-    cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
-        
+    cell.button_buy.tag = indexPath.row;
+    if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
+    {
+        cell.label_price.text = @"EQUIP";
+        [cell.button_buy addTarget:self action:@selector(tap_equip:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else
+    {
+        [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     return cell;
 }
+
+
 
 
 @end

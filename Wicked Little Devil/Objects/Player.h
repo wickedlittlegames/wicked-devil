@@ -10,9 +10,9 @@
 
 @interface Player : CCSprite {}
 
-@property (nonatomic, assign) float health, damage, jumpspeed, gravity, modifier_gravity;
-@property (nonatomic, assign) CGPoint velocity, drag;
-@property (nonatomic, assign) int collected, bigcollected, score, time, jumps, deaths;
+@property (nonatomic, assign) float health, damage, jumpspeed, gravity, modifier_gravity, drag;
+@property (nonatomic, assign) CGPoint velocity;
+@property (nonatomic, assign) int collected, bigcollected, score, time, jumps, deaths, per_collectable, collectable_multiplier;
 @property (nonatomic, retain) id last_platform_touched;
 @property (nonatomic, assign) BOOL controllable, toggled_platform, animating, falling;
 @property (nonatomic, retain) CCAnimation *anim_jump, *anim_fall, *anim_fallfar, *anim_die;

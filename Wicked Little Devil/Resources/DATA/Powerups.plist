@@ -6,111 +6,187 @@
 	<array>
 		<dict>
 			<key>Name</key>
-			<string>Go it alone</string>
+			<string>Lucky Devil I</string>
 			<key>Description</key>
-			<string>No powerup equipped!</string>
+			<string>Save yourself from falling. 1x per level.</string>
 			<key>Cost</key>
-			<integer>0</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<true/>
+			<integer>2500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Double Health</string>
+			<string>Lucky Devil II</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Save yourself from falling. 2x per level.</string>
 			<key>Cost</key>
-			<integer>1000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
+			<integer>7000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Light Feet</string>
+			<string>Lucky Devil III</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Save yourself from falling. 3x per level.</string>
 			<key>Cost</key>
-			<integer>1000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
+			<integer>15000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Bigger Bounce</string>
+			<string>Lucky Devil IV</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Save yourself from falling. 10x per level.</string>
 			<key>Cost</key>
-			<integer>3000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
+			<integer>30000</integer>
+		</dict>	
+		<dict>
+			<key>Name</key>
+			<string>Bouncy Devil I</string>
+			<key>Description</key>
+			<string>Jump higher than usual.</string>
+			<key>Cost</key>
+			<integer>2500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Low Gravity</string>
+			<string>Bouncy Devil II</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Jump even higher than Bouncy Devil I.</string>
+			<key>Cost</key>
+			<integer>7000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Bouncy Devil III</string>
+			<key>Description</key>
+			<string>Jump even higher than Bouncy Devil II.</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Feather Devil I</string>
+			<key>Description</key>
+			<string>Breakable platforms an extra +1 hit to fall.</string>
+			<key>Cost</key>
+			<integer>2500</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Feather Devil II</string>
+			<key>Description</key>
+			<string>Breakable platforms an extra +2 hit to fall.</string>
+			<key>Cost</key>
+			<integer>7000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Feather Devil III</string>
+			<key>Description</key>
+			<string>Breakable platforms an extra +3 hit to fall.</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Quick Devil I</string>
+			<key>Description</key>
+			<string>Move across the screen quicker.</string>
+			<key>Cost</key>
+			<integer>2500</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Quick Devil II</string>
+			<key>Description</key>
+			<string>Move across the screen quicker than Quick Devil I.</string>
+			<key>Cost</key>
+			<integer>7000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Quick Devil III</string>
+			<key>Description</key>
+			<string>Move across the screen quicker than Quick Devil II.</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Tough Devil I</string>
+			<key>Description</key>
+			<string>Take extra +1 hit before you DIE.</string>
 			<key>Cost</key>
 			<integer>5000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>DUBSTEP Mode</string>
+			<string>Tough Devil II</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Take extra +2 hit before you DIE.</string>
 			<key>Cost</key>
 			<integer>10000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Moneybags</string>
+			<string>Tough Devil III</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Take extra +3 hit before you DIE.</string>
+			<key>Cost</key>
+			<integer>20000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Tough Devil IV</string>
+			<key>Description</key>
+			<string>Indestructible Devil! No hits can kill you!</string>
+			<key>Cost</key>
+			<integer>50000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Winning Devil I</string>
+			<key>Description</key>
+			<string>Each small soul collectable is worth 15 points!</string>
 			<key>Cost</key>
 			<integer>5000</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Blue Devil</string>
+			<string>Winning Devil II</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Each small soul collectable is worth 20 points!</string>
 			<key>Cost</key>
-			<integer>100</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Pink Devil</string>
+			<string>Winning Devil III</string>
 			<key>Description</key>
-			<string>Lorem ipsum dolor sit amet!</string>
+			<string>Each small soul collectable is worth 30 points!</string>
 			<key>Cost</key>
-			<integer>100</integer>
-			<key>Image</key>
-			<string>card.png</string>
-			<key>Unlocked</key>
-			<false/>
+			<integer>25000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Rich Devil I</string>
+			<key>Description</key>
+			<string>Each small soul is now worth x2 in your collection!</string>
+			<key>Cost</key>
+			<integer>10000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Rich Devil II</string>
+			<key>Description</key>
+			<string>Each small soul is now worth x3 in your collection!</string>
+			<key>Cost</key>
+			<integer>25000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Rich Devil III</string>
+			<key>Description</key>
+			<string>Each small soul is now worth x5 in your collection!</string>
+			<key>Cost</key>
+			<integer>50000</integer>
 		</dict>
 	</array>
 </dict>

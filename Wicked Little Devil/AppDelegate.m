@@ -11,7 +11,7 @@
 #import "MKStoreManager.h"
 //#import "GameOverFacebookScene.h"
 //#import "Game.h"
-#import "ShopScene.h"
+//#import "EquipScene.h"
 #import <Parse/Parse.h>
 
 @implementation AppController
@@ -98,7 +98,7 @@
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene:[StartScene scene]];
-//    	[director_ pushScene:[ShopScene scene]];
+    //	[director_ pushScene:[EquipScene scene]];
 //    
 //    Game *newgame = [[Game alloc] init];
 //    [director_ pushScene:[GameOverFacebookScene sceneWithGame:newgame]];

@@ -18,7 +18,7 @@
 {
     UIView *view;
     UITableView *table;
-    NSArray *data, *data2, *data3;
+    NSMutableArray *data, *data2, *data3;
     NSArray *items, *descriptions, *prices;
     AppController *app;
     CCLabelTTF *lbl_user_collected;
@@ -29,5 +29,4 @@
 }
 
 +(CCScene *) scene;
-- (void) tap_purchase:(int)item;
 @end

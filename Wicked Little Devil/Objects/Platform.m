@@ -82,9 +82,11 @@
             switch (self.tag)
             {
                 default: // NORMAL & MOVING PLATFORMS]
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
                     [game.player jump:game.player.jumpspeed];
                     break;
                 case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.wav"];
                     [game.player jump:game.player.jumpspeed*1.95];
                     break;
                 case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52

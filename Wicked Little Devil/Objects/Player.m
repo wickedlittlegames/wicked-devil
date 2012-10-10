@@ -12,13 +12,16 @@
 @synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score, time, jumps, deaths;
 @synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
 @synthesize anim_jump, anim_fall, anim_fallfar, anim_die;
+@synthesize per_collectable, collectable_multiplier;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
     if( (self=[super initWithTexture:texture rect:rect]))
     {
         self.velocity = ccp ( 0 , 0 );
-        self.drag = ccp ( 0, 0 );
+        self.drag = 4;
+        self.per_collectable = 10;
+        self.collectable_multiplier = 1;
         self.scale = 1.25;
         self.jumpspeed = 5.5;
         self.gravity = 0.18;
@@ -47,7 +50,7 @@
 - (void) move
 {
     self.velocity = ccp( self.velocity.x, self.velocity.y - (self.gravity + self.modifier_gravity) );
-    self.position = ccp((self.position.x) + self.drag.x, (self.position.y + self.velocity.y) + self.drag.y);
+    self.position = ccp((self.position.x), (self.position.y + self.velocity.y));
     
     if ( self.velocity.y < 0 && self.velocity.y > -5)
     {
@@ -156,49 +159,89 @@
 
 - (void) setupPowerup:(int)powerup
 {
+    //  Lucky Devil I - 0
+    //	Lucky Devil II - 1
+    //	Lucky Devil III - 2
+    //	Lucky Devil IV - 3
+    //	Bouncy Devil I - 4
+    //	Bouncy Devil II - 5
+    //	Bouncy Devil III - 6
+    //	Feather Devil I - 7
+    //	Feather Devil II - 8
+    //	Feather Devil III - 9
+    //	Quick Devil I - 10
+    //	Quick Devil II - 11
+    //	Quick Devil III - 12
+    //	Tough Devil I - 13
+    //	Tough Devi II - 14
+    //	Tough Devil III - 15
+    //	Tough Devil IV - 16
+    //	Winning Devil I - 17
+    //	Winning Devil I - 18
+    //	Winning Devil I - 19
+    //	Rich Devil I - 20
+    //	Rich Devil II - 21
+    //	Rich Devil I3 - 22
     switch (powerup)
     {
-        case 0:
-            // nothing
+        default: break;
+        case 4: //	Bouncy Devil I
+            self.jumpspeed += 0.5;
             break;
-        case 1:
-            // double health
-            self.health = self.health * 2;
+        case 5: //	Bouncy Devil II
+            self.jumpspeed += 1.0;
             break;
-        case 2:
-            // light feet / less damage to platforms
-            self.damage = self.damage / 4;
+        case 6: // Bouncy devil III
+            self.jumpspeed += 1.5;
             break;
-        case 3: 
-            // invulnerability
-            self.health = self.health * 100000;
-        case 4:
-            // bigger bounce
-            self.jumpspeed = self.jumpspeed + 2;
+        case 7: // Feather Devil I
+            self.damage = self.damage/2;
             break;
-        case 5:
-            // little devil
-            self.scale = self.scale/2;
+        case 8: // Feather Devil II
+            self.damage = self.damage/3;
             break;
-        case 6:
-            // low gravity
-            self.modifier_gravity = 0.1;
+        case 9: // Feather Devil III
+            self.damage = self.damage/4;
             break;
-        default:
-            // nothing
+        case 10: // Quick Devil I
+            self.drag = 4.25;
             break;
-            
-        // OTHERS:
-            // Bounce on the floor, never die from falling if self.position < 0, player jump make sound
-            // Hit enemies from below - 
-            // quicker reactions (modifier for move diff) - 
-            // collectables are worth twice as much! - self.collectable += 2;
-            // moneybags - normal platforms give 100 points per bounce but are destroyer
-            // tiny enemies - enemies.scale = 0.5;
-            // fun card - change devil to different colour - self.colour = ccc3(255,123,122);
-            // fun card - comedy "boing" sound when jumping - 
-            // fun card - dubstep noises when jumping on platforms
-            
+        case 11: // Quick Devil II
+            self.drag = 4.5;
+            break;
+        case 12: // Quick Devil III
+            self.drag = 5;
+            break;
+        case 13: // Tough Devil I
+            self.health += 1;
+            break;
+        case 14: // Tough Devil II
+            self.health += 2;
+            break;
+        case 15: // Tough Devil III
+            self.health += 3;
+            break;
+        case 16: // Tough Devil IV
+            self.health += 1000;
+            break;
+        case 17: // Winning Devil I
+            self.per_collectable = 15;
+            break;
+        case 18: // Winning Devil II
+            self.per_collectable = 20;
+            break;
+        case 19: // Winning Devil III
+            self.per_collectable = 30;
+            break;
+        case 20: // Rich Devil I
+            self.collectable_multiplier = 2;
+            break;
+        case 21: // Rich Devil II
+            self.collectable_multiplier = 3;
+            break;
+        case 22: // Rich Devil III
+            self.collectable_multiplier = 5;
+            break;
     }
 }
 

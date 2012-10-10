@@ -42,7 +42,7 @@
          collected          = game.player.collected;
          timebonus          = (game.timelimit - game.player.time);
          timebonus_score    = (timebonus * 100);
-         final_score        = (souls_score + timebonus_score) + (collected * 10);
+         final_score        = (souls_score + timebonus_score) + (collected * game.player.per_collectable);
          next_world         = 1;
          next_level         = 1;
                   
@@ -280,7 +280,7 @@
     if ( tmp_score_increment > 0 )
     {
         tmp_score_increment -= 1;
-        tmp_score += 10;
+        tmp_score += tmp_game.player.per_collectable;
         
         NSString *tmp_str_timebonus = [NSString stringWithFormat:@"COLLECTED BONUS: %i", tmp_score_increment];
         

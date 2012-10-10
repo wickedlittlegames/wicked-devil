@@ -13,7 +13,7 @@
 @implementation User
 @synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, powerup, powerups, cache_current_world, gameprogress, deaths, jumps;
 @synthesize ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls, ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666, sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4, sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls, sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
-@synthesize facebook_id, facebook_image;
+@synthesize facebook_id, facebook_image, bought_powerups;
 #pragma mark User creation/persistance methods
 
 -(id) init
@@ -32,6 +32,7 @@
         self.worldprogress          = [udata integerForKey:@"worldprogress"];
         self.gameprogress           = [udata objectForKey:@"gameprogress"];
         self.powerup                = [udata integerForKey:@"powerup"];
+        self.bought_powerups        = [udata boolForKey:@"bought_powerups"];
         self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
         self.collected              = [udata integerForKey:@"collected"];
         self.deaths                 = [udata integerForKey:@"deaths"];
@@ -85,14 +86,7 @@
     NSMutableArray *itemsarr = [NSMutableArray arrayWithCapacity:[contentArray count]];
     for (int i = 0; i <[contentArray count]; i++ )
     {
-        if ( i == 0 )
-        {
-            [itemsarr addObject:[NSNumber numberWithInt:1]];
-        }
-        else 
-        {
-            [itemsarr addObject:[NSNumber numberWithInt:0]];
-        }
+        [itemsarr addObject:[NSNumber numberWithInt:0]];
     }
     
     [udata setObject:itemsarr forKey:@"items"];
@@ -129,6 +123,7 @@
     [udata setInteger:self.jumps forKey:@"jumps"];
     [udata setInteger:self.collected forKey:@"collected"];    
     [udata setInteger:self.powerup forKey:@"powerup"];
+    [udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
     [udata synchronize];
 }
 

@@ -252,6 +252,8 @@
 		9C1424D2156E69540011C992 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F0156E69540011C992 /* vec3.c */; };
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
 		9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */; };
+		9C301C301625AC2C00A972DA /* jump1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C301C2E1625AC2C00A972DA /* jump1.wav */; };
+		9C301C311625AC2C00A972DA /* jump2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C301C2F1625AC2C00A972DA /* jump2.wav */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C5F89291622DC9F00C001E4 /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */; };
 		9C5F892A1622DC9F00C001E4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */; };
@@ -761,6 +763,8 @@
 		9C1423F0156E69540011C992 /* vec3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec3.c; sourceTree = "<group>"; };
 		9C1423F1156E69540011C992 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9C301C2E1625AC2C00A972DA /* jump1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump1.wav; sourceTree = "<group>"; };
+		9C301C2F1625AC2C00A972DA /* jump2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump2.wav; sourceTree = "<group>"; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
@@ -1669,6 +1673,8 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C301C2E1625AC2C00A972DA /* jump1.wav */,
+				9C301C2F1625AC2C00A972DA /* jump2.wav */,
 				9CD15B57162248F30066A7A2 /* click2.mp3 */,
 				9CD15B55162248660066A7A2 /* click.mp3 */,
 				9CD15B3E162229330066A7A2 /* collect-single2.wav */,
@@ -2382,6 +2388,8 @@
 				9C909CF91623638000663E40 /* world-2-level-18.ccbi in Resources */,
 				9C909CFA1623638000663E40 /* world-2-level-19.ccbi in Resources */,
 				9C909CFB1623638000663E40 /* world-2-level-20.ccbi in Resources */,
+				9C301C301625AC2C00A972DA /* jump1.wav in Resources */,
+				9C301C311625AC2C00A972DA /* jump2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

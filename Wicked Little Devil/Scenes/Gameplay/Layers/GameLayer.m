@@ -114,7 +114,7 @@
         }
         if ( [collectable isIntersectingPlayer:game.player] )
         {
-            game.player.collected++;
+            game.player.collected +=  (1 * game.player.collectable_multiplier);
             game.player.score++;
         }
     }

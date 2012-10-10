@@ -358,10 +358,10 @@ static MKStoreManager* _sharedStoreManager;
 		[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
 		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 		[numberFormatter setLocale:product.priceLocale];
-		NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+//		NSString *formattedString = [numberFormatter stringFromNumber:product.price];
 		
 		// you might probably need to change this line to suit your UI needs
-		NSString *description = [NSString stringWithFormat:@"%@ (%@)",[product localizedTitle], formattedString];
+		NSString *description = [NSString stringWithFormat:@"%@",[product localizedTitle]];
 		
 #ifndef NDEBUG
 		NSLog(@"Product %d - %@", i, description);

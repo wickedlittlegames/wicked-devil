@@ -40,11 +40,12 @@
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
         data    = [NSArray arrayWithObjects:
-                   @"Second Chance",
+                   @"Lucky Devil",
                    @"Bigger Jump",
                    @"Double Health",
                    @"Light Feet",
                    @"Dubstep Platforms",
+                   @"Extremely Lucky Devil",                   
                    @"Little Devil",
                    @"Blue Devil",
                    @"Green Devil",
@@ -57,6 +58,7 @@
                    @"7500",
                    @"7500",
                    @"8000",
+                   @"10000",                                     
                    @"1500",
                    @"1500",
                    @"1500",
@@ -64,15 +66,16 @@
                    nil];
         
         data3   = [NSArray arrayWithObjects:
-                   @"Turn into a Little Devil",
+                   @"Save yourself from falling, once per level.",
                    @"Jump higher than ever!",
                    @"Double your chances of completing a level with enemies...",
-                   @"Buy 50,000 Souls",
-                   @"Buy 100,000 Souls",
-                   @"Buy 100,000 Souls",
-                   @"Buy 100,000 Souls",
-                   @"Buy 100,000 Souls",
-                   @"Buy 100,000 Souls",                   
+                   @"Orange/Falling platforms take one more bounce to fall",
+                   @"Each platform jump creates a new dubstep sound",
+                   @"3x second chances!",                   
+                   @"Turn into a Wicked Little Devil",
+                   @"Become a Blue Devil",
+                   @"Become a Green Devil",
+                   @"Become a Yellow Devil",                   
                    nil];
         
         table.dataSource = self;
@@ -199,26 +202,7 @@
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
     cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
-    
-    
-    //    switch (section) {
-    //        case 0:
-    //            cell.label_title.text = [data objectAtIndex:indexPath.row];
-    //            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-    //            cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
-    //            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-    //            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];
-    //            break;
-    //        case 1:
-    //            cell.label_title.text = [data2 objectAtIndex:indexPath.row];
-    //            cell.label_description.text = @"Lorem ipsum dolor sit amet consequtor";
-    //            cell.label_price.text    = @"2000";
-    //            [cell.button_buy setEnabled:NO];
-    //            cell.image_thumbnail.image = [UIImage imageNamed:@"platform-normal.png"];
-    //            cell.button_buy.tag = [[data objectAtIndex:indexPath.row] intValue];            
-    //            break;
-    //    }
-    
+        
     return cell;
 }
 

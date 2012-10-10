@@ -31,46 +31,21 @@
     {
         MKStoreObserver *observer = [[MKStoreObserver alloc] init];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
-
+        app     = (AppController*)[[UIApplication sharedApplication] delegate];
+        
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
-
-        NSDictionary *prices = [[MKStoreManager sharedManager] pricesDictionary];
-        NSString *upgradePrice1 = [prices objectForKey:IAP_2000soul];
-        NSString *upgradePrice2 = [prices objectForKey:IAP_5000soul];
-        NSString *upgradePrice3 = [prices objectForKey:IAP_10000soul];
-        NSString *upgradePrice4 = [prices objectForKey:IAP_50000soul];
-        NSString *upgradePrice5 = [prices objectForKey:IAP_100000soul];
         
-        app     = (AppController*)[[UIApplication sharedApplication] delegate];
-        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
-        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
-        
-        data    = [NSArray arrayWithObjects:
-                   @"Handful o' Souls",
-                   @"Bag o'Souls",
-                   @"Chalice o'Souls",
-                   @"Truck-load o'Souls",
-                   @"Chest o'Souls",
-                   nil];
-        
-        data2   = [NSArray arrayWithObjects:
-                   upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5,
-                   nil];
-        
-        data3   = [NSArray arrayWithObjects:
-                   @"Buy 2,000 Souls",
-                   @"Buy 5,000 Souls",
-                   @"Buy 10,000 Souls",
-                   @"Buy 50,000 Souls",
-                   @"Buy 100,000 Souls",
-                   nil];
-        
-        table.dataSource = self;
-        table.delegate   = self;
-        [view addSubview:table];
-        [app.window addSubview:view];
+        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+        if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
+        {
+            [self schedule:@selector(screenSetup) interval:1.0f];
+        }
+        else
+        {
+            [self setupTable];
+        }
 
         CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
         [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
@@ -86,6 +61,64 @@
         [self addChild:lbl_user_collected z:100];
     }
     return self;
+}
+
+- (void) screenSetup
+{
+    if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
+    {
+        CCLOG(@"Keep trying...");
+    }
+    else
+    {
+        [self setupTable];
+    }
+}
+
+- (void) setupTable
+{
+    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+    [self unschedule:@selector(screenSetup)];
+    CCLOG(@"DOING THIS 1");
+    NSDictionary *prices = [[MKStoreManager sharedManager] pricesDictionary];
+    NSMutableArray *descs  = [[MKStoreManager sharedManager] purchasableObjectsDescription];
+    CCLOG(@"PRICES: %@",prices);
+    NSString *upgradePrice1 = [prices objectForKey:IAP_2000soul];
+    NSString *upgradePrice2 = [prices objectForKey:IAP_5000soul];
+    NSString *upgradePrice3 = [prices objectForKey:IAP_10000soul];
+    NSString *upgradePrice4 = [prices objectForKey:IAP_50000soul];
+    NSString *upgradePrice5 = [prices objectForKey:IAP_100000soul];
+    NSString *description1  = [descs objectAtIndex:2];
+    NSString *description2  = [descs objectAtIndex:4];
+    NSString *description3  = [descs objectAtIndex:1];
+    NSString *description4  = [descs objectAtIndex:3];
+    NSString *description5  = [descs objectAtIndex:0];
+    
+    CCLOG(@"DOING THIS 2");
+    
+    view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
+    table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
+    
+    data    = [NSArray arrayWithObjects:
+               description1,description2,description3,description4,description5,
+               nil];
+    CCLOG(@"DOING THIS 3");
+    data2   = [NSArray arrayWithObjects:
+               upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5,
+               nil];
+    CCLOG(@"DOING THIS 4");
+    data3   = [NSArray arrayWithObjects:
+               @"2,000 Souls",
+               @"5,000 Souls",
+               @"10,000 Souls",
+               @"50,000 Souls",
+               @"100,000 Souls",
+               nil];
+    
+    table.dataSource = self;
+    table.delegate   = self;
+    [view addSubview:table];
+    [app.window addSubview:view];
 }
 
 - (void) tap_back
@@ -208,6 +241,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CCLOG(@"DOING THIS 5: %i",indexPath.row );
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.scrollEnabled = NO;
@@ -226,6 +260,7 @@
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
     cell.label_title.text = [data objectAtIndex:indexPath.row];
     cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    [cell.label_title sizeToFit];
     cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];

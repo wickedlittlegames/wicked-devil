@@ -128,7 +128,7 @@
             [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
             if ( ![SimpleAudioEngine sharedEngine].mute )
             {
-                [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.wav",game.player.bigcollected]];
+                [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.caf",game.player.bigcollected]];
             }            
         }
     }

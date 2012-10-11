@@ -82,26 +82,26 @@
             switch (self.tag)
             {
                 default: // NORMAL & MOVING PLATFORMS]
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                     
                     [game.player jump:game.player.jumpspeed];
                     break;
                 case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf"];
                     game.player.jumps++;
                     
                     [game.player jump:game.player.jumpspeed*1.95];
                     break;
                 case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed];
                     [self action:self.tag game:game platforms:platforms];
                     break;
                 case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed];
@@ -112,7 +112,7 @@
                     }
                     break;
                 case 66: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                                         
                     self.animating = NO;
@@ -124,7 +124,7 @@
                     }
                     break;
                 case 663: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                     
                     
@@ -137,7 +137,7 @@
                     }
                     break;
                 case 100: // End of level platform
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.wav"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf"];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed*1.5];

@@ -264,6 +264,7 @@
 		9C4EA3331626CFA100E7B66F /* bg-main.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3321626CFA100E7B66F /* bg-main.aifc */; };
 		9C4EA3361626CFCB00E7B66F /* bg-loop2.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3341626CFCB00E7B66F /* bg-loop2.aifc */; };
 		9C4EA3371626CFCB00E7B66F /* bg-loop1.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3351626CFCB00E7B66F /* bg-loop1.aifc */; };
+		9C4EA3391626D26300E7B66F /* boom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3381626D26300E7B66F /* boom.caf */; };
 		9C5F89291622DC9F00C001E4 /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */; };
 		9C5F892A1622DC9F00C001E4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
@@ -783,6 +784,7 @@
 		9C4EA3321626CFA100E7B66F /* bg-main.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bg-main.aifc"; sourceTree = "<group>"; };
 		9C4EA3341626CFCB00E7B66F /* bg-loop2.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bg-loop2.aifc"; sourceTree = "<group>"; };
 		9C4EA3351626CFCB00E7B66F /* bg-loop1.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bg-loop1.aifc"; sourceTree = "<group>"; };
+		9C4EA3381626D26300E7B66F /* boom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom.caf; sourceTree = "<group>"; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
@@ -1693,6 +1695,7 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C4EA3381626D26300E7B66F /* boom.caf */,
 				9C4EA3341626CFCB00E7B66F /* bg-loop2.aifc */,
 				9C4EA3351626CFCB00E7B66F /* bg-loop1.aifc */,
 				9C4EA3321626CFA100E7B66F /* bg-main.aifc */,
@@ -2420,6 +2423,7 @@
 				9C4EA3331626CFA100E7B66F /* bg-main.aifc in Resources */,
 				9C4EA3361626CFCB00E7B66F /* bg-loop2.aifc in Resources */,
 				9C4EA3371626CFCB00E7B66F /* bg-loop1.aifc in Resources */,
+				9C4EA3391626D26300E7B66F /* boom.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

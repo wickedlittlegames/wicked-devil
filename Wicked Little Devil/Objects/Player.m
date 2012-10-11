@@ -68,7 +68,6 @@
 - (void) jump:(float)speed
 {
     self.animating = NO;
-    self.jumps++;
     [self animate:1];
     
     self.velocity = ccp (self.velocity.x, speed);

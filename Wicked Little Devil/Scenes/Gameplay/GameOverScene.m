@@ -61,7 +61,7 @@
                  
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
-                     next_world = 1;
+                     next_world = game.world;
                      restartAudioToggle = TRUE;
                  }
              }
@@ -86,7 +86,7 @@
                  
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
-                     next_world = 1;
+                     next_world = game.world;
                      restartAudioToggle = TRUE;
                  }
              }

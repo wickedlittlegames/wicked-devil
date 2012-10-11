@@ -80,6 +80,8 @@
     }
     else
     {
+        timeout_check = 30;
+        [self unschedule:@selector(screenSetup)];
         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Could not retrieve products."

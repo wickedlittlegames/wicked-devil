@@ -38,6 +38,7 @@
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
+    
         
         // Pull in the Cards plist
         NSArray *contentArray = [[NSDictionary
@@ -119,6 +120,19 @@
         lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
         [lbl_user_collected setPosition:ccp ( screenSize.width/2, screenSize.height - 85 )];
         [self addChild:lbl_user_collected z:100];
+        
+        CCMenu *resetAll = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png" block:^(id sender)
+        {
+            user.powerup = 0;
+            user.bought_powerups = NO;
+            [user sync];
+            
+            [view removeFromSuperview];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+            
+        }], nil];
+        [resetAll setPosition:ccp(screenSize.width - 80, 25)];
+        [self addChild:resetAll];
     }
     return self;
 }
@@ -145,7 +159,10 @@
         [user buyItem:sender.tag];
         [user sync];
         
-        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
+        [view removeFromSuperview];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+//        
+//        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
     else
     {
@@ -162,7 +179,7 @@
 
 - (void) tap_equip:(UIButton*)sender
 {
-    user.bought_powerups = TRUE;
+    if ( !user.bought_powerups ) user.bought_powerups = TRUE;
     user.powerup = sender.tag;
     [user sync];
     
@@ -259,7 +276,8 @@
     cell.button_buy.tag = indexPath.row;
     if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
     {
-        if (user.powerup == indexPath.row) {
+        if (user.powerup == indexPath.row && user.bought_powerups ) {
+            cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equipequipped.png"];
             cell.label_price.text = @"EQUIPPED";
         } else {
             cell.label_price.text = @"EQUIP";
@@ -269,6 +287,7 @@
     }
     else
     {
+        cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equippurchase.png"];        
         [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
     }
     

@@ -314,16 +314,16 @@
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_2] percentComplete:100.0f];
         user.sent_ach_beat_world_2 = YES;
     }
-    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
-        user.sent_ach_beat_world_3 = YES;
-    }
-    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
-        user.sent_ach_beat_world_4 = YES;
-    }
+//    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
+//    {
+//        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
+//        user.sent_ach_beat_world_3 = YES;
+//    }
+//    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
+//    {
+//        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
+//        user.sent_ach_beat_world_4 = YES;
+//    }
     if ( user.ach_killed && !user.sent_ach_killed )
     {
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_KILLED_BY_DEATH] percentComplete:100.0f];

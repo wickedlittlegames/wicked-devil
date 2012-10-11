@@ -43,8 +43,8 @@
     [self addChild:uibg];
     [self addChild:gamenumber];
     
-    menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" block:^(id sender) {
-        [game.player jump:game.player.jumpspeed];
+    menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-second-chance.png" selectedImage:@"btn-second-chance.png" block:^(id sender) {
+        [game.player jump:game.player.jumpspeed*2.5];
         self.saves--;
         
         if ( self.saves == 0 )
@@ -52,7 +52,7 @@
             menu_second_chance.visible = NO;
         }
     }], nil];
-    [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2 - 200)];
     menu_second_chance.visible = FALSE;
     [self addChild:menu_second_chance];
 
@@ -141,8 +141,8 @@
 }
 
 - (void) update:(Game*)game
-{ 
-    if ( game.player.velocity.y < -6.5 && self.saves > 0 )
+{
+    if ( game.player.velocity.y < -8 && self.saves > 0 )
     {
         menu_second_chance.visible = YES;
     }

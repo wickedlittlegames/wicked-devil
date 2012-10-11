@@ -132,6 +132,10 @@ btn-back-hd.png
 btn-back.png
 btn-behind-fb-hd.png
 btn-behind-fb.png
+btn-equipequipped.png
+btn-equipequipped@2x.png
+btn-equippurchase.png
+btn-equippurchase@2x.png
 btn-fb-hd.png
 btn-fb-score-hd.png
 btn-fb-score.png
@@ -162,12 +166,16 @@ btn-purchase.png
 btn-purchase@2x.png
 btn-reply-hd.png
 btn-reply.png
+btn-second-chance-hd.png
+btn-second-chance.png
 btn-start-hd.png
 btn-start.png
 btn-store-world-hd.png
 btn-store-world.png
 btn-tweet-score-hd.png
 btn-tweet-score.png
+btn-unequip-all-hd.png
+btn-unequip-all.png
 icon-bigcollectable-empty-hd.png
 icon-bigcollectable-empty.png
 icon-bigcollectable-hd.png

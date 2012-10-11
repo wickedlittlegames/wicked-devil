@@ -837,7 +837,7 @@
 						<key>value</key>
 						<array>
 							<real>238.5</real>
-							<real>263</real>
+							<real>275</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -990,8 +990,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>21.5625</real>
-							<real>60.416656494140625</real>
+							<real>21.25</real>
+							<real>41.666656494140625</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -1048,6 +1048,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1723,67 +1725,6 @@
 							<integer>72</integer>
 							<integer>249</integer>
 							<integer>0</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string>Platform</string>
-				<key>displayName</key>
-				<string>Platform</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>27.5</real>
-							<real>47.083332061767578</real>
-							<integer>4</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>visible</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>ingame-platform-normal.png</string>
 						</array>
 					</dict>
 				</array>
@@ -11338,7 +11279,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -11419,7 +11360,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12145,7 +12086,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12226,7 +12167,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12307,7 +12248,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12388,7 +12329,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12469,7 +12410,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12550,7 +12491,7 @@
 						<key>type</key>
 						<string>Integer</string>
 						<key>value</key>
-						<integer>663</integer>
+						<integer>6</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -12607,8 +12548,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>41.09375</real>
-							<real>312.91421508789062</real>
+							<real>20.15625</real>
+							<real>84.997550964355469</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -12642,6 +12583,128 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
 							<string>ingame-big-collectable.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string>Platform</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>89.0625</real>
+							<real>71.875</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
+							<string>ingame-platform-normal.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string>Platform</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>90.9375</real>
+							<real>87.5</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
+							<string>ingame-platform-normal.png</string>
 						</array>
 					</dict>
 				</array>

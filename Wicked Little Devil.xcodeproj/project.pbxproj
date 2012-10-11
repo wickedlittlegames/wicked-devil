@@ -436,6 +436,14 @@
 		9C9E86D61618C4D1001CAC21 /* world-1-level-20.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E86C31618C4D1001CAC21 /* world-1-level-20.ccbi */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
+		9CAA095116264C9D00524845 /* btn-equipequipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094916264C9D00524845 /* btn-equipequipped.png */; };
+		9CAA095216264C9D00524845 /* btn-equipequipped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094A16264C9D00524845 /* btn-equipequipped@2x.png */; };
+		9CAA095316264C9D00524845 /* btn-equippurchase.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094B16264C9D00524845 /* btn-equippurchase.png */; };
+		9CAA095416264C9D00524845 /* btn-equippurchase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094C16264C9D00524845 /* btn-equippurchase@2x.png */; };
+		9CAA095516264C9D00524845 /* btn-second-chance-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094D16264C9D00524845 /* btn-second-chance-hd.png */; };
+		9CAA095616264C9D00524845 /* btn-second-chance.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094E16264C9D00524845 /* btn-second-chance.png */; };
+		9CAA095716264C9D00524845 /* btn-unequip-all-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094F16264C9D00524845 /* btn-unequip-all-hd.png */; };
+		9CAA095816264C9D00524845 /* btn-unequip-all.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA095016264C9D00524845 /* btn-unequip-all.png */; };
 		9CABCF3D1611D5EA006DFDE9 /* world-1-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */; };
 		9CABCF3F1611D5EA006DFDE9 /* Powerups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF011611D5EA006DFDE9 /* Powerups.plist */; };
 		9CABCF401611D5EA006DFDE9 /* CrashLandingBB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */; };
@@ -953,6 +961,14 @@
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
 		9CA61BA715B566BB00B447E9 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Scenes/Gameplay/Layers/GameLayer.m; sourceTree = "<group>"; };
+		9CAA094916264C9D00524845 /* btn-equipequipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-equipequipped.png"; sourceTree = "<group>"; };
+		9CAA094A16264C9D00524845 /* btn-equipequipped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-equipequipped@2x.png"; sourceTree = "<group>"; };
+		9CAA094B16264C9D00524845 /* btn-equippurchase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-equippurchase.png"; sourceTree = "<group>"; };
+		9CAA094C16264C9D00524845 /* btn-equippurchase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-equippurchase@2x.png"; sourceTree = "<group>"; };
+		9CAA094D16264C9D00524845 /* btn-second-chance-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-second-chance-hd.png"; sourceTree = "<group>"; };
+		9CAA094E16264C9D00524845 /* btn-second-chance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-second-chance.png"; sourceTree = "<group>"; };
+		9CAA094F16264C9D00524845 /* btn-unequip-all-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-unequip-all-hd.png"; sourceTree = "<group>"; };
+		9CAA095016264C9D00524845 /* btn-unequip-all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-unequip-all.png"; sourceTree = "<group>"; };
 		9CABCEFF1611D5EA006DFDE9 /* world-1-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-1.ccbi"; sourceTree = "<group>"; };
 		9CABCF011611D5EA006DFDE9 /* Powerups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Powerups.plist; sourceTree = "<group>"; };
 		9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB.ttf; sourceTree = "<group>"; };
@@ -1758,6 +1774,14 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CAA094916264C9D00524845 /* btn-equipequipped.png */,
+				9CAA094A16264C9D00524845 /* btn-equipequipped@2x.png */,
+				9CAA094B16264C9D00524845 /* btn-equippurchase.png */,
+				9CAA094C16264C9D00524845 /* btn-equippurchase@2x.png */,
+				9CAA094D16264C9D00524845 /* btn-second-chance-hd.png */,
+				9CAA094E16264C9D00524845 /* btn-second-chance.png */,
+				9CAA094F16264C9D00524845 /* btn-unequip-all-hd.png */,
+				9CAA095016264C9D00524845 /* btn-unequip-all.png */,
 				9C909CD4162360A900663E40 /* btn-purchase@2x.png */,
 				9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */,
 				9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */,
@@ -2390,6 +2414,14 @@
 				9C909CFB1623638000663E40 /* world-2-level-20.ccbi in Resources */,
 				9C301C301625AC2C00A972DA /* jump1.wav in Resources */,
 				9C301C311625AC2C00A972DA /* jump2.wav in Resources */,
+				9CAA095116264C9D00524845 /* btn-equipequipped.png in Resources */,
+				9CAA095216264C9D00524845 /* btn-equipequipped@2x.png in Resources */,
+				9CAA095316264C9D00524845 /* btn-equippurchase.png in Resources */,
+				9CAA095416264C9D00524845 /* btn-equippurchase@2x.png in Resources */,
+				9CAA095516264C9D00524845 /* btn-second-chance-hd.png in Resources */,
+				9CAA095616264C9D00524845 /* btn-second-chance.png in Resources */,
+				9CAA095716264C9D00524845 /* btn-unequip-all-hd.png in Resources */,
+				9CAA095816264C9D00524845 /* btn-unequip-all.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,14 +12,14 @@
 	<string>Icon.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>appicon-small.png</string>
-		<string>appicon-big.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small.png</string>
 		<string>Icon-Small@2x.png</string>
 		<string>Default.png</string>
 		<string>Default@2x.png</string>
+		<string>appicon-small.png</string>
+		<string>appicon-big.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -27,14 +27,14 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>appicon-small.png</string>
-				<string>appicon-big.png</string>
 				<string>Icon-72.png</string>
 				<string>Icon-Small-50.png</string>
 				<string>Icon-Small.png</string>
 				<string>Icon-Small@2x.png</string>
 				<string>Default.png</string>
 				<string>Default@2x.png</string>
+				<string>appicon-small.png</string>
+				<string>appicon-big.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

@@ -78,6 +78,7 @@
             }
             else
             {
+                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
                 self.running = YES;
                 [game.player jump:game.player.jumpspeed];
                 [self action_bat_hit];
@@ -95,6 +96,8 @@
             }
             else
             {
+                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
+                
                 self.running = YES;
                 [game.player jump:game.player.jumpspeed];
                 [self action_bat_hit];

@@ -114,6 +114,7 @@
         }
         if ( [collectable isIntersectingPlayer:game.player] )
         {
+            if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf"];
             game.player.collected +=  (1 * game.player.collectable_multiplier);
             game.player.score++;
         }
@@ -186,7 +187,10 @@
         
         if ( game.isGameover ) 
         {
-            if ( !game.player.isAlive ) { game.user.deaths++; }
+            if ( !game.player.isAlive ) {
+                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"player-hit.caf"];
+                game.user.deaths++;
+            }
             game.user.jumps     += game.player.jumps;
             [game.user sync];            
             [self end:game];

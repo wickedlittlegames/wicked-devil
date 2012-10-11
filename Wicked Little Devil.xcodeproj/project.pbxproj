@@ -253,9 +253,6 @@
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
 		9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		9C4EA3191626C72000E7B66F /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */; };
-		9C4EA3281626CF0A00E7B66F /* jump2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA31E1626CF0A00E7B66F /* jump2.caf */; };
-		9C4EA3291626CF0A00E7B66F /* jump1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA31F1626CF0A00E7B66F /* jump1.caf */; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
 		9C4EA32C1626CF0A00E7B66F /* collect1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3221626CF0A00E7B66F /* collect1.caf */; };
@@ -267,6 +264,15 @@
 		9C4EA3401626D43400E7B66F /* app-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA33C1626D43400E7B66F /* app-512.png */; };
 		9C4EA3431626D43B00E7B66F /* appicon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3421626D43B00E7B66F /* appicon-small.png */; };
 		9C4EA3451626D44800E7B66F /* appicon-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3441626D44800E7B66F /* appicon-big.png */; };
+		9C4EA34E1626D86F00E7B66F /* score.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3461626D86F00E7B66F /* score.caf */; };
+		9C4EA34F1626D86F00E7B66F /* player-hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3471626D86F00E7B66F /* player-hit.caf */; };
+		9C4EA3501626D86F00E7B66F /* jump4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3481626D86F00E7B66F /* jump4.caf */; };
+		9C4EA3511626D86F00E7B66F /* jump3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3491626D86F00E7B66F /* jump3.caf */; };
+		9C4EA3521626D86F00E7B66F /* jump2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA34A1626D86F00E7B66F /* jump2.caf */; };
+		9C4EA3531626D86F00E7B66F /* jump1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA34B1626D86F00E7B66F /* jump1.caf */; };
+		9C4EA3541626D86F00E7B66F /* collect-small.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA34C1626D86F00E7B66F /* collect-small.caf */; };
+		9C4EA3551626D86F00E7B66F /* bat-hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA34D1626D86F00E7B66F /* bat-hit.caf */; };
+		9C4EA3591626D93600E7B66F /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4EA3581626D93600E7B66F /* libFlurryAnalytics.a */; };
 		9C5F89291622DC9F00C001E4 /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */; };
 		9C5F892A1622DC9F00C001E4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
@@ -768,10 +774,6 @@
 		9C1423F1156E69540011C992 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		9C4EA3171626C72000E7B66F /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAnalytics.h; path = "../../../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics/FlurryAnalytics.h"; sourceTree = "<group>"; };
-		9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryAnalytics.a; path = "../../../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics/libFlurryAnalytics.a"; sourceTree = "<group>"; };
-		9C4EA31E1626CF0A00E7B66F /* jump2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump2.caf; sourceTree = "<group>"; };
-		9C4EA31F1626CF0A00E7B66F /* jump1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump1.caf; sourceTree = "<group>"; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
 		9C4EA3221626CF0A00E7B66F /* collect1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect1.caf; sourceTree = "<group>"; };
@@ -783,6 +785,16 @@
 		9C4EA33C1626D43400E7B66F /* app-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-512.png"; sourceTree = "<group>"; };
 		9C4EA3421626D43B00E7B66F /* appicon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon-small.png"; path = "../../../../appicon-small.png"; sourceTree = "<group>"; };
 		9C4EA3441626D44800E7B66F /* appicon-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon-big.png"; path = "../../../../appicon-big.png"; sourceTree = "<group>"; };
+		9C4EA3461626D86F00E7B66F /* score.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = score.caf; sourceTree = "<group>"; };
+		9C4EA3471626D86F00E7B66F /* player-hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "player-hit.caf"; sourceTree = "<group>"; };
+		9C4EA3481626D86F00E7B66F /* jump4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump4.caf; sourceTree = "<group>"; };
+		9C4EA3491626D86F00E7B66F /* jump3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump3.caf; sourceTree = "<group>"; };
+		9C4EA34A1626D86F00E7B66F /* jump2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump2.caf; sourceTree = "<group>"; };
+		9C4EA34B1626D86F00E7B66F /* jump1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump1.caf; sourceTree = "<group>"; };
+		9C4EA34C1626D86F00E7B66F /* collect-small.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "collect-small.caf"; sourceTree = "<group>"; };
+		9C4EA34D1626D86F00E7B66F /* bat-hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bat-hit.caf"; sourceTree = "<group>"; };
+		9C4EA3571626D93600E7B66F /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		9C4EA3581626D93600E7B66F /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
@@ -1101,7 +1113,7 @@
 				9C142175156E68560011C992 /* CoreGraphics.framework in Frameworks */,
 				9C142177156E68560011C992 /* GameKit.framework in Frameworks */,
 				9CB9022A161D9CE300481AD4 /* Parse.framework in Frameworks */,
-				9C4EA3191626C72000E7B66F /* libFlurryAnalytics.a in Frameworks */,
+				9C4EA3591626D93600E7B66F /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,8 +1216,7 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				9C4EA3171626C72000E7B66F /* FlurryAnalytics.h */,
-				9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */,
+				9C4EA3561626D93600E7B66F /* FlurryAnalytics */,
 				9CB90225161D969B00481AD4 /* MBProgressHUD.h */,
 				9CB90226161D969B00481AD4 /* MBProgressHUD.m */,
 				9CCD8883161C5ECE00CEA6D8 /* MKInfoPanel.h */,
@@ -1564,6 +1575,15 @@
 			name = IAP;
 			sourceTree = "<group>";
 		};
+		9C4EA3561626D93600E7B66F /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				9C4EA3571626D93600E7B66F /* FlurryAnalytics.h */,
+				9C4EA3581626D93600E7B66F /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		9C54D45C15B0551A00D52A22 /* UI Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -1685,12 +1705,18 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C4EA3461626D86F00E7B66F /* score.caf */,
+				9C4EA3471626D86F00E7B66F /* player-hit.caf */,
+				9C4EA3481626D86F00E7B66F /* jump4.caf */,
+				9C4EA3491626D86F00E7B66F /* jump3.caf */,
+				9C4EA34A1626D86F00E7B66F /* jump2.caf */,
+				9C4EA34B1626D86F00E7B66F /* jump1.caf */,
+				9C4EA34C1626D86F00E7B66F /* collect-small.caf */,
+				9C4EA34D1626D86F00E7B66F /* bat-hit.caf */,
 				9C4EA3381626D26300E7B66F /* boom.caf */,
 				9C4EA3341626CFCB00E7B66F /* bg-loop2.aifc */,
 				9C4EA3351626CFCB00E7B66F /* bg-loop1.aifc */,
 				9C4EA3321626CFA100E7B66F /* bg-main.aifc */,
-				9C4EA31E1626CF0A00E7B66F /* jump2.caf */,
-				9C4EA31F1626CF0A00E7B66F /* jump1.caf */,
 				9C4EA3201626CF0A00E7B66F /* collect3.caf */,
 				9C4EA3211626CF0A00E7B66F /* collect2.caf */,
 				9C4EA3221626CF0A00E7B66F /* collect1.caf */,
@@ -2395,8 +2421,6 @@
 				9CAA095616264C9D00524845 /* btn-second-chance.png in Resources */,
 				9CAA095716264C9D00524845 /* btn-unequip-all-hd.png in Resources */,
 				9CAA095816264C9D00524845 /* btn-unequip-all.png in Resources */,
-				9C4EA3281626CF0A00E7B66F /* jump2.caf in Resources */,
-				9C4EA3291626CF0A00E7B66F /* jump1.caf in Resources */,
 				9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */,
 				9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */,
 				9C4EA32C1626CF0A00E7B66F /* collect1.caf in Resources */,
@@ -2408,6 +2432,14 @@
 				9C4EA3401626D43400E7B66F /* app-512.png in Resources */,
 				9C4EA3431626D43B00E7B66F /* appicon-small.png in Resources */,
 				9C4EA3451626D44800E7B66F /* appicon-big.png in Resources */,
+				9C4EA34E1626D86F00E7B66F /* score.caf in Resources */,
+				9C4EA34F1626D86F00E7B66F /* player-hit.caf in Resources */,
+				9C4EA3501626D86F00E7B66F /* jump4.caf in Resources */,
+				9C4EA3511626D86F00E7B66F /* jump3.caf in Resources */,
+				9C4EA3521626D86F00E7B66F /* jump2.caf in Resources */,
+				9C4EA3531626D86F00E7B66F /* jump1.caf in Resources */,
+				9C4EA3541626D86F00E7B66F /* collect-small.caf in Resources */,
+				9C4EA3551626D86F00E7B66F /* bat-hit.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2645,6 +2677,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -2681,6 +2714,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

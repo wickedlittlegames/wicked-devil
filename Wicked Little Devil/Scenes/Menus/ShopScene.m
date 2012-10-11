@@ -282,7 +282,6 @@
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
     cell.label_title.text = [data objectAtIndex:indexPath.row];
     cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
-    //[cell.label_title sizeToFit];
     cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];

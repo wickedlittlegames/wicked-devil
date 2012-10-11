@@ -10,7 +10,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling. 1x per level.</string>
 			<key>Cost</key>
-			<integer>2500</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -18,7 +18,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling. 2x per level.</string>
 			<key>Cost</key>
-			<integer>7000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -26,7 +26,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling. 3x per level.</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -34,7 +34,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling. 10x per level.</string>
 			<key>Cost</key>
-			<integer>30000</integer>
+			<integer>25000</integer>
 		</dict>	
 		<dict>
 			<key>Name</key>
@@ -42,7 +42,7 @@
 			<key>Description</key>
 			<string>Jump higher than usual.</string>
 			<key>Cost</key>
-			<integer>2500</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -50,7 +50,7 @@
 			<key>Description</key>
 			<string>Jump even higher than Bouncy Devil I.</string>
 			<key>Cost</key>
-			<integer>7000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -58,7 +58,7 @@
 			<key>Description</key>
 			<string>Jump even higher than Bouncy Devil II.</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -66,7 +66,7 @@
 			<key>Description</key>
 			<string>Breakable platforms an extra +1 hit to fall.</string>
 			<key>Cost</key>
-			<integer>2500</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -74,7 +74,7 @@
 			<key>Description</key>
 			<string>Breakable platforms an extra +2 hit to fall.</string>
 			<key>Cost</key>
-			<integer>7000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -82,7 +82,7 @@
 			<key>Description</key>
 			<string>Breakable platforms an extra +3 hit to fall.</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -90,7 +90,7 @@
 			<key>Description</key>
 			<string>Move across the screen quicker.</string>
 			<key>Cost</key>
-			<integer>2500</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -98,7 +98,7 @@
 			<key>Description</key>
 			<string>Move across the screen quicker than Quick Devil I.</string>
 			<key>Cost</key>
-			<integer>7000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -106,7 +106,7 @@
 			<key>Description</key>
 			<string>Move across the screen quicker than Quick Devil II.</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>

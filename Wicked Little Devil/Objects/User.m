@@ -430,9 +430,9 @@
 - (void) sync_achievements
 {
     [udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_1"];
-    [udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_2"];
-    [udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_3"];
-    [udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_4"];
+    [udata setBool:self.ach_beat_world_2 forKey:@"ach_beat_world_2"];
+    [udata setBool:self.ach_beat_world_3 forKey:@"ach_beat_world_3"];
+    [udata setBool:self.ach_beat_world_4 forKey:@"ach_beat_world_4"];
     [udata setBool:self.ach_first_play forKey:@"ach_first_play"];
     [udata setBool:self.ach_first_3_big forKey:@"ach_first_3_big"];
     [udata setBool:self.ach_killed forKey:@"ach_killed"];
@@ -445,9 +445,9 @@
     [udata setBool:self.ach_collected_666 forKey:@"ach_collected_666"];
     
     [udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_1"];
-    [udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_2"];
-    [udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_3"];
-    [udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_4"];
+    [udata setBool:self.sent_ach_beat_world_2 forKey:@"sent_ach_beat_world_2"];
+    [udata setBool:self.sent_ach_beat_world_3 forKey:@"sent_ach_beat_world_3"];
+    [udata setBool:self.sent_ach_beat_world_4 forKey:@"sent_ach_beat_world_4"];
     [udata setBool:self.sent_ach_first_play forKey:@"sent_ach_first_play"];
     [udata setBool:self.sent_ach_first_3_big forKey:@"sent_ach_first_3_big"];
     [udata setBool:self.sent_ach_killed forKey:@"sent_ach_killed"];
@@ -475,7 +475,7 @@
     self.ach_5000_souls         = [udata boolForKey:@"ach_5000_souls"];
     self.ach_10000_souls        = [udata boolForKey:@"ach_10000_souls"];
     self.ach_50000_souls        = [udata boolForKey:@"ach_50000_souls"];
-    self.ach_died_100           = [udata boolForKey:@"ach_died_100_times"];
+    self.ach_died_100           = [udata boolForKey:@"ach_died_100"];
     self.ach_jumped_1000        = [udata boolForKey:@"ach_jumped_1000"];
     self.ach_collected_666      = [udata boolForKey:@"ach_collected_666"];
     
@@ -490,7 +490,7 @@
     self.sent_ach_5000_souls    = [udata boolForKey:@"sent_ach_5000_souls"];
     self.sent_ach_10000_souls   = [udata boolForKey:@"sent_ach_10000_souls"];
     self.sent_ach_50000_souls   = [udata boolForKey:@"sent_ach_50000_souls"];
-    self.sent_ach_died_100      = [udata boolForKey:@"sent_ach_died_100_times"];
+    self.sent_ach_died_100      = [udata boolForKey:@"sent_ach_died_100"];
     self.sent_ach_jumped_1000   = [udata boolForKey:@"sent_ach_jumped_1000"];
     self.sent_ach_collected_666 = [udata boolForKey:@"sent_ach_collected_666"];
 }

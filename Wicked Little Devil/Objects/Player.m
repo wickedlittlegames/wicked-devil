@@ -101,7 +101,6 @@
 - (void) end_animate
 {
     self.animating = NO;
-    //[self stopAllActions];
 }
 
 - (bool) isAlive

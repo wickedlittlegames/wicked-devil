@@ -12,10 +12,6 @@
 @class Game;
 @interface Enemy : CCSprite {}
 
-// move enemy
-// check for intersection
-// if intersect, do an action
-
 @property (nonatomic, assign) bool animating, running;
 @property (nonatomic, retain) CCAnimation *anim_flap;
 @property (nonatomic, retain) CCArray *projectiles, *fx;

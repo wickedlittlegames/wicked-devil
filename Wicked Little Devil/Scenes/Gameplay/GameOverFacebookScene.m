@@ -224,19 +224,6 @@
     
     cell.userInteractionEnabled = YES;
     
-//    
-//    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    //this will start the image loading in bg
-//    dispatch_async(concurrentQueue, ^{
-//        //NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[fbdata3 objectAtIndex:indexPath.row]]];
-//        
-//        //this will set the image when loading is finished
-//        dispatch_async(dispatch_get_main_queue(), ^{
-////            cell.imageView.image = [UIImage imageWithData:image];
-////            cell.imageView.frame = CGRectMake(0, 0, 50, 50);
-//        });
-//    });
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];

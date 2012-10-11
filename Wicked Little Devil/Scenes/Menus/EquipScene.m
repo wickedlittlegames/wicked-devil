@@ -47,15 +47,12 @@
                                                                 pathForResource:@"Powerups"
                                                                 ofType:@"plist"]
                                   ] objectForKey:@"Powerups"];
-        CCLOG(@"USER POWERUPS: %@",user.items);
-        CCLOG(@"POWERUPS: %@",contentArray);
         data = [NSMutableArray arrayWithCapacity:100];
         data2 = [NSMutableArray arrayWithCapacity:100];
         data3 = [NSMutableArray arrayWithCapacity:100];
         
         for (int i = 0; i <[contentArray count]; i++ )
         {
-            CCLOG(@"%i",i);
             // Grab the powerup contents
             NSDictionary *dict = [contentArray objectAtIndex:i]; //name, description, cost, unlocked, image
             [data addObject:[dict objectForKey:@"Name"]];

@@ -72,7 +72,7 @@
         timeout_check++;
         if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
         {
-            CCLOG(@"Keep trying...");
+            NSLog(@"Keep trying...");
         }
         else
         {

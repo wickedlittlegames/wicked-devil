@@ -264,19 +264,6 @@
                                             [self showMenuPanelwithAnim:YES];
                                         }],nil]];
         }
-
-////        collected
-//        
-//        [label_subscore runAction:[CCSequence actions:
-//                                   [CCDelayTime actionWithDuration:0.2f],
-//                                   [CCFadeOut actionWithDuration:0.2f],
-//                                   [CCCallBlock actionWithBlock:^(void) { [self showHighscorePanelwithAnim:YES]; }],
-//                                   [CCDelayTime actionWithDuration:0.2f],
-//                                   [CCCallBlock actionWithBlock:^(void)
-//                                    {
-//                                        self.runningAnims = NO;
-//                                        [self showMenuPanelwithAnim:YES];
-//                                    }],nil]];
     }
 }
 

@@ -61,7 +61,6 @@
         
         self.isTouchEnabled = YES;
         
-        CCLOG(@"INIT: W: %i, L: %i", w, l);
         NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
         
         CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];

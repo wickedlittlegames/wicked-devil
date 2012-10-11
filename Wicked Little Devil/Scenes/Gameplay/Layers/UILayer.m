@@ -57,21 +57,41 @@
     [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2 - 200)];
     menu_second_chance.visible = FALSE;
     [self addChild:menu_second_chance];
-
+    
+    NSString *powerup_txt = @"";
+    if ( !game.user.bought_powerups  )
+    {
+        powerup_txt = @"POWERUP: None Equipped";
+    }
+    else
+    {
+        
+        NSArray *contentArray = [[NSDictionary
+                                  dictionaryWithContentsOfFile:[[NSBundle mainBundle]
+                                                                pathForResource:@"Powerups"
+                                                                ofType:@"plist"]
+                                  ] objectForKey:@"Powerups"];
+        NSDictionary *powerup_dict = [contentArray objectAtIndex:game.user.powerup];
+        powerup_txt = [NSString stringWithFormat:@"POWERUP: %@",[powerup_dict objectForKey:@"Name"]];
+    }
     NSString *highscore = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:world level:level]];
     NSString *gamenumber_pause = [NSString stringWithFormat:@"%i - %i",world,level];
     CCLabelTTF *label_resume = [CCLabelTTF labelWithString:@"RESUME GAME" fontName:@"CrashLanding BB" fontSize:36];
     CCLabelTTF *label_levelselect = [CCLabelTTF labelWithString:@"BACK TO LEVEL SELECT" fontName:@"CrashLanding BB" fontSize:36];
     [label_resume setColor:ccc3(205, 51, 51)];
-    [label_levelselect setColor:ccc3(205, 51, 51)];    
+    [label_levelselect setColor:ccc3(205, 51, 51)];
+    
     CCLabelTTF *label_gamenumber = [CCLabelTTF labelWithString:gamenumber_pause dimensions:CGSizeMake(screenSize.width -5, 30) hAlignment:kCCTextAlignmentLeft fontName:@"CrashLanding BB" fontSize:30.0f];
     CCLabelTTF *label_best = [CCLabelTTF labelWithString:highscore dimensions:CGSizeMake(screenSize.width - 7, 30) hAlignment:kCCTextAlignmentRight fontName:@"CrashLanding BB" fontSize:30.0f];
+    CCLabelTTF *label_powerup = [CCLabelTTF labelWithString:powerup_txt dimensions:CGSizeMake(screenSize.width -5, 30) hAlignment:kCCTextAlignmentLeft fontName:@"CrashLanding BB" fontSize:30.0f];
+    
     CCMenuItem *button_unpause = [CCMenuItemFont itemWithLabel:label_resume target:self selector:@selector(tap_unpause)];
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
     label_best.anchorPoint = ccp(0,0);
     label_gamenumber.anchorPoint = ccp(0,0);
     [label_best setPosition:ccp(5, screenSize.height - 149)];
     [label_gamenumber setPosition:label_best.position];
+    [label_powerup setPosition:ccp(label_gamenumber.position.x, label_gamenumber.position.y - 30)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
     [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
     [pause_screen alignItemsVerticallyWithPadding:-3];

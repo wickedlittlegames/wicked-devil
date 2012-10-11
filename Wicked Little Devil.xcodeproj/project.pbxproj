@@ -274,6 +274,7 @@
 		9C4EA3551626D86F00E7B66F /* bat-hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA34D1626D86F00E7B66F /* bat-hit.caf */; };
 		9C4EA3591626D93600E7B66F /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4EA3581626D93600E7B66F /* libFlurryAnalytics.a */; };
 		9C4EA35B1626DDB100E7B66F /* click.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA35A1626DDB100E7B66F /* click.caf */; };
+		9C4EA35D1626E33600E7B66F /* complete.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA35C1626E33600E7B66F /* complete.caf */; };
 		9C5F89291622DC9F00C001E4 /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */; };
 		9C5F892A1622DC9F00C001E4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
@@ -797,6 +798,7 @@
 		9C4EA3571626D93600E7B66F /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		9C4EA3581626D93600E7B66F /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		9C4EA35A1626DDB100E7B66F /* click.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.caf; sourceTree = "<group>"; };
+		9C4EA35C1626E33600E7B66F /* complete.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete.caf; sourceTree = "<group>"; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
@@ -1707,6 +1709,7 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C4EA35C1626E33600E7B66F /* complete.caf */,
 				9C4EA35A1626DDB100E7B66F /* click.caf */,
 				9C4EA3461626D86F00E7B66F /* score.caf */,
 				9C4EA3471626D86F00E7B66F /* player-hit.caf */,
@@ -2444,6 +2447,7 @@
 				9C4EA3541626D86F00E7B66F /* collect-small.caf in Resources */,
 				9C4EA3551626D86F00E7B66F /* bat-hit.caf in Resources */,
 				9C4EA35B1626DDB100E7B66F /* click.caf in Resources */,
+				9C4EA35D1626E33600E7B66F /* complete.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

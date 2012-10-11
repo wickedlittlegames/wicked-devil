@@ -137,7 +137,7 @@
                     }
                     break;
                 case 100: // End of level platform
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf"];
+                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"complete.caf"];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed*1.5];

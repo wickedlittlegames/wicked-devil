@@ -14,6 +14,7 @@
 #import "MKStoreManager.h"
 #import "MBProgressHUD.h"
 #import "WorldSelectScene.h"
+#import "FlurryAnalytics.h"
 
 @implementation ShopScene
 
@@ -97,10 +98,10 @@
 {
     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
     [self unschedule:@selector(screenSetup)];
-    CCLOG(@"DOING THIS 1");
+
     NSDictionary *prices = [[MKStoreManager sharedManager] pricesDictionary];
     NSMutableArray *descs  = [[MKStoreManager sharedManager] purchasableObjectsDescription];
-    CCLOG(@"PRICES: %@",prices);
+    
     NSString *upgradePrice1 = [prices objectForKey:IAP_2000soul];
     NSString *upgradePrice2 = [prices objectForKey:IAP_5000soul];
     NSString *upgradePrice3 = [prices objectForKey:IAP_10000soul];
@@ -112,19 +113,18 @@
     NSString *description4  = [descs objectAtIndex:3];
     NSString *description5  = [descs objectAtIndex:0];
     
-    CCLOG(@"DOING THIS 2");
-    
+
     view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
     table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
     
     data    = [NSArray arrayWithObjects:
                description1,description2,description3,description4,description5,
                nil];
-    CCLOG(@"DOING THIS 3");
+
     data2   = [NSArray arrayWithObjects:
                upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5,
                nil];
-    CCLOG(@"DOING THIS 4");
+
     data3   = [NSArray arrayWithObjects:
                @"2,000 Souls",
                @"5,000 Souls",
@@ -152,6 +152,8 @@
     [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
     UIButton *button = (UIButton*)sender;
+    
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Purchase Item %i",button.tag]];
     
     NSString *feature = @"";
     int collectedincrease = 0;
@@ -181,6 +183,8 @@
     [[MKStoreManager sharedManager] buyFeature:feature
                                     onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Purchase Item %i",button.tag]];
+        
         user = [[User alloc] init];
         user.collected += collectedincrease;
         [user sync];
@@ -259,8 +263,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CCLOG(@"DOING THIS 5: %i",indexPath.row );
-	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.scrollEnabled = NO;
     

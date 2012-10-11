@@ -14,6 +14,8 @@
 #import "MBProgressHUD.h"
 #import "User.h"
 
+#import "FlurryAnalytics.h"
+
 @implementation StartScene
 
 +(CCScene *) scene
@@ -205,6 +207,7 @@
     
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Logged Out"]];            
         [PFUser logOut];
         user.facebook_image = NULL;
         user.facebook_id    = NULL;
@@ -213,6 +216,8 @@
     }
     else
     {
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player tried to sign up with Parse.com/Facebook"]];
+        
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
         [PFFacebookUtils logInWithPermissions:permissionsArray
@@ -220,7 +225,7 @@
                 if (!pfuser) {
                     if (!error)
                     {
-                        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player cancelled the facebook signup process"]];
                     }
                     else
                     {
@@ -229,6 +234,8 @@
                 }
                 else if (pfuser.isNew)
                 {
+                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
+                    
                     [self getFacebookImage];
                     user.collected += 500;
                     prompt_facebook.visible = FALSE;
@@ -237,6 +244,8 @@
                 }
                 else
                 {
+                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed back in!"]];
+                    
                     prompt_facebook.visible = FALSE;
                     [self getFacebookImage];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];

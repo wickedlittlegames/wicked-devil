@@ -9,9 +9,7 @@
 #import "AppDelegate.h"
 #import "StartScene.h"
 #import "MKStoreManager.h"
-//#import "GameOverFacebookScene.h"
-//#import "Game.h"
-//#import "EquipScene.h"
+#import "FlurryAnalytics.h"
 #import <Parse/Parse.h>
 
 @implementation AppController
@@ -26,6 +24,8 @@
     [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
     
     [MKStoreManager sharedManager];
+    
+    [FlurryAnalytics startSession:@"ZH4F8GJFJSD8C3QBTYR4"];
 
     // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

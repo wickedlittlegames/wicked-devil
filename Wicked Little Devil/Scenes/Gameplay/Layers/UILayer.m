@@ -11,6 +11,7 @@
 #import "LevelSelectScene.h"
 
 #import "Game.h"
+#import "FlurryAnalytics.h"
 
 @implementation UILayer
 @synthesize world, level, saves;
@@ -44,6 +45,7 @@
     [self addChild:gamenumber];
     
     menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-second-chance.png" selectedImage:@"btn-second-chance.png" block:^(id sender) {
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Used Second Chance"]];
         [game.player jump:game.player.jumpspeed*2.5];
         self.saves--;
         
@@ -112,6 +114,7 @@
 
 - (void) tap_reload
 {
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Reloaded the game"]];    
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 

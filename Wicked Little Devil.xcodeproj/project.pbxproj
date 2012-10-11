@@ -257,6 +257,7 @@
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C4EA3131626563200E7B66F /* appicon-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3121626563200E7B66F /* appicon-big.png */; };
 		9C4EA3161626566000E7B66F /* appicon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3151626566000E7B66F /* appicon-small.png */; };
+		9C4EA3191626C72000E7B66F /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */; };
 		9C5F89291622DC9F00C001E4 /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */; };
 		9C5F892A1622DC9F00C001E4 /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
@@ -778,6 +779,8 @@
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		9C4EA3121626563200E7B66F /* appicon-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-big.png"; sourceTree = "<group>"; };
 		9C4EA3151626566000E7B66F /* appicon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-small.png"; sourceTree = "<group>"; };
+		9C4EA3171626C72000E7B66F /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAnalytics.h; path = "../../../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics/FlurryAnalytics.h"; sourceTree = "<group>"; };
+		9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryAnalytics.a; path = "../../../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics/libFlurryAnalytics.a"; sourceTree = "<group>"; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
@@ -1112,6 +1115,7 @@
 				9C142175156E68560011C992 /* CoreGraphics.framework in Frameworks */,
 				9C142177156E68560011C992 /* GameKit.framework in Frameworks */,
 				9CB9022A161D9CE300481AD4 /* Parse.framework in Frameworks */,
+				9C4EA3191626C72000E7B66F /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1216,6 +1220,8 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9C4EA3171626C72000E7B66F /* FlurryAnalytics.h */,
+				9C4EA3181626C72000E7B66F /* libFlurryAnalytics.a */,
 				9CB90225161D969B00481AD4 /* MBProgressHUD.h */,
 				9CB90226161D969B00481AD4 /* MBProgressHUD.m */,
 				9CCD8883161C5ECE00CEA6D8 /* MKInfoPanel.h */,
@@ -2664,6 +2670,10 @@
 				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics\"",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2696,6 +2706,10 @@
 				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = "Wicked Little Devil/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Downloads/Flurry iPhone SDK v3.1.2/FlurryAnalytics\"",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",

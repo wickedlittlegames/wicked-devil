@@ -13,6 +13,7 @@
 #import "SimpleTableCell.h"
 #import "MKStoreManager.h"
 #import "WorldSelectScene.h"
+#import "FlurryAnalytics.h"
 
 @implementation EquipScene
 
@@ -113,11 +114,14 @@
 
 - (void) tap_purchase:(UIButton*)sender
 {
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Equip Purchase for item: %i",sender.tag]];
     int item = sender.tag;
     int cost = [[data2 objectAtIndex:item] intValue];
 
     if ( user.collected >= cost )
     {
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Equip Purchase for item: %i",sender.tag]];
+        
         tmp_collectables = user.collected;
         tmp_collectable_increment = cost;
         
@@ -150,6 +154,8 @@
 
 - (void) tap_equip:(UIButton*)sender
 {
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Equipped item: %i",sender.tag]];
+
     if ( !user.bought_powerups ) user.bought_powerups = TRUE;
     user.powerup = sender.tag;
     [user sync];
@@ -251,7 +257,8 @@
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
     cell.button_buy.tag = indexPath.row;
     cell.button_buy.selected = TRUE;
-    
+    [cell.button_buy removeTarget:self action:@selector(tap_equip:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.button_buy removeTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];    
     if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
     {
         cell.button_buy.selected = FALSE;

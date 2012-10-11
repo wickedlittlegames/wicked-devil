@@ -498,6 +498,10 @@
 		9CDC683A1627749F001D5935 /* bg-gameover-1-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC68301627749F001D5935 /* bg-gameover-1-iphone5.png */; };
 		9CDC683B1627749F001D5935 /* bg-gameover-2-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC68311627749F001D5935 /* bg-gameover-2-iphone5.png */; };
 		9CDC683C1627749F001D5935 /* bg-gameover-3-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC68321627749F001D5935 /* bg-gameover-3-iphone5.png */; };
+		9CDC684116277920001D5935 /* tip-beginners2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC683D16277920001D5935 /* tip-beginners2.png */; };
+		9CDC684216277920001D5935 /* tip-beginners2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC683E16277920001D5935 /* tip-beginners2-hd.png */; };
+		9CDC684416277920001D5935 /* tip-beginners1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC684016277920001D5935 /* tip-beginners1-hd.png */; };
+		9CDC6846162779D1001D5935 /* tip-beginners1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC6845162779D1001D5935 /* tip-beginners1.png */; };
 		9CDF942B15B561CA0017E58B /* BGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942015B561CA0017E58B /* BGLayer.m */; };
 		9CDF942C15B561CA0017E58B /* FXLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942215B561CA0017E58B /* FXLayer.m */; };
 		9CDF942F15B561CA0017E58B /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF942815B561CA0017E58B /* PlayerLayer.m */; };
@@ -1042,6 +1046,10 @@
 		9CDC68301627749F001D5935 /* bg-gameover-1-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-1-iphone5.png"; sourceTree = "<group>"; };
 		9CDC68311627749F001D5935 /* bg-gameover-2-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-2-iphone5.png"; sourceTree = "<group>"; };
 		9CDC68321627749F001D5935 /* bg-gameover-3-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-gameover-3-iphone5.png"; sourceTree = "<group>"; };
+		9CDC683D16277920001D5935 /* tip-beginners2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners2.png"; sourceTree = "<group>"; };
+		9CDC683E16277920001D5935 /* tip-beginners2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners2-hd.png"; sourceTree = "<group>"; };
+		9CDC684016277920001D5935 /* tip-beginners1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners1-hd.png"; sourceTree = "<group>"; };
+		9CDC6845162779D1001D5935 /* tip-beginners1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners1.png"; sourceTree = "<group>"; };
 		9CDF941F15B561CA0017E58B /* BGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGLayer.h; path = Scenes/Gameplay/Layers/BGLayer.h; sourceTree = "<group>"; };
 		9CDF942015B561CA0017E58B /* BGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGLayer.m; path = Scenes/Gameplay/Layers/BGLayer.m; sourceTree = "<group>"; };
 		9CDF942115B561CA0017E58B /* FXLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXLayer.h; path = Scenes/Gameplay/Layers/FXLayer.h; sourceTree = "<group>"; };
@@ -1779,6 +1787,10 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9CDC6845162779D1001D5935 /* tip-beginners1.png */,
+				9CDC683D16277920001D5935 /* tip-beginners2.png */,
+				9CDC683E16277920001D5935 /* tip-beginners2-hd.png */,
+				9CDC684016277920001D5935 /* tip-beginners1-hd.png */,
 				9C5F89A11623094E00C001E4 /* ingame-mine-hd.png */,
 				9C5F89A21623094E00C001E4 /* ingame-mine.png */,
 				9C5F89991622DCC000C001E4 /* jump1-hd.png */,
@@ -2448,6 +2460,10 @@
 				9CDC683A1627749F001D5935 /* bg-gameover-1-iphone5.png in Resources */,
 				9CDC683B1627749F001D5935 /* bg-gameover-2-iphone5.png in Resources */,
 				9CDC683C1627749F001D5935 /* bg-gameover-3-iphone5.png in Resources */,
+				9CDC684116277920001D5935 /* tip-beginners2.png in Resources */,
+				9CDC684216277920001D5935 /* tip-beginners2-hd.png in Resources */,
+				9CDC684416277920001D5935 /* tip-beginners1-hd.png in Resources */,
+				9CDC6846162779D1001D5935 /* tip-beginners1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2661,7 +2677,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "Wicked Little Devil/Wicked Devil.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2702,7 +2718,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "Wicked Little Devil/Wicked Devil.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -111,7 +111,12 @@
     [label_gamenumber setPosition:label_best.position];
     [label_powerup setPosition:ccp(label_gamenumber.position.x, label_gamenumber.position.y - 30)];
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
-    [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
+    if (screenBounds.size.height == 568) {
+        [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 40)];
+    } else
+    {
+        [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
+    }
     [pause_screen alignItemsVerticallyWithPadding:-3];
     [pause_bg addChild:label_best];
     [pause_bg addChild:label_gamenumber];

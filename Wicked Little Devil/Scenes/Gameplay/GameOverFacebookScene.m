@@ -34,10 +34,18 @@
         fbdata2    = [NSMutableArray arrayWithObjects:nil];
         fbdata3  = [NSMutableArray arrayWithObjects:nil];
         
-        CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebook-compare.png"];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [self addChild:bg];
-        
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebook-compare-iphone5.png"];
+            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:bg];
+            
+        } else {
+            CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebook-compare.png"];
+            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:bg];
+        }
+
         CCMenu *menu_back  = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png" block:^(id sender) {[view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverScene  sceneWithGame:game]]];}  ],nil];
         [menu_back setPosition:ccp(25, 25)];
         [self addChild:menu_back];

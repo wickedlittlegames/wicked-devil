@@ -65,7 +65,6 @@
                  
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
-                     next_world = game.world;
                      restartAudioToggle = TRUE;
                  }
              }
@@ -90,7 +89,6 @@
                  
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
-                     next_world = game.world;
                      restartAudioToggle = TRUE;
                  }
              }
@@ -106,7 +104,18 @@
          [game.user check_achiements];
          [game.user sync];
 
-         CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
+         CGRect screenBounds = [[UIScreen mainScreen] bounds];
+         if (screenBounds.size.height == 568) {
+             CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i-iphone5.png",game.player.bigcollected]];
+             [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+             [self addChild:bg];
+         } else {
+             CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
+             [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+             [self addChild:bg];
+         }
+         
+         
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
@@ -117,6 +126,11 @@
          share_menu                 = [CCMenu menuWithItems:share_twitter, share_facebook, nil];
          share_facebook.visible = NO;
          [share_menu alignItemsHorizontallyWithPadding:10];
+         
+         if ( game.user.worldprogress > CURRENT_WORLDS_PER_GAME )
+         {
+             btn_next.visible = FALSE;
+         }
 
          btn_next.anchorPoint               = ccp(0,0.5f);
          btn_replay.anchorPoint             = ccp(0,0.5f);
@@ -126,9 +140,10 @@
          
          menu = [CCMenu menuWithItems:btn_next, btn_replay, btn_mainmenu, nil];
          [menu alignItemsVerticallyWithPadding:10];
+         
+
 
          [menu  setPosition:ccp ( 20, screenSize.height/2 - 130)];
-         [bg    setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [label_score setPosition:ccp(10, screenSize.height - 220)];
          [label_subscore setPosition:ccp(10, label_score.position.y - 60)];
          [share_menu setPosition:ccp(screenSize.width/2, 20)];
@@ -139,7 +154,6 @@
          label_subscore.opacity = 0;
          menu.opacity = 0;
          
-         [self addChild:bg];
          [self addChild:label_score];
          [self addChild:label_subscore];
          

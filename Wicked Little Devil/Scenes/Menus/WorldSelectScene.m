@@ -120,14 +120,22 @@
 - (CCLayer*) hell
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new.png"];
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new-iphone5.png"];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [layer addChild:bg];
+    } else {
+        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new.png"];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [layer addChild:bg];
+    }
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
     
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
     menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
 
-    [layer addChild:bg];
     [layer addChild:menu];
     
     return layer;
@@ -136,21 +144,36 @@
 - (CCLayer*) underground
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new.png"];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new-iphone5.png"];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [layer addChild:bg];
+    } else {
+        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new.png"];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [layer addChild:bg];
+    }
+
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 2; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
     
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
     menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
     
-    [layer addChild:bg];
     [layer addChild:menu];
     
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
-        locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
-        [layer addChild:locked_sprite];
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked-iphone5.png"];
+            locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+            [layer addChild:locked_sprite];
+        } else {
+            CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+            locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+            [layer addChild:locked_sprite];
+        }
     }
     
     return layer;

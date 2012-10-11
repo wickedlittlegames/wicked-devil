@@ -104,7 +104,18 @@
         }
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,itemsPerRow,itemsPerRow,nil];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i-iphone5.png", world]];
+            [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
+            [self addChild:bg];
+        } else {
+            CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
+            [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
+            [self addChild:bg];
+        }
+
+        
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_store:)],nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
@@ -114,7 +125,6 @@
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         
         
-        [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
         [menu_store             setPosition:ccp(25, screenSize.height - 25)];
@@ -124,7 +134,6 @@
         [label_world_score      setPosition:ccp(screenSize.width/2, 22 )];
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         
-        [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
         //[self addChild:menu_store];

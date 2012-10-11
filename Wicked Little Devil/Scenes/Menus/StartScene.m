@@ -39,7 +39,17 @@
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
         user = [[User alloc] init];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home-iphone5.png"];
+            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:bg];
+        } else {
+            CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
+            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:bg];
+        }
+        
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
         CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
@@ -53,7 +63,6 @@
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
@@ -69,7 +78,6 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
         }
         
-        [self addChild:bg];
         [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:behind_fb];

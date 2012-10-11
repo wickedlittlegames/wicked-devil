@@ -34,14 +34,31 @@
     gamenumber.color = ccBLACK;
     [gamenumber setPosition:ccp(screenSize.width/2,screenSize.height - 15)];
 
-    pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
-    pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
-    [self addChild:pause_bg];
-    pause_bg.visible = FALSE;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay-iphone5.png"];
+        pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
+        [self addChild:pause_bg];
+        pause_bg.visible = FALSE;
+    } else {
+        
+        pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
+        pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
+        [self addChild:pause_bg];
+        pause_bg.visible = FALSE;
+    }
     
-    CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
-    [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
-    [self addChild:uibg];
+    if (screenBounds.size.height == 568) {
+        CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar-iphone5.png"];
+        [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
+        [self addChild:uibg];
+    } else {
+        CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
+        [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
+        [self addChild:uibg];
+    }
+
+    
     [self addChild:gamenumber];
     
     menu_second_chance = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-second-chance.png" selectedImage:@"btn-second-chance.png" block:^(id sender) {

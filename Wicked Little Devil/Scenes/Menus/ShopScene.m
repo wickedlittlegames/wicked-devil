@@ -49,9 +49,16 @@
             [self setupTable];
         }
 
-        CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
-        [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-        [self addChild:bg];
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg-iphone5.png"];
+            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+            [self addChild:bg];
+        } else {
+            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
+            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+            [self addChild:bg];
+        }
         
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         [menu_back              setPosition:ccp(25, 25)];

@@ -97,6 +97,7 @@
     [pause_screen alignItemsVerticallyWithPadding:-3];
     [pause_bg addChild:label_best];
     [pause_bg addChild:label_gamenumber];
+    [pause_bg addChild:label_powerup];
     [pause_bg addChild:pause_screen];
     
     CCMenuItemImage *btn_reload = [CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" disabledImage:@"btn-pause.png" target:self selector:@selector(tap_reload)];

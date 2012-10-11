@@ -33,6 +33,7 @@
         [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
         
+        timeout_check = 0;
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
@@ -65,13 +66,28 @@
 
 - (void) screenSetup
 {
-    if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
+    if ( timeout_check >= 30 )
     {
-        CCLOG(@"Keep trying...");
+        timeout_check++;
+        if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
+        {
+            CCLOG(@"Keep trying...");
+        }
+        else
+        {
+            [self setupTable];
+        }
     }
     else
     {
-        [self setupTable];
+        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Could not retrieve products."
+                                  message:@"Please try again."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
     }
 }
 

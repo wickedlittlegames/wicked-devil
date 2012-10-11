@@ -38,7 +38,7 @@
             break;
         case 101: // BAT: moving left
 			self.position = ccp(self.position.x - 1, self.position.y);
-            if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
+            if (self.position.x > -50) self.position = ccp([[CCDirector sharedDirector] winSize].width+40, self.position.y);
             break;
     }
 }
@@ -252,7 +252,7 @@
               [NSString stringWithFormat:@"bat-flap%i.png", i]]];
         }
         
-        self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.1f];
+        self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.5f];
         CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.anim_flap]];
         
         [self runAction:repeater];

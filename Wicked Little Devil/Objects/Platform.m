@@ -40,7 +40,7 @@
 {
     if ( !self.animating )
     {
-        if (self.tag == 2)
+        if (self.tag == 2 || self.tag == 67)
         {
             id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
             id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
@@ -50,7 +50,7 @@
             
             self.animating = TRUE;
         }
-        if (self.tag == 3)
+        if (self.tag == 3 || self.tag == 66)
         {
             id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
             id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
@@ -60,7 +60,7 @@
             
             self.animating = TRUE;
         }
-        if (self.tag == 33)
+        if (self.tag == 33 || self.tag == 663)
         {
             id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
             id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
@@ -94,6 +94,24 @@
                     [self action:self.tag game:game platforms:platforms];
                     break;
                 case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
+                    [game.player jump:game.player.jumpspeed];
+                    self.health = self.health - game.player.damage;
+                    if ( self.health <= 0 )
+                    {
+                        [self action:self.tag game:game platforms:platforms];
+                    }
+                    break;
+                case 66: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
+                    self.animating = NO;
+                    [game.player jump:game.player.jumpspeed];
+                    self.health = self.health - game.player.damage;
+                    if ( self.health <= 0 )
+                    {
+                        [self action:self.tag game:game platforms:platforms];
+                    }
+                    break;
+                case 663: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
+                    self.animating = NO;                    
                     [game.player jump:game.player.jumpspeed];
                     self.health = self.health - game.player.damage;
                     if ( self.health <= 0 )
@@ -135,8 +153,28 @@
     {
         self.animating = TRUE;
         
-        id move = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-600)];
-        id ease = [CCEaseSineIn actionWithAction:move];
+        id move = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
+        id ease = [CCEaseExponentialIn actionWithAction:move];
+        id end  = [CCCallFunc actionWithTarget:self selector:@selector(end_action)];
+        
+        [self runAction:[CCSequence actions:ease, end, nil]];
+    }
+    if (action_id == 66 && !self.animating ) // BREAKABLE
+    {
+        self.animating = TRUE;
+        
+        id move = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
+        id ease = [CCEaseExponentialIn actionWithAction:move];
+        id end  = [CCCallFunc actionWithTarget:self selector:@selector(end_action)];
+        
+        [self runAction:[CCSequence actions:ease, end, nil]];
+    }
+    if (action_id == 663 && !self.animating ) // BREAKABLE
+    {
+        self.animating = TRUE;
+        
+        id move = [CCMoveBy actionWithDuration:0.5 position:ccp(0,-400)];
+        id ease = [CCEaseExponentialIn actionWithAction:move];
         id end  = [CCCallFunc actionWithTarget:self selector:@selector(end_action)];
         
         [self runAction:[CCSequence actions:ease, end, nil]];

@@ -84,7 +84,6 @@
     gameplay_menu.position = ccp(screenSize.width - 48, screenSize.height - 16);
     [self addChild:gameplay_menu];
     
-    
     int x_one = 15;
     int x_two = 45;
     int x_three = 75;

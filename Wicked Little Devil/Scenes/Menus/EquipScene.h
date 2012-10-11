@@ -24,7 +24,7 @@
     CCLabelTTF *lbl_user_collected;
     User *user;
     
-    
+    int tmp_collectables, tmp_collectable_increment;
     CCLayer *layer_shop, *layer_equip;
 }
 

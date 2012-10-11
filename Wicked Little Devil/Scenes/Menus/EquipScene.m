@@ -138,11 +138,14 @@
 
     if ( user.collected >= cost )
     {
+        tmp_collectables = user.collected;
+        tmp_collectable_increment = cost;
+        
         user.collected -= cost;
         [user buyItem:sender.tag];
         [user sync];
         
-        // do animation
+        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
     else
     {
@@ -163,8 +166,47 @@
     user.powerup = sender.tag;
     [user sync];
     
-    // update UI
-    CCLOG(@"UPDATE THE UI");
+    [view removeFromSuperview];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+}
+
+- (void) collectable_remove_tick
+{
+    if ( tmp_collectable_increment > 0 )
+    {
+        if (tmp_collectable_increment > 500)
+		{
+            tmp_collectable_increment -= 500;
+            tmp_collectables -= 500;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+        
+        if (tmp_collectable_increment > 100)
+		{
+            tmp_collectable_increment -= 100;
+            tmp_collectables -= 100;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+        if (tmp_collectable_increment > 10)
+		{
+            tmp_collectable_increment -= 10;
+            tmp_collectables -= 10;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+        else
+		{
+            tmp_collectable_increment --;
+            tmp_collectables --;
+            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+        }
+    }
+    else
+    {
+        [self unschedule: @selector(collectable_remove_tick)];
+        
+        [view removeFromSuperview];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+    }
 }
 
 
@@ -194,7 +236,7 @@
 
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
-    //tableView.scrollEnabled = NO;
+
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
 
@@ -207,7 +249,7 @@
     ;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
-    CCLOG(@"%@",[data3 objectAtIndex:indexPath.row]);
+
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
     cell.label_title.text = [data objectAtIndex:indexPath.row];
     cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
@@ -217,7 +259,12 @@
     cell.button_buy.tag = indexPath.row;
     if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
     {
-        cell.label_price.text = @"EQUIP";
+        if (user.powerup == indexPath.row) {
+            cell.label_price.text = @"EQUIPPED";
+        } else {
+            cell.label_price.text = @"EQUIP";
+        }
+        
         [cell.button_buy addTarget:self action:@selector(tap_equip:) forControlEvents:UIControlEventTouchUpInside];
     }
     else

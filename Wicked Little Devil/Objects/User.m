@@ -292,6 +292,7 @@
 
 - (void) check_achiements
 {
+    CCLOG(@"WORLD PROGRESS: %i",self.worldprogress);
     if ( !self.ach_first_play ) // if first play
     {
         self.ach_first_play = TRUE;

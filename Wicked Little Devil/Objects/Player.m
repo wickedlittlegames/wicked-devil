@@ -202,13 +202,13 @@
             self.damage = self.damage/4;
             break;
         case 10: // Quick Devil I
-            self.drag = 4.25;
-            break;
-        case 11: // Quick Devil II
             self.drag = 4.5;
             break;
+        case 11: // Quick Devil II
+            self.drag = 4.75;
+            break;
         case 12: // Quick Devil III
-            self.drag = 5;
+            self.drag = 5.5;
             break;
         case 13: // Tough Devil I
             self.health += 1;

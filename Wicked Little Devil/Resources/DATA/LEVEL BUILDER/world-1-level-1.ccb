@@ -895,8 +895,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>76.875</real>
-							<real>15.833333015441895</real>
+							<real>50.9375</real>
+							<real>30.208332061767578</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -918,8 +918,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.9128953218460083</real>
+							<real>0.9128953218460083</real>
 							<false/>
 							<integer>0</integer>
 						</array>

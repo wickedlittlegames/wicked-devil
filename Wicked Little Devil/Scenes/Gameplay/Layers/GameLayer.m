@@ -194,10 +194,6 @@
                 if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"player-hit.caf"];
                 game.user.deaths++;
             }
-            else
-            {
-                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"complete.caf"];
-            }
             game.user.jumps     += game.player.jumps;
             [game.user sync];            
             [self end:game];
@@ -205,7 +201,7 @@
     }
     else 
     {
-        if ( !game.player.isAlive ) { game.player.deaths++; } else { if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"complete.caf"]; } 
+        if ( !game.player.isAlive ) game.player.deaths++;
         game.user.jumps     += game.player.jumps;
         [game.user sync];
         [self end:game];

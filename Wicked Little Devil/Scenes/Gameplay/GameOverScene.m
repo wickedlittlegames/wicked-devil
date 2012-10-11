@@ -35,6 +35,8 @@
  {
      if( (self=[super init]) )
      {
+         if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"complete.caf"];
+         
          CGSize screenSize = [CCDirector sharedDirector].winSize;
          self.isTouchEnabled    = YES; self.moved = NO; self.runningAnims = YES;
          self.tmp_game          = game;

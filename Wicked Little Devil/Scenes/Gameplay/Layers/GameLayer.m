@@ -68,7 +68,7 @@
 - (void) update:(Game *)game
 {       
     [self gameoverCheck:game];
-    
+    int tmp_pitch = 1;
     Platform *platform = nil;
     Collectable *collectable = nil;
     BigCollectable *bigcollectable = nil;
@@ -114,7 +114,10 @@
         }
         if ( [collectable isIntersectingPlayer:game.player] )
         {
-            if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf"];
+            if ( ![SimpleAudioEngine sharedEngine].mute )
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:(tmp_pitch+0.01) pan:1 gain:0.2];
+            }
             game.player.collected +=  (1 * game.player.collectable_multiplier);
             game.player.score++;
         }

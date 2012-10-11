@@ -89,6 +89,7 @@
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
     label_best.anchorPoint = ccp(0,0);
     label_gamenumber.anchorPoint = ccp(0,0);
+    label_powerup.anchorPoint = ccp ( 0,0);
     [label_best setPosition:ccp(5, screenSize.height - 149)];
     [label_gamenumber setPosition:label_best.position];
     [label_powerup setPosition:ccp(label_gamenumber.position.x, label_gamenumber.position.y - 30)];
@@ -153,7 +154,7 @@
 
 - (void) tap_mainmenu
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] resume];
     if ( ![SimpleAudioEngine sharedEngine].mute )

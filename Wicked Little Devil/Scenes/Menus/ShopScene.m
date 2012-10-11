@@ -72,7 +72,7 @@
         timeout_check++;
         if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
         {
-            NSLog(@"Keep trying...");
+            CCLOG(@"Keep trying...");
         }
         else
         {
@@ -141,7 +141,7 @@
 
 - (void) tap_back
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [view removeFromSuperview];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];

@@ -146,7 +146,6 @@
          tmp_score = 0;
          tmp_score_increment = souls_score;
          
-         if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"score.caf"];
          [label_subscore runAction:[CCSequence actions:
                                     [CCDelayTime actionWithDuration:0.2f],
                                     [CCFadeIn actionWithDuration:0.2f],
@@ -366,7 +365,7 @@
 
 - (void) restartAudio
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click2.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     if ( ![SimpleAudioEngine sharedEngine].mute )
     {

@@ -360,9 +360,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>160</real>
-							<real>386.8671875</real>
-							<integer>0</integer>
+							<real>50</real>
+							<real>80.597328186035156</real>
+							<integer>4</integer>
 						</array>
 					</dict>
 					<dict>
@@ -751,8 +751,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -83,7 +83,7 @@
                                                             ofType:@"plist"]
                               ] objectForKey:@"Powerups"];
     
-    NSMutableArray *itemsarr = [NSMutableArray arrayWithCapacity:[contentArray count]];
+    NSMutableArray *itemsarr = [NSMutableArray arrayWithCapacity:1000];
     for (int i = 0; i <[contentArray count]; i++ )
     {
         [itemsarr addObject:[NSNumber numberWithInt:0]];

@@ -62,46 +62,7 @@
             [data3 addObject:[dict objectForKey:@"Description"]];;
             
         }
-        
-//        data    = [NSArray arrayWithObjects:
-//                   @"Lucky Devil",
-//                   @"Bigger Jump",
-//                   @"Double Health",
-//                   @"Light Feet",
-//                   @"Dubstep Platforms",
-//                   @"Extremely Lucky Devil",                   
-//                   @"Little Devil",
-//                   @"Blue Devil",
-//                   @"Green Devil",
-//                   @"Yellow Devil",                   
-//                   nil];
-//        
-//        data2   = [NSArray arrayWithObjects:
-//                   @"3500",
-//                   @"5000",
-//                   @"7500",
-//                   @"7500",
-//                   @"8000",
-//                   @"10000",                                     
-//                   @"1500",
-//                   @"1500",
-//                   @"1500",
-//                   @"1500",                   
-//                   nil];
-//        
-//        data3   = [NSArray arrayWithObjects:
-//                   @"Save yourself from falling, once per level.",
-//                   @"Jump higher than ever!",
-//                   @"Double your chances of completing a level with enemies...",
-//                   @"Orange/Falling platforms take one more bounce to fall",
-//                   @"Each platform jump creates a new dubstep sound",
-//                   @"3x second chances!",                   
-//                   @"Turn into a Wicked Little Devil",
-//                   @"Become a Blue Devil",
-//                   @"Become a Green Devil",
-//                   @"Become a Yellow Devil",                   
-//                   nil];
-        
+
         table.dataSource = self;
         table.delegate   = self;
         [view addSubview:table];
@@ -127,8 +88,13 @@
             user.bought_powerups = NO;
             [user sync];
             
-            [view removeFromSuperview];
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+            NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
+            for (int i = 0; i < data.count; i++)
+            {
+                NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
+                [tmp_table_view addObject:equip_item];
+            }
+            [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];
             
         }], nil];
         [resetAll setPosition:ccp(screenSize.width - 80, 25)];
@@ -159,10 +125,15 @@
         [user buyItem:sender.tag];
         [user sync];
         
-        [view removeFromSuperview];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
-//        
-//        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
+        NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
+        for (int i = 0; i < data.count; i++)
+        {
+            NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
+            [tmp_table_view addObject:equip_item];
+        }
+        [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];        
+
+        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
     else
     {
@@ -183,8 +154,13 @@
     user.powerup = sender.tag;
     [user sync];
     
-    [view removeFromSuperview];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+    NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
+    for (int i = 0; i < data.count; i++)
+    {
+        NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
+        [tmp_table_view addObject:equip_item];
+    }
+    [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void) collectable_remove_tick
@@ -274,8 +250,11 @@
     cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
     cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
     cell.button_buy.tag = indexPath.row;
+    cell.button_buy.selected = TRUE;
+    
     if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
     {
+        cell.button_buy.selected = FALSE;
         if (user.powerup == indexPath.row && user.bought_powerups ) {
             cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equipequipped.png"];
             cell.label_price.text = @"EQUIPPED";
@@ -287,10 +266,9 @@
     }
     else
     {
-        cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equippurchase.png"];        
         [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+
     return cell;
 }
 

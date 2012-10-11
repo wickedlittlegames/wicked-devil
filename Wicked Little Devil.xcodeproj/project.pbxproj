@@ -781,8 +781,8 @@
 		9C4EA3381626D26300E7B66F /* boom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom.caf; sourceTree = "<group>"; };
 		9C4EA33A1626D43400E7B66F /* app-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-retina.png"; sourceTree = "<group>"; };
 		9C4EA33C1626D43400E7B66F /* app-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-512.png"; sourceTree = "<group>"; };
-		9C4EA3421626D43B00E7B66F /* appicon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-small.png"; sourceTree = "<group>"; };
-		9C4EA3441626D44800E7B66F /* appicon-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-big.png"; sourceTree = "<group>"; };
+		9C4EA3421626D43B00E7B66F /* appicon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon-small.png"; path = "../../../../appicon-small.png"; sourceTree = "<group>"; };
+		9C4EA3441626D44800E7B66F /* appicon-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon-big.png"; path = "../../../../appicon-big.png"; sourceTree = "<group>"; };
 		9C5F88B91622DC9E00C001E4 /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9C5F88BA1622DC9E00C001E4 /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
@@ -1119,8 +1119,6 @@
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
-				9C4EA3441626D44800E7B66F /* appicon-big.png */,
-				9C4EA3421626D43B00E7B66F /* appicon-small.png */,
 				9C142178156E68560011C992 /* Wicked Little Devil */,
 				9C142304156E69540011C992 /* libs */,
 				9C142165156E68560011C992 /* Frameworks */,
@@ -1731,6 +1729,8 @@
 		9CABCF0F1611D5EA006DFDE9 /* General iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				9C4EA3441626D44800E7B66F /* appicon-big.png */,
+				9C4EA3421626D43B00E7B66F /* appicon-small.png */,
 				9C4EA33A1626D43400E7B66F /* app-retina.png */,
 				9C4EA33C1626D43400E7B66F /* app-512.png */,
 				9CABCF7B1611D76D006DFDE9 /* Default-568h@2x.png */,

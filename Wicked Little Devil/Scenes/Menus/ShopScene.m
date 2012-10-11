@@ -150,7 +150,7 @@
 - (void) tap_purchase:(id) sender
 {
     [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     UIButton *button = (UIButton*)sender;
     
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Purchase Item %i",button.tag]];

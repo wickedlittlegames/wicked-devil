@@ -107,9 +107,9 @@
          [game.user sync];
 
          CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
-         CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];} }];
+         CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
-         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];} }];
+         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:70];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
          CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-tweet-score.png" selectedImage:@"btn-tweet-score.png" block:^(id sender){ [self tap_twitter]; }];
@@ -145,7 +145,8 @@
          
          tmp_score = 0;
          tmp_score_increment = souls_score;
-
+         
+         if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"score.caf"];
          [label_subscore runAction:[CCSequence actions:
                                     [CCDelayTime actionWithDuration:0.2f],
                                     [CCFadeIn actionWithDuration:0.2f],
@@ -391,7 +392,7 @@
 - (void) tap_twitter
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Went to Tweet..."]];        
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 
@@ -417,7 +418,7 @@
 - (void) tap_facebook
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Checked Facebook Screen"]];    
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];}
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverFacebookScene sceneWithGame:self.tmp_game]]];
 }

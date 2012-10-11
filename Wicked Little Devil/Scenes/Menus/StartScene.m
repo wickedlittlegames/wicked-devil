@@ -68,7 +68,7 @@
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {
             [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
         }
         
         [self addChild:bg];

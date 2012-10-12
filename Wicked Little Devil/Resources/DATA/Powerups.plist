@@ -168,7 +168,7 @@
 			<key>Name</key>
 			<string>Rich Devil I</string>
 			<key>Description</key>
-			<string>Each small soul is now worth x2 in your collection!</string>
+			<string>Small soul's are worth x2 in your collection!</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>Name</key>
 			<string>Rich Devil II</string>
 			<key>Description</key>
-			<string>Each small soul is now worth x3 in your collection!</string>
+			<string>Small soul's are worth x3 in your collection!</string>
 			<key>Cost</key>
 			<integer>25000</integer>
 		</dict>
@@ -184,7 +184,7 @@
 			<key>Name</key>
 			<string>Rich Devil III</string>
 			<key>Description</key>
-			<string>Each small soul is now worth x5 in your collection!</string>
+			<string>Small soul's are worth x5 in your collection!</string>
 			<key>Cost</key>
 			<integer>50000</integer>
 		</dict>

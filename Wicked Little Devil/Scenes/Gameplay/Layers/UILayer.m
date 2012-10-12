@@ -189,7 +189,7 @@
 
 - (void) update:(Game*)game
 {
-    if ( game.player.velocity.y < -8 && self.saves > 0 )
+    if ( game.player.velocity.y < -8 && self.saves > 0 && game.player.position.y >= -80 )
     {
         menu_second_chance.visible = YES;
     }

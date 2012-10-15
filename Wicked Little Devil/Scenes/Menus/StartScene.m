@@ -23,7 +23,6 @@
 	CCScene *scene          = [CCScene node];
 	StartScene *current     = [StartScene node];
 	[scene addChild:current];
-
 	return scene;
 }
 
@@ -40,21 +39,14 @@
         
         user = [[User alloc] init];
         
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home-iphone5.png"];
-            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-            [self addChild:bg];
-        } else {
-            CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
-            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-            [self addChild:bg];
-        }
+        CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-home-iphone5.png" : @"bg-home.png")];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:bg];
         
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
         CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
-        prompt_facebook       = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
+        prompt_facebook                 = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
@@ -110,7 +102,6 @@
         else
         {
             prompt_facebook.visible = FALSE;
-            
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
         }

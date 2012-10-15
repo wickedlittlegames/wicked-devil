@@ -8,7 +8,7 @@
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "Reachability.h"
-#import "GameCenterConstants.h"
+#import "GameConstants.h"
 
 @interface User : NSObject {}
 

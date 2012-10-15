@@ -983,7 +983,7 @@
 		9CABCF011611D5EA006DFDE9 /* Powerups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Powerups.plist; sourceTree = "<group>"; };
 		9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB.ttf; sourceTree = "<group>"; };
 		9CABCF041611D5EA006DFDE9 /* CrashLandingBB_ital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB_ital.ttf; sourceTree = "<group>"; };
-		9CABCF731611D5F6006DFDE9 /* GameCenterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterConstants.h; sourceTree = "<group>"; };
+		9CABCF731611D5F6006DFDE9 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		9CABCF741611D653006DFDE9 /* CCNode+CoordHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CoordHelpers.m"; sourceTree = "<group>"; };
 		9CABCF751611D653006DFDE9 /* CCNode+CoordHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+CoordHelpers.h"; sourceTree = "<group>"; };
 		9CABCF7C1611D76D006DFDE9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Resources/IMAGES/General iPhone/Default.png"; sourceTree = "<group>"; };
@@ -1185,7 +1185,7 @@
 				9C1422E5156E68580011C992 /* Supporting Files */,
 				9C1422E9156E68580011C992 /* AppDelegate.h */,
 				9C1422EA156E68580011C992 /* AppDelegate.m */,
-				9CABCF731611D5F6006DFDE9 /* GameCenterConstants.h */,
+				9CABCF731611D5F6006DFDE9 /* GameConstants.h */,
 				9C4EA3661626F97600E7B66F /* Default-568h@2x.png */,
 				9CABCF7C1611D76D006DFDE9 /* Default.png */,
 				9CABCF7D1611D76D006DFDE9 /* Default@2x.png */,

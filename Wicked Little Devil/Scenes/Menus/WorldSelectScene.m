@@ -184,7 +184,7 @@
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
     bg.position     = ccp (screenSize.width/2, screenSize.height/2);
     menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -200,7 +200,7 @@
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 4; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 4; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
     bg.position     = ccp (screenSize.width/2, screenSize.height/2);
     menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
@@ -211,13 +211,12 @@
     return layer;
 }
 
-// NOT YET NEEDED FOR 1.0
 - (CCLayer*) space
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 5; button.opacity = 0; button.scale *= 2; //button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 5; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     button.isEnabled = FALSE;
     
     bg.position     = ccp (screenSize.width/2, screenSize.height/2);
@@ -229,13 +228,12 @@
     return layer;
 }
 
-// NOT YET NEEDED FOR 1.0
 - (CCLayer*) afterlife
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 6; button.opacity = 0; button.scale *= 2; //button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 6; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     button.isEnabled = FALSE;
     
     bg.position     = ccp (screenSize.width/2, screenSize.height/2);

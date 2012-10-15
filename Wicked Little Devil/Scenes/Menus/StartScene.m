@@ -34,9 +34,10 @@
         gkHelper = [GameKitHelper sharedGameKitHelper];
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
-
+        
         app = (AppController*) [[UIApplication sharedApplication] delegate];
-		CGSize screenSize = [[CCDirector sharedDirector] winSize];      
+		CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
         user = [[User alloc] init];
         
         CGRect screenBounds = [[UIScreen mainScreen] bounds];

@@ -54,8 +54,10 @@
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          game.user.collected += collected;
-         
+                  
          bool restartAudioToggle = FALSE;
+         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
+         
          
          if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
          {
@@ -80,6 +82,11 @@
              
              [game.user setGameProgressforWorld:next_world level:next_level];
              [game.user sync];
+             
+             if ( game.user.worldprogress > CURRENT_WORLDS_PER_GAME )
+             {
+                 btn_next.visible = FALSE;
+             }
          }
          else
          {
@@ -119,7 +126,6 @@
          
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];
-         CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          label_score                        = [CCLabelTTF labelWithString:@"SCORE: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:70];
          label_subscore                     = [CCLabelTTF labelWithString:@"SOUL BONUS: 0" dimensions:CGSizeMake(screenSize.width, 100) hAlignment:kCCTextAlignmentLeft fontName:@"Crashlanding BB" fontSize:32];
          CCMenuItemImage *share_twitter     = [CCMenuItemImage itemWithNormalImage:@"btn-tweet-score.png" selectedImage:@"btn-tweet-score.png" block:^(id sender){ [self tap_twitter]; }];
@@ -128,11 +134,6 @@
          share_facebook.visible = NO;
          [share_menu alignItemsHorizontallyWithPadding:10];
          
-         if ( game.user.worldprogress > CURRENT_WORLDS_PER_GAME )
-         {
-             btn_next.visible = FALSE;
-         }
-
          btn_next.anchorPoint               = ccp(0,0.5f);
          btn_replay.anchorPoint             = ccp(0,0.5f);
          btn_mainmenu.anchorPoint           = ccp(0,0.5f);
@@ -142,8 +143,6 @@
          menu = [CCMenu menuWithItems:btn_next, btn_replay, btn_mainmenu, nil];
          [menu alignItemsVerticallyWithPadding:10];
          
-
-
          [menu  setPosition:ccp ( 20, screenSize.height/2 - 130)];
          [label_score setPosition:ccp(10, screenSize.height - 220)];
          [label_subscore setPosition:ccp(10, label_score.position.y - 60)];
@@ -279,7 +278,7 @@
                                         }],nil]];
         }
     }
-}
+}   
 
 - (void) collectable_bonus_tick
 {

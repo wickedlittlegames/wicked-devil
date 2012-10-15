@@ -18,30 +18,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Connect to Parse
     [Parse setApplicationId:@"ku2m9Hu2IJjciLhQT1blymmwo97eOOjgGYS5hpNX"
                   clientKey:@"0rr4JmAqVvRLfsKsonH52X4P5wANvEq5tCQW8bE3"];
     
+    // Connect Parse to Facebook
     [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
     
+    // Start an observer for the store
     [MKStoreManager sharedManager];
     
+    // Start the flurry session
     [FlurryAnalytics startSession:@"ZH4F8GJFJSD8C3QBTYR4"];
     
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect-small.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump1.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump2.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump3.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump4.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect1.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect2.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect3.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"score.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"player-hit.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"bat-hit.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-main.aifc"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop1.aifc"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop2.aifc"];
+    // Cache all music/SFX
+    [self cacheSFX];
     
     // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -56,7 +47,6 @@
 							   numberOfSamples:0];
 
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
-
 	director_.wantsFullScreenLayout = YES;
 
 	// Display FSP and SPF
@@ -75,8 +65,6 @@
 	[director_ setProjection:kCCDirectorProjection2D];
     //[director setProjection:kCCDirectorProjection3D];
     
-    
-
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 	if( ! [director_ enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
@@ -86,7 +74,6 @@
 	navController_.navigationBarHidden = YES;
 
 	// set the Navigation Controller as the root view controller
-//	[window_ setRootViewController:rootViewController_];
 	[window_ addSubview:navController_.view];
 
 
@@ -107,21 +94,13 @@
 	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
 	[sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
 	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
-//    [sharedFileUtils setiPhone5DisplaySuffix:@"-568h"];
 
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
-    // Audio
-    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
-
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene:[StartScene scene]];
-    //	[director_ pushScene:[EquipScene scene]];
-//    
-//    Game *newgame = [[Game alloc] init];
-//    [director_ pushScene:[GameOverFacebookScene sceneWithGame:newgame]];
-//
+
 	return YES;
 }
 
@@ -180,6 +159,25 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (void) cacheSFX
+{
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect-small.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump1.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump2.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump3.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump4.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect1.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect2.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect3.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"score.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"player-hit.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"bat-hit.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-main.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop1.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop2.aifc"];
 }
 
 @end

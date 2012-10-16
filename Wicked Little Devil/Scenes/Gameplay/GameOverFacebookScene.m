@@ -44,6 +44,7 @@
         [menu_back setPosition:ccp(25, 25)];
         [self addChild:menu_back];
         
+        
         int gamescore = 0;
         self.request_tag = 0;
         imageData = [[NSMutableData alloc] init];
@@ -53,6 +54,10 @@
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++) {  gamescore += [game.user getHighscoreforWorld:i]; }
         
+        CCLabelTTF *lbl_yourscore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOUR TOTAL GAME SCORE: %i",gamescore] fontName:@"CrashLanding BB" fontSize:48];
+        [lbl_yourscore setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
+        [self addChild:lbl_yourscore];
+                                                  
         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
         {
             NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -102,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     tableView.backgroundColor = [UIColor clearColor];
     
     FacebookTableCell *cell = (FacebookTableCell *)[tableView dequeueReusableCellWithIdentifier:@"FacebookTableCell"];
@@ -126,6 +131,8 @@
             cell.facebookImageView.image = [UIImage imageWithData:image];
         });
     });
+    
+    [cell.nameLabel sizeToFit];
 
     return cell;
 }

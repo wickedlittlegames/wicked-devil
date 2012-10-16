@@ -12,6 +12,8 @@
 #import "AppDelegate.h"
 #import "Game.h"
 
+#import "FacebookTableCell.h"
+
 @implementation GameOverFacebookScene
 @synthesize request_tag;
 
@@ -34,7 +36,7 @@
         fbdata2    = [NSMutableArray arrayWithObjects:nil];
         fbdata3  = [NSMutableArray arrayWithObjects:nil];
         
-        CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-facebook-compare-iphone5.png" : @"bg-facebook-compare.png")];
+        CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-facebookfriends-iphone5.png" : @"bg-facebookfriends.png")];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
 
@@ -78,153 +80,57 @@
 - (void) request:(PF_FBRequest *)request didLoad:(id)result
 {
     NSArray *friendScores = (NSArray *)[result objectForKey:@"data"];
-    int top3_counter = 1;
     for(int i = 0; i < friendScores.count; i++)
     {
         [fbdata addObject:[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"name"]];
         [fbdata2 addObject:[[friendScores objectAtIndex:i] objectForKey:@"score"]];
         [fbdata3 addObject:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"]]];
-        
-        if ( top3_counter <= 3)
-        {
-            NSString *fb_id    = [[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"];
-            NSString *fb_name  = [[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"name"];
-            NSString *fb_score = [[friendScores objectAtIndex:i] objectForKey:@"score"];
-            NSString *fb_url   = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",fb_id];
-            self.request_tag   = top3_counter;
-            
-            NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:fb_url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
-            if ( top3_counter == 1 )
-            {
-                fb_name1 = fb_name;
-                fb_score1 = fb_score;
-                urlConnection = [NSURLConnection connectionWithRequest:req delegate:self];
-            }
-            if ( top3_counter == 2 )
-            {
-                fb_name2 = fb_name;
-                fb_score2 = fb_score;
-                urlConnection2 = [NSURLConnection connectionWithRequest:req delegate:self];
-            }
-            if ( top3_counter == 3 )
-            {
-                fb_name3 = fb_name;
-                fb_score3 = fb_score;
-                urlConnection3 = [NSURLConnection connectionWithRequest:req delegate:self];
-            }
-        }
-        top3_counter++;
     }
+    
+    view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
+    table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
+    table.dataSource = self;
+    table.delegate   = self;
+    [view addSubview:table];
+    [app.window addSubview:view];
 
     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    if(connection == urlConnection){
-        [imageData appendData:data];
-    }
-    else if(connection == urlConnection2){
-        [imageData2 appendData:data];
-    }
-    else if(connection == urlConnection3){
-        [imageData3 appendData:data];
-    }
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if ( connection == urlConnection )
-    {
-        [self createFacebookSprites:fb_name1 andScore:fb_score1 atPosition:ccp(60,[[CCDirector sharedDirector] winSize].height - 260)];
-        
-        
-        CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData].CGImage key:@"facebook_image1"];
-        [fbimage setPosition:ccp(60,[[CCDirector sharedDirector] winSize].height - 119)];
-        [self resizeSprite:fbimage toWidth:180/2 toHeight:159/2];
-        [self addChild:fbimage];
-        
-    }
-    if ( connection == urlConnection2 )
-    {
-        [self createFacebookSprites:fb_name2 andScore:fb_score2 atPosition:ccp(161,[[CCDirector sharedDirector] winSize].height - 260)];
-        
-        CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData2].CGImage key:@"facebook_image2"];
-        [fbimage setPosition:ccp(161,[[CCDirector sharedDirector] winSize].height - 119)];
-        [self resizeSprite:fbimage toWidth:180/2 toHeight:159/2];
-        [self addChild:fbimage];        
-    }
-    if ( connection == urlConnection3 )
-    {
-        [self createFacebookSprites:fb_name3 andScore:fb_score3 atPosition:ccp(261,[[CCDirector sharedDirector] winSize].height - 260)];
-        
-        
-        CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:imageData3].CGImage key:@"facebook_image3"];
-        [fbimage setPosition:ccp(261,[[CCDirector sharedDirector] winSize].height - 119)];
-        [self resizeSprite:fbimage toWidth:180/2 toHeight:159/2];
-        [self addChild:fbimage];
-        
-        
-        view    = [[UIView alloc] initWithFrame:CGRectMake(0, 315, [[CCDirector sharedDirector] winSize].width, 100)];
-        table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [[CCDirector sharedDirector] winSize].width, 100)];
-        table.dataSource = self;
-        table.delegate   = self;
-        [view addSubview:table];
-        [app.window addSubview:view];
-    }
-}
-
-- (void) createFacebookSprites:(NSString*)facebook_name andScore:(NSString*)facebook_score atPosition:(CGPoint)facebook_position
-{
-    CCLabelTTF *lbl_score = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",facebook_score] dimensions:CGSizeMake(90,50) hAlignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:36];
-    lbl_score.color = ccc3(205, 51, 51);
-    lbl_score.position = facebook_position;
     
-    CCLabelTTF *lbl_name  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",facebook_name] dimensions:CGSizeMake(90,50) hAlignment:kCCTextAlignmentCenter fontName:@"CrashLanding BB" fontSize:24];
-    lbl_name.color = ccBLACK;
-    lbl_name.position = ccp(facebook_position.x, facebook_position.y - 27);
-    
-    [self addChild:lbl_score];
-    [self addChild:lbl_name];
-}
-
--(void)resizeSprite:(CCSprite*)sprite toWidth:(float)width toHeight:(float)height {
-    sprite.scaleX = width / sprite.contentSize.width;
-    sprite.scaleY = height / sprite.contentSize.height;
 }
 
 #pragma mark TABLE DELEGATE METHODS
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    tableView.delegate=self;
-    tableView.dataSource=self;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = [UIColor blackColor];
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [UIColor clearColor];
     
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FacebookTableCell *cell = (FacebookTableCell *)[tableView dequeueReusableCellWithIdentifier:@"FacebookTableCell"];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FacebookTableCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
- 
-    cell.userInteractionEnabled = YES;
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.nameLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    cell.scoreLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:50.0f];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ HIGHSCORE:",[fbdata objectAtIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.nameLabel.text        = [NSString stringWithFormat:@"%@",[fbdata objectAtIndex:indexPath.row]];
+    cell.scoreLabel.text       = [NSString stringWithFormat:@"%@",[fbdata2 objectAtIndex:indexPath.row]];
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[fbdata2 objectAtIndex:indexPath.row]];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"CrashLanding BB" size:30.0f];
-    
-    [cell.textLabel sizeToFit];
-    
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(concurrentQueue, ^{
+        NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[fbdata3 objectAtIndex:indexPath.row]]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.facebookImageView.image = [UIImage imageWithData:image];
+        });
+    });
+
     return cell;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return [fbdata count]; }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 50.0; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 87.0; }
 
 @end

@@ -32,7 +32,7 @@
     switch (self.tag)
     {
         default: break;
-        case 1: // BAT: moving down
+        case 1: // BAT: moving right
 			self.position = ccp(self.position.x + 1, self.position.y);
             if (self.position.x > [[CCDirector sharedDirector] winSize].width+40) self.position = ccp(-50, self.position.y);
             break;

@@ -15,7 +15,6 @@
 {
     if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
     {
-        self.visible = FALSE;
         return TRUE;
     }
     return FALSE;

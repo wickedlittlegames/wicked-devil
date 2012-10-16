@@ -63,6 +63,18 @@
             [tips addObject:node];
         }
     }
+    
+    CCARRAY_FOREACH(collectables, collectable)
+    {
+        collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > 0 );
+    }
+
+    CCARRAY_FOREACH(platforms, platform)
+    {
+        platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > 0 );
+        if ( !platform.animating ) [platform move];
+    }
+
 }
 
 - (void) update:(Game *)game
@@ -81,42 +93,49 @@
     
     CCARRAY_FOREACH(platforms, platform)
     {
-        if (!platform.end_fx_added && platform.tag == 100)
+        platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > 0 );
+        
+        if (  platform.visible )
         {
-            platform.end_fx_added = YES;
-        }
-        if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
-        {
-            platform.visible = NO;
-            [platforms removeObject:platform];
-            [platform removeFromParentAndCleanup:YES];
-        }
+            if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
+            {
+                platform.visible = NO;
+                [platforms removeObject:platform];
+                [platform removeFromParentAndCleanup:YES];
+            }
 
-        if ( game.player.controllable ) [platform isIntersectingPlayer:game platforms:platforms];
-        if ( !platform.animating ) [platform move];
+            if ( game.player.controllable ) [platform isIntersectingPlayer:game platforms:platforms];
+        }
     }
     
-//    CCARRAY_FOREACH(collectables, collectable)
-//    {
-//        if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
-//        {
-//            collectable.visible = NO;
-//            [collectables removeObject:collectable];
-//            [collectable removeFromParentAndCleanup:YES];
-//        }
-//        if ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && !game.isIntro )
-//        {
-//            if ( [collectable isIntersectingPlayer:game.player] )
-//            {
-//                if ( ![SimpleAudioEngine sharedEngine].mute )
-//                {
-//                    [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:(0.01) pan:1 gain:0.2];
-//                }
-//                game.player.collected +=  (1 * game.player.collectable_multiplier);
-//                game.player.score++;
-//            }
-//        }
-//    }
+    CCARRAY_FOREACH(collectables, collectable)
+    {
+        collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > 0 );
+        
+        if ( collectable.visible )
+        {
+            if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
+            {
+                collectable.visible = NO;
+                [collectables removeObject:collectable];
+                [collectable removeFromParentAndCleanup:YES];
+            }
+            
+            if ( [collectable isIntersectingPlayer:game.player] && [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > 0)
+            {
+                if ( ![SimpleAudioEngine sharedEngine].mute )
+                {
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:1 pan:1 gain:0.2];
+                }
+                collectable.visible = FALSE;
+                [collectables removeObject:collectable];
+                [collectable removeFromParentAndCleanup:YES];
+                
+                game.player.collected +=  (1 * game.player.collectable_multiplier);
+                game.player.score++;
+            }
+        }
+    }
     
     CCARRAY_FOREACH(bigcollectables, bigcollectable)
     {

@@ -1937,8 +1937,8 @@
 		9CBF4813156F8F8600896EBF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				9CABCF811611E910006DFDE9 /* Trigger.m */,
 				9CABCF821611E910006DFDE9 /* Trigger.h */,
+				9CABCF811611E910006DFDE9 /* Trigger.m */,
 				9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */,
 				9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */,
 				9CFF0B6C158A7D0C000AA4E0 /* Enemy.h */,

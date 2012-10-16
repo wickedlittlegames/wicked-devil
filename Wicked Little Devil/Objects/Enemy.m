@@ -69,6 +69,9 @@
         case 1: // BAT: Jump ontop, or die below
             if ( game.player.velocity.y > 0 )
             {
+                [self action_bat_hit];
+                self.running = YES;
+                
                 game.player.health--;
                 if ( game.player.health <= 0 )
                 {
@@ -87,6 +90,9 @@
         case 101: // BAT: Jump ontop, or die below
             if ( game.player.velocity.y > 0 )
             {
+                [self action_bat_hit];
+                self.running = YES;
+                                
                 game.player.health--;
                 if ( game.player.health <= 0 )
                 {

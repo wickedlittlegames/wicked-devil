@@ -44,16 +44,13 @@
         [menu_back setPosition:ccp(25, 25)];
         [self addChild:menu_back];
         
-        NSString *friendId=@"FacebookId Of Your Friends";
-        
-        NSLog(@"%@",friendId);
-        
-        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"My Title", @"title",
-                                       @"Come check out my app.",  @"message",
-                                       nil];
-
-        [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
+//
+//        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                       @"My Title", @"title",
+//                                       @"Come check out my app.",  @"message",
+//                                       nil];
+//
+//        [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
         
         int gamescore = 0;
         self.request_tag = 0;

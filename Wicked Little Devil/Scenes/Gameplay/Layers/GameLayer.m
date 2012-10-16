@@ -74,7 +74,11 @@
         platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > 0 );
         if ( !platform.animating ) [platform move];
     }
-
+    CCARRAY_FOREACH(enemies, enemy)
+    {
+        enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > 0 );
+        if ( !enemy.animating ) [enemy setupAnimations];
+    }
 }
 
 - (void) update:(Game *)game
@@ -153,38 +157,42 @@
         
     CCARRAY_FOREACH(enemies, enemy)
     {
-        if ( !enemy.animating ) [enemy setupAnimations];
-        if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
-        {
-            enemy.visible = NO;
-        }
+        enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > 0 );
         
-        [enemy isIntersectingPlayer:game];
-        [enemy move];
-        
-        // Projectile movement
-        if ( enemy.visible && enemy.projectiles.count >= 1 )
+        if ( enemy.visible )
         {
-            CCARRAY_FOREACH(enemy.projectiles, projectile)
+            if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
             {
-                if ( [projectile isIntersectingPlayer:game.player] )
-                {
-                    [game.fx start:1 position:[game.player worldBoundingBox].origin];
-                    projectile.visible = NO;
-                    [enemy removeChildByTag:1111 cleanup:YES];
-                    game.player.health--;
-                }
-            }   
-        }
-        
-        // FX check
-        if ( !enemy.visible && enemy.fx.count >= 1 )
-        {
-            CCARRAY_FOREACH(enemy.fx, fx)
+                enemy.visible = NO;
+            }
+            
+            [enemy isIntersectingPlayer:game];
+            [enemy move];
+            
+            // Projectile movement
+            if ( enemy.visible && enemy.projectiles.count >= 1 )
             {
-                if ( [fx isIntersectingPlayer:game.player] )
+                CCARRAY_FOREACH(enemy.projectiles, projectile)
                 {
-                    game.player.health--;
+                    if ( [projectile isIntersectingPlayer:game.player] )
+                    {
+                        [game.fx start:1 position:[game.player worldBoundingBox].origin];
+                        projectile.visible = NO;
+                        [enemy removeChildByTag:1111 cleanup:YES];
+                        game.player.health--;
+                    }
+                }   
+            }
+            
+            // FX check
+            if ( !enemy.visible && enemy.fx.count >= 1 )
+            {
+                CCARRAY_FOREACH(enemy.fx, fx)
+                {
+                    if ( [fx isIntersectingPlayer:game.player] )
+                    {
+                        game.player.health--;
+                    }
                 }
             }
         }

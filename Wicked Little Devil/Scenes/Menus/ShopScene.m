@@ -30,10 +30,6 @@
 {
     if( (self=[super init]) )
     {
-        // StoreKit Helper Observer, to keep an eye on transactions
-        MKStoreObserver *observer = [[MKStoreObserver alloc] init];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
-        
         // Load the app so we can do stuff like add tables, ui views etc...
         app             = (AppController*)[[UIApplication sharedApplication] delegate];
         timeout_check   = 0;

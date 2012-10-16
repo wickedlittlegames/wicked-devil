@@ -212,7 +212,8 @@
         
         if ( game.isGameover ) 
         {
-            if ( !game.player.isAlive ) {
+            if ( !game.player.isAlive )
+            {
                 if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"player-hit.caf"];
                 game.user.deaths++;
             }

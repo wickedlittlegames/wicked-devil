@@ -41,7 +41,7 @@
 	<key>maxParticles</key>
 	<integer>435</integer>
 	<key>maxRadius</key>
-	<real>100</real>
+	<integer>100</integer>
 	<key>maxRadiusVariance</key>
 	<real>0</real>
 	<key>minRadius</key>

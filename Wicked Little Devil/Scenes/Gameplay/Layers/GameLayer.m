@@ -68,7 +68,10 @@
     {
         collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > 0 );
     }
-
+    CCARRAY_FOREACH(bigcollectables, bigcollectable)
+    {
+        bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > 0 );
+    }
     CCARRAY_FOREACH(platforms, platform)
     {
         platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > 0 );
@@ -108,7 +111,10 @@
                 [platform removeFromParentAndCleanup:YES];
             }
 
-            if ( game.player.controllable ) [platform isIntersectingPlayer:game platforms:platforms];
+            if ( game.player.controllable )
+            {
+                [platform isIntersectingPlayer:game platforms:platforms];
+            }
         }
     }
     
@@ -125,7 +131,7 @@
                 [collectable removeFromParentAndCleanup:YES];
             }
             
-            if ( [collectable isIntersectingPlayer:game.player] && [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > 0)
+            if ( [collectable isIntersectingPlayer:game.player] )
             {
                 if ( ![SimpleAudioEngine sharedEngine].mute )
                 {
@@ -136,22 +142,36 @@
                 [collectable removeFromParentAndCleanup:YES];
                 
                 game.player.collected +=  (1 * game.player.collectable_multiplier);
-                game.player.score++;
             }
         }
     }
     
     CCARRAY_FOREACH(bigcollectables, bigcollectable)
     {
-        if ( [bigcollectable isIntersectingPlayer:game.player] )
+        bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > 0 );
+        
+        if ( bigcollectable.visible )
         {
-            game.player.bigcollected++;
-            game.player.score += 1000;
-            [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
-            if ( ![SimpleAudioEngine sharedEngine].mute )
+            if ([bigcollectable worldBoundingBox].origin.y < -200 && !game.isIntro)
             {
-                [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.caf",game.player.bigcollected]];
-            }            
+                bigcollectable.visible = NO;
+                [bigcollectables removeObject:bigcollectable];
+                [bigcollectable removeFromParentAndCleanup:YES];
+            }
+            if ( [bigcollectable isIntersectingPlayer:game.player] )
+            {
+                [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
+                if ( ![SimpleAudioEngine sharedEngine].mute )
+                {
+                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.caf",game.player.bigcollected]];
+                }
+                
+                bigcollectable.visible = NO;
+                [bigcollectables removeObject:bigcollectable];
+                [bigcollectable removeFromParentAndCleanup:YES];
+                
+                game.player.bigcollected++;
+            }
         }
     }
         
@@ -161,7 +181,7 @@
         
         if ( enemy.visible )
         {
-            if ([enemy worldBoundingBox].origin.y < -80 && enemy.visible && !game.isIntro )
+            if ([enemy worldBoundingBox].origin.y < -80 && !game.isIntro )
             {
                 enemy.visible = NO;
             }
@@ -170,7 +190,7 @@
             [enemy move];
             
             // Projectile movement
-            if ( enemy.visible && enemy.projectiles.count >= 1 )
+            if ( enemy.projectiles.count >= 1 )
             {
                 CCARRAY_FOREACH(enemy.projectiles, projectile)
                 {
@@ -182,18 +202,6 @@
                         game.player.health--;
                     }
                 }   
-            }
-            
-            // FX check
-            if ( !enemy.visible && enemy.fx.count >= 1 )
-            {
-                CCARRAY_FOREACH(enemy.fx, fx)
-                {
-                    if ( [fx isIntersectingPlayer:game.player] )
-                    {
-                        game.player.health--;
-                    }
-                }
             }
         }
     }

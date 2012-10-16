@@ -11,7 +11,6 @@
 
 @implementation CCNode (CoordHelpers)
 -(CGRect)worldBoundingBox {
-    CGRect rect = CGRectMake(0, 0, contentSize_.width, contentSize_.height);
-    return CGRectApplyAffineTransform(rect, [self nodeToWorldTransform]);
+    return CGRectApplyAffineTransform(CGRectMake(0, 0, contentSize_.width, contentSize_.height), [self nodeToWorldTransform]);
 }
 @end

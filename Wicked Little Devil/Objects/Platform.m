@@ -38,38 +38,35 @@
 
 - (void) move
 {
-    if ( !self.animating )
+    if (self.tag == 2 || self.tag == 67)
     {
-        if (self.tag == 2 || self.tag == 67)
-        {
-            id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-            id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
-        if (self.tag == 3 || self.tag == 66)
-        {
-            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
-        if (self.tag == 33 || self.tag == 663)
-        {
-            id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
-            id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
-            
-            CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
-            [self runAction:repeater];
-            
-            self.animating = TRUE;
-        }
+        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+        
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+        [self runAction:repeater];
+        
+        self.animating = TRUE;
+    }
+    if (self.tag == 3 || self.tag == 66)
+    {
+        id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+        id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+        
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+        [self runAction:repeater];
+        
+        self.animating = TRUE;
+    }
+    if (self.tag == 33 || self.tag == 663)
+    {
+        id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+        id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+        
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+        [self runAction:repeater];
+        
+        self.animating = TRUE;
     }
 }
 

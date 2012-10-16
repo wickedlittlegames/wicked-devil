@@ -40,9 +40,9 @@
         }
         if ([node isKindOfClass: [CCNode class]])
         {
-            for (Collectable *collectable in node.children)
+            for (Collectable *collectable_tmp in node.children)
             {
-                [collectables addObject:collectable];
+                [collectables addObject:collectable_tmp];
             }
         }
         if ([node isKindOfClass: [BigCollectable class]])
@@ -68,14 +68,6 @@
 - (void) update:(Game *)game
 {       
     [self gameoverCheck:game];
-    int tmp_pitch = 1;
-    Platform *platform = nil;
-    Collectable *collectable = nil;
-    BigCollectable *bigcollectable = nil;
-    Enemy *enemy = nil;
-    Projectile *projectile = nil;
-    EnemyFX *fx = nil;
-    Tip *tip = nil;
     
     CCARRAY_FOREACH(tips, tip)
     {
@@ -101,27 +93,30 @@
         }
 
         if ( game.player.controllable ) [platform isIntersectingPlayer:game platforms:platforms];
-        [platform move];
+        if ( !platform.animating ) [platform move];
     }
     
-    CCARRAY_FOREACH(collectables, collectable)
-    {
-        if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
-        {
-            collectable.visible = NO;
-            [collectables removeObject:collectable];
-            [collectable removeFromParentAndCleanup:YES];
-        }
-        if ( [collectable isIntersectingPlayer:game.player] )
-        {
-            if ( ![SimpleAudioEngine sharedEngine].mute )
-            {
-                [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:(tmp_pitch+0.01) pan:1 gain:0.2];
-            }
-            game.player.collected +=  (1 * game.player.collectable_multiplier);
-            game.player.score++;
-        }
-    }
+//    CCARRAY_FOREACH(collectables, collectable)
+//    {
+//        if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
+//        {
+//            collectable.visible = NO;
+//            [collectables removeObject:collectable];
+//            [collectable removeFromParentAndCleanup:YES];
+//        }
+//        if ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && !game.isIntro )
+//        {
+//            if ( [collectable isIntersectingPlayer:game.player] )
+//            {
+//                if ( ![SimpleAudioEngine sharedEngine].mute )
+//                {
+//                    [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:(0.01) pan:1 gain:0.2];
+//                }
+//                game.player.collected +=  (1 * game.player.collectable_multiplier);
+//                game.player.score++;
+//            }
+//        }
+//    }
     
     CCARRAY_FOREACH(bigcollectables, bigcollectable)
     {
@@ -224,6 +219,7 @@
 
 - (void) gotogameover
 {
+    [[CCTextureCache sharedTextureCache] removeUnusedTextures];
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 

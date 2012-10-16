@@ -262,7 +262,7 @@
               [NSString stringWithFormat:@"bat-flap%i.png", i]]];
         }
         
-        self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:0.25f];
+        self.anim_flap = [CCAnimation animationWithSpriteFrames:arr_anim_flap  delay:1.0f];
         CCAction *repeater = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.anim_flap]];
         
         [self runAction:repeater];

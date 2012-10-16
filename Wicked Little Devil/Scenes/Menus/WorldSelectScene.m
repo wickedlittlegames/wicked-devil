@@ -59,21 +59,19 @@
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
-        //[worlds addObject:[self land]];
-        //[worlds addObject:[self space]];
-        //[worlds addObject:[self afterlife]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world-1];
         
         // Put the children to the screen
-        [self addChild:scroller];               // World scroller to go through the level
-        if ( user.isOnline ) { [self addChild:menu_store]; }
+        [self addChild:scroller];
         [self addChild:menu_equip];
-        [self addChild:menu_back];              // store button
-        [self addChild:icon_bigcollectable];    // icon for big collectable near the world collected total
+        [self addChild:menu_back];
+        [self addChild:icon_bigcollectable];
         [self addChild:icon_collectable];
-        [self addChild:label_bigcollected];     // label for collected total - eg: 3/360
+        [self addChild:label_bigcollected];
         [self addChild:label_collected];
+        
+        if ( user.isOnline ) { [self addChild:menu_store]; }
     }
 	return self;
 }
@@ -83,7 +81,6 @@
 - (void) tap_world:(CCMenuItemFont*)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i", sender.tag]];
-    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     user.cache_current_world = sender.tag;
@@ -94,7 +91,6 @@
 - (void) tap_equip:(id)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited EquipStore"]];
-    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
@@ -103,7 +99,6 @@
 - (void) tap_store:(id)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited IAPStore"]];
-    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
@@ -120,22 +115,14 @@
 - (CCLayer*) hell
 {
     CCLayer *layer          = [CCLayer node];
-    
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new-iphone5.png"];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [layer addChild:bg];
-    } else {
-        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new.png"];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [layer addChild:bg];
-    }
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 
+    [layer addChild:bg];
     [layer addChild:menu];
     
     return layer;
@@ -144,37 +131,15 @@
 - (CCLayer*) underground
 {
     CCLayer *layer          = [CCLayer node];
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new-iphone5.png"];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [layer addChild:bg];
-    } else {
-        CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new.png"];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [layer addChild:bg];
-    }
-
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-underground-new-iphone5.png" : @"bg-world-underground-new.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 2; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
+    [layer addChild:bg];
     [layer addChild:menu];
-    
-    if ( !button.isEnabled )
-    {
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked-iphone5.png"];
-            locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
-            [layer addChild:locked_sprite];
-        } else {
-            CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
-            locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
-            [layer addChild:locked_sprite];
-        }
-    }
     
     return layer;
 }
@@ -182,62 +147,12 @@
 - (CCLayer*) ocean
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-coming-soon.png" : @"bg-coming-soon.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
-    
-    [layer addChild:bg];
-    [layer addChild:menu];
-    
-    return layer;
-}
-
-- (CCLayer*) land
-{
-    CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 4; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
-    
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
-    
-    [layer addChild:bg];
-    [layer addChild:menu];
-    
-    return layer;
-}
-
-- (CCLayer*) space
-{
-    CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 5; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
-    button.isEnabled = FALSE;
-    
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
-    
-    [layer addChild:bg];
-    [layer addChild:menu];
-    
-    return layer;
-}
-
-- (CCLayer*) afterlife
-{
-    CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 6; button.opacity = 0; button.scale *= 2; button.isEnabled = ( user.worldprogress >= button.tag );button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
-    button.isEnabled = FALSE;
-    
-    bg.position     = ccp (screenSize.width/2, screenSize.height/2);
-    menu.position   = ccp ( screenSize.width/2, screenSize.height/2 );
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
     [layer addChild:bg];
     [layer addChild:menu];

@@ -18,19 +18,9 @@
 
 - (void) createWorldSpecificBackgrounds:(int)world
 {
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-        CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i-iphone5.png", world]];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [self addChild:bg z:1];
-        
-    } else {
-        CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [self addChild:bg z:1];
-    }
+    CCSprite *bg = [CCSprite spriteWithFile:(([[UIScreen mainScreen] bounds].size.height == 568) ? [NSString stringWithFormat:@"bg_%i-iphone5.png", world] : [NSString stringWithFormat:@"bg_%i.png", world])];
+    [bg setPosition:ccp([[CCDirector sharedDirector] winSize].width/2, [[CCDirector sharedDirector] winSize].height/2)];
+    [self addChild:bg z:1];
 }
 
 @end

@@ -34,17 +34,9 @@
         fbdata2    = [NSMutableArray arrayWithObjects:nil];
         fbdata3  = [NSMutableArray arrayWithObjects:nil];
         
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebook-compare-iphone5.png"];
-            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-            [self addChild:bg];
-            
-        } else {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebook-compare.png"];
-            [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-            [self addChild:bg];
-        }
+        CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-facebook-compare-iphone5.png" : @"bg-facebook-compare.png")];
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:bg];
 
         CCMenu *menu_back  = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png" block:^(id sender) {[view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverScene  sceneWithGame:game]]];}  ],nil];
         [menu_back setPosition:ccp(25, 25)];
@@ -201,55 +193,38 @@
     sprite.scaleY = height / sprite.contentSize.height;
 }
 
-
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return [fbdata count];
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50.0;
-}
+#pragma mark TABLE DELEGATE METHODS
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     tableView.delegate=self;
     tableView.dataSource=self;
-    
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor blackColor];
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
+ 
     cell.userInteractionEnabled = YES;
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@ HIGHSCORE:",[fbdata objectAtIndex:indexPath.row]];
     cell.textLabel.font = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
-    cell.textLabel.textColor = [UIColor magentaColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
 
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[fbdata2 objectAtIndex:indexPath.row]];
     cell.detailTextLabel.font = [UIFont fontWithName:@"CrashLanding BB" size:30.0f];
-    cell.textLabel.textColor = [UIColor whiteColor];
     
     [cell.textLabel sizeToFit];
     
     return cell;
 }
 
-
-
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return [fbdata count]; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 50.0; }
 
 @end

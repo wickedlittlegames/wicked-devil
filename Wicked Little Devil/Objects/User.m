@@ -290,9 +290,15 @@
     return tmp_score;
 }
 
+- (NSString*) getEquippedPowerup
+{
+    NSArray *contentArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups" ofType:@"plist"] ] objectForKey:@"Powerups"];
+    NSDictionary *powerup_dict = [contentArray objectAtIndex:self.powerup];
+    return [powerup_dict objectForKey:@"Name"];
+}
+
 - (void) check_achiements
 {
-    CCLOG(@"WORLD PROGRESS: %i",self.worldprogress);
     if ( !self.ach_first_play ) // if first play
     {
         self.ach_first_play = TRUE;

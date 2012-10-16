@@ -40,6 +40,7 @@
 - (void) setSouls:(int)souls world:(int)w level:(int)l;
 - (void) setGameProgressforWorld:(int)w level:(int)l;
 
+- (NSString*) getEquippedPowerup;
 - (int) getHighscoreforWorld:(int)w;
 - (int) getHighscoreforWorld:(int)w level:(int)l;
 - (int) getSoulsforWorld:(int)w;

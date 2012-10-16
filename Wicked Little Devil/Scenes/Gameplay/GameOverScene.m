@@ -111,18 +111,10 @@
          [game.user sync_cache_current_world];
          [game.user check_achiements];
          [game.user sync];
-
-         CGRect screenBounds = [[UIScreen mainScreen] bounds];
-         if (screenBounds.size.height == 568) {
-             CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i-iphone5.png",game.player.bigcollected]];
-             [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-             [self addChild:bg];
-         } else {
-             CCSprite *bg                       = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
-             [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-             [self addChild:bg];
-         }
          
+         CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? [NSString stringWithFormat:@"bg-gameover-%i-iphone5.png",game.player.bigcollected] : [NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected])];
+         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+         [self addChild:bg];         
          
          CCMenuItemImage *btn_replay        = [CCMenuItemImage itemWithNormalImage:@"btn-reply.png"         selectedImage:@"btn-reply.png"          block:^(id sender) { [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:game.world andLevel:game.level isRestart:YES restartMusic:NO]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          CCMenuItemImage *btn_mainmenu      = [CCMenuItemImage itemWithNormalImage:@"btn-levelselect.png"   selectedImage:@"btn-levelselect.png"    block:^(id sender) { [self restartAudio]; }];

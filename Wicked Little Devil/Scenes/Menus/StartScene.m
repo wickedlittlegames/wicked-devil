@@ -39,12 +39,15 @@
         
         user = [[User alloc] init];
         
-        CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-home-iphone5.png" : @"bg-home.png")];
-        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-        [self addChild:bg];
+        if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
+        {
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+        }       
         
+        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-home-iphone5.png" : @"bg-home.png")];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
-        CCMenuItem *btn_achievements     = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
+        CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         prompt_facebook                 = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
@@ -56,6 +59,7 @@
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         
+        [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
         [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [menu_mute setPosition:ccp(25, 25)];
@@ -63,14 +67,8 @@
         [menu_social alignItemsHorizontallyWithPadding:5];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
         [prompt_facebook setPosition:ccp(screenSize.width - 90, 80)];
-
         
-        if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
-        {
-            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
-        }
-        
+        [self addChild:bg];
         [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:behind_fb];
@@ -85,20 +83,19 @@
 	return self;
 }
 
-- (void) getFacebookImage
+
+- (void) setMute
 {
-    NSString *requestPath = @"me/?fields=name,location,gender,picture";
-    [[PFFacebookUtils facebook] requestWithGraphPath:requestPath andDelegate:self];
+    [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
+    if ( [SimpleAudioEngine sharedEngine].mute )   { btn_muted.visible    = YES; btn_mute.visible = NO; }
+    else                                           { btn_mute.visible     = YES; btn_muted.visible = NO; }
 }
 
 - (void) setFacebookImage
 {
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
-        if ( user.facebook_image == NULL )
-        {
-            [self getFacebookImage];
-        }
+        if ( user.facebook_image == NULL ) [self getFacebookImage];
         else
         {
             prompt_facebook.visible = FALSE;
@@ -108,45 +105,10 @@
     }
 }
 
-- (void)request:(PF_FBRequest *)request didLoad:(id)result {
-    NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
-    imageData = [[NSMutableData alloc] init]; // the image will be loaded in here
-
-    if ( user.facebook_id == NULL )
-    {
-        user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
-        [user sync_facebook];
-    }
-
-    
-    NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL]
-                            cachePolicy:NSURLRequestUseProtocolCachePolicy
-                        timeoutInterval:2];
-    
-    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest
-                                                    delegate:self];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void) getFacebookImage
 {
-    [imageData appendData:data];
-    user.facebook_image = imageData;
-    [user sync_facebook];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
-    [btn_facebooksignin setNormalImage:fbimage];
-}
-
-- (void) setMute
-{
-    [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
-    if ( [SimpleAudioEngine sharedEngine].mute )   { btn_muted.visible    = YES; btn_mute.visible = NO; }
-    else                                           { btn_mute.visible     = YES; btn_muted.visible = NO; }
+    // This goes off and calls the request delegate method
+    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/?fields=name,location,gender,picture" andDelegate:self];
 }
 
 #pragma mark TAPS
@@ -253,18 +215,48 @@
     }
 }
 
+#pragma mark Facebook Parse Stuff
+
+- (void)request:(PF_FBRequest *)request didLoad:(id)result
+{
+    NSDictionary *userData = (NSDictionary *)result;
+    imageData = [[NSMutableData alloc] init];
+    
+    if ( user.facebook_id == NULL )
+    {
+        user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
+        [user sync_facebook];
+    }
+
+    NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2];
+    
+    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [imageData appendData:data];
+    user.facebook_image = imageData;
+    [user sync_facebook];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+    [btn_facebooksignin setNormalImage:fbimage];
+}
+
 #pragma mark GameKit delegate
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
-
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
-
 - (void) reportLeaderboardHighscores
 {
     for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
@@ -276,7 +268,6 @@
         }
     }
 }
-
 - (void) reportAchievements
 {
     [gkHelper reportCachedAchievements];
@@ -349,7 +340,6 @@
     [user sync];
     [user sync_achievements];
 }
-
 -(void) onLocalPlayerAuthenticationChanged
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
@@ -358,7 +348,6 @@
     if (localPlayer.authenticated)
     {
         [gkHelper getLocalPlayerFriends];
-        //[gkHelper resetAchievements];
     }
 }
 -(void) onFriendListReceived:(NSArray*)friends
@@ -436,6 +425,4 @@
 {
     CCLOG(@"onReceivedData: %@ fromPlayer: %@", data, playerID);
 }
-
-
 @end

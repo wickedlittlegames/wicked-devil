@@ -19,12 +19,11 @@
     UIView *view;
     UITableView *table;
     NSArray *data, *data2, *data3;
-    AppController *app, *appHUD;
+    AppController *app;
     CCLabelTTF *lbl_user_collected;
     User *user;
     bool purchased;
     int tmp_collectables, tmp_collectable_increment, timeout_check;
-    CCLayer *layer_shop, *layer_equip;
 }
 
 +(CCScene *) scene;

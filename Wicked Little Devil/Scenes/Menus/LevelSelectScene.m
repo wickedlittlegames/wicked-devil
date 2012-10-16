@@ -103,40 +103,27 @@
             [menu addChild:button];
         }
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,itemsPerRow,itemsPerRow,nil];
-        
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i-iphone5.png", world]];
-            [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
-            [self addChild:bg];
-        } else {
-            CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
-            [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
-            [self addChild:bg];
-        }
 
-        
+        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? [NSString stringWithFormat:@"bg_%i-iphone5.png", world] : [NSString stringWithFormat:@"bg_%i.png", world])];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
-        CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_store:)],nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"]; icon_collectable.scale = 2;
         CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         
-        
+        [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
-        [menu_store             setPosition:ccp(25, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
         [label_world_score      setPosition:ccp(screenSize.width/2, 22 )];
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         
+        [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
-        //[self addChild:menu_store];
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];
         [self addChild:label_world_score];
@@ -151,21 +138,16 @@
 - (void) tap_level:(CCMenuItem*)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i Level: %i", (int)sender.userData, sender.tag]];
-    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE restartMusic:YES]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
-}
-
-- (void) tap_store:(id)sender
-{
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 @end

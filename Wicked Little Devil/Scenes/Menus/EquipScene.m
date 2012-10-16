@@ -42,11 +42,7 @@
     
         
         // Pull in the Cards plist
-        NSArray *contentArray = [[NSDictionary
-                                  dictionaryWithContentsOfFile:[[NSBundle mainBundle]
-                                                                pathForResource:@"Powerups"
-                                                                ofType:@"plist"]
-                                  ] objectForKey:@"Powerups"];
+        NSArray *contentArray = [[NSDictionary  dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups" ofType:@"plist"]] objectForKey:@"Powerups"];
         data = [NSMutableArray arrayWithCapacity:100];
         data2 = [NSMutableArray arrayWithCapacity:100];
         data3 = [NSMutableArray arrayWithCapacity:100];
@@ -66,47 +62,37 @@
         [view addSubview:table];
         [app.window addSubview:view];
         
-        
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg-iphone5.png"];
-            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-            [self addChild:bg];
-        } else {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
-            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-            [self addChild:bg];
-        }
-        
-        
+        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-shop-bg-iphone5.png" : @"bg-shop-bg.png")];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
-        [menu_back              setPosition:ccp(25, 25)];
+        CCMenu *resetAll                = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png"           target:self selector:@selector(tap_resetPowerups)],nil];
+        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
+        
+        [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [menu_back          setPosition:ccp(25, 25)];
+        [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
+        [resetAll           setPosition:ccp(screenSize.width - 80, 25)];
+        
+        [self addChild:bg];
         [self addChild:menu_back z:1000];
-        
-        // Collectable Button
-        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
-        [lbl_user_collected setPosition:ccp ( screenSize.width/2, screenSize.height - 85 )];
         [self addChild:lbl_user_collected z:100];
-        
-        CCMenu *resetAll = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png" block:^(id sender)
-        {
-            user.powerup = 0;
-            user.bought_powerups = NO;
-            [user sync];
-            
-            NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
-            for (int i = 0; i < data.count; i++)
-            {
-                NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
-                [tmp_table_view addObject:equip_item];
-            }
-            [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];
-            
-        }], nil];
-        [resetAll setPosition:ccp(screenSize.width - 80, 25)];
         [self addChild:resetAll];
     }
     return self;
+}
+
+- (void) tap_resetPowerups
+{
+    user.powerup = 0;
+    user.bought_powerups = NO;
+    [user sync];
+    
+    NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
+    for (int i = 0; i < data.count; i++)
+    {
+        NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
+        [tmp_table_view addObject:equip_item];
+    }
+    [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void) tap_back
@@ -140,7 +126,7 @@
             NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
             [tmp_table_view addObject:equip_item];
         }
-        [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];        
+        [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationNone];
 
         [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
@@ -171,7 +157,7 @@
         NSIndexPath *equip_item = [NSIndexPath indexPathForItem:i inSection:0];
         [tmp_table_view addObject:equip_item];
     }
-    [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationFade];
+    [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void) collectable_remove_tick
@@ -207,33 +193,11 @@
     else
     {
         [self unschedule: @selector(collectable_remove_tick)];
-        
-        [view removeFromSuperview];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
     }
 }
 
 
 #pragma mark UITableView code
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return nil;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [data count];
-}
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 75;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -241,39 +205,41 @@
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
 
-    
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-
-    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SimpleTableCell"];
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    ;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
 
-    cell.label_description.text = [data3 objectAtIndex:indexPath.row];
-    cell.label_title.text = [data objectAtIndex:indexPath.row];
-    cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
-    cell.label_price.text    = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
-    cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
-    cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
-    cell.button_buy.tag = indexPath.row;
-    cell.button_buy.selected = TRUE;
-    [cell.button_buy removeTarget:self action:@selector(tap_equip:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.button_buy removeTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];    
+    cell.selectionStyle             = UITableViewCellSelectionStyleNone;
+    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];    
+    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    
+    cell.label_title.text           = [data objectAtIndex:indexPath.row];
+    cell.label_price.text           = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
+    cell.label_description.text     = [data3 objectAtIndex:indexPath.row];
+    
+    cell.button_buy.selected        = TRUE;    
+    cell.button_buy.tag             = indexPath.row;
+    
+    [cell.button_buy removeTarget:self action:@selector(tap_equip:)     forControlEvents:UIControlEventTouchUpInside];
+    [cell.button_buy removeTarget:self action:@selector(tap_purchase:)  forControlEvents:UIControlEventTouchUpInside];
+    
     if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
     {
-        cell.button_buy.selected = FALSE;
-        if (user.powerup == indexPath.row && user.bought_powerups ) {
+        if (user.powerup == indexPath.row && user.bought_powerups )
+        {
             cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equipequipped.png"];
             cell.label_price.text = @"EQUIPPED";
-        } else {
+        }
+        else
+        {
             cell.label_price.text = @"EQUIP";
         }
         
+        cell.button_buy.selected = FALSE;
         [cell.button_buy addTarget:self action:@selector(tap_equip:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
@@ -284,7 +250,9 @@
     return cell;
 }
 
-
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section     { return nil; }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section        { return [data count]; }
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView                              { return 1; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  { return 75; }
 
 @end

@@ -30,43 +30,36 @@
 {
     if( (self=[super init]) )
     {
+        // StoreKit Helper Observer, to keep an eye on transactions
         MKStoreObserver *observer = [[MKStoreObserver alloc] init];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
-        app     = (AppController*)[[UIApplication sharedApplication] delegate];
         
-        timeout_check = 0;
+        // Load the app so we can do stuff like add tables, ui views etc...
+        app             = (AppController*)[[UIApplication sharedApplication] delegate];
+        timeout_check   = 0;
+        
+        // Load the user object for store data
         user = [[User alloc] init];
+        
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
         
+        // Show HUD whilst page loads with data from itunes connect
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-        if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
-        {
-            [self schedule:@selector(screenSetup) interval:1.0f];
-        }
-        else
-        {
-            [self setupTable];
-        }
+        if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )  [self schedule:@selector(screenSetup) interval:1.0f];
+        else [self setupTable];
 
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg-iphone5.png"];
-            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-            [self addChild:bg];
-        } else {
-            CCSprite *bg = [CCSprite spriteWithFile:@"bg-shop-bg.png"];
-            [bg setPosition:ccp(screenSize.width/2,screenSize.height/2)];
-            [self addChild:bg];
-        }
-        
+        // set up the design and functional sprites
+        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-shop-bg-iphone5.png" : @"bg-shop-bg.png")];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
-        [menu_back              setPosition:ccp(25, 25)];
-        [self addChild:menu_back z:1000];
+        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
         
-        // Collectable Button
-        lbl_user_collected = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
-        [lbl_user_collected setPosition:ccp ( screenSize.width/2, screenSize.height - 85 )];
+        [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [menu_back          setPosition:ccp(25, 25)];
+        [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
+        
+        [self addChild:bg];
+        [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
     }
     return self;
@@ -77,18 +70,10 @@
     if ( timeout_check >= 30 )
     {
         timeout_check++;
-        if ( [[MKStoreManager sharedManager] pricesDictionary].count <= 0 )
-        {
-            CCLOG(@"Keep trying...");
-        }
-        else
-        {
-            [self setupTable];
-        }
+        if ( !([[MKStoreManager sharedManager] pricesDictionary].count <= 0) ) [self setupTable];
     }
     else
     {
-        timeout_check = 30;
         [self unschedule:@selector(screenSetup)];
         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
         UIAlertView *alertView = [[UIAlertView alloc]
@@ -124,34 +109,14 @@
     view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
     table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [CCDirector sharedDirector].winSize.width, [CCDirector sharedDirector].winSize.height - 175)];
     
-    data    = [NSArray arrayWithObjects:
-               description1,description2,description3,description4,description5,
-               nil];
-
-    data2   = [NSArray arrayWithObjects:
-               upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5,
-               nil];
-
-    data3   = [NSArray arrayWithObjects:
-               @"2,000 Souls",
-               @"5,000 Souls",
-               @"10,000 Souls",
-               @"50,000 Souls",
-               @"100,000 Souls",
-               nil];
+    data    = [NSArray arrayWithObjects: description1,description2,description3,description4,description5,nil];
+    data2   = [NSArray arrayWithObjects: upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5, nil];
+    data3   = [NSArray arrayWithObjects: @"2,000 Souls",@"5,000 Souls", @"10,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];
     
     table.dataSource = self;
     table.delegate   = self;
     [view addSubview:table];
     [app.window addSubview:view];
-}
-
-- (void) tap_back
-{
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    
-    [view removeFromSuperview];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_purchase:(id) sender
@@ -164,31 +129,21 @@
     
     NSString *feature = @"";
     int collectedincrease = 0;
+    
     switch(button.tag)
     {
-        case 0:
-            feature = IAP_2000soul; collectedincrease = 2000;
-            break;
-        case 1:
-            feature = IAP_5000soul; collectedincrease = 5000;
-            break;
-        case 2:
-            feature = IAP_10000soul; collectedincrease = 10000;
-            break;
-        case 3:
-            feature = IAP_50000soul; collectedincrease = 50000;
-            break;
-        case 4:
-            feature = IAP_100000soul; collectedincrease = 100000;
-            break;
+        case 0: feature = IAP_2000soul; collectedincrease = 2000; break;
+        case 1: feature = IAP_5000soul; collectedincrease = 5000; break;
+        case 2: feature = IAP_10000soul; collectedincrease = 10000; break;
+        case 3: feature = IAP_50000soul; collectedincrease = 50000; break;
+        case 4: feature = IAP_100000soul; collectedincrease = 100000; break;
         default:break;
     }
     
-    tmp_collectables = user.collected;
-    tmp_collectable_increment = collectedincrease;
+    tmp_collectables            = user.collected;
+    tmp_collectable_increment   = collectedincrease;
 
-    [[MKStoreManager sharedManager] buyFeature:feature
-                                    onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
+    [[MKStoreManager sharedManager] buyFeature:feature onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
         [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Purchase Item %i",button.tag]];
         
@@ -198,7 +153,8 @@
         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
         [self schedule: @selector(collectable_add_tick) interval: 1.0f/60.0f];
     }
-    onCancelled:^{
+    onCancelled:^
+    {
         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Transaction Canceled"
@@ -246,38 +202,25 @@
     }
 }
 
+- (void) tap_back
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    [view removeFromSuperview];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+}
+
+
 
 #pragma mark UITableView code
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return nil;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [data count];
-}
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView 
-{
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 60;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.scrollEnabled = NO;
-    
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
-    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+
+    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SimpleTableCell"];
     if (cell == nil) 
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
@@ -285,18 +228,23 @@
     } 
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.label_description.font  = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+
+    cell.label_title.text       = [data objectAtIndex:indexPath.row];
+    cell.label_price.text       = [data2 objectAtIndex:indexPath.row];
     cell.label_description.text = [data3 objectAtIndex:indexPath.row];
-    cell.label_title.text = [data objectAtIndex:indexPath.row];
-    cell.label_title.font = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
-    cell.label_price.text    = [data2 objectAtIndex:indexPath.row];
-    cell.label_price.font = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
-    cell.image_thumbnail.image = [UIImage imageNamed:@"icon-bigcollectable-med.png"];
+    
     cell.button_buy.tag = indexPath.row;
     [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
 
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {return nil;}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return [data count]; }
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView { return 1; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 60; }
 
 @end

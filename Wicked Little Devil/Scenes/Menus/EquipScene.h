@@ -19,13 +19,11 @@
     UIView *view;
     UITableView *table;
     NSMutableArray *data, *data2, *data3;
-    NSArray *items, *descriptions, *prices;
     AppController *app;
     CCLabelTTF *lbl_user_collected;
     User *user;
     
     int tmp_collectables, tmp_collectable_increment;
-    CCLayer *layer_shop, *layer_equip;
 }
 
 +(CCScene *) scene;

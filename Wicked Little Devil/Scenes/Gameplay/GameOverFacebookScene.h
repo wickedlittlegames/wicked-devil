@@ -17,13 +17,9 @@
     UITableView *table;
     NSMutableArray *fbdata, *fbdata2, *fbdata3;
     
-    NSString *fb_score1, *fb_score2, *fb_score3;
-    NSString *fb_name1, *fb_name2, *fb_name3;
-    
-    NSMutableData *imageData, *imageData2, *imageData3;
-    NSURLConnection *urlConnection,*urlConnection2,*urlConnection3;
+    int timeout_check;
 }
-@property (nonatomic, assign) int request_tag;
+
 
 +(CCScene *) sceneWithGame:(Game*)game;
 - (id) initWithGame:(Game*)game;

@@ -15,7 +15,7 @@
 #import "FXLayer.h"
 
 @implementation Enemy
-@synthesize animating, running, projectiles, fx;
+@synthesize animating, running, projectiles, fx, dead;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
@@ -71,7 +71,7 @@
             {
                 [self action_bat_hit];
                 self.running = YES;
-                
+                self.dead = YES;                
                 game.player.health--;
                 if ( game.player.health <= 0 )
                 {
@@ -83,6 +83,7 @@
             {
                 if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
                 self.running = YES;
+                self.dead = YES;
                 [game.player jump:game.player.jumpspeed];
                 [self action_bat_hit];
             }
@@ -92,7 +93,7 @@
             {
                 [self action_bat_hit];
                 self.running = YES;
-                                
+                self.dead = YES;                                
                 game.player.health--;
                 if ( game.player.health <= 0 )
                 {
@@ -103,8 +104,8 @@
             else
             {
                 if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
-                
                 self.running = YES;
+                self.dead = YES;                
                 [game.player jump:game.player.jumpspeed];
                 [self action_bat_hit];
             }
@@ -113,6 +114,7 @@
             if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
             [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
             game.player.health--;
+            self.dead = YES;            
             if ( game.player.health <= 0 )
             {
                 game.player.animating = NO;

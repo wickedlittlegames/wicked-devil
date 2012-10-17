@@ -443,6 +443,8 @@
 		9C9E86D41618C4D1001CAC21 /* world-1-level-18.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E86C11618C4D1001CAC21 /* world-1-level-18.ccbi */; };
 		9C9E86D51618C4D1001CAC21 /* world-1-level-19.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E86C21618C4D1001CAC21 /* world-1-level-19.ccbi */; };
 		9C9E86D61618C4D1001CAC21 /* world-1-level-20.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E86C31618C4D1001CAC21 /* world-1-level-20.ccbi */; };
+		9CA45FB7162DD584009BD50A /* btn-invitefriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FB5162DD584009BD50A /* btn-invitefriends.png */; };
+		9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CAA095116264C9D00524845 /* btn-equipequipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094916264C9D00524845 /* btn-equipequipped.png */; };
@@ -973,6 +975,8 @@
 		9C9E86C11618C4D1001CAC21 /* world-1-level-18.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-18.ccbi"; sourceTree = "<group>"; };
 		9C9E86C21618C4D1001CAC21 /* world-1-level-19.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-19.ccbi"; sourceTree = "<group>"; };
 		9C9E86C31618C4D1001CAC21 /* world-1-level-20.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-1-level-20.ccbi"; sourceTree = "<group>"; };
+		9CA45FB5162DD584009BD50A /* btn-invitefriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-invitefriends.png"; sourceTree = "<group>"; };
+		9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-invitefriends-hd.png"; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -1801,6 +1805,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CA45FB5162DD584009BD50A /* btn-invitefriends.png */,
+				9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */,
 				9C6273B4162DC0F400E123DD /* bg-facebookfriends-iphone5.png */,
 				9C6273B5162DC0F400E123DD /* bg-facebookfriends-hd.png */,
 				9C6273B6162DC0F400E123DD /* bg-facebookfriends.png */,
@@ -2451,6 +2457,8 @@
 				9C6273B7162DC0F400E123DD /* bg-facebookfriends-iphone5.png in Resources */,
 				9C6273B8162DC0F400E123DD /* bg-facebookfriends-hd.png in Resources */,
 				9C6273B9162DC0F400E123DD /* bg-facebookfriends.png in Resources */,
+				9CA45FB7162DD584009BD50A /* btn-invitefriends.png in Resources */,
+				9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

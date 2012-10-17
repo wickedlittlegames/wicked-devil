@@ -64,24 +64,31 @@
         
         CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-shop-bg-iphone5.png" : @"bg-shop-bg.png")];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
-        CCMenu *resetAll                = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png"           target:self selector:@selector(tap_resetPowerups)],nil];
+        resetAll                        = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png"           target:self selector:@selector(tap_resetPowerups)],nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];
         [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
         [resetAll           setPosition:ccp(screenSize.width - 80, 25)];
+        [resetAll setOpacity:0];
         
         [self addChild:bg];
         [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
         [self addChild:resetAll];
+        
+        if ( user.bought_powerups )
+        {
+            [resetAll setOpacity:255];
+        }
     }
     return self;
 }
 
 - (void) tap_resetPowerups
 {
+    [resetAll runAction:[CCFadeOut actionWithDuration:0.5f]];
     user.powerup = 0;
     user.bought_powerups = NO;
     [user sync];
@@ -158,6 +165,8 @@
         [tmp_table_view addObject:equip_item];
     }
     [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationNone];
+    
+    [resetAll runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
 - (void) collectable_remove_tick

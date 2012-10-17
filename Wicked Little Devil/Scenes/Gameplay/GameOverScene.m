@@ -69,6 +69,7 @@
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
                      restartAudioToggle = TRUE;
+                     btn_next.visible = FALSE;
                  }
              }
              else
@@ -82,11 +83,6 @@
              
              [game.user setGameProgressforWorld:next_world level:next_level];
              [game.user sync];
-             
-             if ( game.user.worldprogress > CURRENT_WORLDS_PER_GAME )
-             {
-                 btn_next.visible = FALSE;
-             }
          }
          else
          {
@@ -98,6 +94,7 @@
                  if ( next_world > CURRENT_WORLDS_PER_GAME )
                  {
                      restartAudioToggle = TRUE;
+                     btn_next.visible = FALSE;                     
                  }
              }
              else

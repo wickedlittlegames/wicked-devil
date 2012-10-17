@@ -22,6 +22,7 @@
     AppController *app;
     CCLabelTTF *lbl_user_collected;
     User *user;
+    CCMenu *resetAll;
     
     int tmp_collectables, tmp_collectable_increment;
 }

@@ -15,7 +15,6 @@
 #import "FacebookTableCell.h"
 
 @implementation GameOverFacebookScene
-@synthesize request_tag;
 
 + (CCScene*) sceneWithGame:(Game *)game
 {
@@ -31,7 +30,7 @@
     {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         app = (AppController*) [[UIApplication sharedApplication] delegate];
-        
+        timeout_check = 0;
         fbdata    = [NSMutableArray arrayWithObjects:nil];
         fbdata2    = [NSMutableArray arrayWithObjects:nil];
         fbdata3  = [NSMutableArray arrayWithObjects:nil];
@@ -44,25 +43,19 @@
         [menu_back setPosition:ccp(25, 25)];
         [self addChild:menu_back];
         
-//
-//        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                                       @"My Title", @"title",
-//                                       @"Come check out my app.",  @"message",
-//                                       nil];
-//
-//        [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
-        
+        CCMenu *inviteFriends = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-invitefriends.png" selectedImage:@"btn-invitefriends.png"  target:self selector:@selector(tap_invite)],nil];
+        [inviteFriends           setPosition:ccp(screenSize.width - 80, 25)];
+        [self addChild:inviteFriends];
+                
         int gamescore = 0;
-        self.request_tag = 0;
-        imageData = [[NSMutableData alloc] init];
-        imageData2 = [[NSMutableData alloc] init];
-        imageData3 = [[NSMutableData alloc] init];
 
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+        [self schedule:@selector(timeoutchecker) interval:1.0f];
         for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++) {  gamescore += [game.user getHighscoreforWorld:i]; }
         
-        CCLabelTTF *lbl_yourscore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOUR TOTAL GAME SCORE: %i",gamescore] fontName:@"CrashLanding BB" fontSize:48];
+        CCLabelTTF *lbl_yourscore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOUR GAME SCORE: %i",gamescore] fontName:@"CrashLanding BB" fontSize:30];
         [lbl_yourscore setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
+        lbl_yourscore.color = ccBLACK;
         [self addChild:lbl_yourscore];
                                                   
         if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
@@ -89,6 +82,33 @@
     return self;
 }
 
+- (void) tap_invite
+{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Wicked Devil", @"title",
+                                   @"Can you beat my escape from Hell?.",  @"message",
+                                   nil];
+
+    [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
+}
+
+- (void) timeoutchecker
+{
+    timeout_check++;
+    if ( timeout_check == 20 )
+    {
+        [self unschedule:@selector(timeoutchecker)];
+        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Facebook Error!"
+                                  message:@"Could not connect to Facebook."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
 - (void) request:(PF_FBRequest *)request didLoad:(id)result
 {
     NSArray *friendScores = (NSArray *)[result objectForKey:@"data"];
@@ -106,6 +126,8 @@
     [view addSubview:table];
     [app.window addSubview:view];
 
+    timeout_check = 0;
+    [self unschedule:@selector(timeoutchecker)];
     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
     
 }
@@ -114,7 +136,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     
     FacebookTableCell *cell = (FacebookTableCell *)[tableView dequeueReusableCellWithIdentifier:@"FacebookTableCell"];

@@ -12,7 +12,7 @@
 @class Game;
 @interface Enemy : CCSprite {}
 
-@property (nonatomic, assign) bool animating, running;
+@property (nonatomic, assign) bool animating, running, dead;
 @property (nonatomic, retain) CCAnimation *anim_flap;
 @property (nonatomic, retain) CCArray *projectiles, *fx;
 

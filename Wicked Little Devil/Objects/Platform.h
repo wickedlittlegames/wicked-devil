@@ -13,7 +13,7 @@
 @interface Platform : CCSprite {}
 
 @property (nonatomic, assign) float health;
-@property (nonatomic, assign) BOOL animating, toggled, end_fx_added;
+@property (nonatomic, assign) BOOL animating, toggled, end_fx_added, dead;
 
 - (void) isIntersectingPlayer:(Game*)game platforms:(CCArray*)platforms;
 - (void) move;

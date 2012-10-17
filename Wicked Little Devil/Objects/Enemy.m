@@ -67,63 +67,15 @@
     switch(action_id)
     {
         case 1: // BAT: Jump ontop, or die below
-            if ( game.player.velocity.y > 0 )
-            {
-                [self action_bat_hit];
-                self.running = YES;
-                self.dead = YES;                
-                game.player.health--;
-                if ( game.player.health <= 0 )
-                {
-                    game.player.animating = NO;
-                    [game.player animate:4];
-                }
-            }
-            else
-            {
-                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
-                self.running = YES;
-                self.dead = YES;
-                [game.player jump:game.player.jumpspeed];
-                [self action_bat_hit];
-            }
+            [self action_bat_hit:game];
             break;
         case 101: // BAT: Jump ontop, or die below
-            if ( game.player.velocity.y > 0 )
-            {
-                [self action_bat_hit];
-                self.running = YES;
-                self.dead = YES;                                
-                game.player.health--;
-                if ( game.player.health <= 0 )
-                {
-                    game.player.animating = NO;
-                    [game.player animate:4];
-                }
-            }
-            else
-            {
-                if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
-                self.running = YES;
-                self.dead = YES;                
-                [game.player jump:game.player.jumpspeed];
-                [self action_bat_hit];
-            }
+            [self action_bat_hit:game];
             break;
         case 2: // MINE: Any time touched, blows up
-            if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
-            [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
-            game.player.health--;
-            self.dead = YES;            
-            if ( game.player.health <= 0 )
-            {
-                game.player.animating = NO;
-                [game.player animate:4];
-            }
-            self.visible = NO;
+            [self action_mine_explode:game];
             break;
         case 3: // BUBBLE: Floats the player up
-            self.running = YES;
             [self action_bubble_float:game];
             break;
         case 4: // ROCKET: Shoots rocket at target player area
@@ -136,8 +88,25 @@
     }
 }
 
-- (void) action_bat_hit
+- (void) action_bat_hit:(Game*)game
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bat-hit.caf"];
+    
+    if ( game.player.velocity.y > 0 ) // If player is jumping INTO the bat
+    {
+        if ( --game.player.health <= 0 )
+        {
+            game.player.animating = NO;
+            [game.player animate:4];
+        }
+    }
+    else // if player is jumping ONTO the bat
+    {
+        [game.player jump:game.player.jumpspeed];
+    }
+    
+    self.dead = YES;
+    
     id up   = [CCEaseExponentialOut actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,30)]];
     id down = [CCEaseExponentialIn actionWithAction:[CCMoveBy actionWithDuration:0.5 position:ccp(0,-250)]];
     id end  = [CCCallBlock actionWithBlock:^(void) { self.visible = NO; [self removeFromParentAndCleanup:YES]; }];
@@ -145,14 +114,19 @@
     [self runAction:[CCSequence actions:up,down,end, nil]];
 }
 
-- (void) action_teleport_player:(Game*)game
+- (void) action_mine_explode:(Game*)game
 {
-    game.player.velocity = ccp ( 0, 0 );
+    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
+    self.dead = YES;
+    self.visible = NO;
     
-    CCSprite *blackhole_child = (CCSprite *)[self getChildByTag:1000];
-    [game.player setPosition:[blackhole_child worldBoundingBox].origin];
+    if ( --game.player.health <= 0 )
+    {
+        game.player.animating = NO;
+        [game.player animate:4];
+    }
     
-    game.touch = ccp ( game.player.position.x, game.touch.y );
+    [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
 }
 
 - (void) action_bubble_float:(Game*)game
@@ -162,8 +136,6 @@
     game.player.controllable = NO;
     game.player.velocity = ccp ( 0, 0 );
     
-
-    // MOVE THE BUBBLE
     id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,300)];
     id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,300)];
     id end_action_bubble        = [CCCallFunc actionWithTarget:self selector:@selector(action_end_item)];
@@ -186,7 +158,7 @@
     EnemyFX *rocket_fx = [EnemyFX particleWithFile:@"RocketBlast.plist"];
     [rocket_fx setPosition:ccp([self worldBoundingBox].origin.x, [self worldBoundingBox].origin.y + 315)];
     rocket_fx.tag = 1111;
-
+    
     [self addChild:rocket_fx];
     [self addChild:projectile];
     [self.projectiles addObject:projectile];
@@ -210,47 +182,31 @@
     
     id action_end = [CCCallBlock actionWithBlock:^(void) { projectile.visible = NO; }];
     id fx_end     = [CCCallBlock actionWithBlock:^(void) { [rocket_fx stopSystem]; [rocket_fx removeFromParentAndCleanup:YES]; }];
-
+    
     // Move projectile to actual endpoint
     [projectile runAction:[CCSequence actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
                            action_end,
                            nil]];
     [rocket_fx runAction:[CCSequence actions:
-                           [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
-                           fx_end,
-                           nil]];
+                          [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+                          fx_end,
+                          nil]];
 }
 
-- (void) action_end_item
+- (void) action_teleport_player:(Game*)game
 {
-    self.visible = NO;
-    self.running = NO;
-}
-
-- (bool) intersectCheck:(Game*)game
-{
-    return CGRectIntersectsRect([self worldBoundingBox], [game.player worldBoundingBox]);
-}
-
-- (bool) radiusCheck:(Game*)game 
-{
-    float xdif = self.position.x - game.player.position.x;
-    float ydif = self.position.y - game.player.position.y;
-    float radius = 30;
-    float radiusTwo = 1;
+    game.player.velocity = ccp ( 0, 0 );
     
-    float distance = sqrt(xdif*xdif+ydif*ydif);
+    CCSprite *blackhole_child = (CCSprite *)[self getChildByTag:1000];
+    [game.player setPosition:[blackhole_child worldBoundingBox].origin];
     
-    if(distance <= radius+radiusTwo)
-        return YES;
-    
-    return NO;
+    game.touch = ccp ( game.player.position.x, game.touch.y );
 }
 
 - (void) setupAnimations
 {
-    if ( self.tag == 1 && !self.animating )
+    if ( self.tag == 1 )
     {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"BatAnim.plist"];
         CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"BatAnim.png"];
@@ -271,7 +227,7 @@
         self.animating = YES;
     }
     
-    if ( self.tag == 6 && !self.animating )
+    if ( self.tag == 6 )
     {
         EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];
         id anim_angel_blast = [CCCallBlock actionWithBlock:^(void)
@@ -300,5 +256,27 @@
         self.animating = YES;
     }
 }
+
+- (bool) intersectCheck:(Game*)game
+{
+    return CGRectIntersectsRect([self worldBoundingBox], [game.player worldBoundingBox]);
+}
+
+- (bool) radiusCheck:(Game*)game
+{
+    float xdif = self.position.x - game.player.position.x;
+    float ydif = self.position.y - game.player.position.y;
+    float radius = 30;
+    float radiusTwo = 1;
+    
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+    
+    if(distance <= radius+radiusTwo)
+        return YES;
+    
+    return NO;
+}
+
+- (void) action_end_item { self.visible = NO; self.running = NO; }
 
 @end

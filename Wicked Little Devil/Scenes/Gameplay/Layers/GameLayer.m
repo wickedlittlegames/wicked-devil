@@ -100,14 +100,19 @@
     
     CCARRAY_FOREACH(platforms, platform)
     {
-        if ([platform worldBoundingBox].origin.y < -80 && !game.isIntro)
+        if ( !game.isIntro )
         {
-            platform.visible = NO;
-            platform.dead = YES;
-            [platforms removeObject:platform];
-            [platform removeFromParentAndCleanup:YES];
-        }
+            if ([platform worldBoundingBox].origin.y < -80)
+            {
+                platform.visible = NO;
+                platform.dead = YES;
+                [platforms removeObject:platform];
+                [platform removeFromParentAndCleanup:YES];
                 
+                break;
+            }
+        }
+        
         platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 && !platform.dead );
         
         if (  platform.visible )
@@ -121,14 +126,20 @@
     
     CCARRAY_FOREACH(collectables, collectable)
     {
-        if ([collectable worldBoundingBox].origin.y < -80 && !game.isIntro)
+        if ( !game.isIntro )
         {
-            collectable.visible = NO;
-            [collectables removeObject:collectable];
-            [collectable removeFromParentAndCleanup:YES];
-        }
+            if ([collectable worldBoundingBox].origin.y < -80)
+            {
+                collectable.visible = NO;
+                collectable.dead = YES;
+                [collectables removeObject:collectable];
+                [collectable removeFromParentAndCleanup:YES];
                 
-        collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > -20 );
+                break;
+            }
+        }
+        
+        collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > -20 && !collectable.dead );
         
         if ( collectable.visible )
         {
@@ -149,14 +160,20 @@
     
     CCARRAY_FOREACH(bigcollectables, bigcollectable)
     {
-        if ([bigcollectable worldBoundingBox].origin.y < -200 && !game.isIntro)
+        if ( !game.isIntro )
         {
-            bigcollectable.visible = NO;
-            [bigcollectables removeObject:bigcollectable];
-            [bigcollectable removeFromParentAndCleanup:YES];
+            if ( [bigcollectable worldBoundingBox].origin.y < -200 )
+            {
+                bigcollectable.visible = NO;
+                bigcollectable.dead = YES;
+                [bigcollectables removeObject:bigcollectable];
+                [bigcollectable removeFromParentAndCleanup:YES];
+                
+                break;
+            }
         }
 
-        bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > -20 );
+        bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > -20 && !bigcollectable.dead );
         
         if ( bigcollectable.visible )
         {
@@ -183,10 +200,13 @@
         
         if ( enemy.visible )
         {
-            if ([enemy worldBoundingBox].origin.y < -80 && !game.isIntro )
+            if ( !game.isIntro )
             {
-                enemy.visible = NO;
-                enemy.dead = YES;
+                if ([enemy worldBoundingBox].origin.y < -80)
+                {
+                    enemy.visible = NO;
+                    enemy.dead = YES;
+                }
             }
             
             [enemy isIntersectingPlayer:game];

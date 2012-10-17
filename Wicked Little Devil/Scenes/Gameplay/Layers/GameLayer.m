@@ -108,8 +108,6 @@
                 platform.dead = YES;
                 [platforms removeObject:platform];
                 [platform removeFromParentAndCleanup:YES];
-                
-                break;
             }
         }
         
@@ -134,8 +132,6 @@
                 collectable.dead = YES;
                 [collectables removeObject:collectable];
                 [collectable removeFromParentAndCleanup:YES];
-                
-                break;
             }
         }
         
@@ -150,6 +146,7 @@
                     [[SimpleAudioEngine sharedEngine] playEffect:@"collect-small.caf" pitch:1 pan:1 gain:0.2];
                 }
                 collectable.visible = FALSE;
+                collectable.dead = YES;
                 [collectables removeObject:collectable];
                 [collectable removeFromParentAndCleanup:YES];
                 
@@ -168,8 +165,6 @@
                 bigcollectable.dead = YES;
                 [bigcollectables removeObject:bigcollectable];
                 [bigcollectable removeFromParentAndCleanup:YES];
-                
-                break;
             }
         }
 

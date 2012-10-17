@@ -55,7 +55,7 @@
             if ( restartMusic )
             {
                 [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-                [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"bg-loop%i.wav",w] loop:YES];
+                [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"bg-loop%i.aifc",w] loop:YES];
             }
         }
         

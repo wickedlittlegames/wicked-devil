@@ -373,7 +373,7 @@
     if ( ![SimpleAudioEngine sharedEngine].mute )
     {
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.wav" loop:YES];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
     }
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:self.tmp_game.world]]];
 }

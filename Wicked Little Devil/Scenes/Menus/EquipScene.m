@@ -13,6 +13,7 @@
 #import "SimpleTableCell.h"
 #import "MKStoreManager.h"
 #import "WorldSelectScene.h"
+#import "ShopScene.h"
 #import "FlurryAnalytics.h"
 
 @implementation EquipScene
@@ -141,13 +142,22 @@
     {
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Not Enough Souls!"
-                                  message:@"You need to collect more Souls to afford this powerup."
+                                  message:@"You don't have enough souls! Would you like to buy some?"
                                   delegate:self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Buy Souls", nil];
         [alertView show];
     }
 
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [view removeFromSuperview];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+    }
 }
 
 - (void) tap_equip:(UIButton*)sender

@@ -14,7 +14,7 @@
 
 #import "User.h"
 
-@interface EquipScene : CCLayer <UITableViewDelegate, UITableViewDataSource>
+@interface EquipScene : CCLayer <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 {
     UIView *view;
     UITableView *table;

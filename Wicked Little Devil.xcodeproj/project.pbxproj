@@ -977,6 +977,7 @@
 		9CA45FBA162EBAD5009BD50A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9CA45FBB162EBAD5009BD50A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9CA45FBC162EBAD5009BD50A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		9CA45FC1162EBBB7009BD50A /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -993,7 +994,6 @@
 		9CABCF011611D5EA006DFDE9 /* Powerups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Powerups.plist; sourceTree = "<group>"; };
 		9CABCF031611D5EA006DFDE9 /* CrashLandingBB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB.ttf; sourceTree = "<group>"; };
 		9CABCF041611D5EA006DFDE9 /* CrashLandingBB_ital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrashLandingBB_ital.ttf; sourceTree = "<group>"; };
-		9CABCF731611D5F6006DFDE9 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		9CABCF741611D653006DFDE9 /* CCNode+CoordHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CoordHelpers.m"; sourceTree = "<group>"; };
 		9CABCF751611D653006DFDE9 /* CCNode+CoordHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+CoordHelpers.h"; sourceTree = "<group>"; };
 		9CABCF7C1611D76D006DFDE9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -1188,13 +1188,13 @@
 		9C142178156E68560011C992 /* Wicked Little Devil */ = {
 			isa = PBXGroup;
 			children = (
+				9CA45FC0162EBBB6009BD50A /* Config */,
 				9CBF4817156F927F00896EBF /* Scenes */,
 				9CBF4813156F8F8600896EBF /* Objects */,
 				9C142179156E68560011C992 /* Resources */,
 				9C1422E5156E68580011C992 /* Supporting Files */,
 				9C1422E9156E68580011C992 /* AppDelegate.h */,
 				9C1422EA156E68580011C992 /* AppDelegate.m */,
-				9CABCF731611D5F6006DFDE9 /* GameConstants.h */,
 			);
 			path = "Wicked Little Devil";
 			sourceTree = "<group>";
@@ -1645,6 +1645,14 @@
 				9C84ED421594BFD40083DF40 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		9CA45FC0162EBBB6009BD50A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9CA45FC1162EBBB7009BD50A /* GameConstants.h */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		9CABCEFD1611D5EA006DFDE9 /* DATA */ = {

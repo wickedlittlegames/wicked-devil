@@ -11,7 +11,6 @@
 #import "EquipScene.h"
 #import "CCScrollLayer.h"
 #import "SimpleTableCell.h"
-#import "MKStoreManager.h"
 #import "WorldSelectScene.h"
 #import "ShopScene.h"
 #import "FlurryAnalytics.h"
@@ -29,10 +28,7 @@
 -(id) init
 {
     if( (self=[super init]) )
-    {
-        MKStoreObserver *observer = [[MKStoreObserver alloc] init];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
-        
+    {       
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";

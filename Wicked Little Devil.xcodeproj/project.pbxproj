@@ -443,6 +443,8 @@
 		9CA45FBD162EBAD5009BD50A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBA162EBAD5009BD50A /* Default-568h@2x.png */; };
 		9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBB162EBAD5009BD50A /* Icon.png */; };
 		9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBC162EBAD5009BD50A /* Icon@2x.png */; };
+		9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FC2162ED88E009BD50A /* Begin-Button.png */; };
+		9CA45FC5162ED88E009BD50A /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CAA095116264C9D00524845 /* btn-equipequipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA094916264C9D00524845 /* btn-equipequipped.png */; };
@@ -971,6 +973,8 @@
 		9CA45FBB162EBAD5009BD50A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9CA45FBC162EBAD5009BD50A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9CA45FC1162EBBB7009BD50A /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
+		9CA45FC2162ED88E009BD50A /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
+		9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -1800,6 +1804,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CA45FC2162ED88E009BD50A /* Begin-Button.png */,
+				9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */,
 				9CA45FB5162DD584009BD50A /* btn-invitefriends.png */,
 				9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */,
 				9C6273B4162DC0F400E123DD /* bg-facebookfriends-iphone5.png */,
@@ -2447,6 +2453,8 @@
 				9CA45FBD162EBAD5009BD50A /* Default-568h@2x.png in Resources */,
 				9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */,
 				9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */,
+				9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */,
+				9CA45FC5162ED88E009BD50A /* Begin-Button-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2662,7 +2670,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2705,7 +2713,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

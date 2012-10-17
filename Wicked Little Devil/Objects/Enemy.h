@@ -10,7 +10,9 @@
 #import "CCNode+CoordHelpers.h"
 
 @class Game;
-@interface Enemy : CCSprite {}
+@interface Enemy : CCSprite {
+    CCRenderTexture *_rt;
+}
 
 @property (nonatomic, assign) bool animating, running, dead;
 @property (nonatomic, retain) CCAnimation *anim_flap;

@@ -259,7 +259,53 @@
 
 - (bool) intersectCheck:(Game*)game
 {
-    return CGRectIntersectsRect([self worldBoundingBox], [game.player worldBoundingBox]);
+    BOOL isCollision = NO;
+    CGRect intersection = CGRectIntersection([self worldBoundingBox], [game.player worldBoundingBox]);
+    
+    // Look for simple bounding box collision
+    if (!CGRectIsEmpty(intersection))
+    {
+        // Get intersection info
+        unsigned int x = intersection.origin.x;
+        unsigned int y = intersection.origin.y;
+        unsigned int w = intersection.size.width;
+        unsigned int h = intersection.size.height;
+        unsigned int numPixels = w * h;
+        
+        // Draw into the RenderTexture
+        [_rt beginWithClear:0 g:0 b:0 a:0];
+        
+        // Render both sprites: first one in RED and second one in GREEN
+        glColorMask(1, 0, 0, 1);
+        [self visit];
+        glColorMask(0, 1, 0, 1);
+        [game.player visit];
+        glColorMask(1, 1, 1, 1);
+        
+        // Read pixels
+        ccColor4B *buffer = malloc( sizeof(ccColor4B) * numPixels );
+        glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+        
+        [_rt end];
+        
+        // Read buffer
+        unsigned int step = 1;
+        for(unsigned int i=0; i<numPixels; i+=step)
+        {
+            ccColor4B color = buffer[i];
+            
+            if (color.r > 0 && color.g > 0)
+            {
+                isCollision = YES;
+                break;
+            }
+        }
+        
+        // Free buffer memory
+        free(buffer);
+    }
+    
+    return isCollision;
 }
 
 - (bool) radiusCheck:(Game*)game

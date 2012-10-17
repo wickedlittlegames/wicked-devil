@@ -165,21 +165,22 @@
 
 - (void) cacheSFX
 {
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-main.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop1.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop2.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"complete.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect1.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect2.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect3.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect-small.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"player-hit.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"bat-hit.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump1.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump2.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump3.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump4.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect1.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect2.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collect3.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"score.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"player-hit.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"bat-hit.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-main.aifc"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop1.aifc"];
-    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop2.aifc"];
 }
 
 @end

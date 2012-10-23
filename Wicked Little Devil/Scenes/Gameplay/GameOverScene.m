@@ -409,6 +409,16 @@
         // Create the view controller
         TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
         [twitter setInitialText:[NSString stringWithFormat:@"I just scored %i on World %i, Level %i on Wicked Devil for iOS http://bit.ly/wickeddevil", final_score,self.tmp_game.world, self.tmp_game.level]];
+        twitter.completionHandler = ^(TWTweetComposeViewControllerResult res) {
+            if (TWTweetComposeViewControllerResultDone) {
+                // Add in a cool UI effect to show tweet causing collectables to increase!
+                // tmp_game.user.collected += 50;
+                // [tmp_game.user sync];
+            } else if (TWTweetComposeViewControllerResultCancelled) {
+                // Cancelled
+            }
+            [[app navController] dismissModalViewControllerAnimated:YES];
+        };
         [[app navController] presentModalViewController:twitter animated:YES];
     }
     else

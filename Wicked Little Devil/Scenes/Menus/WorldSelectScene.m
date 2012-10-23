@@ -56,11 +56,13 @@
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         
         // Add world layers to the scroller
+        [worlds addObject:[self updates]];
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
+        [worlds addObject:[self purgatory]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-        [scroller selectPage:user.cache_current_world-1];
+        [scroller selectPage:user.cache_current_world];
         
         // Put the children to the screen
         [self addChild:scroller];
@@ -88,6 +90,11 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:sender.tag]]];
 }
 
+- (void) tap_purgatory
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:666]]];
+}
+
 - (void) tap_equip:(id)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited EquipStore"]];
@@ -111,6 +118,22 @@
 }
 
 #pragma mark WORLDS
+
+- (CCLayer*) updates
+{
+    CCLayer *layer          = [CCLayer node];
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
+    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_equip:)];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil];
+    
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    [layer addChild:bg];
+    [layer addChild:menu];
+    
+    return layer;
+}
 
 - (CCLayer*) hell
 {
@@ -157,6 +180,22 @@
     CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-coming-soon.png" : @"bg-coming-soon.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag ); 
+    
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    [layer addChild:bg];
+    [layer addChild:menu];
+    
+    return layer;
+}
+
+- (CCLayer*) purgatory
+{
+    CCLayer *layer          = [CCLayer node];
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
+    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_purgatory)];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil];
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];

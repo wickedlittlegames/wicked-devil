@@ -375,6 +375,8 @@
 		9C6273B7162DC0F400E123DD /* bg-facebookfriends-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6273B4162DC0F400E123DD /* bg-facebookfriends-iphone5.png */; };
 		9C6273B8162DC0F400E123DD /* bg-facebookfriends-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6273B5162DC0F400E123DD /* bg-facebookfriends-hd.png */; };
 		9C6273B9162DC0F400E123DD /* bg-facebookfriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6273B6162DC0F400E123DD /* bg-facebookfriends.png */; };
+		9C6634741636BA1300A145D2 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C6634711636BA1300A145D2 /* iRate.bundle */; };
+		9C6634751636BA1300A145D2 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6634731636BA1300A145D2 /* iRate.m */; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
 		9C84ED491594C4E80083DF40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED481594C4E80083DF40 /* CFNetwork.framework */; };
@@ -901,6 +903,9 @@
 		9C6273B4162DC0F400E123DD /* bg-facebookfriends-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-facebookfriends-iphone5.png"; sourceTree = "<group>"; };
 		9C6273B5162DC0F400E123DD /* bg-facebookfriends-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-facebookfriends-hd.png"; sourceTree = "<group>"; };
 		9C6273B6162DC0F400E123DD /* bg-facebookfriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-facebookfriends.png"; sourceTree = "<group>"; };
+		9C6634711636BA1300A145D2 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		9C6634721636BA1300A145D2 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		9C6634731636BA1300A145D2 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		9C84ED421594BFD40083DF40 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1219,6 +1224,7 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9C6634701636BA1300A145D2 /* iRate */,
 				9C4EA3561626D93600E7B66F /* FlurryAnalytics */,
 				9CB90225161D969B00481AD4 /* MBProgressHUD.h */,
 				9CB90226161D969B00481AD4 /* MBProgressHUD.m */,
@@ -1630,6 +1636,16 @@
 				9C99B843161EEA7A00F6BA88 /* GameOverFacebookScene.m */,
 			);
 			name = Gameplay;
+			sourceTree = "<group>";
+		};
+		9C6634701636BA1300A145D2 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				9C6634711636BA1300A145D2 /* iRate.bundle */,
+				9C6634721636BA1300A145D2 /* iRate.h */,
+				9C6634731636BA1300A145D2 /* iRate.m */,
+			);
+			path = iRate;
 			sourceTree = "<group>";
 		};
 		9C84ED3F1594BFC40083DF40 /* Reachability */ = {
@@ -2455,6 +2471,7 @@
 				9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */,
 				9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */,
 				9CA45FC5162ED88E009BD50A /* Begin-Button-hd.png in Resources */,
+				9C6634741636BA1300A145D2 /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2509,6 +2526,7 @@
 				9CB90227161D969B00481AD4 /* MBProgressHUD.m in Sources */,
 				9C99B844161EEA7A00F6BA88 /* GameOverFacebookScene.m in Sources */,
 				9C6273AF162DBBBE00E123DD /* FacebookTableCell.m in Sources */,
+				9C6634751636BA1300A145D2 /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2670,7 +2688,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2714,6 +2732,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2740,6 +2759,7 @@
 				);
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

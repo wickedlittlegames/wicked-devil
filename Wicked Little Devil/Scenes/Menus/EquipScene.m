@@ -50,8 +50,7 @@
             NSDictionary *dict = [contentArray objectAtIndex:i]; //name, description, cost, unlocked, image
             [data addObject:[dict objectForKey:@"Name"]];
             [data2 addObject:[dict objectForKey:@"Cost"]];
-            [data3 addObject:[dict objectForKey:@"Description"]];;
-            
+            [data3 addObject:[dict objectForKey:@"Description"]];;            
         }
 
         table.dataSource = self;

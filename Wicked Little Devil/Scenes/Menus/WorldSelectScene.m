@@ -124,7 +124,7 @@
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_equip:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.opacity = 0; button.scale *= 3;
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -177,14 +177,9 @@
 - (CCLayer*) ocean
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-coming-soon.png" : @"bg-coming-soon.png")];
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-ocean-iphone5.png" : @"bg-world-ocean.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag ); 
-    
-    CCParticleSystemQuad *bubbleFX = [CCParticleSystemQuad particleWithFile:@"BubbleFX.plist"];
-    bubbleFX.positionType = kCCPositionTypeRelative;
-    [bubbleFX setPosition:ccp(screenSize.width/2,0)];
-    [layer addChild:bubbleFX];
         
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -198,9 +193,9 @@
 - (CCLayer*) purgatory
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
+    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-purgatory-iphone5.png" : @"bg-world-purgatory.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_purgatory)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.opacity = 0; button.scale *= 3;
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];

@@ -202,17 +202,36 @@
         }
         else
         {
-            // GO TO LAST STEP
-            [label_subscore runAction:[CCSequence actions:
-                                       [CCDelayTime actionWithDuration:0.2f],
-                                       [CCFadeOut actionWithDuration:0.2f],
-                                       [CCCallBlock actionWithBlock:^(void) { [self showHighscorePanelwithAnim:YES]; }],
-                                       [CCDelayTime actionWithDuration:0.2f],
-                                       [CCCallBlock actionWithBlock:^(void)
-                                        {
-                                            self.runningAnims = NO;
-                                            [self showMenuPanelwithAnim:YES];
-                                        }],nil]];
+            if ( collected > 0 )
+            {
+                [label_subscore runAction:[CCSequence actions:
+                                           [CCDelayTime actionWithDuration:0.2f],
+                                           [CCFadeOut actionWithDuration:0.2f],
+                                           [CCCallBlock actionWithBlock:^(void)
+                                            {
+                                                NSString *str_timebonus = [NSString stringWithFormat:@"COLLECTED BONUS: %i", collected];
+                                                [label_subscore setString:str_timebonus];
+                                            }],
+                                           [CCFadeIn actionWithDuration:0.2f],
+                                           [CCCallBlock actionWithBlock:^(void)
+                                            {
+                                                [self schedule: @selector(collectable_bonus_tick) interval: 1.0f/60.0f];
+                                            }],nil]];
+            }
+            else
+            {
+                // GO TO LAST STEP
+                [label_subscore runAction:[CCSequence actions:
+                                           [CCDelayTime actionWithDuration:0.2f],
+                                           [CCFadeOut actionWithDuration:0.2f],
+                                           [CCCallBlock actionWithBlock:^(void) { [self showHighscorePanelwithAnim:YES]; }],
+                                           [CCDelayTime actionWithDuration:0.2f],
+                                           [CCCallBlock actionWithBlock:^(void)
+                                            {
+                                                self.runningAnims = NO;
+                                                [self showMenuPanelwithAnim:YES];
+                                            }],nil]];
+            }
         }
     }
 }

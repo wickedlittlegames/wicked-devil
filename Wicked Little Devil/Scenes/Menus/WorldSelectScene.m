@@ -60,7 +60,7 @@
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
-        [worlds addObject:[self purgatory]];
+        //[worlds addObject:[self purgatory]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world];
         

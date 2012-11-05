@@ -11,7 +11,8 @@
 
 @class User;
 @class ShopScene;
-@interface WorldSelectScene : CCLayer 
+@class AppController;
+@interface WorldSelectScene : CCLayer
 {
     CGSize screenSize;
     NSString *font;

@@ -13,6 +13,7 @@
 #import "EquipScene.h"
 #import "User.h"
 #import "FlurryAnalytics.h"
+#import "SimpleTableCell.h"
 
 @implementation WorldSelectScene
 
@@ -63,8 +64,10 @@
         //[worlds addObject:[self purgatory]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world];
+        [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
+        [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
         
-        // Put the children to the screen
+       // Put the children to the screen
         [self addChild:scroller];
         [self addChild:menu_equip];
         [self addChild:menu_back];
@@ -122,16 +125,6 @@
 - (CCLayer*) updates
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_equip:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.opacity = 0; button.scale *= 3;
-    
-    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    
-    [layer addChild:bg];
-    [layer addChild:menu];
-    
     return layer;
 }
 
@@ -187,7 +180,51 @@
     [layer addChild:bg];
     [layer addChild:menu];
     
+    if ( !button.isEnabled )
+    {
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-locked-iphone5.png" : @"bg-locked.png")];
+        locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+        [layer addChild:locked_sprite];
+    }
+    
     return layer;
 }
+
+#pragma mark UITableView code
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [UIColor clearColor];
+    
+    SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SimpleTableCell"];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.selectionStyle             = UITableViewCellSelectionStyleNone;
+    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    
+    cell.label_title.text           = @"TEST";
+    cell.label_price.text           = @"TEST2";
+    cell.label_description.text     = @"TEST3";
+    
+    cell.button_buy.selected        = TRUE;
+    cell.button_buy.tag             = indexPath.row;
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section     { return nil; }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section        { return 2; }
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView                              { return 1; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  { return 75; }
+
+
 
 @end

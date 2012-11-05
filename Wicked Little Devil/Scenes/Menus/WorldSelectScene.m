@@ -190,20 +190,4 @@
     return layer;
 }
 
-- (CCLayer*) purgatory
-{
-    CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-purgatory-iphone5.png" : @"bg-world-purgatory.png")];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_purgatory)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.opacity = 0; button.scale *= 3;
-    
-    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    
-    [layer addChild:bg];
-    [layer addChild:menu];
-    
-    return layer;
-}
-
 @end

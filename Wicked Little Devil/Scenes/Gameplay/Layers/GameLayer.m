@@ -61,6 +61,7 @@
         if ([node isKindOfClass: [Tip class]])
         {
             [tips addObject:node];
+            node.visible = NO;
         }
     }
     
@@ -87,16 +88,6 @@
 - (void) update:(Game *)game
 {       
     [self gameoverCheck:game];
-    
-    CCARRAY_FOREACH(tips, tip)
-    {
-        if (!tip.faded)
-        {
-            [tip runAction:[CCSequence actions:[CCFadeOut actionWithDuration:2.0f],[CCCallBlock actionWithBlock:^(void){
-                tip.faded = YES;
-            }],nil]];
-        }
-    }
     
     CCARRAY_FOREACH(platforms, platform)
     {

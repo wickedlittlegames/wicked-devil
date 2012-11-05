@@ -10,12 +10,12 @@
 #import <Parse/Parse.h>
 
 @class Game, GameOverScene, AppController;
-@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate, PF_FBDialogDelegate, NSURLConnectionDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate, PF_FBDialogDelegate, NSURLConnectionDelegate,UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 {
     AppController *app;
     UIView *view;
     UITableView *table;
-    NSMutableArray *fbdata, *fbdata2, *fbdata3;
+    NSMutableArray *fbdata, *fbdata2, *fbdata3, *fbdata4;
     
     int timeout_check;
 }

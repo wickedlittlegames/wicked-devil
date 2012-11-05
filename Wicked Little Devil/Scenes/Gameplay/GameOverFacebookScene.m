@@ -117,12 +117,29 @@
         [fbdata addObject:[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"name"]];
         [fbdata2 addObject:[[friendScores objectAtIndex:i] objectForKey:@"score"]];
         [fbdata3 addObject:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"]]];
+        
+        NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"]]]];
+        [fbdata4 addObject:[UIImage imageWithData:image]];
     }
     
     view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
     table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
     table.dataSource = self;
     table.delegate   = self;
+    
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(handleSwipeLeft:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [table addGestureRecognizer:recognizer];
+    
+    //Add a right swipe gesture recognizer
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                           action:@selector(handleSwipeRight:)];
+    recognizer.delegate = self;
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [table addGestureRecognizer:recognizer];
+
+    
     [view addSubview:table];
     [app.window addSubview:view];
 
@@ -149,20 +166,38 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.nameLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
     cell.scoreLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:50.0f];
-    
+    	
     cell.nameLabel.text        = [NSString stringWithFormat:@"%@",[fbdata objectAtIndex:indexPath.row]];
     cell.scoreLabel.text       = [NSString stringWithFormat:@"%@",[fbdata2 objectAtIndex:indexPath.row]];
 
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(concurrentQueue, ^{
-        NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[fbdata3 objectAtIndex:indexPath.row]]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.facebookImageView.image = [UIImage imageWithData:image];
-        });
-    });
+    cell.facebookImageView.image = [fbdata4 objectAtIndex:indexPath.row];
+//    cell.facebookImageView.contentMode  = UIViewContentModeScaleAspectFit;
+//    cell.facebookImageView.clipsToBounds = YES; 
 
     return cell;
 }
+
+- (void)handleSwipeLeft:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    // do nothing
+}
+
+- (void)handleSwipeRight:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+//    //Get location of the swipe
+//    CGPoint location = [gestureRecognizer locationInView:table];
+//    
+//    //Get the corresponding index path within the table view
+//    NSIndexPath *indexPath = [table indexPathForRowAtPoint:location];
+//    
+//    //Check if index path is valid
+//    if(indexPath)
+//    {
+//        //Get the cell out of the table view
+//        UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
+//    }
+}
+
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return [fbdata count]; }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 87.0; }

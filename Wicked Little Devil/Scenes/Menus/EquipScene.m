@@ -58,7 +58,7 @@
         [view addSubview:table];
         [app.window addSubview:view];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-shop-bg-iphone5.png" : @"bg-shop-bg.png")];
+        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-powerups-iphone5.png" : @"bg-powerups.png")];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         resetAll                        = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png"           target:self selector:@selector(tap_resetPowerups)],nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
@@ -143,7 +143,6 @@
                                   otherButtonTitles:@"Buy Souls", nil];
         [alertView show];
     }
-
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -227,9 +226,9 @@
     }
 
     cell.selectionStyle             = UITableViewCellSelectionStyleNone;
-    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];    
-    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
-    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:28.0f];
+    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:36.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:20.0f];
     
     cell.label_title.text           = [data objectAtIndex:indexPath.row];
     cell.label_price.text           = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
@@ -267,6 +266,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section     { return nil; }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section        { return [data count]; }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView                              { return 1; }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  { return 75; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  { return 46; }
 
 @end

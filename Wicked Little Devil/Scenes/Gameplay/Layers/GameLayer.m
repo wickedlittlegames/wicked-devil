@@ -182,7 +182,7 @@
         
     CCARRAY_FOREACH(enemies, enemy)
     {
-        enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > -20 && !enemy.dead );
+        enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > -70 && !enemy.dead );
         
         if ( enemy.visible )
         {

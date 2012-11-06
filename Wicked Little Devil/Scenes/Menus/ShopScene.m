@@ -224,9 +224,9 @@
     } 
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
-    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:40.0f];
-    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:24.0f];
+    cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:22.0f];
 
     cell.label_title.text       = [data objectAtIndex:indexPath.row];
     cell.label_price.text       = [data2 objectAtIndex:indexPath.row];
@@ -241,6 +241,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {return nil;}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return [data count]; }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView { return 1; }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 60; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 46; }
 
 @end

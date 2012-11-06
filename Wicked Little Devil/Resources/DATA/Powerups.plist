@@ -8,7 +8,7 @@
 			<key>Name</key>
 			<string>Lucky Devil I</string>
 			<key>Description</key>
-			<string>Save yourself from falling. 1x per level.</string>
+			<string>Save yourself from falling x1</string>
 			<key>Cost</key>
 			<integer>2000</integer>
 		</dict>
@@ -16,7 +16,7 @@
 			<key>Name</key>
 			<string>Lucky Devil II</string>
 			<key>Description</key>
-			<string>Save yourself from falling. 2x per level.</string>
+			<string>Save yourself from falling x2</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -24,7 +24,7 @@
 			<key>Name</key>
 			<string>Lucky Devil III</string>
 			<key>Description</key>
-			<string>Save yourself from falling. 3x per level.</string>
+			<string>Save yourself from falling x3</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -32,7 +32,7 @@
 			<key>Name</key>
 			<string>Lucky Devil IV</string>
 			<key>Description</key>
-			<string>Save yourself from falling. 10x per level.</string>
+			<string>Save yourself from falling x10</string>
 			<key>Cost</key>
 			<integer>25000</integer>
 		</dict>	
@@ -40,7 +40,7 @@
 			<key>Name</key>
 			<string>Bouncy Devil I</string>
 			<key>Description</key>
-			<string>Jump higher than usual.</string>
+			<string>Jump higher!</string>
 			<key>Cost</key>
 			<integer>2000</integer>
 		</dict>
@@ -48,7 +48,7 @@
 			<key>Name</key>
 			<string>Bouncy Devil II</string>
 			<key>Description</key>
-			<string>Jump even higher than Bouncy Devil I.</string>
+			<string>Jump even higher!</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -56,7 +56,7 @@
 			<key>Name</key>
 			<string>Bouncy Devil III</string>
 			<key>Description</key>
-			<string>Jump even higher than Bouncy Devil II.</string>
+			<string>Jump highest!</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -64,7 +64,7 @@
 			<key>Name</key>
 			<string>Feather Devil I</string>
 			<key>Description</key>
-			<string>Breakable platforms an extra +1 hit to fall.</string>
+			<string>+1 hits before breakable fall.</string>
 			<key>Cost</key>
 			<integer>2000</integer>
 		</dict>
@@ -72,7 +72,7 @@
 			<key>Name</key>
 			<string>Feather Devil II</string>
 			<key>Description</key>
-			<string>Breakable platforms an extra +2 hit to fall.</string>
+			<string>+2 hits before breakable fall.</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -80,7 +80,7 @@
 			<key>Name</key>
 			<string>Feather Devil III</string>
 			<key>Description</key>
-			<string>Breakable platforms an extra +3 hit to fall.</string>
+			<string>+3 hits before breakable fall.</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -96,7 +96,7 @@
 			<key>Name</key>
 			<string>Quick Devil II</string>
 			<key>Description</key>
-			<string>Move across the screen quicker than Quick Devil I.</string>
+			<string>Move quicker than Quick Devil I.</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -104,7 +104,7 @@
 			<key>Name</key>
 			<string>Quick Devil III</string>
 			<key>Description</key>
-			<string>Move across the screen quicker than Quick Devil II.</string>
+			<string>Move quicker than Quick Devil II.</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -112,7 +112,7 @@
 			<key>Name</key>
 			<string>Tough Devil I</string>
 			<key>Description</key>
-			<string>Take extra +1 hit before you DIE.</string>
+			<string>Take +1 hit before you DIE.</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -120,7 +120,7 @@
 			<key>Name</key>
 			<string>Tough Devil II</string>
 			<key>Description</key>
-			<string>Take extra +2 hit before you DIE.</string>
+			<string>Take +2 hits before you DIE.</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -128,7 +128,7 @@
 			<key>Name</key>
 			<string>Tough Devil III</string>
 			<key>Description</key>
-			<string>Take extra +3 hit before you DIE.</string>
+			<string>Take +3 hits before you DIE.</string>
 			<key>Cost</key>
 			<integer>20000</integer>
 		</dict>
@@ -136,7 +136,7 @@
 			<key>Name</key>
 			<string>Tough Devil IV</string>
 			<key>Description</key>
-			<string>Indestructible Devil! No hits can kill you!</string>
+			<string>Indestructible Devil!</string>
 			<key>Cost</key>
 			<integer>50000</integer>
 		</dict>
@@ -144,7 +144,7 @@
 			<key>Name</key>
 			<string>Winning Devil I</string>
 			<key>Description</key>
-			<string>Each small soul collectable is worth 15 points!</string>
+			<string>Small souls are worth 15 points each!</string>
 			<key>Cost</key>
 			<integer>5000</integer>
 		</dict>
@@ -152,7 +152,7 @@
 			<key>Name</key>
 			<string>Winning Devil II</string>
 			<key>Description</key>
-			<string>Each small soul collectable is worth 20 points!</string>
+			<string>Small souls are worth 20 points each!</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -160,7 +160,7 @@
 			<key>Name</key>
 			<string>Winning Devil III</string>
 			<key>Description</key>
-			<string>Each small soul collectable is worth 30 points!</string>
+			<string>Small souls are worth 30 points each!</string>
 			<key>Cost</key>
 			<integer>25000</integer>
 		</dict>
@@ -168,7 +168,7 @@
 			<key>Name</key>
 			<string>Rich Devil I</string>
 			<key>Description</key>
-			<string>Small soul's are worth x2 in your collection!</string>
+			<string>Small souls count as x2!</string>
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>Name</key>
 			<string>Rich Devil II</string>
 			<key>Description</key>
-			<string>Small soul's are worth x3 in your collection!</string>
+			<string>Small souls count as x3!</string>
 			<key>Cost</key>
 			<integer>25000</integer>
 		</dict>
@@ -184,7 +184,7 @@
 			<key>Name</key>
 			<string>Rich Devil III</string>
 			<key>Description</key>
-			<string>Small soul's are worth x5 in your collection!</string>
+			<string>Small souls count as x5!</string>
 			<key>Cost</key>
 			<integer>50000</integer>
 		</dict>

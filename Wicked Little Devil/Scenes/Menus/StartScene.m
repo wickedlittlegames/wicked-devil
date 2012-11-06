@@ -11,7 +11,9 @@
 #import "AppDelegate.h"
 #import "StartScene.h"
 #import "WorldSelectScene.h"
+#import "GameOverFacebookScene.h"
 #import "MBProgressHUD.h"
+#import "Game.h"
 #import "User.h"
 
 #import "FlurryAnalytics.h"
@@ -33,6 +35,8 @@
         gkHelper = [GameKitHelper sharedGameKitHelper];
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
+        
+        [self reportLeaderboardHighscores];
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -77,8 +81,7 @@
         [self addChild:prompt_facebook];
         
         [self setMute];
-        [self setFacebookImage];
-        
+        [self setFacebookImage];        
     }
 	return self;
 }
@@ -86,7 +89,7 @@
 
 - (void) setMute
 {
-    [SimpleAudioEngine sharedEngine].mute = [user.udata boolForKey:@"MUTED"];
+    [SimpleAudioEngine sharedEngine].mute          = [user.udata boolForKey:@"MUTED"];
     if ( [SimpleAudioEngine sharedEngine].mute )   { btn_muted.visible    = YES; btn_mute.visible = NO; }
     else                                           { btn_mute.visible     = YES; btn_muted.visible = NO; }
 }
@@ -100,7 +103,9 @@
         {
             prompt_facebook.visible = FALSE;
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+            CCSprite *fbimage2 = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
+            [btn_facebooksignin setSelectedImage:fbimage2];
         }
     }
 }
@@ -122,7 +127,7 @@
 - (void) tap_leaderboard
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [self reportLeaderboardHighscores];
+
     GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
     leaderboardViewController.leaderboardDelegate = self;
     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
@@ -131,7 +136,9 @@
 - (void) tap_achievements
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
     [self reportAchievements];
+    
     GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
     achivementViewController.achievementDelegate = self;
     [[app navController] presentModalViewController:achivementViewController animated:YES];
@@ -167,12 +174,10 @@
     
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Logged Out"]];            
-        [PFUser logOut];
-        user.facebook_image = NULL;
-        user.facebook_id    = NULL;
-        [user sync_facebook];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[StartScene scene]]];
+        Game *tmpgame = [[Game alloc] init];
+        tmpgame.user = user;
+
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:1]]];
     }
     else
     {

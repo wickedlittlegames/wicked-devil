@@ -21,7 +21,9 @@
 }
 
 
-+(CCScene *) sceneWithGame:(Game*)game;
-- (id) initWithGame:(Game*)game;
+@property (nonatomic, assign) int fromSceneID;
+
++(CCScene *) sceneWithGame:(Game*)game fromScene:(int)sceneID;
+- (id) initWithGame:(Game*)game fromScene:(int)sceneID;
 
 @end

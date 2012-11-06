@@ -61,7 +61,7 @@
         if ([node isKindOfClass: [Tip class]])
         {
             [tips addObject:node];
-            node.visible = NO;
+            //node.visible = NO;
         }
     }
     

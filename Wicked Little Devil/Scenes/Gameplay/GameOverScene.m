@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "GameScene.h"
+#import "StartScene.h"
 #import "LevelSelectScene.h"
 #import "GameOverFacebookScene.h"
 #import "MKInfoPanel.h"
@@ -19,7 +20,7 @@
 #import "FlurryAnalytics.h"
 
 @implementation GameOverScene
-@synthesize tmp_game, runningAnims, moved;
+@synthesize tmp_game, runningAnims, moved, isBonusLevel;
 
 #pragma mark === Initialization ===
 
@@ -40,6 +41,7 @@
          self.isTouchEnabled    = YES; self.moved = NO; self.runningAnims = YES;
          self.tmp_game          = game;
          
+         self.isBonusLevel  = (game.world == 11);
          souls              = game.player.bigcollected;
          souls_score        = souls * 1000;
          collected          = game.player.collected;
@@ -51,62 +53,64 @@
          
          [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Collected %ix big collectables in %i - %i", game.player.bigcollected, game.world, game.level]];
          
+         game.user.collected += collected;
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
-         game.user.collected += collected;
-                  
+         
          bool restartAudioToggle = FALSE;
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          
-         
-         if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
+         if ( !isBonusLevel )
          {
-             if ( game.level == LEVELS_PER_WORLD )
+             if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
              {
-                 next_level = 1;
-                 next_world = game.world + 1;
-                 
-                 if ( next_world > CURRENT_WORLDS_PER_GAME )
+                 if ( game.level == LEVELS_PER_WORLD )
                  {
-                     restartAudioToggle = TRUE;
-                     btn_next.visible = FALSE;
+                     next_level = 1;
+                     next_world = game.world + 1;
+                     
+                     if ( next_world > CURRENT_WORLDS_PER_GAME )
+                     {
+                         restartAudioToggle = TRUE;
+                         btn_next.visible = FALSE;
+                     }
                  }
-             }
-             else
-             {
-                 next_level = game.level + 1;
-                 next_world = game.world;
-             }
+                 else
+                 {
+                     next_level = game.level + 1;
+                     next_world = game.world;
+                 }
 
-             game.user.worldprogress = next_world;
-             game.user.levelprogress = next_level;
-             
-             [game.user setGameProgressforWorld:next_world level:next_level];
-             [game.user sync];
-         }
-         else
-         {
-             if ( game.level == LEVELS_PER_WORLD )
-             {
-                 next_level = 1;
-                 next_world = game.world + 1;
+                 game.user.worldprogress = next_world;
+                 game.user.levelprogress = next_level;
                  
-                 if ( next_world > CURRENT_WORLDS_PER_GAME )
-                 {
-                     restartAudioToggle = TRUE;
-                     btn_next.visible = FALSE;                     
-                 }
+                 [game.user setGameProgressforWorld:next_world level:next_level];
+                 [game.user sync];
              }
              else
              {
-                 next_level = game.level + 1;
-                 next_world = game.world;
+                 if ( game.level == LEVELS_PER_WORLD )
+                 {
+                     next_level = 1;
+                     next_world = game.world + 1;
+                     
+                     if ( next_world > CURRENT_WORLDS_PER_GAME )
+                     {
+                         restartAudioToggle = TRUE;
+                         btn_next.visible = FALSE;                     
+                     }
+                 }
+                 else
+                 {
+                     next_level = game.level + 1;
+                     next_world = game.world;
+                 }
              }
+             
+             game.user.cache_current_world = next_world;
+             [game.user sync_cache_current_world];
+             [game.user check_achiements];
          }
-         
-         game.user.cache_current_world = next_world;
-         [game.user sync_cache_current_world];
-         [game.user check_achiements];
          [game.user sync];
          
          // TODO: IF USER COLLECTED > 2000, CAN NOW AFFORD POWERUPS, SHOW POPUP SET USERDEFAULT CHECK TO MAKE SURE ITS NOT SHOWN ALL THE TIME
@@ -158,7 +162,9 @@
                                      {
                                          [self schedule: @selector(soul_bonus_tick) interval: 1.0f/60.0f];
                                      }],nil]];
-         
+
+         if ( isBonusLevel ) btn_next.visible = NO;
+     
          if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
          {
              share_facebook.visible = YES;
@@ -399,7 +405,15 @@
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
     }
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:self.tmp_game.world]]];
+    
+    if ( isBonusLevel )
+    {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
+    }
+    else
+    {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:self.tmp_game.world]]];
+    }
 }
 
 - (void) tap_twitter

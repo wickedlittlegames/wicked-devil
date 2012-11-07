@@ -390,7 +390,7 @@
             }
         }
         
-        CCSequence* seq = [CCSequence actionWithArray:actions];
+        CCSequence* seq = [CCSequence actionsWithArray:actions];
         [node runAction:seq];
     }
 }

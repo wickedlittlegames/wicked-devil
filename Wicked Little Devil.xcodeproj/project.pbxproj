@@ -397,6 +397,9 @@
 		9C725376164AA508004AC4D7 /* btn-secret-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C72536E164AA508004AC4D7 /* btn-secret-play.png */; };
 		9C725377164AA508004AC4D7 /* ui-btn-home-flag-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C72536F164AA508004AC4D7 /* ui-btn-home-flag-hd.png */; };
 		9C725378164AA508004AC4D7 /* ui-btn-home-flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C725370164AA508004AC4D7 /* ui-btn-home-flag.png */; };
+		9C725382164ABF52004AC4D7 /* world-11-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C725381164ABF52004AC4D7 /* world-11-level-1.ccbi */; };
+		9C72539D164AD02C004AC4D7 /* TapjoyAdvertiserLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C72539A164AD02C004AC4D7 /* TapjoyAdvertiserLibrary.a */; };
+		9C72539F164AD058004AC4D7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C72539E164AD058004AC4D7 /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C84ED431594BFD40083DF40 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84ED421594BFD40083DF40 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C84ED451594BFFF0083DF40 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */; };
 		9C84ED491594C4E80083DF40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED481594C4E80083DF40 /* CFNetwork.framework */; };
@@ -952,6 +955,11 @@
 		9C72536E164AA508004AC4D7 /* btn-secret-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-secret-play.png"; sourceTree = "<group>"; };
 		9C72536F164AA508004AC4D7 /* ui-btn-home-flag-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-home-flag-hd.png"; sourceTree = "<group>"; };
 		9C725370164AA508004AC4D7 /* ui-btn-home-flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-home-flag.png"; sourceTree = "<group>"; };
+		9C725381164ABF52004AC4D7 /* world-11-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-11-level-1.ccbi"; sourceTree = "<group>"; };
+		9C72539A164AD02C004AC4D7 /* TapjoyAdvertiserLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapjoyAdvertiserLibrary.a; sourceTree = "<group>"; };
+		9C72539B164AD02C004AC4D7 /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
+		9C72539C164AD02C004AC4D7 /* TapjoyConnectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnectConstants.h; sourceTree = "<group>"; };
+		9C72539E164AD058004AC4D7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9C84ED411594BFD40083DF40 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		9C84ED421594BFD40083DF40 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9C84ED441594BFFF0083DF40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1140,6 +1148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C72539F164AD058004AC4D7 /* CoreTelephony.framework in Frameworks */,
 				9C441927161EE79200563087 /* Twitter.framework in Frameworks */,
 				9CB9022E161D9D4300481AD4 /* AdSupport.framework in Frameworks */,
 				9CB9022C161D9D3900481AD4 /* Accounts.framework in Frameworks */,
@@ -1163,6 +1172,7 @@
 				9C142177156E68560011C992 /* GameKit.framework in Frameworks */,
 				9CB9022A161D9CE300481AD4 /* Parse.framework in Frameworks */,
 				9C4EA3591626D93600E7B66F /* libFlurryAnalytics.a in Frameworks */,
+				9C72539D164AD02C004AC4D7 /* TapjoyAdvertiserLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,6 +1190,7 @@
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
+				9C72539E164AD058004AC4D7 /* CoreTelephony.framework */,
 				9C142178156E68560011C992 /* Wicked Little Devil */,
 				9C142304156E69540011C992 /* libs */,
 				9C142165156E68560011C992 /* Frameworks */,
@@ -1264,6 +1275,7 @@
 		9C142304156E69540011C992 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9C725399164AD02C004AC4D7 /* TapjoyAdvertiserLibrary */,
 				9C6634701636BA1300A145D2 /* iRate */,
 				9C4EA3561626D93600E7B66F /* FlurryAnalytics */,
 				9CB90225161D969B00481AD4 /* MBProgressHUD.h */,
@@ -1688,6 +1700,16 @@
 			path = iRate;
 			sourceTree = "<group>";
 		};
+		9C725399164AD02C004AC4D7 /* TapjoyAdvertiserLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				9C72539A164AD02C004AC4D7 /* TapjoyAdvertiserLibrary.a */,
+				9C72539B164AD02C004AC4D7 /* TapjoyConnect.h */,
+				9C72539C164AD02C004AC4D7 /* TapjoyConnectConstants.h */,
+			);
+			path = TapjoyAdvertiserLibrary;
+			sourceTree = "<group>";
+		};
 		9C84ED3F1594BFC40083DF40 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -1718,6 +1740,7 @@
 		9CABCEFE1611D5EA006DFDE9 /* LEVELS */ = {
 			isa = PBXGroup;
 			children = (
+				9C725381164ABF52004AC4D7 /* world-11-level-1.ccbi */,
 				9CB505BF1636FDD5009F6298 /* world-3-level-1.ccbi */,
 				9C909CD61623638000663E40 /* world-2-level-2.ccbi */,
 				9C909CD71623638000663E40 /* world-2-level-3.ccbi */,
@@ -2552,6 +2575,7 @@
 				9C725376164AA508004AC4D7 /* btn-secret-play.png in Resources */,
 				9C725377164AA508004AC4D7 /* ui-btn-home-flag-hd.png in Resources */,
 				9C725378164AA508004AC4D7 /* ui-btn-home-flag.png in Resources */,
+				9C725382164ABF52004AC4D7 /* world-11-level-1.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2792,11 +2816,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyPublisherLibrary\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyAdvertiserLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";
@@ -2831,11 +2858,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyPublisherLibrary\"",
+					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyAdvertiserLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";

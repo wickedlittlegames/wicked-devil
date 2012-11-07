@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, assign) Game *tmp_game;
-@property (nonatomic, assign) BOOL runningAnims, moved;
+@property (nonatomic, assign) BOOL runningAnims, moved, isBonusLevel;
 
 +(CCScene *) sceneWithGame:(Game*)game;
 - (id) initWithGame:(Game*)game;

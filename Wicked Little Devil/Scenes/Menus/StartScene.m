@@ -97,7 +97,7 @@
             {
                 // PLAY THE LEVEL
                 if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:66 andLevel:1 isRestart:NO restartMusic:YES]]];
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:11 andLevel:1 isRestart:NO restartMusic:YES]]];
             }
             else
             {
@@ -108,7 +108,8 @@
                 [tmp_btn_secret setSelectedImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
                 
                 NSURL *fanPageURL = [NSURL URLWithString:@"fb://profile/128944673829884"];
-                if (![[UIApplication sharedApplication] openURL: fanPageURL]) {
+                if (![[UIApplication sharedApplication] openURL: fanPageURL])
+                {
                     NSURL *webURL = [NSURL URLWithString:@"http://www.facebook.com/wickedlittlegames"];
                     [[UIApplication sharedApplication] openURL: webURL];
                 }
@@ -119,6 +120,18 @@
         {
             [btn_secret setNormalImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
             [btn_secret setSelectedImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
+            
+            int souls = [user getSoulsforWorld:11 level:1];
+            
+            int soul_x = 13;
+            for (int s = 1; s <= souls; s++ )
+            {
+                CCSprite *soul = [CCSprite spriteWithFile:@"icon-level-bigcollectable.png"];
+                
+                soul.position = ccp(btn_secret.position.x + soul_x, btn_secret.position.y - 2);
+                [btn_secret addChild:soul];
+                soul_x += 27;
+            }
         }
         
         CCMenu *menu_secret_level = [CCMenu menuWithItems:btn_secret, nil];

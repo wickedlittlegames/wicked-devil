@@ -10,6 +10,7 @@
 #import "StartScene.h"
 #import "MKStoreManager.h"
 #import "FlurryAnalytics.h"
+#import "TapjoyConnect.h"
 #import <Parse/Parse.h>
 
 @implementation AppController
@@ -18,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Testing TapJoy
+    [TapjoyConnect requestTapjoyConnect:@"9940c84d-1163-4007-96aa-af4f0726898b" secretKey:@"MGBqettfwKRQorETWj2L"];
+    
     // Connect to Parse
     [Parse setApplicationId:@"ku2m9Hu2IJjciLhQT1blymmwo97eOOjgGYS5hpNX"
                   clientKey:@"0rr4JmAqVvRLfsKsonH52X4P5wANvEq5tCQW8bE3"];

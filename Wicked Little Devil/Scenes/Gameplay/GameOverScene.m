@@ -202,6 +202,9 @@
         }
         else
         {
+            tmp_score = souls_score + timebonus_score;
+            tmp_score_increment = tmp_game.player.collected;
+            
             if ( collected > 0 )
             {
                 [label_subscore runAction:[CCSequence actions:

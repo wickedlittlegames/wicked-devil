@@ -29,7 +29,7 @@
 
 #pragma mark Delegate
 
-@protocol CCBActionManagerDelegate <NSObject>
+@protocol CCBAnimationManagerDelegate <NSObject>
 
 - (void) completedAnimationSequenceNamed:(NSString*)name;
 
@@ -37,7 +37,7 @@
 
 #pragma mark Action Manager
 
-@interface CCBActionManager : NSObject
+@interface CCBAnimationManager : NSObject
 {
     NSMutableArray* sequences;
     NSMutableDictionary* nodeSequences;
@@ -47,24 +47,44 @@
     CCNode* rootNode;
     CGSize rootContainerSize;
     
-    NSObject<CCBActionManagerDelegate>* delegate;
+    NSObject<CCBAnimationManagerDelegate>* delegate;
     CCBSequence* runningSequence;
+    
+    // Used by javascript bindings
+    NSMutableArray* documentOutletNames;
+    NSMutableArray* documentOutletNodes;
+    NSMutableArray* documentCallbackNames;
+    NSMutableArray* documentCallbackNodes;
+    NSString* documentControllerName;
+    NSString* lastCompletedSequenceName;
+    
+    void (^block)(id sender);
 }
 @property (nonatomic,readonly) NSMutableArray* sequences;
 @property (nonatomic,assign) int autoPlaySequenceId;
-@property (nonatomic,retain) CCNode* rootNode;
+@property (nonatomic,assign) CCNode* rootNode;
 @property (nonatomic,assign) CGSize rootContainerSize;
-@property (nonatomic,retain) NSObject<CCBActionManagerDelegate>* delegate;
+@property (nonatomic,retain) NSObject<CCBAnimationManagerDelegate>* delegate;
 @property (nonatomic,readonly) NSString* runningSequenceName;
+@property (nonatomic,readonly) NSMutableArray* documentOutletNames;
+@property (nonatomic,readonly) NSMutableArray* documentOutletNodes;
+@property (nonatomic,readonly) NSMutableArray* documentCallbackNames;
+@property (nonatomic,readonly) NSMutableArray* documentCallbackNodes;
+@property (nonatomic,copy) NSString* documentControllerName;
+@property (nonatomic,readonly) NSString* lastCompletedSequenceName;
 
 - (CGSize) containerSize:(CCNode*)node;
 
 - (void) addNode:(CCNode*)node andSequences:(NSDictionary*)seq;
+- (void) moveAnimationsFromNode:(CCNode*)fromNode toNode:(CCNode*)toNode;
+
 - (void) setBaseValue:(id)value forNode:(CCNode*)node propertyName:(NSString*)propName;
 
-- (void) runActionsForSequenceNamed:(NSString*)name tweenDuration:(float)tweenDuration;
-- (void) runActionsForSequenceNamed:(NSString*)name;
-- (void) runActionsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration;
+- (void) runAnimationsForSequenceNamed:(NSString*)name tweenDuration:(float)tweenDuration;
+- (void) runAnimationsForSequenceNamed:(NSString*)name;
+- (void) runAnimationsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration;
+
+-(void) setCompletedAnimationCallbackBlock:(void(^)(id sender))b;
 
 - (void) debug;
 
@@ -90,4 +110,11 @@
 }
 +(id) actionWithDuration:(ccTime)duration angle:(float)angle;
 -(id) initWithDuration:(ccTime)duration angle:(float)angle;
+@end
+
+//
+// EeseInstant
+//
+@interface CCEaseInstant : CCActionEase <NSCopying>
+{}
 @end

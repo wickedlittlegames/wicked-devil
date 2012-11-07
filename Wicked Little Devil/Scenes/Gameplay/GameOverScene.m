@@ -109,6 +109,8 @@
          [game.user check_achiements];
          [game.user sync];
          
+         // TODO: IF USER COLLECTED > 2000, CAN NOW AFFORD POWERUPS, SHOW POPUP SET USERDEFAULT CHECK TO MAKE SURE ITS NOT SHOWN ALL THE TIME
+         
          CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? [NSString stringWithFormat:@"bg-gameover-%i-iphone5.png",game.player.bigcollected] : [NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected])];
          [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [self addChild:bg];         

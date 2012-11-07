@@ -63,7 +63,7 @@
 
 - (void) screenSetup
 {
-    if ( timeout_check >= 30 )
+    if ( timeout_check <= 15 )
     {
         timeout_check++;
         if ( !([[MKStoreManager sharedManager] pricesDictionary].count <= 0) ) [self setupTable];

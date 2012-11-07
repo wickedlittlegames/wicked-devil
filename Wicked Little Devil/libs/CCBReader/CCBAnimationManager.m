@@ -22,20 +22,26 @@
  * THE SOFTWARE.
  */
 
-#import "CCBActionManager.h"
+#import "CCBAnimationManager.h"
 #import "CCBSequence.h"
 #import "CCBSequenceProperty.h"
 #import "CCBReader.h"
 #import "CCBKeyframe.h"
 #import "CCNode+CCBRelativePositioning.h"
 
-@implementation CCBActionManager
+@implementation CCBAnimationManager
 
 @synthesize sequences;
 @synthesize autoPlaySequenceId;
 @synthesize rootNode;
 @synthesize rootContainerSize;
 @synthesize delegate;
+@synthesize documentOutletNames;
+@synthesize documentOutletNodes;
+@synthesize documentCallbackNames;
+@synthesize documentCallbackNodes;
+@synthesize documentControllerName;
+@synthesize lastCompletedSequenceName;
 
 - (id) init
 {
@@ -45,6 +51,11 @@
     sequences = [[NSMutableArray alloc] init];
     nodeSequences = [[NSMutableDictionary alloc] init];
     baseValues = [[NSMutableDictionary alloc] init];
+    
+    documentOutletNames = [[NSMutableArray alloc] init];
+    documentOutletNodes = [[NSMutableArray alloc] init];
+    documentCallbackNames = [[NSMutableArray alloc] init];
+    documentCallbackNodes = [[NSMutableArray alloc] init];
     
     return self;
 }
@@ -61,6 +72,34 @@
     
     NSValue* nodePtr = [NSValue valueWithPointer:node];
     [nodeSequences setObject:seq forKey:nodePtr];
+}
+
+- (void) moveAnimationsFromNode:(CCNode*)fromNode toNode:(CCNode*)toNode
+{
+    NSValue* fromNodePtr = [NSValue valueWithPointer:fromNode];
+    NSValue* toNodePtr = [NSValue valueWithPointer:toNode];
+    
+    // Move base values
+    id baseValue = [baseValues objectForKey:fromNodePtr];
+    if (baseValue)
+    {
+        [baseValues setObject:baseValue forKey:toNodePtr];
+        [baseValues removeObjectForKey:fromNodePtr];
+        
+        [fromNode release];
+        [toNode retain];
+    }
+    
+    // Move keyframes
+    NSDictionary* seqs = [nodeSequences objectForKey:fromNodePtr];
+    if (seqs)
+    {
+        [nodeSequences setObject:seqs forKey:toNodePtr];
+        [nodeSequences removeObjectForKey:fromNodePtr];
+        
+        [fromNode release];
+        [toNode retain];
+    }
 }
 
 - (void) setBaseValue:(id)value forNode:(CCNode*)node propertyName:(NSString*)propName
@@ -253,10 +292,15 @@
 
 - (CCActionInterval*) easeAction:(CCActionInterval*) action easingType:(int)easingType easingOpt:(float) easingOpt
 {
-    if (easingType == kCCBKeyframeEasingLinear
-        || easingType == kCCBKeyframeEasingInstant)
+    if ([action isKindOfClass:[CCSequence class]]) return action;
+    
+    if (easingType == kCCBKeyframeEasingLinear)
     {
         return action;
+    }
+    else if (easingType == kCCBKeyframeEasingInstant)
+    {
+        return [CCEaseInstant actionWithAction:action];
     }
     else if (easingType == kCCBKeyframeEasingCubicIn)
     {
@@ -316,7 +360,7 @@
 - (void) runActionsForNode:(CCNode*)node sequenceProperty:(CCBSequenceProperty*)seqProp tweenDuration:(float)tweenDuration
 {
     NSArray* keyframes = [seqProp keyframes];
-    int numKeyframes = keyframes.count;
+    int numKeyframes = (int)keyframes.count;
     
     if (numKeyframes > 1)
     {
@@ -346,14 +390,14 @@
             }
         }
         
-        CCSequence* seq = [CCSequence actionsWithArray:actions];
+        CCSequence* seq = [CCSequence actionWithArray:actions];
         [node runAction:seq];
     }
 }
 
-- (void) runActionsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration
+- (void) runAnimationsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration
 {
-//    NSAssert(seqId != -1, @"Sequence named %@ couldn't be found");
+    NSAssert(seqId != -1, @"Sequence id %d couldn't be found",seqId);
     
     [rootNode stopAllActions];
     
@@ -402,26 +446,37 @@
     runningSequence = [self sequenceFromSequenceId:seqId];
 }
 
-- (void) runActionsForSequenceNamed:(NSString*)name tweenDuration:(float)tweenDuration
+- (void) runAnimationsForSequenceNamed:(NSString*)name tweenDuration:(float)tweenDuration
 {
     int seqId = [self sequenceIdForSequenceNamed:name];
-    [self runActionsForSequenceId:seqId tweenDuration:tweenDuration];
+    [self runAnimationsForSequenceId:seqId tweenDuration:tweenDuration];
 }
 
-- (void) runActionsForSequenceNamed:(NSString*)name
+- (void) runAnimationsForSequenceNamed:(NSString*)name
 {
-    [self runActionsForSequenceNamed:name tweenDuration:0];
+    [self runAnimationsForSequenceNamed:name tweenDuration:0];
 }
 
 - (void) sequenceCompleted
 {
+    // Save last completed sequence
+    if (lastCompletedSequenceName != runningSequence.name)
+    {
+        [lastCompletedSequenceName release];
+        lastCompletedSequenceName = [runningSequence.name copy];
+    }
+    
+    // Callbacks
     [delegate completedAnimationSequenceNamed:runningSequence.name];
+    if (block) block(self);
+    
+    // Play next sequence
     int nextSeqId = runningSequence.chainedSequenceId;
     runningSequence = NULL;
     
     if (nextSeqId != -1)
     {
-        [self runActionsForSequenceId:nextSeqId tweenDuration:0];
+        [self runAnimationsForSequenceId:nextSeqId tweenDuration:0];
     }
     
 }
@@ -429,6 +484,12 @@
 - (NSString*) runningSequenceName
 {
     return runningSequence.name;
+}
+
+-(void) setCompletedAnimationCallbackBlock:(void(^)(id sender))b
+{
+    [block release];
+    block = [b copy];
 }
 
 - (void) dealloc
@@ -450,6 +511,17 @@
     [nodeSequences release];
     self.rootNode = NULL;
     self.delegate = NULL;
+    self.documentControllerName = NULL;
+    
+    [documentOutletNames release];
+    [documentOutletNodes release];
+    [documentCallbackNames release];
+    [documentCallbackNodes release];
+    
+    [lastCompletedSequenceName release];
+    
+    [block release];
+    
     [super dealloc];
 }
 
@@ -533,3 +605,19 @@
 }
 
 @end
+
+
+@implementation CCEaseInstant
+-(void) update: (ccTime) t
+{
+    if (t < 0)
+    {
+        [other update:0];
+    }
+    else
+    {
+        [other update:1];
+    }
+}
+@end
+

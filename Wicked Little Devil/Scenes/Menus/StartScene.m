@@ -81,7 +81,9 @@
         [self addChild:prompt_facebook];
         
         [self setMute];
-        [self setFacebookImage];        
+        [self setFacebookImage];
+        
+        // TODO: CLICKABLE (SHOWABLE) PANEL WITH FACEBOOK LIKE BUTTON THAT THEN PLAYS A FUN LEVEL
     }
 	return self;
 }

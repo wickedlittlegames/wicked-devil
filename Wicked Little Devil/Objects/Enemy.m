@@ -76,7 +76,7 @@
             [self action_mine_explode:game];
             break;
         case 3: // BUBBLE: Floats the player up
-            [self action_bubble_float:game];
+            if ( self.floating == NO ) [self action_bubble_float:game];
             break;
         case 4: // ROCKET: Shoots rocket at target player area
             [self action_shoot_rocket:game];
@@ -131,17 +131,21 @@
 
 - (void) action_bubble_float:(Game*)game
 {
+    CCLOG(@"FLOATING");
     self.running = YES;
-    self.position = game.player.position;
+    self.floating = YES;
+    game.player.position = self.position;
+    self.zOrder = 10000;
     game.player.controllable = NO;
     game.player.velocity = ccp ( 0, 0 );
+    game.touch = ccp ( game.player.position.x, game.touch.y );
     
-    id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,300)];
-    id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,300)];
-    id end_action_bubble        = [CCCallFunc actionWithTarget:self selector:@selector(action_end_item)];
+    id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
+    id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
+    id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { CCLOG(@"ENDING"); self.dead = YES; self.running = NO; }];
     id end_action_player        = [CCCallBlock actionWithBlock:^(void) { game.player.controllable = YES; }];
     
-    [self runAction:[CCSequence actions:floatup_bubble, end_action_bubble, nil]];
+    [self runAction:[CCSequence actions:floatup_bubble, end_action_bubblefloat, nil]];
     [game.player runAction:[CCSequence actions:floatup_player, end_action_player, nil]];
 }
 
@@ -260,51 +264,53 @@
 - (bool) intersectCheck:(Game*)game
 {
     BOOL isCollision = NO;
-    CGRect intersection = CGRectIntersection([self worldBoundingBox], [game.player worldBoundingBox]);
-    
-    // Look for simple bounding box collision
-    if (!CGRectIsEmpty(intersection))
+    if ( self.visible && !self.running )
     {
-        // Get intersection info
-        unsigned int x = intersection.origin.x;
-        unsigned int y = intersection.origin.y;
-        unsigned int w = intersection.size.width;
-        unsigned int h = intersection.size.height;
-        unsigned int numPixels = w * h;
+        CGRect intersection = CGRectIntersection([self worldBoundingBox], [game.player worldBoundingBox]);
         
-        // Draw into the RenderTexture
-        [_rt beginWithClear:0 g:0 b:0 a:0];
-        
-        // Render both sprites: first one in RED and second one in GREEN
-        glColorMask(1, 0, 0, 1);
-        [self visit];
-        glColorMask(0, 1, 0, 1);
-        [game.player visit];
-        glColorMask(1, 1, 1, 1);
-        
-        // Read pixels
-        ccColor4B *buffer = malloc( sizeof(ccColor4B) * numPixels );
-        glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-        
-        [_rt end];
-        
-        // Read buffer
-        unsigned int step = 1;
-        for(unsigned int i=0; i<numPixels; i+=step)
+        // Look for simple bounding box collision
+        if (!CGRectIsEmpty(intersection))
         {
-            ccColor4B color = buffer[i];
+            // Get intersection info
+            unsigned int x = intersection.origin.x;
+            unsigned int y = intersection.origin.y;
+            unsigned int w = intersection.size.width;
+            unsigned int h = intersection.size.height;
+            unsigned int numPixels = w * h;
             
-            if (color.r > 0 && color.g > 0)
+            // Draw into the RenderTexture
+            [_rt beginWithClear:0 g:0 b:0 a:0];
+            
+            // Render both sprites: first one in RED and second one in GREEN
+            glColorMask(1, 0, 0, 1);
+            [self visit];
+            glColorMask(0, 1, 0, 1);
+            [game.player visit];
+            glColorMask(1, 1, 1, 1);
+            
+            // Read pixels
+            ccColor4B *buffer = malloc( sizeof(ccColor4B) * numPixels );
+            glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+            
+            [_rt end];
+            
+            // Read buffer
+            unsigned int step = 1;
+            for(unsigned int i=0; i<numPixels; i+=step)
             {
-                isCollision = YES;
-                break;
+                ccColor4B color = buffer[i];
+                
+                if (color.r > 0 && color.g > 0)
+                {
+                    isCollision = YES;
+                    break;
+                }
             }
+            
+            // Free buffer memory
+            free(buffer);
         }
-        
-        // Free buffer memory
-        free(buffer);
     }
-    
     return isCollision;
 }
 
@@ -323,6 +329,6 @@
     return NO;
 }
 
-- (void) action_end_item { self.visible = NO; self.running = NO; }
+- (void) action_end_item { CCLOG(@"ENDING"); self.visible = NO; self.running = NO; }
 
 @end

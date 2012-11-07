@@ -12,6 +12,8 @@
 	<true/>
 	<key>javascriptBased</key>
 	<false/>
+	<key>javascriptMainCCB</key>
+	<string></string>
 	<key>onlyPublishCCBs</key>
 	<true/>
 	<key>publishDirectory</key>

@@ -232,6 +232,14 @@
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>2</integer>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>ignoreAnchorPointForPosition</string>
 						<key>type</key>
 						<string>Check</string>
@@ -813,7 +821,7 @@
 				<key>displayName</key>
 				<string>Enemy</string>
 				<key>memberVarAssignmentName</key>
-				<string>3</string>
+				<string></string>
 				<key>memberVarAssignmentType</key>
 				<integer>0</integer>
 				<key>properties</key>
@@ -825,9 +833,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>272</real>
-							<real>182</real>
-							<integer>0</integer>
+							<real>85.625</real>
+							<real>39.166667938232422</real>
+							<integer>4</integer>
 						</array>
 					</dict>
 					<dict>
@@ -848,11 +856,19 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>1.5</real>
+							<real>1.5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>3</integer>
 					</dict>
 					<dict>
 						<key>name</key>

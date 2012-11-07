@@ -75,13 +75,13 @@
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         
         // Add world layers to the scroller
-        //[worlds addObject:[self updates]];
+        [worlds addObject:[self updates]];
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
-        //[worlds addObject:[self ocean]];
+        [worlds addObject:[self ocean]];
         [worlds addObject:[self comingsoon]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-        [scroller selectPage:user.cache_current_world-1];
+        [scroller selectPage:user.cache_current_world];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
         [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
         
@@ -332,7 +332,7 @@
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-ocean-iphone5.png" : @"bg-world-ocean.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag ); 
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag );
         
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];

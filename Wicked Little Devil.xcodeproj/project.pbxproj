@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C005DC4164A7C8200C29DB5 /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DB9164A7C8200C29DB5 /* CCBAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C005DC5164A7C8200C29DB5 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DBB164A7C8200C29DB5 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C005DC6164A7C8200C29DB5 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DBD164A7C8200C29DB5 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C005DC7164A7C8200C29DB5 /* CCBSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DBF164A7C8200C29DB5 /* CCBSequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C005DC8164A7C8200C29DB5 /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DC1164A7C8200C29DB5 /* CCBSequenceProperty.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C005DC9164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DC3164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FD12F16130AFE007BDFD6 /* Projectile.m */; };
 		9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1321613251C007BDFD6 /* AngelBlast.plist */; };
 		9C0FD1351613251C007BDFD6 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1331613251C007BDFD6 /* particleTexture.png */; };
@@ -490,12 +496,6 @@
 		9CCD8886161C5ECE00CEA6D8 /* MKInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CCD8887161C5ECE00CEA6D8 /* MKInfoPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
-		9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1615F632E2001B0D50 /* CCBActionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CD93A3815F632E2001B0D50 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1A15F632E2001B0D50 /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CD93A3915F632E2001B0D50 /* CCBsequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1C15F632E2001B0D50 /* CCBsequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CD93A3A15F632E2001B0D50 /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A1E15F632E2001B0D50 /* CCBSequenceProperty.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9CD93A3B15F632E2001B0D50 /* CCNode+CCBRelativePositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD93A2015F632E2001B0D50 /* CCNode+CCBRelativePositioning.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CDC682516276EA3001D5935 /* bg-world-underground-new-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682216276EA3001D5935 /* bg-world-underground-new-iphone5.png */; };
 		9CDC682616276EA3001D5935 /* bg-world-hell-new-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682316276EA3001D5935 /* bg-world-hell-new-iphone5.png */; };
 		9CDC682716276EA3001D5935 /* bg-home-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682416276EA3001D5935 /* bg-home-iphone5.png */; };
@@ -538,6 +538,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C005DB8164A7C8200C29DB5 /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
+		9C005DB9164A7C8200C29DB5 /* CCBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBAnimationManager.m; sourceTree = "<group>"; };
+		9C005DBA164A7C8200C29DB5 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
+		9C005DBB164A7C8200C29DB5 /* CCBKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBKeyframe.m; sourceTree = "<group>"; };
+		9C005DBC164A7C8200C29DB5 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
+		9C005DBD164A7C8200C29DB5 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
+		9C005DBE164A7C8200C29DB5 /* CCBSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequence.h; sourceTree = "<group>"; };
+		9C005DBF164A7C8200C29DB5 /* CCBSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequence.m; sourceTree = "<group>"; };
+		9C005DC0164A7C8200C29DB5 /* CCBSequenceProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequenceProperty.h; sourceTree = "<group>"; };
+		9C005DC1164A7C8200C29DB5 /* CCBSequenceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequenceProperty.m; sourceTree = "<group>"; };
+		9C005DC2164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+CCBRelativePositioning.h"; sourceTree = "<group>"; };
+		9C005DC3164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CCBRelativePositioning.m"; sourceTree = "<group>"; };
 		9C0FD12E16130AFE007BDFD6 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Objects/Projectile.h; sourceTree = "<group>"; };
 		9C0FD12F16130AFE007BDFD6 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Objects/Projectile.m; sourceTree = "<group>"; };
 		9C0FD1321613251C007BDFD6 /* AngelBlast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AngelBlast.plist; sourceTree = "<group>"; };
@@ -1043,18 +1055,6 @@
 		9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKInfoPanel.xib; sourceTree = "<group>"; };
 		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
 		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
-		9CD93A1515F632E2001B0D50 /* CCBActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBActionManager.h; sourceTree = "<group>"; };
-		9CD93A1615F632E2001B0D50 /* CCBActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBActionManager.m; sourceTree = "<group>"; };
-		9CD93A1715F632E2001B0D50 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
-		9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBKeyframe.m; sourceTree = "<group>"; };
-		9CD93A1915F632E2001B0D50 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
-		9CD93A1A15F632E2001B0D50 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
-		9CD93A1B15F632E2001B0D50 /* CCBSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequence.h; sourceTree = "<group>"; };
-		9CD93A1C15F632E2001B0D50 /* CCBsequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBsequence.m; sourceTree = "<group>"; };
-		9CD93A1D15F632E2001B0D50 /* CCBSequenceProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequenceProperty.h; sourceTree = "<group>"; };
-		9CD93A1E15F632E2001B0D50 /* CCBSequenceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequenceProperty.m; sourceTree = "<group>"; };
-		9CD93A1F15F632E2001B0D50 /* CCNode+CCBRelativePositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+CCBRelativePositioning.h"; sourceTree = "<group>"; };
-		9CD93A2015F632E2001B0D50 /* CCNode+CCBRelativePositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CCBRelativePositioning.m"; sourceTree = "<group>"; };
 		9CDC682216276EA3001D5935 /* bg-world-underground-new-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-underground-new-iphone5.png"; sourceTree = "<group>"; };
 		9CDC682316276EA3001D5935 /* bg-world-hell-new-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-hell-new-iphone5.png"; sourceTree = "<group>"; };
 		9CDC682416276EA3001D5935 /* bg-home-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-home-iphone5.png"; sourceTree = "<group>"; };
@@ -2034,18 +2034,18 @@
 		9CD93A1415F632E2001B0D50 /* CCBReader */ = {
 			isa = PBXGroup;
 			children = (
-				9CD93A1515F632E2001B0D50 /* CCBActionManager.h */,
-				9CD93A1615F632E2001B0D50 /* CCBActionManager.m */,
-				9CD93A1715F632E2001B0D50 /* CCBKeyframe.h */,
-				9CD93A1815F632E2001B0D50 /* CCBKeyframe.m */,
-				9CD93A1915F632E2001B0D50 /* CCBReader.h */,
-				9CD93A1A15F632E2001B0D50 /* CCBReader.m */,
-				9CD93A1B15F632E2001B0D50 /* CCBSequence.h */,
-				9CD93A1C15F632E2001B0D50 /* CCBsequence.m */,
-				9CD93A1D15F632E2001B0D50 /* CCBSequenceProperty.h */,
-				9CD93A1E15F632E2001B0D50 /* CCBSequenceProperty.m */,
-				9CD93A1F15F632E2001B0D50 /* CCNode+CCBRelativePositioning.h */,
-				9CD93A2015F632E2001B0D50 /* CCNode+CCBRelativePositioning.m */,
+				9C005DB8164A7C8200C29DB5 /* CCBAnimationManager.h */,
+				9C005DB9164A7C8200C29DB5 /* CCBAnimationManager.m */,
+				9C005DBA164A7C8200C29DB5 /* CCBKeyframe.h */,
+				9C005DBB164A7C8200C29DB5 /* CCBKeyframe.m */,
+				9C005DBC164A7C8200C29DB5 /* CCBReader.h */,
+				9C005DBD164A7C8200C29DB5 /* CCBReader.m */,
+				9C005DBE164A7C8200C29DB5 /* CCBSequence.h */,
+				9C005DBF164A7C8200C29DB5 /* CCBSequence.m */,
+				9C005DC0164A7C8200C29DB5 /* CCBSequenceProperty.h */,
+				9C005DC1164A7C8200C29DB5 /* CCBSequenceProperty.m */,
+				9C005DC2164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.h */,
+				9C005DC3164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m */,
 			);
 			path = CCBReader;
 			sourceTree = "<group>";
@@ -2559,12 +2559,6 @@
 				9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */,
 				9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */,
 				9CACDF5615B8199200E8F518 /* Game.m in Sources */,
-				9CD93A3615F632E2001B0D50 /* CCBActionManager.m in Sources */,
-				9CD93A3715F632E2001B0D50 /* CCBKeyframe.m in Sources */,
-				9CD93A3815F632E2001B0D50 /* CCBReader.m in Sources */,
-				9CD93A3915F632E2001B0D50 /* CCBsequence.m in Sources */,
-				9CD93A3A15F632E2001B0D50 /* CCBSequenceProperty.m in Sources */,
-				9CD93A3B15F632E2001B0D50 /* CCNode+CCBRelativePositioning.m in Sources */,
 				9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */,
 				9CABCF761611D653006DFDE9 /* CCNode+CoordHelpers.m in Sources */,
 				9CABCF831611E911006DFDE9 /* Trigger.m in Sources */,
@@ -2575,6 +2569,12 @@
 				9C99B844161EEA7A00F6BA88 /* GameOverFacebookScene.m in Sources */,
 				9C6273AF162DBBBE00E123DD /* FacebookTableCell.m in Sources */,
 				9C6634751636BA1300A145D2 /* iRate.m in Sources */,
+				9C005DC4164A7C8200C29DB5 /* CCBAnimationManager.m in Sources */,
+				9C005DC5164A7C8200C29DB5 /* CCBKeyframe.m in Sources */,
+				9C005DC6164A7C8200C29DB5 /* CCBReader.m in Sources */,
+				9C005DC7164A7C8200C29DB5 /* CCBSequence.m in Sources */,
+				9C005DC8164A7C8200C29DB5 /* CCBSequenceProperty.m in Sources */,
+				9C005DC9164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

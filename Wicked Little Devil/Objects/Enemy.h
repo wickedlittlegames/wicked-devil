@@ -14,7 +14,7 @@
     CCRenderTexture *_rt;
 }
 
-@property (nonatomic, assign) bool animating, running, dead;
+@property (nonatomic, assign) bool animating, running, dead, floating;
 @property (nonatomic, retain) CCAnimation *anim_flap;
 @property (nonatomic, retain) CCArray *projectiles, *fx;
 

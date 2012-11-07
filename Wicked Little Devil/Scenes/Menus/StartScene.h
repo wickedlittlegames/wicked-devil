@@ -23,6 +23,8 @@
     
     NSMutableData *imageData;
     NSURLConnection *urlConnection;
+    
+    bool secret_visible;
 }
 +(CCScene *) scene;
 @end

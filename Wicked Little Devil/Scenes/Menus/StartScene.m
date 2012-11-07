@@ -12,6 +12,7 @@
 #import "StartScene.h"
 #import "WorldSelectScene.h"
 #import "GameOverFacebookScene.h"
+#import "GameScene.h"
 #import "MBProgressHUD.h"
 #import "Game.h"
 #import "User.h"
@@ -83,7 +84,71 @@
         [self setMute];
         [self setFacebookImage];
         
+        CCSprite *bg_secret = [CCSprite spriteWithFile:@"bg-pulldown.png"];
+        [bg_secret setPosition:ccp(0, screenSize.height)];
+        [bg_secret setAnchorPoint:ccp(0,0)];
+        
+        CCMenuItemImage *btn_secret = [CCMenuItemImage itemWithNormalImage:@"btn-secret-like.png" selectedImage:@"btn-secret-like.png" block:^(id sender){
+            
+            CCMenuItemImage *tmp_btn_secret = (CCMenuItemImage*)sender;
+            
+            // first check udata
+            if ( [user.udata boolForKey:@"FACEBOOK_LIKED"] )
+            {
+                // PLAY THE LEVEL
+                if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:66 andLevel:1 isRestart:NO restartMusic:YES]]];
+            }
+            else
+            {
+                [user.udata setBool:TRUE forKey:@"FACEBOOK_LIKED"];
+                [user.udata synchronize];
+                
+                [tmp_btn_secret setNormalImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
+                [tmp_btn_secret setSelectedImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
+                
+                NSURL *fanPageURL = [NSURL URLWithString:@"fb://profile/128944673829884"];
+                if (![[UIApplication sharedApplication] openURL: fanPageURL]) {
+                    NSURL *webURL = [NSURL URLWithString:@"http://www.facebook.com/wickedlittlegames"];
+                    [[UIApplication sharedApplication] openURL: webURL];
+                }
+            }
+        }];
+        
+        if ( [user.udata boolForKey:@"FACEBOOK_LIKED"] )
+        {
+            [btn_secret setNormalImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
+            [btn_secret setSelectedImage:[CCSprite spriteWithFile:@"btn-secret-play.png"]];
+        }
+        
+        CCMenu *menu_secret_level = [CCMenu menuWithItems:btn_secret, nil];
+        [menu_secret_level setAnchorPoint:ccp(0,0)];
+        [menu_secret_level setPosition:ccp(bg_secret.contentSize.width - btn_secret.contentSize.width + 30,bg_secret.contentSize.height/2)];
+        [bg_secret addChild:menu_secret_level];
+        
+        CCMenuItemImage *button_menu_secret = [CCMenuItemImage itemWithNormalImage:@"ui-btn-home-flag.png" selectedImage:@"ui-btn-home-flag.png" block:^(id sender) {
+            [bg_secret stopAllActions];
+            
+            CCMenuItemImage *tmp_btn = (CCMenuItemImage*)sender;
+            if ( secret_visible )
+            {
+                [bg_secret runAction:[CCMoveTo actionWithDuration:0.2f position:ccp(bg_secret.position.x,bg_secret.position.y + bg_secret.contentSize.height)]];
+                [tmp_btn runAction:[CCMoveTo actionWithDuration:0.2f position:ccp(tmp_btn.position.x, tmp_btn.position.y + 70)]];
+            }
+            else
+            {
+                [bg_secret runAction:[CCMoveTo actionWithDuration:0.2f position:ccp(bg_secret.position.x,screenSize.height - bg_secret.contentSize.height)]];
+                [tmp_btn runAction:[CCMoveTo actionWithDuration:0.2f position:ccp(tmp_btn.position.x, tmp_btn.position.y - 70)]];
+            }
+            secret_visible = !secret_visible;
+        }];
+        
         // TODO: CLICKABLE (SHOWABLE) PANEL WITH FACEBOOK LIKE BUTTON THAT THEN PLAYS A FUN LEVEL
+        CCMenu *menu_secret = [CCMenu menuWithItems:button_menu_secret, nil];
+        [menu_secret setPosition:ccp(screenSize.width - 30, screenSize.height - 21)];
+
+        [self addChild:menu_secret];
+        [self addChild:bg_secret];
     }
 	return self;
 }

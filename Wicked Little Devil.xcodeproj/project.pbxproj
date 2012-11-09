@@ -2902,8 +2902,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
-					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyPublisherLibrary\"",
-					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyAdvertiserLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -2945,8 +2943,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Wicked Little Devil/libs/FlurryAnalytics\"",
-					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyPublisherLibrary\"",
-					"\"$(SRCROOT)/Wicked Little Devil/libs/TapjoyAdvertiserLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

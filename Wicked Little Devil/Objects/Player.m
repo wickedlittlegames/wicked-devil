@@ -47,6 +47,7 @@
         self.falling = NO;
         
         [self setupAnimations];
+        
     }
     return self;
 }

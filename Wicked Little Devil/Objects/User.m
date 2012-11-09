@@ -339,11 +339,11 @@
         self.ach_beat_world_2 = TRUE;
         [self showAchievementPanel:8];
     }
-//    if ( self.worldprogress > 3 && !self.ach_beat_world_3 ) // beat world 3
-//    {
-//        self.ach_beat_world_3 = TRUE;
-//        [self showAchievementPanel:9];
-//    }
+    if ( self.worldprogress > 3 && !self.ach_beat_world_3 ) // beat world 3
+    {
+        self.ach_beat_world_3 = TRUE;
+        [self showAchievementPanel:9];
+    }
 //    if ( self.worldprogress >= 4 && self.levelprogress >= LEVELS_PER_WORLD && !self.ach_beat_world_4 ) // beat world 4
 //    {
 //        self.ach_beat_world_4 = TRUE;

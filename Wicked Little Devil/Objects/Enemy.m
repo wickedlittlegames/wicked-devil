@@ -131,6 +131,8 @@
 
 - (void) action_bubble_float:(Game*)game
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.caf"];
+    
     CCLOG(@"FLOATING");
     self.running = YES;
     self.floating = YES;

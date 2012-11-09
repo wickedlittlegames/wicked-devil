@@ -1,6 +1,7 @@
 MKStoreKitConfigs.plist
 bat-hit.caf
 boom.caf
+bubble.caf
 click.caf
 collect-small.caf
 collect1.caf
@@ -32,6 +33,7 @@ world-1-level-6.ccbi
 world-1-level-7.ccbi
 world-1-level-8.ccbi
 world-1-level-9.ccbi
+world-11-level-1.ccbi
 world-2-level-1.ccbi
 world-2-level-10.ccbi
 world-2-level-11.ccbi
@@ -114,6 +116,8 @@ bg-pauseoverlay.png
 bg-powerups-hd.png
 bg-powerups-iphone5.png
 bg-powerups.png
+bg-pulldown-hd.png
+bg-pulldown.png
 bg-shop-bg-hd.png
 bg-shop-bg-iphone5.png
 bg-shop-bg.png
@@ -192,6 +196,10 @@ btn-reply-hd.png
 btn-reply.png
 btn-second-chance-hd.png
 btn-second-chance.png
+btn-secret-like-hd.png
+btn-secret-like.png
+btn-secret-play-hd.png
+btn-secret-play.png
 btn-start-hd.png
 btn-start.png
 btn-store-world-hd.png
@@ -210,6 +218,18 @@ icon-level-bigcollectable-hd.png
 icon-level-bigcollectable.png
 panel-promo-ocean-hd.png
 panel-promo-ocean.png
+tip-ok-hd.png
+tip-ok.png
+tip-powerup-cancel-hd.png
+tip-powerup-cancel.png
+tip-powerup-ok-hd.png
+tip-powerup-ok.png
+tip-powerups-hd.png
+tip-powerups.png
+tip-world-1-level-1-hd.png
+tip-world-1-level-1.png
+ui-btn-home-flag-hd.png
+ui-btn-home-flag.png
 ui-collectable-hd.png
 ui-collectable.png
 ui-newhighscore-hd.png

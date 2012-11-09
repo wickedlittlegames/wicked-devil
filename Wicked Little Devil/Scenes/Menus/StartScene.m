@@ -181,6 +181,18 @@
         if ( user.facebook_image == NULL ) [self getFacebookImage];
         else
         {
+            if ( user.facebook_id == NULL )
+            {
+                PF_FBRequest *request = [PF_FBRequest requestForMe];
+                [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
+                                                      id result,
+                                                      NSError *error) {
+                    if (!error) {
+                        user.facebook_id = [result objectForKey:@"id"];
+                        [user sync_facebook];
+                    }
+                }];
+            }
             prompt_facebook.visible = FALSE;
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             CCSprite *fbimage2 = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
@@ -192,7 +204,6 @@
 
 - (void) getFacebookImage
 {
-    // This goes off and calls the request delegate method
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/?fields=name,location,gender,picture" andDelegate:self];
 }
 
@@ -280,11 +291,22 @@
                 else if (pfuser.isNew)
                 {
                     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
-                    
                     [self getFacebookImage];
                     user.collected += 500;
                     prompt_facebook.visible = FALSE;
                     [user sync];
+                    
+                    PF_FBRequest *request = [PF_FBRequest requestForMe];
+                    [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
+                                                          id result,
+                                                          NSError *error) {
+                        if (!error) {
+                            // Store the current user's Facebook ID on the user
+                            user.facebook_id = [result objectForKey:@"id"];
+                            [user sync_facebook];
+                        }
+                    }];
+                    
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }
                 else
@@ -403,11 +425,11 @@
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_2] percentComplete:100.0f];
         user.sent_ach_beat_world_2 = YES;
     }
-//    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
-//    {
-//        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
-//        user.sent_ach_beat_world_3 = YES;
-//    }
+    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
+    {
+        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
+        user.sent_ach_beat_world_3 = YES;
+    }
 //    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
 //    {
 //        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];

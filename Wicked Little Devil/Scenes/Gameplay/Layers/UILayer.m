@@ -9,6 +9,7 @@
 #import "UILayer.h"
 #import "GameScene.h"
 #import "LevelSelectScene.h"
+#import "StartScene.h"
 
 #import "Game.h"
 #import "FlurryAnalytics.h"
@@ -80,7 +81,23 @@
     CCLabelTTF *label_best          = [CCLabelTTF labelWithString:txt_highscore dimensions:CGSizeMake(screenSize.width - 7, 30) hAlignment:kCCTextAlignmentRight fontName:@"CrashLanding BB" fontSize:30.0f];
     CCLabelTTF *label_powerup       = [CCLabelTTF labelWithString:txt_powerup dimensions:CGSizeMake(screenSize.width -5, 30) hAlignment:kCCTextAlignmentLeft fontName:@"CrashLanding BB" fontSize:30.0f];
     CCMenuItem *button_unpause  = [CCMenuItemFont itemWithLabel:label_resume target:self selector:@selector(tap_unpause)];
-    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect target:self selector:@selector(tap_mainmenu)];
+    CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect block:^(id sender) {
+        if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+        [[CCDirector sharedDirector] resume];
+        if ( ![SimpleAudioEngine sharedEngine].mute )
+        {
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+        }
+        if ( game.world == 11 && game.level == 1)
+        {
+            [[CCDirector sharedDirector] replaceScene:[StartScene scene]];
+        }
+        else
+        {
+            [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:world]];
+        }
+    }];
     
     [label_resume       setColor:ccc3(205, 51, 51)];
     [label_levelselect  setColor:ccc3(205, 51, 51)];
@@ -114,11 +131,64 @@
     [menu_second_chance setPosition:ccp(screenSize.width/2,screenSize.height/2 - 200)];
     menu_second_chance.visible = FALSE;
     [self addChild:menu_second_chance];
+    
+    if ( ![game.user.udata boolForKey:@"WORLD-1-LEVEL-1-TIP-SEEN"] && world == 1 && level == 1)
+    {
+        CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-1.png"];
+        [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:tip1];
+        
+        CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
+            tip1.visible = NO;
+            [game.user.udata setBool:YES forKey:@"WORLD-1-LEVEL-1-TIP-SEEN"];
+        }], nil];
+        [menu_tip1 setAnchorPoint:ccp(0,0)];
+        [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
+        [tip1 addChild:menu_tip1];
+    }
+    
+    // level 1 - 2 - movement left and right
+    if ( ![game.user.udata boolForKey:@"WORLD-1-LEVEL-2-TIP-SEEN"] && world == 1 && level == 2)
+    {
+        CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-2.png"];
+        [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:tip1];
+        
+        CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
+            tip1.visible = NO;
+            [game.user.udata setBool:YES forKey:@"WORLD-1-LEVEL-2-TIP-SEEN"];
+        }], nil];
+        [menu_tip1 setAnchorPoint:ccp(0,0)];
+        [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
+        [tip1 addChild:menu_tip1];
+    }
+    
+    if ( ![game.user.udata boolForKey:@"WORLD-1-LEVEL-3-TIP-SEEN"] && world == 1 && level == 3)
+    {
+        CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-3.png"];
+        [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:tip1];
+        
+        CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
+            tip1.visible = NO;
+            [game.user.udata setBool:YES forKey:@"WORLD-1-LEVEL-3-TIP-SEEN"];
+        }], nil];
+        [menu_tip1 setAnchorPoint:ccp(0,0)];
+        [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
+        [tip1 addChild:menu_tip1];
+    }
+    
+    // level 1 - 5 - double jump platforms
+    // level 1 - 9 - moving platforms
+    // level 1 - 17 - enemies
+    // level 2 - 1 - falling
+    // level 2 - 9 - mines
+    // level 3 - 5 - bubbles
 }
 
 - (void) tap_reload
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Reloaded the game"]];    
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Reloaded the game"]];
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 
@@ -136,15 +206,6 @@
 
 - (void) tap_mainmenu
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    
-    [[CCDirector sharedDirector] resume];
-    if ( ![SimpleAudioEngine sharedEngine].mute )
-    {
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
-    }
-    [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:world]];
 }
 
 - (void) update:(Game*)game

@@ -18,6 +18,7 @@
     NSMutableArray *fbdata, *fbdata2, *fbdata3, *fbdata4;
     
     int timeout_check;
+    int gamescore;
 }
 
 

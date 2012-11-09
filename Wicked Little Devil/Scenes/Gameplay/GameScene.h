@@ -17,6 +17,7 @@
     GameLayer   *layer_game;
     UILayer     *layer_ui;
     CCLayer     *collab;
+    CCMotionStreak *streak;
     
     Game        *game;
     
@@ -24,7 +25,6 @@
     CGSize screenSize;
     
     CCMenu *menu;
-    CCMotionStreak *streak;
 }
 
 @property (nonatomic, assign) float threshold;

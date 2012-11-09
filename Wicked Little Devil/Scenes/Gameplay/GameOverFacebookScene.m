@@ -43,8 +43,6 @@
         CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-facebookfriends-iphone5.png" : @"bg-facebookfriends.png")];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
-        
-        CCLOG(@"%i",fromSceneID);
 
         CCMenu *menu_back  = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png" block:^(id sender)
         {
@@ -71,7 +69,7 @@
         [inviteFriends           setPosition:ccp(screenSize.width - 80, 25)];
         [self addChild:inviteFriends];
                 
-        int gamescore = 0;
+        gamescore = 0;
 
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         [self schedule:@selector(timeoutchecker) interval:1.0f];

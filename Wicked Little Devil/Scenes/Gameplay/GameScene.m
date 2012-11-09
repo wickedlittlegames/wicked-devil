@@ -126,6 +126,9 @@
             [collab runAction: [CCSequence actions:ease, [CCCallBlock actionWithBlock:^(void) {game.isIntro = NO;}], nil]];
         }
         
+        streak = [CCMotionStreak streakWithFade:1 minSeg:10 width:5 color:ccWHITE textureFilename:@"streak3.png"];
+        [self addChild:streak];
+        
         [self schedule:@selector(update:)];
     }
 	return self;
@@ -144,7 +147,7 @@
         {
             [layer_game gameoverCheck:game];
             if ( !game.isGameover )
-            {                                
+            {
                 // Player Layer Interactions
                 if ( game.player.controllable ) [game.player move];
                 
@@ -192,6 +195,8 @@
         {
             CGPoint location = [touch locationInView: [touch view]];
             game.touch = location;
+            location = [[CCDirector sharedDirector] convertToGL:location];
+            [streak setPosition:location];
         }
     }
 }

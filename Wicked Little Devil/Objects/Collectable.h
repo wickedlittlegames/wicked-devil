@@ -14,6 +14,8 @@
 @property (nonatomic, assign) bool dead;
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
+- (BOOL) isClosetoPlayer:(Player*)player;
+- (void) moveTowardsPlayer:(Player*)player;
 
 @end
 

@@ -20,6 +20,40 @@
     return FALSE;
 }
 
+- (BOOL) isClosetoPlayer:(Player*)player
+{
+    if ( [self radiusCheck:player] && self.visible )
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (void) moveTowardsPlayer:(Player*)player
+{
+    float xdif = [self worldBoundingBox].origin.x - [player worldBoundingBox].origin.x;
+    float ydif = [self worldBoundingBox].origin.y - [player worldBoundingBox].origin.y;
+    
+    self.position = ccp(self.position.x - xdif/10, self.position.y - ydif/10);
+}
+
+- (bool) radiusCheck:(Player*)player
+{
+    float xdif = [self worldBoundingBox].origin.x - [player worldBoundingBox].origin.x;
+    float ydif = [self worldBoundingBox].origin.y - [player worldBoundingBox].origin.y;
+    float radius = 80;
+    float radiusTwo = 1;
+    
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+    
+    if(distance <= radius+radiusTwo)
+        return YES;
+    
+    return NO;
+}
+
+
+
 @end
 
 @implementation BigCollectable 

@@ -55,13 +55,13 @@
         }
         if ([node isKindOfClass: [Trigger class]])
         {
-            [triggers addObject:node];
+            [triggers addObject:node]; 
             node.visible = NO;
         }
         if ([node isKindOfClass: [Tip class]])
         {
             [tips addObject:node];
-            //node.visible = NO;
+            node.visible = NO;
         }
     }
     
@@ -130,6 +130,11 @@
         
         if ( collectable.visible )
         {
+            if ( [collectable isClosetoPlayer:game.player] )
+            {
+                [collectable moveTowardsPlayer:game.player];
+            }
+            
             if ( [collectable isIntersectingPlayer:game.player] )
             {
                 if ( ![SimpleAudioEngine sharedEngine].mute )

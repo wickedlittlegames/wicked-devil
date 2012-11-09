@@ -11,6 +11,7 @@
 #import "StartScene.h"
 #import "LevelSelectScene.h"
 #import "GameOverFacebookScene.h"
+#import "EquipScene.h"
 #import "MKInfoPanel.h"
 #import "AppDelegate.h"
 
@@ -41,7 +42,7 @@
          self.isTouchEnabled    = YES; self.moved = NO; self.runningAnims = YES;
          self.tmp_game          = game;
          
-         self.isBonusLevel  = (game.world == 11);
+         self.isBonusLevel  = (game.world == 11 && game.level == 1);
          souls              = game.player.bigcollected;
          souls_score        = souls * 1000;
          collected          = game.player.collected;
@@ -112,8 +113,6 @@
              [game.user check_achiements];
          }
          [game.user sync];
-         
-         // TODO: IF USER COLLECTED > 2000, CAN NOW AFFORD POWERUPS, SHOW POPUP SET USERDEFAULT CHECK TO MAKE SURE ITS NOT SHOWN ALL THE TIME
          
          CCSprite *bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? [NSString stringWithFormat:@"bg-gameover-%i-iphone5.png",game.player.bigcollected] : [NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected])];
          [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -390,6 +389,28 @@
             share_menu.visible = YES;
         }
         
+    }
+    
+    if ( tmp_game.user.collected >= 2000 && ![tmp_game.user.udata boolForKey:@"TIP-POWERUP-SEEN"] )
+    {
+        [tmp_game.user.udata setBool:YES forKey:@"TIP-POWERUP-SEEN"];
+        CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
+        [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
+        [self addChild:tipbg];
+        
+        CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
+            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+        }];
+        CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
+            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+            tipbg.visible = FALSE;
+        }];
+        
+        CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
+        [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
+        [tip_menu alignItemsVerticallyWithPadding:10];
+        [tipbg addChild:tip_menu];
     }
 }
 

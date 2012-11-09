@@ -27,6 +27,8 @@
 			<real>321</real>
 		</dict>
 	</array>
+	<key>jsControlled</key>
+	<false/>
 	<key>nodeGraph</key>
 	<dict>
 		<key>baseClass</key>
@@ -292,7 +294,7 @@
 						<key>value</key>
 						<array>
 							<real>58.75</real>
-							<real>253.43504333496094</real>
+							<real>254.47671508789062</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -340,6 +342,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -11534,8 +11538,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>57.96875</real>
-							<real>235.20835876464844</real>
+							<real>76.09375</real>
+							<real>240.00003051757812</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -12184,8 +12188,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>35.15625</real>
-							<real>248.54168701171875</real>
+							<real>16.09375</real>
+							<real>253.33335876464844</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -12234,8 +12238,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

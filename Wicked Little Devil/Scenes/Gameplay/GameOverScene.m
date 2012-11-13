@@ -11,7 +11,7 @@
 #import "StartScene.h"
 #import "LevelSelectScene.h"
 #import "GameOverFacebookScene.h"
-#import "EquipScene.h"
+#import "EquipMenuScene.h"
 #import "MKInfoPanel.h"
 #import "AppDelegate.h"
 
@@ -383,12 +383,10 @@
         [label_score setString:[NSString stringWithFormat:@"SCORE: %i",final_score]];
         menu.opacity = 225;
         
-        
         if ( [tmp_game.user isOnline] )
         {
             share_menu.visible = YES;
         }
-        
     }
     
     if ( tmp_game.user.collected >= 2000 && ![tmp_game.user.udata boolForKey:@"TIP-POWERUP-SEEN"] )
@@ -400,7 +398,7 @@
         
         CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
             if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
         }];
         CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
             if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}

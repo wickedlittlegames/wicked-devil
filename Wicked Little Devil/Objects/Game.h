@@ -19,7 +19,7 @@
 @interface Game : NSObject{}
 
 @property (nonatomic, assign) int world, level, pastScore, timelimit;
-@property (nonatomic, assign) bool isGameover, didWin, isStarted, isIntro;
+@property (nonatomic, assign) bool isGameover, didWin, isStarted, isIntro, isRestart;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) FXLayer *fx;

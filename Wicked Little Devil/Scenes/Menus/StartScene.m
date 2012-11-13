@@ -372,14 +372,17 @@
 }
 - (void) reportLeaderboardHighscores
 {
+    int totalhighscore = 0;
     for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
     {
         int tmp_highscore_for_world = [user getHighscoreforWorld:i];
+        totalhighscore += tmp_highscore_for_world;
         if (tmp_highscore_for_world > 0)
         {
             [gkHelper submitScore:tmp_highscore_for_world category:[NSString stringWithFormat:@"WLD_%i",i]];
         }
     }
+    [gkHelper submitScore:totalhighscore category:@"WLD_GLOBAL"];
 }
 - (void) reportAchievements
 {

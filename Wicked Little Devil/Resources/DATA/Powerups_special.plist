@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Powerups</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>Dubstep Devil</string>
+			<key>Description</key>
+			<string>Each platform makes a dubstep sound!</string>
+			<key>Cost</key>
+			<integer>3500</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Bubble Pop</string>
+			<key>Description</key>
+			<string>Pop the floating bubbles</string>
+			<key>Cost</key>
+			<integer>3500</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Soul Magnet</string>
+			<key>Description</key>
+			<string>Small souls will fly towards you!</string>
+			<key>Cost</key>
+			<integer>4500</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

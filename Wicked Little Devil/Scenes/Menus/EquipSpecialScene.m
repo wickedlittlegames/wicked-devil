@@ -8,7 +8,7 @@
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
 
-#import "EquipScene.h"
+#import "EquipSpecialScene.h"
 #import "EquipMenuScene.h"
 #import "CCScrollLayer.h"
 #import "SimpleTableCell.h"
@@ -16,12 +16,12 @@
 #import "ShopScene.h"
 #import "FlurryAnalytics.h"
 
-@implementation EquipScene
+@implementation EquipSpecialScene
 
 +(CCScene *) scene
 {
     CCScene *scene = [CCScene node];
-    EquipScene *current = [EquipScene node];
+    EquipSpecialScene *current = [EquipSpecialScene node];
     [scene addChild:current];
     return scene;
 }
@@ -29,18 +29,18 @@
 -(id) init
 {
     if( (self=[super init]) )
-    {       
+    {
         user = [[User alloc] init];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
-
+        
         app     = (AppController*)[[UIApplication sharedApplication] delegate];
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
-    
+        
         
         // Pull in the Cards plist
-        NSArray *contentArray = [[NSDictionary  dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups" ofType:@"plist"]] objectForKey:@"Powerups"];
+        NSArray *contentArray = [[NSDictionary  dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups_special" ofType:@"plist"]] objectForKey:@"Powerups"];
         data = [NSMutableArray arrayWithCapacity:100];
         data2 = [NSMutableArray arrayWithCapacity:100];
         data3 = [NSMutableArray arrayWithCapacity:100];
@@ -51,9 +51,9 @@
             NSDictionary *dict = [contentArray objectAtIndex:i]; //name, description, cost, unlocked, image
             [data addObject:[dict objectForKey:@"Name"]];
             [data2 addObject:[dict objectForKey:@"Cost"]];
-            [data3 addObject:[dict objectForKey:@"Description"]];;            
+            [data3 addObject:[dict objectForKey:@"Description"]];;
         }
-
+        
         table.dataSource = self;
         table.delegate   = self;
         [view addSubview:table];
@@ -112,7 +112,7 @@
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Equip Purchase for item: %i",sender.tag]];
     int item = sender.tag;
     int cost = [[data2 objectAtIndex:item] intValue];
-
+    
     if ( user.collected >= cost )
     {
         [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Equip Purchase for item: %i",sender.tag]];
@@ -131,7 +131,7 @@
             [tmp_table_view addObject:equip_item];
         }
         [table reloadRowsAtIndexPaths:tmp_table_view withRowAnimation:UITableViewRowAnimationNone];
-
+        
         [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
     else
@@ -157,11 +157,11 @@
 
 - (void) tap_equip:(UIButton*)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Equipped item: %i",sender.tag]];
-
     if ( !user.bought_powerups ) user.bought_powerups = TRUE;
-    user.powerup = sender.tag;
+    user.powerup = (sender.tag + 100);
     [user sync];
+    
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Equipped item: %i",user.powerup]];
     
     NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
     for (int i = 0; i < data.count; i++)
@@ -215,17 +215,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
-
+    
     SimpleTableCell *cell = (SimpleTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SimpleTableCell"];
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
+    
     cell.selectionStyle             = UITableViewCellSelectionStyleNone;
     cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:28.0f];
     cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:36.0f];
@@ -235,15 +235,15 @@
     cell.label_price.text           = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
     cell.label_description.text     = [data3 objectAtIndex:indexPath.row];
     
-    cell.button_buy.selected        = TRUE;    
+    cell.button_buy.selected        = TRUE;
     cell.button_buy.tag             = indexPath.row;
     
     [cell.button_buy removeTarget:self action:@selector(tap_equip:)     forControlEvents:UIControlEventTouchUpInside];
     [cell.button_buy removeTarget:self action:@selector(tap_purchase:)  forControlEvents:UIControlEventTouchUpInside];
     
-    if ( [[user.items objectAtIndex:indexPath.row] intValue] == 1 )
+    if ( [[user.items_special objectAtIndex:indexPath.row] intValue] == 1 )
     {
-        if (user.powerup == indexPath.row && user.bought_powerups )
+        if (user.powerup == (indexPath.row + 100) && user.bought_powerups )
         {
             cell.button_buy.imageView.image = [UIImage imageNamed:@"btn-equipequipped.png"];
             cell.label_price.text = @"EQUIPPED";
@@ -260,7 +260,7 @@
     {
         [cell.button_buy addTarget:self action:@selector(tap_purchase:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     return cell;
 }
 

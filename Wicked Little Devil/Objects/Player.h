@@ -14,7 +14,7 @@
 @property (nonatomic, assign) CGPoint velocity;
 @property (nonatomic, assign) int collected, bigcollected, score, time, jumps, deaths, per_collectable, collectable_multiplier;
 @property (nonatomic, retain) id last_platform_touched;
-@property (nonatomic, assign) BOOL controllable, toggled_platform, animating, falling;
+@property (nonatomic, assign) BOOL controllable, toggled_platform, animating, falling, floating;
 @property (nonatomic, retain) CCAnimation *anim_jump, *anim_fall, *anim_fallfar, *anim_die;
 
 - (void) jump:(float)speed;

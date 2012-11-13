@@ -62,6 +62,17 @@
     }
 }
 
+- (void) isIntersectingTouch:(Game*)game
+{
+    if ( self.visible && self.floating && self.tag == 3 )
+    {
+        if ( CGRectContainsPoint([self worldBoundingBox], [[CCDirector sharedDirector] convertToGL:game.touch] ))
+        {
+            [self action_bubble_pop:game];
+        }
+    }
+}
+
 - (void) action:(int)action_id game:(Game*)game
 {
     switch(action_id)
@@ -133,9 +144,9 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.caf"];
     
-    CCLOG(@"FLOATING");
     self.running = YES;
     self.floating = YES;
+    game.player.floating = YES;
     game.player.position = self.position;
     self.zOrder = 10000;
     game.player.controllable = NO;
@@ -144,11 +155,22 @@
     
     id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
     id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
-    id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { CCLOG(@"ENDING"); self.dead = YES; self.running = NO; }];
-    id end_action_player        = [CCCallBlock actionWithBlock:^(void) { game.player.controllable = YES; }];
+    id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { self.dead = YES; self.running = NO; }];
+    id end_action_player        = [CCCallBlock actionWithBlock:^(void) { game.player.controllable = YES; game.player.floating = NO; }];
     
     [self runAction:[CCSequence actions:floatup_bubble, end_action_bubblefloat, nil]];
     [game.player runAction:[CCSequence actions:floatup_player, end_action_player, nil]];
+}
+
+- (void) action_bubble_pop:(Game*)game
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.caf"];
+    
+    [self stopAllActions];
+    [game.player stopAllActions];
+    game.player.controllable = YES;
+    game.player.floating = NO;
+    self.dead = YES; self.running = NO;
 }
 
 - (void) action_shoot_rocket:(Game*)game

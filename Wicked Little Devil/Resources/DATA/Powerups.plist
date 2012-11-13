@@ -35,7 +35,7 @@
 			<string>Save yourself from falling x10</string>
 			<key>Cost</key>
 			<integer>25000</integer>
-		</dict>	
+		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Bouncy Devil I</string>
@@ -187,38 +187,6 @@
 			<string>Small souls count as x5!</string>
 			<key>Cost</key>
 			<integer>50000</integer>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Bubble Popper</string>
-			<key>Description</key>
-			<string>Lets you pop your bubbles!</string>
-			<key>Cost</key>
-			<integer>3500</integer>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Soul Magnet</string>
-			<key>Description</key>
-			<string>Small souls fly towards you!</string>
-			<key>Cost</key>
-			<integer>6000</integer>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Dubstep Devil</string>
-			<key>Description</key>
-			<string>Platforms play random wubwubs!</string>
-			<key>Cost</key>
-			<integer>4500</integer>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Platforms Forever</string>
-			<key>Description</key>
-			<string>Platforms never disappear!</string>
-			<key>Cost</key>
-			<integer>25000</integer>
 		</dict>
 	</array>
 </dict>

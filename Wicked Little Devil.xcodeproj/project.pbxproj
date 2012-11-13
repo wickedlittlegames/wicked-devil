@@ -520,6 +520,15 @@
 		9CBFBDB0161A2968008512E4 /* StartScreenFX.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDAE161A2968008512E4 /* StartScreenFX.png */; };
 		9CBFBDB5161A2B32008512E4 /* AnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDB3161A2B32008512E4 /* AnimDevil-hd.plist */; };
 		9CBFBDB6161A2B32008512E4 /* AnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBFBDB4161A2B32008512E4 /* AnimDevil-hd.png */; };
+		9CC3673F165289190000D631 /* ui-btn-devilupgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3673B165289190000D631 /* ui-btn-devilupgrades-hd.png */; };
+		9CC36740165289190000D631 /* ui-btn-devilupgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3673C165289190000D631 /* ui-btn-devilupgrades.png */; };
+		9CC36741165289190000D631 /* ui-btn-specialupgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3673D165289190000D631 /* ui-btn-specialupgrades-hd.png */; };
+		9CC36742165289190000D631 /* ui-btn-specialupgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3673E165289190000D631 /* ui-btn-specialupgrades.png */; };
+		9CC36746165289860000D631 /* EquipMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC36745165289860000D631 /* EquipMenuScene.m */; };
+		9CC3674916528AD90000D631 /* bg-powerups-menu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3674716528AD90000D631 /* bg-powerups-menu-hd.png */; };
+		9CC3674A16528AD90000D631 /* bg-powerups-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3674816528AD90000D631 /* bg-powerups-menu.png */; };
+		9CC3674D16528D560000D631 /* EquipSpecialScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3674C16528D550000D631 /* EquipSpecialScene.m */; };
+		9CC3674F16528F840000D631 /* Powerups_special.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CC3674E16528F840000D631 /* Powerups_special.plist */; };
 		9CCD8881161BA9AB00CEA6D8 /* world-2-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */; };
 		9CCD8886161C5ECE00CEA6D8 /* MKInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CCD8887161C5ECE00CEA6D8 /* MKInfoPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */; };
@@ -1112,6 +1121,17 @@
 		9CBFBDAE161A2968008512E4 /* StartScreenFX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartScreenFX.png; sourceTree = "<group>"; };
 		9CBFBDB3161A2B32008512E4 /* AnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AnimDevil-hd.plist"; sourceTree = "<group>"; };
 		9CBFBDB4161A2B32008512E4 /* AnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AnimDevil-hd.png"; sourceTree = "<group>"; };
+		9CC3673B165289190000D631 /* ui-btn-devilupgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-devilupgrades-hd.png"; sourceTree = "<group>"; };
+		9CC3673C165289190000D631 /* ui-btn-devilupgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-devilupgrades.png"; sourceTree = "<group>"; };
+		9CC3673D165289190000D631 /* ui-btn-specialupgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-specialupgrades-hd.png"; sourceTree = "<group>"; };
+		9CC3673E165289190000D631 /* ui-btn-specialupgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-specialupgrades.png"; sourceTree = "<group>"; };
+		9CC36744165289860000D631 /* EquipMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EquipMenuScene.h; path = Scenes/Menus/EquipMenuScene.h; sourceTree = "<group>"; };
+		9CC36745165289860000D631 /* EquipMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EquipMenuScene.m; path = Scenes/Menus/EquipMenuScene.m; sourceTree = "<group>"; };
+		9CC3674716528AD90000D631 /* bg-powerups-menu-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-powerups-menu-hd.png"; sourceTree = "<group>"; };
+		9CC3674816528AD90000D631 /* bg-powerups-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-powerups-menu.png"; sourceTree = "<group>"; };
+		9CC3674B16528D550000D631 /* EquipSpecialScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EquipSpecialScene.h; path = Scenes/Menus/EquipSpecialScene.h; sourceTree = "<group>"; };
+		9CC3674C16528D550000D631 /* EquipSpecialScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EquipSpecialScene.m; path = Scenes/Menus/EquipSpecialScene.m; sourceTree = "<group>"; };
+		9CC3674E16528F840000D631 /* Powerups_special.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Powerups_special.plist; sourceTree = "<group>"; };
 		9CCD8880161BA9AB00CEA6D8 /* world-2-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-2-level-1.ccbi"; sourceTree = "<group>"; };
 		9CCD8883161C5ECE00CEA6D8 /* MKInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInfoPanel.h; sourceTree = "<group>"; };
 		9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInfoPanel.m; sourceTree = "<group>"; };
@@ -1704,8 +1724,12 @@
 				9CCE303515FF35A9005B45EF /* WorldSelectScene.m */,
 				9CDF943915B561EE0017E58B /* LevelSelectScene.h */,
 				9CDF943A15B561EE0017E58B /* LevelSelectScene.m */,
+				9CC36744165289860000D631 /* EquipMenuScene.h */,
+				9CC36745165289860000D631 /* EquipMenuScene.m */,
 				9CDF943715B561EE0017E58B /* EquipScene.h */,
 				9CDF943815B561EE0017E58B /* EquipScene.m */,
+				9CC3674B16528D550000D631 /* EquipSpecialScene.h */,
+				9CC3674C16528D550000D631 /* EquipSpecialScene.m */,
 				9CDF943D15B561EE0017E58B /* ShopScene.h */,
 				9CDF943E15B561EE0017E58B /* ShopScene.m */,
 			);
@@ -1780,6 +1804,7 @@
 			children = (
 				9CABCEFE1611D5EA006DFDE9 /* LEVELS */,
 				9CABCF011611D5EA006DFDE9 /* Powerups.plist */,
+				9CC3674E16528F840000D631 /* Powerups_special.plist */,
 			);
 			name = DATA;
 			path = Resources/DATA;
@@ -1937,6 +1962,12 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CC3674716528AD90000D631 /* bg-powerups-menu-hd.png */,
+				9CC3674816528AD90000D631 /* bg-powerups-menu.png */,
+				9CC3673B165289190000D631 /* ui-btn-devilupgrades-hd.png */,
+				9CC3673C165289190000D631 /* ui-btn-devilupgrades.png */,
+				9CC3673D165289190000D631 /* ui-btn-specialupgrades-hd.png */,
+				9CC3673E165289190000D631 /* ui-btn-specialupgrades.png */,
 				9CA8C073164D4F9C004C2E65 /* tip-world-1-level-2.png */,
 				9CA8C074164D4F9C004C2E65 /* tip-world-1-level-2-hd.png */,
 				9CA8C06F164D4C59004C2E65 /* tip-world-1-level-3.png */,
@@ -2662,6 +2693,13 @@
 				9CA8C08D164D631A004C2E65 /* streak.png in Resources */,
 				9CA8C08F164D69F3004C2E65 /* streak2.png in Resources */,
 				9CA8C091164D6AEA004C2E65 /* streak3.png in Resources */,
+				9CC3673F165289190000D631 /* ui-btn-devilupgrades-hd.png in Resources */,
+				9CC36740165289190000D631 /* ui-btn-devilupgrades.png in Resources */,
+				9CC36741165289190000D631 /* ui-btn-specialupgrades-hd.png in Resources */,
+				9CC36742165289190000D631 /* ui-btn-specialupgrades.png in Resources */,
+				9CC3674916528AD90000D631 /* bg-powerups-menu-hd.png in Resources */,
+				9CC3674A16528AD90000D631 /* bg-powerups-menu.png in Resources */,
+				9CC3674F16528F840000D631 /* Powerups_special.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2717,6 +2755,8 @@
 				9C005DC7164A7C8200C29DB5 /* CCBSequence.m in Sources */,
 				9C005DC8164A7C8200C29DB5 /* CCBSequenceProperty.m in Sources */,
 				9C005DC9164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m in Sources */,
+				9CC36746165289860000D631 /* EquipMenuScene.m in Sources */,
+				9CC3674D16528D560000D631 /* EquipSpecialScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

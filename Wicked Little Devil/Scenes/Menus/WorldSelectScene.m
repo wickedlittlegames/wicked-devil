@@ -10,7 +10,7 @@
 #import "LevelSelectScene.h"
 #import "StartScene.h"
 #import "ShopScene.h"
-#import "EquipScene.h"
+#import "EquipMenuScene.h"
 #import "User.h"
 #import "FlurryAnalytics.h"
 #import "SimpleTableCell.h"
@@ -148,7 +148,7 @@
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited EquipStore"]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
 }
 
 - (void) tap_store:(id)sender

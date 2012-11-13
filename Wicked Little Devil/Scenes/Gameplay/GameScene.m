@@ -68,7 +68,9 @@
         menu.position = ccp ( 320/2, 30 );
         menu.opacity = 0.0f;
         [self addChild:menu z:10];
-
+        
+        game.isRestart = restart;
+        
         layer_bg        = [BGLayer node];
         layer_fx        = [FXLayer node];
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
@@ -97,7 +99,7 @@
         layer_game.world = w;
         layer_game.level = l;
         game.timelimit = 30;
-        
+
         Trigger *trigger_top = [layer_game.triggers objectAtIndex:0];
         float top = trigger_top.position.y;
         
@@ -126,7 +128,7 @@
             [collab runAction: [CCSequence actions:ease, [CCCallBlock actionWithBlock:^(void) {game.isIntro = NO;}], nil]];
         }
         
-        streak = [CCMotionStreak streakWithFade:1 minSeg:10 width:5 color:ccWHITE textureFilename:@"streak3.png"];
+        streak = [CCMotionStreak streakWithFade:0.5 minSeg:10 width:3 color:ccWHITE textureFilename:@"streak3.png"];
         [self addChild:streak];
         
         [self schedule:@selector(update:)];
@@ -192,6 +194,14 @@
         }
         
         if ( game.player.controllable )
+        {
+            CGPoint location = [touch locationInView: [touch view]];
+            game.touch = location;
+            location = [[CCDirector sharedDirector] convertToGL:location];
+            [streak setPosition:location];
+        }
+        
+        if ( game.player.floating && !game.player.controllable && game.user.powerup == 101 )
         {
             CGPoint location = [touch locationInView: [touch view]];
             game.touch = location;

@@ -19,6 +19,7 @@
 @property (nonatomic, retain) CCArray *projectiles, *fx;
 
 - (void) isIntersectingPlayer:(Game*)game;
+- (void) isIntersectingTouch:(Game*)game;
 - (void) move;
 - (void) action:(int)action_id game:(Game*)game;
 - (void) setupAnimations;

@@ -11,7 +11,7 @@
 #import "MKInfoPanel.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, items, levelprogress, worldprogress, powerup, powerups, cache_current_world, gameprogress, deaths, jumps;
+@synthesize udata, highscores, collected, souls, items, items_special, levelprogress, worldprogress, powerup, powerups, cache_current_world, gameprogress, deaths, jumps;
 @synthesize ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls, ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666, sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4, sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls, sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
 @synthesize facebook_id, facebook_image, bought_powerups;
 #pragma mark User creation/persistance methods
@@ -24,6 +24,11 @@
         if ( [udata boolForKey:@"created"] == FALSE )
         {
             [self create];
+        }
+        // adding new special powers feature
+        if ( [udata objectForKey:@"items_special"] )
+        {
+            [self create_special_items];
         }
         
         self.highscores             = [udata objectForKey:@"highscores"];
@@ -38,6 +43,7 @@
         self.deaths                 = [udata integerForKey:@"deaths"];
         self.jumps                  = [udata integerForKey:@"jumps"];
         self.items                  = [udata objectForKey:@"items"];
+        self.items_special          = [udata objectForKey:@"items_special"];
         self.facebook_id            = [udata objectForKey:@"facebook_id"];
         self.facebook_image         = [udata objectForKey:@"facebook_image"];
         
@@ -107,6 +113,19 @@
     [udata synchronize];
 }
 
+- (void ) create_special_items
+{
+    CCLOG(@"CREATED SPECIAL ITEMS");
+    NSMutableArray *special_itemsarr = [NSMutableArray arrayWithCapacity:1000];
+    for (int i = 0; i < 100; i++ )
+    {
+        [special_itemsarr addObject:[NSNumber numberWithInt:0]];
+    }
+    
+    [udata setObject:special_itemsarr forKey:@"items_special"];
+    [udata synchronize];
+}
+
 - (void) reset
 {
     [udata setBool:FALSE forKey:@"created"];
@@ -155,6 +174,17 @@
     [udata synchronize];
     
     self.items = [udata objectForKey:@"items"];    
+}
+
+- (void) buySpecialItem:(int)item
+{
+    NSMutableArray *items_tmp = [[udata objectForKey:@"items_special"] mutableCopy];
+    [items_tmp replaceObjectAtIndex:item withObject:[NSNumber numberWithInt:1]];
+    
+    [udata setObject:items_tmp forKey:@"items_special"];
+    [udata synchronize];
+    
+    self.items_special = [udata objectForKey:@"items_special"];
 }
 
 - (void) setGameProgressforWorld:(int)w level:(int)l
@@ -292,9 +322,18 @@
 
 - (NSString*) getEquippedPowerup
 {
-    NSArray *contentArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups" ofType:@"plist"] ] objectForKey:@"Powerups"];
-    NSDictionary *powerup_dict = [contentArray objectAtIndex:self.powerup];
-    return [powerup_dict objectForKey:@"Name"];
+    if ( self.powerup >= 100 )
+    {
+        NSArray *contentArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups_special" ofType:@"plist"] ] objectForKey:@"Powerups"];
+        NSDictionary *powerup_dict = [contentArray objectAtIndex:self.powerup];
+        return [powerup_dict objectForKey:@"Name"];
+    }
+    else
+    {
+        NSArray *contentArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups" ofType:@"plist"] ] objectForKey:@"Powerups"];
+        NSDictionary *powerup_dict = [contentArray objectAtIndex:self.powerup];
+        return [powerup_dict objectForKey:@"Name"];
+    }
 }
 
 - (void) check_achiements

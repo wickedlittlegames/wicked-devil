@@ -10,7 +10,7 @@
 
 @implementation Player
 @synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score, time, jumps, deaths;
-@synthesize last_platform_touched, controllable, toggled_platform, animating, falling;
+@synthesize last_platform_touched, controllable, toggled_platform, animating, falling, floating;
 @synthesize anim_jump, anim_fall, anim_fallfar, anim_die;
 @synthesize per_collectable, collectable_multiplier;
 
@@ -242,6 +242,12 @@
             break;
         case 22: // Rich Devil III
             self.collectable_multiplier = 5;
+            break;
+        case 100: // dubstep devil
+            break;
+        case 101: // bubble pop
+            break;
+        case 102: // magenet soul
             break;
     }
 }

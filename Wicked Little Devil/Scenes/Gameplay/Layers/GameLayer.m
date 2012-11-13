@@ -40,6 +40,7 @@
         }
         if ([node isKindOfClass: [CCNode class]])
         {
+            if ( node.rotation == -90 ) { node.rotation = 90; }
             for (Collectable *collectable_tmp in node.children)
             {
                 [collectables addObject:collectable_tmp];
@@ -130,9 +131,12 @@
         
         if ( collectable.visible )
         {
-            if ( [collectable isClosetoPlayer:game.player] )
+            if ( game.user.powerup == 102 )
             {
-                [collectable moveTowardsPlayer:game.player];
+                if ( [collectable isClosetoPlayer:game.player] )
+                {
+                    [collectable moveTowardsPlayer:game.player];
+                }
             }
             
             if ( [collectable isIntersectingPlayer:game.player] )
@@ -199,7 +203,7 @@
                     enemy.dead = YES;
                 }
             }
-            
+            [enemy isIntersectingTouch:game];
             [enemy isIntersectingPlayer:game];
             [enemy move];
             

@@ -168,7 +168,6 @@
     recognizer.delegate = self;
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [table addGestureRecognizer:recognizer];
-
     
     [view addSubview:table];
     [app.window addSubview:view];

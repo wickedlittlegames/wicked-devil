@@ -40,7 +40,6 @@
         }
         if ([node isKindOfClass: [CCNode class]])
         {
-            if ( node.rotation == -90 ) { node.rotation = 90; }
             for (Collectable *collectable_tmp in node.children)
             {
                 [collectables addObject:collectable_tmp];

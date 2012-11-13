@@ -182,9 +182,9 @@
     }
 }
 
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for( UITouch *touch in touches ) 
+    for( UITouch *touch in touches )
     {
         if (game.isIntro)
         {
@@ -193,15 +193,21 @@
             game.isIntro = NO;
         }
         
-        if ( game.player.controllable )
+        if ( game.player.floating && !game.player.controllable && game.user.powerup == 101 )
         {
             CGPoint location = [touch locationInView: [touch view]];
             game.touch = location;
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
         }
-        
-        if ( game.player.floating && !game.player.controllable && game.user.powerup == 101 )
+    }
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for( UITouch *touch in touches ) 
+    {
+        if ( game.player.controllable )
         {
             CGPoint location = [touch locationInView: [touch view]];
             game.touch = location;

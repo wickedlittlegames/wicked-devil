@@ -70,6 +70,38 @@
     }
 }
 
+- (void) playAudio:(int)platform_id game:(Game*)game
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute )
+    {
+        if ( game.user.powerup == 100 )
+        {
+            // 1, 2, 3, 4 ,5
+            int r = arc4random_uniform(5) + 1;
+            
+            [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"dubstep_%i",r] pitch:1 pan:1 gain:0.5];
+        }
+        else
+        {
+            switch (platform_id)
+            {
+                default:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
+                    break;
+                case 1:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump4.caf" pitch:1 pan:1 gain:0.5];
+                    break;
+                case 66:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                    break;
+                case 663:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                    break;
+            }
+        }
+    }
+}
+
 - (void) isIntersectingPlayer:(Game*)game platforms:(CCArray*)platforms
 {
     if ( self.visible && game.player.velocity.y < 0 )
@@ -79,27 +111,27 @@
             switch (self.tag)
             {
                 default: // NORMAL & MOVING PLATFORMS]
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     
                     game.player.jumps++;
                     
                     [game.player jump:game.player.jumpspeed];
                     break;
                 case 1: // DOUBLE JUMP: Causes player to jump 1.75* higher
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump4.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     game.player.jumps++;
                     
                     [game.player jump:game.player.jumpspeed*1.95];
                     break;
                 case 5: // TOGGLE SWITCH: Turns off and on platforms 51 & 52
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed];
                     [self action:self.tag game:game platforms:platforms];
                     break;
                 case 6: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     game.player.jumps++;
                                         
                     [game.player jump:game.player.jumpspeed];
@@ -110,7 +142,7 @@
                     }
                     break;
                 case 66: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     game.player.jumps++;
                                         
                     self.animating = NO;
@@ -122,7 +154,7 @@
                     }
                     break;
                 case 663: // BREAKABLE: Falls when the player jumps on it and has =||less than 0 damage
-                    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                    [self playAudio:self.tag game:game];
                     game.player.jumps++;
                     
                     

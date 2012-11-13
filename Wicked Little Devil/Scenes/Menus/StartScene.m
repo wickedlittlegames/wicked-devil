@@ -43,6 +43,9 @@
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         user = [[User alloc] init];
+        user.worldprogress = 3;
+        user.levelprogress = 20;
+        [user sync];
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {

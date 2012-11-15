@@ -18,7 +18,7 @@
     CCMenu *menu, *share_menu;
 }
 
-@property (nonatomic, assign) Game *tmp_game;
+@property (nonatomic, retain) Game *tmp_game;
 @property (nonatomic, assign) BOOL runningAnims, moved, isBonusLevel;
 
 +(CCScene *) sceneWithGame:(Game*)game;

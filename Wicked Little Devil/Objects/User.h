@@ -14,15 +14,15 @@
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps;
-@property (nonatomic, assign) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress, *items_special;
+@property (nonatomic, retain) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress, *items_special;
 @property (nonatomic, assign) BOOL ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, bought_powerups;
 @property (nonatomic, assign) BOOL ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls;
 @property (nonatomic, assign) BOOL ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666;
 @property (nonatomic, assign) BOOL sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4;
 @property (nonatomic, assign) BOOL sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls;
 @property (nonatomic, assign) BOOL sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
-@property (nonatomic, assign) NSMutableData *facebook_image;
-@property (nonatomic, assign) NSString *facebook_id;
+@property (nonatomic, retain) NSMutableData *facebook_image;
+@property (nonatomic, retain) NSString *facebook_id;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected

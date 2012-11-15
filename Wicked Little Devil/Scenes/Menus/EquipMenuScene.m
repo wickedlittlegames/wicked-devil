@@ -9,6 +9,7 @@
 #import "EquipMenuScene.h"
 #import "EquipScene.h"
 #import "EquipSpecialScene.h"
+#import "ShopScene.h"
 #import "WorldSelectScene.h"
 
 @implementation EquipMenuScene
@@ -31,8 +32,10 @@
         
         CCMenuItemImage *btn_devil      = [CCMenuItemImage itemWithNormalImage:@"ui-btn-devilupgrades.png" selectedImage:@"ui-btn-devilupgrades.png" target:self selector:@selector(tap_devil)];
         CCMenuItemImage *btn_special    = [CCMenuItemImage itemWithNormalImage:@"ui-btn-specialupgrades.png" selectedImage:@"ui-btn-specialupgrades.png" target:self selector:@selector(tap_special)];
+        CCMenuItemImage *btn_purchase   = [CCMenuItemImage itemWithNormalImage:@"ui-btn-purchaseupgrades.png" selectedImage:@"ui-btn-purchaseupgrades.png" target:self selector:@selector(tap_purchase)];
             
         CCMenu *menu_option             = [CCMenu menuWithItems:btn_devil,btn_special, nil];
+        CCMenu *menu_purchase           = [CCMenu menuWithItems:btn_purchase, nil];
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-powerups-menu.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
@@ -42,11 +45,13 @@
         [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
         [menu_option setPosition:ccp( screenSize.width/2, 300)];
         [menu_option alignItemsHorizontallyWithPadding:10];
+        [menu_purchase setPosition:ccp( screenSize.width/2, 200)];
         
         [self addChild:bg];
         [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
         [self addChild:menu_option];
+        [self addChild:menu_purchase];
     }
 	return self;
 }
@@ -63,6 +68,13 @@
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipSpecialScene scene]]];
+}
+
+- (void) tap_purchase
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 
 - (void) tap_back

@@ -6,11 +6,11 @@
 	<array>
 		<dict>
 			<key>Name</key>
-			<string>Dubstep Devil</string>
+			<string>Bound Platforms</string>
 			<key>Description</key>
-			<string>Each platform makes a dubstep sound!</string>
+			<string>Platforms no longer disappear!</string>
 			<key>Cost</key>
-			<integer>3500</integer>
+			<integer>7500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>

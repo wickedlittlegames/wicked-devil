@@ -73,7 +73,10 @@ world-2-level-7.ccbi
 world-2-level-8.ccbi
 world-2-level-9.ccbi
 world-3-level-1.ccbi
+world-3-level-2.ccbi
+world-3-level-3.ccbi
 Powerups.plist
+Powerups_special.plist
 CrashLandingBB.ttf
 AnimDevil-hd.plist
 AnimDevil-hd.png
@@ -136,6 +139,8 @@ bg-pauseoverlay-iphone5.png
 bg-pauseoverlay.png
 bg-powerups-hd.png
 bg-powerups-iphone5.png
+bg-powerups-menu-hd.png
+bg-powerups-menu.png
 bg-powerups.png
 bg-pulldown-hd.png
 bg-pulldown.png
@@ -253,8 +258,14 @@ tip-world-1-level-2-hd.png
 tip-world-1-level-2.png
 tip-world-1-level-3-hd.png
 tip-world-1-level-3.png
+ui-btn-devilupgrades-hd.png
+ui-btn-devilupgrades.png
 ui-btn-home-flag-hd.png
 ui-btn-home-flag.png
+ui-btn-purchaseupgrades-hd.png
+ui-btn-purchaseupgrades.png
+ui-btn-specialupgrades-hd.png
+ui-btn-specialupgrades.png
 ui-collectable-hd.png
 ui-collectable.png
 ui-newhighscore-hd.png

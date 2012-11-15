@@ -27,6 +27,8 @@
 			<real>321</real>
 		</dict>
 	</array>
+	<key>jsControlled</key>
+	<false/>
 	<key>nodeGraph</key>
 	<dict>
 		<key>baseClass</key>
@@ -436,7 +438,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -600,7 +602,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -692,7 +694,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -928,7 +930,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1020,7 +1022,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1112,7 +1114,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1344,8 +1346,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1422,7 +1422,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>

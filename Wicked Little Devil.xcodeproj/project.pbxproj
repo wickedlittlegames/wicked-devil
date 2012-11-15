@@ -406,6 +406,8 @@
 		9C84ED4B1594C4F10083DF40 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */; };
 		9C84ED4D1594C5010083DF40 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */; };
 		9C84ED4F1594C50A0083DF40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C84ED4E1594C50A0083DF40 /* Security.framework */; };
+		9C8808FA1653B85900F26A21 /* ui-btn-purchaseupgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8808F81653B85900F26A21 /* ui-btn-purchaseupgrades-hd.png */; };
+		9C8808FB1653B85900F26A21 /* ui-btn-purchaseupgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8808F91653B85900F26A21 /* ui-btn-purchaseupgrades.png */; };
 		9C89CE4C1649487E00B8AED4 /* panel-promo-ocean.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C89CE4A1649487E00B8AED4 /* panel-promo-ocean.png */; };
 		9C89CE4D1649487E00B8AED4 /* panel-promo-ocean-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C89CE4B1649487E00B8AED4 /* panel-promo-ocean-hd.png */; };
 		9C89CE5116494D5200B8AED4 /* bg-powerups.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C89CE4E16494D5200B8AED4 /* bg-powerups.png */; };
@@ -991,6 +993,8 @@
 		9C84ED4A1594C4F10083DF40 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9C84ED4C1594C5010083DF40 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		9C84ED4E1594C50A0083DF40 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9C8808F81653B85900F26A21 /* ui-btn-purchaseupgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-purchaseupgrades-hd.png"; sourceTree = "<group>"; };
+		9C8808F91653B85900F26A21 /* ui-btn-purchaseupgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-btn-purchaseupgrades.png"; sourceTree = "<group>"; };
 		9C89CE4A1649487E00B8AED4 /* panel-promo-ocean.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panel-promo-ocean.png"; sourceTree = "<group>"; };
 		9C89CE4B1649487E00B8AED4 /* panel-promo-ocean-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panel-promo-ocean-hd.png"; sourceTree = "<group>"; };
 		9C89CE4E16494D5200B8AED4 /* bg-powerups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-powerups.png"; sourceTree = "<group>"; };
@@ -1962,6 +1966,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C8808F81653B85900F26A21 /* ui-btn-purchaseupgrades-hd.png */,
+				9C8808F91653B85900F26A21 /* ui-btn-purchaseupgrades.png */,
 				9CC3674716528AD90000D631 /* bg-powerups-menu-hd.png */,
 				9CC3674816528AD90000D631 /* bg-powerups-menu.png */,
 				9CC3673B165289190000D631 /* ui-btn-devilupgrades-hd.png */,
@@ -2700,6 +2706,8 @@
 				9CC3674916528AD90000D631 /* bg-powerups-menu-hd.png in Resources */,
 				9CC3674A16528AD90000D631 /* bg-powerups-menu.png in Resources */,
 				9CC3674F16528F840000D631 /* Powerups_special.plist in Resources */,
+				9C8808FA1653B85900F26A21 /* ui-btn-purchaseupgrades-hd.png in Resources */,
+				9C8808FB1653B85900F26A21 /* ui-btn-purchaseupgrades.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

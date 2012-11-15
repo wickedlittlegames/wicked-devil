@@ -27,6 +27,8 @@
 			<real>321</real>
 		</dict>
 	</array>
+	<key>jsControlled</key>
+	<false/>
 	<key>nodeGraph</key>
 	<dict>
 		<key>baseClass</key>
@@ -3452,7 +3454,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>75.78125</real>
+							<real>76.40625</real>
 							<real>94.166656494140625</real>
 							<integer>4</integer>
 						</array>

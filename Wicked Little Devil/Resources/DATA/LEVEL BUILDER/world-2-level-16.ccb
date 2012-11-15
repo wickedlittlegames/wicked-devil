@@ -672,7 +672,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -764,7 +764,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1520,7 +1520,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2184,7 +2184,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2276,7 +2276,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2368,7 +2368,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2460,7 +2460,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2552,7 +2552,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2644,7 +2644,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3676,7 +3676,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3928,7 +3928,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4112,7 +4112,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4204,7 +4204,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4296,7 +4296,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4480,7 +4480,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4572,7 +4572,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4664,7 +4664,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4756,7 +4756,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -4848,7 +4848,7 @@
 						<key>value</key>
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
-							<string>platform-moving.png</string>
+							<string>platform-broken.png</string>
 						</array>
 					</dict>
 					<dict>

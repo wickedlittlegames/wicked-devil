@@ -130,13 +130,13 @@
         
         if ( collectable.visible )
         {
-            if ( game.user.powerup == 102 )
-            {
+//            if ( game.user.powerup == 102 )
+//            {
                 if ( [collectable isClosetoPlayer:game.player] )
                 {
                     [collectable moveTowardsPlayer:game.player];
                 }
-            }
+//            }
             
             if ( [collectable isIntersectingPlayer:game.player] )
             {

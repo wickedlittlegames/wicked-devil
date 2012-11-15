@@ -325,7 +325,7 @@
     if ( self.powerup >= 100 )
     {
         NSArray *contentArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups_special" ofType:@"plist"] ] objectForKey:@"Powerups"];
-        NSDictionary *powerup_dict = [contentArray objectAtIndex:self.powerup];
+        NSDictionary *powerup_dict = [contentArray objectAtIndex:(self.powerup)-100];
         return [powerup_dict objectForKey:@"Name"];
     }
     else

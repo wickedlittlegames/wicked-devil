@@ -59,8 +59,7 @@
             else
             {
                 [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverScene  sceneWithGame:game]]];
-            }
-                                        
+            }                           
         }  ],nil];
         [menu_back setPosition:ccp(25, 25)];
         [self addChild:menu_back];

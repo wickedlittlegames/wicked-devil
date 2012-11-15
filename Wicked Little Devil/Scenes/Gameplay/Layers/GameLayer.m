@@ -93,7 +93,7 @@
     {
         if ( !game.isIntro )
         {
-            if ([platform worldBoundingBox].origin.y < -80)
+            if ([platform worldBoundingBox].origin.y < -80 && !game.user.powerup == 100 )
             {
                 platform.visible = NO;
                 platform.dead = YES;
@@ -102,7 +102,14 @@
             }
         }
         
-        platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 && !platform.dead );
+        if ( game.user.powerup == 100 )
+        {
+            platform.visible = ( !platform.dead && [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height );
+        }
+        else
+        {
+            platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 && !platform.dead);
+        }
         
         if (  platform.visible )
         {
@@ -130,13 +137,13 @@
         
         if ( collectable.visible )
         {
-//            if ( game.user.powerup == 102 )
-//            {
+            if ( game.user.powerup == 102 )
+            {
                 if ( [collectable isClosetoPlayer:game.player] )
                 {
                     [collectable moveTowardsPlayer:game.player];
                 }
-//            }
+            }
             
             if ( [collectable isIntersectingPlayer:game.player] )
             {

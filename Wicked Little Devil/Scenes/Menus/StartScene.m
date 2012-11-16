@@ -241,20 +241,10 @@
     
     bool current_mute_status = [user.udata boolForKey:@"MUTED"];
     
-    if ( current_mute_status == 0 )
-    {
-        btn_mute.visible = NO;
-        btn_muted.visible = YES;
-        [SimpleAudioEngine sharedEngine].mute = YES;
-        [user.udata setBool:TRUE forKey:@"MUTED"];
-    }
-    else
-    {
-        btn_mute.visible = YES;
-        btn_muted.visible = NO;
-        [SimpleAudioEngine sharedEngine].mute = NO;
-        [user.udata setBool:FALSE forKey:@"MUTED"];
-    }
+    btn_mute.visible = current_mute_status;
+    btn_muted.visible = !current_mute_status;
+    [SimpleAudioEngine sharedEngine].mute = !current_mute_status;
+    [user.udata setBool:!current_mute_status forKey:@"MUTED"];
     
     [user.udata synchronize];
 }

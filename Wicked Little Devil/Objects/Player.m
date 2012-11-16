@@ -156,29 +156,6 @@
 
 - (void) setupPowerup:(int)powerup
 {
-    //  Lucky Devil I - 0
-    //	Lucky Devil II - 1
-    //	Lucky Devil III - 2
-    //	Lucky Devil IV - 3
-    //	Bouncy Devil I - 4
-    //	Bouncy Devil II - 5
-    //	Bouncy Devil III - 6
-    //	Feather Devil I - 7
-    //	Feather Devil II - 8
-    //	Feather Devil III - 9
-    //	Quick Devil I - 10
-    //	Quick Devil II - 11
-    //	Quick Devil III - 12
-    //	Tough Devil I - 13
-    //	Tough Devi II - 14
-    //	Tough Devil III - 15
-    //	Tough Devil IV - 16
-    //	Winning Devil I - 17
-    //	Winning Devil I - 18
-    //	Winning Devil I - 19
-    //	Rich Devil I - 20
-    //	Rich Devil II - 21
-    //	Rich Devil I3 - 22
     switch (powerup)
     {
         default: break;

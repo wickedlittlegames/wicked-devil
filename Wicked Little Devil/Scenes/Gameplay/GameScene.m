@@ -16,6 +16,10 @@
 
 #import "Game.h"
 
+@interface GameScene ()
+- (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
+@end
+
 @implementation GameScene
 
 #pragma mark === Init ===

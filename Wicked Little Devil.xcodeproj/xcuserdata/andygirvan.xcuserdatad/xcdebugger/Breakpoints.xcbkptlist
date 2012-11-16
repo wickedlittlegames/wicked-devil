@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Wicked Little Devil/Objects/Player.m"
-         timestampString = "374170144.185547"
+         timestampString = "374775165.756529"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "75"
-         endingLineNumber = "75"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
          landmarkName = "-jump:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Wicked Little Devil/Scenes/Gameplay/GameOverScene.m"
-         timestampString = "374509499.168875"
+         timestampString = "374775165.756529"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "477"
-         endingLineNumber = "477"
+         startingLineNumber = "476"
+         endingLineNumber = "476"
          landmarkName = "-tap_facebook"
          landmarkType = "5">
       </FileBreakpoint>

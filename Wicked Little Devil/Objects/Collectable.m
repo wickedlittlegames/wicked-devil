@@ -12,20 +12,12 @@
 @implementation Collectable
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
-    {
-        return TRUE;
-    }
-    return FALSE;
+    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) ;
 }
 
 - (BOOL) isClosetoPlayer:(Player*)player
 {
-    if ( [self radiusCheck:player] && self.visible )
-    {
-        return TRUE;
-    }
-    return FALSE;
+    return ( [self radiusCheck:player] && self.visible );
 }
 
 - (void) moveTowardsPlayer:(Player*)player
@@ -44,11 +36,8 @@
     float radiusTwo = 1;
     
     float distance = sqrt(xdif*xdif+ydif*ydif);
-    
-    if(distance <= radius+radiusTwo)
-        return YES;
-    
-    return NO;
+        
+    return (distance <= radius+radiusTwo);
 }
 
 
@@ -59,12 +48,7 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
-    if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
-    {
-        self.visible = FALSE;
-        return TRUE;
-    }
-    return FALSE;
+    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) ;
 }
 
 @end

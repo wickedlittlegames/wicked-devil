@@ -30,6 +30,5 @@
 @property (nonatomic, assign) float threshold;
 
 + (CCScene *) sceneWithWorld:(int)w andLevel:(int)l isRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
-- (id) initWithWorld:(int)w andLevel:(int)l withRestart:(BOOL)restart restartMusic:(BOOL)restartMusic;
 
 @end

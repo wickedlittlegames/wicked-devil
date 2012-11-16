@@ -105,8 +105,22 @@
                 }
                 else
                 {
-                    NSMutableDictionary *param2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:[[PFFacebookUtils session] accessToken],@"access_token",nil];
-                    [[PFFacebookUtils facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/scores",[[PFFacebookUtils session] appID]] andParams:param2 andHttpMethod:@"GET" andDelegate:self];
+                    if ( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0") )
+                    {
+                        NSMutableDictionary *param2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:[[PFFacebookUtils session] accessToken],@"access_token",nil];
+                        [[PFFacebookUtils facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/scores",[[PFFacebookUtils session] appID]] andParams:param2 andHttpMethod:@"GET" andDelegate:self];
+                    }
+                    else
+                    {
+                        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+                        UIAlertView *alertView = [[UIAlertView alloc]
+                                                  initWithTitle:@"Facebook Error!"
+                                                  message:@"iOS 6 or higher is required."
+                                                  delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+                        [alertView show];
+                    }
                 }
             }];
         }

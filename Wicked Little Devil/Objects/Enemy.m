@@ -346,12 +346,13 @@
     
     float distance = sqrt(xdif*xdif+ydif*ydif);
     
-    if(distance <= radius+radiusTwo)
-        return YES;
-    
-    return NO;
+    return (distance <= radius+radiusTwo);
 }
 
-- (void) action_end_item { CCLOG(@"ENDING"); self.visible = NO; self.running = NO; }
+- (void) action_end_item
+{
+    self.visible = NO;
+    self.running = NO;
+}
 
 @end

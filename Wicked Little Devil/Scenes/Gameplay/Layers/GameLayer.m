@@ -13,7 +13,6 @@
 #import "Game.h"
 
 @implementation GameLayer
-@synthesize platforms, collectables, bigcollectables, enemies, triggers, emitters,  world, level, tips;
 
 - (id) init
 {
@@ -23,62 +22,62 @@
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
 {
-    platforms       = [CCArray arrayWithCapacity:100];
-    collectables    = [CCArray arrayWithCapacity:500];
-    bigcollectables = [CCArray arrayWithCapacity:3];
-    enemies         = [CCArray arrayWithCapacity:100];
-    triggers        = [CCArray arrayWithCapacity:100];
-    emitters        = [CCArray arrayWithCapacity:100];
-    tips            = [CCArray arrayWithCapacity:100];
+    self.platforms       = [CCArray arrayWithCapacity:100];
+    self.collectables    = [CCArray arrayWithCapacity:500];
+    self.bigcollectables = [CCArray arrayWithCapacity:3];
+    self.enemies         = [CCArray arrayWithCapacity:100];
+    self.triggers        = [CCArray arrayWithCapacity:100];
+    self.emitters        = [CCArray arrayWithCapacity:100];
+    self.tips            = [CCArray arrayWithCapacity:100];
     
     for (CCNode* node in self.children)
     {
         if ([node isKindOfClass: [Platform class]])
         {
-            [platforms addObject:node];
+            [self.platforms addObject:node];
             if ( node.tag == 52 ) node.visible = NO;
         }
         if ([node isKindOfClass: [CCNode class]])
         {
             for (Collectable *collectable_tmp in node.children)
             {
-                [collectables addObject:collectable_tmp];
+                [self.collectables addObject:collectable_tmp];
             }
         }
         if ([node isKindOfClass: [BigCollectable class]])
         {
-            [bigcollectables addObject:node];
+            [self.bigcollectables addObject:node];
         }
         if ([node isKindOfClass: [Enemy class]])
         {
-            [enemies addObject:node];
+            [self.enemies addObject:node];
         }
         if ([node isKindOfClass: [Trigger class]])
         {
-            [triggers addObject:node]; 
+            [self.triggers addObject:node]; 
             node.visible = NO;
         }
         if ([node isKindOfClass: [Tip class]])
         {
-            [tips addObject:node];
+            [self.tips addObject:node];
             node.visible = NO;
         }
     }
     
-    CCARRAY_FOREACH(collectables, collectable)
+    CCARRAY_FOREACH(self.collectables, collectable)
     {
         collectable.visible = ( [collectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [collectable worldBoundingBox].origin.y > -20 );
     }
-    CCARRAY_FOREACH(bigcollectables, bigcollectable)
+    CCARRAY_FOREACH(self.bigcollectables, bigcollectable)
     {
         bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > -20 );
     }
-    CCARRAY_FOREACH(platforms, platform)
+    CCARRAY_FOREACH(self.platforms, platform)
     {
         platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 );
         if ( !platform.animating ) [platform move];
     }
-    CCARRAY_FOREACH(enemies, enemy)
+    CCARRAY_FOREACH(self.enemies, enemy)
     {
         enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > -20 );
         if ( !enemy.animating ) [enemy setupAnimations];
@@ -89,7 +88,7 @@
 {       
     [self gameoverCheck:game];
     
-    CCARRAY_FOREACH(platforms, platform)
+    CCARRAY_FOREACH(self.platforms, platform)
     {
         if ( !game.isIntro )
         {
@@ -97,7 +96,7 @@
             {
                 platform.visible = NO;
                 platform.dead = YES;
-                [platforms removeObject:platform];
+                [self.platforms removeObject:platform];
                 [platform removeFromParentAndCleanup:YES];
             }
         }
@@ -115,12 +114,12 @@
         {
             if ( game.player.controllable )
             {
-                [platform isIntersectingPlayer:game platforms:platforms];
+                [platform isIntersectingPlayer:game platforms:self.platforms];
             }
         }
     }
     
-    CCARRAY_FOREACH(collectables, collectable)
+    CCARRAY_FOREACH(self.collectables, collectable)
     {
         if ( !game.isIntro )
         {
@@ -128,7 +127,7 @@
             {
                 collectable.visible = NO;
                 collectable.dead = YES;
-                [collectables removeObject:collectable];
+                [self.collectables removeObject:collectable];
                 [collectable removeFromParentAndCleanup:YES];
             }
         }
@@ -153,7 +152,7 @@
                 }
                 collectable.visible = FALSE;
                 collectable.dead = YES;
-                [collectables removeObject:collectable];
+                [self.collectables removeObject:collectable];
                 [collectable removeFromParentAndCleanup:YES];
                 
                 game.player.collected +=  (1 * game.player.collectable_multiplier);
@@ -161,7 +160,7 @@
         }
     }
     
-    CCARRAY_FOREACH(bigcollectables, bigcollectable)
+    CCARRAY_FOREACH(self.bigcollectables, bigcollectable)
     {
         if ( !game.isIntro )
         {
@@ -169,7 +168,7 @@
             {
                 bigcollectable.visible = NO;
                 bigcollectable.dead = YES;
-                [bigcollectables removeObject:bigcollectable];
+                [self.bigcollectables removeObject:bigcollectable];
                 [bigcollectable removeFromParentAndCleanup:YES];
             }
         }
@@ -189,13 +188,13 @@
                 [game.fx start:1 position:ccp([bigcollectable worldBoundingBox].origin.x + [bigcollectable contentSize].width/2, [bigcollectable worldBoundingBox].origin.y)];
 
                 bigcollectable.visible = NO;
-                [bigcollectables removeObject:bigcollectable];
+                [self.bigcollectables removeObject:bigcollectable];
                 [bigcollectable removeFromParentAndCleanup:YES];
             }
         }
     }
         
-    CCARRAY_FOREACH(enemies, enemy)
+    CCARRAY_FOREACH(self.enemies, enemy)
     {
         enemy.visible = ( [enemy worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [enemy worldBoundingBox].origin.y > -70 && !enemy.dead );
         

@@ -9,7 +9,6 @@
 #import "FXLayer.h"
 
 @implementation FXLayer
-@synthesize effects;
 
 - (id) init
 {

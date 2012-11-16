@@ -10,15 +10,14 @@
 #import "Player.h"
 
 @implementation PlayerLayer
-@synthesize player;
 
 - (id) init
 {
 	if( (self=[super init]) ) 
     {
-        player = [Player spriteWithFile:@"jump1.png"];
-        [player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , 60 )];
-        [self addChild:player];
+        self.player = [Player spriteWithFile:@"jump1.png"];
+        [self.player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , 60 )];
+        [self addChild:self.player];
     }
 	return self;
 }

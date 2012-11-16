@@ -10,7 +10,6 @@
 #import "Player.h"
 
 @implementation Collectable
-@synthesize dead;
 - (BOOL) isIntersectingPlayer:(Player*)player
 {
     if ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) 
@@ -57,7 +56,6 @@
 @end
 
 @implementation BigCollectable 
-@synthesize dead;
 
 - (BOOL) isIntersectingPlayer:(Player*)player
 {

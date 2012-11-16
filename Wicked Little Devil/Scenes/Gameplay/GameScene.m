@@ -17,7 +17,6 @@
 #import "Game.h"
 
 @implementation GameScene
-@synthesize threshold; // floats
 
 #pragma mark === Init ===
 

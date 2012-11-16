@@ -18,7 +18,6 @@
     Projectile *projectile;
     EnemyFX *fx;
     Tip *tip;
-
 }
 @property (nonatomic, retain) CCArray *platforms, *collectables, *bigcollectables, *enemies, *triggers, *emitters, *tips;
 @property (nonatomic, assign) int world, level;

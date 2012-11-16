@@ -10,7 +10,6 @@
 #import "ShopScene.h"
 
 @implementation SimpleTableCell
-@synthesize label_title = _label_title,label_description = _label_description ,label_price = _label_price,image_thumbnail = _image_thumbnail,button_buy = _button_buy;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

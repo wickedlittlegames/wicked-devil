@@ -11,41 +11,38 @@
 #import "MKInfoPanel.h"
 
 @implementation User
-@synthesize udata, highscores, collected, souls, items, items_special, levelprogress, worldprogress, powerup, powerups, cache_current_world, gameprogress, deaths, jumps;
-@synthesize ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls, ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666, sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4, sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls, sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
-@synthesize facebook_id, facebook_image, bought_powerups;
+
 #pragma mark User creation/persistance methods
 
 -(id) init
 {
 	if( (self=[super init]) )
     {
-        udata = [NSUserDefaults standardUserDefaults];
-        if ( [udata boolForKey:@"created"] == FALSE )
+        self.udata = [NSUserDefaults standardUserDefaults];
+        if ( [self.udata boolForKey:@"created"] == FALSE )
         {
             [self create];
         }
-        // adding new special powers feature
-        if ( [udata objectForKey:@"items_special"] )
+        if ( [self.udata objectForKey:@"items_special"] )
         {
             [self create_special_items];
         }
         
-        self.highscores             = [udata objectForKey:@"highscores"];
-        self.souls                  = [udata objectForKey:@"souls"];
-        self.levelprogress          = [udata integerForKey:@"levelprogress"];
-        self.worldprogress          = [udata integerForKey:@"worldprogress"];
-        self.gameprogress           = [udata objectForKey:@"gameprogress"];
-        self.powerup                = [udata integerForKey:@"powerup"];
-        self.bought_powerups        = [udata boolForKey:@"bought_powerups"];
-        self.cache_current_world    = [udata integerForKey:@"cache_current_world"];
-        self.collected              = [udata integerForKey:@"collected"];
-        self.deaths                 = [udata integerForKey:@"deaths"];
-        self.jumps                  = [udata integerForKey:@"jumps"];
-        self.items                  = [udata objectForKey:@"items"];
-        self.items_special          = [udata objectForKey:@"items_special"];
-        self.facebook_id            = [udata objectForKey:@"facebook_id"];
-        self.facebook_image         = [udata objectForKey:@"facebook_image"];
+        self.highscores             = [self.udata objectForKey:@"highscores"];
+        self.souls                  = [self.udata objectForKey:@"souls"];
+        self.levelprogress          = [self.udata integerForKey:@"levelprogress"];
+        self.worldprogress          = [self.udata integerForKey:@"worldprogress"];
+        self.gameprogress           = [self.udata objectForKey:@"gameprogress"];
+        self.powerup                = [self.udata integerForKey:@"powerup"];
+        self.bought_powerups        = [self.udata boolForKey:@"bought_powerups"];
+        self.cache_current_world    = [self.udata integerForKey:@"cache_current_world"];
+        self.collected              = [self.udata integerForKey:@"collected"];
+        self.deaths                 = [self.udata integerForKey:@"deaths"];
+        self.jumps                  = [self.udata integerForKey:@"jumps"];
+        self.items                  = [self.udata objectForKey:@"items"];
+        self.items_special          = [self.udata objectForKey:@"items_special"];
+        self.facebook_id            = [self.udata objectForKey:@"facebook_id"];
+        self.facebook_image         = [self.udata objectForKey:@"facebook_image"];
         
         [self setupAchievements];
     }
@@ -95,22 +92,22 @@
         [itemsarr addObject:[NSNumber numberWithInt:0]];
     }
     
-    [udata setObject:itemsarr forKey:@"items"];
-    [udata setObject:worlds forKey:@"highscores"];
-    [udata setObject:world_souls forKey:@"souls"];
-    [udata setInteger:1 forKey:@"levelprogress"];
-    [udata setInteger:1 forKey:@"worldprogress"];
-    [udata setObject:tmpworldprogress forKey:@"gameprogress"];
-    [udata setInteger:0 forKey:@"powerup"];
-    [udata setInteger:1 forKey:@"cache_current_world"];
-    [udata setInteger:0 forKey:@"collected"];
-    [udata setInteger:0 forKey:@"deaths"];
-    [udata setInteger:0 forKey:@"jumps"];
-    [udata setBool:FALSE forKey:@"muted"];
+    [self.udata setObject:itemsarr forKey:@"items"];
+    [self.udata setObject:worlds forKey:@"highscores"];
+    [self.udata setObject:world_souls forKey:@"souls"];
+    [self.udata setInteger:1 forKey:@"levelprogress"];
+    [self.udata setInteger:1 forKey:@"worldprogress"];
+    [self.udata setObject:tmpworldprogress forKey:@"gameprogress"];
+    [self.udata setInteger:0 forKey:@"powerup"];
+    [self.udata setInteger:1 forKey:@"cache_current_world"];
+    [self.udata setInteger:0 forKey:@"collected"];
+    [self.udata setInteger:0 forKey:@"deaths"];
+    [self.udata setInteger:0 forKey:@"jumps"];
+    [self.udata setBool:FALSE forKey:@"muted"];
     
-    [udata setBool:TRUE forKey:@"created"];
+    [self.udata setBool:TRUE forKey:@"created"];
     
-    [udata synchronize];
+    [self.udata synchronize];
 }
 
 - (void ) create_special_items
@@ -122,40 +119,40 @@
         [special_itemsarr addObject:[NSNumber numberWithInt:0]];
     }
     
-    [udata setObject:special_itemsarr forKey:@"items_special"];
-    [udata synchronize];
+    [self.udata setObject:special_itemsarr forKey:@"items_special"];
+    [self.udata synchronize];
 }
 
 - (void) reset
 {
-    [udata setBool:FALSE forKey:@"created"];
+    [self.udata setBool:FALSE forKey:@"created"];
     [self resetAchievements];    
     [self create];
-    [udata synchronize];
+    [self.udata synchronize];
 }
 
 - (void) sync
 {
-    [udata setInteger:self.levelprogress forKey:@"levelprogress"];
-    [udata setInteger:self.worldprogress forKey:@"worldprogress"];
-    [udata setInteger:self.deaths forKey:@"deaths"];
-    [udata setInteger:self.jumps forKey:@"jumps"];
-    [udata setInteger:self.collected forKey:@"collected"];    
-    [udata setInteger:self.powerup forKey:@"powerup"];
-    [udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
-    [udata synchronize];
+    [self.udata setInteger:self.levelprogress forKey:@"levelprogress"];
+    [self.udata setInteger:self.worldprogress forKey:@"worldprogress"];
+    [self.udata setInteger:self.deaths forKey:@"deaths"];
+    [self.udata setInteger:self.jumps forKey:@"jumps"];
+    [self.udata setInteger:self.collected forKey:@"collected"];    
+    [self.udata setInteger:self.powerup forKey:@"powerup"];
+    [self.udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
+    [self.udata synchronize];
 }
 
 - (void) sync_facebook
 {
-    [udata setObject:self.facebook_id forKey:@"facebook_id"];
-    [udata setObject:self.facebook_image forKey:@"facebook_image"];
-    [udata synchronize];
+    [self.udata setObject:self.facebook_id forKey:@"facebook_id"];
+    [self.udata setObject:self.facebook_image forKey:@"facebook_image"];
+    [self.udata synchronize];
 }
 - (void) sync_cache_current_world
 {
-    [udata setInteger:self.cache_current_world forKey:@"cache_current_world"];
-    [udata synchronize];
+    [self.udata setInteger:self.cache_current_world forKey:@"cache_current_world"];
+    [self.udata synchronize];
 }
 
 - (BOOL) isOnline
@@ -167,24 +164,24 @@
 
 - (void) buyItem:(int)item
 {
-    NSMutableArray *items_tmp = [[udata objectForKey:@"items"] mutableCopy];
+    NSMutableArray *items_tmp = [[self.udata objectForKey:@"items"] mutableCopy];
     [items_tmp replaceObjectAtIndex:item withObject:[NSNumber numberWithInt:1]];
     
-    [udata setObject:items_tmp forKey:@"items"];
-    [udata synchronize];
+    [self.udata setObject:items_tmp forKey:@"items"];
+    [self.udata synchronize];
     
-    self.items = [udata objectForKey:@"items"];    
+    self.items = [self.udata objectForKey:@"items"];    
 }
 
 - (void) buySpecialItem:(int)item
 {
-    NSMutableArray *items_tmp = [[udata objectForKey:@"items_special"] mutableCopy];
+    NSMutableArray *items_tmp = [[self.udata objectForKey:@"items_special"] mutableCopy];
     [items_tmp replaceObjectAtIndex:item withObject:[NSNumber numberWithInt:1]];
     
-    [udata setObject:items_tmp forKey:@"items_special"];
-    [udata synchronize];
+    [self.udata setObject:items_tmp forKey:@"items_special"];
+    [self.udata synchronize];
     
-    self.items_special = [udata objectForKey:@"items_special"];
+    self.items_special = [self.udata objectForKey:@"items_special"];
 }
 
 - (void) setGameProgressforWorld:(int)w level:(int)l
@@ -194,8 +191,8 @@
     [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:1]];
     [gameprogress_tmp replaceObjectAtIndex:w-1 withObject:tmp];
     NSArray *new_gameprogress = gameprogress_tmp;
-    [udata setObject:new_gameprogress forKey:@"gameprogress"];
-    [udata synchronize];
+    [self.udata setObject:new_gameprogress forKey:@"gameprogress"];
+    [self.udata synchronize];
 }
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
@@ -208,14 +205,14 @@
         [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
         [highscores_tmp replaceObjectAtIndex:w-1 withObject:tmp];
         NSArray *highscore = highscores_tmp;
-        [udata setObject:highscore forKey:@"highscores"];
-        [udata synchronize];
+        [self.udata setObject:highscore forKey:@"highscores"];
+        [self.udata synchronize];
     }
 }
 
 - (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
 {
-    NSMutableArray *souls_tmp = [[udata objectForKey:@"souls"] mutableCopy];
+    NSMutableArray *souls_tmp = [[self.udata objectForKey:@"souls"] mutableCopy];
     
     int current_total = [self getSoulsforWorld:w level:l];
     
@@ -225,14 +222,14 @@
         [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
         [souls_tmp replaceObjectAtIndex:w-1 withObject:tmp];        
         NSArray *souls_arr = souls_tmp;
-        [udata setObject:souls_arr forKey:@"souls"];
-        [udata synchronize];
+        [self.udata setObject:souls_arr forKey:@"souls"];
+        [self.udata synchronize];
     }
 }
 
 - (int) getHighscoreforWorld:(int)w
 {
-    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
+    NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
     if ( [tmp2 count] > 0 )
@@ -248,7 +245,7 @@
 
 - (int) getHighscoreforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"highscores"];
+    NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
     
@@ -262,7 +259,7 @@
 
 - (int) getGameProgressforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"gameprogress"];
+    NSMutableArray *tmp = [self.udata objectForKey:@"gameprogress"];
     NSMutableArray *tmp2 = [tmp objectAtIndex:w-1];
     int tmp_progress = 0;
     
@@ -277,7 +274,7 @@
 
 - (int) getSoulsforWorld:(int)w
 {
-    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
     
@@ -308,7 +305,7 @@
 
 - (int) getSoulsforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [udata objectForKey:@"souls"];
+    NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
     NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
     int tmp_score = 0;
     
@@ -474,103 +471,103 @@
 
 - (void) sync_achievements
 {
-    [udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_1"];
-    [udata setBool:self.ach_beat_world_2 forKey:@"ach_beat_world_2"];
-    [udata setBool:self.ach_beat_world_3 forKey:@"ach_beat_world_3"];
-    [udata setBool:self.ach_beat_world_4 forKey:@"ach_beat_world_4"];
-    [udata setBool:self.ach_first_play forKey:@"ach_first_play"];
-    [udata setBool:self.ach_first_3_big forKey:@"ach_first_3_big"];
-    [udata setBool:self.ach_killed forKey:@"ach_killed"];
-    [udata setBool:self.ach_1000_souls forKey:@"ach_1000_souls"];
-    [udata setBool:self.ach_5000_souls forKey:@"ach_5000_souls"];
-    [udata setBool:self.ach_10000_souls forKey:@"ach_10000_souls"];
-    [udata setBool:self.ach_50000_souls forKey:@"ach_50000_souls"];
-    [udata setBool:self.ach_died_100 forKey:@"ach_died_100"];
-    [udata setBool:self.ach_jumped_1000 forKey:@"ach_jumped_1000"];
-    [udata setBool:self.ach_collected_666 forKey:@"ach_collected_666"];
+    [self.udata setBool:self.ach_beat_world_1 forKey:@"ach_beat_world_1"];
+    [self.udata setBool:self.ach_beat_world_2 forKey:@"ach_beat_world_2"];
+    [self.udata setBool:self.ach_beat_world_3 forKey:@"ach_beat_world_3"];
+    [self.udata setBool:self.ach_beat_world_4 forKey:@"ach_beat_world_4"];
+    [self.udata setBool:self.ach_first_play forKey:@"ach_first_play"];
+    [self.udata setBool:self.ach_first_3_big forKey:@"ach_first_3_big"];
+    [self.udata setBool:self.ach_killed forKey:@"ach_killed"];
+    [self.udata setBool:self.ach_1000_souls forKey:@"ach_1000_souls"];
+    [self.udata setBool:self.ach_5000_souls forKey:@"ach_5000_souls"];
+    [self.udata setBool:self.ach_10000_souls forKey:@"ach_10000_souls"];
+    [self.udata setBool:self.ach_50000_souls forKey:@"ach_50000_souls"];
+    [self.udata setBool:self.ach_died_100 forKey:@"ach_died_100"];
+    [self.udata setBool:self.ach_jumped_1000 forKey:@"ach_jumped_1000"];
+    [self.udata setBool:self.ach_collected_666 forKey:@"ach_collected_666"];
     
-    [udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_1"];
-    [udata setBool:self.sent_ach_beat_world_2 forKey:@"sent_ach_beat_world_2"];
-    [udata setBool:self.sent_ach_beat_world_3 forKey:@"sent_ach_beat_world_3"];
-    [udata setBool:self.sent_ach_beat_world_4 forKey:@"sent_ach_beat_world_4"];
-    [udata setBool:self.sent_ach_first_play forKey:@"sent_ach_first_play"];
-    [udata setBool:self.sent_ach_first_3_big forKey:@"sent_ach_first_3_big"];
-    [udata setBool:self.sent_ach_killed forKey:@"sent_ach_killed"];
-    [udata setBool:self.sent_ach_1000_souls forKey:@"sent_ach_1000_souls"];
-    [udata setBool:self.sent_ach_5000_souls forKey:@"sent_ach_5000_souls"];
-    [udata setBool:self.sent_ach_10000_souls forKey:@"sent_ach_10000_souls"];
-    [udata setBool:self.sent_ach_50000_souls forKey:@"sent_ach_50000_souls"];
-    [udata setBool:self.sent_ach_died_100 forKey:@"sent_ach_died_100"];
-    [udata setBool:self.sent_ach_jumped_1000 forKey:@"sent_ach_jumped_1000"];
-    [udata setBool:self.sent_ach_collected_666 forKey:@"sent_ach_collected_666"];
+    [self.udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_1"];
+    [self.udata setBool:self.sent_ach_beat_world_2 forKey:@"sent_ach_beat_world_2"];
+    [self.udata setBool:self.sent_ach_beat_world_3 forKey:@"sent_ach_beat_world_3"];
+    [self.udata setBool:self.sent_ach_beat_world_4 forKey:@"sent_ach_beat_world_4"];
+    [self.udata setBool:self.sent_ach_first_play forKey:@"sent_ach_first_play"];
+    [self.udata setBool:self.sent_ach_first_3_big forKey:@"sent_ach_first_3_big"];
+    [self.udata setBool:self.sent_ach_killed forKey:@"sent_ach_killed"];
+    [self.udata setBool:self.sent_ach_1000_souls forKey:@"sent_ach_1000_souls"];
+    [self.udata setBool:self.sent_ach_5000_souls forKey:@"sent_ach_5000_souls"];
+    [self.udata setBool:self.sent_ach_10000_souls forKey:@"sent_ach_10000_souls"];
+    [self.udata setBool:self.sent_ach_50000_souls forKey:@"sent_ach_50000_souls"];
+    [self.udata setBool:self.sent_ach_died_100 forKey:@"sent_ach_died_100"];
+    [self.udata setBool:self.sent_ach_jumped_1000 forKey:@"sent_ach_jumped_1000"];
+    [self.udata setBool:self.sent_ach_collected_666 forKey:@"sent_ach_collected_666"];
     
-    [udata synchronize];
+    [self.udata synchronize];
 }
 
 - (void) setupAchievements
 {
-    self.ach_beat_world_1       = [udata boolForKey:@"ach_beat_world_1"];
-    self.ach_beat_world_2       = [udata boolForKey:@"ach_beat_world_2"];
-    self.ach_beat_world_3       = [udata boolForKey:@"ach_beat_world_3"];
-    self.ach_beat_world_4       = [udata boolForKey:@"ach_beat_world_4"];
-    self.ach_first_play         = [udata boolForKey:@"ach_first_play"];
-    self.ach_first_3_big        = [udata boolForKey:@"ach_first_3_big"];
-    self.ach_killed             = [udata boolForKey:@"ach_killed"];
-    self.ach_1000_souls         = [udata boolForKey:@"ach_1000_souls"];
-    self.ach_5000_souls         = [udata boolForKey:@"ach_5000_souls"];
-    self.ach_10000_souls        = [udata boolForKey:@"ach_10000_souls"];
-    self.ach_50000_souls        = [udata boolForKey:@"ach_50000_souls"];
-    self.ach_died_100           = [udata boolForKey:@"ach_died_100"];
-    self.ach_jumped_1000        = [udata boolForKey:@"ach_jumped_1000"];
-    self.ach_collected_666      = [udata boolForKey:@"ach_collected_666"];
+    self.ach_beat_world_1       = [self.udata boolForKey:@"ach_beat_world_1"];
+    self.ach_beat_world_2       = [self.udata boolForKey:@"ach_beat_world_2"];
+    self.ach_beat_world_3       = [self.udata boolForKey:@"ach_beat_world_3"];
+    self.ach_beat_world_4       = [self.udata boolForKey:@"ach_beat_world_4"];
+    self.ach_first_play         = [self.udata boolForKey:@"ach_first_play"];
+    self.ach_first_3_big        = [self.udata boolForKey:@"ach_first_3_big"];
+    self.ach_killed             = [self.udata boolForKey:@"ach_killed"];
+    self.ach_1000_souls         = [self.udata boolForKey:@"ach_1000_souls"];
+    self.ach_5000_souls         = [self.udata boolForKey:@"ach_5000_souls"];
+    self.ach_10000_souls        = [self.udata boolForKey:@"ach_10000_souls"];
+    self.ach_50000_souls        = [self.udata boolForKey:@"ach_50000_souls"];
+    self.ach_died_100           = [self.udata boolForKey:@"ach_died_100"];
+    self.ach_jumped_1000        = [self.udata boolForKey:@"ach_jumped_1000"];
+    self.ach_collected_666      = [self.udata boolForKey:@"ach_collected_666"];
     
-    self.sent_ach_beat_world_1  = [udata boolForKey:@"sent_ach_beat_world_1"];
-    self.sent_ach_beat_world_2  = [udata boolForKey:@"sent_ach_beat_world_2"];
-    self.sent_ach_beat_world_3  = [udata boolForKey:@"sent_ach_beat_world_3"];
-    self.sent_ach_beat_world_4  = [udata boolForKey:@"sent_ach_beat_world_4"];
-    self.sent_ach_first_play    = [udata boolForKey:@"sent_ach_first_play"];
-    self.sent_ach_first_3_big   = [udata boolForKey:@"sent_ach_first_3_big"];
-    self.sent_ach_killed        = [udata boolForKey:@"sent_ach_killed"];
-    self.sent_ach_1000_souls    = [udata boolForKey:@"sent_ach_1000_souls"];
-    self.sent_ach_5000_souls    = [udata boolForKey:@"sent_ach_5000_souls"];
-    self.sent_ach_10000_souls   = [udata boolForKey:@"sent_ach_10000_souls"];
-    self.sent_ach_50000_souls   = [udata boolForKey:@"sent_ach_50000_souls"];
-    self.sent_ach_died_100      = [udata boolForKey:@"sent_ach_died_100"];
-    self.sent_ach_jumped_1000   = [udata boolForKey:@"sent_ach_jumped_1000"];
-    self.sent_ach_collected_666 = [udata boolForKey:@"sent_ach_collected_666"];
+    self.sent_ach_beat_world_1  = [self.udata boolForKey:@"sent_ach_beat_world_1"];
+    self.sent_ach_beat_world_2  = [self.udata boolForKey:@"sent_ach_beat_world_2"];
+    self.sent_ach_beat_world_3  = [self.udata boolForKey:@"sent_ach_beat_world_3"];
+    self.sent_ach_beat_world_4  = [self.udata boolForKey:@"sent_ach_beat_world_4"];
+    self.sent_ach_first_play    = [self.udata boolForKey:@"sent_ach_first_play"];
+    self.sent_ach_first_3_big   = [self.udata boolForKey:@"sent_ach_first_3_big"];
+    self.sent_ach_killed        = [self.udata boolForKey:@"sent_ach_killed"];
+    self.sent_ach_1000_souls    = [self.udata boolForKey:@"sent_ach_1000_souls"];
+    self.sent_ach_5000_souls    = [self.udata boolForKey:@"sent_ach_5000_souls"];
+    self.sent_ach_10000_souls   = [self.udata boolForKey:@"sent_ach_10000_souls"];
+    self.sent_ach_50000_souls   = [self.udata boolForKey:@"sent_ach_50000_souls"];
+    self.sent_ach_died_100      = [self.udata boolForKey:@"sent_ach_died_100"];
+    self.sent_ach_jumped_1000   = [self.udata boolForKey:@"sent_ach_jumped_1000"];
+    self.sent_ach_collected_666 = [self.udata boolForKey:@"sent_ach_collected_666"];
 }
 
 - (void) resetAchievements
 {
-    [udata setBool:FALSE forKey:@"ach_beat_world_1"];
-    [udata setBool:FALSE forKey:@"ach_beat_world_2"];
-    [udata setBool:FALSE forKey:@"ach_beat_world_3"];
-    [udata setBool:FALSE forKey:@"ach_beat_world_4"];
-    [udata setBool:FALSE forKey:@"ach_first_play"];
-    [udata setBool:FALSE forKey:@"ach_first_3_big"];
-    [udata setBool:FALSE forKey:@"ach_killed"];
-    [udata setBool:FALSE forKey:@"ach_1000_souls"];
-    [udata setBool:FALSE forKey:@"ach_5000_souls"];
-    [udata setBool:FALSE forKey:@"ach_10000_souls"];
-    [udata setBool:FALSE forKey:@"ach_50000_souls"];
-    [udata setBool:FALSE forKey:@"ach_died_100"];
-    [udata setBool:FALSE forKey:@"ach_jumped_1000"];
-    [udata setBool:FALSE forKey:@"ach_collected_666"];
+    [self.udata setBool:FALSE forKey:@"ach_beat_world_1"];
+    [self.udata setBool:FALSE forKey:@"ach_beat_world_2"];
+    [self.udata setBool:FALSE forKey:@"ach_beat_world_3"];
+    [self.udata setBool:FALSE forKey:@"ach_beat_world_4"];
+    [self.udata setBool:FALSE forKey:@"ach_first_play"];
+    [self.udata setBool:FALSE forKey:@"ach_first_3_big"];
+    [self.udata setBool:FALSE forKey:@"ach_killed"];
+    [self.udata setBool:FALSE forKey:@"ach_1000_souls"];
+    [self.udata setBool:FALSE forKey:@"ach_5000_souls"];
+    [self.udata setBool:FALSE forKey:@"ach_10000_souls"];
+    [self.udata setBool:FALSE forKey:@"ach_50000_souls"];
+    [self.udata setBool:FALSE forKey:@"ach_died_100"];
+    [self.udata setBool:FALSE forKey:@"ach_jumped_1000"];
+    [self.udata setBool:FALSE forKey:@"ach_collected_666"];
     
-    [udata setBool:FALSE forKey:@"sent_ach_beat_world_1"];
-    [udata setBool:FALSE forKey:@"sent_ach_beat_world_2"];
-    [udata setBool:FALSE forKey:@"sent_ach_beat_world_3"];
-    [udata setBool:FALSE forKey:@"sent_ach_beat_world_4"];
-    [udata setBool:FALSE forKey:@"sent_ach_first_play"];
-    [udata setBool:FALSE forKey:@"sent_ach_first_3_big"];
-    [udata setBool:FALSE forKey:@"sent_ach_killed"];
-    [udata setBool:FALSE forKey:@"sent_ach_1000_souls"];
-    [udata setBool:FALSE forKey:@"sent_ach_5000_souls"];
-    [udata setBool:FALSE forKey:@"sent_ach_10000_souls"];
-    [udata setBool:FALSE forKey:@"sent_ach_50000_souls"];
-    [udata setBool:FALSE forKey:@"sent_ach_died_100"];
-    [udata setBool:FALSE forKey:@"sent_ach_jumped_1000"];
-    [udata setBool:FALSE forKey:@"sent_ach_collected_666"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_1"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_2"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_3"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_4"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_first_play"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_first_3_big"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_killed"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_1000_souls"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_5000_souls"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_10000_souls"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_50000_souls"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_died_100"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_jumped_1000"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_collected_666"];
 }
 
 

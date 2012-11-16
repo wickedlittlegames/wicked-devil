@@ -22,7 +22,7 @@
 @property (nonatomic, assign) BOOL sent_ach_killed, sent_ach_1000_souls, sent_ach_5000_souls, sent_ach_10000_souls, sent_ach_50000_souls;
 @property (nonatomic, assign) BOOL sent_ach_died_100, sent_ach_jumped_1000, sent_ach_first_3_big, sent_ach_collected_666;
 @property (nonatomic, retain) NSMutableData *facebook_image;
-@property (nonatomic, retain) NSString *facebook_id;
+@property (nonatomic, copy) NSString *facebook_id;
 
 - (void) create;
 - (void) sync; // combine syncdata and synchcollected

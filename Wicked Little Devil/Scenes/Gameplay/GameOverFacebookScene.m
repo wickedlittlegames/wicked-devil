@@ -17,7 +17,6 @@
 #import "FacebookTableCell.h"
 
 @implementation GameOverFacebookScene
-@synthesize fromSceneID;
 
 +(CCScene *) sceneWithGame:(Game*)game fromScene:(int)sceneID
 {
@@ -48,11 +47,11 @@
         {
             if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
             
-            if ( fromSceneID == 1 )
+            if ( self.fromSceneID == 1 )
             {
                 [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene  scene]]];
             }
-            else if ( fromSceneID == 2 )
+            else if ( self.fromSceneID == 2 )
             {
                 [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
             }
@@ -91,11 +90,11 @@
                 if ( error != nil ) 
                 {
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-                    if ( fromSceneID == 1 )
+                    if ( self.fromSceneID == 1 )
                     {
                         [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene  scene]]];
                     }
-                    else if ( fromSceneID == 2 )
+                    else if ( self.fromSceneID == 2 )
                     {
                         [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
                     }

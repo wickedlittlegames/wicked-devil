@@ -15,7 +15,6 @@
 #import "FXLayer.h"
 
 @implementation Enemy
-@synthesize animating, running, projectiles, fx, dead;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {

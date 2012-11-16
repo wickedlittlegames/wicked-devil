@@ -26,7 +26,6 @@
 @end
 
 @implementation Tip
-@synthesize  faded;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {

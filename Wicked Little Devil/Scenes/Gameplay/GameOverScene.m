@@ -21,7 +21,6 @@
 #import "FlurryAnalytics.h"
 
 @implementation GameOverScene
-@synthesize tmp_game, runningAnims, moved, isBonusLevel;
 
 #pragma mark === Initialization ===
 
@@ -61,7 +60,7 @@
          bool restartAudioToggle = FALSE;
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          
-         if ( !isBonusLevel )
+         if ( !self.isBonusLevel )
          {
              if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
              {
@@ -162,7 +161,7 @@
                                          [self schedule: @selector(soul_bonus_tick) interval: 1.0f/60.0f];
                                      }],nil]];
 
-         if ( isBonusLevel ) btn_next.visible = NO;
+         if ( self.isBonusLevel ) btn_next.visible = NO;
      
          if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
          {
@@ -210,7 +209,7 @@
         else
         {
             tmp_score = souls_score + timebonus_score;
-            tmp_score_increment = tmp_game.player.collected;
+            tmp_score_increment = self.tmp_game.player.collected;
             
             if ( collected > 0 )
             {
@@ -263,7 +262,7 @@
         [self unschedule:@selector(time_bonus_tick)];
 
         tmp_score = souls_score + timebonus_score;
-        tmp_score_increment = tmp_game.player.collected;
+        tmp_score_increment = self.tmp_game.player.collected;
         
         if ( collected > 0 )
         {
@@ -303,7 +302,7 @@
     if ( tmp_score_increment > 0 )
     {
         tmp_score_increment -= 1;
-        tmp_score += tmp_game.player.per_collectable;
+        tmp_score += self.tmp_game.player.per_collectable;
         
         NSString *tmp_str_timebonus = [NSString stringWithFormat:@"COLLECTED BONUS: %i", tmp_score_increment];
         
@@ -330,7 +329,7 @@
 
 - (void) showHighscorePanelwithAnim:(BOOL)doAnim
 {
-    if ( tmp_game.pastScore != 0 )
+    if ( self.tmp_game.pastScore != 0 )
     {
         if ( final_score > self.tmp_game.pastScore )
         {
@@ -353,7 +352,7 @@
     [self addChild:share_menu];
     if ( doAnim )
     {
-        if ( [tmp_game.user isOnline] )
+        if ( [self.tmp_game.user isOnline] )
         {
             share_menu.visible = YES;
         }
@@ -383,15 +382,15 @@
         [label_score setString:[NSString stringWithFormat:@"SCORE: %i",final_score]];
         menu.opacity = 225;
         
-        if ( [tmp_game.user isOnline] )
+        if ( [self.tmp_game.user isOnline] )
         {
             share_menu.visible = YES;
         }
     }
     
-    if ( tmp_game.user.collected >= 2000 && ![tmp_game.user.udata boolForKey:@"TIP-POWERUP-SEEN"] )
+    if ( self.tmp_game.user.collected >= 2000 && ![self.tmp_game.user.udata boolForKey:@"TIP-POWERUP-SEEN"] )
     {
-        [tmp_game.user.udata setBool:YES forKey:@"TIP-POWERUP-SEEN"];
+        [self.tmp_game.user.udata setBool:YES forKey:@"TIP-POWERUP-SEEN"];
         CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
         [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
         [self addChild:tipbg];
@@ -425,7 +424,7 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
     }
     
-    if ( isBonusLevel )
+    if ( self.isBonusLevel )
     {
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
     }

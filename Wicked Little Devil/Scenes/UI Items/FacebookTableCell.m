@@ -9,9 +9,6 @@
 #import "FacebookTableCell.h"
 
 @implementation FacebookTableCell
-@synthesize nameLabel = _nameLabel;
-@synthesize scoreLabel = _scoreLabel;
-@synthesize facebookImageView = _facebookImageView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

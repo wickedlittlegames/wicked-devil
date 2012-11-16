@@ -15,7 +15,6 @@
 #import "FlurryAnalytics.h"
 
 @implementation UILayer
-@synthesize world, level, saves;
 
 - (id) init {if( (self=[super init]) ) {} return self;}
 
@@ -26,8 +25,8 @@
     self.world = game.world;
     self.level = game.level;
     NSString *txt_powerup       = (game.user.bought_powerups ? [NSString stringWithFormat:@"POWERUP: %@",[game.user getEquippedPowerup]] : @"POWERUP: None Equipped");
-    NSString *txt_highscore     = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:world level:level]];
-    NSString *txt_gamenumber    = [NSString stringWithFormat:@"%i - %i",world,level];
+    NSString *txt_highscore     = [NSString stringWithFormat:@"BEST: %i",[game.user getHighscoreforWorld:self.world level:self.level]];
+    NSString *txt_gamenumber    = [NSString stringWithFormat:@"%i - %i",self.world,self.level];
     
     // background and functionality sprites
     CCSprite *uibg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-topbar-iphone5.png" : @"bg-topbar.png")];
@@ -95,7 +94,7 @@
         }
         else
         {
-            [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:world]];
+            [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:self.world]];
         }
     }];
     
@@ -134,7 +133,7 @@
     
     if ( !game.isRestart )
     {
-        if ( world == 1 && level == 1 )
+        if ( self.world == 1 && self.level == 1 )
         {
             CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-1.png"];
             [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -149,7 +148,7 @@
         }
         
         // level 1 - 2 - movement left and right
-        if ( world == 1 && level == 2 )
+        if ( self.world == 1 && self.level == 2 )
         {
             CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-2.png"];
             [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -163,7 +162,7 @@
             [tip1 addChild:menu_tip1];
         }
         
-        if ( world == 1 && level == 3 )
+        if ( self.world == 1 && self.level == 3 )
         {
             CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-3.png"];
             [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -177,7 +176,7 @@
             [tip1 addChild:menu_tip1];
         }
 //        
-//        if ( world == 1 && level == 5 ) // level 1 - 5 - double jump platforms
+//        if ( self.world == 1 && self.level == 5 ) // level 1 - 5 - double jump platforms
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-5.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -191,7 +190,7 @@
 //            [tip1 addChild:menu_tip1];
 //        }
 //        
-//        if ( world == 1 && level == 9 ) // level 1 - 9 - moving platforms
+//        if ( self.world == 1 && self.level == 9 ) // level 1 - 9 - moving platforms
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-9.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -205,7 +204,7 @@
 //            [tip1 addChild:menu_tip1];
 //        }
 //        
-//        if ( world == 1 && level == 17 ) // level 1 - 17 - enemies
+//        if ( self.world == 1 && self.level == 17 ) // level 1 - 17 - enemies
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-17.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -219,7 +218,7 @@
 //            [tip1 addChild:menu_tip1];
 //        }
 //        
-//        if ( world == 2 && level == 1 ) // level 2 - 1 - falling
+//        if ( self.world == 2 && self.level == 1 ) // level 2 - 1 - falling
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-2-level-1.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -233,7 +232,7 @@
 //            [tip1 addChild:menu_tip1];
 //        }
 //        
-//        if ( world == 2 && level == 9 ) // level 2 - 9 - mines
+//        if ( self.world == 2 && self.level == 9 ) // level 2 - 9 - mines
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-2-level-9.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -247,7 +246,7 @@
 //            [tip1 addChild:menu_tip1];
 //        }
 //        
-//        if ( world == 3 && level == 5 ) // level 3 - 5 - bubbles
+//        if ( self.world == 3 && self.level == 5 ) // level 3 - 5 - bubbles
 //        {
 //            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-3-level-5.png"];
 //            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];

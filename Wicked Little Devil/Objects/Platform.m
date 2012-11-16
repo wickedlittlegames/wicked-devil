@@ -24,7 +24,6 @@
 #import "Game.h"
 
 @implementation Platform
-@synthesize health, animating, toggled, end_fx_added, dead;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {

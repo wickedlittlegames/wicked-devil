@@ -9,10 +9,6 @@
 #import "Player.h"
 
 @implementation Player
-@synthesize health, damage, velocity, collected, bigcollected, jumpspeed, gravity, drag, modifier_gravity, score, time, jumps, deaths;
-@synthesize last_platform_touched, controllable, toggled_platform, animating, falling, floating;
-@synthesize anim_jump, anim_fall, anim_fallfar, anim_die;
-@synthesize per_collectable, collectable_multiplier;
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {

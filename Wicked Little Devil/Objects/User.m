@@ -112,7 +112,6 @@
 
 - (void ) create_special_items
 {
-    CCLOG(@"CREATED SPECIAL ITEMS");
     NSMutableArray *special_itemsarr = [NSMutableArray arrayWithCapacity:1000];
     for (int i = 0; i < 100; i++ )
     {

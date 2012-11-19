@@ -38,9 +38,6 @@
         view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, screenSize.width, screenSize.height - 175)];
         table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 175)];
         
-        
-        CCLOG(@"USER SPECIAL: %@",user.items_special);
-        
         // Pull in the Cards plist
         NSArray *contentArray = [[NSDictionary  dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Powerups_special" ofType:@"plist"]] objectForKey:@"Powerups"];
         data = [NSMutableArray arrayWithCapacity:100];

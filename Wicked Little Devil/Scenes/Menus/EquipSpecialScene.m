@@ -121,7 +121,7 @@
         tmp_collectable_increment = cost;
         
         user.collected -= cost;
-        [user buyItem:sender.tag];
+        [user buySpecialItem:sender.tag];
         [user sync];
         
         NSMutableArray *tmp_table_view = [NSMutableArray arrayWithCapacity:data.count];
@@ -236,7 +236,7 @@
     cell.label_description.text     = [data3 objectAtIndex:indexPath.row];
     
     cell.button_buy.selected        = TRUE;
-    cell.button_buy.tag             = indexPath.row;
+    cell.button_buy.tag             = indexPath.row + 100;
     
     [cell.button_buy removeTarget:self action:@selector(tap_equip:)     forControlEvents:UIControlEventTouchUpInside];
     [cell.button_buy removeTarget:self action:@selector(tap_purchase:)  forControlEvents:UIControlEventTouchUpInside];

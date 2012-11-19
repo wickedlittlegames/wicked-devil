@@ -92,12 +92,15 @@
     {
         if ( !game.isIntro )
         {
-            if ([platform worldBoundingBox].origin.y < -80 && !game.user.powerup == 100 )
+            if ([platform worldBoundingBox].origin.y < -80 )
             {
-                platform.visible = NO;
-                platform.dead = YES;
-                [self.platforms removeObject:platform];
-                [platform removeFromParentAndCleanup:YES];
+                if (  !(game.user.powerup == 100) )
+                {
+                    platform.visible = NO;
+                    platform.dead = YES;
+                    [self.platforms removeObject:platform];
+                    [platform removeFromParentAndCleanup:YES];
+                }
             }
         }
         

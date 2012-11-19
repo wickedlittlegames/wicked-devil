@@ -36,6 +36,7 @@
 - (BOOL) isOnline; // is connected to internet
 
 - (void) buyItem:(int)item;
+- (void) buySpecialItem:(int)item;
 - (void) setHighscore:(int)score world:(int)w level:(int)l;
 - (void) setSouls:(int)souls world:(int)w level:(int)l;
 - (void) setGameProgressforWorld:(int)w level:(int)l;

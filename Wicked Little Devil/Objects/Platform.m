@@ -75,7 +75,6 @@
     {
         if ( game.user.powerup == 100 )
         {
-            // 1, 2, 3, 4 ,5
             int r = arc4random_uniform(5) + 1;
             
             [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"dubstep_%i",r] pitch:1 pan:1 gain:0.5];

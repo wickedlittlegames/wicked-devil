@@ -285,6 +285,10 @@
     [bg_ocean_promo setPosition:ccp(screenSize.width/2, screenSize.height - 150)];
     [layer addChild:bg_ocean_promo];
     
+    CCMenu *menu_powerups_promo = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"ui-promo-powerups.png" selectedImage:@"ui-promo-powerups.png" target:self selector:@selector(tap_equip:)], nil];
+    [menu_powerups_promo setPosition:ccp(screenSize.width/2, screenSize.height - 330)];
+    [layer addChild:menu_powerups_promo];
+    
     return layer;
 }
 

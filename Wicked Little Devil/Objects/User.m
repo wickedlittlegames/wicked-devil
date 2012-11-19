@@ -19,11 +19,11 @@
 	if( (self=[super init]) )
     {
         self.udata = [NSUserDefaults standardUserDefaults];
-        if ( [self.udata boolForKey:@"created"] == FALSE )
+        if ( ![self.udata boolForKey:@"created"] )
         {
             [self create];
         }
-        if ( [self.udata objectForKey:@"items_special"] )
+        if ( ![self.udata objectForKey:@"items_special"] )
         {
             [self create_special_items];
         }

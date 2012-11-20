@@ -216,20 +216,20 @@
             [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
             [tip1 addChild:menu_tip1];
         }
-//
-//        if ( self.world == 3 && self.level == 5 ) // level 3 - 5 - bubbles
-//        {
-//            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-3-level-5.png"];
-//            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-//            [self addChild:tip1];
-//            
-//            CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
-//                tip1.visible = NO;
-//            }], nil];
-//            [menu_tip1 setAnchorPoint:ccp(0,0)];
-//            [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
-//            [tip1 addChild:menu_tip1];
-//        }
+
+        if ( self.world == 3 && self.level == 9 ) // level 3 - 9 - bubbles
+        {
+            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-3-level-9.png"];
+            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:tip1];
+            
+            CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
+                tip1.visible = NO;
+            }], nil];
+            [menu_tip1 setAnchorPoint:ccp(0,0)];
+            [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
+            [tip1 addChild:menu_tip1];
+        }
     }
 }
 

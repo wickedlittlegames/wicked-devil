@@ -7,21 +7,21 @@
 		<key>IAP_1000soul</key>
 		<dict>
 			<key>Count</key>
-			<integer>2000</integer>
+			<integer>5000</integer>
 			<key>Name</key>
 			<string>souls_collected</string>
 		</dict>
 		<key>IAP_5000soul</key>
 		<dict>
 			<key>Count</key>
-			<integer>5000</integer>
+			<integer>10000</integer>
 			<key>Name</key>
 			<string>souls_collected</string>
 		</dict>
 		<key>IAP_10000soul</key>
 		<dict>
 			<key>Count</key>
-			<integer>10000</integer>
+			<integer>25000</integer>
 			<key>Name</key>
 			<string>souls_collected</string>
 		</dict>

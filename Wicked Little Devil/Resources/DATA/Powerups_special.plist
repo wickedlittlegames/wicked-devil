@@ -10,7 +10,7 @@
 			<key>Description</key>
 			<string>Platforms no longer disappear!</string>
 			<key>Cost</key>
-			<integer>7500</integer>
+			<integer>9500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -18,7 +18,7 @@
 			<key>Description</key>
 			<string>Pop the floating bubbles</string>
 			<key>Cost</key>
-			<integer>3500</integer>
+			<integer>4500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>

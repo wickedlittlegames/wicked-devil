@@ -42,6 +42,12 @@
 #define IAP_50000soul               @"IAP_50000soul"          // 2.49 Truck-load o'Souls
 #define IAP_100000soul              @"IAP_100000soul"         // 3.99 Illustrious Treasure Chest o'Souls
 
+// .69  - 5000
+// 1.49 - 10000
+// 1.99 - 25000
+// 2.49 - 50000
+// 3.99 - 100000
+
 #define SERVER_PRODUCT_MODEL 0
 #define OWN_SERVER nil
 #define REVIEW_ALLOWED 0

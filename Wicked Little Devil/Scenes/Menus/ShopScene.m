@@ -135,7 +135,7 @@
         case 4: feature = IAP_100000soul; collectedincrease = 200000; break;
         default:break;
     }
-    
+
     tmp_collectables            = user.collected;
     tmp_collectable_increment   = collectedincrease;
 

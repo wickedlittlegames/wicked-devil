@@ -3107,8 +3107,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>111.03749847412109</real>
-							<real>102.95833587646484</real>
+							<real>89.474998474121094</real>
+							<real>103.58333587646484</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -6552,7 +6552,7 @@
 						<key>value</key>
 						<array>
 							<real>61.112499237060547</real>
-							<real>123.23332977294922</real>
+							<real>117.60832977294922</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -6964,7 +6964,7 @@
 						<key>value</key>
 						<array>
 							<real>87.637496948242188</real>
-							<real>159.38334655761719</real>
+							<real>148.3416748046875</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -7056,7 +7056,7 @@
 						<key>value</key>
 						<array>
 							<real>87.774993896484375</real>
-							<real>150.73927307128906</real>
+							<real>139.69760131835938</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -7897,7 +7897,7 @@
 						<key>value</key>
 						<array>
 							<real>53.043743133544922</real>
-							<real>126.90831756591797</real>
+							<real>121.69998168945312</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -8547,7 +8547,7 @@
 						<key>value</key>
 						<array>
 							<real>53.043743133544922</real>
-							<real>141.60832214355469</real>
+							<real>136.39999389648438</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -9197,7 +9197,7 @@
 						<key>value</key>
 						<array>
 							<real>53.043743133544922</real>
-							<real>156.9083251953125</real>
+							<real>151.69999694824219</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -9847,7 +9847,7 @@
 						<key>value</key>
 						<array>
 							<real>78.243743896484375</real>
-							<real>162.9083251953125</real>
+							<real>151.86665344238281</real>
 							<integer>4</integer>
 						</array>
 					</dict>

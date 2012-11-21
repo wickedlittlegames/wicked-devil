@@ -84,6 +84,11 @@
             break;
         case 2: // MINE: Any time touched, blows up
             [self action_mine_explode:game];
+        case 22:
+            [self action_mine_explode:game];
+            break;
+        case 223:
+            [self action_mine_explode:game];
             break;
         case 3: // BUBBLE: Floats the player up
             if ( self.floating == NO ) [self action_bubble_float:game];
@@ -253,7 +258,27 @@
         [self runAction:repeater];
         self.animating = YES;
     }
-    
+    if ( self.tag == 22 )
+    {
+        id horizontalmove = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+        id horizontalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+        
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:horizontalmove,horizontalmove_opposite,nil]];
+        [self runAction:repeater];
+        
+        self.animating = YES;
+    }
+    if ( self.tag == 223 )
+    {
+        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(100,0)];
+        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(-100,0)];
+        
+        CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
+        [self runAction:repeater];
+        
+        self.animating = TRUE;
+    }
+
     if ( self.tag == 6 )
     {
         EnemyFX *tmp_fx = [EnemyFX particleWithFile:@"AngelBlast.plist"];

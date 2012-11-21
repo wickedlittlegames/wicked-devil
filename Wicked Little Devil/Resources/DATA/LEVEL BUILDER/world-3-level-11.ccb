@@ -1982,7 +1982,7 @@
 						<key>value</key>
 						<array>
 							<real>90.625</real>
-							<real>76.072593688964844</real>
+							<real>73.780929565429688</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -2922,7 +2922,7 @@
 						<key>value</key>
 						<array>
 							<real>73.4375</real>
-							<real>76.072593688964844</real>
+							<real>73.9892578125</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3002,7 +3002,7 @@
 						<key>value</key>
 						<array>
 							<real>56.5625</real>
-							<real>76.072593688964844</real>
+							<real>73.9892578125</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3082,7 +3082,7 @@
 						<key>value</key>
 						<array>
 							<real>38.4375</real>
-							<real>76.072593688964844</real>
+							<real>73.9892578125</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3494,7 +3494,7 @@
 						<key>value</key>
 						<array>
 							<real>38.75</real>
-							<real>87.083328247070312</real>
+							<real>84.583328247070312</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4936,7 +4936,7 @@
 						<key>value</key>
 						<array>
 							<real>6.5625</real>
-							<real>203.3642578125</real>
+							<real>214.19758605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -5016,7 +5016,7 @@
 						<key>value</key>
 						<array>
 							<real>23.125</real>
-							<real>203.3642578125</real>
+							<real>214.19758605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -5796,7 +5796,7 @@
 						<key>value</key>
 						<array>
 							<real>14.375</real>
-							<real>211.87501525878906</real>
+							<real>222.70834350585938</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -5888,7 +5888,7 @@
 						<key>value</key>
 						<array>
 							<real>13.75</real>
-							<real>237.49998474121094</real>
+							<real>248.33331298828125</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -10881,7 +10881,7 @@
 						<key>value</key>
 						<array>
 							<real>6.09375</real>
-							<real>214.79165649414062</real>
+							<real>225.62498474121094</real>
 							<integer>4</integer>
 						</array>
 					</dict>

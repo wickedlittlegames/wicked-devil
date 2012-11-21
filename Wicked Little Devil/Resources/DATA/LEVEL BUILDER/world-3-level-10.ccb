@@ -3785,8 +3785,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>55</real>
-							<real>120.625</real>
+							<real>53.4375</real>
+							<real>121.875</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4277,8 +4277,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>43.75</real>
-							<real>166.45832824707031</real>
+							<real>74.375</real>
+							<real>166.66665649414062</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -5828,8 +5828,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>7.96875</real>
-							<real>104.16664123535156</real>
+							<real>8.28125</real>
+							<real>104.37497711181641</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -5878,8 +5878,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -8478,6 +8476,190 @@
 						<string>Check</string>
 						<key>value</key>
 						<false/>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string>Platform</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>13.4375</real>
+							<real>121.04166412353516</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>33</integer>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
+							<string>platform-moving.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<integer>255</integer>
+							<integer>38</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string>Platform</string>
+				<key>displayName</key>
+				<string>Platform</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>32.8125</real>
+							<real>166.87498474121094</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>3</integer>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string>Resources/IMAGES/Ingame/IngameSprites.plist</string>
+							<string>platform-moving.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<integer>255</integer>
+							<integer>38</integer>
+							<integer>0</integer>
+						</array>
 					</dict>
 				</array>
 			</dict>

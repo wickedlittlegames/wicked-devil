@@ -107,7 +107,7 @@
     
     data    = [NSArray arrayWithObjects: description1,description2,description3,description4,description5,nil];
     data2   = [NSArray arrayWithObjects: upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5, nil];
-    data3   = [NSArray arrayWithObjects: @"5,000 Souls",@"10,000 Souls", @"25,000 Souls", @"50,000 Souls", @"100,000 Souls", nil];
+    data3   = [NSArray arrayWithObjects: @"10,000 Souls",@"20,000 Souls", @"50,000 Souls", @"100,000 Souls", @"200,000 Souls", nil];
     
     table.dataSource = self;
     table.delegate   = self;
@@ -128,11 +128,11 @@
     
     switch(button.tag)
     {
-        case 0: feature = IAP_2000soul; collectedincrease = 5000; break;
-        case 1: feature = IAP_5000soul; collectedincrease = 10000; break;
-        case 2: feature = IAP_10000soul; collectedincrease = 25000; break;
-        case 3: feature = IAP_50000soul; collectedincrease = 50000; break;
-        case 4: feature = IAP_100000soul; collectedincrease = 100000; break;
+        case 0: feature = IAP_2000soul; collectedincrease = 10000; break;
+        case 1: feature = IAP_5000soul; collectedincrease = 20000; break;
+        case 2: feature = IAP_10000soul; collectedincrease = 50000; break;
+        case 3: feature = IAP_50000soul; collectedincrease = 100000; break;
+        case 4: feature = IAP_100000soul; collectedincrease = 200000; break;
         default:break;
     }
     

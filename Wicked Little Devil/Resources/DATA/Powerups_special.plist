@@ -10,7 +10,7 @@
 			<key>Description</key>
 			<string>Platforms no longer disappear!</string>
 			<key>Cost</key>
-			<integer>9500</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -18,7 +18,7 @@
 			<key>Description</key>
 			<string>Pop the floating bubbles</string>
 			<key>Cost</key>
-			<integer>4500</integer>
+			<integer>10000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -26,7 +26,7 @@
 			<key>Description</key>
 			<string>Small souls will fly towards you!</string>
 			<key>Cost</key>
-			<integer>4500</integer>
+			<integer>10000</integer>
 		</dict>
 	</array>
 </dict>

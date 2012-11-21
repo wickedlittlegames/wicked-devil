@@ -3958,7 +3958,7 @@
 						<key>value</key>
 						<array>
 							<real>7.8125</real>
-							<real>157.94758605957031</real>
+							<real>167.32258605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4038,7 +4038,7 @@
 						<key>value</key>
 						<array>
 							<real>25.625</real>
-							<real>157.94758605957031</real>
+							<real>167.32258605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4118,7 +4118,7 @@
 						<key>value</key>
 						<array>
 							<real>44.0625</real>
-							<real>157.94758605957031</real>
+							<real>167.32258605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4198,7 +4198,7 @@
 						<key>value</key>
 						<array>
 							<real>61.5625</real>
-							<real>157.94758605957031</real>
+							<real>167.32258605957031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4278,7 +4278,7 @@
 						<key>value</key>
 						<array>
 							<real>74.375</real>
-							<real>166.66665649414062</real>
+							<real>176.04165649414062</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4370,7 +4370,7 @@
 						<key>value</key>
 						<array>
 							<real>12.5</real>
-							<real>176.66667175292969</real>
+							<real>186.04167175292969</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -7129,7 +7129,7 @@
 						<key>value</key>
 						<array>
 							<real>80.78125</real>
-							<real>164.58329772949219</real>
+							<real>173.95829772949219</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -8594,7 +8594,7 @@
 						<key>value</key>
 						<array>
 							<real>32.8125</real>
-							<real>166.87498474121094</real>
+							<real>176.24998474121094</real>
 							<integer>4</integer>
 						</array>
 					</dict>

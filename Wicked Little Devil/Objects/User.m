@@ -239,6 +239,8 @@
         }
     }
     
+    CCLOG(@"W: %i S: %i",w,tmp_score);
+    
     return tmp_score;
 }
 

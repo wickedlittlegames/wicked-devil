@@ -37,12 +37,13 @@
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
         
+        user = [[User alloc] init];
+        
         [self reportLeaderboardHighscores];
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];
 		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        user = [[User alloc] init];
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {
@@ -369,11 +370,13 @@
         {
             int tmp_highscore_for_world = [user getHighscoreforWorld:i];
             totalhighscore += tmp_highscore_for_world;
+            CCLOG(@"%i",tmp_highscore_for_world);
             if (tmp_highscore_for_world > 0)
             {
                 [gkHelper submitScore:tmp_highscore_for_world category:[NSString stringWithFormat:@"WLD_%i",i]];
             }
         }
+        CCLOG(@"%i",totalhighscore);
         [gkHelper submitScore:totalhighscore category:@"WLD_GLOBAL"];
     }
 }

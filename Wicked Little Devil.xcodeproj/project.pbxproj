@@ -598,6 +598,7 @@
 		9CE614BE15B70B9200AF1C78 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614B915B70B9200AF1C78 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614BB15B70B9200AF1C78 /* NSData+Base64.m */; };
 		9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614BD15B70B9200AF1C78 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9CF7098F16720551000B9EA6 /* bg-powerups-menu-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF7098E16720551000B9EA6 /* bg-powerups-menu-iphone5.png */; };
 		9CFF0B69158A7CB8000AA4E0 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B68158A7CB7000AA4E0 /* Platform.m */; };
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
 		9CFF0B77158A7D0C000AA4E0 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */; };
@@ -1245,6 +1246,7 @@
 		9CE614BB15B70B9200AF1C78 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		9CE614BC15B70B9200AF1C78 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9CE614BD15B70B9200AF1C78 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		9CF7098E16720551000B9EA6 /* bg-powerups-menu-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-powerups-menu-iphone5.png"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
 		9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collectable.h; path = Objects/Collectable.h; sourceTree = "<group>"; };
@@ -2013,6 +2015,7 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CF7098E16720551000B9EA6 /* bg-powerups-menu-iphone5.png */,
 				9C017394165BC61900FAC4CF /* tip-world-3-level-9.png */,
 				9C017395165BC61900FAC4CF /* tip-world-3-level-9-hd.png */,
 				9CC98E0A165A71F4000DFD25 /* ui-promo-powerups-hd.png */,
@@ -2794,6 +2797,7 @@
 				9CC98E0D165A71F4000DFD25 /* ui-promo-powerups.png in Resources */,
 				9C017396165BC61900FAC4CF /* tip-world-3-level-9.png in Resources */,
 				9C017397165BC61900FAC4CF /* tip-world-3-level-9-hd.png in Resources */,
+				9CF7098F16720551000B9EA6 /* bg-powerups-menu-iphone5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

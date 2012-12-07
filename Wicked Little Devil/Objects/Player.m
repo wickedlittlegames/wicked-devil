@@ -22,7 +22,7 @@
         self.jumpspeed = 5.5;
         if ([[UIScreen mainScreen] bounds].size.height == 568)
         {
-            self.jumpspeed = 6.5;
+            self.jumpspeed = 6;
         }
         self.gravity = 0.18;
         self.modifier_gravity = 0;

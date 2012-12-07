@@ -87,8 +87,8 @@
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
         layer_player    = [PlayerLayer node];
         layer_ui        = [UILayer node];
-
-        [layer_bg createWorldSpecificBackgrounds:w]; 
+        
+        [layer_bg createWorldSpecificBackgrounds:w];
         [layer_game createWorldWithObjects:[layer_game children]];
         
         collab = [CCLayer node];

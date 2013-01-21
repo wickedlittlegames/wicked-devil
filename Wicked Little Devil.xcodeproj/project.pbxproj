@@ -490,7 +490,6 @@
 		9CA2B0301655523600222EF4 /* world-3-level-20.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2B01D1655523600222EF4 /* world-3-level-20.ccbi */; };
 		9CA45FB7162DD584009BD50A /* btn-invitefriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FB5162DD584009BD50A /* btn-invitefriends.png */; };
 		9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */; };
-		9CA45FBD162EBAD5009BD50A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBA162EBAD5009BD50A /* Default-568h@2x.png */; };
 		9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBB162EBAD5009BD50A /* Icon.png */; };
 		9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBC162EBAD5009BD50A /* Icon@2x.png */; };
 		9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FC2162ED88E009BD50A /* Begin-Button.png */; };
@@ -1109,7 +1108,6 @@
 		9CA2B01D1655523600222EF4 /* world-3-level-20.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-3-level-20.ccbi"; sourceTree = "<group>"; };
 		9CA45FB5162DD584009BD50A /* btn-invitefriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-invitefriends.png"; sourceTree = "<group>"; };
 		9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-invitefriends-hd.png"; sourceTree = "<group>"; };
-		9CA45FBA162EBAD5009BD50A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9CA45FBB162EBAD5009BD50A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9CA45FBC162EBAD5009BD50A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9CA45FC1162EBBB7009BD50A /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
@@ -1977,7 +1975,6 @@
 		9CABCF0F1611D5EA006DFDE9 /* General iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				9CA45FBA162EBAD5009BD50A /* Default-568h@2x.png */,
 				9CA45FBB162EBAD5009BD50A /* Icon.png */,
 				9CA45FBC162EBAD5009BD50A /* Icon@2x.png */,
 				9CABCF7C1611D76D006DFDE9 /* Default.png */,
@@ -2713,7 +2710,6 @@
 				9C6273B9162DC0F400E123DD /* bg-facebookfriends.png in Resources */,
 				9CA45FB7162DD584009BD50A /* btn-invitefriends.png in Resources */,
 				9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */,
-				9CA45FBD162EBAD5009BD50A /* Default-568h@2x.png in Resources */,
 				9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */,
 				9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */,
 				9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */,
@@ -3051,6 +3047,7 @@
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3094,6 +3091,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

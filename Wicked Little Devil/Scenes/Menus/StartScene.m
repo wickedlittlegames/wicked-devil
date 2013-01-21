@@ -370,13 +370,11 @@
         {
             int tmp_highscore_for_world = [user getHighscoreforWorld:i];
             totalhighscore += tmp_highscore_for_world;
-            CCLOG(@"%i",tmp_highscore_for_world);
             if (tmp_highscore_for_world > 0)
             {
                 [gkHelper submitScore:tmp_highscore_for_world category:[NSString stringWithFormat:@"WLD_%i",i]];
             }
         }
-        CCLOG(@"%i",totalhighscore);
         [gkHelper submitScore:totalhighscore category:@"WLD_GLOBAL"];
     }
 }

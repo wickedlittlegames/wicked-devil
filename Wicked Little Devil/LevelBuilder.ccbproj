@@ -17,7 +17,7 @@
 	<key>onlyPublishCCBs</key>
 	<true/>
 	<key>publishDirectory</key>
-	<string>../../../../../../Desktop</string>
+	<string>../../../../../Desktop</string>
 	<key>publishToZipFile</key>
 	<true/>
 	<key>resourcePaths</key>

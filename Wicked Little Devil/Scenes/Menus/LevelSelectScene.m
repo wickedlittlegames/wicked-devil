@@ -48,6 +48,9 @@
             CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-level.png" selectedImage:@"btn-level.png" disabledImage:@"btn-level-locked.png" target:self selector:@selector(tap_level:)];
             button.tag = lvl; button.userData = (int*)world; button.isEnabled = FALSE;
             
+            // Putting in debug tools
+            if (DEVDEBUG) button.isEnabled = TRUE;
+            
             if ( [user getGameProgressforWorld:world level:lvl] == 1 )
             {
                 button.isEnabled = TRUE;

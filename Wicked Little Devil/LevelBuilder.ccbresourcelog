@@ -74,6 +74,7 @@ world-3-level-6.ccbi
 world-3-level-7.ccbi
 world-3-level-8.ccbi
 world-3-level-9.ccbi
+world-4-level-1.ccbi
 Powerups.plist
 Powerups_special.plist
 CrashLandingBB.ttf
@@ -85,7 +86,6 @@ BatAnim-hd.plist
 BatAnim-hd.png
 BatAnim.plist
 BatAnim.png
-Default-568h@2x.png
 Default.png
 Default@2x.png
 Icon.png
@@ -139,6 +139,7 @@ bg-pauseoverlay.png
 bg-powerups-hd.png
 bg-powerups-iphone5.png
 bg-powerups-menu-hd.png
+bg-powerups-menu-iphone5.png
 bg-powerups-menu.png
 bg-powerups.png
 bg-pulldown-hd.png
@@ -154,6 +155,8 @@ bg-topbar.png
 bg-world-hell-new-hd.png
 bg-world-hell-new-iphone5.png
 bg-world-hell-new.png
+bg-world-land-hd.png
+bg-world-land.png
 bg-world-ocean-hd.png
 bg-world-ocean-iphone5.png
 bg-world-ocean.png

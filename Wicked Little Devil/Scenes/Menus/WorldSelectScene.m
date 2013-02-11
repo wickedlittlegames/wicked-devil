@@ -79,6 +79,7 @@
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
+        [worlds addObject:[self earth]];
         [worlds addObject:[self comingsoon]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world];
@@ -299,6 +300,7 @@
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
+    
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 
@@ -320,6 +322,8 @@
     
     [layer addChild:bg];
     [layer addChild:menu];
+    
+    button.isEnabled = DEVDEBUG;
     
     if ( !button.isEnabled )
     {
@@ -343,6 +347,33 @@
     
     [layer addChild:bg];
     [layer addChild:menu];
+    
+    button.isEnabled = DEVDEBUG;
+    
+    if ( !button.isEnabled )
+    {
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-locked-iphone5.png" : @"bg-locked.png")];
+        locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+        [layer addChild:locked_sprite];
+    }
+    
+    return layer;
+}
+
+- (CCLayer*) earth
+{
+    CCLayer *layer          = [CCLayer node];
+    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-land.png"];
+    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 4; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag );
+    
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    [layer addChild:bg];
+    [layer addChild:menu];
+    
+    button.isEnabled = DEVDEBUG;
     
     if ( !button.isEnabled )
     {
@@ -431,11 +462,11 @@
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_2] percentComplete:100.0f];
         user.sent_ach_beat_world_2 = YES;
     }
-    //    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
-    //    {
-    //        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
-    //        user.sent_ach_beat_world_3 = YES;
-    //    }
+    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
+    {
+        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
+        user.sent_ach_beat_world_3 = YES;
+    }
     //    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
     //    {
     //        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];

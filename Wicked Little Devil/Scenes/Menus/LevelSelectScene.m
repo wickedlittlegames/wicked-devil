@@ -110,7 +110,7 @@
         CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? [NSString stringWithFormat:@"bg_%i-iphone5.png", world] : [NSString stringWithFormat:@"bg_%i.png", world])];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
-        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"]; icon_collectable.scale = 2;
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
         CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];

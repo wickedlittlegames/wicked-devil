@@ -29,7 +29,7 @@
         // 1 - big collectable collect
         CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"CollectedBig.plist"];
         fx1.positionType = kCCPositionTypeGrouped;
-        fx0.blendAdditive = FALSE;        
+        fx1.blendAdditive = FALSE;
         [fx1 stopSystem];
         [self addChild:fx1];
         [self.effects addObject:fx1];

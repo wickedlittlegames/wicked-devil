@@ -222,12 +222,23 @@
                 {
                     if ( [projectile isIntersectingPlayer:game.player] )
                     {
-                        [game.fx start:1 position:[game.player worldBoundingBox].origin];
+                        [game.fx start:0 position:[game.player worldBoundingBox].origin];
                         projectile.visible = NO;
                         [enemy removeChildByTag:1111 cleanup:YES];
                         game.player.health--;
+                        if ( --game.player.health <= 0 )
+                        {
+                            game.player.animating = NO;
+                            [game.player animate:4];
+                        }
                     }
-                }   
+                    
+//                    if ( [projectile worldBoundingBox].origin.y < -160 && enemy.visible ) {
+//                        enemy.visible = FALSE;
+//                        [enemy removeChildByTag:1111 cleanup:YES];
+//                        
+//                    }
+                }
             }
         }
     }

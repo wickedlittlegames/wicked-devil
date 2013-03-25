@@ -90,6 +90,8 @@ Default.png
 Default@2x.png
 Icon.png
 Icon@2x.png
+enemy-rocket-target-hd.png
+enemy-rocket-target.png
 ingame-mine-hd.png
 ingame-mine.png
 IngameSprites-hd.plist
@@ -98,6 +100,10 @@ IngameSprites.plist
 IngameSprites.png
 jump1-hd.png
 jump1.png
+platform-toggle-off-hd.png
+platform-toggle-off.png
+rocket-hd.png
+rocket.png
 streak.png
 streak2.png
 streak3.png
@@ -285,6 +291,8 @@ ui-promo-powerups.png
 ui-prompt-facebook-hd.png
 ui-prompt-facebook.png
 Info.plist
+particleTexture.png
+RocketBlast.plist
 AngelBlast.plist
 AnimExplosion.plist
 AnimExplosion.png

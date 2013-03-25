@@ -47,7 +47,7 @@
         
         // Object creation area
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
-        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];  icon_collectable.scale = 2;      
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"]; 
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
@@ -97,7 +97,7 @@
         [self addChild:behind_fb];
         [self addChild:menu_social];
         
-        if ( user.isOnline ) { [self addChild:menu_store]; }
+        [self addChild:menu_store];
         
         [self setFacebookImage];
     }

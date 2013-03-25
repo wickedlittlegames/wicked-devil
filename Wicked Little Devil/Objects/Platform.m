@@ -198,7 +198,9 @@
             switch (tmpPlatform.tag)
             {
                 case 51:
+                {
                     tmpPlatform.visible = game.player.toggled_platform;
+                }
                     break;
                 case 52:
                     tmpPlatform.visible = !game.player.toggled_platform;

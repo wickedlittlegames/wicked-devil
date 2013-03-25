@@ -60,7 +60,7 @@
 
     if ( self.velocity.y < -8.5  && !self.falling )
     {
-        self.animating = NO;
+        //self.animating = NO;
         self.falling = YES;
         [self animate:3];
     }

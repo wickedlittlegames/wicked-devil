@@ -258,6 +258,10 @@
 		9C1424D2156E69540011C992 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F0156E69540011C992 /* vec3.c */; };
 		9C1424D3156E69540011C992 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C1423F1156E69540011C992 /* vec4.c */; };
 		9C227CF3159B6BB900F7E6E1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */; };
+		9C2A013916FB539C002BDDE2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013716FB539C002BDDE2 /* rocket.png */; };
+		9C2A013A16FB539C002BDDE2 /* rocket-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013816FB539C002BDDE2 /* rocket-hd.png */; };
+		9C2A013D16FB5678002BDDE2 /* enemy-rocket-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */; };
+		9C2A013E16FB5678002BDDE2 /* enemy-rocket-target-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
@@ -557,6 +561,8 @@
 		9CCD8886161C5ECE00CEA6D8 /* MKInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD8884161C5ECE00CEA6D8 /* MKInfoPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CCD8887161C5ECE00CEA6D8 /* MKInfoPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */; };
 		9CCE303615FF35A9005B45EF /* WorldSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE303515FF35A9005B45EF /* WorldSelectScene.m */; };
+		9CD6F7ED1700A6270090D4D9 /* platform-toggle-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F7EB1700A6270090D4D9 /* platform-toggle-off.png */; };
+		9CD6F7EE1700A6270090D4D9 /* platform-toggle-off-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F7EC1700A6270090D4D9 /* platform-toggle-off-hd.png */; };
 		9CDC682516276EA3001D5935 /* bg-world-underground-new-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682216276EA3001D5935 /* bg-world-underground-new-iphone5.png */; };
 		9CDC682616276EA3001D5935 /* bg-world-hell-new-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682316276EA3001D5935 /* bg-world-hell-new-iphone5.png */; };
 		9CDC682716276EA3001D5935 /* bg-home-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC682416276EA3001D5935 /* bg-home-iphone5.png */; };
@@ -873,6 +879,10 @@
 		9C1423F0156E69540011C992 /* vec3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec3.c; sourceTree = "<group>"; };
 		9C1423F1156E69540011C992 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		9C227CF2159B6BB900F7E6E1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9C2A013716FB539C002BDDE2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket.png; sourceTree = "<group>"; };
+		9C2A013816FB539C002BDDE2 /* rocket-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket-hd.png"; sourceTree = "<group>"; };
+		9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target.png"; sourceTree = "<group>"; };
+		9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target-hd.png"; sourceTree = "<group>"; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
@@ -1190,6 +1200,8 @@
 		9CCD8885161C5ECE00CEA6D8 /* MKInfoPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKInfoPanel.xib; sourceTree = "<group>"; };
 		9CCE303415FF35A9005B45EF /* WorldSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldSelectScene.h; path = Scenes/Menus/WorldSelectScene.h; sourceTree = "<group>"; };
 		9CCE303515FF35A9005B45EF /* WorldSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldSelectScene.m; path = Scenes/Menus/WorldSelectScene.m; sourceTree = "<group>"; };
+		9CD6F7EB1700A6270090D4D9 /* platform-toggle-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle-off.png"; sourceTree = "<group>"; };
+		9CD6F7EC1700A6270090D4D9 /* platform-toggle-off-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "platform-toggle-off-hd.png"; sourceTree = "<group>"; };
 		9CDC682216276EA3001D5935 /* bg-world-underground-new-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-underground-new-iphone5.png"; sourceTree = "<group>"; };
 		9CDC682316276EA3001D5935 /* bg-world-hell-new-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-hell-new-iphone5.png"; sourceTree = "<group>"; };
 		9CDC682416276EA3001D5935 /* bg-home-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-home-iphone5.png"; sourceTree = "<group>"; };
@@ -1998,6 +2010,12 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9CD6F7EB1700A6270090D4D9 /* platform-toggle-off.png */,
+				9CD6F7EC1700A6270090D4D9 /* platform-toggle-off-hd.png */,
+				9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */,
+				9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */,
+				9C2A013716FB539C002BDDE2 /* rocket.png */,
+				9C2A013816FB539C002BDDE2 /* rocket-hd.png */,
 				9CA8C090164D6AEA004C2E65 /* streak3.png */,
 				9CA8C08E164D69F3004C2E65 /* streak2.png */,
 				9CA8C08C164D631A004C2E65 /* streak.png */,
@@ -2811,6 +2829,12 @@
 				9CE36EA216C925940023B3EE /* bg-world-land.png in Resources */,
 				9CE36EA316C925940023B3EE /* bg-world-land-hd.png in Resources */,
 				9CE36EA516C928240023B3EE /* world-4-level-1.ccbi in Resources */,
+				9C2A013916FB539C002BDDE2 /* rocket.png in Resources */,
+				9C2A013A16FB539C002BDDE2 /* rocket-hd.png in Resources */,
+				9C2A013D16FB5678002BDDE2 /* enemy-rocket-target.png in Resources */,
+				9C2A013E16FB5678002BDDE2 /* enemy-rocket-target-hd.png in Resources */,
+				9CD6F7ED1700A6270090D4D9 /* platform-toggle-off.png in Resources */,
+				9CD6F7EE1700A6270090D4D9 /* platform-toggle-off-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3041,6 +3065,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3074,6 +3099,7 @@
 				);
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3086,8 +3112,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3116,7 +3142,6 @@
 				);
 				PRODUCT_NAME = "Wicked Devil";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";

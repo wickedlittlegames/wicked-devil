@@ -9,9 +9,10 @@
 #import "cocos2d.h"
 #import "CCNode+CoordHelpers.h"
 
-@class Player;
+@class Player, Enemy;
 @interface Projectile : CCSprite {}
 - (BOOL) isIntersectingPlayer:(Player*)player;
+- (BOOL) isIntersectingParent:(Enemy*)enemy;
 
 @end
 

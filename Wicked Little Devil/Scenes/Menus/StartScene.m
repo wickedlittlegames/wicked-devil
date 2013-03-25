@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 #import "StartScene.h"
-#import "WorldSelectScene.h"
+#import "AdventureSelectScene.h"
 #import "GameOverFacebookScene.h"
 #import "GameScene.h"
 #import "MBProgressHUD.h"
@@ -213,7 +213,7 @@
 - (void) tap_start
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
 }
 
 - (void) tap_leaderboard

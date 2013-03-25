@@ -8,7 +8,7 @@
 
 #import "Projectile.h"
 #import "Player.h"
-
+#import "Enemy.h"
 @implementation Projectile
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
@@ -22,6 +22,10 @@
     return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible );
 }
 
+- (BOOL) isIntersectingParent:(Enemy*)enemy
+{
+    return ( CGRectIntersectsRect([self worldBoundingBox], [enemy worldBoundingBox]) && enemy.visible );
+}
 @end
 
 @implementation EnemyFX

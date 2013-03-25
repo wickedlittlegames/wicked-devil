@@ -63,6 +63,7 @@
         // Add world layers to the scroller
         //[worlds addObject:[self updates]];
         [worlds addObject:[self escapefromhell]];
+        [worlds addObject:[self detectivedevil]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
         [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
@@ -73,6 +74,13 @@
         [self addChild:menu_back];
         [self addChild:behind_fb];
         [self addChild:menu_social];
+
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
+        CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        [label_collected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
+        [icon_collectable        setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
+        [self addChild:icon_collectable];
+        [self addChild:label_collected];
         
         if ( user.isOnline ) { [self addChild:menu_store]; }
         
@@ -260,19 +268,37 @@
 - (CCLayer*) escapefromhell
 {
     CCLayer *layer          = [CCLayer node];
-    //CCSprite *bg            = [CCSprite spriteWithFile: @"bg-world-hell-new.png"];
+    CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-1.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_escapefromhell:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
     
-    //[bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
-    //[layer addChild:bg];
+    [layer addChild:bg];
     [layer addChild:menu];
     
     return layer;
 }
+
+- (CCLayer*) detectivedevil
+{
+    CCLayer *layer          = [CCLayer node];
+    CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-2.png"];
+    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_escapefromhell:)];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
+    
+    
+    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    
+    [layer addChild:bg];
+    [layer addChild:menu];
+    
+    return layer;
+}
+
 
 #pragma mark GameKit delegate
 

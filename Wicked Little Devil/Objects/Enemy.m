@@ -179,16 +179,15 @@
 
 - (void) action_shoot_rocket:(Game*)game
 {
-    CCLOG(@"FIRE ROCKET");
     self.running = YES;
     
     // SHOOT A ROCKET AT THE PLAYER
     Projectile *projectile = [Projectile spriteWithFile:@"rocket.png"];
-    [projectile setPosition:ccp([self worldBoundingBox].origin.x-27, [self worldBoundingBox].origin.y + 300)];
+    [projectile setPosition:ccp(27, [self worldBoundingBox].origin.y + 300)];
     
     // Rocket trail
     EnemyFX *rocket_fx = [EnemyFX particleWithFile:@"RocketBlast.plist"];
-    [rocket_fx setPosition:ccp([self worldBoundingBox].origin.x-27, [self worldBoundingBox].origin.y + 315)];
+    [rocket_fx setPosition:ccp(projectile.position.x, projectile.position.y + 15)];
     rocket_fx.tag = 1111;
     
     [self addChild:rocket_fx];
@@ -196,20 +195,20 @@
     [self.projectiles addObject:projectile];
     
     // Determine offset of location to projectile
-    int offX = [game.player worldBoundingBox].origin.x - projectile.position.x;
+    int offX = projectile.position.x;
     int offY = [game.player worldBoundingBox].origin.y - projectile.position.y;
     
     // Determine where we wish to shoot the projectile to
     int realX = [[CCDirector sharedDirector] winSize].width + (projectile.contentSize.width/2);
     float ratio = (float) offY / (float) offX;
     int realY = (realX * ratio) + projectile.position.y;
-    CGPoint realDest = ccp(([self worldBoundingBox].origin.x) + self.contentSize.width/2, realY);
+    CGPoint realDest = ccp(0, realY);
     
     // Determine the length of how far we're shooting
     int offRealX = realX - projectile.position.x;
     int offRealY = realY - projectile.position.y;
     float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-    float velocity = 600/1;
+    float velocity = 400/1;
     float realMoveDuration = length/velocity;
     
     id action_end = [CCCallBlock actionWithBlock:^(void) { projectile.visible = NO; }];

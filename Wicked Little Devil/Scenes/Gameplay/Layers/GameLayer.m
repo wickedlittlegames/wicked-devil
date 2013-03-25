@@ -110,14 +110,31 @@
         }
         else
         {
-            platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 && !platform.dead);
+            if ( platform.tag == 51 || platform.tag == 52 )
+            {
+                platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 );
+            }
+            else
+            {
+                platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 && !platform.dead);
+            }
         }
         
         if (  platform.visible )
         {
             if ( game.player.controllable )
             {
-                [platform isIntersectingPlayer:game platforms:self.platforms];
+                if ( platform.tag == 51 || platform.tag == 52 )
+                {
+                    if ( !platform.dead )
+                    {
+                        [platform isIntersectingPlayer:game platforms:self.platforms];
+                    }
+                }
+                else
+                {
+                    [platform isIntersectingPlayer:game platforms:self.platforms];                    
+                }
             }
         }
     }
@@ -233,11 +250,14 @@
                         }
                     }
                     
-//                    if ( [projectile worldBoundingBox].origin.y < -160 && enemy.visible ) {
-//                        enemy.visible = FALSE;
-//                        [enemy removeChildByTag:1111 cleanup:YES];
-//                        
-//                    }
+                    if ( [projectile isIntersectingParent:enemy] && enemy.visible )
+                    {
+                        [game.fx start:0 position:[enemy worldBoundingBox].origin];
+                        enemy.visible = FALSE;
+                        enemy.dead = TRUE;
+                        projectile.visible = NO;
+                        [enemy removeChildByTag:1111 cleanup:YES];
+                    }
                 }
             }
         }

@@ -8,7 +8,7 @@
 
 #import "WorldSelectScene.h"
 #import "LevelSelectScene.h"
-#import "StartScene.h"
+#import "AdventureSelectScene.h"
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
@@ -62,7 +62,6 @@
         
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
-        
         
         // Positioning
         [menu_back              setPosition:ccp(25, 25)];
@@ -163,7 +162,7 @@
 - (void) tap_back:(CCMenuItem*)sender
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
 }
 
 - (void) tap_leaderboard

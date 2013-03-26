@@ -9,6 +9,8 @@
 #import "GameKitHelper.h"
 #import "cocos2d.h"
 #import "CCScrollLayer.h"
+#import "PlayHavenSDK.h"
+
 #import <Parse/Parse.h>
 
 @class User;

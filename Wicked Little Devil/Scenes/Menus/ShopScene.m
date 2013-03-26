@@ -46,7 +46,7 @@
         else [self setupTable];
 
         // set up the design and functional sprites
-        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-shop-bg-iphone5.png" : @"bg-shop-bg.png")];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-shop.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
         

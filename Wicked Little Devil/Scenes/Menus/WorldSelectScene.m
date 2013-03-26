@@ -8,7 +8,7 @@
 
 #import "WorldSelectScene.h"
 #import "LevelSelectScene.h"
-#import "AdventureSelectScene.h"
+#import "StartScene.h"
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
@@ -53,19 +53,20 @@
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_equip:)],nil];
         CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_store:)],nil];
-        
+        CCMenuItem *btn_moregames    = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
         CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
-        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
+        CCMenu *menu_social             = [CCMenu menuWithItems:btn_moregames,btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
         [menu_social alignItemsHorizontallyWithPadding:5];
+        
         
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
         
         // Positioning
         [menu_back              setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 63, 25)];
+        [menu_social setPosition:ccp(screenSize.width - 118, 25)];
         [menu_equip             setPosition:ccp(25, screenSize.height - 25)];
         [menu_store             setPosition:ccp(70, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
@@ -79,7 +80,7 @@
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
         [worlds addObject:[self earth]];
-        [worlds addObject:[self comingsoon]];
+        //[worlds addObject:[self comingsoon]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
@@ -128,6 +129,16 @@
 
 #pragma mark TAPS
 
+
+
+
+- (void) tap_moregames
+{
+    PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"more_games" delegate:(id)self];
+    request.showsOverlayImmediately = YES; //optional, see next.
+    [request send];
+}
+
 - (void) tap_world:(CCMenuItemFont*)sender
 {
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i", sender.tag]];
@@ -162,7 +173,7 @@
 - (void) tap_back:(CCMenuItem*)sender
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
 }
 
 - (void) tap_leaderboard

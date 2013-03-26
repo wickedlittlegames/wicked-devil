@@ -41,29 +41,37 @@
         font            = @"CrashLanding BB";
         fontsize        = 36;
         worlds          = [NSMutableArray arrayWithCapacity:100];
+        
+        if ( ![user.udata boolForKey:@"SEEN_ADVENTURES"] )
+        {
+            [user.udata setBool:TRUE forKey:@"SEEN_ADVENTURES"];
+            [user sync];
+        }
 
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_equip:)],nil];
         CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_store:)],nil];
         CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
+        CCMenuItem *btn_moregames    = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
-        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
+        CCMenu *menu_social             = [CCMenu menuWithItems:btn_moregames,btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
         [menu_social alignItemsHorizontallyWithPadding:5];
+        
         
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
         
         // Positioning
         [menu_back              setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 63, 25)];
+        [menu_social setPosition:ccp(screenSize.width - 118, 25)];
         [menu_equip             setPosition:ccp(25, screenSize.height - 25)];
         [menu_store             setPosition:ccp(70, screenSize.height - 25)];
         
         // Add world layers to the scroller
         //[worlds addObject:[self updates]];
-        [worlds addObject:[self escapefromhell]];
         [worlds addObject:[self detectivedevil]];
+        [worlds addObject:[self comingsoon]];        
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
         [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
@@ -113,6 +121,16 @@
 }
 
 #pragma mark TAPS
+
+
+- (void) tap_moregames
+{
+    PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"more_games" delegate:(id)self];
+    request.showsOverlayImmediately = YES; //optional, see next.
+    [request send];
+}
+
+
 
 - (void) tap_world:(CCMenuItemFont*)sender
 {
@@ -265,19 +283,14 @@
 
 #pragma mark WORLDS
 
-- (CCLayer*) escapefromhell
+- (CCLayer*) comingsoon
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-1.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_escapefromhell:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
-    
+    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
     [layer addChild:bg];
-    [layer addChild:menu];
     
     return layer;
 }

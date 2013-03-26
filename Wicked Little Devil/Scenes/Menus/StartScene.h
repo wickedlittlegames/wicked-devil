@@ -8,10 +8,11 @@
 #import <GameKit/GameKit.h>
 #import "GameKitHelper.h"
 #import "cocos2d.h"
+#import "PlayHavenSDK.h"
 #import <Parse/Parse.h>
 
 @class User, AppController;
-@interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, PF_FBRequestDelegate, NSURLConnectionDelegate>
+@interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, PF_FBRequestDelegate, NSURLConnectionDelegate, PHPublisherContentRequestDelegate>
 {
     CCMenuItem *btn_mute, *btn_muted;
     GameKitHelper *gkHelper;

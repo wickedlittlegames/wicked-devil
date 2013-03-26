@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "StartScene.h"
+#import "WorldSelectScene.h"
 #import "AdventureSelectScene.h"
 #import "GameOverFacebookScene.h"
 #import "GameScene.h"
@@ -37,12 +38,22 @@
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
         
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+        PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
+        request.showsOverlayImmediately = YES;
+        [request send];
+        
+        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        [[app navController].view addSubview:notificationView];
+        notificationView.center = CGPointMake(screenSize.width/2,screenSize.height/2);
+        [notificationView refresh];
+                        
         user = [[User alloc] init];
 
         [self reportLeaderboardHighscores];
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];
-		CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         
         if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
@@ -51,36 +62,48 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
         }       
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-home-iphone5.png" : @"bg-home.png")];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
+        CCSprite *title_adventures_new  = [CCSprite spriteWithFile:@"title-adventures-new.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
+        CCMenuItem *btn_adventures      = [CCMenuItemImage itemWithNormalImage:@"title-adventures.png"         selectedImage:@"title-adventures.png"      target:self selector:@selector(tap_start_adventures)];
         CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
-        prompt_facebook                 = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
+        CCMenuItem *btn_moregames    = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
+        //prompt_facebook                 = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
         CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
-        CCMenu *menu_social             = [CCMenu menuWithItems:btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
+        CCMenu *menu_adventures         = [CCMenu menuWithItems:btn_adventures, nil];
+        CCMenu *menu_social             = [CCMenu menuWithItems:btn_moregames,btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
         CCSprite *behind_fb             = [CCSprite spriteWithFile:@"btn-behind-fb.png"];
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
-        [menu_start setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [menu_start setPosition:ccp(screenSize.width/2, (screenSize.height/2)+20)];
+        [menu_adventures setPosition:ccp(screenSize.width/2, (screenSize.height/2)-40)];
+        [title_adventures_new setPosition:ccp((menu_adventures.position.x)-100, menu_adventures.position.y+20)];
         [menu_mute setPosition:ccp(25, 25)];
-        [menu_social setPosition:ccp(screenSize.width - 63, 25)];
+        [menu_social setPosition:ccp(screenSize.width - 118, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
-        [prompt_facebook setPosition:ccp(screenSize.width - 90, 80)];
+        //[prompt_facebook setPosition:ccp(screenSize.width - 90, 80)];
+    
         
         [self addChild:bg];
         [self addChild:homeFX];
         [self addChild:menu_start];
+        [self addChild:menu_adventures];
+        if ( ![user.udata boolForKey:@"SEEN_ADVENTURES"] )
+        {
+            [self addChild:title_adventures_new];
+        }
         [self addChild:behind_fb];
         [self addChild:menu_social];
         [self addChild:menu_mute];
-        [self addChild:prompt_facebook];
+        //[self addChild:prompt_facebook];
         
         [self setMute];
         [self setFacebookImage];
@@ -157,7 +180,6 @@
             secret_visible = !secret_visible;
         }];
         
-        // TODO: CLICKABLE (SHOWABLE) PANEL WITH FACEBOOK LIKE BUTTON THAT THEN PLAYS A FUN LEVEL
         CCMenu *menu_secret = [CCMenu menuWithItems:button_menu_secret, nil];
         [menu_secret setPosition:ccp(screenSize.width - 30, screenSize.height - 21)];
 
@@ -194,12 +216,23 @@
                     }
                 }];
             }
-            prompt_facebook.visible = FALSE;
+            //prompt_facebook.visible = FALSE;
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             CCSprite *fbimage2 = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
             [btn_facebooksignin setSelectedImage:fbimage2];
         }
+    }
+}
+
+
+-(void)request:(PHPublisherContentRequest *)request unlockedReward:(PHReward *)reward;
+{
+    if ( ![user.udata boolForKey:[reward receipt]] )
+    {
+        user.collected += [reward quantity];
+        [user.udata setBool:TRUE forKey:[reward receipt]];
+        [user sync];
     }
 }
 
@@ -213,7 +246,20 @@
 - (void) tap_start
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+}
+
+- (void) tap_start_adventures
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
+}
+
+- (void) tap_moregames
+{
+    PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"more_games" delegate:(id)self];
+    request.showsOverlayImmediately = YES; //optional, see next.
+    [request send];
 }
 
 - (void) tap_leaderboard
@@ -283,9 +329,7 @@
                 {
                     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
                     [self getFacebookImage];
-                    user.collected += 500;
-                    prompt_facebook.visible = FALSE;
-                    [user sync];
+                    //prompt_facebook.visible = FALSE;
                     
                     PF_FBRequest *request = [PF_FBRequest requestForMe];
                     [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
@@ -304,7 +348,7 @@
                 {
                     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed back in!"]];
                     
-                    prompt_facebook.visible = FALSE;
+                    //prompt_facebook.visible = FALSE;
                     [self getFacebookImage];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                 }

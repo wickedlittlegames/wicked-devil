@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "SimpleAudioEngine.h"
+#import "PlayHavenSDK.h"
 
 @interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {

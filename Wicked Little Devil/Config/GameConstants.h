@@ -27,3 +27,9 @@
 #pragma mark === GLOBAL HELPER METHODS ===
 
 #define IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
+#pragma mark === API SETTINGS ===
+
+#define WDPHToken @"147ba4adf1114ecd9ec87ff3f3cb95dd"
+#define WDPHSecret @"f7cb8cb1a8ac458baf63b6b54f77ee01"
+#define WDPHGameID @"46662";

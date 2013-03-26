@@ -100,6 +100,11 @@
         [self addChild:menu_store];
         
         [self setFacebookImage];
+        
+        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        [[app navController].view addSubview:notificationView];
+        notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
+        [notificationView refresh];
     }
 	return self;
 }
@@ -309,7 +314,6 @@
     CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
-    
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];

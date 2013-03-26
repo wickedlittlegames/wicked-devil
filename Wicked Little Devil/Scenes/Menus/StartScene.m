@@ -43,11 +43,6 @@
         PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
         request.showsOverlayImmediately = YES;
         [request send];
-        
-        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
-        [[app navController].view addSubview:notificationView];
-        notificationView.center = CGPointMake(screenSize.width/2,screenSize.height/2);
-        [notificationView refresh];
                         
         user = [[User alloc] init];
 
@@ -185,6 +180,11 @@
 
         [self addChild:menu_secret];
         [self addChild:bg_secret];
+        
+        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        [[app navController].view addSubview:notificationView];
+        notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
+        [notificationView refresh];
     }
 	return self;
 }

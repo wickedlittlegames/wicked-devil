@@ -93,6 +93,12 @@
         if ( user.isOnline ) { [self addChild:menu_store]; }
         
         [self setFacebookImage];
+        
+        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        [[app navController].view addSubview:notificationView];
+        notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
+        [notificationView refresh];
+
     }
 	return self;
 }
@@ -299,15 +305,20 @@
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-2.png"];
+    CCSprite *bgfx          = [CCSprite spriteWithFile:@"ui-spinner-fx.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_escapefromhell:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [bgfx   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
     [layer addChild:bg];
+    [layer addChild:bgfx];
     [layer addChild:menu];
+    
+    [bgfx runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:120.0 angle:360.f]]];
     
     return layer;
 }

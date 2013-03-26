@@ -658,6 +658,8 @@
 		9CE19C531701B8DC00E3E491 /* title-adventures-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE19C4F1701B8DC00E3E491 /* title-adventures-new.png */; };
 		9CE19C541701B8DC00E3E491 /* title-adventures-new-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE19C501701B8DC00E3E491 /* title-adventures-new-hd.png */; };
 		9CE19C551701B8DC00E3E491 /* title-adventures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE19C511701B8DC00E3E491 /* title-adventures-hd.png */; };
+		9CE19C581701C18E00E3E491 /* ui-spinner-fx.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE19C561701C18E00E3E491 /* ui-spinner-fx.png */; };
+		9CE19C591701C18E00E3E491 /* ui-spinner-fx-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE19C571701C18E00E3E491 /* ui-spinner-fx-hd.png */; };
 		9CE36EA216C925940023B3EE /* bg-world-land.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE36EA016C925940023B3EE /* bg-world-land.png */; };
 		9CE36EA316C925940023B3EE /* bg-world-land-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE36EA116C925940023B3EE /* bg-world-land-hd.png */; };
 		9CE36EA516C928240023B3EE /* world-4-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9CE36EA416C928240023B3EE /* world-4-level-1.ccbi */; };
@@ -1399,6 +1401,8 @@
 		9CE19C4F1701B8DC00E3E491 /* title-adventures-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title-adventures-new.png"; sourceTree = "<group>"; };
 		9CE19C501701B8DC00E3E491 /* title-adventures-new-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title-adventures-new-hd.png"; sourceTree = "<group>"; };
 		9CE19C511701B8DC00E3E491 /* title-adventures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title-adventures-hd.png"; sourceTree = "<group>"; };
+		9CE19C561701C18E00E3E491 /* ui-spinner-fx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-spinner-fx.png"; sourceTree = "<group>"; };
+		9CE19C571701C18E00E3E491 /* ui-spinner-fx-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-spinner-fx-hd.png"; sourceTree = "<group>"; };
 		9CE36EA016C925940023B3EE /* bg-world-land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-land.png"; sourceTree = "<group>"; };
 		9CE36EA116C925940023B3EE /* bg-world-land-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-land-hd.png"; sourceTree = "<group>"; };
 		9CE36EA416C928240023B3EE /* world-4-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-4-level-1.ccbi"; sourceTree = "<group>"; };
@@ -2217,6 +2221,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CE19C561701C18E00E3E491 /* ui-spinner-fx.png */,
+				9CE19C571701C18E00E3E491 /* ui-spinner-fx-hd.png */,
 				9CE19C4E1701B8DC00E3E491 /* title-adventures.png */,
 				9CE19C4F1701B8DC00E3E491 /* title-adventures-new.png */,
 				9CE19C501701B8DC00E3E491 /* title-adventures-new-hd.png */,
@@ -3158,6 +3164,8 @@
 				9CE19C531701B8DC00E3E491 /* title-adventures-new.png in Resources */,
 				9CE19C541701B8DC00E3E491 /* title-adventures-new-hd.png in Resources */,
 				9CE19C551701B8DC00E3E491 /* title-adventures-hd.png in Resources */,
+				9CE19C581701C18E00E3E491 /* ui-spinner-fx.png in Resources */,
+				9CE19C591701C18E00E3E491 /* ui-spinner-fx-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

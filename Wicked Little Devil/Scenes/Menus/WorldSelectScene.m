@@ -80,7 +80,7 @@
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
         [worlds addObject:[self earth]];
-        //[worlds addObject:[self comingsoon]];
+        [worlds addObject:[self comingsoon]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller selectPage:user.cache_current_world];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];

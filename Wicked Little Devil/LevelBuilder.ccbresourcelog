@@ -237,6 +237,8 @@ btn-level-locked.png
 btn-level.png
 btn-levelselect-hd.png
 btn-levelselect.png
+btn-more-games-hd.png
+btn-more-games.png
 btn-mute-hd.png
 btn-mute.png
 btn-muted-hd.png
@@ -301,6 +303,10 @@ tip-world-4-level-1-hd.png
 tip-world-4-level-1.png
 tip-world-4-level-9-hd.png
 tip-world-4-level-9.png
+title-adventures-hd.png
+title-adventures-new-hd.png
+title-adventures-new.png
+title-adventures.png
 ui-btn-devilupgrades-hd.png
 ui-btn-devilupgrades.png
 ui-btn-home-flag-hd.png
@@ -317,6 +323,8 @@ ui-promo-powerups-hd.png
 ui-promo-powerups.png
 ui-prompt-facebook-hd.png
 ui-prompt-facebook.png
+ui-spinner-fx-hd.png
+ui-spinner-fx.png
 Info.plist
 particleTexture.png
 RocketBlast.plist

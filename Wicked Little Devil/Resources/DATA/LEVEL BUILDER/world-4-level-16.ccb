@@ -3488,7 +3488,7 @@
 						<key>value</key>
 						<array>
 							<real>50.625</real>
-							<real>82.322586059570312</real>
+							<real>76.905921936035156</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3732,7 +3732,7 @@
 						<key>value</key>
 						<array>
 							<real>50.625</real>
-							<real>93.9892578125</real>
+							<real>88.572593688964844</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3812,7 +3812,7 @@
 						<key>value</key>
 						<array>
 							<real>50.625</real>
-							<real>105.44758605957031</real>
+							<real>100.03092193603516</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3892,7 +3892,7 @@
 						<key>value</key>
 						<array>
 							<real>70.625</real>
-							<real>105.44758605957031</real>
+							<real>100.03092193603516</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3972,7 +3972,7 @@
 						<key>value</key>
 						<array>
 							<real>90</real>
-							<real>105.2392578125</real>
+							<real>99.822593688964844</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4052,7 +4052,7 @@
 						<key>value</key>
 						<array>
 							<real>48.75</real>
-							<real>114.58333587646484</real>
+							<real>109.16667175292969</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4144,7 +4144,7 @@
 						<key>value</key>
 						<array>
 							<real>69.6875</real>
-							<real>114.58332824707031</real>
+							<real>109.16666412353516</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4236,7 +4236,7 @@
 						<key>value</key>
 						<array>
 							<real>90</real>
-							<real>114.375</real>
+							<real>108.95833587646484</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4328,7 +4328,7 @@
 						<key>value</key>
 						<array>
 							<real>19.6875</real>
-							<real>127.29166412353516</real>
+							<real>122.70832824707031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -6464,7 +6464,7 @@
 						<key>value</key>
 						<array>
 							<real>90.3125</real>
-							<real>120.83089447021484</real>
+							<real>115.41423034667969</real>
 							<integer>4</integer>
 						</array>
 					</dict>

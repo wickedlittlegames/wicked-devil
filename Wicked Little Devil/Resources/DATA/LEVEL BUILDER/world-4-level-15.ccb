@@ -4199,8 +4199,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>35.088531494140625</real>
-							<real>200.46875</real>
+							<real>88.213531494140625</real>
+							<real>201.30207824707031</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -4256,6 +4256,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -6152,8 +6154,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

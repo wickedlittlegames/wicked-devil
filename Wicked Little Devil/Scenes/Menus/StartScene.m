@@ -181,7 +181,7 @@
         [self addChild:menu_secret];
         [self addChild:bg_secret];
         
-        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
         [[app navController].view addSubview:notificationView];
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
         [notificationView refresh];
@@ -245,18 +245,24 @@
 
 - (void) tap_start
 {
+    [notificationView clear];
+    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_start_adventures
 {
+    [notificationView clear];
+    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
 }
 
 - (void) tap_moregames
 {
+    [notificationView clear];
+    
     PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"more_games" delegate:(id)self];
     request.showsOverlayImmediately = YES; //optional, see next.
     [request send];
@@ -395,6 +401,18 @@
     return nil;
 }
 
+#pragma mark PlayHaven delegates
+
+-(void)request:(PHPublisherContentRequest *)request contentWillDisplay:(PHContent *)content
+{
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+}
+
+-(void)request:(PHPublisherContentRequest *)request contentDidDisplay:(PHContent *)content
+{
+    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+}
+
 #pragma mark GameKit delegate
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
@@ -471,11 +489,11 @@
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
         user.sent_ach_beat_world_3 = YES;
     }
-//    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
-//    {
-//        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
-//        user.sent_ach_beat_world_4 = YES;
-//    }
+    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
+    {
+        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
+        user.sent_ach_beat_world_4 = YES;
+    }
     if ( user.ach_killed && !user.sent_ach_killed )
     {
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_KILLED_BY_DEATH] percentComplete:100.0f];

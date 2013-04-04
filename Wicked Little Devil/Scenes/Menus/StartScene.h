@@ -21,6 +21,7 @@
     CCMenuItemSprite *btn_facebooksignin;
     CCSprite *prompt_facebook;
     CCSprite *bg_behind_fb;
+    PHNotificationView *notificationView;
     
     NSMutableData *imageData;
     NSURLConnection *urlConnection;

@@ -52,7 +52,7 @@
                 if ( [self intersectCheck:game] )   [self action:self.tag game:game];
                 break;
             case 4:  // rocket blast
-                if ( [self radiusCheck:game] )      [self action:self.tag game:game];
+                if ( [self radiusCheck:game] && !game.user.powerup == 103 ) [self action:self.tag game:game];
                 break;
             case 5: // black hole, add drag to the controls
                 if ( [self intersectCheck:game]) [self action:self.tag game:game];

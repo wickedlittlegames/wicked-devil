@@ -28,6 +28,14 @@
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
+		<dict>
+			<key>Name</key>
+			<string>It&apos;s a DUD!</string>
+			<key>Description</key>
+			<string>Rockets will no longer fire!</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+		</dict>
 	</array>
 </dict>
 </plist>

@@ -90,11 +90,11 @@
         [self addChild:icon_collectable];
         [self addChild:label_collected];
         
-        if ( user.isOnline ) { [self addChild:menu_store]; }
+        [self addChild:menu_store];
         
         [self setFacebookImage];
         
-        PHNotificationView *notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
+        notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
         [[app navController].view addSubview:notificationView];
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
         [notificationView refresh];
@@ -131,6 +131,8 @@
 
 - (void) tap_moregames
 {
+    [notificationView clear];
+    
     PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"more_games" delegate:(id)self];
     request.showsOverlayImmediately = YES; //optional, see next.
     [request send];
@@ -140,6 +142,8 @@
 
 - (void) tap_world:(CCMenuItemFont*)sender
 {
+    [notificationView clear];
+    
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i", sender.tag]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
@@ -150,6 +154,8 @@
 
 - (void) tap_escapefromhell:(CCMenuItemFont*)sender
 {
+    [notificationView clear];
+    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
 }

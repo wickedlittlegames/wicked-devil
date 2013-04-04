@@ -222,6 +222,8 @@
             break;
         case 102: // magenet soul
             break;
+        case 103: // it's a dud!
+            break;
     }
 }
 

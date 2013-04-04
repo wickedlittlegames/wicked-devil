@@ -262,6 +262,7 @@
 		9C2A013A16FB539C002BDDE2 /* rocket-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013816FB539C002BDDE2 /* rocket-hd.png */; };
 		9C2A013D16FB5678002BDDE2 /* enemy-rocket-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */; };
 		9C2A013E16FB5678002BDDE2 /* enemy-rocket-target-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */; };
+		9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C35DA29170DB949006F24DA /* detective-music.aifc */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
@@ -948,6 +949,7 @@
 		9C2A013816FB539C002BDDE2 /* rocket-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket-hd.png"; sourceTree = "<group>"; };
 		9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target.png"; sourceTree = "<group>"; };
 		9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target-hd.png"; sourceTree = "<group>"; };
+		9C35DA29170DB949006F24DA /* detective-music.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "detective-music.aifc"; sourceTree = "<group>"; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
@@ -2125,6 +2127,7 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C35DA29170DB949006F24DA /* detective-music.aifc */,
 				9C7253A2164B15BC004AC4D7 /* bubble.caf */,
 				9C7253A0164B1268004AC4D7 /* bg-loop3.aifc */,
 				9C4EA35C1626E33600E7B66F /* complete.caf */,
@@ -3166,6 +3169,7 @@
 				9CE19C551701B8DC00E3E491 /* title-adventures-hd.png in Resources */,
 				9CE19C581701C18E00E3E491 /* ui-spinner-fx.png in Resources */,
 				9CE19C591701C18E00E3E491 /* ui-spinner-fx-hd.png in Resources */,
+				9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

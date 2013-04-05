@@ -48,7 +48,7 @@
             [user sync];
         }
         
-        if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
+        if ( ![SimpleAudioEngine sharedEngine].mute )
         {
             [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"detective-music.aifc" loop:YES];

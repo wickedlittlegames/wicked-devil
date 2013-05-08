@@ -52,20 +52,23 @@
         
         User *user = [[User alloc] init];
         game = [[Game alloc] init];
-
-        if ( ![SimpleAudioEngine sharedEngine].mute )
+        
+        if ( !(w == 20) )
         {
-            if ( restartMusic )
+            if ( ![SimpleAudioEngine sharedEngine].mute )
             {
-                [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-                if ( w == 11 )
+                if ( restartMusic )
                 {
                     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-                    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
-                }
-                else
-                {
-                    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"bg-loop%i.aifc",w] loop:YES];
+                    if ( w == 11 )
+                    {
+                        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+                    }
+                    else
+                    {
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"bg-loop%i.aifc",w] loop:YES];
+                    }
                 }
             }
         }

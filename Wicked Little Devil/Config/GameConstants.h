@@ -24,10 +24,6 @@
 #define ACV_BUBBLE_POP 21 // pop 100 bubbles with the bubble pop equipment
 #define ACV_PURGATORY_LEVEL_UNLOCKED // unlocked a purgatory level
 
-#pragma mark === GLOBAL HELPER METHODS ===
-
-#define IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
-
 #pragma mark === API SETTINGS ===
 
 #define WDPHToken @"147ba4adf1114ecd9ec87ff3f3cb95dd"

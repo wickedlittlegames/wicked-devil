@@ -316,7 +316,7 @@
 - (CCLayer*) hell
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-hell-new-iphone5.png" : @"bg-world-hell-new.png")];
+    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-hell-new.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
@@ -332,7 +332,7 @@
 - (CCLayer*) underground
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-underground-new-iphone5.png" : @"bg-world-underground-new.png")];
+    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-underground-new.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 2; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag ); 
     
@@ -346,7 +346,7 @@
     
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-locked-iphone5.png" : @"bg-locked.png")];
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }
@@ -357,7 +357,7 @@
 - (CCLayer*) ocean
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-world-ocean-iphone5.png" : @"bg-world-ocean.png")];
+    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-world-ocean.png"];
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 3; button.opacity = 0; button.scale *= 3; button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME ); button.isEnabled = ( user.worldprogress >= button.tag );
         
@@ -371,7 +371,7 @@
     
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-locked-iphone5.png" : @"bg-locked.png")];
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }
@@ -396,7 +396,7 @@
     
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-locked-iphone5.png" : @"bg-locked.png")];
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }
@@ -486,11 +486,11 @@
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
         user.sent_ach_beat_world_3 = YES;
     }
-    //    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
-    //    {
-    //        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
-    //        user.sent_ach_beat_world_4 = YES;
-    //    }
+    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
+    {
+        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
+        user.sent_ach_beat_world_4 = YES;
+    }
     if ( user.ach_killed && !user.sent_ach_killed )
     {
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_KILLED_BY_DEATH] percentComplete:100.0f];

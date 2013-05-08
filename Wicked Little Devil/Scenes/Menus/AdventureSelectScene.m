@@ -8,6 +8,7 @@
 
 #import "AdventureSelectScene.h"
 #import "WorldSelectScene.h"
+#import "DetectiveLevelSelectScene.h"
 #import "StartScene.h"
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
@@ -77,7 +78,6 @@
         // Add world layers to the scroller
         //[worlds addObject:[self updates]];
         [worlds addObject:[self detectivedevil]];
-        [worlds addObject:[self comingsoon]];        
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
         [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
@@ -150,12 +150,8 @@
 {
     [notificationView clear];
     
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i", sender.tag]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    
-    user.cache_current_world = sender.tag;
-    [user sync_cache_current_world];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:sender.tag]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[DetectiveLevelSelectScene sceneWithWorld:20]]];
 }
 
 - (void) tap_escapefromhell:(CCMenuItemFont*)sender
@@ -224,7 +220,7 @@
     {
         [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player tried to sign up with Parse.com/Facebook"]];
         
-        //        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+        //[MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
         [PFFacebookUtils logInWithPermissions:permissionsArray
                                         block:^(PFUser *pfuser, NSError *error) {
@@ -301,24 +297,12 @@
 
 #pragma mark WORLDS
 
-- (CCLayer*) comingsoon
-{
-    CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile:@"bg-coming-soon.png"];
-    
-    [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    
-    [layer addChild:bg];
-    
-    return layer;
-}
-
 - (CCLayer*) detectivedevil
 {
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-2.png"];
     CCSprite *bgfx          = [CCSprite spriteWithFile:@"ui-spinner-fx.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_escapefromhell:)];
+    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
     
@@ -331,6 +315,14 @@
     [layer addChild:menu];
     
     [bgfx runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:120.0 angle:360.f]]];
+    
+    if ( !user.unlocked_detective )
+    {
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+        locked_sprite.opacity = 0.8;
+        locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
+        [layer addChild:locked_sprite];
+    }   
     
     return layer;
 }

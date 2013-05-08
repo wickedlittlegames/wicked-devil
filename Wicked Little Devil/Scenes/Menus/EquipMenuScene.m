@@ -36,7 +36,7 @@
             
         CCMenu *menu_option             = [CCMenu menuWithItems:btn_devil,btn_special, nil];
         CCMenu *menu_purchase           = [CCMenu menuWithItems:btn_purchase, nil];
-        CCSprite *bg                    = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-powerups-menu-iphone5.png" : @"bg-powerups-menu.png")];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-powerups-menu.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
         

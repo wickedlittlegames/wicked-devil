@@ -29,7 +29,7 @@
     NSString *txt_gamenumber    = [NSString stringWithFormat:@"%i - %i",self.world,self.level];
     
     // background and functionality sprites
-    CCSprite *uibg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-topbar-iphone5.png" : @"bg-topbar.png")];
+    CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
     [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
     [self addChild:uibg];
     
@@ -70,7 +70,7 @@
     }  
     
     // pause background and functionality sprites
-    pause_bg = [CCSprite spriteWithFile:(IS_IPHONE5 ? @"bg-pauseoverlay-iphone5.png" : @"bg-pauseoverlay.png")];
+    pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
     pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [self addChild:pause_bg]; pause_bg.visible = FALSE;
     
@@ -108,8 +108,7 @@
     [label_powerup      setPosition:ccp(label_gamenumber.position.x, label_gamenumber.position.y - 30)];
     
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
-    if (IS_IPHONE5)[pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 40)];
-    else [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
+    [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
     
     [pause_screen alignItemsVerticallyWithPadding:-3];
     [pause_bg addChild:label_best];

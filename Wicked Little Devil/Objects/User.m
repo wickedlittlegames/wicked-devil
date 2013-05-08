@@ -27,9 +27,19 @@
         {
             [self create_special_items];
         }
+        if ( ![self.udata objectForKey:@"detective_highscores"] )
+        {
+            [self create_detective_settings];
+        }
+        if ( ![self.udata objectForKey:@"unlocked_detective"] )
+        {
+                [self create_detective_settings2];
+        }
         
         self.highscores             = [self.udata objectForKey:@"highscores"];
         self.souls                  = [self.udata objectForKey:@"souls"];
+        self.detective_highscores   = [self.udata objectForKey:@"detective_highscores"];
+        self.detective_souls        = [self.udata objectForKey:@"detective_souls"];
         self.levelprogress          = [self.udata integerForKey:@"levelprogress"];
         self.worldprogress          = [self.udata integerForKey:@"worldprogress"];
         self.gameprogress           = [self.udata objectForKey:@"gameprogress"];
@@ -43,6 +53,7 @@
         self.items_special          = [self.udata objectForKey:@"items_special"];
         self.facebook_id            = [self.udata objectForKey:@"facebook_id"];
         self.facebook_image         = [self.udata objectForKey:@"facebook_image"];
+        self.unlocked_detective     = [self.udata boolForKey:@"unlocked_detective"];
         
         [self setupAchievements];
     }
@@ -122,6 +133,35 @@
     [self.udata synchronize];
 }
 
+- (void) create_detective_settings
+{
+    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:100];
+    NSMutableArray *tmp_worlds_souls = [NSMutableArray arrayWithCapacity:100];
+    for (int w = 1; w <= 1; w++)
+    {
+        NSMutableArray *w = [NSMutableArray arrayWithCapacity:100];
+        for (int lvl = 1; lvl <= 12; lvl++)
+        {
+            [w addObject:[NSNumber numberWithInt:0]];
+        }
+        [tmp_worlds addObject:w];
+        [tmp_worlds_souls addObject:w];
+    }
+    NSArray *worlds = tmp_worlds;
+    NSArray *world_souls = tmp_worlds_souls;
+    
+    [self.udata setObject:worlds forKey:@"detective_highscores"];
+    [self.udata setObject:world_souls forKey:@"detective_souls"];
+    
+    [self.udata synchronize];
+}
+
+- (void) create_detective_settings2
+{
+    [self.udata setBool:FALSE forKey:@"unlocked_detective"];
+    [self.udata synchronize];
+}
+
 - (void) reset
 {
     [self.udata setBool:FALSE forKey:@"created"];
@@ -196,66 +236,133 @@
 
 - (void) setHighscore:(int)score world:(int)w level:(int)l
 {
-    NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
-    int current_highscore = [self getHighscoreforWorld:w level:l];
-    if (score > current_highscore)
+    if ( w == 20 )
     {
-        NSMutableArray *tmp = [[highscores_tmp objectAtIndex:w-1] mutableCopy];
-        [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
-        [highscores_tmp replaceObjectAtIndex:w-1 withObject:tmp];
-        NSArray *highscore = highscores_tmp;
-        [self.udata setObject:highscore forKey:@"highscores"];
-        [self.udata synchronize];
+        NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
+        int current_highscore = [self getHighscoreforWorld:w level:l];
+        if (score > current_highscore)
+        {
+            NSMutableArray *tmp = [[highscores_tmp objectAtIndex:0] mutableCopy];
+            [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
+            [highscores_tmp replaceObjectAtIndex:0 withObject:tmp];
+            NSArray *highscore = highscores_tmp;
+            [self.udata setObject:highscore forKey:@"detective_highscores"];
+            [self.udata synchronize];
+        }        
+    }
+    else
+    {
+        NSMutableArray *highscores_tmp = [self.highscores mutableCopy];
+        int current_highscore = [self getHighscoreforWorld:w level:l];
+        if (score > current_highscore)
+        {
+            NSMutableArray *tmp = [[highscores_tmp objectAtIndex:w-1] mutableCopy];
+            [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:score]];
+            [highscores_tmp replaceObjectAtIndex:w-1 withObject:tmp];
+            NSArray *highscore = highscores_tmp;
+            [self.udata setObject:highscore forKey:@"highscores"];
+            [self.udata synchronize];
+        }        
     }
 }
 
 - (void) setSouls:(int)tmp_souls world:(int)w level:(int)l
 {
-    NSMutableArray *souls_tmp = [[self.udata objectForKey:@"souls"] mutableCopy];
-    
-    int current_total = [self getSoulsforWorld:w level:l];
-    
-    if (tmp_souls > current_total)
+    if ( w == 20 )
     {
-        NSMutableArray *tmp = [[souls_tmp objectAtIndex:w-1] mutableCopy];
-        [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
-        [souls_tmp replaceObjectAtIndex:w-1 withObject:tmp];        
-        NSArray *souls_arr = souls_tmp;
-        [self.udata setObject:souls_arr forKey:@"souls"];
-        [self.udata synchronize];
+        NSMutableArray *souls_tmp = [[self.udata objectForKey:@"detective_souls"] mutableCopy];
+        
+        int current_total = [self getSoulsforWorld:w level:l];
+        
+        if (tmp_souls > current_total)
+        {
+            NSMutableArray *tmp = [[souls_tmp objectAtIndex:0] mutableCopy];
+            [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+            [souls_tmp replaceObjectAtIndex:0 withObject:tmp];
+            NSArray *souls_arr = souls_tmp;
+            [self.udata setObject:souls_arr forKey:@"detective_souls"];
+            [self.udata synchronize];
+        }
+    }
+    else
+    {
+        NSMutableArray *souls_tmp = [[self.udata objectForKey:@"souls"] mutableCopy];
+        
+        int current_total = [self getSoulsforWorld:w level:l];
+        
+        if (tmp_souls > current_total)
+        {
+            NSMutableArray *tmp = [[souls_tmp objectAtIndex:w-1] mutableCopy];
+            [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+            [souls_tmp replaceObjectAtIndex:w-1 withObject:tmp];
+            NSArray *souls_arr = souls_tmp;
+            [self.udata setObject:souls_arr forKey:@"souls"];
+            [self.udata synchronize];
+        }
     }
 }
 
 - (int) getHighscoreforWorld:(int)w
 {
-    NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int tmp_score = 0;
-    if ( [tmp2 count] > 0 )
+    if ( w == 20 )
     {
-        for (int i = 0; i < [tmp2 count]; i++)
+        NSMutableArray *tmp = [self.udata objectForKey:@"detective_highscores"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:0];
+        int tmp_score = 0;
+        if ( [tmp2 count] > 0 )
         {
-            tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            for (int i = 0; i < [tmp2 count]; i++)
+            {
+                tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            }
         }
+        return tmp_score;
     }
-    
-    CCLOG(@"W: %i S: %i",w,tmp_score);
-    
-    return tmp_score;
+    else
+    {
+        NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+        int tmp_score = 0;
+        if ( [tmp2 count] > 0 )
+        {
+            for (int i = 0; i < [tmp2 count]; i++)
+            {
+                tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            }
+        }
+        
+        return tmp_score;
+    }
 }
 
 - (int) getHighscoreforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int tmp_score = 0;
-    
-    if ( [tmp2 count] > 0 )
+    if ( w == 20 )
     {
-        tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        NSMutableArray *tmp = [self.udata objectForKey:@"detective_highscores"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:0];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
+        {
+            tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        }
+        
+        return tmp_score;        
     }
-    
-    return tmp_score;
+    else
+    {
+        NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
+        {
+            tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        }
+        
+        return tmp_score;        
+    }
 }
 
 - (int) getGameProgressforWorld:(int)w level:(int)l
@@ -275,19 +382,39 @@
 
 - (int) getSoulsforWorld:(int)w
 {
-    NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int tmp_score = 0;
-    
-    if ( [tmp2 count] > 0 )
+    if ( w == 20 )
     {
-        for (int i = 0; i < [tmp2 count]; i++)
+        NSMutableArray *tmp = [self.udata objectForKey:@"detective_souls"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:0];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
         {
-            tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            for (int i = 0; i < [tmp2 count]; i++)
+            {
+                tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            }
         }
+        
+        return tmp_score;
+        
     }
-    
-    return tmp_score;
+    else
+    {
+        NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
+        {
+            for (int i = 0; i < [tmp2 count]; i++)
+            {
+                tmp_score += [[tmp2 objectAtIndex:i]intValue];
+            }
+        }
+        
+        return tmp_score;
+    }
 }
 
 - (int) getSoulsforAll
@@ -306,16 +433,33 @@
 
 - (int) getSoulsforWorld:(int)w level:(int)l
 {
-    NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
-    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
-    int tmp_score = 0;
-    
-    if ( [tmp2 count] > 0 )
+    if ( w == 20 )
     {
-        tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        NSMutableArray *tmp = [self.udata objectForKey:@"detective_souls"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:0];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
+        {
+            tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        }
+        
+        return tmp_score;
+        
     }
-    
-    return tmp_score;
+    else
+    {
+        NSMutableArray *tmp = [self.udata objectForKey:@"souls"];
+        NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+        int tmp_score = 0;
+        
+        if ( [tmp2 count] > 0 )
+        {
+            tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+        }
+        
+        return tmp_score;        
+    }
 }
 
 - (NSString*) getEquippedPowerup
@@ -381,11 +525,11 @@
         self.ach_beat_world_3 = TRUE;
         [self showAchievementPanel:9];
     }
-//    if ( self.worldprogress >= 4 && self.levelprogress >= LEVELS_PER_WORLD && !self.ach_beat_world_4 ) // beat world 4
-//    {
-//        self.ach_beat_world_4 = TRUE;
-//        [self showAchievementPanel:10];
-//    }
+    if ( self.worldprogress >= 4 && self.levelprogress >= LEVELS_PER_WORLD && !self.ach_beat_world_4 ) // beat world 4
+    {
+        self.ach_beat_world_4 = TRUE;
+        [self showAchievementPanel:10];
+    }
     if ( self.deaths >= 1 && !self.ach_killed )
     {
         self.ach_killed = TRUE;        

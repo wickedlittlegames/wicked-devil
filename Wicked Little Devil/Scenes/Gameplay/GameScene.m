@@ -49,7 +49,6 @@
             
             [whiteflash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.4f], nil]];
         }
-        
         User *user = [[User alloc] init];
         game = [[Game alloc] init];
         
@@ -102,6 +101,8 @@
         [collab addChild:layer_player];
         [self addChild:layer_ui];
         
+        
+        
         game.player = layer_player.player;
         game.user = user;
         game.world = w;
@@ -109,7 +110,7 @@
         game.fx = layer_fx;
         game.pastScore = [user getHighscoreforWorld:w level:l];
         [game.player setupPowerup:user.powerup];
-        [layer_ui setupItemsforGame:game];   
+        [layer_ui setupItemsforGame:game];
         layer_game.world = w;
         layer_game.level = l;
 

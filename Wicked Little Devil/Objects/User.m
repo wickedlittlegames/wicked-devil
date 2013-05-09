@@ -339,6 +339,7 @@
 {
     if ( w == 20 )
     {
+        CCLOG(@"WRONG");        
         NSMutableArray *tmp = [self.udata objectForKey:@"detective_highscores"];
         NSMutableArray *tmp2= [tmp objectAtIndex:0];
         int tmp_score = 0;
@@ -352,6 +353,7 @@
     }
     else
     {
+        CCLOG(@"CORRECT");
         NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
         NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
         int tmp_score = 0;

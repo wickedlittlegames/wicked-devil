@@ -38,6 +38,7 @@
     [gamenumber setPosition:ccp(screenSize.width/2,screenSize.height - 15)]; gamenumber.color = ccBLACK;
     [self addChild:gamenumber];
     
+    
     // Menu selection options - reload and menu
     CCMenu *gameplay_menu = [CCMenu menuWithItems:
                              [CCMenuItemImage itemWithNormalImage:@"btn-pause.png" selectedImage:@"btn-pause.png" disabledImage:@"btn-pause.png" target:self selector:@selector(tap_reload)],
@@ -97,7 +98,7 @@
             [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:self.world]];
         }
     }];
-    
+        
     [label_resume       setColor:ccc3(205, 51, 51)];
     [label_levelselect  setColor:ccc3(205, 51, 51)];
     [label_best         setAnchorPoint:ccp(0,0)];

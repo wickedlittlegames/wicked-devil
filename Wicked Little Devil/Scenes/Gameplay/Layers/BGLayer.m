@@ -21,10 +21,10 @@
     CCSprite *bg = nil;
     
     if ( world == 11 )
-        bg = [CCSprite spriteWithFile:(([[UIScreen mainScreen] bounds].size.height == 568) ? [NSString stringWithFormat:@"bg_%i-iphone5.png", 1] : [NSString stringWithFormat:@"bg_%i.png", 1])];
+        bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", 1]];
  
     else
-        bg = [CCSprite spriteWithFile:(([[UIScreen mainScreen] bounds].size.height == 568) ? [NSString stringWithFormat:@"bg_%i-iphone5.png", world] : [NSString stringWithFormat:@"bg_%i.png", world])];
+        bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
  
     
     [bg setPosition:ccp([[CCDirector sharedDirector] winSize].width/2, [[CCDirector sharedDirector] winSize].height/2)];

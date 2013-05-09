@@ -171,6 +171,7 @@
 - (void) cacheSFX
 {
     [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-main.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"detective-music.aifc"];
     [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop1.aifc"];
     [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bg-loop2.aifc"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"complete.caf"];

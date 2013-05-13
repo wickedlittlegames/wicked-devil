@@ -41,7 +41,7 @@
         font            = @"CrashLanding BB";
         fontsize        = 36;
         worlds          = [NSMutableArray arrayWithCapacity:100];
-        
+                
         if ( ![user.udata boolForKey:@"SEEN_ADVENTURES"] )
         {
             [user.udata setBool:TRUE forKey:@"SEEN_ADVENTURES"];
@@ -76,20 +76,20 @@
         
         // Add world layers to the scroller
         //[worlds addObject:[self updates]];
-        [worlds addObject:[self detectivedevil]];
-        scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-        [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
-        [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
+        [self addChild:[self detectivedevil]];
+//        scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
+//        [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
+//        [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
         
         // Put the children to the screen
-        [self addChild:scroller];
+//        [self addChild:scroller];
         [self addChild:menu_equip];
         [self addChild:menu_back];
         [self addChild:behind_fb];
         [self addChild:menu_social];
 
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
-        CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         [label_collected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [icon_collectable        setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [self addChild:icon_collectable];
@@ -178,6 +178,8 @@
 
 - (void) tap_back:(CCMenuItem*)sender
 {
+    [notificationView clear];
+    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
 }
@@ -307,12 +309,12 @@
     
     if ( !user.unlocked_detective )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+        locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
         
         CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_unlock_detective)];
-        CCMenu *unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
+        unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
         
         [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [layer addChild:unlock_menu];
@@ -325,9 +327,13 @@
 {
     if ( user.collected >= DETECTIVE_UNLOCK_COST )
     {
+        unlock_menu.visible = FALSE;
+        tmp_collectables = user.collected;
         user.collected -= DETECTIVE_UNLOCK_COST;
         user.unlocked_detective = TRUE;
         [user sync];
+        tmp_collectable_increment = DETECTIVE_UNLOCK_COST;
+        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
     else
     {
@@ -338,6 +344,45 @@
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Buy Souls", nil];
         [alertView show];
+    }
+}
+
+- (void) collectable_remove_tick
+{
+    if ( tmp_collectable_increment > 0 )
+    {
+        if (tmp_collectable_increment > 500)
+		{
+            tmp_collectable_increment -= 500;
+            tmp_collectables -= 500;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        
+        if (tmp_collectable_increment > 100)
+		{
+            tmp_collectable_increment -= 100;
+            tmp_collectables -= 100;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        if (tmp_collectable_increment > 10)
+		{
+            tmp_collectable_increment -= 10;
+            tmp_collectables -= 10;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        else
+		{
+            tmp_collectable_increment --;
+            tmp_collectables --;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+    }
+    else
+    {
+        CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"spendSouls.plist"];
+        [self addChild:fx1];
+        locked_sprite.visible = FALSE;
+        [self unschedule: @selector(collectable_remove_tick)];
     }
 }
 

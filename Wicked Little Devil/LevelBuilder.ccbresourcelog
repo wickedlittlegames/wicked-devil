@@ -54,6 +54,7 @@ world-2-level-6.ccbi
 world-2-level-7.ccbi
 world-2-level-8.ccbi
 world-2-level-9.ccbi
+world-20-level-1.ccbi
 world-3-level-1.ccbi
 world-3-level-10.ccbi
 world-3-level-11.ccbi
@@ -97,10 +98,15 @@ world-4-level-9.ccbi
 Powerups.plist
 Powerups_special.plist
 CrashLandingBB.ttf
+AnimDetectiveDevil-hd.plist
+AnimDetectiveDevil-hd.png
+AnimDetectiveDevil.plist
+AnimDetectiveDevil.png
 AnimDevil-hd.plist
 AnimDevil-hd.png
 AnimDevil.plist
 AnimDevil.png
+arrow-med.png
 BatAnim-hd.plist
 BatAnim-hd.png
 BatAnim.plist
@@ -119,6 +125,8 @@ IngameSprites.plist
 IngameSprites.png
 jump1-hd.png
 jump1.png
+jump1_detective-hd.png
+jump1_detective.png
 platform-toggle-off-hd.png
 platform-toggle-off.png
 rocket-hd.png
@@ -134,12 +142,8 @@ TipsSprites-hd.plist
 TipsSprites-hd.png
 TipsSprites.plist
 TipsSprites.png
-adventure-1-hd.png
-adventure-1.png
 adventure-2-hd.png
 adventure-2.png
-Begin-Button-hd.png
-Begin-Button.png
 bg-coming-soon-hd.png
 bg-coming-soon.png
 bg-facebookfriends-hd.png
@@ -176,8 +180,6 @@ bg-world-land-hd.png
 bg-world-land.png
 bg-world-ocean-hd.png
 bg-world-ocean.png
-bg-world-purgatory-hd.png
-bg-world-purgatory.png
 bg-world-underground-new-hd.png
 bg-world-underground-new.png
 bg_1-hd.png
@@ -319,5 +321,7 @@ CollectedBig.png
 particleTexture.png
 RocketBlast.plist
 RocketBlast.png
+spendParticles.png
+spendSouls.plist
 StartScreenFX.plist
 StartScreenFX.png

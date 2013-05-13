@@ -23,6 +23,7 @@
 - (bool) isAlive;
 - (bool) isControllable;
 - (void) setupPowerup:(int)powerup;
+- (void) setupAnimations;
 - (void) setupAnimationsDetective;
 
 @end

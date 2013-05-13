@@ -24,6 +24,9 @@
     User *user;
     NSMutableArray *worlds;
     CCScrollLayer *scroller;
+    CCLabelTTF *label_collected;
+    CCSprite *locked_sprite;
+    CCMenu *unlock_menu;
     
     AppController *app;
     CCMenuItemSprite *btn_facebooksignin;
@@ -33,6 +36,8 @@
     
     NSMutableData *imageData;
     NSURLConnection *urlConnection;
+    
+    int tmp_collectables, tmp_collectable_increment;
 }
 
 +(CCScene *) scene;

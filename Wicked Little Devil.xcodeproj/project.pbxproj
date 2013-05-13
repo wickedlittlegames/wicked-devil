@@ -266,6 +266,12 @@
 		9C2CED501740FCAD003FCA03 /* AnimDetectiveDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */; };
 		9C2CED511740FCAD003FCA03 /* AnimDetectiveDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */; };
 		9C2CED521740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */; };
+		9C2CED55174115F9003FCA03 /* spendSouls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED53174115F9003FCA03 /* spendSouls.plist */; };
+		9C2CED56174115F9003FCA03 /* spendParticles.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED54174115F9003FCA03 /* spendParticles.png */; };
+		9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */; };
+		9C2CED5C174118EC003FCA03 /* jump1_detective.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5A174118EC003FCA03 /* jump1_detective.png */; };
+		9C2CED5D174118EC003FCA03 /* jump1_detective-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5B174118EC003FCA03 /* jump1_detective-hd.png */; };
+		9C2CED5F17411EA3003FCA03 /* world-20-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */; };
 		9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C35DA29170DB949006F24DA /* detective-music.aifc */; };
 		9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -935,6 +941,13 @@
 		9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDetectiveDevil.plist; sourceTree = "<group>"; };
 		9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AnimDetectiveDevil-hd.png"; sourceTree = "<group>"; };
 		9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AnimDetectiveDevil-hd.plist"; sourceTree = "<group>"; };
+		9C2CED53174115F9003FCA03 /* spendSouls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spendSouls.plist; sourceTree = "<group>"; };
+		9C2CED54174115F9003FCA03 /* spendParticles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spendParticles.png; sourceTree = "<group>"; };
+		9C2CED5717411852003FCA03 /* DetectivePlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetectivePlayerLayer.h; path = Scenes/Gameplay/Layers/DetectivePlayerLayer.h; sourceTree = "<group>"; };
+		9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetectivePlayerLayer.m; path = Scenes/Gameplay/Layers/DetectivePlayerLayer.m; sourceTree = "<group>"; };
+		9C2CED5A174118EC003FCA03 /* jump1_detective.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump1_detective.png; sourceTree = "<group>"; };
+		9C2CED5B174118EC003FCA03 /* jump1_detective-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump1_detective-hd.png"; sourceTree = "<group>"; };
+		9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-1.ccbi"; sourceTree = "<group>"; };
 		9C35DA29170DB949006F24DA /* detective-music.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "detective-music.aifc"; sourceTree = "<group>"; };
 		9C37C82E173AA09C00106FB0 /* DetectiveLevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetectiveLevelSelectScene.h; path = Scenes/Menus/DetectiveLevelSelectScene.h; sourceTree = "<group>"; };
 		9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetectiveLevelSelectScene.m; path = Scenes/Menus/DetectiveLevelSelectScene.m; sourceTree = "<group>"; };
@@ -1997,6 +2010,7 @@
 		9CABCEFE1611D5EA006DFDE9 /* LEVELS */ = {
 			isa = PBXGroup;
 			children = (
+				9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */,
 				9CD6F7F31700CF640090D4D9 /* world-4-level-20.ccbi */,
 				9CD6F7F41700CF640090D4D9 /* world-4-level-19.ccbi */,
 				9CD6F7F51700CF640090D4D9 /* world-4-level-18.ccbi */,
@@ -2163,6 +2177,8 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9C2CED5A174118EC003FCA03 /* jump1_detective.png */,
+				9C2CED5B174118EC003FCA03 /* jump1_detective-hd.png */,
 				9CD6F7EB1700A6270090D4D9 /* platform-toggle-off.png */,
 				9CD6F7EC1700A6270090D4D9 /* platform-toggle-off-hd.png */,
 				9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */,
@@ -2370,6 +2386,8 @@
 		9CABCF3C1611D5EA006DFDE9 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				9C2CED53174115F9003FCA03 /* spendSouls.plist */,
+				9C2CED54174115F9003FCA03 /* spendParticles.png */,
 				9CBFBDAD161A2968008512E4 /* StartScreenFX.plist */,
 				9CBFBDAE161A2968008512E4 /* StartScreenFX.png */,
 				9C9E869D1618969A001CAC21 /* CollectedBig.plist */,
@@ -2547,6 +2565,8 @@
 				9CDF942815B561CA0017E58B /* PlayerLayer.m */,
 				9CDF942915B561CA0017E58B /* UILayer.h */,
 				9CDF942A15B561CA0017E58B /* UILayer.m */,
+				9C2CED5717411852003FCA03 /* DetectivePlayerLayer.h */,
+				9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -3099,6 +3119,11 @@
 				9C2CED501740FCAD003FCA03 /* AnimDetectiveDevil.plist in Resources */,
 				9C2CED511740FCAD003FCA03 /* AnimDetectiveDevil-hd.png in Resources */,
 				9C2CED521740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist in Resources */,
+				9C2CED55174115F9003FCA03 /* spendSouls.plist in Resources */,
+				9C2CED56174115F9003FCA03 /* spendParticles.png in Resources */,
+				9C2CED5C174118EC003FCA03 /* jump1_detective.png in Resources */,
+				9C2CED5D174118EC003FCA03 /* jump1_detective-hd.png in Resources */,
+				9C2CED5F17411EA3003FCA03 /* world-20-level-1.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3185,6 +3210,7 @@
 				9CC5F1E81701A376009AF179 /* SDURLCache.m in Sources */,
 				9CC5F1EE1701A56E009AF179 /* OpenUDID.m in Sources */,
 				9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */,
+				9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -115,6 +115,7 @@
     [self.udata setInteger:0 forKey:@"deaths"];
     [self.udata setInteger:0 forKey:@"jumps"];
     [self.udata setBool:FALSE forKey:@"muted"];
+    [self.udata setBool: FALSE forKey:@"unlocked_detective"];
     
     [self.udata setBool:TRUE forKey:@"created"];
     
@@ -179,6 +180,7 @@
     [self.udata setInteger:self.collected forKey:@"collected"];    
     [self.udata setInteger:self.powerup forKey:@"powerup"];
     [self.udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
+    [self.udata setBool:self.unlocked_detective forKey:@"unlocked_detective"];
     [self.udata synchronize];
 }
 
@@ -339,7 +341,6 @@
 {
     if ( w == 20 )
     {
-        CCLOG(@"WRONG");        
         NSMutableArray *tmp = [self.udata objectForKey:@"detective_highscores"];
         NSMutableArray *tmp2= [tmp objectAtIndex:0];
         int tmp_score = 0;
@@ -353,7 +354,6 @@
     }
     else
     {
-        CCLOG(@"CORRECT");
         NSMutableArray *tmp = [self.udata objectForKey:@"highscores"];
         NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
         int tmp_score = 0;

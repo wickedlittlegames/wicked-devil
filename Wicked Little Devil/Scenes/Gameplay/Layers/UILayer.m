@@ -8,6 +8,7 @@
 
 #import "UILayer.h"
 #import "GameScene.h"
+#import "DetectiveLevelSelectScene.h"
 #import "LevelSelectScene.h"
 #import "StartScene.h"
 
@@ -94,7 +95,14 @@
         }
         else
         {
-            [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:self.world]];
+            if ( game.world == 20 )
+            {
+                [[CCDirector sharedDirector] replaceScene:[DetectiveLevelSelectScene sceneWithWorld:20]];
+            }
+            else
+            {
+                [[CCDirector sharedDirector] replaceScene:[LevelSelectScene sceneWithWorld:self.world]];                
+            }
         }
     }];
         

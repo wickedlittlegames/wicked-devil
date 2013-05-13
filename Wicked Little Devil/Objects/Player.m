@@ -42,7 +42,7 @@
         self.animating = NO;
         self.falling = NO;
         
-        [self setupAnimations];
+//        [self setupAnimations];
         
     }
     return self;

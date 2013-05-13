@@ -11,6 +11,7 @@
 
 #import "BGLayer.h"
 #import "PlayerLayer.h"
+#import "DetectivePlayerLayer.h"
 #import "UILayer.h"
 #import "GameLayer.h"
 
@@ -87,7 +88,17 @@
         layer_bg        = [BGLayer node];
         layer_fx        = [FXLayer node];
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
-        layer_player    = [PlayerLayer node];
+
+        if ( w == 20 || user.powerup == 105 )
+        {
+            layer_player    = [DetectivePlayerLayer node];
+            [layer_player.player setupAnimationsDetective];
+        }
+        else
+        {
+            layer_player    = [PlayerLayer node];
+            [layer_player.player setupAnimations];
+        }
         layer_ui        = [UILayer node];
         
         [layer_bg createWorldSpecificBackgrounds:w];

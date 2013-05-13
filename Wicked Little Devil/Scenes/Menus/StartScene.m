@@ -35,7 +35,7 @@
         gkHelper = [GameKitHelper sharedGameKitHelper];
         gkHelper.delegate = self;
         [gkHelper authenticateLocalPlayer];
-        
+                
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
         PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
@@ -43,6 +43,10 @@
         [request send];
                         
         user = [[User alloc] init];
+        user.collected += 100000;
+        [user sync];
+        
+//        [user reset];
 
         [self reportLeaderboardHighscores];
         
@@ -82,7 +86,6 @@
         [menu_social setPosition:ccp(screenSize.width - 118, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
         [behind_fb setPosition:ccp(screenSize.width - 23, 25)];
-        //[prompt_facebook setPosition:ccp(screenSize.width - 90, 80)];
     
         
         [self addChild:bg];
@@ -96,7 +99,6 @@
         [self addChild:behind_fb];
         [self addChild:menu_social];
         [self addChild:menu_mute];
-        //[self addChild:prompt_facebook];
         
         [self setMute];
         [self setFacebookImage];
@@ -214,7 +216,6 @@
                     }
                 }];
             }
-            //prompt_facebook.visible = FALSE;
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             CCSprite *fbimage2 = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];

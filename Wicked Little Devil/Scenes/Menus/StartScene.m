@@ -43,10 +43,8 @@
         [request send];
                         
         user = [[User alloc] init];
-        user.collected += 100000;
-        [user sync];
         
-//        [user reset];
+        if ( !user.isOnline ) [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
 
         [self reportLeaderboardHighscores];
         

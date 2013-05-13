@@ -76,7 +76,7 @@
         
         NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
         
-        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch:)];
+        CCMenuItem *launchButton = [CCMenuItemImage itemWithNormalImage:@"Begin-Button.png" selectedImage:@"Begin-Button.png" target:self selector:@selector(tap_launch)];
         menu = [CCMenu menuWithItems:launchButton, nil];
         menu.position = ccp ( 320/2, 30 );
         menu.opacity = 0.0f;
@@ -100,8 +100,6 @@
         [collab addChild:layer_fx];        
         [collab addChild:layer_player];
         [self addChild:layer_ui];
-        
-        
         
         game.player = layer_player.player;
         game.user = user;
@@ -208,6 +206,7 @@
             game.touch = location;
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
+            firstTouch = location;
         }
     }
 }
@@ -222,11 +221,17 @@
             game.touch = location;
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
+            
+            lastTouch = location;
+            float swipeLength = ccpDistance(firstTouch, lastTouch);
+            if (firstTouch.y > lastTouch.y && swipeLength > 60 && !game.isStarted) {
+                [self tap_launch];
+            }
         }
     }
 }
 
-- (void)tap_launch:(id)sender
+- (void)tap_launch
 {
     if ( !game.isIntro )
     {

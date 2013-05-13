@@ -14,7 +14,6 @@
 #import "SimpleTableCell.h"
 #import "WorldSelectScene.h"
 #import "ShopScene.h"
-#import "FlurryAnalytics.h"
 
 @implementation EquipScene
 
@@ -109,15 +108,11 @@
 
 - (void) tap_purchase:(UIButton*)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Equip Purchase for item: %i",sender.tag]];
     int item = sender.tag;
     int cost = [[data2 objectAtIndex:item] intValue];
 
     if ( user.collected >= cost )
-    {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Equip Purchase for item: %i",sender.tag]];
-        
-        tmp_collectables = user.collected;
+    {        tmp_collectables = user.collected;
         tmp_collectable_increment = cost;
         
         user.collected -= cost;
@@ -157,8 +152,6 @@
 
 - (void) tap_equip:(UIButton*)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Equipped item: %i",sender.tag]];
-
     if ( !user.bought_powerups ) user.bought_powerups = TRUE;
     user.powerup = sender.tag;
     [user sync];

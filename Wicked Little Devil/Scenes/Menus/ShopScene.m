@@ -14,7 +14,6 @@
 #import "MKStoreManager.h"
 #import "MBProgressHUD.h"
 #import "WorldSelectScene.h"
-#import "FlurryAnalytics.h"
 
 @implementation ShopScene
 
@@ -121,8 +120,6 @@
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     UIButton *button = (UIButton*)sender;
     
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Tapped Purchase Item %i",button.tag]];
-    
     NSString *feature = @"";
     int collectedincrease = 0;
     
@@ -141,8 +138,6 @@
 
     [[MKStoreManager sharedManager] buyFeature:feature onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
     {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Completed Purchase Item %i",button.tag]];
-        
         user = [[User alloc] init];
         user.collected += collectedincrease;
         [user sync];

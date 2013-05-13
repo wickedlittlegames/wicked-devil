@@ -2,6 +2,7 @@
 #define LEVELS_PER_WORLD 20
 #define WORLDS_PER_GAME  12
 #define CURRENT_WORLDS_PER_GAME 4 // v1.2
+#define DETECTIVE_UNLOCK_COST 15000
 
 #pragma mark === ACHIEVEMENT IDS ===
 
@@ -29,3 +30,4 @@
 #define WDPHToken @"147ba4adf1114ecd9ec87ff3f3cb95dd"
 #define WDPHSecret @"f7cb8cb1a8ac458baf63b6b54f77ee01"
 #define WDPHGameID @"46662";
+

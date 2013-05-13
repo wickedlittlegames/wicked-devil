@@ -11,7 +11,6 @@
 #import "ShopScene.h"
 #import "GameScene.h"
 #import "User.h"
-#import "FlurryAnalytics.h"
 
 @implementation DetectiveLevelSelectScene
 
@@ -105,7 +104,6 @@
 
 - (void) tap_level:(CCMenuItem*)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i Level: %i", (int)sender.userData, sender.tag]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:(int)sender.userData andLevel:sender.tag isRestart:FALSE restartMusic:YES]]];

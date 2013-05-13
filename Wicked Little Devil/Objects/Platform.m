@@ -83,29 +83,20 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute )
     {
-        if ( game.user.powerup == 100 )
+        switch (platform_id)
         {
-            int r = arc4random_uniform(5) + 1;
-            
-            [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"dubstep_%i",r] pitch:1 pan:1 gain:0.5];
-        }
-        else
-        {
-            switch (platform_id)
-            {
-                default:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
-                    break;
-                case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump4.caf" pitch:1 pan:1 gain:0.5];
-                    break;
-                case 66:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
-                    break;
-                case 663:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
-                    break;
-            }
+            default:
+                [[SimpleAudioEngine sharedEngine] playEffect:@"jump1.caf" pitch:1 pan:1 gain:0.5];
+                break;
+            case 1:
+                [[SimpleAudioEngine sharedEngine] playEffect:@"jump4.caf" pitch:1 pan:1 gain:0.5];
+                break;
+            case 66:
+                [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                break;
+            case 663:
+                [[SimpleAudioEngine sharedEngine] playEffect:@"jump2.caf" pitch:1 pan:1 gain:0.5];
+                break;
         }
     }
 }

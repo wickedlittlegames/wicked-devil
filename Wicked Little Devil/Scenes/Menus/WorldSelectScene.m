@@ -12,7 +12,6 @@
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
-#import "FlurryAnalytics.h"
 #import "SimpleTableCell.h"
 #import "GameOverFacebookScene.h"
 #import "Game.h"
@@ -150,7 +149,6 @@
 {
     [notificationView clear];
     
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player played World: %i", sender.tag]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     user.cache_current_world = sender.tag;
@@ -162,7 +160,6 @@
 {
     [notificationView clear];
     
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited EquipStore"]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
@@ -172,7 +169,6 @@
 {
     [notificationView clear];
     
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited IAPStore"]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
@@ -219,16 +215,12 @@
     }
     else
     {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player tried to sign up with Parse.com/Facebook"]];
-        
-//        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
         [PFFacebookUtils logInWithPermissions:permissionsArray
                                         block:^(PFUser *pfuser, NSError *error) {
                                             if (!pfuser) {
                                                 if (!error)
                                                 {
-                                                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player cancelled the facebook signup process"]];
                                                 }
                                                 else
                                                 {
@@ -237,21 +229,15 @@
                                             }
                                             else if (pfuser.isNew)
                                             {
-                                                [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
                                                 
                                                 [self getFacebookImage];
                                                 user.collected += 500;
-//                                                prompt_facebook.visible = FALSE;
                                                 [user sync];
-//                                                [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                                             }
                                             else
                                             {
-                                                [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed back in!"]];
                                                 
-//                                                prompt_facebook.visible = FALSE;
                                                 [self getFacebookImage];
-//                                                [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                                             }
                                         }
          ];

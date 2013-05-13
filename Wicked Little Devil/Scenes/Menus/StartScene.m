@@ -18,8 +18,6 @@
 #import "Game.h"
 #import "User.h"
 
-#import "FlurryAnalytics.h"
-
 @implementation StartScene
 
 +(CCScene *) scene
@@ -314,9 +312,7 @@
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:1]]];
     }
     else
-    {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player tried to sign up with Parse.com/Facebook"]];
-        
+    {       
         [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
         [PFFacebookUtils logInWithPermissions:permissionsArray
@@ -324,7 +320,6 @@
                 if (!pfuser) {
                     if (!error)
                     {
-                        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player cancelled the facebook signup process"]];
                     }
                     else
                     {
@@ -333,7 +328,6 @@
                 }
                 else if (pfuser.isNew)
                 {
-                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
                     [self getFacebookImage];
                     //prompt_facebook.visible = FALSE;
                     
@@ -352,8 +346,6 @@
                 }
                 else
                 {
-                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed back in!"]];
-                    
                     //prompt_facebook.visible = FALSE;
                     [self getFacebookImage];
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];

@@ -18,7 +18,6 @@
 #import <Twitter/Twitter.h>
 
 #import "Game.h"
-#import "FlurryAnalytics.h"
 
 @implementation GameOverScene
 
@@ -50,8 +49,6 @@
          final_score        = (souls_score + timebonus_score) + (collected * game.player.per_collectable);
          next_world         = 1;
          next_level         = 1;
-         
-         [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Collected %ix big collectables in %i - %i", game.player.bigcollected, game.world, game.level]];
          
          game.user.collected += collected;
          [game.user setHighscore:final_score world:game.world level:game.level];
@@ -361,8 +358,6 @@
     }
     else
     {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Skipped the Gameover anim"]];
-        
         // Stop anim checker
         self.runningAnims = NO;
         
@@ -436,7 +431,6 @@
 
 - (void) tap_twitter
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Went to Tweet..."]];        
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
@@ -472,7 +466,6 @@
 
 - (void) tap_facebook
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player Checked Facebook Screen"]];    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverFacebookScene sceneWithGame:self.tmp_game fromScene:3]]];

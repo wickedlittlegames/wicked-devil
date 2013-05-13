@@ -94,7 +94,7 @@
             if ( self.floating == NO ) [self action_bubble_float:game];
             break;
         case 4: // ROCKET: Shoots rocket at target player area
-            [self action_shoot_rocket:game];
+            if ( !(game.user.powerup == 104) ) [self action_shoot_rocket:game];
             break;
         case 5: // SPACE: Blackhole draws player in and transports player to a new location
             [self action_teleport_player:game];

@@ -20,6 +20,11 @@
     return ( [self radiusCheck:player] && self.visible );
 }
 
+- (BOOL) isClosertoPlayer:(Player*)player
+{
+    return ( [self radiusCheck2:player] && self.visible );
+}
+
 - (void) moveTowardsPlayer:(Player*)player
 {
     float xdif = [self worldBoundingBox].origin.x - [player worldBoundingBox].origin.x;
@@ -37,6 +42,18 @@
     
     float distance = sqrt(xdif*xdif+ydif*ydif);
         
+    return (distance <= radius+radiusTwo);
+}
+
+- (bool) radiusCheck2:(Player*)player
+{
+    float xdif = [self worldBoundingBox].origin.x - [player worldBoundingBox].origin.x;
+    float ydif = [self worldBoundingBox].origin.y - [player worldBoundingBox].origin.y;
+    float radius = 140;
+    float radiusTwo = 1;
+    
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+    
     return (distance <= radius+radiusTwo);
 }
 

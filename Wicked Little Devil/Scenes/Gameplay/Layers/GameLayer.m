@@ -164,6 +164,14 @@
                 }
             }
             
+            if ( game.user.powerup == 103 )
+            {
+                if ( [collectable isClosertoPlayer:game.player] )
+                {
+                    [collectable moveTowardsPlayer:game.player];
+                }
+            }
+            
             if ( [collectable isIntersectingPlayer:game.player] )
             {
                 if ( ![SimpleAudioEngine sharedEngine].mute )

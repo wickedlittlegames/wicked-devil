@@ -25,6 +25,9 @@
     CGSize screenSize;
     
     CCMenu *menu;
+    
+    CGPoint firstTouch;
+    CGPoint lastTouch;
 }
 
 @property (nonatomic, assign) float threshold;

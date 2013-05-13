@@ -60,7 +60,6 @@
 
     if ( self.velocity.y < -8.5  && !self.falling )
     {
-        //self.animating = NO;
         self.falling = YES;
         [self animate:3];
     }
@@ -154,6 +153,47 @@
     self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
 }
 
+- (void) setupAnimationsDetective
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDetectiveDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDetectiveDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+
 - (void) setupPowerup:(int)powerup
 {
     switch (powerup)
@@ -216,13 +256,18 @@
         case 22: // Rich Devil III
             self.collectable_multiplier = 5;
             break;
-        case 100: // dubstep devil
+        case 100: // boundplatform 
             break;
         case 101: // bubble pop
             break;
         case 102: // magenet soul
             break;
-        case 103: // it's a dud!
+        case 103: // magenet soul
+            break;
+        case 104: // it's a dud!
+            break;
+        case 105: // detective outfit
+            [self setupAnimationsDetective];
             break;
     }
 }

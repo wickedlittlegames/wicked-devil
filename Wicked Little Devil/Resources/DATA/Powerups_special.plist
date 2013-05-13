@@ -28,6 +28,30 @@
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Soul Magnet II</string>
+			<key>Description</key>
+			<string>Small souls will fly towards you!</string>
+			<key>Cost</key>
+			<integer>20000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>It's a Dud!</string>
+			<key>Description</key>
+			<string>Rockets no longer fire at you!</string>
+			<key>Cost</key>
+			<integer>10000</integer>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Once a detective...</string>
+			<key>Description</key>
+			<string>Detective outfit in normal mode!</string>
+			<key>Cost</key>
+			<integer>5000</integer>
+		</dict>
 	</array>
 </dict>
 </plist>

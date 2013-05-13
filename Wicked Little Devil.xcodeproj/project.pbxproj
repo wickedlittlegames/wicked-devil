@@ -262,6 +262,10 @@
 		9C2A013A16FB539C002BDDE2 /* rocket-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013816FB539C002BDDE2 /* rocket-hd.png */; };
 		9C2A013D16FB5678002BDDE2 /* enemy-rocket-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */; };
 		9C2A013E16FB5678002BDDE2 /* enemy-rocket-target-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */; };
+		9C2CED4F1740FCAD003FCA03 /* AnimDetectiveDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4B1740FCAD003FCA03 /* AnimDetectiveDevil.png */; };
+		9C2CED501740FCAD003FCA03 /* AnimDetectiveDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */; };
+		9C2CED511740FCAD003FCA03 /* AnimDetectiveDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */; };
+		9C2CED521740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */; };
 		9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C35DA29170DB949006F24DA /* detective-music.aifc */; };
 		9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -390,8 +394,6 @@
 		9C6273B9162DC0F400E123DD /* bg-facebookfriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6273B6162DC0F400E123DD /* bg-facebookfriends.png */; };
 		9C6634741636BA1300A145D2 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C6634711636BA1300A145D2 /* iRate.bundle */; };
 		9C6634751636BA1300A145D2 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6634731636BA1300A145D2 /* iRate.m */; };
-		9C6634871636CAAE00A145D2 /* bg-world-purgatory-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6634811636CAAE00A145D2 /* bg-world-purgatory-hd.png */; };
-		9C6634891636CAAE00A145D2 /* bg-world-purgatory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6634831636CAAE00A145D2 /* bg-world-purgatory.png */; };
 		9C725371164AA508004AC4D7 /* bg-pulldown-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C725369164AA508004AC4D7 /* bg-pulldown-hd.png */; };
 		9C725372164AA508004AC4D7 /* bg-pulldown.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C72536A164AA508004AC4D7 /* bg-pulldown.png */; };
 		9C725373164AA508004AC4D7 /* btn-secret-like-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C72536B164AA508004AC4D7 /* btn-secret-like-hd.png */; };
@@ -495,8 +497,6 @@
 		9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */; };
 		9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBB162EBAD5009BD50A /* Icon.png */; };
 		9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FBC162EBAD5009BD50A /* Icon@2x.png */; };
-		9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FC2162ED88E009BD50A /* Begin-Button.png */; };
-		9CA45FC5162ED88E009BD50A /* Begin-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */; };
 		9CA61BA515B5655300B447E9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA415B5655300B447E9 /* GameScene.m */; };
 		9CA61BA815B566BB00B447E9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA61BA715B566BB00B447E9 /* GameLayer.m */; };
 		9CA8C05A164D33E8004C2E65 /* tip-ok-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8C056164D33E8004C2E65 /* tip-ok-hd.png */; };
@@ -616,8 +616,6 @@
 		9CD6F81C1700E6310090D4D9 /* tip-world-4-level-9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F81A1700E6310090D4D9 /* tip-world-4-level-9-hd.png */; };
 		9CD6F8211700EE430090D4D9 /* adventure-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F81D1700EE430090D4D9 /* adventure-2.png */; };
 		9CD6F8221700EE430090D4D9 /* adventure-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F81E1700EE430090D4D9 /* adventure-2-hd.png */; };
-		9CD6F8231700EE430090D4D9 /* adventure-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F81F1700EE430090D4D9 /* adventure-1.png */; };
-		9CD6F8241700EE430090D4D9 /* adventure-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD6F8201700EE430090D4D9 /* adventure-1-hd.png */; };
 		9CDC684116277920001D5935 /* tip-beginners2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC683D16277920001D5935 /* tip-beginners2.png */; };
 		9CDC684216277920001D5935 /* tip-beginners2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC683E16277920001D5935 /* tip-beginners2-hd.png */; };
 		9CDC684416277920001D5935 /* tip-beginners1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC684016277920001D5935 /* tip-beginners1-hd.png */; };
@@ -933,6 +931,10 @@
 		9C2A013816FB539C002BDDE2 /* rocket-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket-hd.png"; sourceTree = "<group>"; };
 		9C2A013B16FB5678002BDDE2 /* enemy-rocket-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target.png"; sourceTree = "<group>"; };
 		9C2A013C16FB5678002BDDE2 /* enemy-rocket-target-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemy-rocket-target-hd.png"; sourceTree = "<group>"; };
+		9C2CED4B1740FCAD003FCA03 /* AnimDetectiveDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDetectiveDevil.png; sourceTree = "<group>"; };
+		9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDetectiveDevil.plist; sourceTree = "<group>"; };
+		9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AnimDetectiveDevil-hd.png"; sourceTree = "<group>"; };
+		9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AnimDetectiveDevil-hd.plist"; sourceTree = "<group>"; };
 		9C35DA29170DB949006F24DA /* detective-music.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "detective-music.aifc"; sourceTree = "<group>"; };
 		9C37C82E173AA09C00106FB0 /* DetectiveLevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetectiveLevelSelectScene.h; path = Scenes/Menus/DetectiveLevelSelectScene.h; sourceTree = "<group>"; };
 		9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetectiveLevelSelectScene.m; path = Scenes/Menus/DetectiveLevelSelectScene.m; sourceTree = "<group>"; };
@@ -1066,8 +1068,6 @@
 		9C6634711636BA1300A145D2 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		9C6634721636BA1300A145D2 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		9C6634731636BA1300A145D2 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
-		9C6634811636CAAE00A145D2 /* bg-world-purgatory-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-purgatory-hd.png"; sourceTree = "<group>"; };
-		9C6634831636CAAE00A145D2 /* bg-world-purgatory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-world-purgatory.png"; sourceTree = "<group>"; };
 		9C725369164AA508004AC4D7 /* bg-pulldown-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-pulldown-hd.png"; sourceTree = "<group>"; };
 		9C72536A164AA508004AC4D7 /* bg-pulldown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-pulldown.png"; sourceTree = "<group>"; };
 		9C72536B164AA508004AC4D7 /* btn-secret-like-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-secret-like-hd.png"; sourceTree = "<group>"; };
@@ -1175,8 +1175,6 @@
 		9CA45FBB162EBAD5009BD50A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9CA45FBC162EBAD5009BD50A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9CA45FC1162EBBB7009BD50A /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
-		9CA45FC2162ED88E009BD50A /* Begin-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button.png"; sourceTree = "<group>"; };
-		9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Begin-Button-hd.png"; sourceTree = "<group>"; };
 		9CA61BA315B5655300B447E9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Scenes/Gameplay/GameScene.h; sourceTree = "<group>"; };
 		9CA61BA415B5655300B447E9 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Scenes/Gameplay/GameScene.m; sourceTree = "<group>"; };
 		9CA61BA615B566BB00B447E9 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Scenes/Gameplay/Layers/GameLayer.h; sourceTree = "<group>"; };
@@ -1335,8 +1333,6 @@
 		9CD6F81A1700E6310090D4D9 /* tip-world-4-level-9-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-world-4-level-9-hd.png"; sourceTree = "<group>"; };
 		9CD6F81D1700EE430090D4D9 /* adventure-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adventure-2.png"; sourceTree = "<group>"; };
 		9CD6F81E1700EE430090D4D9 /* adventure-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adventure-2-hd.png"; sourceTree = "<group>"; };
-		9CD6F81F1700EE430090D4D9 /* adventure-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adventure-1.png"; sourceTree = "<group>"; };
-		9CD6F8201700EE430090D4D9 /* adventure-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adventure-1-hd.png"; sourceTree = "<group>"; };
 		9CDC683D16277920001D5935 /* tip-beginners2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners2.png"; sourceTree = "<group>"; };
 		9CDC683E16277920001D5935 /* tip-beginners2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners2-hd.png"; sourceTree = "<group>"; };
 		9CDC684016277920001D5935 /* tip-beginners1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-beginners1-hd.png"; sourceTree = "<group>"; };
@@ -2137,6 +2133,10 @@
 		9CABCF0C1611D5EA006DFDE9 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				9C2CED4B1740FCAD003FCA03 /* AnimDetectiveDevil.png */,
+				9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */,
+				9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */,
+				9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */,
 				9C4EA35E1626F88800E7B66F /* BatAnim.png */,
 				9C4EA35F1626F88800E7B66F /* BatAnim.plist */,
 				9C4EA3601626F88800E7B66F /* BatAnim-hd.png */,
@@ -2205,8 +2205,6 @@
 				9CE19C4B1701B6E900E3E491 /* btn-more-games-hd.png */,
 				9CD6F81D1700EE430090D4D9 /* adventure-2.png */,
 				9CD6F81E1700EE430090D4D9 /* adventure-2-hd.png */,
-				9CD6F81F1700EE430090D4D9 /* adventure-1.png */,
-				9CD6F8201700EE430090D4D9 /* adventure-1-hd.png */,
 				9CD6F8191700E6310090D4D9 /* tip-world-4-level-9.png */,
 				9CD6F81A1700E6310090D4D9 /* tip-world-4-level-9-hd.png */,
 				9CD6F7EF1700CCA30090D4D9 /* tip-world-4-level-1.png */,
@@ -2259,10 +2257,6 @@
 				9C89CE5016494D5200B8AED4 /* bg-powerups-hd.png */,
 				9C89CE4A1649487E00B8AED4 /* panel-promo-ocean.png */,
 				9C89CE4B1649487E00B8AED4 /* panel-promo-ocean-hd.png */,
-				9C6634811636CAAE00A145D2 /* bg-world-purgatory-hd.png */,
-				9C6634831636CAAE00A145D2 /* bg-world-purgatory.png */,
-				9CA45FC2162ED88E009BD50A /* Begin-Button.png */,
-				9CA45FC3162ED88E009BD50A /* Begin-Button-hd.png */,
 				9CA45FB5162DD584009BD50A /* btn-invitefriends.png */,
 				9CA45FB6162DD584009BD50A /* btn-invitefriends-hd.png */,
 				9C6273B5162DC0F400E123DD /* bg-facebookfriends-hd.png */,
@@ -2981,11 +2975,7 @@
 				9CA45FB8162DD584009BD50A /* btn-invitefriends-hd.png in Resources */,
 				9CA45FBE162EBAD5009BD50A /* Icon.png in Resources */,
 				9CA45FBF162EBAD5009BD50A /* Icon@2x.png in Resources */,
-				9CA45FC4162ED88E009BD50A /* Begin-Button.png in Resources */,
-				9CA45FC5162ED88E009BD50A /* Begin-Button-hd.png in Resources */,
 				9C6634741636BA1300A145D2 /* iRate.bundle in Resources */,
-				9C6634871636CAAE00A145D2 /* bg-world-purgatory-hd.png in Resources */,
-				9C6634891636CAAE00A145D2 /* bg-world-purgatory.png in Resources */,
 				9CB505C01636FDD5009F6298 /* world-3-level-1.ccbi in Resources */,
 				9C89CE4C1649487E00B8AED4 /* panel-promo-ocean.png in Resources */,
 				9C89CE4D1649487E00B8AED4 /* panel-promo-ocean-hd.png in Resources */,
@@ -3093,8 +3083,6 @@
 				9CD6F81C1700E6310090D4D9 /* tip-world-4-level-9-hd.png in Resources */,
 				9CD6F8211700EE430090D4D9 /* adventure-2.png in Resources */,
 				9CD6F8221700EE430090D4D9 /* adventure-2-hd.png in Resources */,
-				9CD6F8231700EE430090D4D9 /* adventure-1.png in Resources */,
-				9CD6F8241700EE430090D4D9 /* adventure-1-hd.png in Resources */,
 				9CC5F1E61701A376009AF179 /* LICENCE in Resources */,
 				9CC5F1EF1701A56E009AF179 /* README in Resources */,
 				9CC5F1F01701A56E009AF179 /* README.md in Resources */,
@@ -3107,6 +3095,10 @@
 				9CE19C581701C18E00E3E491 /* ui-spinner-fx.png in Resources */,
 				9CE19C591701C18E00E3E491 /* ui-spinner-fx-hd.png in Resources */,
 				9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */,
+				9C2CED4F1740FCAD003FCA03 /* AnimDetectiveDevil.png in Resources */,
+				9C2CED501740FCAD003FCA03 /* AnimDetectiveDevil.plist in Resources */,
+				9C2CED511740FCAD003FCA03 /* AnimDetectiveDevil-hd.png in Resources */,
+				9C2CED521740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

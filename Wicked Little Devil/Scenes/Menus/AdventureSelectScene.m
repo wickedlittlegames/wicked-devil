@@ -13,7 +13,6 @@
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
-#import "FlurryAnalytics.h"
 #import "SimpleTableCell.h"
 #import "GameOverFacebookScene.h"
 #import "Game.h"
@@ -48,8 +47,8 @@
             [user.udata setBool:TRUE forKey:@"SEEN_ADVENTURES"];
             [user sync];
         }
-        
-        if ( ![SimpleAudioEngine sharedEngine].mute )
+
+        if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
         {
             [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"detective-music.aifc" loop:YES];
@@ -165,7 +164,6 @@
 
 - (void) tap_equip:(id)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited EquipStore"]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
@@ -173,7 +171,6 @@
 
 - (void) tap_store:(id)sender
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player visited IAPStore"]];
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
@@ -218,8 +215,6 @@
     }
     else
     {
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player tried to sign up with Parse.com/Facebook"]];
-        
         //[MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
         [PFFacebookUtils logInWithPermissions:permissionsArray
@@ -227,7 +222,6 @@
                                             if (!pfuser) {
                                                 if (!error)
                                                 {
-                                                    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player cancelled the facebook signup process"]];
                                                 }
                                                 else
                                                 {
@@ -236,8 +230,6 @@
                                             }
                                             else if (pfuser.isNew)
                                             {
-                                                [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed up, fresh!"]];
-                                                
                                                 [self getFacebookImage];
                                                 user.collected += 500;
                                                 //                                                prompt_facebook.visible = FALSE;
@@ -245,9 +237,7 @@
                                                 //                                                [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                                             }
                                             else
-                                            {
-                                                [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Player signed back in!"]];
-                                                
+                                            {                                               
                                                 //                                                prompt_facebook.visible = FALSE;
                                                 [self getFacebookImage];
                                                 //                                                [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
@@ -305,7 +295,6 @@
     CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
     
-    
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [bgfx   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -319,12 +308,45 @@
     if ( !user.unlocked_detective )
     {
         CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
-        locked_sprite.opacity = 0.8;
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
+        
+        CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_unlock_detective)];
+        CCMenu *unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
+        
+        [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [layer addChild:unlock_menu];
     }   
     
     return layer;
+}
+
+- (void) tap_unlock_detective
+{
+    if ( user.collected >= DETECTIVE_UNLOCK_COST )
+    {
+        user.collected -= DETECTIVE_UNLOCK_COST;
+        user.unlocked_detective = TRUE;
+        [user sync];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Not Enough Souls!"
+                                  message:@"You don't have enough souls! Would you like to buy some?"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Buy Souls", nil];
+        [alertView show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+    }
 }
 
 

@@ -15,6 +15,7 @@
 
 - (BOOL) isIntersectingPlayer:(Player*)player;
 - (BOOL) isClosetoPlayer:(Player*)player;
+- (BOOL) isClosertoPlayer:(Player*)player;
 - (void) moveTowardsPlayer:(Player*)player;
 
 @end

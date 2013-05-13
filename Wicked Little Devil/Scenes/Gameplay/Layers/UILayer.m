@@ -12,7 +12,6 @@
 #import "StartScene.h"
 
 #import "Game.h"
-#import "FlurryAnalytics.h"
 
 @implementation UILayer
 
@@ -262,7 +261,6 @@
 
 - (void) tap_reload
 {
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"Reloaded the game"]];
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 

@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "CCScrollLayer.h"
 #import "PlayHavenSDK.h"
+#import "FlurryAnalytics.h"
 #import <Parse/Parse.h>
 
 @class User;

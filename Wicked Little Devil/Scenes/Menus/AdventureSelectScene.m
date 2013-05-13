@@ -75,14 +75,7 @@
         [menu_store             setPosition:ccp(70, screenSize.height - 25)];
         
         // Add world layers to the scroller
-        //[worlds addObject:[self updates]];
         [self addChild:[self detectivedevil]];
-//        scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-//        [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
-//        [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
-        
-        // Put the children to the screen
-//        [self addChild:scroller];
         [self addChild:menu_equip];
         [self addChild:menu_back];
         [self addChild:behind_fb];
@@ -327,6 +320,7 @@
 {
     if ( user.collected >= DETECTIVE_UNLOCK_COST )
     {
+        [FlurryAnalytics logEvent:@"PLAYER UNLOCKED DETECTIVE"];
         unlock_menu.visible = FALSE;
         tmp_collectables = user.collected;
         user.collected -= DETECTIVE_UNLOCK_COST;
@@ -337,6 +331,7 @@
     }
     else
     {
+        [FlurryAnalytics logEvent:@"PLAYER TRIED TO UNLOCK DETECTIVE - NOT ENOUGH SOULS"];
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Not Enough Souls!"
                                   message:@"You don't have enough souls! Would you like to buy some?"

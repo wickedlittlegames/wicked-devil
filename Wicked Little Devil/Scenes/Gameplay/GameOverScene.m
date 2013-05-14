@@ -413,10 +413,13 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    if ( ![SimpleAudioEngine sharedEngine].mute )
+    if ( !(self.tmp_game.world == 20) )
     {
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+        if ( ![SimpleAudioEngine sharedEngine].mute )
+        {
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+        }
     }
     
     if ( self.isBonusLevel )

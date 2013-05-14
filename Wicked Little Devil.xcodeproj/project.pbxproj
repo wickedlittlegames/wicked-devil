@@ -15,6 +15,7 @@
 		9C005DC9164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C005DC3164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C017396165BC61900FAC4CF /* tip-world-3-level-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C017394165BC61900FAC4CF /* tip-world-3-level-9.png */; };
 		9C017397165BC61900FAC4CF /* tip-world-3-level-9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C017395165BC61900FAC4CF /* tip-world-3-level-9-hd.png */; };
+		9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0F7A3F17425A3B00316B07 /* StatsScene.m */; };
 		9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FD12F16130AFE007BDFD6 /* Projectile.m */; };
 		9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1321613251C007BDFD6 /* AngelBlast.plist */; };
 		9C0FD1351613251C007BDFD6 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1331613251C007BDFD6 /* particleTexture.png */; };
@@ -684,6 +685,8 @@
 		9C005DC3164A7C8200C29DB5 /* CCNode+CCBRelativePositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+CCBRelativePositioning.m"; sourceTree = "<group>"; };
 		9C017394165BC61900FAC4CF /* tip-world-3-level-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-world-3-level-9.png"; sourceTree = "<group>"; };
 		9C017395165BC61900FAC4CF /* tip-world-3-level-9-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-world-3-level-9-hd.png"; sourceTree = "<group>"; };
+		9C0F7A3E17425A3B00316B07 /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatsScene.h; path = Scenes/Menus/StatsScene.h; sourceTree = "<group>"; };
+		9C0F7A3F17425A3B00316B07 /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatsScene.m; path = Scenes/Menus/StatsScene.m; sourceTree = "<group>"; };
 		9C0FD12E16130AFE007BDFD6 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Objects/Projectile.h; sourceTree = "<group>"; };
 		9C0FD12F16130AFE007BDFD6 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Objects/Projectile.m; sourceTree = "<group>"; };
 		9C0FD1321613251C007BDFD6 /* AngelBlast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AngelBlast.plist; sourceTree = "<group>"; };
@@ -1951,6 +1954,8 @@
 				9CC3674C16528D550000D631 /* EquipSpecialScene.m */,
 				9CDF943D15B561EE0017E58B /* ShopScene.h */,
 				9CDF943E15B561EE0017E58B /* ShopScene.m */,
+				9C0F7A3E17425A3B00316B07 /* StatsScene.h */,
+				9C0F7A3F17425A3B00316B07 /* StatsScene.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -3211,6 +3216,7 @@
 				9CC5F1EE1701A56E009AF179 /* OpenUDID.m in Sources */,
 				9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */,
 				9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */,
+				9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

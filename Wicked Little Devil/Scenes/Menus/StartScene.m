@@ -50,12 +50,11 @@
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];
         
-        
-        if ( ![user.udata boolForKey:@"MUTED"] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])
+        if ( ![user.udata boolForKey:@"MUTED"] )
         {
             [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
-        }       
+        }
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
         CCSprite *title_adventures_new  = [CCSprite spriteWithFile:@"title-adventures-new.png"];

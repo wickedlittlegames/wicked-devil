@@ -240,13 +240,13 @@
             [enemy isIntersectingPlayer:game];
             [enemy move];
             
-            // Projectile movement
             if ( enemy.projectiles.count >= 1 )
             {
                 CCARRAY_FOREACH(enemy.projectiles, projectile)
                 {
-                    if ( [projectile isIntersectingPlayer:game.player] )
+                    if ( [projectile isIntersectingPlayer:game.player] && projectile.visible )
                     {
+                        if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
                         [game.fx start:0 position:[game.player worldBoundingBox].origin];
                         projectile.visible = NO;
                         [enemy removeChildByTag:1111 cleanup:YES];
@@ -260,6 +260,7 @@
                     
                     if ( [projectile isIntersectingParent:enemy] && enemy.visible )
                     {
+                        if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];                        
                         [game.fx start:0 position:[enemy worldBoundingBox].origin];
                         enemy.visible = FALSE;
                         enemy.dead = TRUE;

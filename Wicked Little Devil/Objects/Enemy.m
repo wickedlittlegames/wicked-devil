@@ -132,16 +132,17 @@
 - (void) action_mine_explode:(Game*)game
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
+    [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
+    
     self.dead = YES;
     self.visible = NO;
+    game.player.health--;
     
-    if ( --game.player.health <= 0 )
+    if ( game.player.health <= 0 )
     {
         game.player.animating = NO;
         [game.player animate:4];
     }
-    
-    [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
 }
 
 - (void) action_bubble_float:(Game*)game

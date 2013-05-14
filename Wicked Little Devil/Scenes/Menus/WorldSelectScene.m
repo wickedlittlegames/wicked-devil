@@ -9,6 +9,7 @@
 #import "WorldSelectScene.h"
 #import "LevelSelectScene.h"
 #import "StartScene.h"
+#import "StatsScene.h"
 #import "ShopScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
@@ -104,6 +105,10 @@
         [[app navController].view addSubview:notificationView];
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
         [notificationView refresh];
+        
+        CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_stats:)],nil];
+        [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
+        [self addChild:menu_stats];
     }
 	return self;
 }
@@ -133,7 +138,14 @@
 
 #pragma mark TAPS
 
-
+- (void) tap_stats:(id)sender
+{
+    [notificationView clear];
+    
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StatsScene scene]]];
+}
 
 
 - (void) tap_moregames

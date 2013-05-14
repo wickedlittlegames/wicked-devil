@@ -33,7 +33,8 @@
     CCMenuItemSprite *btn_facebooksignin;
     CCSprite *bg_behind_fb;
     GameKitHelper *gkHelper;
-    PHNotificationView *notificationView;    
+    PHNotificationView *notificationView;
+    CCMenuItemImage *button;
     
     NSMutableData *imageData;
     NSURLConnection *urlConnection;

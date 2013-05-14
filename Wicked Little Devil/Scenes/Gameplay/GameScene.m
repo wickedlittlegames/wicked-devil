@@ -217,7 +217,6 @@
             game.touch = location;
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
-            firstTouch = location;
         }
     }
 }
@@ -232,12 +231,6 @@
             game.touch = location;
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
-            
-            lastTouch = location;
-            float swipeLength = ccpDistance(firstTouch, lastTouch);
-            if (firstTouch.y > lastTouch.y && swipeLength > 60 && !game.isStarted) {
-                [self tap_launch];
-            }
         }
     }
 }

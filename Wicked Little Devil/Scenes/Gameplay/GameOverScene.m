@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "StartScene.h"
 #import "LevelSelectScene.h"
+#import "DetectiveLevelSelectScene.h"
 #import "GameOverFacebookScene.h"
 #import "EquipMenuScene.h"
 #import "MKInfoPanel.h"
@@ -57,7 +58,7 @@
          bool restartAudioToggle = FALSE;
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];
          
-         if ( !self.isBonusLevel )
+         if ( !self.isBonusLevel || !(game.world == 20) )
          {
              if ( game.world == game.user.worldprogress && game.level == game.user.levelprogress )
              {
@@ -425,6 +426,10 @@
     if ( self.isBonusLevel )
     {
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene scene]]];
+    }
+    else if ( self.tmp_game.world == 20 )
+    {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[DetectiveLevelSelectScene sceneWithWorld:self.tmp_game.world]]];
     }
     else
     {

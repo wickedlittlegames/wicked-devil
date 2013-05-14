@@ -22,8 +22,6 @@
     
     if ( world == 11 )
         bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", 1]];
-    else if ( world == 20 )
-        bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", 1]];
     else
         bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
  

@@ -106,7 +106,7 @@
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
         [notificationView refresh];
         
-        CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_stats:)],nil];
+        CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
         [self addChild:menu_stats];
     }

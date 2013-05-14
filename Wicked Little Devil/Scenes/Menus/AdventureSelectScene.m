@@ -11,6 +11,7 @@
 #import "DetectiveLevelSelectScene.h"
 #import "StartScene.h"
 #import "ShopScene.h"
+#import "StatsScene.h"
 #import "EquipMenuScene.h"
 #import "User.h"
 #import "SimpleTableCell.h"
@@ -96,6 +97,11 @@
         [[app navController].view addSubview:notificationView];
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
         [notificationView refresh];
+        
+        
+        CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
+        [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
+        [self addChild:menu_stats];
 
     }
 	return self;
@@ -126,6 +132,14 @@
 
 #pragma mark TAPS
 
+- (void) tap_stats:(id)sender
+{
+    [notificationView clear];
+    
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StatsScene scene]]];
+}
 
 - (void) tap_moregames
 {
@@ -287,8 +301,8 @@
     CCLayer *layer          = [CCLayer node];
     CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-2.png"];
     CCSprite *bgfx          = [CCSprite spriteWithFile:@"ui-spinner-fx.png"];
-    CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
-    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = ( user.worldprogress >= button.tag ); button.isEnabled = ( button.tag <= CURRENT_WORLDS_PER_GAME );
+    button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
+    CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = user.unlocked_detective;
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [bgfx   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
@@ -302,14 +316,14 @@
     
     if ( !user.unlocked_detective )
     {
-        locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+        locked_sprite = [CCSprite spriteWithFile:@"bg-locked2.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
         
-        CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_unlock_detective)];
+        CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-unlockdevil.png" selectedImage:@"btn-unlockdevil.png" disabledImage:@"btn-unlockdevil.png" target:self selector:@selector(tap_unlock_detective)];
         unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
         
-        [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+        [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2-100)];
         [layer addChild:unlock_menu];
     }   
     
@@ -318,6 +332,8 @@
 
 - (void) tap_unlock_detective
 {
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
     if ( user.collected >= DETECTIVE_UNLOCK_COST )
     {
         [FlurryAnalytics logEvent:@"PLAYER UNLOCKED DETECTIVE"];
@@ -377,6 +393,7 @@
         CCParticleSystemQuad *fx1 = [CCParticleSystemQuad particleWithFile:@"spendSouls.plist"];
         [self addChild:fx1];
         locked_sprite.visible = FALSE;
+        button.isEnabled = TRUE;
         [self unschedule: @selector(collectable_remove_tick)];
     }
 }

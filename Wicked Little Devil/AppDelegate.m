@@ -184,7 +184,6 @@
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump1.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump2.caf"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump3.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"jump4.caf"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"score.caf"];
 }

@@ -29,9 +29,18 @@
     NSString *txt_gamenumber    = [NSString stringWithFormat:@"%i - %i",self.world,self.level];
     
     // background and functionality sprites
-    CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
-    [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
-    [self addChild:uibg];
+    if ( game.world == 20 )
+    {
+        CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar-bw.png"];
+        [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
+        [self addChild:uibg];
+    }
+    else
+    {
+        CCSprite *uibg = [CCSprite spriteWithFile:@"bg-topbar.png"];
+        [uibg setPosition:ccp(screenSize.width/2, screenSize.height - 15)];
+        [self addChild:uibg];
+    }
     
     // UI game number
     CCLabelTTF *gamenumber = [CCLabelTTF labelWithString:txt_gamenumber fontName:@"CrashLanding BB" fontSize:24];
@@ -63,7 +72,14 @@
         bigcollect_empty.tag = i;
         [self addChild:bigcollect_empty];
         
-        bigcollect = [CCSprite spriteWithFile:@"icon-bigcollectable.png"];
+        if ( game.world == 20 )
+        {
+            bigcollect = [CCSprite spriteWithFile:@"icon-bigcollectable-bw.png"];
+        }
+        else
+        {
+            bigcollect = [CCSprite spriteWithFile:@"icon-bigcollectable.png"];
+        }
         bigcollect.position = ccp ( x, screenSize.height - 16 );
         bigcollect.visible = FALSE;
         bigcollect.tag = i*10;
@@ -84,10 +100,13 @@
     CCMenuItem *button_mainmenu = [CCMenuItemFont itemWithLabel:label_levelselect block:^(id sender) {
         if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
         [[CCDirector sharedDirector] resume];
-        if ( ![SimpleAudioEngine sharedEngine].mute )
+        if ( !(game.world == 20) )
         {
-            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+            if ( ![SimpleAudioEngine sharedEngine].mute )
+            {
+                [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+                [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
+            }
         }
         if ( game.world == 11 && game.level == 1)
         {

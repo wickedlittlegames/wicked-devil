@@ -67,7 +67,7 @@
                        nil];
 
      
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-powerups.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-stats.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];

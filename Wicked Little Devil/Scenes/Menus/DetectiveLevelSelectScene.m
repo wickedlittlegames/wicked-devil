@@ -44,7 +44,7 @@
         // Loop to show the levels
         for (int lvl = 1; lvl <= 12; lvl++)
         {
-            CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-level.png" selectedImage:@"btn-level.png" disabledImage:@"btn-level-locked.png" target:self selector:@selector(tap_level:)];
+            CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-level-bw.png" selectedImage:@"btn-level-bw.png" disabledImage:@"btn-level-locked.png" target:self selector:@selector(tap_level:)];
             button.tag = lvl; button.userData = (int*)world; button.isEnabled = TRUE;
             
             int souls = [user getSoulsforWorld:world level:lvl];
@@ -53,7 +53,7 @@
             int soul_x = 13;
             for (int s = 1; s <= souls; s++ )
             {
-                CCSprite *soul = [CCSprite spriteWithFile:@"icon-level-bigcollectable.png"];
+                CCSprite *soul = [CCSprite spriteWithFile:@"icon-level-bigcollectable-bw.png"];
                 
                 soul.position = ccp(button.position.x + soul_x, button.position.y - 2);
                 [button addChild:soul];
@@ -62,7 +62,7 @@
             
             CCLabelTTF *lbl_level_name = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",lvl] fontName:font fontSize:fontsize];
             lbl_level_name.position = ccp (lbl_level_name.position.x + 29, button.position.y + 29);
-            lbl_level_name.color = ccc3(0,0,0);
+            lbl_level_name.color = ccc3(255,255,255);
             
             [button addChild:lbl_level_name];
             lbl_level_name.visible = button.isEnabled;
@@ -71,10 +71,10 @@
         }
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg_1.png"];
-        CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
-        CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
-        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg_20.png"];
+        CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back-bw.png"    selectedImage:@"btn-back-bw.png"       target:self selector:@selector(tap_back:)], nil];
+        CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med-bw.png"];
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable-bw.png"];
         CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];

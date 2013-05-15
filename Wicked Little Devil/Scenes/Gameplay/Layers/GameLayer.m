@@ -332,7 +332,7 @@
     if ( self.world == 20 )
     {
         int r = arc4random() % 100;
-        if ( r >= 95 )
+        if ( r >= 93 )
         {
             int tmpx = arc4random() % (int)[CCDirector sharedDirector].winSize.width;
             int tmpystart= arc4random() % (int)[CCDirector sharedDirector].winSize.height;

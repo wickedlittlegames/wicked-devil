@@ -43,9 +43,11 @@
         [request send];
                         
         user = [[User alloc] init];
+        if (![user isOnline])
+        {
+            [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
+        }
         
-        if ( !user.isOnline ) [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
-
         [self reportLeaderboardHighscores];
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];

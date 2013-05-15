@@ -10,8 +10,9 @@
 #import "cocos2d.h"
 #import "PlayHavenSDK.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
-@class User, AppController;
+@class AppController;
 @interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, PF_FBRequestDelegate, NSURLConnectionDelegate, PHPublisherContentRequestDelegate>
 {
     CCMenuItem *btn_mute, *btn_muted;

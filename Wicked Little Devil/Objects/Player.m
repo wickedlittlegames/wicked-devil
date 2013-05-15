@@ -55,6 +55,7 @@
     
     if ( self.velocity.y < 0 && self.velocity.y > -5)
     {
+        self.falling = NO;
         [self animate:2];
     }
 

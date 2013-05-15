@@ -198,8 +198,8 @@
 
 - (BOOL) isOnline
 {
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];  
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
     return !(networkStatus == NotReachable);
 }
 

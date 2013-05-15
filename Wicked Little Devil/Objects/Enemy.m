@@ -91,7 +91,7 @@
             [self action_mine_explode:game];
             break;
         case 3: // BUBBLE: Floats the player up
-            if ( self.floating == NO ) [self action_bubble_float:game];
+            if ( game.player.floating == NO ) [self action_bubble_float:game];
             break;
         case 4: // ROCKET: Shoots rocket at target player area
             if ( !(game.user.powerup == 104) ) [self action_shoot_rocket:game];
@@ -160,7 +160,7 @@
     
     id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
     id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
-    id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { self.dead = YES; self.running = NO; }];
+    id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { self.dead = YES; self.running = NO; self.floating = NO; }];
     id end_action_player        = [CCCallBlock actionWithBlock:^(void) { game.player.controllable = YES; game.player.floating = NO; }];
     
     [self runAction:[CCSequence actions:floatup_bubble, end_action_bubblefloat, nil]];

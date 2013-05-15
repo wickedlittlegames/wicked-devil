@@ -325,4 +325,22 @@
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 
+-(void)draw
+{
+    [super draw];
+    
+    if ( self.world == 20 )
+    {
+        int r = arc4random() % 100;
+        if ( r >= 95 )
+        {
+            int tmpx = arc4random() % (int)[CCDirector sharedDirector].winSize.width;
+            int tmpystart= arc4random() % (int)[CCDirector sharedDirector].winSize.height;
+            int tmpyend = arc4random() % (int)[CCDirector sharedDirector].winSize.height;
+            ccDrawColor4B(255, 255, 255, 50);//Color of the line RGBA
+            glLineWidth(2.0f); //Stroke width of the line
+            ccDrawLine(ccp(tmpx, tmpystart), ccp(tmpx, tmpyend));
+        }
+    }
+}
 @end

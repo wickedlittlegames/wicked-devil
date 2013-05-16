@@ -10,7 +10,7 @@
 			<key>Description</key>
 			<string>An echo of the Devils previous life...</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -20,7 +20,7 @@
 			<key>Description</key>
 			<string>For those who played Wicked Little Devil</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -30,7 +30,7 @@
 			<key>Description</key>
 			<string>Ultimate Power... and sexy hair</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -40,7 +40,7 @@
 			<key>Description</key>
 			<string>Boldly going straight down</string>
 			<key>Cost</key>
-			<integer>15000</integer>
+			<integer>10000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -50,7 +50,7 @@
 			<key>Description</key>
 			<string>The ultimate evil combination!</string>
 			<key>Cost</key>
-			<integer>20000</integer>
+			<integer>15000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -60,7 +60,7 @@
 			<key>Description</key>
 			<string>Stealthy Devil!</string>
 			<key>Cost</key>
-			<integer>20000</integer>
+			<integer>15000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -70,7 +70,7 @@
 			<key>Description</key>
 			<string>Yaaarrr!</string>
 			<key>Cost</key>
-			<integer>20000</integer>
+			<integer>15000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -80,7 +80,7 @@
 			<key>Description</key>
 			<string>Holier than thou</string>
 			<key>Cost</key>
-			<integer>50000</integer>
+			<integer>30000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>

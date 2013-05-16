@@ -37,6 +37,10 @@
 
         app = (AppController*) [[UIApplication sharedApplication] delegate];
         
+        PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"world_select" delegate:(id)self];
+        request.showsOverlayImmediately = YES;
+        [request send];
+        
         user            = [[User alloc] init];
         screenSize      = [CCDirector sharedDirector].winSize;
         font            = @"CrashLanding BB";
@@ -44,6 +48,8 @@
         worlds          = [NSMutableArray arrayWithCapacity:100];
         int big_collectables_total  = (LEVELS_PER_WORLD * CURRENT_WORLDS_PER_GAME) * 3;
         int big_collectables_player = [user getSoulsforAll];
+      
+        
         
         // Object creation area
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
@@ -108,7 +114,7 @@
         
         CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
-        [self addChild:menu_stats];
+        [self addChild:menu_stats];        
     }
 	return self;
 }

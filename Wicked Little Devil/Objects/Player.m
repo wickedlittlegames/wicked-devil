@@ -196,11 +196,9 @@
 
 - (void) setupCharacter:(int)character
 {
-    CCLOG(@"WHAT ARE WE DOING WITH THIS: %i",character);
     switch(character)
     {
         case 0: //detective
-            CCLOG(@"DETECTIVE");
             [self setupAnimationsDetective];
         break;
 //            

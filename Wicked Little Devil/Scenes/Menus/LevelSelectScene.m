@@ -37,6 +37,7 @@
         int world_score              = [user getHighscoreforWorld:world];
         int big_collectables_total   = (LEVELS_PER_WORLD * 3);
         int big_collectables_player  = 0;
+        int halos_collectables       = 0;
         
         // Object sprite creation
         CCMenu  *menu                   = [CCMenu menuWithItems:nil];
@@ -58,7 +59,9 @@
             if ( button.isEnabled )
             {
                 int souls = [user getSoulsforWorld:world level:lvl];
+                int halos = [user getHalosforWorld:world level:lvl];
                 big_collectables_player += souls;
+                halos_collectables += halos;
                 
                 int soul_x = 13;
                 for (int s = 1; s <= souls; s++ )
@@ -68,6 +71,14 @@
                     soul.position = ccp(button.position.x + soul_x, button.position.y - 2);
                     [button addChild:soul];
                     soul_x += 17;
+                }
+                
+                for (int h = 1; h <= halos; h++ )
+                {
+                    CCSprite *halo = [CCSprite spriteWithFile:@"icon-level-halo.png"];
+                    
+                    halo.position = ccp(button.position.x + 32, button.position.y + 45);
+                    [button addChild:halo];
                 }
             }
             
@@ -131,6 +142,21 @@
         [self addChild:label_world_score];
         [self addChild:icon_collectable];
         [self addChild:label_collected];
+        
+        if ( ![user.udata boolForKey:@"HALO_TIP"] )
+        {
+            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-1.png"];
+            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+            [self addChild:tip1];
+            
+            CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
+                tip1.visible = NO;
+                [user.udata setBool:TRUE forKey:@"HALO_TIP"];
+            }], nil];
+            [menu_tip1 setAnchorPoint:ccp(0,0)];
+            [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
+            [tip1 addChild:menu_tip1];
+        }        
     }
     return self;
 }

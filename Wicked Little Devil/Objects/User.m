@@ -31,6 +31,10 @@
         {
             [self create_detective_settings];
         }
+        if ( ![self.udata objectForKey:@"halos"] )
+        {
+            [self create_halo_settings];
+        }
         if ( ![self.udata objectForKey:@"unlocked_detective"] )
         {
                 [self create_detective_settings2];
@@ -59,7 +63,7 @@
         self.facebook_id            = [self.udata objectForKey:@"facebook_id"];
         self.facebook_image         = [self.udata objectForKey:@"facebook_image"];
         self.unlocked_detective     = [self.udata boolForKey:@"unlocked_detective"];
-        self.halocollected          = [self.udata integerForKey:@"halos"];
+        self.halocollected                  = [self.udata objectForKey:@"halos"];
         self.items_characters       = [self.udata objectForKey:@"items_characters"];
         self.bought_character       = [self.udata boolForKey:@"bought_character"];
         
@@ -179,6 +183,24 @@
     [self.udata synchronize];
 }
 
+- (void) create_halo_settings
+{
+    NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:100];
+    for (int w = 1; w <= WORLDS_PER_GAME; w++)
+    {
+        NSMutableArray *w = [NSMutableArray arrayWithCapacity:100];
+        for (int lvl = 1; lvl <= LEVELS_PER_WORLD; lvl++)
+        {
+            [w addObject:[NSNumber numberWithInt:0]];
+        }
+        [tmp_worlds addObject:w];
+    }
+    NSArray *worlds = tmp_worlds;
+    
+    [self.udata setObject:worlds forKey:@"halos"];
+    [self.udata synchronize];
+}
+
 - (void) create_detective_settings2
 {
     [self.udata setBool:FALSE forKey:@"unlocked_detective"];
@@ -200,7 +222,6 @@
     [self.udata setInteger:self.deaths forKey:@"deaths"];
     [self.udata setInteger:self.jumps forKey:@"jumps"];
     [self.udata setInteger:self.collected forKey:@"collected"];
-    [self.udata setInteger:self.halocollected forKey:@"halos"];
     [self.udata setInteger:self.powerup forKey:@"powerup"];
     [self.udata setInteger:self.character forKey:@"character"];
     [self.udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
@@ -341,6 +362,23 @@
     }
 }
 
+- (void) setHalos:(int)tmp_souls world:(int)w level:(int)l
+{
+    NSMutableArray *souls_tmp = [[self.udata objectForKey:@"halos"] mutableCopy];
+    
+    int current_total = [self getHalosforWorld:w level:l];
+    
+    if (tmp_souls > current_total)
+    {
+        NSMutableArray *tmp = [[souls_tmp objectAtIndex:w-1] mutableCopy];
+        [tmp replaceObjectAtIndex:l-1 withObject:[NSNumber numberWithInt:tmp_souls]];
+        [souls_tmp replaceObjectAtIndex:w-1 withObject:tmp];
+        NSArray *souls_arr = souls_tmp;
+        [self.udata setObject:souls_arr forKey:@"halos"];
+        [self.udata synchronize];
+    }
+}
+
 - (int) getHighscoreforWorld:(int)w
 {
     if ( w == 20 )
@@ -456,6 +494,38 @@
     }
 }
 
+
+- (int) getHalosforWorld:(int)w
+{
+    NSMutableArray *tmp = [self.udata objectForKey:@"halos"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:0];
+    int tmp_score = 0;
+    
+    if ( [tmp2 count] > 0 )
+    {
+        for (int i = 0; i < [tmp2 count]; i++)
+        {
+            tmp_score += [[tmp2 objectAtIndex:i]intValue];
+        }
+    }
+    
+    return tmp_score;
+}
+
+- (int) getHalosforAll
+{
+    int tmp_souls = 0;
+    for (int i = 1; i <= CURRENT_WORLDS_PER_GAME; i++)
+    {
+        for (int l = 1; l<= LEVELS_PER_WORLD; l++)
+        {
+            tmp_souls += [self getHalosforWorld:i level:l];
+        }
+    }
+    
+    return tmp_souls;
+}
+
 - (int) getSoulsforAll
 {
     int tmp_souls = 0;
@@ -501,6 +571,21 @@
     }
 }
 
+- (int) getHalosforWorld:(int)w level:(int)l
+{   
+    NSMutableArray *tmp = [self.udata objectForKey:@"halos"];
+    NSMutableArray *tmp2= [tmp objectAtIndex:w-1];
+    int tmp_score = 0;
+    
+    if ( [tmp2 count] > 0 )
+    {
+        tmp_score = (int)[[tmp2 objectAtIndex:l-1] intValue];
+    }
+    
+    return tmp_score;
+
+}
+
 - (NSString*) getEquippedPowerup
 {
     if ( self.powerup >= 100 )
@@ -524,7 +609,7 @@
         self.ach_first_play = TRUE;
         [self showAchievementPanel:1];
     }
-    if ( self.collected >= 666 && !self.ach_collected_666 ) // if first 666 souls
+    if ( self.collected == 666 && !self.ach_collected_666 ) // if first 666 souls
     {
         self.ach_collected_666 = TRUE;
         [self showAchievementPanel:2];
@@ -595,61 +680,88 @@
     
     switch(ach_id)
     {
-        case 1: //first play
-            achievement = @"First Impressions";
-            break;
-            
-        case 2: //666 souls
+//        case 1: //first play 10
+//            achievement = @"First Impressions";
+//            break;
+
+        case 2: //666 souls  20
             achievement = @"The Number of the Beast";
             break;
             
-        case 3: //1000 souls
+        case 3: //1000 souls 10
             achievement = @"Soul Collector";
             break;
             
-        case 4: //5000 souls
+        case 4: //5000 souls 20
             achievement = @"Soul Commander";            
             break;
             
-        case 5: //10000 souls
+        case 5: //10000 souls 50
             achievement = @"Soul Dominator";
             break;
             
-        case 6: //50000 souls
+        case 6: //50000 souls 100
             achievement = @"Soul Master";
             break;
             
-        case 7: //beat world 1
+        case 7: //beat world 1 50
             achievement = @"Hell Broke Loose";            
             break;
             
-        case 8: //beat world 2
+        case 8: //beat world 2 50
             achievement = @"Ain't No Grave...";                        
             break;
             
-        case 9: //beat world 3
+        case 9: //beat world 3 50
             achievement = @"Bubbling Up";
             break;
             
-        case 10: //beat world 4
+        case 10: //beat world 4 50
             achievement = @"Free At Last";            
             break;
             
-        case 11: //died
+        case 11: //died 10
             achievement = @"Killed By Death";
             break;
             
-        case 12: //died 100 times
+        case 12: //died 100 times 20
             achievement = @"It's Probably Safer In Hell...";
             break;
             
-        case 13: //jumped 1000 times
+        case 13: //jumped 1000 times 50
             achievement = @"Van Halen Fan";
             break;
             
         default: break;
     }
     [MKInfoPanel showPanelInView:[app window] type:MKInfoPanelTypeInfo title:title subtitle:[achievement uppercaseString] hideAfter:3];
+    
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        NSArray *achievementURLs = [NSArray arrayWithObjects:
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_1.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_2.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_3.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_4.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_5.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_6.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_7.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_8.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_9.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_10.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_11.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_12.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_13.html",                                                                        
+                                    nil];
+        
+        NSMutableDictionary* params =   [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                         [NSString stringWithFormat:@"%@",
+                                          [achievementURLs objectAtIndex:ach_id]], @"achievement",
+                                         nil];
+        
+        PF_FBRequest *req = [[PF_FBRequest alloc] initWithSession:[PFFacebookUtils session] graphPath:@"me/achievements" parameters:params HTTPMethod:@"POST"];
+        [req startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {}];
+    }
 }
 
 

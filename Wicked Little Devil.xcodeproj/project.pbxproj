@@ -280,6 +280,12 @@
 		9C4AF9421744DAED0024A975 /* Characters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9411744DAED0024A975 /* Characters.plist */; };
 		9C4AF9461744DC910024A975 /* SimpleTableCellwithThumb.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9431744DC910024A975 /* SimpleTableCellwithThumb.xib */; };
 		9C4AF9471744DC910024A975 /* SimpleTableCellwithThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4AF9441744DC910024A975 /* SimpleTableCellwithThumb.m */; };
+		9C4AF94A1745155D0024A975 /* halo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9481745155C0024A975 /* halo.png */; };
+		9C4AF94B1745155D0024A975 /* halo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9491745155C0024A975 /* halo-hd.png */; };
+		9C4AF94E174516C00024A975 /* haloCollect.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF94C174516C00024A975 /* haloCollect.png */; };
+		9C4AF94F174516C00024A975 /* haloCollect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF94D174516C00024A975 /* haloCollect.plist */; };
+		9C4AF9521745236B0024A975 /* icon-level-halo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9501745236B0024A975 /* icon-level-halo.png */; };
+		9C4AF9531745236C0024A975 /* icon-level-halo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
 		9C4EA32C1626CF0A00E7B66F /* collect1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3221626CF0A00E7B66F /* collect1.caf */; };
@@ -995,6 +1001,12 @@
 		9C4AF9431744DC910024A975 /* SimpleTableCellwithThumb.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTableCellwithThumb.xib; sourceTree = "<group>"; };
 		9C4AF9441744DC910024A975 /* SimpleTableCellwithThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCellwithThumb.m; sourceTree = "<group>"; };
 		9C4AF9451744DC910024A975 /* SimpleTableCellwithThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCellwithThumb.h; sourceTree = "<group>"; };
+		9C4AF9481745155C0024A975 /* halo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halo.png; sourceTree = "<group>"; };
+		9C4AF9491745155C0024A975 /* halo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "halo-hd.png"; sourceTree = "<group>"; };
+		9C4AF94C174516C00024A975 /* haloCollect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haloCollect.png; sourceTree = "<group>"; };
+		9C4AF94D174516C00024A975 /* haloCollect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = haloCollect.plist; sourceTree = "<group>"; };
+		9C4AF9501745236B0024A975 /* icon-level-halo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-level-halo.png"; sourceTree = "<group>"; };
+		9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-level-halo-hd.png"; sourceTree = "<group>"; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
 		9C4EA3221626CF0A00E7B66F /* collect1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect1.caf; sourceTree = "<group>"; };
@@ -2298,6 +2310,8 @@
 		9CABCF191611D5EA006DFDE9 /* Ingame */ = {
 			isa = PBXGroup;
 			children = (
+				9C4AF9481745155C0024A975 /* halo.png */,
+				9C4AF9491745155C0024A975 /* halo-hd.png */,
 				9C73846F1742E63E00024F00 /* BW */,
 				9C73845B1742D90700024F00 /* Begin-Button.png */,
 				9C73845C1742D90700024F00 /* Begin-Button-hd.png */,
@@ -2331,6 +2345,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C4AF9501745236B0024A975 /* icon-level-halo.png */,
+				9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */,
 				9C7384841742EDC000024F00 /* BW */,
 				9C73846B1742DDB100024F00 /* bg-locked2.png */,
 				9C73846C1742DDB100024F00 /* bg-locked2-hd.png */,
@@ -2513,6 +2529,8 @@
 		9CABCF3C1611D5EA006DFDE9 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				9C4AF94C174516C00024A975 /* haloCollect.png */,
+				9C4AF94D174516C00024A975 /* haloCollect.plist */,
 				9C2CED53174115F9003FCA03 /* spendSouls.plist */,
 				9C2CED54174115F9003FCA03 /* spendParticles.png */,
 				9CBFBDAD161A2968008512E4 /* StartScreenFX.plist */,
@@ -3283,6 +3301,12 @@
 				9C7384A61742FBE400024F00 /* bg-loop4.aifc in Resources */,
 				9C4AF9421744DAED0024A975 /* Characters.plist in Resources */,
 				9C4AF9461744DC910024A975 /* SimpleTableCellwithThumb.xib in Resources */,
+				9C4AF94A1745155D0024A975 /* halo.png in Resources */,
+				9C4AF94B1745155D0024A975 /* halo-hd.png in Resources */,
+				9C4AF94E174516C00024A975 /* haloCollect.png in Resources */,
+				9C4AF94F174516C00024A975 /* haloCollect.plist in Resources */,
+				9C4AF9521745236B0024A975 /* icon-level-halo.png in Resources */,
+				9C4AF9531745236C0024A975 /* icon-level-halo-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

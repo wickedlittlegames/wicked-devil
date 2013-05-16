@@ -33,6 +33,14 @@
         [fx1 stopSystem];
         [self addChild:fx1];
         [self.effects addObject:fx1];
+        
+        // 2 - halo collectable collect
+        CCParticleSystemQuad *fx3 = [CCParticleSystemQuad particleWithFile:@"haloCollect.plist"];
+        fx3.positionType = kCCPositionTypeGrouped;
+        fx3.blendAdditive = FALSE;
+        [fx3 stopSystem];
+        [self addChild:fx3];
+        [self.effects addObject:fx3];
     }
 	return self;
 }

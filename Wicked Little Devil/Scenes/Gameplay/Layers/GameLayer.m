@@ -51,7 +51,14 @@
         }
         if ([node isKindOfClass: [HaloCollectable class]])
         {
-            [self.halocollectables addObject:node];
+            if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+            {
+                [self.halocollectables addObject:node];
+            }
+            else
+            {
+                node.visible = NO;
+            }
         }
         if ([node isKindOfClass: [Enemy class]])
         {
@@ -79,7 +86,7 @@
     }
     CCARRAY_FOREACH(self.halocollectables, halocollectable)
     {
-        halocollectable.visible = ( [halocollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [halocollectable worldBoundingBox].origin.y > -20 );
+        halocollectable.visible = ( [halocollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [halocollectable worldBoundingBox].origin.y > -20);
     }
     CCARRAY_FOREACH(self.platforms, platform)
     {
@@ -253,10 +260,10 @@
                 game.player.halocollected++;
                 if ( ![SimpleAudioEngine sharedEngine].mute )
                 {
-                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.caf",game.player.bigcollected]];
+//                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect_halo.caf",game.player.bigcollected]];
                 }
                 
-                [game.fx start:1 position:ccp([halocollectable worldBoundingBox].origin.x + [halocollectable contentSize].width/2, [halocollectable worldBoundingBox].origin.y)];
+                [game.fx start:2 position:ccp([halocollectable worldBoundingBox].origin.x + [halocollectable contentSize].width/2, [halocollectable worldBoundingBox].origin.y)];
                 
                 halocollectable.visible = NO;
                 [self.halocollectables removeObject:halocollectable];

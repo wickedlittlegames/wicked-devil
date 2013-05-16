@@ -52,9 +52,13 @@
          next_level         = 1;
          
          game.user.collected += collected;
-         game.user.halocollected += game.player.halocollected;
+//         game.user.halocollected += game.player.halocollected;
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
+         if ( !(game.world == 20) )
+         {
+             [game.user setHalos:game.player.halocollected world:game.world level:game.level];
+         }
          
          bool restartAudioToggle = FALSE;
          CCMenuItemImage *btn_next          = [CCMenuItemImage itemWithNormalImage:@"btn-nextlevel.png"     selectedImage:@"btn-nextlevel.png"      block:^(id sender) {[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:next_world andLevel:next_level isRestart:NO restartMusic:restartAudioToggle]]]; if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];} }];

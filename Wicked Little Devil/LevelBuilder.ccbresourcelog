@@ -12,6 +12,7 @@ jump1.caf
 jump2.caf
 jump4.caf
 player-hit.caf
+Characters.plist
 world-1-level-1.ccbi
 world-1-level-10.ccbi
 world-1-level-11.ccbi
@@ -120,6 +121,8 @@ enemy-rocket-target-bw-hd.png
 enemy-rocket-target-bw.png
 enemy-rocket-target-hd.png
 enemy-rocket-target.png
+halo-hd.png
+halo.png
 ingame-mine-bw-hd.png
 ingame-mine-bw.png
 ingame-mine-hd.png
@@ -273,6 +276,8 @@ btn-unequip-all-hd.png
 btn-unequip-all.png
 btn-unlockdevil-hd.png
 btn-unlockdevil.png
+icon-bigcollectable-bw-hd.png
+icon-bigcollectable-bw.png
 icon-bigcollectable-empty-hd.png
 icon-bigcollectable-empty.png
 icon-bigcollectable-hd.png

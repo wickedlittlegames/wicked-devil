@@ -21,8 +21,7 @@
 
 // V1.1 ACHV
 #define ACV_BEAT_WORLD_3 4 // escaped from the sea "Boiling Oceans" // if player world > 3 - 50
-#define ACV_BEAT_WORLD_4 5 // escaped from earth "" // if player world > 4 - 50
-#define ACV_BUBBLE_POP 21 // pop 100 bubbles with the bubble pop equipment
+#define ACV_BEAT_WORLD_4 21 // escaped from earth "" // if player world > 4 - 50
 #define ACV_PURGATORY_LEVEL_UNLOCKED // unlocked a purgatory level
 
 #pragma mark === API SETTINGS ===

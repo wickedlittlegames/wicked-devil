@@ -57,7 +57,7 @@
                        [NSString stringWithFormat:@"%i",totalhighscore],
                        [NSString stringWithFormat:@"%i/%i",[user getSoulsforAll], (CURRENT_WORLDS_PER_GAME)*(LEVELS_PER_WORLD*3)],
                        [NSString stringWithFormat:@"%i",user.collected],
-                       [NSString stringWithFormat:@"%i",user.halocollected],
+                       [NSString stringWithFormat:@"%i",[user getHalosforAll]],
                        [NSString stringWithFormat:@"%i",user.worldprogress],
                        [NSString stringWithFormat:@"%i",user.levelprogress],
                        [NSString stringWithFormat:@"%i",user.jumps],

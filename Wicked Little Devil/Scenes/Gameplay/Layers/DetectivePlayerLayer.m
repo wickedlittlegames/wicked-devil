@@ -22,4 +22,21 @@
 	return self;
 }
 
+- (void) setupStartGFX:(int)character
+{
+    NSString *filename = @"";
+    switch (character)
+    {
+        case 0: filename = @"jump1_detective.png";
+            break;
+            
+        case 666: filename = @"jump1.png";
+            break;
+    }
+    self.player = [Player spriteWithFile:[NSString stringWithFormat:@"%@",filename]];
+    [self.player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , 60 )];
+    [self addChild:self.player];
+}
+
+
 @end

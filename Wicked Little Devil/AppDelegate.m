@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "StartScene.h"
-//#import "GameScene.h"
+#import "GameScene.h"
+//#import "EquipMenuScene.h"
 #import "MKStoreManager.h"
 #import "FlurryAnalytics.h"
 
@@ -106,8 +107,9 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene:[StartScene scene]];
-//    [director_ pushScene:[GameScene sceneWithWorld:(int)20 andLevel:1 isRestart:TRUE restartMusic:FALSE]];
+//	[director_ pushScene:[StartScene scene]];
+//    [director_ pushScene:[EquipMenuScene scene]];
+    [director_ pushScene:[GameScene sceneWithWorld:(int)1 andLevel:1 isRestart:TRUE restartMusic:FALSE]];
 
 	return YES;
 }

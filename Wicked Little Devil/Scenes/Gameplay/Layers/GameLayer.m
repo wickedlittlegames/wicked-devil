@@ -25,6 +25,7 @@
     self.platforms       = [CCArray arrayWithCapacity:100];
     self.collectables    = [CCArray arrayWithCapacity:500];
     self.bigcollectables = [CCArray arrayWithCapacity:3];
+    self.halocollectables = [CCArray arrayWithCapacity:3];
     self.enemies         = [CCArray arrayWithCapacity:100];
     self.triggers        = [CCArray arrayWithCapacity:100];
     self.emitters        = [CCArray arrayWithCapacity:100];
@@ -47,6 +48,10 @@
         if ([node isKindOfClass: [BigCollectable class]])
         {
             [self.bigcollectables addObject:node];
+        }
+        if ([node isKindOfClass: [HaloCollectable class]])
+        {
+            [self.halocollectables addObject:node];
         }
         if ([node isKindOfClass: [Enemy class]])
         {
@@ -71,6 +76,10 @@
     CCARRAY_FOREACH(self.bigcollectables, bigcollectable)
     {
         bigcollectable.visible = ( [bigcollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [bigcollectable worldBoundingBox].origin.y > -20 );
+    }
+    CCARRAY_FOREACH(self.halocollectables, halocollectable)
+    {
+        halocollectable.visible = ( [halocollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [halocollectable worldBoundingBox].origin.y > -20 );
     }
     CCARRAY_FOREACH(self.platforms, platform)
     {
@@ -221,6 +230,40 @@
             }
         }
     }
+    
+    CCARRAY_FOREACH(self.halocollectables, halocollectable)
+    {
+        if ( !game.isIntro )
+        {
+            if ( [bigcollectable worldBoundingBox].origin.y < -200 )
+            {
+                halocollectable.visible = NO;
+                halocollectable.dead = YES;
+                [self.halocollectables removeObject:halocollectable];
+                [halocollectable removeFromParentAndCleanup:YES];
+            }
+        }
+        
+        halocollectable.visible = ( [halocollectable worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [halocollectable worldBoundingBox].origin.y > -20 && !halocollectable.dead );
+        
+        if ( halocollectable.visible )
+        {
+            if ( [halocollectable isIntersectingPlayer:game.player] )
+            {
+                game.player.halocollected++;
+                if ( ![SimpleAudioEngine sharedEngine].mute )
+                {
+                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect%i.caf",game.player.bigcollected]];
+                }
+                
+                [game.fx start:1 position:ccp([halocollectable worldBoundingBox].origin.x + [halocollectable contentSize].width/2, [halocollectable worldBoundingBox].origin.y)];
+                
+                halocollectable.visible = NO;
+                [self.halocollectables removeObject:halocollectable];
+                [halocollectable removeFromParentAndCleanup:YES];
+            }
+        }
+    }
         
     CCARRAY_FOREACH(self.enemies, enemy)
     {
@@ -325,22 +368,4 @@
     [[CCDirector sharedDirector] replaceScene:[GameScene sceneWithWorld:self.world andLevel:self.level isRestart:TRUE restartMusic:NO]];
 }
 
--(void)draw
-{
-    [super draw];
-    
-    if ( self.world == 20 )
-    {
-        int r = arc4random() % 100;
-        if ( r >= 93 )
-        {
-            int tmpx = arc4random() % (int)[CCDirector sharedDirector].winSize.width;
-            int tmpystart= arc4random() % (int)[CCDirector sharedDirector].winSize.height;
-            int tmpyend = arc4random() % (int)[CCDirector sharedDirector].winSize.height;
-            ccDrawColor4B(255, 255, 255, 50);//Color of the line RGBA
-            glLineWidth(2.0f); //Stroke width of the line
-            ccDrawLine(ccp(tmpx, tmpystart), ccp(tmpx, tmpyend));
-        }
-    }
-}
 @end

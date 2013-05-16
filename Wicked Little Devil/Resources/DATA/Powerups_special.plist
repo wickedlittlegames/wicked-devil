@@ -44,14 +44,6 @@
 			<key>Cost</key>
 			<integer>10000</integer>
 		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Once a detective...</string>
-			<key>Description</key>
-			<string>Detective outfit in normal mode!</string>
-			<key>Cost</key>
-			<integer>5000</integer>
-		</dict>
 	</array>
 </dict>
 </plist>

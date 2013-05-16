@@ -44,25 +44,25 @@
                 
         tableTitles = [NSArray arrayWithObjects:
                        @"Total Score: ",
-                       @"Big Souls Collected: ",
-                       @"Small Souls Collected: ",
+                       @"Big Souls: ",
+                       @"Small Souls: ",
+                       @"Halos: ",
                        @"World Progress: ",
                        @"Level Progress: ",                      
                        @"Jumps: ",
                        @"Deaths: ",
-                       @"Detective Devil Unlocked: ",
-                       @"Powerup Bought: ",
+                       @"Detective Unlocked: ",
                        @"Facebook Active: ", nil];
         tableData   = [NSArray arrayWithObjects:
                        [NSString stringWithFormat:@"%i",totalhighscore],
-                       [NSString stringWithFormat:@"%i",[user getSoulsforAll]],
+                       [NSString stringWithFormat:@"%i/%i",[user getSoulsforAll], (CURRENT_WORLDS_PER_GAME)*(LEVELS_PER_WORLD*3)],
                        [NSString stringWithFormat:@"%i",user.collected],
+                       [NSString stringWithFormat:@"%i",user.halocollected],
                        [NSString stringWithFormat:@"%i",user.worldprogress],
                        [NSString stringWithFormat:@"%i",user.levelprogress],
                        [NSString stringWithFormat:@"%i",user.jumps],
                        [NSString stringWithFormat:@"%i",user.deaths],
                        [NSString stringWithFormat:@"%@",(user.unlocked_detective ? @"YES" : @"NO")],
-                       [NSString stringWithFormat:@"%@",(user.bought_powerups ? @"YES" : @"NO")],
                        [NSString stringWithFormat:@"%@",(user.facebook_id ? @"YES" : @"NO")],
                        nil];
 
@@ -102,8 +102,8 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.nameLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:22.0f];
-    cell.scoreLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:22.0f];
+    cell.nameLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:28.0f];
+    cell.scoreLabel.font           = [UIFont fontWithName:@"CrashLanding BB" size:32.0f];
     
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle]; // this line is important!

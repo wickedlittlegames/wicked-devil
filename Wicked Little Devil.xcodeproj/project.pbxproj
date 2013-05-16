@@ -276,6 +276,10 @@
 		9C35DA2A170DB949006F24DA /* detective-music.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 9C35DA29170DB949006F24DA /* detective-music.aifc */; };
 		9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */; };
 		9C441927161EE79200563087 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C441926161EE79200563087 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9C4AF9401744DA540024A975 /* CharacterShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4AF93F1744DA540024A975 /* CharacterShopScene.m */; };
+		9C4AF9421744DAED0024A975 /* Characters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9411744DAED0024A975 /* Characters.plist */; };
+		9C4AF9461744DC910024A975 /* SimpleTableCellwithThumb.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9431744DC910024A975 /* SimpleTableCellwithThumb.xib */; };
+		9C4AF9471744DC910024A975 /* SimpleTableCellwithThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4AF9441744DC910024A975 /* SimpleTableCellwithThumb.m */; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
 		9C4EA32C1626CF0A00E7B66F /* collect1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3221626CF0A00E7B66F /* collect1.caf */; };
@@ -985,6 +989,12 @@
 		9C37C82E173AA09C00106FB0 /* DetectiveLevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetectiveLevelSelectScene.h; path = Scenes/Menus/DetectiveLevelSelectScene.h; sourceTree = "<group>"; };
 		9C37C82F173AA09C00106FB0 /* DetectiveLevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetectiveLevelSelectScene.m; path = Scenes/Menus/DetectiveLevelSelectScene.m; sourceTree = "<group>"; };
 		9C441926161EE79200563087 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		9C4AF93E1744DA540024A975 /* CharacterShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterShopScene.h; path = Scenes/Menus/CharacterShopScene.h; sourceTree = "<group>"; };
+		9C4AF93F1744DA540024A975 /* CharacterShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharacterShopScene.m; path = Scenes/Menus/CharacterShopScene.m; sourceTree = "<group>"; };
+		9C4AF9411744DAED0024A975 /* Characters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Characters.plist; sourceTree = "<group>"; };
+		9C4AF9431744DC910024A975 /* SimpleTableCellwithThumb.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTableCellwithThumb.xib; sourceTree = "<group>"; };
+		9C4AF9441744DC910024A975 /* SimpleTableCellwithThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCellwithThumb.m; sourceTree = "<group>"; };
+		9C4AF9451744DC910024A975 /* SimpleTableCellwithThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCellwithThumb.h; sourceTree = "<group>"; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
 		9C4EA3221626CF0A00E7B66F /* collect1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect1.caf; sourceTree = "<group>"; };
@@ -1982,6 +1992,9 @@
 		9C54D45C15B0551A00D52A22 /* UI Items */ = {
 			isa = PBXGroup;
 			children = (
+				9C4AF9431744DC910024A975 /* SimpleTableCellwithThumb.xib */,
+				9C4AF9441744DC910024A975 /* SimpleTableCellwithThumb.m */,
+				9C4AF9451744DC910024A975 /* SimpleTableCellwithThumb.h */,
 				9CDF944915B561FA0017E58B /* SimpleTableCell.h */,
 				9CDF944A15B561FA0017E58B /* SimpleTableCell.m */,
 				9CDF944B15B561FA0017E58B /* SimpleTableCell.xib */,
@@ -2012,6 +2025,8 @@
 				9CDF943815B561EE0017E58B /* EquipScene.m */,
 				9CC3674B16528D550000D631 /* EquipSpecialScene.h */,
 				9CC3674C16528D550000D631 /* EquipSpecialScene.m */,
+				9C4AF93E1744DA540024A975 /* CharacterShopScene.h */,
+				9C4AF93F1744DA540024A975 /* CharacterShopScene.m */,
 				9CDF943D15B561EE0017E58B /* ShopScene.h */,
 				9CDF943E15B561EE0017E58B /* ShopScene.m */,
 				9C0F7A3E17425A3B00316B07 /* StatsScene.h */,
@@ -2107,6 +2122,7 @@
 				9CABCEFE1611D5EA006DFDE9 /* LEVELS */,
 				9CABCF011611D5EA006DFDE9 /* Powerups.plist */,
 				9CC3674E16528F840000D631 /* Powerups_special.plist */,
+				9C4AF9411744DAED0024A975 /* Characters.plist */,
 			);
 			name = DATA;
 			path = Resources/DATA;
@@ -3265,6 +3281,8 @@
 				9C7384A31742F2C000024F00 /* icon-bigcollectable-bw.png in Resources */,
 				9C7384A41742F2C000024F00 /* icon-bigcollectable-bw-hd.png in Resources */,
 				9C7384A61742FBE400024F00 /* bg-loop4.aifc in Resources */,
+				9C4AF9421744DAED0024A975 /* Characters.plist in Resources */,
+				9C4AF9461744DC910024A975 /* SimpleTableCellwithThumb.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3353,6 +3371,8 @@
 				9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */,
 				9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */,
 				9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */,
+				9C4AF9401744DA540024A975 /* CharacterShopScene.m in Sources */,
+				9C4AF9471744DC910024A975 /* SimpleTableCellwithThumb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

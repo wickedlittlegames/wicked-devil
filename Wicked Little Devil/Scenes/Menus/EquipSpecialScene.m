@@ -208,7 +208,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+ tableView.scrollEnabled = NO;   
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     
@@ -225,7 +225,10 @@
     cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:20.0f];
     
     cell.label_title.text           = [data objectAtIndex:indexPath.row];
-    cell.label_price.text           = [NSString stringWithFormat:@"%i",[[data2 objectAtIndex:indexPath.row] intValue]];
+
+    cell.label_price.textColor      = [UIColor colorWithRed:255.0/255.0f green:255.0/255.0f blue:255.0/255.0f alpha:1.0f];
+    cell.label_price.text           = [NSString stringWithFormat:@"%@",[NSNumberFormatter localizedStringFromNumber:@([[data2 objectAtIndex:indexPath.row] intValue]) numberStyle:NSNumberFormatterDecimalStyle]];
+    
     cell.label_description.text     = [data3 objectAtIndex:indexPath.row];
     
     cell.button_buy.selected        = TRUE;

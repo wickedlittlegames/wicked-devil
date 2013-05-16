@@ -69,3 +69,12 @@
 }
 
 @end
+
+@implementation HaloCollectable
+
+- (BOOL) isIntersectingPlayer:(Player*)player
+{
+    return ( CGRectIntersectsRect([self worldBoundingBox], [player worldBoundingBox]) && self.visible == TRUE ) ;
+}
+
+@end

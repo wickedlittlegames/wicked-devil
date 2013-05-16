@@ -27,3 +27,11 @@
 - (BOOL) isIntersectingPlayer:(Player*)player;
 
 @end
+
+@class Player;
+@interface HaloCollectable : CCSprite {}
+@property (nonatomic, assign) bool dead;
+
+- (BOOL) isIntersectingPlayer:(Player*)player;
+
+@end

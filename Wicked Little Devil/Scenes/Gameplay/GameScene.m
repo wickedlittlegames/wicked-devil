@@ -89,15 +89,23 @@
         layer_fx        = [FXLayer node];
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
 
-        if ( w == 20 || user.powerup == 105 )
+        if ( w == 20 )
         {
             layer_player    = [DetectivePlayerLayer node];
+            [layer_player setupStartGFX:0];
             [layer_player.player setupAnimationsDetective];
         }
         else
         {
             layer_player    = [PlayerLayer node];
-            [layer_player.player setupAnimations];
+            if ( user.bought_character )
+            {
+                [layer_player setupStartGFX:user.character];
+            }
+            else
+            {
+                [layer_player setupStartGFX:666];
+            }
         }
         layer_ui        = [UILayer node];
         
@@ -119,6 +127,15 @@
         game.fx = layer_fx;
         game.pastScore = [user getHighscoreforWorld:w level:l];
         [game.player setupPowerup:user.powerup];
+        if ( user.bought_character )
+        {
+            [game.player setupCharacter:user.character];
+        }
+        else
+        {
+            [game.player setupAnimations];
+        }
+
         [layer_ui setupItemsforGame:game];
         layer_game.world = w;
         layer_game.level = l;

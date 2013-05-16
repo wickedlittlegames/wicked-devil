@@ -8,19 +8,20 @@
 
 #import "cocos2d.h"
 
-@class Game, Platform, Collectable, BigCollectable, Enemy, Tip, Trigger, Projectile, EnemyFX;
+@class Game, Platform, Collectable, BigCollectable, HaloCollectable, Enemy, Tip, Trigger, Projectile, EnemyFX;
 @interface GameLayer : CCLayer
 {
     Platform *platform;
     Collectable *collectable;
     BigCollectable *bigcollectable;
+    HaloCollectable *halocollectable;
     Enemy *enemy;
     Projectile *projectile;
     EnemyFX *fx;
     Tip *tip;
     int black_line_x;
 }
-@property (nonatomic, retain) CCArray *platforms, *collectables, *bigcollectables, *enemies, *triggers, *emitters, *tips;
+@property (nonatomic, retain) CCArray *platforms, *collectables, *bigcollectables, *halocollectables, *enemies, *triggers, *emitters, *tips;
 @property (nonatomic, assign) int world, level;
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects;

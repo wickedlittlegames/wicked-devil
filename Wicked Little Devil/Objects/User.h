@@ -13,9 +13,9 @@
 @interface User : NSObject {}
 
 @property (nonatomic, retain) NSUserDefaults *udata;
-@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps;
-@property (nonatomic, retain) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress, *items_special, *detective_highscores, *detective_souls;
-@property (nonatomic, assign) BOOL ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, bought_powerups, unlocked_detective;
+@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps, halocollected, character;
+@property (nonatomic, retain) NSMutableArray *highscores, *souls, *powerups, *items, *gameprogress, *items_special, *detective_highscores, *detective_souls, *items_characters;
+@property (nonatomic, assign) BOOL ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, bought_powerups, unlocked_detective, bought_character;
 @property (nonatomic, assign) BOOL ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls;
 @property (nonatomic, assign) BOOL ach_died_100, ach_jumped_1000, ach_first_3_big, ach_collected_666;
 @property (nonatomic, assign) BOOL sent_ach_first_play, sent_ach_beat_world_1, sent_ach_beat_world_2, sent_ach_beat_world_3, sent_ach_beat_world_4;
@@ -37,6 +37,7 @@
 
 - (void) buyItem:(int)item;
 - (void) buySpecialItem:(int)item;
+- (void) buyCharacter:(int)item;
 - (void) setHighscore:(int)score world:(int)w level:(int)l;
 - (void) setSouls:(int)souls world:(int)w level:(int)l;
 - (void) setGameProgressforWorld:(int)w level:(int)l;

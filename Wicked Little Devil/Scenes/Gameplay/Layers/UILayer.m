@@ -346,4 +346,25 @@
     }
 }
 
+-(void)draw
+{
+    [super draw];
+    
+    if ( self.world == 20 )
+    {
+        int r = arc4random() % 100;
+        if ( r >= 94 )
+        {
+            int tmpx = arc4random() % (int)[CCDirector sharedDirector].winSize.width;
+            int tmpystart= arc4random() % (int)[CCDirector sharedDirector].winSize.height;
+            int tmpyend = arc4random() % (int)[CCDirector sharedDirector].winSize.height;
+            int tmpwidth = arc4random() % 2;
+            ccDrawColor4B(255, 255, 255, 35);//Color of the line RGBA
+            glLineWidth(tmpwidth); //Stroke width of the line
+            ccDrawLine(ccp(tmpx, tmpystart), ccp(tmpx, tmpyend));
+        }
+    }
+}
+
+
 @end

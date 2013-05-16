@@ -34,6 +34,7 @@
         self.time = 0;
         self.jumps = 0;
         self.deaths = 0;
+        self.halocollected = 0;
         self.last_platform_touched = NULL;
         
         // redo
@@ -41,9 +42,6 @@
         self.toggled_platform = NO;
         self.animating = NO;
         self.falling = NO;
-        
-//        [self setupAnimations];
-        
     }
     return self;
 }
@@ -116,6 +114,7 @@
 
 - (void) setupAnimations
 {
+    CCLOG(@"SETTING UP NORMAL ANIMATIONS");
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil.png"];
     [self addChild:spriteSheet];
@@ -156,6 +155,7 @@
 
 - (void) setupAnimationsDetective
 {
+    CCLOG(@"SETTING UP dETECTIVE");    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDetectiveDevil.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDetectiveDevil.png"];
     [self addChild:spriteSheet];
@@ -192,6 +192,48 @@
     self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
     self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
     self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+- (void) setupCharacter:(int)character
+{
+    CCLOG(@"WHAT ARE WE DOING WITH THIS: %i",character);
+    switch(character)
+    {
+        case 0: //detective
+            CCLOG(@"DETECTIVE");
+            [self setupAnimationsDetective];
+        break;
+//            
+//        case 1: // wicked little
+//        {
+//            [self setupAnimationsDetective];
+//        }
+//        break;
+//            
+//        case 2: // super devil
+//        {
+//            [self setupAnimationsDetective];
+//        }
+//        break;
+//            
+//        case 3: // zombie
+//        {
+//            [self setupAnimationsDetective];
+//        }
+//        break;
+//            
+//        case 4: // ninja
+//        {
+//            [self setupAnimationsDetective];
+//        }
+//        break;
+//            
+//        case 5: // pirate
+//        {
+//            [self setupAnimationsDetective];
+//        }
+//        break;
+    }
 }
 
 

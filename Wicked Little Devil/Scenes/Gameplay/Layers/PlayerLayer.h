@@ -12,4 +12,6 @@
 @interface PlayerLayer : CCLayer {}
 @property (nonatomic, retain) Player *player;
 
+- (void) setupStartGFX:(int)character;
+
 @end

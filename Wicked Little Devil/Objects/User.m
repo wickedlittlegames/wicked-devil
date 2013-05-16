@@ -35,6 +35,10 @@
         {
                 [self create_detective_settings2];
         }
+        if ( ![self.udata objectForKey:@"items_characters"] )
+        {
+            [self create_character_items];
+        }
         
         self.highscores             = [self.udata objectForKey:@"highscores"];
         self.souls                  = [self.udata objectForKey:@"souls"];
@@ -44,6 +48,7 @@
         self.worldprogress          = [self.udata integerForKey:@"worldprogress"];
         self.gameprogress           = [self.udata objectForKey:@"gameprogress"];
         self.powerup                = [self.udata integerForKey:@"powerup"];
+        self.character              = [self.udata integerForKey:@"character"];
         self.bought_powerups        = [self.udata boolForKey:@"bought_powerups"];
         self.cache_current_world    = [self.udata integerForKey:@"cache_current_world"];
         self.collected              = [self.udata integerForKey:@"collected"];
@@ -54,6 +59,9 @@
         self.facebook_id            = [self.udata objectForKey:@"facebook_id"];
         self.facebook_image         = [self.udata objectForKey:@"facebook_image"];
         self.unlocked_detective     = [self.udata boolForKey:@"unlocked_detective"];
+        self.halocollected          = [self.udata integerForKey:@"halos"];
+        self.items_characters       = [self.udata objectForKey:@"items_characters"];
+        self.bought_character       = [self.udata boolForKey:@"bought_character"];
         
         [self setupAchievements];
     }
@@ -134,6 +142,20 @@
     [self.udata synchronize];
 }
 
+- (void ) create_character_items
+{
+    NSMutableArray *special_itemsarr = [NSMutableArray arrayWithCapacity:1000];
+    for (int i = 0; i < 100; i++ )
+    {
+        [special_itemsarr addObject:[NSNumber numberWithInt:0]];
+    }
+    
+    [self.udata setObject:special_itemsarr forKey:@"items_characters"];
+    [self.udata setInteger:0 forKey:@"character"];
+    [self.udata synchronize];
+}
+
+
 - (void) create_detective_settings
 {
     NSMutableArray *tmp_worlds = [NSMutableArray arrayWithCapacity:100];
@@ -177,9 +199,12 @@
     [self.udata setInteger:self.worldprogress forKey:@"worldprogress"];
     [self.udata setInteger:self.deaths forKey:@"deaths"];
     [self.udata setInteger:self.jumps forKey:@"jumps"];
-    [self.udata setInteger:self.collected forKey:@"collected"];    
+    [self.udata setInteger:self.collected forKey:@"collected"];
+    [self.udata setInteger:self.halocollected forKey:@"halos"];
     [self.udata setInteger:self.powerup forKey:@"powerup"];
+    [self.udata setInteger:self.character forKey:@"character"];
     [self.udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
+    [self.udata setInteger:self.bought_character forKey:@"bought_character"];
     [self.udata setBool:self.unlocked_detective forKey:@"unlocked_detective"];
     [self.udata synchronize];
 }
@@ -224,6 +249,18 @@
     
     self.items_special = [self.udata objectForKey:@"items_special"];
 }
+
+- (void) buyCharacter:(int)item
+{
+    NSMutableArray *items_tmp = [[self.udata objectForKey:@"items_characters"] mutableCopy];
+    [items_tmp replaceObjectAtIndex:item withObject:[NSNumber numberWithInt:1]];
+    
+    [self.udata setObject:items_tmp forKey:@"items_characters"];
+    [self.udata synchronize];
+    
+    self.items_characters = [self.udata objectForKey:@"items_characters"];
+}
+
 
 - (void) setGameProgressforWorld:(int)w level:(int)l
 {

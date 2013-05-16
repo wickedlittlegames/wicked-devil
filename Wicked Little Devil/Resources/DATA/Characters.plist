@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Characters</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>Detective Devil</string>
+			<key>Description</key>
+			<string>An echo of the Devils previous life...</string>
+			<key>Cost</key>
+			<integer>10000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Wicked Little Devil</string>
+			<key>Description</key>
+			<string>For those who played Wicked Little Devil</string>
+			<key>Cost</key>
+			<integer>10000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Super Devil</string>
+			<key>Description</key>
+			<string>Ultimate Power... and sexy hair</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Alien Devil</string>
+			<key>Description</key>
+			<string>Boldly going straight down</string>
+			<key>Cost</key>
+			<integer>15000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Zombie Devil</string>
+			<key>Description</key>
+			<string>The ultimate evil combination!</string>
+			<key>Cost</key>
+			<integer>20000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Ninja Devil</string>
+			<key>Description</key>
+			<string>Stealthy Devil!</string>
+			<key>Cost</key>
+			<integer>20000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Pirate Devil</string>
+			<key>Description</key>
+			<string>Yaaarrr!</string>
+			<key>Cost</key>
+			<integer>20000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Angel Devil</string>
+			<key>Description</key>
+			<string>Holier than thou</string>
+			<key>Cost</key>
+			<integer>50000</integer>
+			<key>Image</key>
+			<string>jump1.png</string>
+		</dict>
+	</array>
+</dict>
+</plist>

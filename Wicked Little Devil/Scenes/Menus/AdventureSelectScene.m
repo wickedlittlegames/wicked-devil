@@ -402,6 +402,8 @@
 {
     if (buttonIndex == 1)
     {
+        [notificationView clear];
+        
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
     }
 }

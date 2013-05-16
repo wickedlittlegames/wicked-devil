@@ -33,7 +33,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = screenSize.height - 210;
+        float menu_y            = screenSize.height - 212;
         int world_score              = [user getHighscoreforWorld:world];
         int big_collectables_total   = (LEVELS_PER_WORLD * 3);
         int big_collectables_player  = 0;
@@ -121,9 +121,11 @@
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
+        CCSprite *icon_halo             = [CCSprite spriteWithFile:@"icon-halo-med.png"];
         CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        CCLabelTTF *label_halo          = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", halos_collectables, (LEVELS_PER_WORLD)] dimensions:CGSizeMake(80, 30) hAlignment:kCCTextAlignmentLeft fontName:font fontSize:26];
         
         [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
@@ -133,6 +135,10 @@
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
         [label_world_score      setPosition:ccp(screenSize.width/2, 22 )];
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
+
+        [icon_halo              setPosition:ccp(20, screenSize.height - 20)];
+        [label_halo             setPosition:ccp(80, screenSize.height - 20)];
+        
         
         [self addChild:bg];
         [self addChild:menu];
@@ -142,6 +148,8 @@
         [self addChild:label_world_score];
         [self addChild:icon_collectable];
         [self addChild:label_collected];
+        [self addChild:label_halo];
+        [self addChild:icon_halo];
         
         if ( ![user.udata boolForKey:@"HALO_TIP"] )
         {

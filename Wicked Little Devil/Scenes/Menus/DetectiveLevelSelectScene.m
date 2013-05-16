@@ -33,7 +33,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = screenSize.height - 210;
+        float menu_y            = screenSize.height - 212;
         int world_score              = [user getHighscoreforWorld:world];
         int big_collectables_total   = (12 * 3);
         int big_collectables_player  = 0;

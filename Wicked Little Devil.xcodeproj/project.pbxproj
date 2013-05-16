@@ -286,6 +286,8 @@
 		9C4AF94F174516C00024A975 /* haloCollect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF94D174516C00024A975 /* haloCollect.plist */; };
 		9C4AF9521745236B0024A975 /* icon-level-halo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9501745236B0024A975 /* icon-level-halo.png */; };
 		9C4AF9531745236C0024A975 /* icon-level-halo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */; };
+		9C4AF9561745294C0024A975 /* icon-halo-med.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9541745294C0024A975 /* icon-halo-med.png */; };
+		9C4AF9571745294C0024A975 /* icon-halo-med-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4AF9551745294C0024A975 /* icon-halo-med-hd.png */; };
 		9C4EA32A1626CF0A00E7B66F /* collect3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3201626CF0A00E7B66F /* collect3.caf */; };
 		9C4EA32B1626CF0A00E7B66F /* collect2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3211626CF0A00E7B66F /* collect2.caf */; };
 		9C4EA32C1626CF0A00E7B66F /* collect1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3221626CF0A00E7B66F /* collect1.caf */; };
@@ -1007,6 +1009,8 @@
 		9C4AF94D174516C00024A975 /* haloCollect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = haloCollect.plist; sourceTree = "<group>"; };
 		9C4AF9501745236B0024A975 /* icon-level-halo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-level-halo.png"; sourceTree = "<group>"; };
 		9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-level-halo-hd.png"; sourceTree = "<group>"; };
+		9C4AF9541745294C0024A975 /* icon-halo-med.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-halo-med.png"; sourceTree = "<group>"; };
+		9C4AF9551745294C0024A975 /* icon-halo-med-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-halo-med-hd.png"; sourceTree = "<group>"; };
 		9C4EA3201626CF0A00E7B66F /* collect3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect3.caf; sourceTree = "<group>"; };
 		9C4EA3211626CF0A00E7B66F /* collect2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect2.caf; sourceTree = "<group>"; };
 		9C4EA3221626CF0A00E7B66F /* collect1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = collect1.caf; sourceTree = "<group>"; };
@@ -2345,6 +2349,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C4AF9541745294C0024A975 /* icon-halo-med.png */,
+				9C4AF9551745294C0024A975 /* icon-halo-med-hd.png */,
 				9C4AF9501745236B0024A975 /* icon-level-halo.png */,
 				9C4AF9511745236B0024A975 /* icon-level-halo-hd.png */,
 				9C7384841742EDC000024F00 /* BW */,
@@ -3307,6 +3313,8 @@
 				9C4AF94F174516C00024A975 /* haloCollect.plist in Resources */,
 				9C4AF9521745236B0024A975 /* icon-level-halo.png in Resources */,
 				9C4AF9531745236C0024A975 /* icon-level-halo-hd.png in Resources */,
+				9C4AF9561745294C0024A975 /* icon-halo-med.png in Resources */,
+				9C4AF9571745294C0024A975 /* icon-halo-med-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -274,7 +274,7 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [self reportAchievements];
+//    [self reportAchievements];
     
     GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
     achivementViewController.achievementDelegate = self;
@@ -408,78 +408,7 @@
         }
     }
 }
-- (void) reportAchievements
-{
-    [gkHelper reportCachedAchievements];
-    
-    if ( user.ach_first_play && !user.sent_ach_first_play )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_FIRST_PLAY] percentComplete:100.0f];
-        user.sent_ach_first_play = YES;
-    }
-    if ( user.ach_collected_666 && !user.sent_ach_collected_666 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_COLLECTED_666_SOULS] percentComplete:100.0f];
-        user.sent_ach_collected_666 = YES;
-    }
-    if ( user.ach_1000_souls && !user.sent_ach_1000_souls )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_THOUSAND_SOULS] percentComplete:100.0f];
-        user.sent_ach_1000_souls = YES;
-    }
-    if ( user.ach_5000_souls && !user.sent_ach_5000_souls )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_5THOUSAND_SOULS] percentComplete:100.0f];
-        user.sent_ach_5000_souls = YES;
-    }
-    if ( user.ach_10000_souls && !user.sent_ach_10000_souls )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_10THOUSAND_SOULS] percentComplete:100.0f];
-        user.sent_ach_10000_souls = YES;
-    }
-    if ( user.ach_50000_souls && !user.sent_ach_50000_souls )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_50THOUSAND_SOULS] percentComplete:100.0f];
-        user.sent_ach_50000_souls = YES;
-    }
-    if ( user.ach_beat_world_1 && !user.sent_ach_beat_world_1 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_1] percentComplete:100.0f];
-        user.sent_ach_beat_world_1 = YES;
-    }
-    if ( user.ach_beat_world_2 && !user.sent_ach_beat_world_2 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_2] percentComplete:100.0f];
-        user.sent_ach_beat_world_2 = YES;
-    }
-    if ( user.ach_beat_world_3 && !user.sent_ach_beat_world_3 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_3] percentComplete:100.0f];
-        user.sent_ach_beat_world_3 = YES;
-    }
-    if ( user.ach_beat_world_4 && !user.sent_ach_beat_world_4 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_BEAT_WORLD_4] percentComplete:100.0f];
-        user.sent_ach_beat_world_4 = YES;
-    }
-    if ( user.ach_killed && !user.sent_ach_killed )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_KILLED_BY_DEATH] percentComplete:100.0f];
-        user.sent_ach_killed = YES;
-    }
-    if ( user.ach_died_100 && !user.sent_ach_died_100 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_DIED_100_TIMES] percentComplete:100.0f];
-        user.sent_ach_died_100 = YES;
-    }
-    if ( user.ach_jumped_1000 && !user.sent_ach_jumped_1000 )
-    {
-        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_1000JUMPSONPLATFORM] percentComplete:100.0f];
-        user.sent_ach_jumped_1000 = YES;
-    }
-    [user sync];
-    [user sync_achievements];
-}
+
 -(void) onLocalPlayerAuthenticationChanged
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];

@@ -669,6 +669,11 @@
         self.ach_jumped_1000 = TRUE;
         [self showAchievementPanel:13];
     }
+    if ( [self getHalosforAll] == 80 && !self.ach_halo )
+    {
+        self.ach_halo = TRUE;
+        [self showAchievementPanel:13];
+    }
     [self sync_achievements];
 }
 
@@ -731,6 +736,9 @@
         case 13: //jumped 1000 times 50
             achievement = @"Van Halen Fan";
             break;
+        case 14:
+            achievement = @"Wicked Angel";
+            break;
             
         default: break;
     }
@@ -752,10 +760,11 @@
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_11.html",
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_12.html",
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_13.html",
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_14.html", // need to create this page
                                     nil];
         
         NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      [NSString stringWithFormat:@"%@",[achievementURLs objectAtIndex:ach_id]], @"achievement", nil];
+                                      [NSString stringWithFormat:@"%@",[achievementURLs objectAtIndex:(ach_id-1)]], @"achievement", nil];
         
         [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/achievements", self.facebook_id] parameters:param HTTPMethod:@"POST" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {}];
     }
@@ -778,6 +787,7 @@
     [self.udata setBool:self.ach_died_100 forKey:@"ach_died_100"];
     [self.udata setBool:self.ach_jumped_1000 forKey:@"ach_jumped_1000"];
     [self.udata setBool:self.ach_collected_666 forKey:@"ach_collected_666"];
+        [self.udata setBool:self.ach_halo forKey:@"ach_halo"];
     
     [self.udata setBool:self.sent_ach_beat_world_1 forKey:@"sent_ach_beat_world_1"];
     [self.udata setBool:self.sent_ach_beat_world_2 forKey:@"sent_ach_beat_world_2"];
@@ -793,6 +803,7 @@
     [self.udata setBool:self.sent_ach_died_100 forKey:@"sent_ach_died_100"];
     [self.udata setBool:self.sent_ach_jumped_1000 forKey:@"sent_ach_jumped_1000"];
     [self.udata setBool:self.sent_ach_collected_666 forKey:@"sent_ach_collected_666"];
+        [self.udata setBool:self.sent_ach_halo forKey:@"sent_ach_halo"];
     
     [self.udata synchronize];
 }
@@ -813,6 +824,7 @@
     self.ach_died_100           = [self.udata boolForKey:@"ach_died_100"];
     self.ach_jumped_1000        = [self.udata boolForKey:@"ach_jumped_1000"];
     self.ach_collected_666      = [self.udata boolForKey:@"ach_collected_666"];
+    self.ach_halo      = [self.udata boolForKey:@"ach_halo"];    
     
     self.sent_ach_beat_world_1  = [self.udata boolForKey:@"sent_ach_beat_world_1"];
     self.sent_ach_beat_world_2  = [self.udata boolForKey:@"sent_ach_beat_world_2"];
@@ -828,6 +840,7 @@
     self.sent_ach_died_100      = [self.udata boolForKey:@"sent_ach_died_100"];
     self.sent_ach_jumped_1000   = [self.udata boolForKey:@"sent_ach_jumped_1000"];
     self.sent_ach_collected_666 = [self.udata boolForKey:@"sent_ach_collected_666"];
+    self.sent_ach_halo = [self.udata boolForKey:@"sent_ach_halo"];
 }
 
 - (void) resetAchievements
@@ -846,6 +859,7 @@
     [self.udata setBool:FALSE forKey:@"ach_died_100"];
     [self.udata setBool:FALSE forKey:@"ach_jumped_1000"];
     [self.udata setBool:FALSE forKey:@"ach_collected_666"];
+    [self.udata setBool:FALSE forKey:@"ach_halos"];    
     
     [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_1"];
     [self.udata setBool:FALSE forKey:@"sent_ach_beat_world_2"];
@@ -861,6 +875,7 @@
     [self.udata setBool:FALSE forKey:@"sent_ach_died_100"];
     [self.udata setBool:FALSE forKey:@"sent_ach_jumped_1000"];
     [self.udata setBool:FALSE forKey:@"sent_ach_collected_666"];
+    [self.udata setBool:FALSE forKey:@"sent_ach_halos"];        
 }
 
 

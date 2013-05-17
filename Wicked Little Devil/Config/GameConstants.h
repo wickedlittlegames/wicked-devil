@@ -18,6 +18,7 @@
 #define ACV_DIED_100_TIMES 13 // died 100 times "It's Safer in Hell" // when user.died = 100 - 20
 #define ACV_1000JUMPSONPLATFORM 14 // jumped on 1000 platforms "Van Halen Would Be Proud" when user.jumped = 1000 - 50
 #define ACV_COLLECTED_666_SOULS 20 // collected 666 souls "The Number Of The Beast" - 666 souls - 20
+#define ACV_HALO 22
 
 // V1.1 ACHV
 #define ACV_BEAT_WORLD_3 4 // escaped from the sea "Boiling Oceans" // if player world > 3 - 50

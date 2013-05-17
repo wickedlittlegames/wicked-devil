@@ -43,13 +43,15 @@
         [request send];
                         
         user = [[User alloc] init];
-        [user check_achiements];
+        
         if ( DEVDEBUG ) { user.collected = 1000000; [user sync]; }
+        
         if (![user isOnline])
         {
             [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
         }
         
+        [self reportAchievements];
         [self reportLeaderboardHighscores];
         
         app = (AppController*) [[UIApplication sharedApplication] delegate];
@@ -322,8 +324,6 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [self reportAchievements];
-    
     GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
     achivementViewController.achievementDelegate = self;
     [[app navController] presentModalViewController:achivementViewController animated:YES];
@@ -450,6 +450,11 @@
     {
         [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_1000JUMPSONPLATFORM] percentComplete:100.0f];
         user.sent_ach_jumped_1000 = YES;
+    }
+    if ( user.ach_halo && !user.sent_ach_halo )
+    {
+        [gkHelper reportAchievementWithID:[NSString stringWithFormat:@"%i",ACV_HALO] percentComplete:100.0f];
+        user.sent_ach_halo = YES;
     }
     [user sync];
     [user sync_achievements];

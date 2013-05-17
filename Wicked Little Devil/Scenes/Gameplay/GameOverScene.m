@@ -88,6 +88,9 @@
                  
                  [game.user setGameProgressforWorld:next_world level:next_level];
                  [game.user sync];
+                 
+                 // This is where it should sent off to Facebook Open Graph for Score
+                 // Andy just completed Hell Level 19 on Wicked Devil 
              }
              else
              {

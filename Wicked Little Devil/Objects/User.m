@@ -751,16 +751,13 @@
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_10.html",
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_11.html",
                                     @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_12.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_13.html",                                                                        
+                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_13.html",
                                     nil];
         
-        NSMutableDictionary* params =   [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                         [NSString stringWithFormat:@"%@",
-                                          [achievementURLs objectAtIndex:ach_id]], @"achievement",
-                                         nil];
+        NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      [NSString stringWithFormat:@"%@",[achievementURLs objectAtIndex:ach_id]], @"achievement", nil];
         
-        PF_FBRequest *req = [[PF_FBRequest alloc] initWithSession:[PFFacebookUtils session] graphPath:@"me/achievements" parameters:params HTTPMethod:@"POST"];
-        [req startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {}];
+        [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/achievements", self.facebook_id] parameters:param HTTPMethod:@"POST" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {}];
     }
 }
 

@@ -81,7 +81,7 @@
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
         
         // Add world layers to the scroller
-        [worlds addObject:[self updates]];
+//        [worlds addObject:[self updates]];
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
@@ -114,12 +114,41 @@
         
         CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
-        [self addChild:menu_stats];        
+        [self addChild:menu_stats];
     }
 	return self;
 }
 
-#pragma mark FACEBOOK SETS
+#pragma mark FACEBOOK STUFF
+
+- (void) tap_facebook
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        Game *tmpgame = [[Game alloc] init];
+        tmpgame.user = user;
+        
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
+    }
+    else
+    {
+        NSArray *permissions        = [NSArray arrayWithObjects:@"publish_actions",@"user_games_activity", nil];
+        
+        [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
+            if (!pfuser)
+            {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            }
+            else
+            {
+                NSLog(@"User logged in through Facebook!");
+                [self getFacebookImage];
+            }
+        }];
+    }
+}
 
 - (void) setFacebookImage
 {
@@ -138,8 +167,40 @@
 
 - (void) getFacebookImage
 {
-    // This goes off and calls the request delegate method
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/?fields=name,location,gender,picture" andDelegate:self];
+    [FBRequestConnection startWithGraphPath:@"me/?fields=name,location,gender,picture" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        NSDictionary *userData = (NSDictionary *)result;
+        imageData = [[NSMutableData alloc] init];
+        
+        if ( user.facebook_id == NULL )
+        {
+            user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
+            [user sync_facebook];
+        }
+        
+        NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2];
+        
+        urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    }];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [imageData appendData:data];
+    user.facebook_image = imageData;
+    [user sync_facebook];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+    [btn_facebooksignin setNormalImage:fbimage];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
+{
+    return nil;
 }
 
 #pragma mark TAPS
@@ -220,102 +281,8 @@
     [[app navController] presentModalViewController:achivementViewController animated:YES];
 }
 
-- (void) tap_facebook
-{
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-    {
-        Game *tmpgame = [[Game alloc] init];
-        tmpgame.user = user;
-        
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
-    }
-    else
-    {
-        NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
-        [PFFacebookUtils logInWithPermissions:permissionsArray
-                                        block:^(PFUser *pfuser, NSError *error) {
-                                            if (!pfuser) {
-                                                if (!error)
-                                                {
-                                                }
-                                                else
-                                                {
-                                                    NSLog(@"Uh oh. An error occurred: %@", error);
-                                                }
-                                            }
-                                            else if (pfuser.isNew)
-                                            {
-                                                
-                                                [self getFacebookImage];
-                                                user.collected += 500;
-                                                [user sync];
-                                            }
-                                            else
-                                            {
-                                                
-                                                [self getFacebookImage];
-                                            }
-                                        }
-         ];
-    }
-}
-
-#pragma mark Facebook Parse Stuff
-
-- (void)request:(PF_FBRequest *)request didLoad:(id)result
-{
-    NSDictionary *userData = (NSDictionary *)result;
-    imageData = [[NSMutableData alloc] init];
-    
-    if ( user.facebook_id == NULL )
-    {
-        user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
-        [user sync_facebook];
-    }
-    
-    NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2];
-    
-    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [imageData appendData:data];
-    user.facebook_image = imageData;
-    [user sync_facebook];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
-    [btn_facebooksignin setNormalImage:fbimage];
-}
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
-{
-    return nil;
-}
 
 #pragma mark WORLDS
-
-- (CCLayer*) updates
-{
-    CCLayer *layer          = [CCLayer node];
-    
-    CCSprite *bg_ocean_promo = [CCSprite spriteWithFile:@"panel-promo-ocean.png"];
-    [bg_ocean_promo setPosition:ccp(screenSize.width/2, screenSize.height - 150)];
-    [layer addChild:bg_ocean_promo];
-    
-    CCMenu *menu_powerups_promo = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"ui-promo-powerups.png" selectedImage:@"ui-promo-powerups.png" target:self selector:@selector(tap_equip:)], nil];
-    [menu_powerups_promo setPosition:ccp(screenSize.width/2, screenSize.height - 330)];
-    [layer addChild:menu_powerups_promo];
-    
-    return layer;
-}
 
 - (CCLayer*) hell
 {

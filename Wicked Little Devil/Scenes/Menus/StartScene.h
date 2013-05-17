@@ -13,7 +13,7 @@
 #import "User.h"
 
 @class AppController;
-@interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, PF_FBRequestDelegate, NSURLConnectionDelegate, PHPublisherContentRequestDelegate>
+@interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, NSURLConnectionDelegate, PHPublisherContentRequestDelegate>
 {
     CCMenuItem *btn_mute, *btn_muted;
     GameKitHelper *gkHelper;

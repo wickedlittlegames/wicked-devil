@@ -11,7 +11,7 @@
 #import "GameConstants.h"
 #import <Parse/Parse.h>
 
-@interface User : NSObject <PF_FBRequestDelegate> {} 
+@interface User : NSObject
 
 @property (nonatomic, retain) NSUserDefaults *udata;
 @property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps, character;

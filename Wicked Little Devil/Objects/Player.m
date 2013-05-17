@@ -114,7 +114,6 @@
 
 - (void) setupAnimations
 {
-    CCLOG(@"SETTING UP NORMAL ANIMATIONS");
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDevil.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDevil.png"];
     [self addChild:spriteSheet];
@@ -155,7 +154,6 @@
 
 - (void) setupAnimationsDetective
 {
-    CCLOG(@"SETTING UP dETECTIVE");    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AnimDetectiveDevil.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AnimDetectiveDevil.png"];
     [self addChild:spriteSheet];

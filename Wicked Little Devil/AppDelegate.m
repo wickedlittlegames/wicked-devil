@@ -11,6 +11,8 @@
 //#import "GameScene.h"
 //#import "EquipMenuScene.h"
 //#import "LevelSelectScene.h"
+#import "GameOverFacebookScene.h"
+#import "WorldSelectScene.h"
 #import "MKStoreManager.h"
 #import "FlurryAnalytics.h"
 
@@ -29,7 +31,8 @@
     [[PHPublisherOpenRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret] send];
     
     // Connect Parse to Facebook
-    [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
+//    [PFFacebookUtils initializeWithApplicationId:@"292930497469007"];
+    [PFFacebookUtils initializeFacebook];
     
     // Start an observer for the store
     [MKStoreManager sharedManager];
@@ -108,7 +111,8 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene:[StartScene scene]];
+	[director_ pushScene:[StartScene scene]];    
+//	[director_ pushScene:[WorldSelectScene scene]];
 //	[director_ pushScene:[LevelSelectScene sceneWithWorld:1]];
 ////    [director_ pushScene:[EquipMenuScene scene]];
 ////    [director_ pushScene:[GameScene sceneWithWorld:(int)1 andLevel:1 isRestart:TRUE restartMusic:FALSE]];
@@ -167,6 +171,10 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

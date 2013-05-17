@@ -16,7 +16,7 @@
 @class User;
 @class ShopScene;
 @class AppController;
-@interface WorldSelectScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, PF_FBRequestDelegate, NSURLConnectionDelegate>
+@interface WorldSelectScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, NSURLConnectionDelegate>
 {
     CGSize screenSize;
     NSString *font;

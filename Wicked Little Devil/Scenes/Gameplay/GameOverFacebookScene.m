@@ -85,9 +85,9 @@
                                           [NSString stringWithFormat:@"%i",gamescore], @"score",
                                           [[PFFacebookUtils session] accessToken],@"access_token",
                                           nil];
-            PF_FBRequest *req = [[PF_FBRequest alloc] initWithSession:[PFFacebookUtils session] graphPath:@"me/scores" parameters:param HTTPMethod:@"POST"];
-            [req startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
-                if ( error != nil ) 
+            
+            [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"me/scores"] parameters:param HTTPMethod:@"POST" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if ( error != nil )
                 {
                     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
                     if ( self.fromSceneID == 1 )
@@ -107,8 +107,39 @@
                 {
                     if ( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0") )
                     {
-                        NSMutableDictionary *param2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:[[PFFacebookUtils session] accessToken],@"access_token",nil];
-                        [[PFFacebookUtils facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/scores",[[PFFacebookUtils session] appID]] andParams:param2 andHttpMethod:@"GET" andDelegate:self];
+                        [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/scores", [PFFacebookUtils session].appID] parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                            NSArray *friendScores = (NSArray *)[result objectForKey:@"data"];
+                            for(int i = 0; i < friendScores.count; i++)
+                            {
+                                [fbdata addObject:[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"name"]];
+                                [fbdata2 addObject:[[friendScores objectAtIndex:i] objectForKey:@"score"]];
+                                [fbdata3 addObject:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"]]];
+                            }
+                            
+                            view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
+                            table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
+                            table.dataSource = self;
+                            table.delegate   = self;
+                            
+                            UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                             action:@selector(handleSwipeLeft:)];
+                            [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+                            [table addGestureRecognizer:recognizer];
+                            
+                            //Add a right swipe gesture recognizer
+                            recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(handleSwipeRight:)];
+                            recognizer.delegate = self;
+                            [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+                            [table addGestureRecognizer:recognizer];
+                            
+                            [view addSubview:table];
+                            [app.window addSubview:view];
+                            
+                            timeout_check = 0;
+                            [self unschedule:@selector(timeoutchecker)];
+                            [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+                        }];
                     }
                     else
                     {
@@ -134,8 +165,8 @@
                                    @"Wicked Devil", @"title",
                                    @"Can you beat my escape from Hell?.",  @"message",
                                    nil];
-
-    [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
+    
+    [FBWebDialogs presentDialogModallyWithSession:[PFFacebookUtils session] dialog:@"apprequests" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {}];
 }
 
 - (void) timeoutchecker
@@ -155,39 +186,9 @@
     }
 }
 
-- (void) request:(PF_FBRequest *)request didLoad:(id)result
+- (void) request:(FBRequest *)request didLoad:(id)result
 {
-    NSArray *friendScores = (NSArray *)[result objectForKey:@"data"];
-    for(int i = 0; i < friendScores.count; i++)
-    {
-        [fbdata addObject:[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"name"]];
-        [fbdata2 addObject:[[friendScores objectAtIndex:i] objectForKey:@"score"]];
-        [fbdata3 addObject:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",[[[friendScores objectAtIndex:i] objectForKey:@"user"] objectForKey:@"id"]]];
-    }
     
-    view    = [[UIView alloc] initWithFrame:CGRectMake(0, 115, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
-    table   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [[CCDirector sharedDirector] winSize].width, [[CCDirector sharedDirector] winSize].height - 175)];
-    table.dataSource = self;
-    table.delegate   = self;
-    
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                                     action:@selector(handleSwipeLeft:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [table addGestureRecognizer:recognizer];
-    
-    //Add a right swipe gesture recognizer
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                           action:@selector(handleSwipeRight:)];
-    recognizer.delegate = self;
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [table addGestureRecognizer:recognizer];
-    
-    [view addSubview:table];
-    [app.window addSubview:view];
-
-    timeout_check = 0;
-    [self unschedule:@selector(timeoutchecker)];
-    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
     
 }
 

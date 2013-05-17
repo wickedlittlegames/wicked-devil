@@ -52,7 +52,6 @@
          next_level         = 1;
          
          game.user.collected += collected;
-//         game.user.halocollected += game.player.halocollected;
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
          if ( !(game.world == 20) )

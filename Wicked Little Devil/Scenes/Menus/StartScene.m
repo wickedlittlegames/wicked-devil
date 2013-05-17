@@ -43,6 +43,7 @@
         [request send];
                         
         user = [[User alloc] init];
+        [user check_achiements];
         if ( DEVDEBUG ) { user.collected = 1000000; [user sync]; }
         if (![user isOnline])
         {
@@ -197,6 +198,37 @@
     else                                           { btn_mute.visible     = YES; btn_muted.visible = NO; }
 }
 
+#pragma mark FACEBOOK STUFF
+
+- (void) tap_facebook
+{
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        Game *tmpgame = [[Game alloc] init];
+        tmpgame.user = user;
+        
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
+    }
+    else
+    {
+        NSArray *permissions        = [NSArray arrayWithObjects:@"publish_actions",@"user_games_activity", nil];
+        
+        [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
+            if (!pfuser)
+            {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            }
+            else
+            {
+                NSLog(@"User logged in through Facebook!");
+                [self getFacebookImage];
+            }
+        }];
+    }
+}
+
 - (void) setFacebookImage
 {
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
@@ -204,18 +236,6 @@
         if ( user.facebook_image == NULL ) [self getFacebookImage];
         else
         {
-            if ( user.facebook_id == NULL )
-            {
-                PF_FBRequest *request = [PF_FBRequest requestForMe];
-                [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
-                                                      id result,
-                                                      NSError *error) {
-                    if (!error) {
-                        user.facebook_id = [result objectForKey:@"id"];
-                        [user sync_facebook];
-                    }
-                }];
-            }
             CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             CCSprite *fbimage2 = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
             [btn_facebooksignin setNormalImage:fbimage];
@@ -224,20 +244,42 @@
     }
 }
 
-
--(void)request:(PHPublisherContentRequest *)request unlockedReward:(PHReward *)reward;
-{
-    if ( ![user.udata boolForKey:[reward receipt]] )
-    {
-        user.collected += [reward quantity];
-        [user.udata setBool:TRUE forKey:[reward receipt]];
-        [user sync];
-    }
-}
-
 - (void) getFacebookImage
 {
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me/?fields=name,location,gender,picture" andDelegate:self];
+    [FBRequestConnection startWithGraphPath:@"me/?fields=name,location,gender,picture" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        NSDictionary *userData = (NSDictionary *)result;
+        imageData = [[NSMutableData alloc] init];
+        
+        if ( user.facebook_id == NULL )
+        {
+            user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
+            [user sync_facebook];
+        }
+        
+        NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2];
+        
+        urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    }];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [imageData appendData:data];
+    user.facebook_image = imageData;
+    [user sync_facebook];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
+    [btn_facebooksignin setNormalImage:fbimage];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
+{
+    return nil;
 }
 
 #pragma mark TAPS
@@ -299,99 +341,6 @@
     [user.udata setBool:!current_mute_status forKey:@"MUTED"];
     
     [user.udata synchronize];
-}
-
-- (void) tap_facebook
-{
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-    {
-        Game *tmpgame = [[Game alloc] init];
-        tmpgame.user = user;
-
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:1]]];
-    }
-    else
-    {       
-        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
-        NSArray *permissionsArray        = [NSArray arrayWithObjects:@"publish_actions",@"offline_access", nil];
-        [PFFacebookUtils logInWithPermissions:permissionsArray
-            block:^(PFUser *pfuser, NSError *error) {
-                if (!pfuser) {
-                    if (!error)
-                    {
-                    }
-                    else
-                    {
-                        NSLog(@"Uh oh. An error occurred: %@", error);
-                    }
-                }
-                else if (pfuser.isNew)
-                {
-                    [self getFacebookImage];
-                    //prompt_facebook.visible = FALSE;
-                    
-                    PF_FBRequest *request = [PF_FBRequest requestForMe];
-                    [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
-                                                          id result,
-                                                          NSError *error) {
-                        if (!error) {
-                            // Store the current user's Facebook ID on the user
-                            user.facebook_id = [result objectForKey:@"id"];
-                            [user sync_facebook];
-                        }
-                    }];
-                    
-                    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-                }
-                else
-                {
-                    //prompt_facebook.visible = FALSE;
-                    [self getFacebookImage];
-                    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-                }
-            }
-        ];
-    }
-}
-
-#pragma mark Facebook Parse Stuff
-
-- (void)request:(PF_FBRequest *)request didLoad:(id)result
-{
-    NSDictionary *userData = (NSDictionary *)result;
-    imageData = [[NSMutableData alloc] init];
-    
-    if ( user.facebook_id == NULL )
-    {
-        user.facebook_id = [NSString stringWithFormat:@"%@",[userData objectForKey:@"id"]];
-        [user sync_facebook];
-    }
-
-    NSString *pictureURL = [[[userData objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2];
-    
-    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [imageData appendData:data];
-    user.facebook_image = imageData;
-    [user sync_facebook];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
-    [btn_facebooksignin setNormalImage:fbimage];
-}
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
-{
-    return nil;
 }
 
 #pragma mark PlayHaven delegates

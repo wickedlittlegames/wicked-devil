@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 @class Game, GameOverScene, AppController;
-@interface GameOverFacebookScene : CCLayer <PF_FBRequestDelegate, PF_FBDialogDelegate, NSURLConnectionDelegate,UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface GameOverFacebookScene : CCLayer <NSURLConnectionDelegate,UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 {
     AppController *app;
     UIView *view;

@@ -115,6 +115,29 @@
         CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
         [self addChild:menu_stats];
+        
+        if ( ![user.udata boolForKey:@"HALO_TIP"] && ![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        {
+            [user.udata setBool:YES forKey:@"HALO_TIP"];
+            CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
+            [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
+            [self addChild:tipbg];
+            
+            CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
+                if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+                [self tap_facebook];
+                tipbg.visible = FALSE;                
+            }];
+            CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
+                if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+                tipbg.visible = FALSE;
+            }];
+            
+            CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
+            [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
+            [tip_menu alignItemsVerticallyWithPadding:10];
+            [tipbg addChild:tip_menu];
+        }
     }
 	return self;
 }

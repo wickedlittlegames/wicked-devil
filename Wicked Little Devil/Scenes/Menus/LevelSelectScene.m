@@ -161,21 +161,6 @@
         [self addChild:label_collected];
         [self addChild:label_halo];
         [self addChild:icon_halo];
-        
-        if ( ![user.udata boolForKey:@"HALO_TIP"] )
-        {
-            CCSprite *tip1 = [CCSprite spriteWithFile:@"tip-world-1-level-1.png"];
-            [tip1 setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-            [self addChild:tip1];
-            
-            CCMenu *menu_tip1 = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"tip-ok.png" selectedImage:@"tip-ok.png" block:^(id sender){
-                tip1.visible = NO;
-                [user.udata setBool:TRUE forKey:@"HALO_TIP"];
-            }], nil];
-            [menu_tip1 setAnchorPoint:ccp(0,0)];
-            [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
-            [tip1 addChild:menu_tip1];
-        }
     }
     return self;
 }

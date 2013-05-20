@@ -41,7 +41,7 @@
         PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
         request.showsOverlayImmediately = YES;
         [request send];
-                        
+                                
         user = [[User alloc] init];
         if ( DEVDEBUG ) { user.collected = 1000000; [user sync]; }
         

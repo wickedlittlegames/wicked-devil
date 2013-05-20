@@ -31,6 +31,10 @@
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         NSString *font = @"CrashLanding BB";
         
+        PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"equip_menu" delegate:(id)self];
+        request.showsOverlayImmediately = YES;
+        [request send];
+        
         CCMenuItemImage *btn_devil      = [CCMenuItemImage itemWithNormalImage:@"ui-btn-devilupgrades.png" selectedImage:@"ui-btn-devilupgrades.png" target:self selector:@selector(tap_devil)];
         CCMenuItemImage *btn_special    = [CCMenuItemImage itemWithNormalImage:@"ui-btn-specialupgrades.png" selectedImage:@"ui-btn-specialupgrades.png" target:self selector:@selector(tap_special)];
         CCMenuItemImage *btn_purchase   = [CCMenuItemImage itemWithNormalImage:@"ui-btn-purchaseupgrades.png" selectedImage:@"ui-btn-purchaseupgrades.png" target:self selector:@selector(tap_purchase)];

@@ -8,6 +8,26 @@ function curPageURL() {
  }
  return $pageURL;
 }
+
+$worldname = "";
+switch($_REQUEST['og:world'])
+{
+  case 1:
+  $worldname = "HELL";
+  break;
+
+case 2:
+  $worldname = "UNDERGROUND";
+  break;
+
+  case 3:
+  $worldname = "OCEAN";
+  break;
+
+  case 4:
+  $worldname = "LAND";
+  break;
+}
 ?>
 
 <html>
@@ -15,11 +35,13 @@ function curPageURL() {
       <meta property="fb:app_id" content="292930497469007" /> 
       <meta property="og:type"   content="wickeddevil:level" /> 
       <meta property="og:url" content="<?php echo strip_tags(curPageURL());?>">
-      <meta property="og:title"  content="World <?php echo strip_tags($_REQUEST['og:world']);?> Level <?php echo strip_tags($_REQUEST['og:level']);?>" /> 
+      <meta property="og:title"  content="<?php echo $worldname;?>: Level <?php echo strip_tags($_REQUEST['og:level']);?>" /> 
+       <meta property="og:description" content="Scored <?php echo strip_tags($_REQUEST['og:score']);?> and collected  <?php echo strip_tags($_REQUEST['og:bigsouls']);?> big souls!"/>
       <meta property="og:image"  content="http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement.png" /> 
-      <title>Wicked Devil - World <?php echo strip_tags($_REQUEST['og:world']);?> Level <?php echo strip_tags($_REQUEST['og:level']);?>!</title>
+      <title>Wicked Devil - <?php echo $worldname;?>: Level <?php echo strip_tags($_REQUEST['og:level']);?>!</title>
   </head>
     <body>
-        <p>Wicked Devil - World <?php echo strip_tags($_REQUEST['og:world']);?> Level <?php echo strip_tags($_REQUEST['og:level']);?>!</p>
+        <p>Wicked Devil - World <?php echo $worldname;?>: Level <?php echo strip_tags($_REQUEST['og:level']);?>!</p>
+        <p>Scored <?php echo strip_tags($_REQUEST['og:score']);?> and collected  <?php echo strip_tags($_REQUEST['og:bigsouls']);?> big souls!</p>
     </body>
 </html>

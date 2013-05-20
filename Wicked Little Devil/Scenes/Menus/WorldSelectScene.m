@@ -88,7 +88,7 @@
         [worlds addObject:[self earth]];
         [worlds addObject:[self comingsoon]];
         scroller = [[CCScrollLayer alloc] initWithLayers:worlds widthOffset: 0];
-        [scroller selectPage:user.cache_current_world];
+        [scroller selectPage:user.cache_current_world-1];
         [scroller setPagesIndicatorNormalColor:ccc4(253, 217, 183, 255)];
         [scroller setPagesIndicatorSelectedColor:ccc4(248, 152, 39, 255)];
         

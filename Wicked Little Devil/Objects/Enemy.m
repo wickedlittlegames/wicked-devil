@@ -109,7 +109,9 @@
     
     if ( game.player.velocity.y > 0 ) // If player is jumping INTO the bat
     {
-        if ( --game.player.health <= 0 )
+        game.player.health--;
+        
+        if ( game.player.health <= 0 )
         {
             game.player.animating = NO;
             [game.player animate:4];

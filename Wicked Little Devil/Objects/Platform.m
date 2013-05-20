@@ -190,16 +190,12 @@
             {
                 case 51:
                     {
-                        tmpPlatform.visible = TRUE;
                         tmpPlatform.dead = !game.player.toggled_platform;
-                        tmpPlatform.opacity = (tmpPlatform.dead ? 100 : 255);
                     }
                     break;
                 case 52:
                     {
-                        tmpPlatform.visible = TRUE;
                         tmpPlatform.dead = game.player.toggled_platform;
-                        tmpPlatform.opacity = (tmpPlatform.dead ? 100 : 255);
                     }
                     break;
                 default:

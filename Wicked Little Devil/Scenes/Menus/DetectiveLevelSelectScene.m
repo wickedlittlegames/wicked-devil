@@ -31,6 +31,7 @@
         CGSize screenSize       = [CCDirector sharedDirector].winSize;
         NSString *font          = @"CrashLanding BB";
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
+        NSNumber *itemsPerRow2   = [NSNumber numberWithInt:2];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
         float menu_y            = screenSize.height - 212;
@@ -42,7 +43,7 @@
         CCMenu  *menu                   = [CCMenu menuWithItems:nil];
         
         // Loop to show the levels
-        for (int lvl = 1; lvl <= 12; lvl++)
+        for (int lvl = 1; lvl <= 10; lvl++)
         {
             CCMenuItemImage *button = [CCMenuItemImage itemWithNormalImage:@"btn-level-bw.png" selectedImage:@"btn-level-bw.png" disabledImage:@"btn-level-locked.png" target:self selector:@selector(tap_level:)];
             button.tag = lvl; button.userData = (int*)world; button.isEnabled = TRUE;
@@ -69,7 +70,7 @@
             
             [menu addChild:button];
         }
-        [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,nil];
+        [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow2,nil];
         
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg_20.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back-bw.png"    selectedImage:@"btn-back-bw.png"       target:self selector:@selector(tap_back:)], nil];

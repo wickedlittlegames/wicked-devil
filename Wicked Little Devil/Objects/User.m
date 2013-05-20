@@ -587,17 +587,27 @@
 
 - (void) skipLevel
 {
-    if ( !(self.worldprogress == CURRENT_WORLDS_PER_GAME) && !(self.levelprogress == LEVELS_PER_WORLD))
+    int next_level = 1;
+    int next_world = 1;
+    
+    if ( !(self.worldprogress == CURRENT_WORLDS_PER_GAME+1))
     {
         if (self.levelprogress == LEVELS_PER_WORLD)
         {
-            self.worldprogress += 1;
-            self.levelprogress  = 1;
+            next_level = 1;
+            next_world = self.worldprogress + 1;
         }
         else
         {
-            self.levelprogress += 1;
+            next_level = self.levelprogress + 1;
+            next_world = self.worldprogress;
         }
+        
+        self.worldprogress = next_world;
+        self.levelprogress = next_level;
+        
+        CCLOG(@"UNLOCKING %i | %i ", self.worldprogress, self.levelprogress);
+        
         [self setGameProgressforWorld:self.worldprogress level:self.levelprogress];
         [self sync];
     }

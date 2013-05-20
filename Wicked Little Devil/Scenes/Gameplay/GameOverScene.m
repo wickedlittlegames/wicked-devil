@@ -90,7 +90,17 @@
                  [game.user sync];
                  
                  // This is where it should sent off to Facebook Open Graph for Score
-                 // Andy just completed Hell Level 19 on Wicked Devil 
+                 // Andy just completed Hell Level 19 on Wicked Devil
+                 NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
+                 action[@"level"] = [NSString stringWithFormat:@"http://www.wickedlittlegames.com/opengraph/wickeddevil/world-level.php?og:world=%i&og:level=%i", game.world, game.level];
+                 
+                 [FBRequestConnection startForPostWithGraphPath:@"me/wickeddevil:completed"
+                                                    graphObject:action
+                                              completionHandler:^(FBRequestConnection *connection,
+                                                                  id result,
+                                                                  NSError *error) {
+
+                                              }];
              }
              else
              {

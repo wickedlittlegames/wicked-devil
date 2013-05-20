@@ -307,7 +307,7 @@
 		9C4EA3631626F88800E7B66F /* BatAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA35F1626F88800E7B66F /* BatAnim.plist */; };
 		9C4EA3641626F88800E7B66F /* BatAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3601626F88800E7B66F /* BatAnim-hd.png */; };
 		9C4EA3651626F88800E7B66F /* BatAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3611626F88800E7B66F /* BatAnim-hd.plist */; };
-		9C593695174A3AA700C5B33A /* harp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C593694174A3AA700C5B33A /* harp.caf */; };
+		9C593697174A429E00C5B33A /* harp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C593696174A429E00C5B33A /* harp.caf */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
 		9C5F892C1622DC9F00C001E4 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BC1622DC9E00C001E4 /* bg_1.png */; };
 		9C5F892D1622DC9F00C001E4 /* bg_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BD1622DC9E00C001E4 /* bg_2-hd.png */; };
@@ -1033,7 +1033,7 @@
 		9C4EA35F1626F88800E7B66F /* BatAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BatAnim.plist; sourceTree = "<group>"; };
 		9C4EA3601626F88800E7B66F /* BatAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BatAnim-hd.png"; sourceTree = "<group>"; };
 		9C4EA3611626F88800E7B66F /* BatAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BatAnim-hd.plist"; sourceTree = "<group>"; };
-		9C593694174A3AA700C5B33A /* harp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = harp.caf; path = ../../../../../../../Downloads/harp.caf; sourceTree = "<group>"; };
+		9C593696174A429E00C5B33A /* harp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = harp.caf; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
 		9C5F88BC1622DC9E00C001E4 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
 		9C5F88BD1622DC9E00C001E4 /* bg_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_2-hd.png"; sourceTree = "<group>"; };
@@ -2255,7 +2255,7 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
-				9C593694174A3AA700C5B33A /* harp.caf */,
+				9C593696174A429E00C5B33A /* harp.caf */,
 				9C7384A51742FBE400024F00 /* bg-loop4.aifc */,
 				9C35DA29170DB949006F24DA /* detective-music.aifc */,
 				9C7253A2164B15BC004AC4D7 /* bubble.caf */,
@@ -3325,7 +3325,7 @@
 				9C4AF9561745294C0024A975 /* icon-halo-med.png in Resources */,
 				9C4AF9571745294C0024A975 /* icon-halo-med-hd.png in Resources */,
 				9C72416B174626E00095B103 /* FacebookSDKResources.bundle in Resources */,
-				9C593695174A3AA700C5B33A /* harp.caf in Resources */,
+				9C593697174A429E00C5B33A /* harp.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

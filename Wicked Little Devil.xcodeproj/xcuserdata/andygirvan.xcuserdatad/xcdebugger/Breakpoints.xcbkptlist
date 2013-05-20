@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Wicked Little Devil/Scenes/Gameplay/GameOverScene.m"
-         timestampString = "390735712.047116"
+         timestampString = "390752635.708312"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "508"
-         endingLineNumber = "508"
+         startingLineNumber = "520"
+         endingLineNumber = "520"
          landmarkName = "-tap_facebook"
          landmarkType = "5">
       </FileBreakpoint>

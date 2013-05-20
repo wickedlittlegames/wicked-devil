@@ -149,7 +149,11 @@
         [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
-        [self addChild:menu_skip];
+        CCLOG(@"%i",user.worldprogress);
+        if ( !(user.worldprogress > world) )
+        {
+            [self addChild:menu_skip];
+        }
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];
         [self addChild:label_world_score];
@@ -186,6 +190,7 @@
         tmp_collectable_increment = SKIP_COST;
         
         user.collected -= SKIP_COST;
+        [user sync];
         
         [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
     }
@@ -229,7 +234,7 @@
     {
         [self unschedule: @selector(collectable_remove_tick)];
         [user skipLevel];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:1]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:user.worldprogress]]];
     }
 }
 

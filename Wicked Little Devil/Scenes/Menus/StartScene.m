@@ -43,7 +43,6 @@
         [request send];
                         
         user = [[User alloc] init];
-        
         if ( DEVDEBUG ) { user.collected = 1000000; [user sync]; }
         
         if (![user isOnline])

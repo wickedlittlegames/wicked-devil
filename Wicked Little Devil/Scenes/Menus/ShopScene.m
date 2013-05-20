@@ -106,7 +106,7 @@
     
     data    = [NSArray arrayWithObjects: description1,description2,description3,description4,description5,nil];
     data2   = [NSArray arrayWithObjects: upgradePrice1,upgradePrice2,upgradePrice3,upgradePrice4,upgradePrice5, nil];
-    data3   = [NSArray arrayWithObjects: @"10,000 Souls",@"20,000 Souls", @"50,000 Souls", @"100,000 Souls", @"200,000 Souls", nil];
+    data3   = [NSArray arrayWithObjects: @"Handful o' Souls", @"Bag o' Souls", @"Chalice o' Souls", @"Truck-load o' Souls", @"Treasure Chest o' Souls", nil];
     
     table.dataSource = self;
     table.delegate   = self;

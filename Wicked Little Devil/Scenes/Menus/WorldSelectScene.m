@@ -313,8 +313,8 @@
     [layer addChild:bg];
     [layer addChild:menu];
     
-    button.isEnabled = DEVDEBUG;
-    
+    if ( DEVDEBUG ) { button.isEnabled = TRUE; }    
+
     if ( !button.isEnabled )
     {
         CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
@@ -338,8 +338,8 @@
     [layer addChild:bg];
     [layer addChild:menu];
     
-    button.isEnabled = DEVDEBUG;
-    
+    if ( DEVDEBUG ) { button.isEnabled = TRUE; }    
+
     if ( !button.isEnabled )
     {
         CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
@@ -363,8 +363,9 @@
     [layer addChild:bg];
     [layer addChild:menu];
     
-    button.isEnabled = DEVDEBUG;
+    if ( DEVDEBUG ) { button.isEnabled = TRUE; }    
     
+
     if ( !button.isEnabled )
     {
         CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];

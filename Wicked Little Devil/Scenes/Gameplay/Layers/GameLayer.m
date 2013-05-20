@@ -92,10 +92,7 @@
     {
         platform.visible = ( [platform worldBoundingBox].origin.y < [[CCDirector sharedDirector] winSize].height && [platform worldBoundingBox].origin.y > -20 );
         if ( !platform.animating ) [platform move];
-        if ( platform.tag == 52 )
-        {
-            platform.dead = TRUE;
-        }
+        if ( platform.tag == 52 ) {         platform.opacity = 255;  platform.dead = TRUE; }
     }
     CCARRAY_FOREACH(self.enemies, enemy)
     {

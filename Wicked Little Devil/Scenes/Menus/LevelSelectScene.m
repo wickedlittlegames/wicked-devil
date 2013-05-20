@@ -171,6 +171,7 @@
 {
     if ( user.collected >= SKIP_COST )
     {
+        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         tmp_collectables  = user.collected;
         tmp_collectable_increment = SKIP_COST;
         
@@ -217,6 +218,7 @@
     }
     else
     {
+        [MBProgressHUD hideHUDForView:[app navController].view animated:YES];        
         [self unschedule: @selector(collectable_remove_tick)];
         [user skipLevel];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:user.worldprogress]]];

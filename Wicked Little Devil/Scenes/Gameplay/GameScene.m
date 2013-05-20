@@ -125,13 +125,20 @@
         game.fx = layer_fx;
         game.pastScore = [user getHighscoreforWorld:w level:l];
         [game.player setupPowerup:user.powerup];
-        if ( user.bought_character )
+        if ( w == 20 )
         {
-            [game.player setupCharacter:user.character];
+            [game.player setupCharacter:0];
         }
         else
         {
-            [game.player setupAnimations];
+            if ( user.bought_character )
+            {
+                [game.player setupCharacter:user.character];
+            }
+            else
+            {
+                [game.player setupAnimations];
+            }
         }
 
         [layer_ui setupItemsforGame:game];

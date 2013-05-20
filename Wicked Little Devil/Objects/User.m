@@ -583,7 +583,24 @@
     }
     
     return tmp_score;
+}
 
+- (void) skipLevel
+{
+    if ( !(self.worldprogress == CURRENT_WORLDS_PER_GAME) && !(self.levelprogress == LEVELS_PER_WORLD))
+    {
+        if (self.levelprogress == LEVELS_PER_WORLD)
+        {
+            self.worldprogress += 1;
+            self.levelprogress  = 1;
+        }
+        else
+        {
+            self.levelprogress += 1;
+        }
+        [self setGameProgressforWorld:self.worldprogress level:self.levelprogress];
+        [self sync];
+    }
 }
 
 - (NSString*) getEquippedPowerup

@@ -199,36 +199,36 @@
         case 0: //detective
             [self setupAnimationsDetective];
         break;
-//            
-//        case 1: // wicked little
-//        {
-//            [self setupAnimationsDetective];
-//        }
-//        break;
-//            
-//        case 2: // super devil
-//        {
-//            [self setupAnimationsDetective];
-//        }
-//        break;
-//            
-//        case 3: // zombie
-//        {
-//            [self setupAnimationsDetective];
-//        }
-//        break;
-//            
-//        case 4: // ninja
-//        {
-//            [self setupAnimationsDetective];
-//        }
-//        break;
-//            
-//        case 5: // pirate
-//        {
-//            [self setupAnimationsDetective];
-//        }
-//        break;
+            
+        case 1: // wicked little
+        {
+            [self setupAnimationsDetective];
+        }
+        break;
+            
+        case 2: // super devil
+        {
+            [self setupAnimationsDetective];
+        }
+        break;
+            
+        case 3: // zombie
+        {
+            [self setupAnimationsDetective];
+        }
+        break;
+            
+        case 4: // ninja
+        {
+            [self setupAnimationsDetective];
+        }
+        break;
+            
+        case 5: // pirate
+        {
+            [self setupAnimationsDetective];
+        }
+        break;
     }
 }
 

@@ -254,7 +254,7 @@
                 game.player.halocollected++;
                 if ( ![SimpleAudioEngine sharedEngine].mute )
                 {
-//                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"collect_halo.caf",game.player.bigcollected]];
+                    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"harp.caf"]];
                 }
                 
                 [game.fx start:2 position:ccp([halocollectable worldBoundingBox].origin.x + [halocollectable contentSize].width/2, [halocollectable worldBoundingBox].origin.y)];

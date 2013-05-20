@@ -3,6 +3,7 @@
 #define WORLDS_PER_GAME  12
 #define CURRENT_WORLDS_PER_GAME 4 // v1.2
 #define DETECTIVE_UNLOCK_COST 15000
+#define SKIP_COST 5000
 
 #pragma mark === ACHIEVEMENT IDS ===
 

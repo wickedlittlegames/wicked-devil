@@ -222,7 +222,7 @@
     cell.selectionStyle             = UITableViewCellSelectionStyleNone;
     cell.label_title.font           = [UIFont fontWithName:@"CrashLanding BB" size:28.0f];
     cell.label_price.font           = [UIFont fontWithName:@"CrashLanding BB" size:36.0f];
-    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:20.0f];
+    cell.label_description.font     = [UIFont fontWithName:@"CrashLanding BB" size:16.0f];
     cell.image_thumbnail.image      = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[data4 objectAtIndex:indexPath.row]]];
     
     cell.label_title.text           = [data objectAtIndex:indexPath.row];

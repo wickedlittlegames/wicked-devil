@@ -55,4 +55,6 @@
 - (int) getHalosforAll;
 - (int) getGameProgressforWorld:(int)w level:(int)l;
 
+- (void) skipLevel;
+
 @end

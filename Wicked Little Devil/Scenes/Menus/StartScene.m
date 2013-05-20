@@ -345,6 +345,16 @@
 
 #pragma mark PlayHaven delegates
 
+-(void)request:(PHPublisherContentRequest *)request unlockedReward:(PHReward *)reward;
+{
+    if ( ![user.udata boolForKey:[reward receipt]] )
+    {
+        user.collected += [reward quantity];
+        [user.udata setBool:TRUE forKey:[reward receipt]];
+        [user sync];
+    }
+}
+
 -(void)request:(PHPublisherContentRequest *)request contentWillDisplay:(PHContent *)content
 {
     [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];

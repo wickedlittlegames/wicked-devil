@@ -10,6 +10,8 @@
 #import "WorldSelectScene.h"
 #import "ShopScene.h"
 #import "GameScene.h"
+#import "MKStoreManager.h"
+#import "MBProgressHUD.h"
 #import "User.h"
 
 @implementation LevelSelectScene
@@ -27,7 +29,9 @@
     if( (self=[super init]) ) 
     {
         // Used variables throughout
-        User *user = [[User alloc] init];
+        user = [[User alloc] init];
+        app             = (AppController*)[[UIApplication sharedApplication] delegate];
+
         CGSize screenSize       = [CCDirector sharedDirector].winSize;
         NSString *font          = @"CrashLanding BB";
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
@@ -77,7 +81,7 @@
                 {
                     CCSprite *halo = [CCSprite spriteWithFile:@"icon-level-halo.png"];
                     
-                    halo.position = ccp(button.position.x + 32, button.position.y + 45);
+                    halo.position = ccp(button.position.x + 30, button.position.y + 45);
                     [button addChild:halo];
                 }
             }
@@ -119,17 +123,19 @@
 
         CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
+        CCMenu *menu_skip               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_skip)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
         CCSprite *icon_halo             = [CCSprite spriteWithFile:@"icon-halo-med.png"];
         CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
-        CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        label_collected                 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_halo          = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", halos_collectables, (LEVELS_PER_WORLD)] dimensions:CGSizeMake(80, 30) hAlignment:kCCTextAlignmentLeft fontName:font fontSize:26];
         
         [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
+        [menu_skip              setPosition:ccp(75, 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
@@ -143,6 +149,7 @@
         [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
+        [self addChild:menu_skip];
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];
         [self addChild:label_world_score];
@@ -164,12 +171,132 @@
             [menu_tip1 setAnchorPoint:ccp(0,0)];
             [menu_tip1 setPosition:ccp(tip1.contentSize.width/2,27)];
             [tip1 addChild:menu_tip1];
-        }        
+        }
     }
     return self;
 }
 
 #pragma mark TAPS
+
+- (void) tap_skip
+{
+    if ( user.collected >= SKIP_COST )
+    {
+        tmp_collectables  = user.collected;
+        tmp_collectable_increment = SKIP_COST;
+        
+        user.collected -= SKIP_COST;
+        
+        [self schedule: @selector(collectable_remove_tick) interval: 1.0f/60.0f];
+    }
+    else
+    {
+        [self tap_purchase];
+    }
+}
+
+- (void) collectable_remove_tick
+{
+    if ( tmp_collectable_increment > 0 )
+    {
+        if (tmp_collectable_increment > 500)
+		{
+            tmp_collectable_increment -= 500;
+            tmp_collectables -= 500;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        
+        if (tmp_collectable_increment > 100)
+		{
+            tmp_collectable_increment -= 100;
+            tmp_collectables -= 100;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        if (tmp_collectable_increment > 10)
+		{
+            tmp_collectable_increment -= 10;
+            tmp_collectables -= 10;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        else
+		{
+            tmp_collectable_increment --;
+            tmp_collectables --;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+    }
+    else
+    {
+        [self unschedule: @selector(collectable_remove_tick)];
+        [user skipLevel];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[LevelSelectScene sceneWithWorld:1]]];
+    }
+}
+
+- (void) collectable_add_tick
+{
+    if ( tmp_collectable_increment > 0 )
+    {
+        if (tmp_collectable_increment > 500)
+		{
+            tmp_collectable_increment -= 500;
+            tmp_collectables += 500;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        
+        if (tmp_collectable_increment > 100)
+		{
+            tmp_collectable_increment -= 100;
+            tmp_collectables += 100;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        if (tmp_collectable_increment > 10)
+		{
+            tmp_collectable_increment -= 10;
+            tmp_collectables += 10;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+        else
+		{
+            tmp_collectable_increment --;
+            tmp_collectables ++;
+            [label_collected setString:[NSString stringWithFormat:@"%i",tmp_collectables]];
+        }
+    }
+    else
+    {
+        [self unschedule: @selector(collectable_add_tick)];
+    }
+}
+
+- (void) tap_purchase
+{
+    [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
+    
+    int collectedincrease = 10000;
+    tmp_collectables            = user.collected;
+    tmp_collectable_increment   = collectedincrease;
+    
+    [[MKStoreManager sharedManager] buyFeature:IAP_2000soul onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt)
+     {
+         user = [[User alloc] init];
+         user.collected += collectedincrease;
+         [user sync];
+         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+         [self schedule: @selector(collectable_add_tick) interval: 1.0f/60.0f];
+     }
+                                   onCancelled:^
+     {
+         [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+         UIAlertView *alertView = [[UIAlertView alloc]
+                                   initWithTitle:@"Transaction Canceled"
+                                   message:@"There appears to have been a problem with the transaction."
+                                   delegate:self
+                                   cancelButtonTitle:@"OK"
+                                   otherButtonTitles:nil];
+         [alertView show];
+     }];
+}
 
 - (void) tap_level:(CCMenuItem*)sender
 {

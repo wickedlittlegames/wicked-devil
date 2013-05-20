@@ -49,7 +49,7 @@
                        @"Halos: ",
                        @"World Progress: ",
                        @"Level Progress: ",                      
-                       @"Jumps: ",
+//                       @"Jumps: ",
                        @"Deaths: ",
                        @"Detective Unlocked: ",
                        @"Facebook Active: ", nil];
@@ -60,7 +60,7 @@
                        [NSString stringWithFormat:@"%i",[user getHalosforAll]],
                        [NSString stringWithFormat:@"%i",user.worldprogress],
                        [NSString stringWithFormat:@"%i",user.levelprogress],
-                       [NSString stringWithFormat:@"%i",user.jumps],
+//                       [NSString stringWithFormat:@"%i",user.jumps],
                        [NSString stringWithFormat:@"%i",user.deaths],
                        [NSString stringWithFormat:@"%@",(user.unlocked_detective ? @"YES" : @"NO")],
                        [NSString stringWithFormat:@"%@",(user.facebook_id ? @"YES" : @"NO")],

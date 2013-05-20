@@ -11,7 +11,6 @@
 
 #import "BGLayer.h"
 #import "PlayerLayer.h"
-#import "DetectivePlayerLayer.h"
 #import "UILayer.h"
 #import "GameLayer.h"
 
@@ -88,16 +87,14 @@
         layer_bg        = [BGLayer node];
         layer_fx        = [FXLayer node];
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
-
+        layer_player = [PlayerLayer node];
+        
         if ( w == 20 )
         {
-            layer_player    = [DetectivePlayerLayer node];
             [layer_player setupStartGFX:0];
-            [layer_player.player setupAnimationsDetective];
         }
         else
         {
-            layer_player    = [PlayerLayer node];
             if ( user.bought_character )
             {
                 [layer_player setupStartGFX:user.character];
@@ -107,6 +104,7 @@
                 [layer_player setupStartGFX:666];
             }
         }
+     
         layer_ui        = [UILayer node];
         
         [layer_bg createWorldSpecificBackgrounds:w];

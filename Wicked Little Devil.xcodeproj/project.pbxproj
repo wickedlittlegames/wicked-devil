@@ -269,7 +269,6 @@
 		9C2CED521740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */; };
 		9C2CED55174115F9003FCA03 /* spendSouls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED53174115F9003FCA03 /* spendSouls.plist */; };
 		9C2CED56174115F9003FCA03 /* spendParticles.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED54174115F9003FCA03 /* spendParticles.png */; };
-		9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */; };
 		9C2CED5C174118EC003FCA03 /* jump1_detective.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5A174118EC003FCA03 /* jump1_detective.png */; };
 		9C2CED5D174118EC003FCA03 /* jump1_detective-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5B174118EC003FCA03 /* jump1_detective-hd.png */; };
 		9C2CED5F17411EA3003FCA03 /* world-20-level-1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */; };
@@ -308,6 +307,7 @@
 		9C4EA3631626F88800E7B66F /* BatAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA35F1626F88800E7B66F /* BatAnim.plist */; };
 		9C4EA3641626F88800E7B66F /* BatAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3601626F88800E7B66F /* BatAnim-hd.png */; };
 		9C4EA3651626F88800E7B66F /* BatAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4EA3611626F88800E7B66F /* BatAnim-hd.plist */; };
+		9C593695174A3AA700C5B33A /* harp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9C593694174A3AA700C5B33A /* harp.caf */; };
 		9C5F892B1622DC9F00C001E4 /* bg_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */; };
 		9C5F892C1622DC9F00C001E4 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BC1622DC9E00C001E4 /* bg_1.png */; };
 		9C5F892D1622DC9F00C001E4 /* bg_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F88BD1622DC9E00C001E4 /* bg_2-hd.png */; };
@@ -991,8 +991,6 @@
 		9C2CED4E1740FCAD003FCA03 /* AnimDetectiveDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AnimDetectiveDevil-hd.plist"; sourceTree = "<group>"; };
 		9C2CED53174115F9003FCA03 /* spendSouls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spendSouls.plist; sourceTree = "<group>"; };
 		9C2CED54174115F9003FCA03 /* spendParticles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spendParticles.png; sourceTree = "<group>"; };
-		9C2CED5717411852003FCA03 /* DetectivePlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetectivePlayerLayer.h; path = Scenes/Gameplay/Layers/DetectivePlayerLayer.h; sourceTree = "<group>"; };
-		9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetectivePlayerLayer.m; path = Scenes/Gameplay/Layers/DetectivePlayerLayer.m; sourceTree = "<group>"; };
 		9C2CED5A174118EC003FCA03 /* jump1_detective.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump1_detective.png; sourceTree = "<group>"; };
 		9C2CED5B174118EC003FCA03 /* jump1_detective-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump1_detective-hd.png"; sourceTree = "<group>"; };
 		9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-1.ccbi"; sourceTree = "<group>"; };
@@ -1035,6 +1033,7 @@
 		9C4EA35F1626F88800E7B66F /* BatAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BatAnim.plist; sourceTree = "<group>"; };
 		9C4EA3601626F88800E7B66F /* BatAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BatAnim-hd.png"; sourceTree = "<group>"; };
 		9C4EA3611626F88800E7B66F /* BatAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BatAnim-hd.plist"; sourceTree = "<group>"; };
+		9C593694174A3AA700C5B33A /* harp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = harp.caf; path = ../../../../../../../Downloads/harp.caf; sourceTree = "<group>"; };
 		9C5F88BB1622DC9E00C001E4 /* bg_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1-hd.png"; sourceTree = "<group>"; };
 		9C5F88BC1622DC9E00C001E4 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
 		9C5F88BD1622DC9E00C001E4 /* bg_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_2-hd.png"; sourceTree = "<group>"; };
@@ -1559,7 +1558,6 @@
 		9C142157156E68550011C992 = {
 			isa = PBXGroup;
 			children = (
-				9C837B8517462FAF009C16A0 /* CoreLocation.framework */,
 				9C142178156E68560011C992 /* Wicked Little Devil */,
 				9C142304156E69540011C992 /* libs */,
 				9C142165156E68560011C992 /* Frameworks */,
@@ -1579,6 +1577,7 @@
 		9C142165156E68560011C992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C837B8517462FAF009C16A0 /* CoreLocation.framework */,
 				9C72416A174626E00095B103 /* FacebookSDKResources.bundle */,
 				9C724168174626A60095B103 /* FacebookSDK.framework */,
 				9C724166174625940095B103 /* Parse.framework */,
@@ -2256,6 +2255,7 @@
 		9CABCF051611D5EA006DFDE9 /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
+				9C593694174A3AA700C5B33A /* harp.caf */,
 				9C7384A51742FBE400024F00 /* bg-loop4.aifc */,
 				9C35DA29170DB949006F24DA /* detective-music.aifc */,
 				9C7253A2164B15BC004AC4D7 /* bubble.caf */,
@@ -2727,8 +2727,6 @@
 				9CDF942815B561CA0017E58B /* PlayerLayer.m */,
 				9CDF942915B561CA0017E58B /* UILayer.h */,
 				9CDF942A15B561CA0017E58B /* UILayer.m */,
-				9C2CED5717411852003FCA03 /* DetectivePlayerLayer.h */,
-				9C2CED5817411853003FCA03 /* DetectivePlayerLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -3327,6 +3325,7 @@
 				9C4AF9561745294C0024A975 /* icon-halo-med.png in Resources */,
 				9C4AF9571745294C0024A975 /* icon-halo-med-hd.png in Resources */,
 				9C72416B174626E00095B103 /* FacebookSDKResources.bundle in Resources */,
+				9C593695174A3AA700C5B33A /* harp.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3413,7 +3412,6 @@
 				9CC5F1E81701A376009AF179 /* SDURLCache.m in Sources */,
 				9CC5F1EE1701A56E009AF179 /* OpenUDID.m in Sources */,
 				9C37C830173AA09C00106FB0 /* DetectiveLevelSelectScene.m in Sources */,
-				9C2CED5917411854003FCA03 /* DetectivePlayerLayer.m in Sources */,
 				9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */,
 				9C4AF9401744DA540024A975 /* CharacterShopScene.m in Sources */,
 				9C4AF9471744DC910024A975 /* SimpleTableCellwithThumb.m in Sources */,

@@ -48,7 +48,7 @@
         CCMenu *menu_character           = [CCMenu menuWithItems:btn_character, nil];
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-powerups-menu.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
-        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
+        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:48];
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];

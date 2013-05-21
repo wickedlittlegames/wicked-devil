@@ -46,19 +46,8 @@
         CCMenu *menu_back  = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png" block:^(id sender)
         {
             if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            
-            if ( self.fromSceneID == 1 )
-            {
-                [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StartScene  scene]]];
-            }
-            else if ( self.fromSceneID == 2 )
-            {
-                [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
-            }
-            else
-            {
-                [view removeFromSuperview];[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOverScene  sceneWithGame:game]]];
-            }                           
+            [view removeFromSuperview];
+            [[CCDirector sharedDirector] popScene];
         }  ],nil];
         
         [menu_back setPosition:ccp(25, 25)];

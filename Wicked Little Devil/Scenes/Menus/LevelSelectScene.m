@@ -127,7 +127,7 @@
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
         CCSprite *icon_halo             = [CCSprite spriteWithFile:@"icon-halo-med.png"];
-        CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        CCLabelTTF *label_world_score   = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",world_score] dimensions:CGSizeMake(screenSize.width - 20, 25) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         label_collected                 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_halo          = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", halos_collectables, (LEVELS_PER_WORLD)] dimensions:CGSizeMake(80, 30) hAlignment:kCCTextAlignmentLeft fontName:font fontSize:26];

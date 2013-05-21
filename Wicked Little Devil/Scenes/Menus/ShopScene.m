@@ -47,7 +47,7 @@
         // set up the design and functional sprites
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-shop.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
-        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"COLLECTED: %i",user.collected] fontName:font fontSize:48];
+        lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:48];
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];
@@ -165,26 +165,26 @@
 		{
             tmp_collectable_increment -= 500;
             tmp_collectables += 500;
-            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+            [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",tmp_collectables]];
         }
 
         if (tmp_collectable_increment > 100)
 		{
             tmp_collectable_increment -= 100;
             tmp_collectables += 100;
-            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+            [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",tmp_collectables]];
         }
         if (tmp_collectable_increment > 10)
 		{
             tmp_collectable_increment -= 10;
             tmp_collectables += 10;
-            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+            [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",tmp_collectables]];
         }
         else
 		{
             tmp_collectable_increment --;
             tmp_collectables ++;
-            [lbl_user_collected setString:[NSString stringWithFormat:@"COLLECTED: %i",tmp_collectables]];
+            [lbl_user_collected setString:[NSString stringWithFormat:@"SOULS: %i",tmp_collectables]];
         }
     }
     else
@@ -198,7 +198,7 @@
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
     [view removeFromSuperview];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+    [[CCDirector sharedDirector] popScene];
 }
 
 

@@ -77,7 +77,7 @@
         
         // Add world layers to the scroller
         [self addChild:[self detectivedevil]];
-//        [self addChild:menu_equip];
+        [self addChild:menu_equip];
         [self addChild:menu_back];
         [self addChild:behind_fb];
         [self addChild:menu_social];
@@ -89,7 +89,7 @@
         [self addChild:icon_collectable];
         [self addChild:label_collected];
         
-//        [self addChild:menu_store];
+        [self addChild:menu_store];
         
         [self setFacebookImage];
         
@@ -101,7 +101,7 @@
         
         CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
-//        [self addChild:menu_stats];
+        [self addChild:menu_stats];
 
     }
 	return self;
@@ -199,7 +199,7 @@
     
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StatsScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[StatsScene scene]]];
 }
 
 - (void) tap_moregames
@@ -221,27 +221,22 @@
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[DetectiveLevelSelectScene sceneWithWorld:20]]];
 }
 
-- (void) tap_escapefromhell:(CCMenuItemFont*)sender
+- (void) tap_equip:(id)sender
 {
     [notificationView clear];
     
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
-}
-
-
-- (void) tap_equip:(id)sender
-{
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
 }
 
 - (void) tap_store:(id)sender
 {
+    [notificationView clear];
+    
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
 }
 
 - (void) tap_back:(CCMenuItem*)sender
@@ -301,7 +296,7 @@
         CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-unlockdevil.png" selectedImage:@"btn-unlockdevil.png" disabledImage:@"btn-unlockdevil.png" target:self selector:@selector(tap_unlock_detective)];
         unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
         
-        [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2-100)];
+        [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [layer addChild:unlock_menu];
     }   
     
@@ -382,7 +377,7 @@
     {
         [notificationView clear];
         
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+        [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
     }
 }
 

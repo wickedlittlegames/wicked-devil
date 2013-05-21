@@ -606,8 +606,6 @@
         self.worldprogress = next_world;
         self.levelprogress = next_level;
         
-        CCLOG(@"UNLOCKING %i | %i ", self.worldprogress, self.levelprogress);
-        
         [self setGameProgressforWorld:self.worldprogress level:self.levelprogress];
         [self sync];
     }

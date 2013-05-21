@@ -17,6 +17,15 @@
 		9C017397165BC61900FAC4CF /* tip-world-3-level-9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C017395165BC61900FAC4CF /* tip-world-3-level-9-hd.png */; };
 		9C0DCDC9174B7BF300114F09 /* SimpleTableCellwithThumb.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDC6174B7BF300114F09 /* SimpleTableCellwithThumb.xib */; };
 		9C0DCDCA174B7BF300114F09 /* SimpleTableCellwithThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0DCDC8174B7BF300114F09 /* SimpleTableCellwithThumb.m */; };
+		9C0DCDD4174B86A800114F09 /* world-20-level-2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDCB174B86A800114F09 /* world-20-level-2.ccbi */; };
+		9C0DCDD5174B86A800114F09 /* world-20-level-3.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDCC174B86A800114F09 /* world-20-level-3.ccbi */; };
+		9C0DCDD6174B86A800114F09 /* world-20-level-4.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDCD174B86A800114F09 /* world-20-level-4.ccbi */; };
+		9C0DCDD7174B86A800114F09 /* world-20-level-5.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDCE174B86A800114F09 /* world-20-level-5.ccbi */; };
+		9C0DCDD8174B86A800114F09 /* world-20-level-6.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDCF174B86A800114F09 /* world-20-level-6.ccbi */; };
+		9C0DCDD9174B86A800114F09 /* world-20-level-7.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD0174B86A800114F09 /* world-20-level-7.ccbi */; };
+		9C0DCDDA174B86A800114F09 /* world-20-level-8.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD1174B86A800114F09 /* world-20-level-8.ccbi */; };
+		9C0DCDDB174B86A800114F09 /* world-20-level-9.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD2174B86A800114F09 /* world-20-level-9.ccbi */; };
+		9C0DCDDC174B86A800114F09 /* world-20-level-10.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD3174B86A800114F09 /* world-20-level-10.ccbi */; };
 		9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0F7A3F17425A3B00316B07 /* StatsScene.m */; };
 		9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FD12F16130AFE007BDFD6 /* Projectile.m */; };
 		9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1321613251C007BDFD6 /* AngelBlast.plist */; };
@@ -743,6 +752,15 @@
 		9C0DCDC6174B7BF300114F09 /* SimpleTableCellwithThumb.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleTableCellwithThumb.xib; path = "Scenes/UI Items/SimpleTableCellwithThumb.xib"; sourceTree = "<group>"; };
 		9C0DCDC7174B7BF300114F09 /* SimpleTableCellwithThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableCellwithThumb.h; path = "Scenes/UI Items/SimpleTableCellwithThumb.h"; sourceTree = "<group>"; };
 		9C0DCDC8174B7BF300114F09 /* SimpleTableCellwithThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableCellwithThumb.m; path = "Scenes/UI Items/SimpleTableCellwithThumb.m"; sourceTree = "<group>"; };
+		9C0DCDCB174B86A800114F09 /* world-20-level-2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-2.ccbi"; sourceTree = "<group>"; };
+		9C0DCDCC174B86A800114F09 /* world-20-level-3.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-3.ccbi"; sourceTree = "<group>"; };
+		9C0DCDCD174B86A800114F09 /* world-20-level-4.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-4.ccbi"; sourceTree = "<group>"; };
+		9C0DCDCE174B86A800114F09 /* world-20-level-5.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-5.ccbi"; sourceTree = "<group>"; };
+		9C0DCDCF174B86A800114F09 /* world-20-level-6.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-6.ccbi"; sourceTree = "<group>"; };
+		9C0DCDD0174B86A800114F09 /* world-20-level-7.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-7.ccbi"; sourceTree = "<group>"; };
+		9C0DCDD1174B86A800114F09 /* world-20-level-8.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-8.ccbi"; sourceTree = "<group>"; };
+		9C0DCDD2174B86A800114F09 /* world-20-level-9.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-9.ccbi"; sourceTree = "<group>"; };
+		9C0DCDD3174B86A800114F09 /* world-20-level-10.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-10.ccbi"; sourceTree = "<group>"; };
 		9C0F7A3E17425A3B00316B07 /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatsScene.h; path = Scenes/Menus/StatsScene.h; sourceTree = "<group>"; };
 		9C0F7A3F17425A3B00316B07 /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatsScene.m; path = Scenes/Menus/StatsScene.m; sourceTree = "<group>"; };
 		9C0FD12E16130AFE007BDFD6 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Objects/Projectile.h; sourceTree = "<group>"; };
@@ -2177,6 +2195,15 @@
 		9CABCEFE1611D5EA006DFDE9 /* LEVELS */ = {
 			isa = PBXGroup;
 			children = (
+				9C0DCDCB174B86A800114F09 /* world-20-level-2.ccbi */,
+				9C0DCDCC174B86A800114F09 /* world-20-level-3.ccbi */,
+				9C0DCDCD174B86A800114F09 /* world-20-level-4.ccbi */,
+				9C0DCDCE174B86A800114F09 /* world-20-level-5.ccbi */,
+				9C0DCDCF174B86A800114F09 /* world-20-level-6.ccbi */,
+				9C0DCDD0174B86A800114F09 /* world-20-level-7.ccbi */,
+				9C0DCDD1174B86A800114F09 /* world-20-level-8.ccbi */,
+				9C0DCDD2174B86A800114F09 /* world-20-level-9.ccbi */,
+				9C0DCDD3174B86A800114F09 /* world-20-level-10.ccbi */,
 				9C2CED5E17411EA3003FCA03 /* world-20-level-1.ccbi */,
 				9CD6F7F31700CF640090D4D9 /* world-4-level-20.ccbi */,
 				9CD6F7F41700CF640090D4D9 /* world-4-level-19.ccbi */,
@@ -3366,6 +3393,15 @@
 				9CC733D6174A93FA001155FF /* tip-halo-first.png in Resources */,
 				9CC733D7174A93FA001155FF /* tip-halo-first-hd.png in Resources */,
 				9C0DCDC9174B7BF300114F09 /* SimpleTableCellwithThumb.xib in Resources */,
+				9C0DCDD4174B86A800114F09 /* world-20-level-2.ccbi in Resources */,
+				9C0DCDD5174B86A800114F09 /* world-20-level-3.ccbi in Resources */,
+				9C0DCDD6174B86A800114F09 /* world-20-level-4.ccbi in Resources */,
+				9C0DCDD7174B86A800114F09 /* world-20-level-5.ccbi in Resources */,
+				9C0DCDD8174B86A800114F09 /* world-20-level-6.ccbi in Resources */,
+				9C0DCDD9174B86A800114F09 /* world-20-level-7.ccbi in Resources */,
+				9C0DCDDA174B86A800114F09 /* world-20-level-8.ccbi in Resources */,
+				9C0DCDDB174B86A800114F09 /* world-20-level-9.ccbi in Resources */,
+				9C0DCDDC174B86A800114F09 /* world-20-level-10.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,9 +37,12 @@
 
         app = (AppController*) [[UIApplication sharedApplication] delegate];
         
-        PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"world_select" delegate:(id)self];
-        request.showsOverlayImmediately = YES;
-        [request send];
+        if ( [user isOnline] )
+        {
+            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"world_select" delegate:(id)self];
+            request.showsOverlayImmediately = YES;
+            [request send];
+        }
         
         user            = [[User alloc] init];
         screenSize      = [CCDirector sharedDirector].winSize;
@@ -116,25 +119,25 @@
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
         [self addChild:menu_stats];
         
-        if ( ![user.udata boolForKey:@"HALO_TIP"] && ![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        if ( ![user.udata boolForKey:@"HALO_TIP_SEEN_AUTH"] && ![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
         {
-            [user.udata setBool:YES forKey:@"HALO_TIP"];
-            CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
+            [user.udata setBool:YES forKey:@"HALO_TIP_SEEN_AUTH"];
+            CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-halo-first.png"];
             [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
             [self addChild:tipbg];
             
-            CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
+            CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"btn-signin-fb.png" selectedImage:@"btn-signin-fb.png" block:^(id sender){
                 if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
                 [self tap_facebook];
                 tipbg.visible = FALSE;                
             }];
-            CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
+            CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"btn-cancelfb.png" selectedImage:@"btn-cancelfb.png" block:^(id sender){
                 if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
                 tipbg.visible = FALSE;
             }];
             
             CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
-            [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
+            [tip_menu setPosition:ccp((tipbg.contentSize.width/2)-4, 130)];
             [tip_menu alignItemsVerticallyWithPadding:10];
             [tipbg addChild:tip_menu];
         }

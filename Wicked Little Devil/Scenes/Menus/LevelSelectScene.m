@@ -123,7 +123,7 @@
 
         CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
-        CCMenu *menu_skip               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_skip)], nil];
+        CCMenu *menu_skip               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-skip.png"    selectedImage:@"btn-skip.png"       target:self selector:@selector(tap_skip)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
         CCSprite *icon_halo             = [CCSprite spriteWithFile:@"icon-halo-med.png"];
@@ -135,7 +135,7 @@
         [bg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
         [menu                   setPosition:ccp(menu_x, menu_y)];        
         [menu_back              setPosition:ccp(25, 25)];
-        [menu_skip              setPosition:ccp(75, 25)];
+        [menu_skip              setPosition:ccp(125, 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
@@ -149,7 +149,7 @@
         [self addChild:bg];
         [self addChild:menu];
         [self addChild:menu_back];
-        CCLOG(@"%i",user.worldprogress);
+
         if ( !(user.worldprogress > world) )
         {
             [self addChild:menu_skip];

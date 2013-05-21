@@ -422,30 +422,30 @@
         [tip_menu alignItemsVerticallyWithPadding:10];
         [tipbg addChild:tip_menu];
     }
-    
-    if ( [self.tmp_game.user getHalosforAll] == 80 && ![self.tmp_game.user.udata boolForKey:@"TIP-HALO-UNLOCK"] )
-    {
-        [self.tmp_game.user buyCharacter:7];
-        self.tmp_game.user.character = 7;
-        [self.tmp_game.user.udata setBool:YES forKey:@"TIP-HALO-UNLOCK"];
-        CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
-        [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
-        [self addChild:tipbg];
-        
-        CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
-            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
-        }];
-        CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
-            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            tipbg.visible = FALSE;
-        }];
-        
-        CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
-        [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
-        [tip_menu alignItemsVerticallyWithPadding:10];
-        [tipbg addChild:tip_menu];
-    }
+//    
+//    if ( [self.tmp_game.user getHalosforAll] == 80 && ![self.tmp_game.user.udata boolForKey:@"TIP-HALO-UNLOCK"] )
+//    {
+//        [self.tmp_game.user buyCharacter:7];
+//        self.tmp_game.user.character = 7;
+//        [self.tmp_game.user.udata setBool:YES forKey:@"TIP-HALO-UNLOCK"];
+//        CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
+//        [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
+//        [self addChild:tipbg];
+//        
+//        CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
+//            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+//            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
+//        }];
+//        CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
+//            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+//            tipbg.visible = FALSE;
+//        }];
+//        
+//        CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
+//        [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
+//        [tip_menu alignItemsVerticallyWithPadding:10];
+//        [tipbg addChild:tip_menu];
+//    }
 }
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { self.moved = YES; }

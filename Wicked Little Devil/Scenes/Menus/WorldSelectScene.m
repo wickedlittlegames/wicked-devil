@@ -37,6 +37,8 @@
 
         app = (AppController*) [[UIApplication sharedApplication] delegate];
         
+        user            = [[User alloc] init];
+        
         if ( [user isOnline] )
         {
             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"world_select" delegate:(id)self];
@@ -44,7 +46,6 @@
             [request send];
         }
         
-        user            = [[User alloc] init];
         screenSize      = [CCDirector sharedDirector].winSize;
         font            = @"CrashLanding BB";
         fontsize        = 36;
@@ -144,8 +145,8 @@
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (pfuser.isNew) {
-                user.collected += 500;
-                [user sync];
+//                user.collected += 500;
+//                [user sync];
                 [self getFacebookImage];
             }
             else

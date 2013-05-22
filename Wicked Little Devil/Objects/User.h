@@ -14,7 +14,7 @@
 @interface User : NSObject
 
 @property (nonatomic, retain) NSUserDefaults *udata;
-@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps, character;
+@property (nonatomic, assign) int collected, levelprogress, worldprogress, powerup, cache_current_world, deaths, jumps, character, no_to_facebook;
 @property (nonatomic, retain) NSMutableArray *highscores, *souls, *powerups, *halocollected, *items, *gameprogress, *items_special, *detective_highscores, *detective_souls, *items_characters;
 @property (nonatomic, assign) BOOL ach_first_play, ach_beat_world_1, ach_beat_world_2, ach_beat_world_3, ach_beat_world_4, bought_powerups, unlocked_detective, bought_character;
 @property (nonatomic, assign) BOOL ach_killed, ach_1000_souls, ach_5000_souls, ach_10000_souls, ach_50000_souls;

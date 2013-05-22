@@ -43,6 +43,10 @@
         {
             [self create_character_items];
         }
+        if ( ![self.udata integerForKey:@"no_to_facebook"] )
+       {
+            [self.udata setInteger:0 forKey:@"no_to_facebook"];
+       }
         
         self.highscores             = [self.udata objectForKey:@"highscores"];
         self.souls                  = [self.udata objectForKey:@"souls"];
@@ -66,6 +70,7 @@
         self.halocollected                  = [self.udata objectForKey:@"halos"];
         self.items_characters       = [self.udata objectForKey:@"items_characters"];
         self.bought_character       = [self.udata boolForKey:@"bought_character"];
+        self.no_to_facebook         = [self.udata integerForKey:@"no_to_facebook"];
         
         [self setupAchievements];
     }
@@ -227,6 +232,7 @@
     [self.udata setInteger:self.bought_powerups forKey:@"bought_powerups"];
     [self.udata setInteger:self.bought_character forKey:@"bought_character"];
     [self.udata setBool:self.unlocked_detective forKey:@"unlocked_detective"];
+    [self.udata setInteger:self.no_to_facebook forKey:@"no_to_facebook"];
     [self.udata synchronize];
 }
 

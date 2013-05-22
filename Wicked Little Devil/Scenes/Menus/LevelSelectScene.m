@@ -13,6 +13,7 @@
 #import "MKStoreManager.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "BlockAlertView.h"
 
 @implementation LevelSelectScene
 
@@ -182,7 +183,12 @@
     }
     else
     {
-        [self tap_purchase];
+        BlockAlertView* alert = [BlockAlertView alertWithTitle:@"Not Enough Souls!" message:@"You don't have enough souls! Would you like to buy some?"];
+        [alert addButtonWithTitle:@"Buy Souls" block:^{
+            [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+        }];
+        [alert setCancelButtonWithTitle:@"Cancel" block:^{}];
+        [alert show];
     }
 }
 

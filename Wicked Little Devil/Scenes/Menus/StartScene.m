@@ -57,19 +57,50 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
         }
         
-        alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Halo Collectables!\r Challenge Your Friends!\r Bonus 500 Souls!"];
+        if ( user.no_to_facebook == 1 )
+        {
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r \r This is the last time this will show up, but you can always connect through the Facebook icon in the bottom right."];
+        }
+        else
+        {
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!"];
+        }
         
         id selfref = self;
         [alert addButtonWithTitle:@"Connect" block:^{
             [selfref tap_facebook];
         }];
 
+        User* userref = user;
+        if ( user.no_to_facebook == 0 )
+        {
+            [alert setCancelButtonWithTitle:@"No Thanks" block:^{
+                [userref.udata setInteger:userref.no_to_facebook+1 forKey:@"no_to_facebook"];
+            }];
+        }
+        if ( user.no_to_facebook == 1 )
+        {
+            [alert setCancelButtonWithTitle:@"Play Offline" block:^{
+                [userref.udata setInteger:userref.no_to_facebook+1 forKey:@"no_to_facebook"];
+            }];
+        }
         
-        [alert setCancelButtonWithTitle:@"Offline" block:^{}];
      
         if (![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
         {
-            [alert show];
+            if ( user.no_to_facebook < 2 )
+            {
+            [alert show];                
+            }
+        }
+        else
+        {
+            if ( [user isOnline] )
+            {
+                PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
+                request.showsOverlayImmediately = YES;
+                [request send];
+            }
         }
     
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
@@ -236,8 +267,8 @@
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (pfuser.isNew) {
-                user.collected += 500;
-                [user sync];
+//                user.collected += 500;
+//                [user sync];
                 [self getFacebookImage];
             }
             else

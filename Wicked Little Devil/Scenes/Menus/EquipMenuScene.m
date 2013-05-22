@@ -72,28 +72,28 @@
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[EquipScene scene]]];
 }
 
 - (void) tap_special
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipSpecialScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[EquipSpecialScene scene]]];
 }
 
 - (void) tap_purchase
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ShopScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[ShopScene scene]]];
 }
 
 - (void) tap_character
 {
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CharacterShopScene scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[CharacterShopScene scene]]];
 }
 
 - (void) tap_back

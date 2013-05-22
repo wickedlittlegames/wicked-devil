@@ -10,6 +10,7 @@
 
 #import "ShopScene.h"
 #import "CCScrollLayer.h"
+#import "EquipMenuScene.h"
 #import "SimpleTableCell.h"
 #import "MKStoreManager.h"
 #import "MBProgressHUD.h"

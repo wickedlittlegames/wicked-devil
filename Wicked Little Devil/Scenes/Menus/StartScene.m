@@ -133,7 +133,7 @@
             {
                 // PLAY THE LEVEL
                 if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene sceneWithWorld:11 andLevel:1 isRestart:NO restartMusic:YES]]];
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameScene sceneWithWorld:11 andLevel:1 isRestart:NO restartMusic:YES]]];
             }
             else
             {
@@ -225,7 +225,7 @@
         Game *tmpgame = [[Game alloc] init];
         tmpgame.user = user;
         
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
     }
     else
     {
@@ -266,8 +266,6 @@
 
 - (void) getFacebookImage
 {
-//    [alert dismissWithClickedButtonIndex:1 animated:YES];
-//    [alert dismiss]
     [FBRequestConnection startWithGraphPath:@"me/?fields=name,location,gender,picture" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         NSDictionary *userData = (NSDictionary *)result;
         imageData = [[NSMutableData alloc] init];
@@ -312,8 +310,8 @@
 {
     [notificationView clear];
     
-    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[WorldSelectScene scene]]];
+    if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldSelectScene scene]]];
 }
 
 - (void) tap_start_adventures
@@ -321,7 +319,7 @@
     [notificationView clear];
     
     if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[AdventureSelectScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[AdventureSelectScene scene]]];
 }
 
 - (void) tap_moregames

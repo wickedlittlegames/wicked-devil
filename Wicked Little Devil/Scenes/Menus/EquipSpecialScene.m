@@ -135,7 +135,7 @@
         [alert addButtonWithTitle:@"Buy Souls" block:^{
             [view removeFromSuperview];
             
-            [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+            [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[ShopScene scene]]];
         }];
         [alert setCancelButtonWithTitle:@"Cancel" block:^{}];
         [alert show];

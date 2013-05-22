@@ -45,14 +45,7 @@
         {
             [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
         }
-        
-        if ( [user isOnline] )
-        {
-            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
-            request.showsOverlayImmediately = YES;
-            [request send];
-        }
-        
+
         [self reportAchievements];
         [self reportLeaderboardHighscores];
         
@@ -64,19 +57,34 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bg-main.aifc" loop:YES];
         }
         
+        alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Halo Collectables!\r Challenge Your Friends!\r Bonus 500 Souls!"];
+        
+        id selfref = self;
+        [alert addButtonWithTitle:@"Connect" block:^{
+            [selfref tap_facebook];
+        }];
+
+        
+        [alert setCancelButtonWithTitle:@"Offline" block:^{}];
+     
+        if (![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        {
+            [alert show];
+        }
+    
         CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
-        CCSprite *title_adventures_new  = [CCSprite spriteWithFile:@"title-adventures-new.png"];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
+        CCSprite *title_adventures_new  = [CCSprite spriteWithFile:@"title-adventures-new.png"];
+        
         CCMenuItem *btn_adventures      = [CCMenuItemImage itemWithNormalImage:@"title-adventures.png"         selectedImage:@"title-adventures.png"      target:self selector:@selector(tap_start_adventures)];
         CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         CCMenuItem *btn_moregames    = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
-        //prompt_facebook                 = [CCSprite spriteWithFile:@"ui-prompt-facebook.png"];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
         btn_mute                        = [CCMenuItemImage itemWithNormalImage:@"btn-muted.png"          selectedImage:@"btn-muted.png"       target:self selector:@selector(tap_mute)];
         btn_muted                       = [CCMenuItemImage itemWithNormalImage:@"btn-mute.png"         selectedImage:@"btn-mute.png"      target:self selector:@selector(tap_mute)];
         CCMenu *menu_start              = [CCMenu menuWithItems:btn_start, nil];
-        CCMenu *menu_adventures         = [CCMenu menuWithItems:btn_adventures, nil];
+        menu_adventures         = [CCMenu menuWithItems:btn_adventures, nil];
         CCMenu *menu_social             = [CCMenu menuWithItems:btn_moregames,btn_leaderboard, btn_achievements, btn_facebooksignin, nil];
         CCMenu *menu_mute               = [CCMenu menuWithItems:btn_mute, btn_muted, nil];
         CCParticleSystemQuad *homeFX    = [CCParticleSystemQuad particleWithFile:@"StartScreenFX.plist"];
@@ -84,9 +92,11 @@
         
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [homeFX setPosition:ccp(screenSize.width/2, 0)];
-        [menu_start setPosition:ccp(screenSize.width/2, (screenSize.height/2)+20)];
-        [menu_adventures setPosition:ccp(screenSize.width/2, (screenSize.height/2)-40)];
-        [title_adventures_new setPosition:ccp((menu_adventures.position.x)-100, menu_adventures.position.y+20)];
+        [menu_start setPosition:ccp(screenSize.width/2, (screenSize.height/2)+35)];
+        [menu_adventures setPosition:ccp(screenSize.width/2, (screenSize.height/2)-20)];
+        [title_adventures_new setPosition:ccp((menu_adventures.position.x)-100, menu_adventures.position.y+20)];                
+
+        
         [menu_mute setPosition:ccp(25, 25)];
         [menu_social setPosition:ccp(screenSize.width - 118, 25)];
         [menu_social alignItemsHorizontallyWithPadding:5];
@@ -97,10 +107,12 @@
         [self addChild:homeFX];
         [self addChild:menu_start];
         [self addChild:menu_adventures];
+        
         if ( ![user.udata boolForKey:@"SEEN_ADVENTURES"] )
         {
             [self addChild:title_adventures_new];
         }
+        
         [self addChild:behind_fb];
         [self addChild:menu_social];
         [self addChild:menu_mute];
@@ -189,7 +201,7 @@
         notificationView = [[PHNotificationView alloc] initWithApp:WDPHToken secret:WDPHSecret placement:@"more_games"];
         [[app navController].view addSubview:notificationView];
         notificationView.center = CGPointMake(screenSize.width/2-70,screenSize.height-35);
-        [notificationView refresh];
+        [notificationView refresh];        
     }
 	return self;
 }
@@ -218,11 +230,15 @@
     else
     {
         NSArray *permissions        = [NSArray arrayWithObjects:@"publish_actions",@"user_games_activity", nil];
-        
+        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];
         [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
             if (!pfuser)
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else if (pfuser.isNew) {
+                user.collected += 500;
+                [user sync];
+                [self getFacebookImage];
             }
             else
             {
@@ -250,6 +266,8 @@
 
 - (void) getFacebookImage
 {
+//    [alert dismissWithClickedButtonIndex:1 animated:YES];
+//    [alert dismiss]
     [FBRequestConnection startWithGraphPath:@"me/?fields=name,location,gender,picture" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         NSDictionary *userData = (NSDictionary *)result;
         imageData = [[NSMutableData alloc] init];
@@ -278,6 +296,8 @@
 {
     CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
     [btn_facebooksignin setNormalImage:fbimage];
+    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
+    
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection

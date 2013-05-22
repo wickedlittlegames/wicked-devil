@@ -118,29 +118,6 @@
         CCMenu *menu_stats              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-stats.png" selectedImage:@"btn-stats.png"    target:self selector:@selector(tap_stats:)],nil];
         [menu_stats             setPosition:ccp(115, screenSize.height - 25)];
         [self addChild:menu_stats];
-        
-        if ( ![user.udata boolForKey:@"HALO_TIP_SEEN_AUTH"] && ![PFUser currentUser] && ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-        {
-            [user.udata setBool:YES forKey:@"HALO_TIP_SEEN_AUTH"];
-            CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-halo-first.png"];
-            [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
-            [self addChild:tipbg];
-            
-            CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"btn-signin-fb.png" selectedImage:@"btn-signin-fb.png" block:^(id sender){
-                if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-                [self tap_facebook];
-                tipbg.visible = FALSE;                
-            }];
-            CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"btn-cancelfb.png" selectedImage:@"btn-cancelfb.png" block:^(id sender){
-                if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-                tipbg.visible = FALSE;
-            }];
-            
-            CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
-            [tip_menu setPosition:ccp((tipbg.contentSize.width/2)-4, 130)];
-            [tip_menu alignItemsVerticallyWithPadding:10];
-            [tipbg addChild:tip_menu];
-        }
     }
 	return self;
 }
@@ -166,6 +143,10 @@
             if (!pfuser)
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else if (pfuser.isNew) {
+                user.collected += 500;
+                [user sync];
+                [self getFacebookImage];
             }
             else
             {

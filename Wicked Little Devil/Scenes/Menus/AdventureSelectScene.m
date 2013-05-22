@@ -128,6 +128,10 @@
             if (!pfuser)
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else if (pfuser.isNew) {
+                user.collected += 500;
+                [user sync];
+                [self getFacebookImage];
             }
             else
             {
@@ -321,13 +325,14 @@
     else
     {
         [FlurryAnalytics logEvent:@"PLAYER TRIED TO UNLOCK DETECTIVE - NOT ENOUGH SOULS"];
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Not Enough Souls!"
-                                  message:@"You don't have enough souls! Would you like to buy some?"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  otherButtonTitles:@"Buy Souls", nil];
-        [alertView show];
+        
+        BlockAlertView* alert = [BlockAlertView alertWithTitle:@"Not Enough Souls!" message:@"You don't have enough souls! Would you like to buy some?"];
+        [alert addButtonWithTitle:@"Buy Souls" block:^{
+            [notificationView clear];
+            [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+        }];
+        [alert setCancelButtonWithTitle:@"Cancel" block:^{}];
+        [alert show];
     }
 }
 
@@ -375,9 +380,7 @@
 {
     if (buttonIndex == 1)
     {
-        [notificationView clear];
         
-        [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
     }
 }
 

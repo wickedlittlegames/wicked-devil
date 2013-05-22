@@ -131,22 +131,14 @@
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Not Enough Souls!"
-                                  message:@"You don't have enough souls! Would you like to buy some?"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  otherButtonTitles:@"Buy Souls", nil];
-        [alertView show];
-    }
-}
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [view removeFromSuperview];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+        BlockAlertView* alert = [BlockAlertView alertWithTitle:@"Not Enough Souls!" message:@"You don't have enough souls! Would you like to buy some?"];
+        [alert addButtonWithTitle:@"Buy Souls" block:^{
+            [view removeFromSuperview];
+            
+            [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ShopScene scene]]];
+        }];
+        [alert setCancelButtonWithTitle:@"Cancel" block:^{}];
+        [alert show];
     }
 }
 

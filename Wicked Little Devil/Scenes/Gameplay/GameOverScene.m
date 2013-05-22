@@ -411,24 +411,13 @@
     
     if ( self.tmp_game.user.collected >= 2000 && ![self.tmp_game.user.udata boolForKey:@"TIP-POWERUP-SEEN"] )
     {
-        [self.tmp_game.user.udata setBool:YES forKey:@"TIP-POWERUP-SEEN"];
-        CCSprite *tipbg = [CCSprite spriteWithFile:@"tip-powerups.png"];
-        [tipbg setPosition:ccp([CCDirector sharedDirector].winSize.width/2, [CCDirector sharedDirector].winSize.height/2)];
-        [self addChild:tipbg];
-        
-        CCMenuItemImage *btn_ok = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-ok.png" selectedImage:@"tip-powerup-ok.png" block:^(id sender){
-            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EquipMenuScene scene]]];
+        BlockAlertView* alert = [BlockAlertView alertWithTitle:@"Good News!" message:@"You can now afford your first Devil Upgrade!"];
+        [alert addButtonWithTitle:@"Visit Shop" block:^{
+            [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EquipMenuScene  scene]]];
         }];
-        CCMenuItemImage *btn_cancel = [CCMenuItemImage itemWithNormalImage:@"tip-powerup-cancel.png" selectedImage:@"tip-powerup-cancel.png" block:^(id sender){
-            if ( ![SimpleAudioEngine sharedEngine].mute ) {[[SimpleAudioEngine sharedEngine] playEffect:@"click.caf"];}
-            tipbg.visible = FALSE;
-        }];
-        
-        CCMenu *tip_menu = [CCMenu menuWithItems:btn_ok, btn_cancel, nil];
-        [tip_menu setPosition:ccp(tipbg.contentSize.width/2, 70)];
-        [tip_menu alignItemsVerticallyWithPadding:10];
-        [tipbg addChild:tip_menu];
+        [alert setCancelButtonWithTitle:@"Not yet, I'm saving up!" block:^{}];
+        [alert show];
+        [self.tmp_game.user.udata setBool:YES forKey:@"TIP-POWERUP-SEEN"];        
     }
 }
 
@@ -487,13 +476,9 @@
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Sorry"
-                                  message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
-                                  delegate:self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
+        BlockAlertView* alert = [BlockAlertView alertWithTitle:@"Sorry!" message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup."];
+        [alert setCancelButtonWithTitle:@"OK" block:^{}];
+        [alert show];
     }
 }
 

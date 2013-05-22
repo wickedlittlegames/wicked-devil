@@ -11,6 +11,7 @@
 #import "PlayHavenSDK.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "BlockAlertView.h"
 
 @class AppController;
 @interface StartScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameKitHelperProtocol, NSURLConnectionDelegate, PHPublisherContentRequestDelegate>
@@ -23,6 +24,9 @@
     CCSprite *prompt_facebook;
     CCSprite *bg_behind_fb;
     PHNotificationView *notificationView;
+    CCMenu *menu_connect;
+    CCMenu *menu_adventures;
+    BlockAlertView *alert;
     
     NSMutableData *imageData;
     NSURLConnection *urlConnection;

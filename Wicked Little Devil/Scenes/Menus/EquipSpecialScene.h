@@ -10,6 +10,7 @@
 #import "CCScrollLayer.h"
 #import "LevelSelectScene.h"
 #import "AppDelegate.h"
+#import "BlockAlertView.h"
 
 #import "User.h"
 

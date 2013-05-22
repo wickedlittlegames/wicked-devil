@@ -59,11 +59,11 @@
         
         if ( user.no_to_facebook == 1 )
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r \r This is the last time this will show up, but you can always connect through the Facebook icon in the bottom right."];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r \r This is the last time this will appear, but you can always connect through the Facebook icon in the bottom right."];
         }
         else
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!"];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r"];
         }
         
         id selfref = self;

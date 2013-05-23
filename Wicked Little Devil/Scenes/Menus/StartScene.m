@@ -37,7 +37,6 @@
         [gkHelper authenticateLocalPlayer];
                 
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
-                                
         user = [[User alloc] init];
         
         if (![user isOnline])

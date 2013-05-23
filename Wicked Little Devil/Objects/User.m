@@ -767,7 +767,7 @@
         case 13: //jumped 1000 times 50
             achievement = @"Van Halen Fan";
             break;
-        case 14:
+        case 14: // wicked angel 80 of them
             achievement = @"Wicked Angel";
             break;
             
@@ -778,20 +778,20 @@
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         NSArray *achievementURLs = [NSArray arrayWithObjects:
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_1.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_2.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_3.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_4.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_5.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_6.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_7.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_8.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_9.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_10.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_11.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_12.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_13.html",
-                                    @"http://www.wickedlittlegames.com/opengraph/wickeddevil/achievement_14.html", // need to create this page
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_1.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_2.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_3.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_4.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_5.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_6.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_7.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_8.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_9.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_10.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_11.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_12.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_13.html",
+                                    @"https://s3-eu-west-1.amazonaws.com/gameassetswlg/achievement_14.html", 
                                     nil];
         
         NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:

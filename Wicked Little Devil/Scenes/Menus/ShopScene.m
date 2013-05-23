@@ -57,6 +57,15 @@
         [self addChild:bg];
         [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
+        
+        if ( [user isOnline] )
+        {
+            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"shop_scene" delegate:(id)self];
+            request.showsOverlayImmediately = YES;
+            [request send];
+        }
+        
+        
     }
     return self;
 }

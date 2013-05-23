@@ -16,6 +16,7 @@
 #import "User.h"
 #import "SimpleTableCell.h"
 #import "GameOverFacebookScene.h"
+#import "MBProgressHUD.h"
 #import "Game.h"
 
 @implementation AdventureSelectScene
@@ -42,7 +43,15 @@
         font            = @"CrashLanding BB";
         fontsize        = 36;
         worlds          = [NSMutableArray arrayWithCapacity:100];
-                
+        
+        if ( [user isOnline] )
+        {
+            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"adventure_select" delegate:(id)self];
+            request.showsOverlayImmediately = YES;
+            [request send];
+        }
+        
+        
         if ( ![user.udata boolForKey:@"SEEN_ADVENTURES"] )
         {
             [user.udata setBool:TRUE forKey:@"SEEN_ADVENTURES"];
@@ -123,13 +132,13 @@
     else
     {
         NSArray *permissions        = [NSArray arrayWithObjects:@"publish_actions",@"user_games_activity", nil];
-        
+        [MBProgressHUD showHUDAddedTo:[app navController].view animated:YES];        
         [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *pfuser, NSError *error) {
             if (!pfuser)
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (pfuser.isNew) {
-//                user.collected += 500;
+//                user.collected += 5000;
 //                [user sync];
                 [self getFacebookImage];
             }
@@ -187,6 +196,7 @@
 {
     CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
     [btn_facebooksignin setNormalImage:fbimage];
+    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];    
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection

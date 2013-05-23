@@ -39,7 +39,6 @@
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
                                 
         user = [[User alloc] init];
-        if ( DEVDEBUG ) { user.collected = 1000000; [user sync]; }
         
         if (![user isOnline])
         {
@@ -59,19 +58,20 @@
         
         if ( user.no_to_facebook == 1 )
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r \r This is the last time this will appear, but you can always connect through the Facebook icon in the bottom right."];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables !\r5000 Bonus Sign-Up Souls !\rDaily Free Souls ! \rCompete with your Friends !\r \r This is the last time this will appear. You can connect later using the Facebook button, but you will miss the 5000 bonus souls!"];
         }
         else
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 Exclusive Collectables! \rDaily Free Souls! \rCompete with your Friends!\r"];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables !\r5000 Bonus Sign-Up Souls !\rDaily Free Souls ! \rCompete with your Friends !\r"];
         }
-        
+        User* userref = user;
         id selfref = self;
         [alert addButtonWithTitle:@"Connect" block:^{
+            [userref.udata setBool:YES forKey:@"INITIAL_FB_SIGNUP"];
+            [userref.udata  synchronize];
             [selfref tap_facebook];
         }];
 
-        User* userref = user;
         if ( user.no_to_facebook == 0 )
         {
             [alert setCancelButtonWithTitle:@"No Thanks" block:^{
@@ -90,7 +90,7 @@
         {
             if ( user.no_to_facebook < 2 )
             {
-            [alert show];                
+                [alert show];                
             }
         }
         else
@@ -267,8 +267,11 @@
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (pfuser.isNew) {
-//                user.collected += 500;
-//                [user sync];
+                if ( [user.udata boolForKey:@"INITIAL_FB_SIGNUP"] )
+                {
+                    user.collected += 5000;
+                    [user sync];
+                }
                 [self getFacebookImage];
             }
             else

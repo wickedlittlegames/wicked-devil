@@ -638,12 +638,12 @@
     if ( !self.ach_first_play ) // if first play
     {
         self.ach_first_play = TRUE;
-        [self showAchievementPanel:1];
+//        [self showAchievementPanel:1];
     }
-    if ( self.collected == 666 && !self.ach_collected_666 ) // if first 666 souls
+    if ( self.collected >= 666 && !self.ach_collected_666 ) // if first 666 souls
     {
         self.ach_collected_666 = TRUE;
-        [self showAchievementPanel:2];
+//        [self showAchievementPanel:2];
     }
     if ( self.collected >= 1000 && !self.ach_1000_souls ) // if first 1000 souls
     {
@@ -670,12 +670,12 @@
         self.ach_beat_world_1 = TRUE;        
         [self showAchievementPanel:7];
     }
-    if ( self.worldprogress >= 2 && self.levelprogress >= LEVELS_PER_WORLD && !self.ach_beat_world_2 ) // beat world two
+    if ( self.worldprogress > 2 && !self.ach_beat_world_2 ) // beat world two
     {
         self.ach_beat_world_2 = TRUE;
         [self showAchievementPanel:8];
     }
-    if ( self.worldprogress > 3 && !self.ach_beat_world_3 ) // beat world 3
+    if ( self.worldprogress > 3 && !self.ach_beat_world_3) // beat world 3
     {
         self.ach_beat_world_3 = TRUE;
         [self showAchievementPanel:9];
@@ -716,9 +716,9 @@
     
     switch(ach_id)
     {
-//        case 1: //first play 10
-//            achievement = @"First Impressions";
-//            break;
+        case 1: //first play 10
+            achievement = @"First Impressions";
+            break;
 
         case 2: //666 souls  20
             achievement = @"The Number of the Beast";

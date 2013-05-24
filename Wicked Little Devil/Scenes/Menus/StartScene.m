@@ -57,11 +57,11 @@
         
         if ( user.no_to_facebook == 1 )
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables !\r5000 Bonus Sign-Up Souls !\rDaily Free Souls ! \rCompete with your Friends !\r \r This is the last time this will appear. You can connect later using the Facebook button, but you will miss the 5000 bonus souls!"];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables!\r5000 Bonus Sign-Up Souls!\rDaily Free Souls! \rCompete with your Friends!\r \r This is the last time this will appear. You can connect later using the Facebook button, but you will miss the 5000 bonus souls!"];
         }
         else
         {
-            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables !\r5000 Bonus Sign-Up Souls !\rDaily Free Souls ! \rCompete with your Friends !\r"];
+            alert = [BlockAlertView alertWithTitle:@"Connect with Facebook" message:@"80 New Collectables!\r5000 Bonus Sign-Up Souls!\rDaily Free Souls! \rCompete with your Friends!\r"];
         }
         User* userref = user;
         id selfref = self;

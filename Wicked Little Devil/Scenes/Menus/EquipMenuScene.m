@@ -33,15 +33,15 @@
         
         if ( [user isOnline] )
         {
-            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"equip_menu" delegate:(id)self];
-            request.showsOverlayImmediately = YES;
-            [request send];
+//            PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"equip_menu" delegate:(id)self];
+//            request.showsOverlayImmediately = YES;
+//            [request send];
         }
         
-        CCMenuItemImage *btn_devil      = [CCMenuItemImage itemWithNormalImage:@"ui-btn-devilupgrades.png" selectedImage:@"ui-btn-devilupgrades.png" target:self selector:@selector(tap_devil)];
-        CCMenuItemImage *btn_special    = [CCMenuItemImage itemWithNormalImage:@"ui-btn-specialupgrades.png" selectedImage:@"ui-btn-specialupgrades.png" target:self selector:@selector(tap_special)];
-        CCMenuItemImage *btn_purchase   = [CCMenuItemImage itemWithNormalImage:@"ui-btn-purchaseupgrades.png" selectedImage:@"ui-btn-purchaseupgrades.png" target:self selector:@selector(tap_purchase)];
-        CCMenuItemImage *btn_character   = [CCMenuItemImage itemWithNormalImage:@"btn-characters.png" selectedImage:@"btn-characters.png" target:self selector:@selector(tap_character)];
+        CCMenuItemImage *btn_devil      = [CCMenuItemImage itemWithNormalImage:@"btn-devil-upgrades.png" selectedImage:@"btn-devil-upgrades.png" target:self selector:@selector(tap_devil)];
+        CCMenuItemImage *btn_special    = [CCMenuItemImage itemWithNormalImage:@"btn-special-upgrades.png" selectedImage:@"btn-special-upgrades.png" target:self selector:@selector(tap_special)];
+        CCMenuItemImage *btn_purchase   = [CCMenuItemImage itemWithNormalImage:@"btn-purchase-souls.png" selectedImage:@"btn-purchase-souls.png" target:self selector:@selector(tap_purchase)];
+        CCMenuItemImage *btn_character   = [CCMenuItemImage itemWithNormalImage:@"btn-character-upgrades.png" selectedImage:@"btn-character-upgrades.png" target:self selector:@selector(tap_character)];
             
         CCMenu *menu_option             = [CCMenu menuWithItems:btn_devil,btn_special, nil];
         CCMenu *menu_purchase           = [CCMenu menuWithItems:btn_purchase, nil];
@@ -54,9 +54,9 @@
         [menu_back          setPosition:ccp(25, 25)];
         [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
         [menu_option setPosition:ccp( screenSize.width/2, 300)];
-        [menu_option alignItemsHorizontallyWithPadding:10];
-        [menu_purchase setPosition:ccp( screenSize.width/2, 140)];
-        [menu_character setPosition:ccp( screenSize.width/2, 200)];
+        [menu_option alignItemsVerticallyWithPadding:10];
+        [menu_purchase setPosition:ccp( screenSize.width/2, 150)];
+        [menu_character setPosition:ccp( screenSize.width/2, 210)];
         
         [self addChild:bg];
         [self addChild:menu_back z:1000];

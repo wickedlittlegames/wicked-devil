@@ -12,7 +12,7 @@
 			<key>Cost</key>
 			<integer>3000</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>character-unlock-detective.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>

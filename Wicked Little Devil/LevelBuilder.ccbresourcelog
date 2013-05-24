@@ -254,8 +254,12 @@ btn-behind-fb-hd.png
 btn-behind-fb.png
 btn-cancelfb-hd.png
 btn-cancelfb.png
+btn-character-upgrades-hd.png
+btn-character-upgrades.png
 btn-characters-hd.png
 btn-characters.png
+btn-devil-upgrades-hd.png
+btn-devil-upgrades.png
 btn-equipequipped.png
 btn-equipequipped@2x.png
 btn-equippurchase.png
@@ -292,6 +296,8 @@ btn-pause-hd.png
 btn-pause.png
 btn-powerup-hd.png
 btn-powerup.png
+btn-purchase-souls-hd.png
+btn-purchase-souls.png
 btn-purchase.png
 btn-purchase@2x.png
 btn-reply-hd.png
@@ -306,6 +312,8 @@ btn-signin-fb-hd.png
 btn-signin-fb.png
 btn-skip-hd.png
 btn-skip.png
+btn-special-upgrades-hd.png
+btn-special-upgrades.png
 btn-start-hd.png
 btn-start.png
 btn-stats-hd.png
@@ -318,6 +326,8 @@ btn-unequip-all-hd.png
 btn-unequip-all.png
 btn-unlockdevil-hd.png
 btn-unlockdevil.png
+character-unlock-detective.png
+character-unlock-detective@2x.png
 icon-bigcollectable-bw-hd.png
 icon-bigcollectable-bw.png
 icon-bigcollectable-empty-hd.png

@@ -750,6 +750,16 @@
 		9CE614BE15B70B9200AF1C78 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614B915B70B9200AF1C78 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CE614BF15B70B9200AF1C78 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614BB15B70B9200AF1C78 /* NSData+Base64.m */; };
 		9CE614C015B70B9200AF1C78 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE614BD15B70B9200AF1C78 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9CFC66B3174F9E33005F0169 /* btn-character-upgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66A9174F9E32005F0169 /* btn-character-upgrades-hd.png */; };
+		9CFC66B4174F9E33005F0169 /* btn-character-upgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AA174F9E32005F0169 /* btn-character-upgrades.png */; };
+		9CFC66B5174F9E33005F0169 /* btn-devil-upgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AB174F9E33005F0169 /* btn-devil-upgrades-hd.png */; };
+		9CFC66B6174F9E33005F0169 /* btn-devil-upgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AC174F9E33005F0169 /* btn-devil-upgrades.png */; };
+		9CFC66B7174F9E33005F0169 /* btn-purchase-souls-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AD174F9E33005F0169 /* btn-purchase-souls-hd.png */; };
+		9CFC66B8174F9E33005F0169 /* btn-purchase-souls.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AE174F9E33005F0169 /* btn-purchase-souls.png */; };
+		9CFC66B9174F9E33005F0169 /* btn-special-upgrades-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66AF174F9E33005F0169 /* btn-special-upgrades-hd.png */; };
+		9CFC66BA174F9E33005F0169 /* btn-special-upgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B0174F9E33005F0169 /* btn-special-upgrades.png */; };
+		9CFC66BB174F9E33005F0169 /* character-unlock-detective.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B1174F9E33005F0169 /* character-unlock-detective.png */; };
+		9CFC66BC174F9E33005F0169 /* character-unlock-detective@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B2174F9E33005F0169 /* character-unlock-detective@2x.png */; };
 		9CFF0B69158A7CB8000AA4E0 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B68158A7CB7000AA4E0 /* Platform.m */; };
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
 		9CFF0B77158A7D0C000AA4E0 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */; };
@@ -1589,6 +1599,16 @@
 		9CE614BB15B70B9200AF1C78 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		9CE614BC15B70B9200AF1C78 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9CE614BD15B70B9200AF1C78 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		9CFC66A9174F9E32005F0169 /* btn-character-upgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-character-upgrades-hd.png"; sourceTree = "<group>"; };
+		9CFC66AA174F9E32005F0169 /* btn-character-upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-character-upgrades.png"; sourceTree = "<group>"; };
+		9CFC66AB174F9E33005F0169 /* btn-devil-upgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-devil-upgrades-hd.png"; sourceTree = "<group>"; };
+		9CFC66AC174F9E33005F0169 /* btn-devil-upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-devil-upgrades.png"; sourceTree = "<group>"; };
+		9CFC66AD174F9E33005F0169 /* btn-purchase-souls-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-purchase-souls-hd.png"; sourceTree = "<group>"; };
+		9CFC66AE174F9E33005F0169 /* btn-purchase-souls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-purchase-souls.png"; sourceTree = "<group>"; };
+		9CFC66AF174F9E33005F0169 /* btn-special-upgrades-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-special-upgrades-hd.png"; sourceTree = "<group>"; };
+		9CFC66B0174F9E33005F0169 /* btn-special-upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-special-upgrades.png"; sourceTree = "<group>"; };
+		9CFC66B1174F9E33005F0169 /* character-unlock-detective.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character-unlock-detective.png"; sourceTree = "<group>"; };
+		9CFC66B2174F9E33005F0169 /* character-unlock-detective@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character-unlock-detective@2x.png"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
 		9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collectable.h; path = Objects/Collectable.h; sourceTree = "<group>"; };
@@ -2478,6 +2498,16 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CFC66A9174F9E32005F0169 /* btn-character-upgrades-hd.png */,
+				9CFC66AA174F9E32005F0169 /* btn-character-upgrades.png */,
+				9CFC66AB174F9E33005F0169 /* btn-devil-upgrades-hd.png */,
+				9CFC66AC174F9E33005F0169 /* btn-devil-upgrades.png */,
+				9CFC66AD174F9E33005F0169 /* btn-purchase-souls-hd.png */,
+				9CFC66AE174F9E33005F0169 /* btn-purchase-souls.png */,
+				9CFC66AF174F9E33005F0169 /* btn-special-upgrades-hd.png */,
+				9CFC66B0174F9E33005F0169 /* btn-special-upgrades.png */,
+				9CFC66B1174F9E33005F0169 /* character-unlock-detective.png */,
+				9CFC66B2174F9E33005F0169 /* character-unlock-detective@2x.png */,
 				9C115AE2174CFED100036016 /* action-black-button-selected.png */,
 				9C115AE3174CFED100036016 /* action-black-button-selected@2x.png */,
 				9C115AE4174CFED100036016 /* action-black-button.png */,
@@ -3509,6 +3539,16 @@
 				9C115AFB174CFED100036016 /* action-red-button@2x.png in Resources */,
 				9C115AFC174CFED100036016 /* action-sheet-panel.png in Resources */,
 				9C115AFD174CFED100036016 /* action-sheet-panel@2x.png in Resources */,
+				9CFC66B3174F9E33005F0169 /* btn-character-upgrades-hd.png in Resources */,
+				9CFC66B4174F9E33005F0169 /* btn-character-upgrades.png in Resources */,
+				9CFC66B5174F9E33005F0169 /* btn-devil-upgrades-hd.png in Resources */,
+				9CFC66B6174F9E33005F0169 /* btn-devil-upgrades.png in Resources */,
+				9CFC66B7174F9E33005F0169 /* btn-purchase-souls-hd.png in Resources */,
+				9CFC66B8174F9E33005F0169 /* btn-purchase-souls.png in Resources */,
+				9CFC66B9174F9E33005F0169 /* btn-special-upgrades-hd.png in Resources */,
+				9CFC66BA174F9E33005F0169 /* btn-special-upgrades.png in Resources */,
+				9CFC66BB174F9E33005F0169 /* character-unlock-detective.png in Resources */,
+				9CFC66BC174F9E33005F0169 /* character-unlock-detective@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -185,18 +185,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -275,18 +263,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>ingame-platform-normal-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -585,18 +561,6 @@
 							<string>ingame-platform-normal-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -675,18 +639,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -1563,18 +1515,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -1655,18 +1595,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -1745,18 +1673,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -4221,18 +4137,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -4311,18 +4215,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -4405,18 +4297,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -4495,18 +4375,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -4589,18 +4457,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -4679,18 +4535,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -4773,18 +4617,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -4863,18 +4695,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -4957,18 +4777,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -5049,18 +4857,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -5139,18 +4935,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -24067,18 +23851,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -24157,18 +23929,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -24251,18 +24011,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -24341,18 +24089,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -24435,18 +24171,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -24525,18 +24249,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>

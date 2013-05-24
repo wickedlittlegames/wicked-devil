@@ -171,9 +171,6 @@
         
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:10 width:3 color:ccWHITE textureFilename:@"streak3.png"];
         [self addChild:streak];
-        
-        CCLOG(@"%f",game.player.health);
-        
         [self schedule:@selector(update:)];
     }
 	return self;
@@ -246,7 +243,38 @@
             location = [[CCDirector sharedDirector] convertToGL:location];
             [streak setPosition:location];
         }
+        
+        if ( !game.player.controllable && !game.isStarted )
+        {
+            CCLOG(@"TOUCH SWIPE UP FIRST GRAB");            
+            //Swipe Detection Part 1
+            CGPoint location = [touch locationInView: [touch view]];
+            firstTouch = location;
+        }
     }
+}
+
+-(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ( !game.player.controllable && !game.isStarted )
+    {
+        NSSet *allTouches = [event allTouches];
+        UITouch * touch = [[allTouches allObjects] objectAtIndex:0];
+        CGPoint location = [touch locationInView: [touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        
+        //Swipe Detection Part 2
+        lastTouch = location;
+        
+        //Minimum length of the swipe
+        float swipeLength = ccpDistance(lastTouch, firstTouch);
+        
+        //Check if the swipe is a left swipe and long enough
+        if (firstTouch.y > lastTouch.y && swipeLength > 30) {
+            [self tap_launch];
+        }
+    }
+
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

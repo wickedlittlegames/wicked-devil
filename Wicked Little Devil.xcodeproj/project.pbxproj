@@ -760,6 +760,8 @@
 		9CFC66BA174F9E33005F0169 /* btn-special-upgrades.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B0174F9E33005F0169 /* btn-special-upgrades.png */; };
 		9CFC66BB174F9E33005F0169 /* character-unlock-detective.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B1174F9E33005F0169 /* character-unlock-detective.png */; };
 		9CFC66BC174F9E33005F0169 /* character-unlock-detective@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66B2174F9E33005F0169 /* character-unlock-detective@2x.png */; };
+		9CFC66BE174FA324005F0169 /* zombie-devil-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66BD174FA324005F0169 /* zombie-devil-test.png */; };
+		9CFC66C0174FA32F005F0169 /* zombie-devil-test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFC66BF174FA32F005F0169 /* zombie-devil-test@2x.png */; };
 		9CFF0B69158A7CB8000AA4E0 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B68158A7CB7000AA4E0 /* Platform.m */; };
 		9CFF0B76158A7D0C000AA4E0 /* Collectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6B158A7D0C000AA4E0 /* Collectable.m */; };
 		9CFF0B77158A7D0C000AA4E0 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF0B6D158A7D0C000AA4E0 /* Enemy.m */; };
@@ -1609,6 +1611,8 @@
 		9CFC66B0174F9E33005F0169 /* btn-special-upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-special-upgrades.png"; sourceTree = "<group>"; };
 		9CFC66B1174F9E33005F0169 /* character-unlock-detective.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character-unlock-detective.png"; sourceTree = "<group>"; };
 		9CFC66B2174F9E33005F0169 /* character-unlock-detective@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character-unlock-detective@2x.png"; sourceTree = "<group>"; };
+		9CFC66BD174FA324005F0169 /* zombie-devil-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-devil-test.png"; sourceTree = "<group>"; };
+		9CFC66BF174FA32F005F0169 /* zombie-devil-test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-devil-test@2x.png"; sourceTree = "<group>"; };
 		9CFF0B67158A7CB7000AA4E0 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = Objects/Platform.h; sourceTree = "<group>"; };
 		9CFF0B68158A7CB7000AA4E0 /* Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Platform.m; path = Objects/Platform.m; sourceTree = "<group>"; };
 		9CFF0B6A158A7D0C000AA4E0 /* Collectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collectable.h; path = Objects/Collectable.h; sourceTree = "<group>"; };
@@ -2498,6 +2502,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CFC66BF174FA32F005F0169 /* zombie-devil-test@2x.png */,
+				9CFC66BD174FA324005F0169 /* zombie-devil-test.png */,
 				9CFC66A9174F9E32005F0169 /* btn-character-upgrades-hd.png */,
 				9CFC66AA174F9E32005F0169 /* btn-character-upgrades.png */,
 				9CFC66AB174F9E33005F0169 /* btn-devil-upgrades-hd.png */,
@@ -3549,6 +3555,8 @@
 				9CFC66BA174F9E33005F0169 /* btn-special-upgrades.png in Resources */,
 				9CFC66BB174F9E33005F0169 /* character-unlock-detective.png in Resources */,
 				9CFC66BC174F9E33005F0169 /* character-unlock-detective@2x.png in Resources */,
+				9CFC66BE174FA324005F0169 /* zombie-devil-test.png in Resources */,
+				9CFC66C0174FA32F005F0169 /* zombie-devil-test@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

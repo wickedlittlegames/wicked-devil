@@ -16,21 +16,11 @@
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Wicked Little Devil</string>
-			<key>Description</key>
-			<string>For those who played Wicked Little Devil</string>
-			<key>Cost</key>
-			<integer>3000</integer>
-			<key>Image</key>
-			<string>jump1.png</string>
-		</dict>
-		<dict>
-			<key>Name</key>
 			<string>Super Devil</string>
 			<key>Description</key>
 			<string>Ultimate Power... and sexy hair</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>3000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -40,7 +30,7 @@
 			<key>Description</key>
 			<string>Boldly going straight down</string>
 			<key>Cost</key>
-			<integer>7500</integer>
+			<integer>5000</integer>
 			<key>Image</key>
 			<string>jump1.png</string>
 		</dict>
@@ -52,7 +42,7 @@
 			<key>Cost</key>
 			<integer>7500</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>zombie-devil-test.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>

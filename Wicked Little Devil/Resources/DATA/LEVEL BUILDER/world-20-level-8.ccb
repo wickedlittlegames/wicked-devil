@@ -185,18 +185,6 @@
 							<string>ingame-platform-normal-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -491,18 +479,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>ingame-platform-normal-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -2261,18 +2237,6 @@
 							<string>platform-moving-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -2351,18 +2315,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-moving-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -2445,18 +2397,6 @@
 							<string>platform-moving-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -2535,18 +2475,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-jump-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -2773,18 +2701,6 @@
 							<string>platform-jump-bw.png</string>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
-						</array>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -2935,18 +2851,6 @@
 						<array>
 							<string>Resources/IMAGES/Ingame/IngameSprites-bw.plist</string>
 							<string>platform-broken-bw.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
 						</array>
 					</dict>
 				</array>
@@ -3205,8 +3109,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>81.875</real>
-							<real>80.208335876464844</real>
+							<real>115.9375</real>
+							<real>79.791671752929688</real>
 							<integer>4</integer>
 						</array>
 					</dict>
@@ -3262,6 +3166,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

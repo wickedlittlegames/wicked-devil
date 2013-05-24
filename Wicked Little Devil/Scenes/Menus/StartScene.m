@@ -89,7 +89,10 @@
         {
             if ( user.no_to_facebook < 2 )
             {
-                [alert show];                
+                if ([user isOnline])
+                {
+                    [alert show];
+                }
             }
         }
         else

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "StartScene.h"
-#import "GameScene.h"
+//#import "GameScene.h"
 //#import "EquipMenuScene.h"
 //#import "LevelSelectScene.h"
 #import "GameOverFacebookScene.h"
@@ -111,11 +111,11 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-//	[director_ pushScene:[StartScene scene]];    
+	[director_ pushScene:[StartScene scene]];    
 //	[director_ pushScene:[WorldSelectScene scene]];
 //	[director_ pushScene:[LevelSelectScene sceneWithWorld:1]];
 //    [director_ pushScene:[EquipMenuScene scene]];
-    [director_ pushScene:[GameScene sceneWithWorld:(int)2 andLevel:10 isRestart:TRUE restartMusic:FALSE]];
+//    [director_ pushScene:[GameScene sceneWithWorld:(int)2 andLevel:10 isRestart:TRUE restartMusic:FALSE]];
 
 	return YES;
 }

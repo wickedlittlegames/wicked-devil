@@ -115,7 +115,7 @@
 //	[director_ pushScene:[WorldSelectScene scene]];
 //	[director_ pushScene:[LevelSelectScene sceneWithWorld:1]];
 //    [director_ pushScene:[EquipMenuScene scene]];
-//    [director_ pushScene:[GameScene sceneWithWorld:(int)4 andLevel:1 isRestart:TRUE restartMusic:FALSE]];
+//    [director_ pushScene:[GameScene sceneWithWorld:(int)2 andLevel:10 isRestart:TRUE restartMusic:FALSE]];
 
 	return YES;
 }

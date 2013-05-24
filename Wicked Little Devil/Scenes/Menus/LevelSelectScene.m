@@ -160,8 +160,12 @@
         [self addChild:label_world_score];
         [self addChild:icon_collectable];
         [self addChild:label_collected];
-        [self addChild:label_halo];
-        [self addChild:icon_halo];
+        
+        if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        {
+            [self addChild:label_halo];
+            [self addChild:icon_halo];
+        }
     }
     return self;
 }

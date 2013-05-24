@@ -44,12 +44,12 @@
 
 - (void) isIntersectingPlayer:(Game*)game
 {
-    if ( self.visible && !self.running )
+    if ( self.visible && !self.running && !self.dead )
     {
         switch (self.tag)
         {
             default: // simple interaction, kill player
-                if ( [self intersectCheck:game] )   [self action:self.tag game:game];
+                if ( [self intersectCheck:game] && !self.dead )   [self action:self.tag game:game];
                 break;
             case 4:  // rocket blast
                 if ( [self radiusCheck:game] ) [self action:self.tag game:game];
@@ -74,32 +74,35 @@
 
 - (void) action:(int)action_id game:(Game*)game
 {
-    switch(action_id)
+    if ( !self.dead )
     {
-        case 1: // BAT: Jump ontop, or die below
-            [self action_bat_hit:game];
-            break;
-        case 101: // BAT: Jump ontop, or die below
-            [self action_bat_hit:game];
-            break;
-        case 2: // MINE: Any time touched, blows up
-            [self action_mine_explode:game];
-        case 22:
-            [self action_mine_explode:game];
-            break;
-        case 223:
-            [self action_mine_explode:game];
-            break;
-        case 3: // BUBBLE: Floats the player up
-            if ( game.player.floating == NO ) [self action_bubble_float:game];
-            break;
-        case 4: // ROCKET: Shoots rocket at target player area
-            if ( !(game.user.powerup == 104) ) [self action_shoot_rocket:game];
-            break;
-        case 5: // SPACE: Blackhole draws player in and transports player to a new location
-            [self action_teleport_player:game];
-            break;
-        default: break;
+        switch(action_id)
+        {
+            case 1: // BAT: Jump ontop, or die below
+                [self action_bat_hit:game];
+                break;
+            case 101: // BAT: Jump ontop, or die below
+                [self action_bat_hit:game];
+                break;
+            case 2: // MINE: Any time touched, blows up
+                [self action_mine_explode:game];
+            case 22:
+                [self action_mine_explode:game];
+                break;
+            case 223:
+                [self action_mine_explode:game];
+                break;
+            case 3: // BUBBLE: Floats the player up
+                if ( game.player.floating == NO ) [self action_bubble_float:game];
+                break;
+            case 4: // ROCKET: Shoots rocket at target player area
+                if ( !(game.user.powerup == 104) ) [self action_shoot_rocket:game];
+                break;
+            case 5: // SPACE: Blackhole draws player in and transports player to a new location
+                [self action_teleport_player:game];
+                break;
+            default: break;
+        }
     }
 }
 
@@ -133,17 +136,19 @@
 
 - (void) action_mine_explode:(Game*)game
 {
-    if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
-    [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
-    
-    self.dead = YES;
-    self.visible = NO;
-    game.player.health--;
-    
-    if ( game.player.health <= 0 )
+    if ( !self.dead )
     {
-        game.player.animating = NO;
-        [game.player animate:4];
+        if ( ![SimpleAudioEngine sharedEngine].mute ) [[SimpleAudioEngine sharedEngine] playEffect:@"boom.caf"];
+        [game.fx start:0 position:ccp([self worldBoundingBox].origin.x + [self contentSize].width/2, [self worldBoundingBox].origin.y)];
+        
+        self.dead = YES;
+        self.visible = NO;
+        game.player.health--;
+        if ( game.player.health <= 0 )
+        {
+            game.player.animating = NO;
+            [game.player animate:4];
+        }
     }
 }
 
@@ -183,9 +188,15 @@
 - (void) action_shoot_rocket:(Game*)game
 {
     self.running = YES;
+    NSString *rocketimg = @"rocket.png";
+    
+    if ( game.world == 20 )
+    {
+        rocketimg = @"rocket-bw.png";
+    }
     
     // SHOOT A ROCKET AT THE PLAYER
-    Projectile *projectile = [Projectile spriteWithFile:@"rocket.png"];
+    Projectile *projectile = [Projectile spriteWithFile:rocketimg];
     [projectile setPosition:ccp(27, [self worldBoundingBox].origin.y + 300)];
     
     // Rocket trail

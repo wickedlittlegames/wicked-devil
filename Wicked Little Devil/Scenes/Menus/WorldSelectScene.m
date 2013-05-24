@@ -58,13 +58,17 @@
         
         // Object creation area
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
-        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"]; 
+        CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
+        CCSprite *icon_halo             = [CCSprite spriteWithFile:@"icon-halo-med.png"];
+        
         CCLabelTTF *label_bigcollected  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", big_collectables_player, big_collectables_total] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
         CCLabelTTF *label_collected     = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", user.collected] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        CCLabelTTF *label_halo          = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i/%i", [user getHalosforAll], (LEVELS_PER_WORLD*CURRENT_WORLDS_PER_GAME)] dimensions:CGSizeMake(screenSize.width - 80, 30) hAlignment:kCCTextAlignmentRight fontName:font fontSize:32];
+        
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_equip:)],nil];
         CCMenu *menu_store              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-store-world.png" selectedImage:@"btn-store-world.png"    target:self selector:@selector(tap_store:)],nil];
-        CCMenuItem *btn_moregames    = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
+        CCMenuItem *btn_moregames       = [CCMenuItemImage itemWithNormalImage:@"btn-more-games.png"    selectedImage:@"btn-more-games.png" target:self selector:@selector(tap_moregames)];
         CCMenuItem *btn_achievements    = [CCMenuItemImage itemWithNormalImage:@"btn-achievements.png"    selectedImage:@"btn-achievements.png" target:self selector:@selector(tap_achievements)];
         CCMenuItem *btn_leaderboard     = [CCMenuItemImage itemWithNormalImage:@"btn-leaderboard.png"    selectedImage:@"btn-leaderboard.png" target:self selector:@selector(tap_leaderboard)];
         btn_facebooksignin              = [CCMenuItemImage itemWithNormalImage:@"btn-fb.png"            selectedImage:@"btn-fb.png"         target:self selector:@selector(tap_facebook)];
@@ -82,11 +86,12 @@
         [menu_store             setPosition:ccp(70, screenSize.height - 25)];
         [icon_bigcollectable    setPosition:ccp(screenSize.width - 20, screenSize.height - 20)];
         [icon_collectable       setPosition:ccp(screenSize.width - 20, icon_bigcollectable.position.y - 26)];
+        [icon_halo      setPosition:ccp(screenSize.width - 20, icon_collectable.position.y - 26)];
         [label_bigcollected     setPosition:ccp(screenSize.width/2, screenSize.height - 22)];
         [label_collected        setPosition:ccp(screenSize.width/2, label_bigcollected.position.y - 24)];
+        [label_halo        setPosition:ccp(screenSize.width/2, label_collected.position.y - 24)];
         
         // Add world layers to the scroller
-//        [worlds addObject:[self updates]];
         [worlds addObject:[self hell]];
         [worlds addObject:[self underground]];
         [worlds addObject:[self ocean]];
@@ -103,6 +108,11 @@
         [self addChild:menu_back];
         [self addChild:icon_bigcollectable];
         [self addChild:icon_collectable];
+        if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        {
+            [self addChild:icon_halo];
+            [self addChild:label_halo];
+        }
         [self addChild:label_bigcollected];
         [self addChild:label_collected];
         [self addChild:behind_fb];

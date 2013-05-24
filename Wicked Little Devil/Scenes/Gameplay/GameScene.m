@@ -125,6 +125,7 @@
         game.fx = layer_fx;
         game.pastScore = [user getHighscoreforWorld:w level:l];
         [game.player setupPowerup:user.powerup];
+        
         if ( w == 20 )
         {
             [game.player setupCharacter:0];
@@ -170,6 +171,8 @@
         
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:10 width:3 color:ccWHITE textureFilename:@"streak3.png"];
         [self addChild:streak];
+        
+        CCLOG(@"%f",game.player.health);
         
         [self schedule:@selector(update:)];
     }

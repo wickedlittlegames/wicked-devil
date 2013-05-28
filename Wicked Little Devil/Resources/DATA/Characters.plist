@@ -10,19 +10,9 @@
 			<key>Description</key>
 			<string>An echo of the Devils previous life...</string>
 			<key>Cost</key>
-			<integer>3000</integer>
+			<integer>2500</integer>
 			<key>Image</key>
 			<string>character-unlock-detective.png</string>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Super Devil</string>
-			<key>Description</key>
-			<string>Ultimate Power... and sexy hair</string>
-			<key>Cost</key>
-			<integer>3000</integer>
-			<key>Image</key>
-			<string>jump1.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -40,7 +30,7 @@
 			<key>Description</key>
 			<string>The ultimate evil combination!</string>
 			<key>Cost</key>
-			<integer>7500</integer>
+			<integer>5000</integer>
 			<key>Image</key>
 			<string>zombie-devil-test.png</string>
 		</dict>

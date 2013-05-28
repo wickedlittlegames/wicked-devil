@@ -126,8 +126,9 @@
     {
         Game *tmpgame = [[Game alloc] init];
         tmpgame.user = user;
-        
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
+
+        [notificationView clear];
+        [[CCDirector sharedDirector] pushScene:[CCTransitionMoveInB transitionWithDuration:0.2f scene:[GameOverFacebookScene sceneWithGame:tmpgame fromScene:2]]];
     }
     else
     {

@@ -139,8 +139,6 @@
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (pfuser.isNew) {
-//                user.collected += 5000;
-//                [user sync];
                 [self getFacebookImage];
             }
             else

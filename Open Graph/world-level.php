@@ -32,6 +32,7 @@ case 2:
 
 <html>
       <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# wickeddevil: http://ogp.me/ns/fb/wickeddevil#">
+      <meta HTTP-EQUIV="REFRESH" content="0; url=https://www.facebook.com/appcenter/wickeddevil">
       <meta property="fb:app_id" content="292930497469007" /> 
       <meta property="og:type"   content="wickeddevil:level" /> 
       <meta property="og:url" content="<?php echo strip_tags(curPageURL());?>">

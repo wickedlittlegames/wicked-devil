@@ -834,7 +834,7 @@
     [self.udata setBool:self.sent_ach_died_100 forKey:@"sent_ach_died_100"];
     [self.udata setBool:self.sent_ach_jumped_1000 forKey:@"sent_ach_jumped_1000"];
     [self.udata setBool:self.sent_ach_collected_666 forKey:@"sent_ach_collected_666"];
-        [self.udata setBool:self.sent_ach_halo forKey:@"sent_ach_halo"];
+    [self.udata setBool:self.sent_ach_halo forKey:@"sent_ach_halo"];
     
     [self.udata synchronize];
 }

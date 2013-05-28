@@ -39,6 +39,7 @@
     
     // Start the flurry session
     [FlurryAnalytics startSession:@"ZH4F8GJFJSD8C3QBTYR4"];
+    [FBSettings publishInstall:@"292930497469007"];
     
     // Cache all music/SFX
     [self cacheSFX];

@@ -12,7 +12,7 @@
 //#import "EquipMenuScene.h"
 //#import "LevelSelectScene.h"
 #import "GameOverFacebookScene.h"
-#import "WorldSelectScene.h"
+//#import "WorldSelectScene.h"
 #import "MKStoreManager.h"
 #import "FlurryAnalytics.h"
 
@@ -59,7 +59,7 @@
 
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 	director_.wantsFullScreenLayout = YES;
-
+    
 	// Display FSP and SPF
 	[director_ setDisplayStats:NO];
 
@@ -116,7 +116,7 @@
 //	[director_ pushScene:[WorldSelectScene scene]];
 //	[director_ pushScene:[LevelSelectScene sceneWithWorld:1]];
 //    [director_ pushScene:[EquipMenuScene scene]];
-//    [director_ pushScene:[GameScene sceneWithWorld:(int)2 andLevel:10 isRestart:TRUE restartMusic:FALSE]];
+//    [director_ pushScene:[GameScene sceneWithWorld:(int)1 andLevel:1 isRestart:TRUE restartMusic:FALSE]];
 
 	return YES;
 }

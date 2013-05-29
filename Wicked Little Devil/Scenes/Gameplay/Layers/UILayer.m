@@ -87,7 +87,7 @@
     }  
     
     // pause background and functionality sprites
-    pause_bg = [CCSprite spriteWithFile:@"bg-pauseoverlay.png"];
+    pause_bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-pauseoverlay%@.png", (IS_IPHONE5 ? @"-iphone5" : @"")]];
     pause_bg.position = ccp ( screenSize.width/2, screenSize.height/2 );
     [self addChild:pause_bg]; pause_bg.visible = FALSE;
     
@@ -135,7 +135,7 @@
     [label_powerup      setPosition:ccp(label_gamenumber.position.x, label_gamenumber.position.y - 30)];
     
     pause_screen = [CCMenu menuWithItems:button_unpause, button_mainmenu, nil];
-    [pause_screen setPosition:ccp(screenSize.width/2, screenSize.height/2 - 75)];
+    [pause_screen setPosition:ccp(screenSize.width/2, (IS_IPHONE5 ? screenSize.height/2 - 25 : screenSize.height/2 - 75))];
     
     [pause_screen alignItemsVerticallyWithPadding:-3];
     [pause_bg addChild:label_best];

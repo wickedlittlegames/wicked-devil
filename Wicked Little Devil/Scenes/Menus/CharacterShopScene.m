@@ -58,10 +58,14 @@
         [view addSubview:table];
         [app.window addSubview:view];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-powerups.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-store-iphone5.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         resetAll                        = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-unequip-all.png" selectedImage:@"btn-unequip-all.png"           target:self selector:@selector(tap_resetPowerups)],nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:48];
+        
+        CCLabelTTF *lbl_title              = [CCLabelTTF labelWithString:@"CHARACTERS" fontName:font fontSize:68];
+        [lbl_title          setPosition:ccp(screenSize.width/2, screenSize.height - 35)];
+
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];
@@ -70,6 +74,7 @@
         [resetAll setOpacity:0];
         
         [self addChild:bg];
+        [self addChild:lbl_title];
         [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
         [self addChild:resetAll];

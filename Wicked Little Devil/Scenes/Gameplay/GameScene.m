@@ -41,7 +41,7 @@
 	if( (self=[super init]) ) 
     {
         screenSize = [CCDirector sharedDirector].winSize;
-        
+     
         if ( restart )
         {
             CCLayerColor *whiteflash = [CCLayerColor layerWithColor:ccc4(225, 225, 225, 225)];
@@ -49,6 +49,7 @@
             
             [whiteflash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.4f], nil]];
         }
+        
         User *user = [[User alloc] init];
         game = [[Game alloc] init];
         
@@ -171,6 +172,8 @@
         
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:10 width:3 color:ccWHITE textureFilename:@"streak3.png"];
         [self addChild:streak];
+        
+        
         [self schedule:@selector(update:)];
     }
 	return self;

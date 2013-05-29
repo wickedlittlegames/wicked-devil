@@ -39,8 +39,8 @@
 {
     if (self.tag == 2 || self.tag == 67)
     {
-        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
-        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
+        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,(IS_IPHONE5 ? 118 : 100))];
+        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,(IS_IPHONE5 ? -118 : -100))];
         
         CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
         [self runAction:repeater];
@@ -49,8 +49,8 @@
     }
     if ( self.tag == 22 )
     {
-        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,-100)];
-        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,100)];
+        id verticalmove = [CCMoveBy actionWithDuration:2 position:ccp(0,(IS_IPHONE5 ? -118 : -100))];
+        id verticalmove_opposite = [CCMoveBy actionWithDuration:2 position:ccp(0,(IS_IPHONE5 ? 118 : 100))];
         
         CCAction *repeater = [CCRepeatForever actionWithAction:[CCSequence actions:verticalmove,verticalmove_opposite,nil]];
         [self runAction:repeater];

@@ -5,7 +5,6 @@
 //  Created by Andrew Girvan on 25/05/2012.
 //  Copyright 2012 Wicked Little Websites. All rights reserved.
 //
-
 #import "Player.h"
 
 @implementation Player
@@ -20,11 +19,9 @@
         self.collectable_multiplier = 1;
         self.scale = 1.25;
         self.jumpspeed = 5.5;
-        if ([[UIScreen mainScreen] bounds].size.height == 568)
-        {
-            self.jumpspeed = 6;
-        }
+        if (IS_IPHONE5) self.jumpspeed = 6.51;
         self.gravity = 0.18;
+        if (IS_IPHONE5) self.gravity = 0.21;
         self.modifier_gravity = 0;
         self.health = 1.0;
         self.damage = 1.0;

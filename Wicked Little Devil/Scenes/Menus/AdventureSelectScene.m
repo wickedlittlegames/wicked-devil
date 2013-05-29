@@ -47,7 +47,7 @@
         if ( [user isOnline] )
         {
             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"adventure_select" delegate:(id)self];
-            request.showsOverlayImmediately = YES;
+            request.showsOverlayImmediately = NO;
             [request send];
         }
         
@@ -63,6 +63,9 @@
             [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"detective-music.aifc" loop:YES];
         }
+        CCSprite *bgbg                    = [CCSprite spriteWithFile:@"bg-store-iphone5.png"];
+        [bgbg                     setPosition:ccp(screenSize.width/2, screenSize.height/2 )];
+        [self addChild:bgbg];
         
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_equip              = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-powerup.png" selectedImage:@"btn-powerup.png"    target:self selector:@selector(tap_equip:)],nil];
@@ -302,7 +305,7 @@
     
     if ( !user.unlocked_detective )
     {
-        locked_sprite = [CCSprite spriteWithFile:@"bg-locked2.png"];
+        locked_sprite = [CCSprite spriteWithFile:@"bg-locked-iphone5.png"];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
         

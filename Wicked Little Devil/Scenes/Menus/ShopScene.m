@@ -46,22 +46,27 @@
         else [self setupTable];
 
         // set up the design and functional sprites
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-shop.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-store-iphone5.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back)], nil];
         lbl_user_collected              = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SOULS: %i",user.collected] fontName:font fontSize:48];
+        
+        CCLabelTTF *lbl_title              = [CCLabelTTF labelWithString:@"PURCHASE" fontName:font fontSize:68];
+        [lbl_title          setPosition:ccp(screenSize.width/2, screenSize.height - 35)];
+        
         
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];
         [lbl_user_collected setPosition:ccp(screenSize.width/2, screenSize.height - 85)];
         
         [self addChild:bg];
+        [self addChild:lbl_title];
         [self addChild:menu_back z:1000];
         [self addChild:lbl_user_collected z:100];
         
         if ( [user isOnline] )
         {
             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"shop_scene" delegate:(id)self];
-            request.showsOverlayImmediately = YES;
+            request.showsOverlayImmediately = NO;
             [request send];
         }
         

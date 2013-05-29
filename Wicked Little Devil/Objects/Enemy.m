@@ -165,8 +165,8 @@
     game.player.velocity = ccp ( 0, 0 );
     game.touch = ccp ( game.player.position.x, game.touch.y );
     
-    id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
-    id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,250)];
+    id floatup_player           = [CCMoveBy actionWithDuration:3 position:ccp(0,(IS_IPHONE5 ? 295 : 250))];
+    id floatup_bubble           = [CCMoveBy actionWithDuration:3 position:ccp(0,(IS_IPHONE5 ? 295 : 250))];
     id end_action_bubblefloat   = [CCCallBlock actionWithBlock:^(void) { self.dead = YES; self.running = NO; self.floating = NO; }];
     id end_action_player        = [CCCallBlock actionWithBlock:^(void) { game.player.controllable = YES; game.player.floating = NO; }];
     
@@ -197,7 +197,7 @@
     
     // SHOOT A ROCKET AT THE PLAYER
     Projectile *projectile = [Projectile spriteWithFile:rocketimg];
-    [projectile setPosition:ccp(27, [self worldBoundingBox].origin.y + 300)];
+    [projectile setPosition:ccp(27, [self worldBoundingBox].origin.y + (IS_IPHONE5 ? 355 : 300))];
     
     // Rocket trail
     EnemyFX *rocket_fx = [EnemyFX particleWithFile:@"RocketBlast.plist"];
@@ -222,7 +222,7 @@
     int offRealX = realX - projectile.position.x;
     int offRealY = realY - projectile.position.y;
     float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-    float velocity = 400/1;
+    float velocity = (IS_IPHONE5 ? 473/1 : 400/1 );
     float realMoveDuration = length/velocity;
     
     id action_end = [CCCallBlock actionWithBlock:^(void) { projectile.visible = NO; }];

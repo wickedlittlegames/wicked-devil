@@ -43,7 +43,7 @@
         if ( [user isOnline] )
         {
             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"world_select" delegate:(id)self];
-            request.showsOverlayImmediately = YES;
+            request.showsOverlayImmediately = NO;
             [request send];
         }
         
@@ -54,8 +54,6 @@
         int big_collectables_total  = (LEVELS_PER_WORLD * CURRENT_WORLDS_PER_GAME) * 3;
         int big_collectables_player = [user getSoulsforAll];
       
-        
-        
         // Object creation area
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable.png"];
@@ -336,7 +334,7 @@
 
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+                CCSprite *locked_sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-locked%@.png", (IS_IPHONE5 ? @"-iphone5" : @"")]];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }
@@ -361,7 +359,7 @@
 
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+        CCSprite *locked_sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-locked%@.png", (IS_IPHONE5 ? @"-iphone5" : @"")]];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }
@@ -387,7 +385,7 @@
 
     if ( !button.isEnabled )
     {
-        CCSprite *locked_sprite = [CCSprite spriteWithFile:@"bg-locked.png"];
+                CCSprite *locked_sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-locked%@.png", (IS_IPHONE5 ? @"-iphone5" : @"")]];
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
     }

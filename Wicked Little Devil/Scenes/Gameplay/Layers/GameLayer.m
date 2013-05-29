@@ -16,12 +16,13 @@
 
 - (id) init
 {
-	if( (self=[super init]) ) {}
+	if( (self=[super init]) ) {
+    }
 	return self;
 }
 
 - (void) createWorldWithObjects:(CCArray*)gameObjects
-{
+{   
     self.platforms       = [CCArray arrayWithCapacity:100];
     self.collectables    = [CCArray arrayWithCapacity:500];
     self.bigcollectables = [CCArray arrayWithCapacity:3];

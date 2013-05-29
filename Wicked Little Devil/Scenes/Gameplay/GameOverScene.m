@@ -55,7 +55,7 @@
          if ( [game.user isOnline] )
          {
              PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"game_over" delegate:(id)self];
-             request.showsOverlayImmediately = YES;
+             request.showsOverlayImmediately = NO;
              [request send];
          }
          
@@ -135,7 +135,7 @@
          }
          [game.user sync];
          
-         CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i.png",game.player.bigcollected]];
+         CCSprite *bg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-gameover-%i%@.png",game.player.bigcollected, (IS_IPHONE5 ? @"-iphone5" : @"")]];
          [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
          [self addChild:bg];         
          

@@ -102,12 +102,12 @@
             if ( [user isOnline] )
             {
                 PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"main_menu" delegate:(id)self];
-                request.showsOverlayImmediately = YES;
+                request.showsOverlayImmediately = NO;
                 [request send];
             }
         }
     
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-home.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-home%@.png", (IS_IPHONE5 ? @"-iphone5" : @"")]];
         CCMenuItem *btn_start           = [CCMenuItemImage itemWithNormalImage:@"btn-start.png"         selectedImage:@"btn-start.png"      target:self selector:@selector(tap_start)];
         CCSprite *title_adventures_new  = [CCSprite spriteWithFile:@"title-adventures-new.png"];
         

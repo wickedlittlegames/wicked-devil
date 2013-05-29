@@ -47,7 +47,7 @@
             break;
     }
     self.player = [Player spriteWithFile:[NSString stringWithFormat:@"%@",filename]];
-    [self.player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , 60 )];
+    [self.player setPosition:ccp ( [[CCDirector sharedDirector] winSize].width/2 , (IS_IPHONE5 ? 65 : 60))];
     [self addChild:self.player];
 }
 

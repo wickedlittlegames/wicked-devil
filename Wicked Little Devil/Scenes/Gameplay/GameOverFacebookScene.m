@@ -39,9 +39,15 @@
         fbdata2    = [NSMutableArray arrayWithObjects:nil];
         fbdata3  = [NSMutableArray arrayWithObjects:nil];
         
-        CCSprite *bg = [CCSprite spriteWithFile:@"bg-facebookfriends.png"];
+        CCSprite *bg = [CCSprite spriteWithFile:@"bg-menu-facebook.png"];
         [bg setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:bg];
+        
+        CCLabelTTF *lbl_title              = [CCLabelTTF labelWithString:@"FACEBOOK SCORES" fontName:@"CrashLanding BB" fontSize:62];
+        lbl_title.color = ccBLACK;
+        [lbl_title          setPosition:ccp(screenSize.width/2, screenSize.height - 35)];
+        [self addChild:lbl_title];
+
 
         CCMenu *menu_back  = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png" block:^(id sender)
         {

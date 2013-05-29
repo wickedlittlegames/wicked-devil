@@ -5009,9 +5009,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>301</real>
-							<real>310</real>
-							<integer>0</integer>
+							<real>94.0625</real>
+							<real>64.583335876464844</real>
+							<integer>4</integer>
 						</array>
 					</dict>
 					<dict>
@@ -5058,6 +5058,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

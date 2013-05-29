@@ -10,7 +10,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling x1</string>
 			<key>Cost</key>
-			<integer>2000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -18,7 +18,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling x2</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -26,7 +26,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling x3</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -34,7 +34,7 @@
 			<key>Description</key>
 			<string>Save yourself from falling x10</string>
 			<key>Cost</key>
-			<integer>25000</integer>
+			<integer>15000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -42,7 +42,7 @@
 			<key>Description</key>
 			<string>Jump higher!</string>
 			<key>Cost</key>
-			<integer>2000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -50,7 +50,7 @@
 			<key>Description</key>
 			<string>Jump even higher!</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -58,7 +58,7 @@
 			<key>Description</key>
 			<string>Jump highest!</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -66,7 +66,7 @@
 			<key>Description</key>
 			<string>+1 hits before breakable fall.</string>
 			<key>Cost</key>
-			<integer>2000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -74,7 +74,7 @@
 			<key>Description</key>
 			<string>+2 hits before breakable fall.</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -82,7 +82,7 @@
 			<key>Description</key>
 			<string>+3 hits before breakable fall.</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -90,7 +90,7 @@
 			<key>Description</key>
 			<string>Move across the screen quicker.</string>
 			<key>Cost</key>
-			<integer>2000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -98,7 +98,7 @@
 			<key>Description</key>
 			<string>Move quicker than Quick Devil I.</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -106,7 +106,7 @@
 			<key>Description</key>
 			<string>Move quicker than Quick Devil II.</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -114,7 +114,7 @@
 			<key>Description</key>
 			<string>Take +1 hit before you DIE.</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -122,7 +122,7 @@
 			<key>Description</key>
 			<string>Take +2 hits before you DIE.</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>2500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -130,7 +130,7 @@
 			<key>Description</key>
 			<string>Take +3 hits before you DIE.</string>
 			<key>Cost</key>
-			<integer>20000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -138,7 +138,7 @@
 			<key>Description</key>
 			<string>Indestructible Devil!</string>
 			<key>Cost</key>
-			<integer>50000</integer>
+			<integer>15000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -146,7 +146,7 @@
 			<key>Description</key>
 			<string>Small souls are worth 15 points each!</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -154,7 +154,7 @@
 			<key>Description</key>
 			<string>Small souls are worth 20 points each!</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>2000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -162,7 +162,7 @@
 			<key>Description</key>
 			<string>Small souls are worth 30 points each!</string>
 			<key>Cost</key>
-			<integer>25000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -170,7 +170,7 @@
 			<key>Description</key>
 			<string>Small souls count as x2!</string>
 			<key>Cost</key>
-			<integer>10000</integer>
+			<integer>2500</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -178,7 +178,7 @@
 			<key>Description</key>
 			<string>Small souls count as x3!</string>
 			<key>Cost</key>
-			<integer>25000</integer>
+			<integer>5000</integer>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -186,7 +186,7 @@
 			<key>Description</key>
 			<string>Small souls count as x5!</string>
 			<key>Cost</key>
-			<integer>50000</integer>
+			<integer>20000</integer>
 		</dict>
 	</array>
 </dict>

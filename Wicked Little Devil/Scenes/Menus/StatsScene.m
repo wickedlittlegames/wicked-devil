@@ -73,7 +73,11 @@
         [bg                 setPosition:ccp(screenSize.width/2,screenSize.height/2)];
         [menu_back          setPosition:ccp(25, 25)];
         
+        CCLabelTTF *lbl_title              = [CCLabelTTF labelWithString:@"STATISTICS" fontName:@"CrashLanding BB" fontSize:68];
+        [lbl_title          setPosition:ccp(screenSize.width/2, screenSize.height - 35)];
+        
         [self addChild:bg];
+        [self addChild:lbl_title];
         [self addChild:menu_back z:1000];
     }
     

@@ -38,7 +38,7 @@
         NSNumber *itemsPerRow   = [NSNumber numberWithInt:4];
         int fontsize            = 36;
         float menu_x            = (screenSize.width/2);
-        float menu_y            = screenSize.height - 212;
+        float menu_y            = screenSize.height - (IS_IPHONE5 ? 250 : 212);
         int world_score              = [user getHighscoreforWorld:world];
         int big_collectables_total   = (LEVELS_PER_WORLD * 3);
         int big_collectables_player  = 0;
@@ -122,7 +122,7 @@
         }
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow,itemsPerRow,itemsPerRow,nil];
 
-        CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg_%i.png", world]];
+        CCSprite *bg                    = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bg-world-%i.png", world]];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back.png"    selectedImage:@"btn-back.png"       target:self selector:@selector(tap_back:)], nil];
         CCMenu *menu_skip               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-skip.png"    selectedImage:@"btn-skip.png"       target:self selector:@selector(tap_skip)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med.png"];
@@ -155,10 +155,10 @@
 
             if ( !(user.worldprogress > world) )
             {
-                if ( !user.worldprogress == CURRENT_WORLDS_PER_GAME && !user.levelprogress == LEVELS_PER_WORLD-1 )
-                {
+//                if ( !user.worldprogress == CURRENT_WORLDS_PER_GAME && !user.levelprogress == LEVELS_PER_WORLD-1 )
+//                {
                     [self addChild:menu_skip];
-                }
+//                }
             }
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];

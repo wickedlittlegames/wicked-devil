@@ -13265,9 +13265,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>18</real>
-							<real>1130</real>
-							<integer>0</integer>
+							<real>5.625</real>
+							<real>235.41667175292969</real>
+							<integer>4</integer>
 						</array>
 					</dict>
 					<dict>
@@ -13314,6 +13314,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

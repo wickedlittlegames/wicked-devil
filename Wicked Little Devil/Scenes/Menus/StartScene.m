@@ -38,9 +38,7 @@
                 
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         user = [[User alloc] init];
-        
-//        user.collected += 1000000; [user sync];
-        
+                
         if (![user isOnline])
         {
             [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];
@@ -334,7 +332,11 @@
     CCSprite *fbimage = [CCSprite spriteWithCGImage:[UIImage imageWithData:user.facebook_image].CGImage key:@"facebook_image"];
     [btn_facebooksignin setNormalImage:fbimage];
     [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
-    
+}
+
+- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [MBProgressHUD hideHUDForView:[app navController].view animated:YES];
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection

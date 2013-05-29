@@ -72,7 +72,7 @@
         }
         [menu alignItemsInColumns:itemsPerRow, itemsPerRow, itemsPerRow2,nil];
         
-        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg_20.png"];
+        CCSprite *bg                    = [CCSprite spriteWithFile:@"bg-world-20.png"];
         CCMenu *menu_back               = [CCMenu menuWithItems:[CCMenuItemImage itemWithNormalImage:@"btn-back-bw.png"    selectedImage:@"btn-back-bw.png"       target:self selector:@selector(tap_back:)], nil];
         CCSprite *icon_bigcollectable   = [CCSprite spriteWithFile:@"icon-bigcollectable-med-bw.png"];
         CCSprite *icon_collectable      = [CCSprite spriteWithFile:@"ui-collectable-bw.png"];

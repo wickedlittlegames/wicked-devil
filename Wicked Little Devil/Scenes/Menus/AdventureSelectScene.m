@@ -288,13 +288,14 @@
 - (CCLayer*) detectivedevil
 {
     CCLayer *layer          = [CCLayer node];
-    CCSprite *bg            = [CCSprite spriteWithFile: @"adventure-2.png"];
+    CCSprite *bg            = [CCSprite spriteWithFile: @"bg-menu-detective.png"];
     CCSprite *bgfx          = [CCSprite spriteWithFile:@"ui-spinner-fx.png"];
     button = [CCMenuItemImage itemWithNormalImage:@"btn-start.png" selectedImage:@"btn-start.png" disabledImage:@"btn-start.png" target:self selector:@selector(tap_world:)];
     CCMenu *menu            = [CCMenu menuWithItems:button, nil]; button.tag = 1; button.opacity = 0; button.scale *= 3; button.isEnabled = user.unlocked_detective;
     
     [bg   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [bgfx   setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [bgfx setScale:1.5];
     [menu setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     
     [layer addChild:bg];
@@ -309,7 +310,7 @@
         locked_sprite.position = ccp(screenSize.width/2,screenSize.height/2);
         [layer addChild:locked_sprite];
         
-        CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-unlockdevil.png" selectedImage:@"btn-unlockdevil.png" disabledImage:@"btn-unlockdevil.png" target:self selector:@selector(tap_unlock_detective)];
+        CCMenuItemImage *unlock_button = [CCMenuItemImage itemWithNormalImage:@"btn-unlock-detective.png" selectedImage:@"btn-unlock-detective.png" disabledImage:@"btn-unlock-detective.png" target:self selector:@selector(tap_unlock_detective)];
         unlock_menu            = [CCMenu menuWithItems:unlock_button, nil];
         
         [unlock_menu setPosition:ccp(screenSize.width/2,screenSize.height/2)];

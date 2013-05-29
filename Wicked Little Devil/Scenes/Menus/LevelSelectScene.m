@@ -155,7 +155,10 @@
 
             if ( !(user.worldprogress > world) )
             {
-                [self addChild:menu_skip];
+                if ( !user.worldprogress == CURRENT_WORLDS_PER_GAME && !user.levelprogress == LEVELS_PER_WORLD-1 )
+                {
+                    [self addChild:menu_skip];
+                }
             }
         [self addChild:icon_bigcollectable];
         [self addChild:label_bigcollected];

@@ -26,6 +26,46 @@
 		9C0DCDDA174B86A800114F09 /* world-20-level-8.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD1174B86A800114F09 /* world-20-level-8.ccbi */; };
 		9C0DCDDB174B86A800114F09 /* world-20-level-9.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD2174B86A800114F09 /* world-20-level-9.ccbi */; };
 		9C0DCDDC174B86A800114F09 /* world-20-level-10.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 9C0DCDD3174B86A800114F09 /* world-20-level-10.ccbi */; };
+		9C0E514E17551EBD00601C80 /* ANGEL-DEVIL.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E514C17551EBD00601C80 /* ANGEL-DEVIL.png */; };
+		9C0E514F17551EBD00601C80 /* ANGEL-DEVIL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E514D17551EBD00601C80 /* ANGEL-DEVIL@2x.png */; };
+		9C0E515417551F1C00601C80 /* AngelAnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515017551F1C00601C80 /* AngelAnimDevil-hd.plist */; };
+		9C0E515517551F1C00601C80 /* AngelAnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515117551F1C00601C80 /* AngelAnimDevil-hd.png */; };
+		9C0E515617551F1C00601C80 /* AngelAnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515217551F1C00601C80 /* AngelAnimDevil.plist */; };
+		9C0E515717551F1C00601C80 /* AngelAnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515317551F1C00601C80 /* AngelAnimDevil.png */; };
+		9C0E515A17551FBF00601C80 /* angel-dev-ingame-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515817551FBF00601C80 /* angel-dev-ingame-hd.png */; };
+		9C0E515B17551FBF00601C80 /* angel-dev-ingame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515917551FBF00601C80 /* angel-dev-ingame.png */; };
+		9C0E5160175522ED00601C80 /* ninjadevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515C175522ED00601C80 /* ninjadevil-hd.png */; };
+		9C0E5161175522ED00601C80 /* ninjadevil-store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515D175522ED00601C80 /* ninjadevil-store.png */; };
+		9C0E5162175522ED00601C80 /* ninjadevil-store@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515E175522ED00601C80 /* ninjadevil-store@2x.png */; };
+		9C0E5163175522ED00601C80 /* ninjadevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E515F175522ED00601C80 /* ninjadevil.png */; };
+		9C0E51681755232700601C80 /* NinjaAnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51641755232700601C80 /* NinjaAnimDevil-hd.plist */; };
+		9C0E51691755232700601C80 /* NinjaAnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51651755232700601C80 /* NinjaAnimDevil-hd.png */; };
+		9C0E516A1755232700601C80 /* NinjaAnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51661755232700601C80 /* NinjaAnimDevil.plist */; };
+		9C0E516B1755232700601C80 /* NinjaAnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51671755232700601C80 /* NinjaAnimDevil.png */; };
+		9C0E517417552C1200601C80 /* zombie-devil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E516C17552C1200601C80 /* zombie-devil.png */; };
+		9C0E517517552C1200601C80 /* zombie-devil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E516D17552C1200601C80 /* zombie-devil@2x.png */; };
+		9C0E517617552C1200601C80 /* zombie-jump1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E516E17552C1200601C80 /* zombie-jump1-hd.png */; };
+		9C0E517717552C1200601C80 /* zombie-jump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E516F17552C1200601C80 /* zombie-jump1.png */; };
+		9C0E517817552C1200601C80 /* ZombieAnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517017552C1200601C80 /* ZombieAnimDevil-hd.plist */; };
+		9C0E517917552C1200601C80 /* ZombieAnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517117552C1200601C80 /* ZombieAnimDevil-hd.png */; };
+		9C0E517A17552C1200601C80 /* ZombieAnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517217552C1200601C80 /* ZombieAnimDevil.plist */; };
+		9C0E517B17552C1200601C80 /* ZombieAnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517317552C1200601C80 /* ZombieAnimDevil.png */; };
+		9C0E518417552D9800601C80 /* pixel-devil-game-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517C17552D9800601C80 /* pixel-devil-game-hd.png */; };
+		9C0E518517552D9800601C80 /* pixel-devil-game.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517D17552D9800601C80 /* pixel-devil-game.png */; };
+		9C0E518617552D9800601C80 /* pixel-devil-store-.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517E17552D9800601C80 /* pixel-devil-store-.png */; };
+		9C0E518717552D9800601C80 /* pixel-devil-store-@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E517F17552D9800601C80 /* pixel-devil-store-@2x.png */; };
+		9C0E518817552D9800601C80 /* PixelAnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518017552D9800601C80 /* PixelAnimDevil-hd.plist */; };
+		9C0E518917552D9800601C80 /* PixelAnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518117552D9800601C80 /* PixelAnimDevil-hd.png */; };
+		9C0E518A17552D9800601C80 /* PixelAnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518217552D9800601C80 /* PixelAnimDevil.plist */; };
+		9C0E518B17552D9800601C80 /* PixelAnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518317552D9800601C80 /* PixelAnimDevil.png */; };
+		9C0E51941755345F00601C80 /* pirate-jump1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518C1755345F00601C80 /* pirate-jump1-hd.png */; };
+		9C0E51951755345F00601C80 /* pirate-jump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518D1755345F00601C80 /* pirate-jump1.png */; };
+		9C0E51961755345F00601C80 /* pirate-shop.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518E1755345F00601C80 /* pirate-shop.png */; };
+		9C0E51971755345F00601C80 /* pirate-shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E518F1755345F00601C80 /* pirate-shop@2x.png */; };
+		9C0E51981755345F00601C80 /* PirateAnimDevil-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51901755345F00601C80 /* PirateAnimDevil-hd.plist */; };
+		9C0E51991755345F00601C80 /* PirateAnimDevil-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51911755345F00601C80 /* PirateAnimDevil-hd.png */; };
+		9C0E519A1755345F00601C80 /* PirateAnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51921755345F00601C80 /* PirateAnimDevil.plist */; };
+		9C0E519B1755345F00601C80 /* PirateAnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E51931755345F00601C80 /* PirateAnimDevil.png */; };
 		9C0F7A4017425A3B00316B07 /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0F7A3F17425A3B00316B07 /* StatsScene.m */; };
 		9C0FD13016130AFE007BDFD6 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FD12F16130AFE007BDFD6 /* Projectile.m */; };
 		9C0FD1341613251C007BDFD6 /* AngelBlast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FD1321613251C007BDFD6 /* AngelBlast.plist */; };
@@ -539,6 +579,9 @@
 		9C9220C81614836000FAEE8F /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9220C71614835F00FAEE8F /* GameOverScene.m */; };
 		9C9220CF1614895700FAEE8F /* AnimDevil.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220CD1614895700FAEE8F /* AnimDevil.png */; };
 		9C9220D01614895700FAEE8F /* AnimDevil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9220CE1614895700FAEE8F /* AnimDevil.plist */; };
+		9C9310B6175603C800EE561E /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9310B4175603C800EE561E /* iTunesArtwork.png */; };
+		9C9310B7175603C800EE561E /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9310B5175603C800EE561E /* iTunesArtwork@2x.png */; };
+		9C9310B9175609DE00EE561E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9310B8175609DE00EE561E /* Default-568h@2x.png */; };
 		9C99B844161EEA7A00F6BA88 /* GameOverFacebookScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C99B843161EEA7A00F6BA88 /* GameOverFacebookScene.m */; };
 		9C9E869916188F63001CAC21 /* IngameSprites-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E869516188F63001CAC21 /* IngameSprites-hd.plist */; };
 		9C9E869A16188F63001CAC21 /* IngameSprites-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E869616188F63001CAC21 /* IngameSprites-hd.png */; };
@@ -796,6 +839,46 @@
 		9C0DCDD1174B86A800114F09 /* world-20-level-8.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-8.ccbi"; sourceTree = "<group>"; };
 		9C0DCDD2174B86A800114F09 /* world-20-level-9.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-9.ccbi"; sourceTree = "<group>"; };
 		9C0DCDD3174B86A800114F09 /* world-20-level-10.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world-20-level-10.ccbi"; sourceTree = "<group>"; };
+		9C0E514C17551EBD00601C80 /* ANGEL-DEVIL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ANGEL-DEVIL.png"; sourceTree = "<group>"; };
+		9C0E514D17551EBD00601C80 /* ANGEL-DEVIL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ANGEL-DEVIL@2x.png"; sourceTree = "<group>"; };
+		9C0E515017551F1C00601C80 /* AngelAnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AngelAnimDevil-hd.plist"; sourceTree = "<group>"; };
+		9C0E515117551F1C00601C80 /* AngelAnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AngelAnimDevil-hd.png"; sourceTree = "<group>"; };
+		9C0E515217551F1C00601C80 /* AngelAnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AngelAnimDevil.plist; sourceTree = "<group>"; };
+		9C0E515317551F1C00601C80 /* AngelAnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AngelAnimDevil.png; sourceTree = "<group>"; };
+		9C0E515817551FBF00601C80 /* angel-dev-ingame-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel-dev-ingame-hd.png"; sourceTree = "<group>"; };
+		9C0E515917551FBF00601C80 /* angel-dev-ingame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel-dev-ingame.png"; sourceTree = "<group>"; };
+		9C0E515C175522ED00601C80 /* ninjadevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninjadevil-hd.png"; sourceTree = "<group>"; };
+		9C0E515D175522ED00601C80 /* ninjadevil-store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninjadevil-store.png"; sourceTree = "<group>"; };
+		9C0E515E175522ED00601C80 /* ninjadevil-store@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninjadevil-store@2x.png"; sourceTree = "<group>"; };
+		9C0E515F175522ED00601C80 /* ninjadevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ninjadevil.png; sourceTree = "<group>"; };
+		9C0E51641755232700601C80 /* NinjaAnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NinjaAnimDevil-hd.plist"; sourceTree = "<group>"; };
+		9C0E51651755232700601C80 /* NinjaAnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NinjaAnimDevil-hd.png"; sourceTree = "<group>"; };
+		9C0E51661755232700601C80 /* NinjaAnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NinjaAnimDevil.plist; sourceTree = "<group>"; };
+		9C0E51671755232700601C80 /* NinjaAnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NinjaAnimDevil.png; sourceTree = "<group>"; };
+		9C0E516C17552C1200601C80 /* zombie-devil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-devil.png"; sourceTree = "<group>"; };
+		9C0E516D17552C1200601C80 /* zombie-devil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-devil@2x.png"; sourceTree = "<group>"; };
+		9C0E516E17552C1200601C80 /* zombie-jump1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-jump1-hd.png"; sourceTree = "<group>"; };
+		9C0E516F17552C1200601C80 /* zombie-jump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombie-jump1.png"; sourceTree = "<group>"; };
+		9C0E517017552C1200601C80 /* ZombieAnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZombieAnimDevil-hd.plist"; sourceTree = "<group>"; };
+		9C0E517117552C1200601C80 /* ZombieAnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZombieAnimDevil-hd.png"; sourceTree = "<group>"; };
+		9C0E517217552C1200601C80 /* ZombieAnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZombieAnimDevil.plist; sourceTree = "<group>"; };
+		9C0E517317552C1200601C80 /* ZombieAnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZombieAnimDevil.png; sourceTree = "<group>"; };
+		9C0E517C17552D9800601C80 /* pixel-devil-game-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pixel-devil-game-hd.png"; sourceTree = "<group>"; };
+		9C0E517D17552D9800601C80 /* pixel-devil-game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pixel-devil-game.png"; sourceTree = "<group>"; };
+		9C0E517E17552D9800601C80 /* pixel-devil-store-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pixel-devil-store-.png"; sourceTree = "<group>"; };
+		9C0E517F17552D9800601C80 /* pixel-devil-store-@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pixel-devil-store-@2x.png"; sourceTree = "<group>"; };
+		9C0E518017552D9800601C80 /* PixelAnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PixelAnimDevil-hd.plist"; sourceTree = "<group>"; };
+		9C0E518117552D9800601C80 /* PixelAnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PixelAnimDevil-hd.png"; sourceTree = "<group>"; };
+		9C0E518217552D9800601C80 /* PixelAnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixelAnimDevil.plist; sourceTree = "<group>"; };
+		9C0E518317552D9800601C80 /* PixelAnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PixelAnimDevil.png; sourceTree = "<group>"; };
+		9C0E518C1755345F00601C80 /* pirate-jump1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pirate-jump1-hd.png"; sourceTree = "<group>"; };
+		9C0E518D1755345F00601C80 /* pirate-jump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pirate-jump1.png"; sourceTree = "<group>"; };
+		9C0E518E1755345F00601C80 /* pirate-shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pirate-shop.png"; sourceTree = "<group>"; };
+		9C0E518F1755345F00601C80 /* pirate-shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pirate-shop@2x.png"; sourceTree = "<group>"; };
+		9C0E51901755345F00601C80 /* PirateAnimDevil-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PirateAnimDevil-hd.plist"; sourceTree = "<group>"; };
+		9C0E51911755345F00601C80 /* PirateAnimDevil-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PirateAnimDevil-hd.png"; sourceTree = "<group>"; };
+		9C0E51921755345F00601C80 /* PirateAnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PirateAnimDevil.plist; sourceTree = "<group>"; };
+		9C0E51931755345F00601C80 /* PirateAnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PirateAnimDevil.png; sourceTree = "<group>"; };
 		9C0F7A3E17425A3B00316B07 /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatsScene.h; path = Scenes/Menus/StatsScene.h; sourceTree = "<group>"; };
 		9C0F7A3F17425A3B00316B07 /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatsScene.m; path = Scenes/Menus/StatsScene.m; sourceTree = "<group>"; };
 		9C0FD12E16130AFE007BDFD6 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Objects/Projectile.h; sourceTree = "<group>"; };
@@ -1330,6 +1413,9 @@
 		9C9220C71614835F00FAEE8F /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverScene.m; path = Scenes/Gameplay/GameOverScene.m; sourceTree = "<group>"; };
 		9C9220CD1614895700FAEE8F /* AnimDevil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimDevil.png; sourceTree = "<group>"; };
 		9C9220CE1614895700FAEE8F /* AnimDevil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AnimDevil.plist; sourceTree = "<group>"; };
+		9C9310B4175603C800EE561E /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		9C9310B5175603C800EE561E /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		9C9310B8175609DE00EE561E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9C99B842161EEA7A00F6BA88 /* GameOverFacebookScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverFacebookScene.h; path = Scenes/Gameplay/GameOverFacebookScene.h; sourceTree = "<group>"; };
 		9C99B843161EEA7A00F6BA88 /* GameOverFacebookScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverFacebookScene.m; path = Scenes/Gameplay/GameOverFacebookScene.m; sourceTree = "<group>"; };
 		9C9E869516188F63001CAC21 /* IngameSprites-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IngameSprites-hd.plist"; sourceTree = "<group>"; };
@@ -2437,6 +2523,44 @@
 		9CABCF0C1611D5EA006DFDE9 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				9C0E518C1755345F00601C80 /* pirate-jump1-hd.png */,
+				9C0E518D1755345F00601C80 /* pirate-jump1.png */,
+				9C0E518E1755345F00601C80 /* pirate-shop.png */,
+				9C0E518F1755345F00601C80 /* pirate-shop@2x.png */,
+				9C0E51901755345F00601C80 /* PirateAnimDevil-hd.plist */,
+				9C0E51911755345F00601C80 /* PirateAnimDevil-hd.png */,
+				9C0E51921755345F00601C80 /* PirateAnimDevil.plist */,
+				9C0E51931755345F00601C80 /* PirateAnimDevil.png */,
+				9C0E517C17552D9800601C80 /* pixel-devil-game-hd.png */,
+				9C0E517D17552D9800601C80 /* pixel-devil-game.png */,
+				9C0E517E17552D9800601C80 /* pixel-devil-store-.png */,
+				9C0E517F17552D9800601C80 /* pixel-devil-store-@2x.png */,
+				9C0E518017552D9800601C80 /* PixelAnimDevil-hd.plist */,
+				9C0E518117552D9800601C80 /* PixelAnimDevil-hd.png */,
+				9C0E518217552D9800601C80 /* PixelAnimDevil.plist */,
+				9C0E518317552D9800601C80 /* PixelAnimDevil.png */,
+				9C0E516C17552C1200601C80 /* zombie-devil.png */,
+				9C0E516D17552C1200601C80 /* zombie-devil@2x.png */,
+				9C0E516E17552C1200601C80 /* zombie-jump1-hd.png */,
+				9C0E516F17552C1200601C80 /* zombie-jump1.png */,
+				9C0E517017552C1200601C80 /* ZombieAnimDevil-hd.plist */,
+				9C0E517117552C1200601C80 /* ZombieAnimDevil-hd.png */,
+				9C0E517217552C1200601C80 /* ZombieAnimDevil.plist */,
+				9C0E517317552C1200601C80 /* ZombieAnimDevil.png */,
+				9C0E51641755232700601C80 /* NinjaAnimDevil-hd.plist */,
+				9C0E51651755232700601C80 /* NinjaAnimDevil-hd.png */,
+				9C0E51661755232700601C80 /* NinjaAnimDevil.plist */,
+				9C0E51671755232700601C80 /* NinjaAnimDevil.png */,
+				9C0E515C175522ED00601C80 /* ninjadevil-hd.png */,
+				9C0E515D175522ED00601C80 /* ninjadevil-store.png */,
+				9C0E515E175522ED00601C80 /* ninjadevil-store@2x.png */,
+				9C0E515F175522ED00601C80 /* ninjadevil.png */,
+				9C0E515817551FBF00601C80 /* angel-dev-ingame-hd.png */,
+				9C0E515917551FBF00601C80 /* angel-dev-ingame.png */,
+				9C0E515017551F1C00601C80 /* AngelAnimDevil-hd.plist */,
+				9C0E515117551F1C00601C80 /* AngelAnimDevil-hd.png */,
+				9C0E515217551F1C00601C80 /* AngelAnimDevil.plist */,
+				9C0E515317551F1C00601C80 /* AngelAnimDevil.png */,
 				9C2CED4B1740FCAD003FCA03 /* AnimDetectiveDevil.png */,
 				9C2CED4C1740FCAD003FCA03 /* AnimDetectiveDevil.plist */,
 				9C2CED4D1740FCAD003FCA03 /* AnimDetectiveDevil-hd.png */,
@@ -2456,6 +2580,9 @@
 		9CABCF0F1611D5EA006DFDE9 /* General iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				9C9310B8175609DE00EE561E /* Default-568h@2x.png */,
+				9C9310B4175603C800EE561E /* iTunesArtwork.png */,
+				9C9310B5175603C800EE561E /* iTunesArtwork@2x.png */,
 				9CA45FBB162EBAD5009BD50A /* Icon.png */,
 				9CA45FBC162EBAD5009BD50A /* Icon@2x.png */,
 				9CABCF7C1611D76D006DFDE9 /* Default.png */,
@@ -2502,6 +2629,8 @@
 		9CABCF1F1611D5EA006DFDE9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C0E514C17551EBD00601C80 /* ANGEL-DEVIL.png */,
+				9C0E514D17551EBD00601C80 /* ANGEL-DEVIL@2x.png */,
 				9CFC66BF174FA32F005F0169 /* zombie-devil-test@2x.png */,
 				9CFC66BD174FA324005F0169 /* zombie-devil-test.png */,
 				9CFC66A9174F9E32005F0169 /* btn-character-upgrades-hd.png */,
@@ -3557,6 +3686,49 @@
 				9CFC66BC174F9E33005F0169 /* character-unlock-detective@2x.png in Resources */,
 				9CFC66BE174FA324005F0169 /* zombie-devil-test.png in Resources */,
 				9CFC66C0174FA32F005F0169 /* zombie-devil-test@2x.png in Resources */,
+				9C0E514E17551EBD00601C80 /* ANGEL-DEVIL.png in Resources */,
+				9C0E514F17551EBD00601C80 /* ANGEL-DEVIL@2x.png in Resources */,
+				9C0E515417551F1C00601C80 /* AngelAnimDevil-hd.plist in Resources */,
+				9C0E515517551F1C00601C80 /* AngelAnimDevil-hd.png in Resources */,
+				9C0E515617551F1C00601C80 /* AngelAnimDevil.plist in Resources */,
+				9C0E515717551F1C00601C80 /* AngelAnimDevil.png in Resources */,
+				9C0E515A17551FBF00601C80 /* angel-dev-ingame-hd.png in Resources */,
+				9C0E515B17551FBF00601C80 /* angel-dev-ingame.png in Resources */,
+				9C0E5160175522ED00601C80 /* ninjadevil-hd.png in Resources */,
+				9C0E5161175522ED00601C80 /* ninjadevil-store.png in Resources */,
+				9C0E5162175522ED00601C80 /* ninjadevil-store@2x.png in Resources */,
+				9C0E5163175522ED00601C80 /* ninjadevil.png in Resources */,
+				9C0E51681755232700601C80 /* NinjaAnimDevil-hd.plist in Resources */,
+				9C0E51691755232700601C80 /* NinjaAnimDevil-hd.png in Resources */,
+				9C0E516A1755232700601C80 /* NinjaAnimDevil.plist in Resources */,
+				9C0E516B1755232700601C80 /* NinjaAnimDevil.png in Resources */,
+				9C0E517417552C1200601C80 /* zombie-devil.png in Resources */,
+				9C0E517517552C1200601C80 /* zombie-devil@2x.png in Resources */,
+				9C0E517617552C1200601C80 /* zombie-jump1-hd.png in Resources */,
+				9C0E517717552C1200601C80 /* zombie-jump1.png in Resources */,
+				9C0E517817552C1200601C80 /* ZombieAnimDevil-hd.plist in Resources */,
+				9C0E517917552C1200601C80 /* ZombieAnimDevil-hd.png in Resources */,
+				9C0E517A17552C1200601C80 /* ZombieAnimDevil.plist in Resources */,
+				9C0E517B17552C1200601C80 /* ZombieAnimDevil.png in Resources */,
+				9C0E518417552D9800601C80 /* pixel-devil-game-hd.png in Resources */,
+				9C0E518517552D9800601C80 /* pixel-devil-game.png in Resources */,
+				9C0E518617552D9800601C80 /* pixel-devil-store-.png in Resources */,
+				9C0E518717552D9800601C80 /* pixel-devil-store-@2x.png in Resources */,
+				9C0E518817552D9800601C80 /* PixelAnimDevil-hd.plist in Resources */,
+				9C0E518917552D9800601C80 /* PixelAnimDevil-hd.png in Resources */,
+				9C0E518A17552D9800601C80 /* PixelAnimDevil.plist in Resources */,
+				9C0E518B17552D9800601C80 /* PixelAnimDevil.png in Resources */,
+				9C0E51941755345F00601C80 /* pirate-jump1-hd.png in Resources */,
+				9C0E51951755345F00601C80 /* pirate-jump1.png in Resources */,
+				9C0E51961755345F00601C80 /* pirate-shop.png in Resources */,
+				9C0E51971755345F00601C80 /* pirate-shop@2x.png in Resources */,
+				9C0E51981755345F00601C80 /* PirateAnimDevil-hd.plist in Resources */,
+				9C0E51991755345F00601C80 /* PirateAnimDevil-hd.png in Resources */,
+				9C0E519A1755345F00601C80 /* PirateAnimDevil.plist in Resources */,
+				9C0E519B1755345F00601C80 /* PirateAnimDevil.png in Resources */,
+				9C9310B6175603C800EE561E /* iTunesArtwork.png in Resources */,
+				9C9310B7175603C800EE561E /* iTunesArtwork@2x.png in Resources */,
+				9C9310B9175609DE00EE561E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3837,6 +4009,7 @@
 					DEBUG,
 					"COCOS2D_DEBUG=1",
 					"PH_USE_OPENUDID=0",
+					"PH_USE_MAC_ADDRESS=1",
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
@@ -3887,6 +4060,8 @@
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
 					"PH_USE_OPENUDID=0",
+					"PH_USE_UNIQUE_IDENTIFIER=0",
+					"PH_USE_MAC_ADDRESS=1",
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;

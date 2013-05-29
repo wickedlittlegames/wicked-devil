@@ -16,13 +16,13 @@
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Alien Devil</string>
+			<string>Pixel Devil</string>
 			<key>Description</key>
-			<string>Boldly going straight down</string>
+			<string>16 bits of evil</string>
 			<key>Cost</key>
-			<integer>5000</integer>
+			<integer>2500</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>pixel-devil-store-.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -32,7 +32,7 @@
 			<key>Cost</key>
 			<integer>5000</integer>
 			<key>Image</key>
-			<string>zombie-devil-test.png</string>
+			<string>zombie-devil.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -42,7 +42,7 @@
 			<key>Cost</key>
 			<integer>10000</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>ninjadevil-store.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -52,7 +52,7 @@
 			<key>Cost</key>
 			<integer>10000</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>pirate-shop.png</string>
 		</dict>
 		<dict>
 			<key>Name</key>
@@ -62,7 +62,7 @@
 			<key>Cost</key>
 			<integer>35000</integer>
 			<key>Image</key>
-			<string>jump1.png</string>
+			<string>ANGEL-DEVIL.png</string>
 		</dict>
 	</array>
 </dict>

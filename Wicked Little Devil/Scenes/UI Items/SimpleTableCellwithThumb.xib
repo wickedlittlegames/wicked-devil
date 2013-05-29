@@ -60,8 +60,8 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Name of Object</string>
 								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC43MDE5NjA3ODQzIDAgMAA</bytes>
+									<int key="NSColorSpace">2</int>
+									<bytes key="NSRGB">MC45ODQzMTM3MjU1IDAuMzAxOTYwNzg0MyAwLjI1MDk4MDM5MjIAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="619396193">
 									<int key="NSColorSpace">3</int>

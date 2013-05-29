@@ -192,41 +192,240 @@
     self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
 }
 
+- (void) setupAnimationsAngel
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"AngelAnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"AngelAnimDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+- (void) setupAnimationsNinja
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"NinjaAnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"NinjaAnimDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+- (void) setupAnimationsZombie
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ZombieAnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"ZombieAnimDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+- (void) setupAnimationsPixel
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"PixelAnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"PixelAnimDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+- (void) setupAnimationsPirate
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"PirateAnimDevil.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"PirateAnimDevil.png"];
+    [self addChild:spriteSheet];
+    
+    NSMutableArray *arr_anim_jump = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_anim_jump addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jump%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_fall_far = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_fall_far addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"fall_far%i.png", i]]];
+    }
+    
+    NSMutableArray *arr_die = [NSMutableArray array];
+    for(int i = 1; i <= 6; ++i) {
+        [arr_die addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"die%i.png", i]]];
+    }
+    
+    self.anim_jump      = [CCAnimation animationWithSpriteFrames:arr_anim_jump  delay:0.05f];
+    self.anim_fall      = [CCAnimation animationWithSpriteFrames:arr_fall       delay:0.05f];
+    self.anim_fallfar   = [CCAnimation animationWithSpriteFrames:arr_fall_far   delay:0.05f];
+    self.anim_die       = [CCAnimation animationWithSpriteFrames:arr_die        delay:0.01f];
+}
+
+
 - (void) setupCharacter:(int)character
 {
     switch(character)
     {
-        case 0: //detective
+        case 0: //detective done
             [self setupAnimationsDetective];
         break;
             
-        case 1: // wicked little
+        case 1: //detective done
+            [self setupAnimationsPixel];
+            break;
+            
+        case 2: // zombie
         {
-            [self setupAnimationsDetective];
+            [self setupAnimationsZombie];
         }
         break;
             
-        case 2: // super devil
+        case 3: // ninja done
         {
-            [self setupAnimationsDetective];
+            [self setupAnimationsNinja];
         }
         break;
             
-        case 3: // zombie
+        case 4: // pirate
         {
-            [self setupAnimationsDetective];
+            [self setupAnimationsPirate];
         }
-        break;
+            break;
             
-        case 4: // ninja
+        case 5: // angel done
         {
-            [self setupAnimationsDetective];
-        }
-        break;
-            
-        case 5: // pirate
-        {
-            [self setupAnimationsDetective];
+            [self setupAnimationsAngel];
         }
         break;
     }

@@ -28,6 +28,21 @@
         case 0: filename = @"jump1_detective.png";
         break;
             
+        case 1: filename = @"pixel-devil-game.png";
+            break;
+            
+        case 2: filename = @"zombie-jump1.png";
+            break;
+            
+        case 3: filename = @"ninjadevil.png";
+            break;
+            
+        case 4: filename = @"pirate-jump1.png";
+            break;
+            
+        case 5: filename = @"angel-dev-ingame.png";
+            break;
+            
         case 666: filename = @"jump1.png";
             break;
     }

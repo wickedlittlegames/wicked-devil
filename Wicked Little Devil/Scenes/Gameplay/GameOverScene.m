@@ -51,14 +51,14 @@
          next_world         = 1;
          next_level         = 1;
          
-         
-         if ( [game.user isOnline] )
-         {
-             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"game_over" delegate:(id)self];
-             request.showsOverlayImmediately = NO;
-             [request send];
-         }
-         
+//         
+//         if ( [game.user isOnline] )
+//         {
+//             PHPublisherContentRequest *request = [PHPublisherContentRequest requestForApp:(NSString *)WDPHToken secret:(NSString *)WDPHSecret placement:(NSString *)@"game_over" delegate:(id)self];
+//             request.showsOverlayImmediately = NO;
+//             [request send];
+//         }
+//         
          game.user.collected += collected;
          [game.user setHighscore:final_score world:game.world level:game.level];
          [game.user setSouls:souls world:game.world level:game.level];
@@ -99,15 +99,20 @@
                  
                  // This is where it should sent off to Facebook Open Graph for Score
                  // Andy just completed Hell Level 19 on Wicked Devil
-                 NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
-                 action[@"level"] = [NSString stringWithFormat:@"http://wickedlittleapps.com/wickeddevil.php?og:world=%i&og:level=%i&og:score=%i&og:bigsouls=%i", game.world, game.level, final_score, souls];
-                 [FBRequestConnection startForPostWithGraphPath:@"me/wickeddevil:completed"
-                                                    graphObject:action
-                                              completionHandler:^(FBRequestConnection *connection,
-                                                                  id result,
-                                                                  NSError *error) {
+                 
 
-                                              }];
+                 if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [game.user isOnline])
+                 {
+                     NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
+                     action[@"level"] = [NSString stringWithFormat:@"http://wickedlittleapps.com/wickeddevil.php?og:world=%i&og:level=%i&og:score=%i&og:bigsouls=%i", game.world, game.level, final_score, souls];
+                     [FBRequestConnection startForPostWithGraphPath:@"me/wickeddevil:completed"
+                                                        graphObject:action
+                                                  completionHandler:^(FBRequestConnection *connection,
+                                                                      id result,
+                                                                      NSError *error) {
+
+                                                  }];
+                 }
              }
              else
              {

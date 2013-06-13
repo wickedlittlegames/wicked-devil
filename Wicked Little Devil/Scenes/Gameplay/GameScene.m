@@ -31,6 +31,8 @@
     
     GameScene *layer = [[GameScene alloc] initWithWorld:w andLevel:l withRestart:restart restartMusic:restartMusic];
     [scene addChild:layer];
+    
+    NSLog(@"TESTING 1");
 
     // Show the scene
 	return scene;
@@ -41,6 +43,8 @@
 	if( (self=[super init]) ) 
     {
         screenSize = [CCDirector sharedDirector].winSize;
+        
+            NSLog(@"TESTING 2");
      
         if ( restart )
         {
@@ -52,6 +56,8 @@
         
         User *user = [[User alloc] init];
         game = [[Game alloc] init];
+        
+            NSLog(@"TESTING 3");
         
         if ( !(w == 20) )
         {
@@ -73,6 +79,8 @@
             }
         }
         
+            NSLog(@"TESTING 4");
+        
         self.isTouchEnabled = YES;
         
         NSString *file_level = [NSString stringWithFormat:@"world-%i-level-%i.ccbi",w,l];        
@@ -83,29 +91,42 @@
         menu.opacity = 0.0f;
         [self addChild:menu z:10];
         
+            NSLog(@"TESTING 5");
+        
         game.isRestart = restart;
         
+                    NSLog(@"TESTING 5.1");
         layer_bg        = [BGLayer node];
+                    NSLog(@"TESTING 5.2");
         layer_fx        = [FXLayer node];
+                    NSLog(@"TESTING 5.3");
         layer_game      = (GameLayer*)[CCBReader nodeGraphFromFile:file_level  owner:self];
+                    NSLog(@"TESTING 5.4");
         layer_player = [PlayerLayer node];
+                    NSLog(@"TESTING 5.5");
         
         if ( w == 20 )
         {
+                    NSLog(@"TESTING 5.6");
             [layer_player setupStartGFX:0];
         }
         else
         {
+                    NSLog(@"TESTING 5.7");
             if ( user.bought_character )
             {
+                    NSLog(@"TESTING 5.8");
                 [layer_player setupStartGFX:user.character];
             }
             else
             {
+                    NSLog(@"TESTING 5.9");
                 [layer_player setupStartGFX:666];
             }
         }
      
+            NSLog(@"TESTING 6");
+        
         layer_ui        = [UILayer node];
         
         [layer_bg createWorldSpecificBackgrounds:w];
@@ -118,6 +139,8 @@
         [collab addChild:layer_fx];        
         [collab addChild:layer_player];
         [self addChild:layer_ui];
+        
+            NSLog(@"TESTING 7");
         
         game.player = layer_player.player;
         game.user = user;
@@ -142,6 +165,8 @@
                 [game.player setupAnimations];
             }
         }
+        
+            NSLog(@"TESTING 8");
 
         [layer_ui setupItemsforGame:game];
         layer_game.world = w;
@@ -153,6 +178,8 @@
         game.timelimit = 30;
         if ( top > 2500 ) game.timelimit = 60;
         if ( top > 5000 ) game.timelimit = 90;
+        
+            NSLog(@"TESTING 9");
         
         [layer_game runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
         [layer_player runAction:[CCFollow actionWithTarget:(game.player) worldBoundary:CGRectMake(0,0,320,top)]];
@@ -173,8 +200,12 @@
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:10 width:3 color:ccWHITE textureFilename:@"streak3.png"];
         [self addChild:streak];
         
+            NSLog(@"TESTING 10");
+        
         
         [self schedule:@selector(update:)];
+        
+            NSLog(@"TESTING 11");
     }
 	return self;
 }

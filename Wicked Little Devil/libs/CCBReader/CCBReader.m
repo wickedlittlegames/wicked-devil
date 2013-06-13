@@ -194,9 +194,15 @@
         default: {
             // using a memcpy since the compiler isn't
             // doing the float ptr math correctly on device.
-            float * pF = (float*)(bytes+currentByte);
-            float f = 0;
-            memcpy(&f, pF, sizeof(float));
+            
+            float f;
+            unsigned char* pData = ( bytes+currentByte );
+            memcpy( &f, pData, sizeof( float ) );
+//                        
+//            
+//            float * pF = (float*)(bytes+currentByte);
+//            float f = 0;
+//            memcpy(&f, pF, sizeof(float));
             currentByte+=4;
             return f;
         }
@@ -1012,9 +1018,14 @@
 	// if no bytes loaded, don't crash about it.
 	if( bytes == nil) return NO;
     // Read magic
-    int magic = *((int*)(bytes+currentByte));
+    int magicBytes;
+    unsigned char* pData = ( bytes+currentByte );
+    memcpy( &magicBytes, pData, sizeof( int ) );
+
     currentByte+=4;
-    if (magic != 'ccbi') return NO;
+    if (magicBytes != 'ccbi') return NO;
+    
+    
     
     // Read version
     int version = [self readIntWithSign:NO];

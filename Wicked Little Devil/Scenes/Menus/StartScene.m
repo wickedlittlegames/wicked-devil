@@ -38,9 +38,7 @@
                 
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         user = [[User alloc] init];
-        
-//        user.collected += 50000; [user sync];
-        
+
         if (![user isOnline])
         {
             [PHAPIRequest cancelAllRequestsWithDelegate:(id)self];

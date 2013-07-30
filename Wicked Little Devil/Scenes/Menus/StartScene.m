@@ -16,7 +16,7 @@
 #import "GameScene.h"
 #import "MBProgressHUD.h"
 #import "Game.h"
-#import "User.h"
+
 
 @implementation StartScene
 

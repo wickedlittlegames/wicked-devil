@@ -497,6 +497,15 @@ def parse_pair_string(value: str) -> tuple[float, float] | None:
     return (float(match.group(1)), float(match.group(2)))
 
 
+def ccb_percent(container: float, percent: float) -> float:
+    """Match the engine's `(int)(container * percent / 100.0f)` cast.
+
+    CCNode+CCBRelativePositioning.m truncates percent-resolved positions and
+    sizes toward zero, so plain float maths drifts by up to a point.
+    """
+    return float(math.trunc(container * percent / 100.0))
+
+
 def resolve_position(raw_value: list[float] | None, parent_size: tuple[float, float]) -> tuple[float, float]:
     if not raw_value:
         return (0.0, 0.0)
@@ -511,7 +520,7 @@ def resolve_position(raw_value: list[float] | None, parent_size: tuple[float, fl
     if position_type == 3:
         return (width - x, y)
     if position_type == 4:
-        return (width * x / 100.0, height * y / 100.0)
+        return (ccb_percent(width, x), ccb_percent(height, y))
     if position_type == 5:
         return (x, y)
     raise ParseError(f"Unsupported position type {position_type}")
@@ -525,13 +534,13 @@ def resolve_size(raw_value: list[float] | None, parent_size: tuple[float, float]
     if size_type == 0:
         return (width, height)
     if size_type == 1:
-        return (parent_width * width / 100.0, parent_height * height / 100.0)
+        return (ccb_percent(parent_width, width), ccb_percent(parent_height, height))
     if size_type == 2:
         return (parent_width - width, parent_height - height)
     if size_type == 3:
-        return (parent_width * width / 100.0, height)
+        return (ccb_percent(parent_width, width), height)
     if size_type == 4:
-        return (width, parent_height * height / 100.0)
+        return (width, ccb_percent(parent_height, height))
     if size_type == 5:
         return (width, height)
     raise ParseError(f"Unsupported size type {size_type}")
@@ -721,6 +730,58 @@ def _flatten_raw(node: RawNode) -> Iterable[RawNode]:
         yield from _flatten_raw(child)
 
 
+def collect_timeline_overrides(root: RawNode) -> list[dict[str, Any]]:
+    """Report autoplay keyframes at t=0 that disagree with the static property.
+
+    CCBReader runs the autoplay sequence with `tweenDuration:0` immediately
+    after loading, so a t=0 keyframe wins over the static value. In the shipped
+    levels every such keyframe is a no-op, but this guards against silently
+    dropping a real override if new level data ever appears.
+    """
+    overrides: list[dict[str, Any]] = []
+    for index, node in enumerate(_flatten_raw(root)):
+        if not node.sequences:
+            continue
+        static_values = node.property_map()
+        for sequence in node.sequences:
+            for prop in sequence["properties"]:
+                first = next((kf for kf in prop["keyframes"] if kf["time"] == 0.0), None)
+                if first is None:
+                    continue
+                static_prop = static_values.get(prop["name"])
+                static_value = static_prop.value if static_prop else None
+                if not _keyframe_matches_static(prop["name"], first["value"], static_value):
+                    overrides.append(
+                        {
+                            "nodeIndex": index,
+                            "className": node.class_name,
+                            "property": prop["name"],
+                            "staticValue": static_value,
+                            "keyframeValue": first["value"],
+                        }
+                    )
+    return overrides
+
+
+def _keyframe_matches_static(name: str, keyframe_value: Any, static_value: Any) -> bool:
+    if static_value is None:
+        return False
+    # Position/size/scale keyframes carry only the two components, while the
+    # static property also carries its relative-coordinate type.
+    if (
+        isinstance(keyframe_value, list)
+        and isinstance(static_value, list)
+        and len(keyframe_value) == 2
+        and len(static_value) == 3
+    ):
+        static_value = static_value[:2]
+    if isinstance(keyframe_value, list) and isinstance(static_value, list):
+        return [comparable_value(name, item) for item in keyframe_value] == [
+            comparable_value(name, item) for item in static_value
+        ]
+    return comparable_value(name, keyframe_value) == comparable_value(name, static_value)
+
+
 class LevelConverter:
     def __init__(self, repo_root: Path, viewport: tuple[float, float]) -> None:
         self.repo_root = repo_root
@@ -905,8 +966,21 @@ class LevelConverter:
         top_trigger = next((trigger for trigger in triggers if trigger.get("legacyTag") == 100), None)
         top_boundary_y = (top_trigger or {}).get("position", {}).get("y") if top_trigger else None
 
+        parked_counts = {
+            name: sum(1 for item in collection if not item.get("playable", True))
+            for name, collection in (
+                ("platforms", platforms),
+                ("collectables", collectables),
+                ("enemies", enemies),
+                ("triggers", triggers),
+                ("tips", tips),
+            )
+        }
+        playable_collectables = [item for item in collectables if item.get("playable", True)]
+        collectable_kinds = Counter(item["kind"] for item in playable_collectables)
+
         return {
-            "schemaVersion": "1.0.0",
+            "schemaVersion": "1.1.0",
             "source": {
                 "ccbi": str(ccbi_path.relative_to(self.repo_root)),
                 "world": world,
@@ -925,6 +999,11 @@ class LevelConverter:
                 "nodeCount": sum(1 for _ in flatten_nodes(resolved_root)),
                 "timelineNames": [sequence["name"] for sequence in parser.sequences],
                 "autoPlaySequenceId": parser.auto_play_sequence_id,
+                "playableCollectables": {
+                    "small": collectable_kinds.get("small", 0),
+                    "big": collectable_kinds.get("big", 0),
+                    "halo": collectable_kinds.get("halo", 0),
+                },
             },
             "playerSpawn": infer_spawn_point(self.viewport),
             "goal": {
@@ -941,6 +1020,9 @@ class LevelConverter:
             "diagnostics": {
                 "unknownNodes": unknown_nodes,
                 "rawRootClass": raw_root.class_name,
+                "parkedObjects": parked_counts,
+                "parkedObjectTotal": sum(parked_counts.values()),
+                "timelineOverrides": collect_timeline_overrides(raw_root),
             },
         }
 
@@ -955,7 +1037,21 @@ class LevelConverter:
             "tint": node.properties.get("color"),
             "opacity": node.properties.get("opacity", 255),
             "visible": node.properties.get("visible", True),
+            "playable": self._is_playable(node),
         }
+
+    def _is_playable(self, node: ResolvedNode) -> bool:
+        """Reject CocosBuilder "parking stash" objects the player can never reach.
+
+        The player is driven straight from the touch x, so it is confined to
+        [0, viewportWidth]. Worlds 3 and 4 were authored from a template that
+        keeps a palette of spare objects parked either side of the screen; the
+        original game loads them but they are unreachable and get culled.
+        """
+        half_width = node.world_size[0] / 2.0
+        left = node.world_position[0] - half_width
+        right = node.world_position[0] + half_width
+        return right > 0.0 and left < self.viewport[0]
 
     def _projectile_spawner_from_enemy(self, enemy_entry: dict[str, Any], node: ResolvedNode) -> dict[str, Any] | None:
         if enemy_entry.get("kind") != "rocketLauncher":
@@ -989,6 +1085,7 @@ def summarize_level(level_data: dict[str, Any]) -> dict[str, Any]:
         "enemies": len(level_data.get("enemies", [])),
         "triggers": len(level_data.get("triggers", [])),
         "spawners": len(level_data.get("projectileSpawners", [])),
+        "parked": level_data.get("diagnostics", {}).get("parkedObjectTotal", 0),
         "topBoundaryY": level_data.get("metadata", {}).get("topBoundaryY"),
         "timeLimitSeconds": level_data.get("metadata", {}).get("timeLimitSeconds"),
         "xRange": [min(x_values), max(x_values)] if x_values else None,
@@ -1054,6 +1151,7 @@ def main(argv: list[str]) -> int:
             f"{summary['level']}: "
             f"platforms={summary['platforms']} collectables={summary['collectables']} "
             f"enemies={summary['enemies']} triggers={summary['triggers']} spawners={summary['spawners']} "
+            f"parked={summary['parked']} "
             f"top={summary['topBoundaryY']} time={summary['timeLimitSeconds']} validation={summary['validation']}"
         )
         if args.output_dir and not args.summary_only:

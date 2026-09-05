@@ -1,0 +1,1822 @@
+[
+  {
+    "level": "world-1-level-1",
+    "platforms": 6,
+    "collectables": 4,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 480.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      28.0,
+      160.0
+    ],
+    "yRange": [
+      34.0,
+      480.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-10",
+    "platforms": 16,
+    "collectables": 74,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1152.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      39.0,
+      294.0
+    ],
+    "yRange": [
+      34.0,
+      1152.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-11",
+    "platforms": 23,
+    "collectables": 64,
+    "enemies": 0,
+    "triggers": 2,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1348.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      49.0,
+      273.0
+    ],
+    "yRange": [
+      34.0,
+      1348.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-12",
+    "platforms": 24,
+    "collectables": 99,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1737.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      36.0,
+      302.0
+    ],
+    "yRange": [
+      34.0,
+      1737.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-13",
+    "platforms": 18,
+    "collectables": 139,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 1537.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -10.77,
+      299.0
+    ],
+    "yRange": [
+      34.0,
+      1537.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-14",
+    "platforms": 31,
+    "collectables": 174,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2808.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      13.0,
+      305.0
+    ],
+    "yRange": [
+      34.0,
+      2808.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-15",
+    "platforms": 31,
+    "collectables": 97,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2560.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      48.0,
+      294.0
+    ],
+    "yRange": [
+      36.0,
+      2560.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-16",
+    "platforms": 14,
+    "collectables": 84,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1266.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      38.0,
+      290.0
+    ],
+    "yRange": [
+      34.0,
+      1266.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-17",
+    "platforms": 12,
+    "collectables": 64,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 944.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -40.0,
+      286.0
+    ],
+    "yRange": [
+      34.0,
+      944.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-18",
+    "platforms": 14,
+    "collectables": 53,
+    "enemies": 1,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1150.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      47.0,
+      292.0
+    ],
+    "yRange": [
+      34.0,
+      1150.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-19",
+    "platforms": 32,
+    "collectables": 150,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 2,
+    "topBoundaryY": 1864.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -59.0,
+      315.0
+    ],
+    "yRange": [
+      34.0,
+      1864.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-2",
+    "platforms": 6,
+    "collectables": 4,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 480.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      78.0,
+      301.0
+    ],
+    "yRange": [
+      34.0,
+      480.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-20",
+    "platforms": 40,
+    "collectables": 266,
+    "enemies": 3,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 3715.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      6.0,
+      364.0
+    ],
+    "yRange": [
+      31.0,
+      3715.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-3",
+    "platforms": 16,
+    "collectables": 79,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 854.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      28.0,
+      264.0
+    ],
+    "yRange": [
+      34.0,
+      854.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-4",
+    "platforms": 14,
+    "collectables": 50,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 813.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      59.0,
+      301.0
+    ],
+    "yRange": [
+      34.0,
+      813.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-5",
+    "platforms": 14,
+    "collectables": 104,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1190.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      64.0,
+      299.246
+    ],
+    "yRange": [
+      34.0,
+      1190.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-6",
+    "platforms": 24,
+    "collectables": 124,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1586.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      25.0,
+      288.0
+    ],
+    "yRange": [
+      34.0,
+      1586.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-7",
+    "platforms": 23,
+    "collectables": 124,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1684.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      43.0,
+      294.0
+    ],
+    "yRange": [
+      34.0,
+      1684.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-8",
+    "platforms": 28,
+    "collectables": 124,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2216.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      27.0,
+      295.0
+    ],
+    "yRange": [
+      34.0,
+      2216.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-1-level-9",
+    "platforms": 7,
+    "collectables": 4,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 527.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      54.0,
+      267.0
+    ],
+    "yRange": [
+      34.0,
+      527.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-11-level-1",
+    "platforms": 24,
+    "collectables": 393,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 4826.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      35.0,
+      294.0
+    ],
+    "yRange": [
+      34.0,
+      4826.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-1",
+    "platforms": 14,
+    "collectables": 44,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 805.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      45.0,
+      278.0
+    ],
+    "yRange": [
+      36.0,
+      805.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-10",
+    "platforms": 19,
+    "collectables": 94,
+    "enemies": 5,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 991.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      31.0,
+      311.0
+    ],
+    "yRange": [
+      34.0,
+      991.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-11",
+    "platforms": 15,
+    "collectables": 44,
+    "enemies": 4,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 791.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      47.0,
+      264.0
+    ],
+    "yRange": [
+      34.0,
+      791.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-12",
+    "platforms": 16,
+    "collectables": 82,
+    "enemies": 11,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 902.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      33.0,
+      311.0
+    ],
+    "yRange": [
+      34.0,
+      902.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-13",
+    "platforms": 21,
+    "collectables": 60,
+    "enemies": 5,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1004.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      32.0,
+      305.0
+    ],
+    "yRange": [
+      34.0,
+      1004.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-14",
+    "platforms": 35,
+    "collectables": 124,
+    "enemies": 26,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1753.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      27.0,
+      309.0
+    ],
+    "yRange": [
+      36.0,
+      1753.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-15",
+    "platforms": 15,
+    "collectables": 64,
+    "enemies": 7,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1131.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      6.0,
+      308.0
+    ],
+    "yRange": [
+      34.0,
+      1131.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-16",
+    "platforms": 32,
+    "collectables": 140,
+    "enemies": 20,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 2087.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      9.0,
+      355.0
+    ],
+    "yRange": [
+      34.0,
+      2087.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-17",
+    "platforms": 26,
+    "collectables": 130,
+    "enemies": 15,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 1605.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -55.0,
+      294.0
+    ],
+    "yRange": [
+      27.0,
+      1605.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-18",
+    "platforms": 50,
+    "collectables": 142,
+    "enemies": 23,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2116.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      32.0,
+      291.0
+    ],
+    "yRange": [
+      35.0,
+      2116.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-19",
+    "platforms": 23,
+    "collectables": 128,
+    "enemies": 9,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 4,
+    "topBoundaryY": 1629.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      15.0,
+      357.0
+    ],
+    "yRange": [
+      34.0,
+      1629.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-2",
+    "platforms": 18,
+    "collectables": 40,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 868.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      36.0,
+      294.0
+    ],
+    "yRange": [
+      34.0,
+      868.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-20",
+    "platforms": 41,
+    "collectables": 124,
+    "enemies": 27,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 2069.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -50.0,
+      348.0
+    ],
+    "yRange": [
+      34.0,
+      2069.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-3",
+    "platforms": 17,
+    "collectables": 62,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 988.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      51.0,
+      277.0
+    ],
+    "yRange": [
+      36.0,
+      988.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-4",
+    "platforms": 13,
+    "collectables": 50,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 735.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      32.0,
+      284.0
+    ],
+    "yRange": [
+      34.0,
+      735.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-5",
+    "platforms": 10,
+    "collectables": 49,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1179.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      53.0,
+      269.0
+    ],
+    "yRange": [
+      34.0,
+      1179.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-6",
+    "platforms": 18,
+    "collectables": 82,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1376.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      30.0,
+      275.0
+    ],
+    "yRange": [
+      34.0,
+      1376.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-7",
+    "platforms": 24,
+    "collectables": 116,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 1,
+    "topBoundaryY": 1405.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -85.0,
+      302.0
+    ],
+    "yRange": [
+      34.0,
+      1405.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-8",
+    "platforms": 17,
+    "collectables": 80,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 1094.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      26.0,
+      291.0
+    ],
+    "yRange": [
+      34.0,
+      1094.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-2-level-9",
+    "platforms": 14,
+    "collectables": 40,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 735.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      48.0,
+      292.0
+    ],
+    "yRange": [
+      34.0,
+      735.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-1",
+    "platforms": 49,
+    "collectables": 243,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2492.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      8.0,
+      307.0
+    ],
+    "yRange": [
+      34.0,
+      2492.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-10",
+    "platforms": 24,
+    "collectables": 463,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 4826.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      46.0,
+      282.0
+    ],
+    "yRange": [
+      34.0,
+      4826.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-2",
+    "platforms": 14,
+    "collectables": 183,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2542.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      34.0,
+      281.0
+    ],
+    "yRange": [
+      34.0,
+      2542.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-3",
+    "platforms": 36,
+    "collectables": 173,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2523.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      25.0,
+      298.0
+    ],
+    "yRange": [
+      34.0,
+      2523.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-4",
+    "platforms": 36,
+    "collectables": 155,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 12,
+    "topBoundaryY": 2522.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      46.0,
+      487.0
+    ],
+    "yRange": [
+      34.0,
+      2522.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-5",
+    "platforms": 51,
+    "collectables": 183,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2520.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      8.0,
+      306.0
+    ],
+    "yRange": [
+      36.0,
+      2520.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-6",
+    "platforms": 54,
+    "collectables": 203,
+    "enemies": 0,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2500.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      11.0,
+      293.0
+    ],
+    "yRange": [
+      34.0,
+      2500.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-7",
+    "platforms": 42,
+    "collectables": 213,
+    "enemies": 20,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 0,
+    "topBoundaryY": 2575.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      28.0,
+      305.0
+    ],
+    "yRange": [
+      34.0,
+      2575.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-8",
+    "platforms": 35,
+    "collectables": 134,
+    "enemies": 12,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 2537.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      -191.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      2537.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-20-level-9",
+    "platforms": 47,
+    "collectables": 189,
+    "enemies": 20,
+    "triggers": 1,
+    "spawners": 20,
+    "parked": 23,
+    "topBoundaryY": 2546.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2546.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-1",
+    "platforms": 23,
+    "collectables": 78,
+    "enemies": 3,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 998.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -233.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      998.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-10",
+    "platforms": 17,
+    "collectables": 71,
+    "enemies": 18,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 28,
+    "topBoundaryY": 1351.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -235.0,
+      605.0
+    ],
+    "yRange": [
+      -88.0,
+      1351.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-11",
+    "platforms": 27,
+    "collectables": 94,
+    "enemies": 19,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 19,
+    "topBoundaryY": 1428.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -228.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      1428.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-12",
+    "platforms": 27,
+    "collectables": 166,
+    "enemies": 16,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 19,
+    "topBoundaryY": 1879.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -221.0,
+      570.0
+    ],
+    "yRange": [
+      -67.0,
+      1879.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-13",
+    "platforms": 33,
+    "collectables": 103,
+    "enemies": 13,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 29,
+    "topBoundaryY": 1480.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -180.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1480.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-14",
+    "platforms": 35,
+    "collectables": 120,
+    "enemies": 26,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 30,
+    "topBoundaryY": 2039.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -215.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2039.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-15",
+    "platforms": 28,
+    "collectables": 163,
+    "enemies": 22,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 29,
+    "topBoundaryY": 2163.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -194.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2163.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-16",
+    "platforms": 28,
+    "collectables": 148,
+    "enemies": 22,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 30,
+    "topBoundaryY": 2226.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -204.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2226.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-17",
+    "platforms": 13,
+    "collectables": 62,
+    "enemies": 14,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 18,
+    "topBoundaryY": 953.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -228.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      953.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-18",
+    "platforms": 30,
+    "collectables": 103,
+    "enemies": 13,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 8,
+    "topBoundaryY": 1665.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -180.0,
+      569.0
+    ],
+    "yRange": [
+      -8.0,
+      1665.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-19",
+    "platforms": 35,
+    "collectables": 113,
+    "enemies": 12,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 18,
+    "topBoundaryY": 1804.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -191.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1804.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-2",
+    "platforms": 25,
+    "collectables": 82,
+    "enemies": 7,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 28,
+    "topBoundaryY": 890.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -265.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      890.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-20",
+    "platforms": 40,
+    "collectables": 160,
+    "enemies": 18,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 17,
+    "topBoundaryY": 2931.0,
+    "timeLimitSeconds": 60,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2931.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-3",
+    "platforms": 21,
+    "collectables": 86,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 1307.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -219.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      1307.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-4",
+    "platforms": 33,
+    "collectables": 102,
+    "enemies": 6,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 29,
+    "topBoundaryY": 1394.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -199.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1394.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-5",
+    "platforms": 26,
+    "collectables": 84,
+    "enemies": 13,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 18,
+    "topBoundaryY": 1374.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -208.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1374.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-6",
+    "platforms": 30,
+    "collectables": 94,
+    "enemies": 8,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 1221.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -228.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1221.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-7",
+    "platforms": 30,
+    "collectables": 152,
+    "enemies": 12,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 1505.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -180.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      1505.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-8",
+    "platforms": 46,
+    "collectables": 128,
+    "enemies": 12,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 41,
+    "topBoundaryY": 1740.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -291.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1740.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-3-level-9",
+    "platforms": 15,
+    "collectables": 63,
+    "enemies": 7,
+    "triggers": 1,
+    "spawners": 0,
+    "parked": 21,
+    "topBoundaryY": 904.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -191.0,
+      569.0
+    ],
+    "yRange": [
+      -67.0,
+      904.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-1",
+    "platforms": 35,
+    "collectables": 80,
+    "enemies": 4,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 34,
+    "topBoundaryY": 1319.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1319.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-10",
+    "platforms": 27,
+    "collectables": 96,
+    "enemies": 8,
+    "triggers": 1,
+    "spawners": 6,
+    "parked": 15,
+    "topBoundaryY": 1344.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1344.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-11",
+    "platforms": 31,
+    "collectables": 110,
+    "enemies": 10,
+    "triggers": 1,
+    "spawners": 7,
+    "parked": 24,
+    "topBoundaryY": 1415.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1415.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-12",
+    "platforms": 34,
+    "collectables": 110,
+    "enemies": 15,
+    "triggers": 1,
+    "spawners": 14,
+    "parked": 26,
+    "topBoundaryY": 1490.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1490.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-13",
+    "platforms": 46,
+    "collectables": 150,
+    "enemies": 13,
+    "triggers": 1,
+    "spawners": 8,
+    "parked": 34,
+    "topBoundaryY": 1972.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1972.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-14",
+    "platforms": 42,
+    "collectables": 118,
+    "enemies": 6,
+    "triggers": 1,
+    "spawners": 6,
+    "parked": 24,
+    "topBoundaryY": 2320.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -191.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2320.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-15",
+    "platforms": 35,
+    "collectables": 154,
+    "enemies": 15,
+    "triggers": 1,
+    "spawners": 6,
+    "parked": 35,
+    "topBoundaryY": 2069.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2069.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-16",
+    "platforms": 41,
+    "collectables": 116,
+    "enemies": 11,
+    "triggers": 1,
+    "spawners": 5,
+    "parked": 15,
+    "topBoundaryY": 1865.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1865.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-17",
+    "platforms": 34,
+    "collectables": 112,
+    "enemies": 9,
+    "triggers": 1,
+    "spawners": 6,
+    "parked": 24,
+    "topBoundaryY": 1308.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1308.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-18",
+    "platforms": 33,
+    "collectables": 130,
+    "enemies": 11,
+    "triggers": 1,
+    "spawners": 7,
+    "parked": 25,
+    "topBoundaryY": 2067.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -180.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      2067.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-19",
+    "platforms": 40,
+    "collectables": 140,
+    "enemies": 16,
+    "triggers": 1,
+    "spawners": 9,
+    "parked": 24,
+    "topBoundaryY": 1914.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1914.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-2",
+    "platforms": 37,
+    "collectables": 80,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 27,
+    "topBoundaryY": 1382.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1382.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-20",
+    "platforms": 46,
+    "collectables": 192,
+    "enemies": 19,
+    "triggers": 1,
+    "spawners": 10,
+    "parked": 33,
+    "topBoundaryY": 1883.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1883.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-3",
+    "platforms": 28,
+    "collectables": 70,
+    "enemies": 3,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 28,
+    "topBoundaryY": 1137.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1137.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-4",
+    "platforms": 24,
+    "collectables": 127,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 35,
+    "topBoundaryY": 1618.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1618.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-5",
+    "platforms": 33,
+    "collectables": 126,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 35,
+    "topBoundaryY": 1640.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -191.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1640.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-6",
+    "platforms": 39,
+    "collectables": 130,
+    "enemies": 2,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 25,
+    "topBoundaryY": 1713.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1713.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-7",
+    "platforms": 34,
+    "collectables": 114,
+    "enemies": 5,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 23,
+    "topBoundaryY": 1309.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1309.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-8",
+    "platforms": 36,
+    "collectables": 140,
+    "enemies": 4,
+    "triggers": 1,
+    "spawners": 1,
+    "parked": 17,
+    "topBoundaryY": 1595.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1595.0
+    ],
+    "validation": "pass"
+  },
+  {
+    "level": "world-4-level-9",
+    "platforms": 27,
+    "collectables": 78,
+    "enemies": 4,
+    "triggers": 1,
+    "spawners": 3,
+    "parked": 36,
+    "topBoundaryY": 1029.0,
+    "timeLimitSeconds": 30,
+    "xRange": [
+      -212.0,
+      604.0
+    ],
+    "yRange": [
+      -88.0,
+      1029.0
+    ],
+    "validation": "pass"
+  }
+]

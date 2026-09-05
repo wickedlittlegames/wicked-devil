@@ -30,16 +30,25 @@ struct LevelSelectView: View {
             souls: model.souls,
             onBack: onBack
         ) {
-            ScrollView {
-                VStack(spacing: 18) {
-                    totals
+            VStack(spacing: 14) {
+                totals
+                    .padding(.horizontal, 18)
+                    .padding(.top, 12)
+
+                ScrollView {
                     grid
-                    if model.canSkip(world: world) { skipButton }
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 4)
                 }
-                .padding(.horizontal, 18)
-                .padding(.vertical, 16)
+                .scrollBounceBehavior(.basedOnSize)
+
+                if model.canSkip(world: world) {
+                    skipButton
+                        .padding(.horizontal, 18)
+                        .padding(.bottom, 8)
+                }
             }
-            .scrollBounceBehavior(.basedOnSize)
+            .containerRelativeFrame(.horizontal)
         }
         .alert(item: $skipAlert) { alert in
             switch alert {
@@ -74,11 +83,13 @@ struct LevelSelectView: View {
                 text: "\(summary?.halosEarned ?? 0)/\(summary?.halosAvailable ?? 0)",
                 tint: MenuColor.halo
             )
-            Spacer()
+            Spacer(minLength: 4)
             Text("Best \((summary?.highScore ?? 0).formatted(.number))")
                 .font(.devilBody(16))
                 .foregroundStyle(MenuColor.mutedText)
                 .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
         }
     }
 

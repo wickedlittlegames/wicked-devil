@@ -262,15 +262,15 @@ struct MenuScreen<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        ZStack {
-            MenuBackground(backgroundImage)
-
-            VStack(spacing: 0) {
-                header
-                content
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
+        VStack(spacing: 0) {
+            header
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        // The artwork is a `.background` rather than a `ZStack` sibling: scaled
+        // to `.fill` it is wider than the screen, and as a sibling it would
+        // stretch the whole layout and push the content off both edges.
+        .background { MenuBackground(backgroundImage) }
         .foregroundStyle(MenuColor.text)
         .navigationBarBackButtonHidden(onBack != nil)
     }

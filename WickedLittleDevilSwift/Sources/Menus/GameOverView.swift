@@ -18,6 +18,8 @@ struct GameOverView: View {
     let onRetry: () -> Void
     let onNext: () -> Void
     let onMenu: () -> Void
+    /// Taken when the player accepts the "you can afford an upgrade" nudge.
+    var onStore: () -> Void = {}
 
     /// How many breakdown rows have been revealed so far.
     @State private var revealed = 0
@@ -37,11 +39,8 @@ struct GameOverView: View {
     }
 
     var body: some View {
-        ZStack {
-            MenuBackground("bg-gameover", dim: 0.45)
-
-            VStack(spacing: 16) {
-                Spacer(minLength: 0)
+        VStack(spacing: 16) {
+            Spacer(minLength: 0)
 
                 Text("Level Complete")
                     .font(.devilTitle(38))
@@ -69,17 +68,24 @@ struct GameOverView: View {
 
                 Spacer(minLength: 0)
 
-                buttons
-            }
-            .padding(.horizontal, 22)
-            .padding(.vertical, 24)
-            .foregroundStyle(MenuColor.text)
+            buttons
+        }
+        .padding(.horizontal, 22)
+        .padding(.vertical, 24)
+        .foregroundStyle(MenuColor.text)
+        // See `MenuScreen`: the artwork is a background so its `.fill` scaling
+        // cannot stretch the layout past the screen edges.
+        .background {
+            // `GameOverScene.m` picked `bg-gameover-<bigcollected>.png`, so the
+            // backdrop reflects how many big souls the run collected.
+            MenuBackground("bg-gameover-\(min(max(run.result.bigCollected, 1), 3))", dim: 0.45)
         }
         .task { await revealScore() }
-        .alert("Running low on souls?", isPresented: $showsTip) {
-            Button("OK", role: .cancel) {}
+        .alert("Good News!", isPresented: $showsTip) {
+            Button("Visit Shop") { onStore() }
+            Button("Not yet, I'm saving up!", role: .cancel) {}
         } message: {
-            Text("You have \(model.souls.formatted(.number)) souls. Spend them on upgrades in the store to make the next levels easier.")
+            Text("You can now afford your first Devil Upgrade!")
         }
     }
 
@@ -172,9 +178,12 @@ struct GameOverView: View {
             try? await Task.sleep(for: .milliseconds(340))
             withAnimation(.easeOut(duration: 0.2)) { revealed = step }
         }
-        // `GameOverScene.m` nudged the player towards the upgrade store once
-        // they had enough souls to actually buy something worthwhile.
-        if model.souls >= 2000 { showsTip = true }
+        // `GameOverScene.m` nudged the player towards the upgrade store the
+        // first time they could afford something, and only ever once.
+        if model.shouldShowUpgradeTip {
+            model.markUpgradeTipSeen()
+            showsTip = true
+        }
     }
 
     private struct BreakdownRow: Identifiable {

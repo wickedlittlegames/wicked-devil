@@ -388,6 +388,20 @@ final class MenuModel {
 
     // MARK: - Misc
 
+    /// `GameOverScene.m` nudged the player towards the upgrade store the first
+    /// time they could afford something, then set `TIP-POWERUP-SEEN` so the
+    /// prompt never appeared again.
+    private static let powerupTipKey = "TIP-POWERUP-SEEN"
+
+    var shouldShowUpgradeTip: Bool {
+        souls >= 2000 && !store.bool(forKey: Self.powerupTipKey)
+    }
+
+    func markUpgradeTipSeen() {
+        store.set(true, forKey: Self.powerupTipKey)
+        store.synchronize()
+    }
+
     func toggleMute() {
         store.set(!store.bool(forKey: User.Key.muted), forKey: User.Key.muted)
         store.synchronize()

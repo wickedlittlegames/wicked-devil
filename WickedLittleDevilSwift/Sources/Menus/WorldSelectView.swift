@@ -25,7 +25,7 @@ struct WorldSelectView: View {
     var body: some View {
         MenuScreen(
             title: "Choose a World",
-            backgroundImage: currentTheme?.menuBackground ?? "bg-coming-soon",
+            backgroundImage: currentTheme?.levelBackground ?? "bg-coming-soon",
             souls: model.souls,
             onBack: onBack
         ) {
@@ -42,8 +42,11 @@ struct WorldSelectView: View {
                             .tag(model.worlds.count)
                     }
                 }
-                .tabViewStyle(.page(indexDisplayMode: .always))
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                // The built-in indicator floats over the bottom of the page and
+                // would sit on top of the Enter button, so it is drawn below.
+                .tabViewStyle(.page(indexDisplayMode: .never))
+
+                pageDots
 
                 HStack(spacing: 12) {
                     Button("Store", action: onStore).devilButton(.quiet)
@@ -68,6 +71,19 @@ struct WorldSelectView: View {
         }
     }
 
+    private var pageDots: some View {
+        let count = model.worlds.count + (model.inventory.comingSoonWorldCount > 0 ? 1 : 0)
+        return HStack(spacing: 8) {
+            ForEach(0..<max(count, 1), id: \.self) { index in
+                Circle()
+                    .fill(index == page ? MenuColor.text : MenuColor.mutedText.opacity(0.4))
+                    .frame(width: 8, height: 8)
+            }
+        }
+        .padding(.vertical, 4)
+        .accessibilityHidden(true)
+    }
+
     private var totals: some View {
         HStack(spacing: 10) {
             CountPill(
@@ -90,48 +106,17 @@ struct WorldSelectView: View {
 }
 
 /// One page of the world carousel.
+///
+/// The original world art is a full-screen poster with the world's name
+/// lettered into it, so it is shown whole (`.fit`) rather than cropped to a
+/// banner, and the name is not repeated as text underneath.
 private struct WorldCard: View {
     let world: WorldSummary
     let onPlay: () -> Void
 
     var body: some View {
-        VStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(MenuColor.panel)
-                Image(world.theme.menuBackground)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .opacity(world.isUnlocked ? 1 : 0.25)
-                    .grayscale(world.isUnlocked ? 0 : 1)
-
-                if !world.isUnlocked {
-                    VStack(spacing: 8) {
-                        Image(systemName: "lock.fill").font(.system(size: 34, weight: .bold))
-                        Text("Beat World \(world.world - 1)")
-                            .font(.devilBody(16))
-                    }
-                    .foregroundStyle(MenuColor.text)
-                    .padding(20)
-                    .background(.black.opacity(0.55), in: RoundedRectangle(cornerRadius: 14))
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 200)
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .strokeBorder(MenuColor.panelStroke.opacity(0.7), lineWidth: 2)
-            )
-
-            VStack(spacing: 6) {
-                Text("World \(world.world)")
-                    .font(.devilCaption(14))
-                    .foregroundStyle(MenuColor.mutedText)
-                Text(world.theme.name)
-                    .font(.devilTitle(34))
-                    .foregroundStyle(MenuColor.soul)
-            }
+        VStack(spacing: 12) {
+            poster
 
             HStack(spacing: 8) {
                 CountPill(
@@ -158,6 +143,36 @@ private struct WorldCard: View {
         .padding(.horizontal, 22)
         .padding(.vertical, 8)
     }
+
+    private var poster: some View {
+        ZStack {
+            Image(world.theme.menuBackground)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .opacity(world.isUnlocked ? 1 : 0.3)
+                .grayscale(world.isUnlocked ? 0 : 1)
+
+            if !world.isUnlocked {
+                VStack(spacing: 8) {
+                    Image(systemName: "lock.fill").font(.system(size: 34, weight: .bold))
+                    Text("World \(world.world)")
+                        .font(.devilTitle(30))
+                        .foregroundStyle(MenuColor.soul)
+                    Text("Beat World \(world.world - 1)")
+                        .font(.devilBody(16))
+                }
+                .foregroundStyle(MenuColor.text)
+                .padding(20)
+                .background(.black.opacity(0.6), in: RoundedRectangle(cornerRadius: 14))
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .strokeBorder(MenuColor.panelStroke.opacity(0.7), lineWidth: 2)
+        )
+    }
 }
 
 /// Worlds 5–12 were designed but never built.
@@ -168,22 +183,19 @@ private struct ComingSoonCard: View {
         VStack(spacing: 16) {
             Image("bg-coming-soon")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 200)
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .strokeBorder(MenuColor.panelStroke.opacity(0.7), lineWidth: 2)
                 )
 
-            Text("Coming Soon")
-                .font(.devilTitle(34))
-                .foregroundStyle(MenuColor.soul)
-
             Text("\(remaining) more worlds were planned for Wicked Little Devil but never finished.")
                 .font(.devilBody(16))
                 .foregroundStyle(MenuColor.mutedText)
                 .multilineTextAlignment(.center)
+                .padding(.bottom, 60)
         }
         .padding(.horizontal, 22)
         .padding(.vertical, 8)

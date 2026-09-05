@@ -66,7 +66,11 @@ struct MenuRootView: View {
                 onNext: {
                     if let next = model.nextLevel(after: run.request) { play(request: next) }
                 },
-                onMenu: { finishedRun = nil }
+                onMenu: { finishedRun = nil },
+                onStore: {
+                    finishedRun = nil
+                    if path.last != .storeHub { path.append(.storeHub) }
+                }
             )
         }
     }

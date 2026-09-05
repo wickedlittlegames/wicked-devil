@@ -109,38 +109,36 @@ struct GameplayPlaceholderView: View {
     @State private var seconds = 18
 
     var body: some View {
-        ZStack {
-            MenuBackground("bg-world-\(request.world)", dim: 0.6)
+        VStack(spacing: 20) {
+            Text("Gameplay hand-off")
+                .font(.devilTitle(30))
 
-            VStack(spacing: 20) {
-                Text("Gameplay hand-off")
-                    .font(.devilTitle(30))
-
-                MenuPanel {
-                    VStack(alignment: .leading, spacing: 8) {
-                        labelled("Level", request.levelResourceName)
-                        labelled("Restart", request.isRestart ? "yes" : "no")
-                        labelled("Past score", request.pastScore.formatted(.number))
-                        Divider().overlay(MenuColor.panelStroke)
-                        stepper("Big souls", value: $souls, range: 0...3)
-                        stepper("Small souls", value: $smallSouls, range: 0...200, step: 10)
-                        stepper("Halos", value: $halos, range: 0...1)
-                        stepper("Seconds taken", value: $seconds, range: 0...120, step: 5)
-                    }
-                }
-
-                VStack(spacing: 10) {
-                    Button("Finish — win") { finish(result(didWin: true)) }
-                        .devilButton()
-                    Button("Finish — died") { finish(result(didWin: false)) }
-                        .devilButton(.secondary)
-                    Button("Quit to menu") { finish(nil) }
-                        .devilButton(.quiet)
+            MenuPanel {
+                VStack(alignment: .leading, spacing: 8) {
+                    labelled("Level", request.levelResourceName)
+                    labelled("Restart", request.isRestart ? "yes" : "no")
+                    labelled("Past score", request.pastScore.formatted(.number))
+                    Divider().overlay(MenuColor.panelStroke)
+                    stepper("Big souls", value: $souls, range: 0...3)
+                    stepper("Small souls", value: $smallSouls, range: 0...200, step: 10)
+                    stepper("Halos", value: $halos, range: 0...1)
+                    stepper("Seconds taken", value: $seconds, range: 0...120, step: 5)
                 }
             }
-            .padding(24)
-            .foregroundStyle(MenuColor.text)
+
+            VStack(spacing: 10) {
+                Button("Finish — win") { finish(result(didWin: true)) }
+                    .devilButton()
+                Button("Finish — died") { finish(result(didWin: false)) }
+                    .devilButton(.secondary)
+                Button("Quit to menu") { finish(nil) }
+                    .devilButton(.quiet)
+            }
         }
+        .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .foregroundStyle(MenuColor.text)
+        .background { MenuBackground("bg-world-\(request.world)", dim: 0.6) }
     }
 
     private func labelled(_ title: String, _ value: String) -> some View {

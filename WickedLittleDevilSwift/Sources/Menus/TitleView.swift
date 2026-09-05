@@ -23,23 +23,21 @@ struct TitleView: View {
     @State private var showSecretDrawer = false
 
     var body: some View {
-        ZStack {
-            MenuBackground("bg-home-iphone5", dim: 0.12, contentMode: .fit)
-
-            VStack(spacing: 0) {
-                header
-                Spacer(minLength: 12)
-                title
-                Spacer(minLength: 12)
-                buttons
-                if showSecretDrawer, model.bonusLevel != nil {
-                    secretDrawer
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                }
+        VStack(spacing: 0) {
+            header
+            Spacer(minLength: 12)
+            title
+            Spacer(minLength: 12)
+            buttons
+            if showSecretDrawer, model.bonusLevel != nil {
+                secretDrawer
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            .padding(.horizontal, 28)
-            .padding(.bottom, 24)
         }
+        .padding(.horizontal, 28)
+        .padding(.bottom, 24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background { MenuBackground("bg-home-iphone5", dim: 0.12, contentMode: .fit) }
         .foregroundStyle(MenuColor.text)
         .animation(.spring(response: 0.4, dampingFraction: 0.8), value: showSecretDrawer)
     }

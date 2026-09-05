@@ -273,7 +273,33 @@ final class GameWorldTests: XCTestCase {
         XCTAssertEqual(world.player.position.x, 160 + world.player.drag, accuracy: 1e-9)
     }
 
-    func testTappingABubblePopsItThroughTheWorld() {
+    func testTappingABubblePopsItWithTheBubblePopUpgrade() {
+        let level = makeLevel(enemies: [
+            Level.EnemyData(
+                id: "e1",
+                position: Vec2(x: 160, y: 70),
+                size: SizeF(width: 49.5, height: 49.5),
+                legacyTag: 3,
+                kind: "bubble"
+            )
+        ])
+        let world = makeWorld(level)
+        world.player.setupPowerup(.bubblePop)
+        world.game.start()
+        world.player.position = Vec2(x: 160, y: 70)
+        world.update(deltaTime: 1.0 / 60)
+
+        XCTAssertTrue(world.player.floating)
+        let events = world.handleTap(at: Vec2(x: 160, y: 70))
+
+        XCTAssertEqual(events, [.bubblePopped(enemyID: "e1")])
+        XCTAssertTrue(world.player.controllable)
+        XCTAssertFalse(world.player.floating)
+    }
+
+    /// "Bubble Pop" is a 10,000-soul shop item; without it a bubble trap has to
+    /// be ridden out.
+    func testTappingABubbleDoesNothingWithoutTheBubblePopUpgrade() {
         let level = makeLevel(enemies: [
             Level.EnemyData(
                 id: "e1",
@@ -289,10 +315,49 @@ final class GameWorldTests: XCTestCase {
         world.update(deltaTime: 1.0 / 60)
 
         XCTAssertTrue(world.player.floating)
-        let events = world.handleTap(at: Vec2(x: 160, y: 70))
+        XCTAssertEqual(world.player.equippedPowerup, Powerup.none)
 
-        XCTAssertEqual(events, [.bubblePopped(enemyID: "e1")])
+        XCTAssertEqual(world.handleTap(at: Vec2(x: 160, y: 70)), [])
+        XCTAssertTrue(world.player.floating)
+        XCTAssertFalse(world.player.controllable)
+
+        // Dragging onto it does not work either — the touch point is frozen.
+        world.setTouch(Vec2(x: 160, y: 70))
+        world.update(deltaTime: 1.0 / 60)
+        XCTAssertTrue(world.player.floating)
+
+        // The lift has to run its course.
+        world.update(deltaTime: 3)
+        XCTAssertFalse(world.player.floating)
         XCTAssertTrue(world.player.controllable)
+    }
+
+    /// `Enemy action_bubble_float:` sets `game.touch = ccp(player.x, touch.y)`,
+    /// so the frozen point sits on the player's column, not the finger's.
+    func testBubbleGrabSnapsTheTouchToThePlayerColumnAndKeepsItsY() {
+        let level = makeLevel(enemies: [
+            Level.EnemyData(
+                id: "e1",
+                position: Vec2(x: 160, y: 70),
+                size: SizeF(width: 49.5, height: 49.5),
+                legacyTag: 3,
+                kind: "bubble"
+            )
+        ])
+        let world = makeWorld(level)
+        world.game.start()
+        world.setTouch(Vec2(x: 40, y: 12))
+        world.player.position = Vec2(x: 160, y: 70)
+        world.update(deltaTime: 1.0 / 60)
+
+        XCTAssertTrue(world.player.floating)
+        XCTAssertEqual(world.game.touch.x, world.player.position.x, accuracy: 1e-9)
+        XCTAssertEqual(world.game.touch.y, 12, accuracy: 1e-9)
+
+        // A finger already down stops steering the point for the whole lift.
+        world.setTouch(Vec2(x: 300, y: 400))
+        XCTAssertEqual(world.game.touch.x, world.player.position.x, accuracy: 1e-9)
+        XCTAssertEqual(world.game.touch.y, 12, accuracy: 1e-9)
     }
 
     func testTappingEmptySpaceDoesNothing() {

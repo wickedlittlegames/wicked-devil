@@ -650,7 +650,8 @@ final class GameScene: SKScene {
 
         if isSteering { touchLocation = location }
 
-        // Tapping a floating bubble pops it.
+        // Landing a touch on a floating bubble pops it — but only with the
+        // Bubble Pop upgrade equipped; the world enforces that.
         handle(world.handleTap(at: Vec2(x: Double(location.x), y: Double(location.y))))
     }
 

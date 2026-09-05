@@ -149,7 +149,9 @@ public final class Enemy {
         position.distance(to: player.position) <= Enemy.proximityRadius + 1
     }
 
-    /// `Enemy isIntersectingTouch:` — only floating bubbles respond to taps.
+    /// `Enemy isIntersectingTouch:` — only floating bubbles respond to the
+    /// touch point. Whether the pop is *allowed* is the world's business:
+    /// it needs the Bubble Pop upgrade.
     public func containsTouch(_ point: Vec2) -> Bool {
         visible && floating && kind == .bubble && boundingBox.contains(point)
     }

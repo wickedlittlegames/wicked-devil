@@ -210,13 +210,28 @@ public final class GameWorld {
             } else if enemy.kind == .rocketLauncher && player.equippedPowerup == .dud {
                 // The "dud" powerup stops rocket launchers firing (GameLayer.m).
             } else {
-                events += enemy.resolveCollision(with: player, device: device)
+                let collisions = enemy.resolveCollision(with: player, device: device)
+                if collisions.contains(where: { if case .bubbleGrabbed = $0 { return true }
+                                                return false }) {
+                    // `Enemy action_bubble_float:` re-seats the touch point on
+                    // the player's X but keeps the Y the finger was last at.
+                    game.touch = Vec2(x: player.position.x, y: game.touch.y)
+                }
+                events += collisions
             }
             events += enemy.updateProjectiles(deltaTime: deltaTime, player: player)
         }
         enemies.removeAll { $0.dead && !$0.visible && $0.projectiles.isEmpty }
         return events
     }
+
+    /// Bubble Pop is a 10,000-soul shop upgrade (`Powerups_special.plist`,
+    /// `user.powerup == 101`). The original gated it indirectly: while the
+    /// bubble held you `ccTouchesMoved` stopped tracking your finger (it
+    /// required `player.controllable`) and only `ccTouchesBegan` re-pointed
+    /// `game.touch`, and only with the upgrade equipped. Without it the point
+    /// stayed frozen off the bubble and you served the full three-second lift.
+    private var canPopBubbles: Bool { player.equippedPowerup == .bubblePop }
 
     /// `GameLayer` visibility/despawn book-keeping, expressed in layer space
     /// (the layer scrolls down as the player climbs, so Y here is relative to
@@ -294,14 +309,28 @@ public final class GameWorld {
     /// The player drifts towards the last touch point each frame. The X is
     /// clamped into the play field so a drag that runs off the side of a wide
     /// screen parks him at the edge rather than pulling him out of bounds.
+    ///
+    /// `GameScene.m ccTouchesMoved` required `player.controllable`, so a finger
+    /// already down when a bubble grabs you stops steering the touch point
+    /// until the lift ends. Only a fresh touch moves it (see `handleTap`).
     public func setTouch(_ point: Vec2) {
-        game.touch = Vec2(x: min(max(0, point.x), playFieldWidth), y: point.y)
+        guard player.controllable || !player.floating else { return }
+        game.touch = clampToPlayField(point)
     }
 
-    /// Tapping a floating bubble pops it.
+    private func clampToPlayField(_ point: Vec2) -> Vec2 {
+        Vec2(x: min(max(0, point.x), playFieldWidth), y: point.y)
+    }
+
+    /// A fresh touch. `GameScene.m ccTouchesBegan` re-pointed `game.touch`
+    /// mid-lift *only* when Bubble Pop was equipped, and `GameLayer` popped any
+    /// floating bubble the point had landed in. Without the upgrade the touch
+    /// stays frozen where the grab left it and the bubble runs its course.
     @discardableResult
     public func handleTap(at point: Vec2) -> [GameEvent] {
-        for enemy in enemies where enemy.containsTouch(point) {
+        guard canPopBubbles else { return [] }
+        game.touch = clampToPlayField(point)
+        for enemy in enemies where enemy.containsTouch(game.touch) {
             return enemy.popBubble(player)
         }
         return []

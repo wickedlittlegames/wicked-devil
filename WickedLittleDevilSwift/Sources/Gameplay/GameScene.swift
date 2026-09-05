@@ -656,11 +656,17 @@ final class GameScene: SKScene {
         pauseMenu = nil
 
         let result = game.result
+        guard didWin else {
+            AudioEngine.shared.stopMusic()
+            onGameOver?(result)
+            return
+        }
+
         if !game.player.isAlive {
             AudioEngine.shared.playEffect(SoundEffect.playerHit)
         }
         AudioEngine.shared.stopMusic()
-        showMessage(didWin ? "LEVEL COMPLETE" : "GAME OVER")
+        showMessage("LEVEL COMPLETE")
         onGameOver?(result)
     }
 

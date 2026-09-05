@@ -91,6 +91,26 @@ public final class Game {
             player.deaths += 1
             user?.deaths += 1
         }
+        return closeOutRun()
+    }
+
+    /// `Platform action:` case 100 — reaching the goal platform ends the run
+    /// one second later, winning only if at least one big collectable was
+    /// banked.
+    ///
+    /// The delay was a `CCSequence` in the original, so it belongs to the
+    /// presentation layer; this closes the run out once that delay elapses.
+    ///
+    /// - Returns: a `.gameOver` event, or `nil` if the run had already ended.
+    @discardableResult
+    public func finish(didWin: Bool) -> GameEvent? {
+        guard !isGameover else { return nil }
+        self.didWin = didWin
+        isGameover = true
+        return closeOutRun()
+    }
+
+    private func closeOutRun() -> GameEvent {
         user?.jumps += player.jumps
         user?.sync()
         return .gameOver(didWin: didWin)

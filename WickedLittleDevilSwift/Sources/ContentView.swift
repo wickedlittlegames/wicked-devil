@@ -1,16 +1,33 @@
-import SpriteKit
 import SwiftUI
-import UIKit
+import WickedDevilCore
 
+/// Launches straight into a playable level.
+///
+/// The menu workstream owns the real entry point; until it is wired up this
+/// drops the player into world 1 level 1 and continues (or replays) when a run
+/// ends, which is enough to exercise the whole gameplay loop.
 struct ContentView: View {
-    @State private var scene = GameScene(size: UIScreen.main.bounds.size)
+    @State private var request = GameLaunchRequest(world: 1, level: 1)
+    @State private var runToken = 0
+    @State private var user = User(store: UserDefaultsUserDataStore())
 
     var body: some View {
-        SpriteView(scene: scene)
-            .ignoresSafeArea()
-            .task {
-                scene.scaleMode = .resizeFill
-            }
+        GameplayHostView(request: request, user: user) { result in
+            advance(after: result)
+        }
+        // Forces a fresh scene for each run.
+        .id("\(request.id)-\(runToken)")
+    }
+
+    private func advance(after result: GameResult?) {
+        guard let result else { return }
+        if result.didWin {
+            _ = user.recordCompletedLevel(result)
+        }
+        runToken += 1
+        request = result.didWin
+            ? GameLaunchRequest(world: request.world, level: request.level + 1)
+            : request.restarted()
     }
 }
 

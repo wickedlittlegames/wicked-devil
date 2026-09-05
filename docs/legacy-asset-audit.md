@@ -61,8 +61,11 @@ deleting `Wicked Little Devil/Resources/` first would have destroyed it.
 
 ## Known issues that are *not* asset gaps
 
-Two defects surfaced during the audit. Both are code, and both sit in
-directories owned by concurrent work, so they are recorded rather than fixed.
+Two defects surfaced during the audit. Both are code rather than missing art,
+and both sit in directories owned by concurrent gameplay-polish work, so they
+were recorded here rather than fixed in place. **Both have since been handed to
+the polish agent**; this section is the record of where they were found, not an
+open action.
 
 1. **`ingame-small-collectable-bw.png` resolves to magenta in all ten world-20
    levels** (1,698 + 410 references). The frame is present in the bundled
@@ -71,10 +74,12 @@ directories owned by concurrent work, so they are recorded rather than fixed.
    a `.ccbi` named never mattered; `SpriteAtlas.frame(named:sheet:)` takes the
    sheet literally and falls back only to `IngameSprites`. The fix is a further
    fallback that searches every loaded atlas by frame name. No art is missing.
+   *Owner: gameplay-polish agent (`Sources/Rendering/SpriteAtlas.swift`).*
 
 2. **`StatsView.swift` requests `bg-stats-iphone5`**, which has never existed —
    not in the new bundle and not in the 2012 project. The stats screen simply
    draws no background. Some other background needs choosing.
+   *Owner: gameplay-polish agent (`Sources/Menus/StatsView.swift`).*
 
 ## Not carried across (51 logical assets)
 

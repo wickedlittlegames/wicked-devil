@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		223B5258C894F3AF752289A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232A0E7460072A0A1D821E4E /* ContentView.swift */; };
 		27A031F97588D61063E5DE16 /* WickedLittleDevilSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4F1E24616CD55FE6047B4 /* WickedLittleDevilSwiftApp.swift */; };
+		30E2C0DCAC92776365D75B20 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 4413A2AAD578A94FA774E1BE /* Levels */; };
 		4660104BDC65FEFBE8984DE0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29305C02CF47F0D1F97E259B /* GameScene.swift */; };
 		93FB12C2D98F7F21D422837E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -17,6 +18,7 @@
 		232A0E7460072A0A1D821E4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		29305C02CF47F0D1F97E259B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		3FC9F1323F511EAD8A05D2C0 /* WickedLittleDevilSwift.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WickedLittleDevilSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4413A2AAD578A94FA774E1BE /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Levels; path = Resources/Levels; sourceTree = SOURCE_ROOT; };
 		6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82C4F1E24616CD55FE6047B4 /* WickedLittleDevilSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WickedLittleDevilSwiftApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -26,6 +28,7 @@
 			isa = PBXGroup;
 			children = (
 				6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */,
+				4413A2AAD578A94FA774E1BE /* Levels */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -118,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93FB12C2D98F7F21D422837E /* Assets.xcassets in Resources */,
+				30E2C0DCAC92776365D75B20 /* Levels in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,13 +150,9 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
 					UIInterfaceOrientationPortrait,
 					UIInterfaceOrientationPortraitUpsideDown,
-					UIInterfaceOrientationLandscapeLeft,
-					UIInterfaceOrientationLandscapeRight,
 				);
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
 					UIInterfaceOrientationPortrait,
-					UIInterfaceOrientationLandscapeLeft,
-					UIInterfaceOrientationLandscapeRight,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -174,13 +174,9 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
 					UIInterfaceOrientationPortrait,
 					UIInterfaceOrientationPortraitUpsideDown,
-					UIInterfaceOrientationLandscapeLeft,
-					UIInterfaceOrientationLandscapeRight,
 				);
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
 					UIInterfaceOrientationPortrait,
-					UIInterfaceOrientationLandscapeLeft,
-					UIInterfaceOrientationLandscapeRight,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

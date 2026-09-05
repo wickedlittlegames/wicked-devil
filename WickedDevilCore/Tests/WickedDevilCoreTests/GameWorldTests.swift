@@ -236,6 +236,31 @@ final class GameWorldTests: XCTestCase {
         XCTAssertTrue(world.collectables[0].visible)
     }
 
+    func testMovingPlatformsTweenAroundTheirSpawnPoint() {
+        var data = platform("mover", at: Vec2(x: 100, y: 400), kind: "moving")
+        data.legacyTag = 33
+        data.behavior = Level.Behavior(
+            mode: "movingHorizontal",
+            offset: Vec2(x: 100, y: 0),
+            durationSeconds: 2
+        )
+        let world = makeWorld(makeLevel(platforms: [data]))
+        world.game.start()
+        let mover = try! XCTUnwrap(world.platforms.first)
+        XCTAssertNotNil(mover.motion)
+        XCTAssertTrue(mover.animating)
+
+        world.update(deltaTime: 1)
+        XCTAssertEqual(mover.position.x, 150, accuracy: 1e-9)
+
+        world.update(deltaTime: 1)
+        XCTAssertEqual(mover.position.x, 200, accuracy: 1e-9)
+
+        // ...and back again on the return leg.
+        world.update(deltaTime: 2)
+        XCTAssertEqual(mover.position.x, 100, accuracy: 1e-9)
+    }
+
     // MARK: - Input
 
     func testTouchDragsThePlayerHorizontallyByAtMostTheDrag() {

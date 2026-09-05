@@ -98,7 +98,9 @@ public final class Platform {
     public let motion: NodeMotion?
 
     public var health: Double
-    /// True while a cocos2d action was running (movement or the break tween).
+    /// True while this platform's movement is running. Platforms that carry a
+    /// `motion` start animating immediately, exactly as `CCBReader` kicked off
+    /// their repeat-forever action on load; being hit can stop them.
     public var animating: Bool
     /// Toggle-target platforms that are currently switched off, and broken
     /// platforms, are `dead`.
@@ -131,7 +133,7 @@ public final class Platform {
         self.toggleGroup = toggleGroup
         self.requiresBigCollectables = requiresBigCollectables
         self.health = health
-        self.animating = false
+        self.animating = motion != nil
         self.dead = dead
         self.visible = visible
     }

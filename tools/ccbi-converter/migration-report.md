@@ -3,7 +3,7 @@
 Migration of the original CocosBuilder level binaries to JSON for the Swift +
 SpriteKit rewrite.
 
-- **Source:** `Wicked Little Devil/Resources/DATA/LEVELS/*.ccbi` (read-only)
+- **Source:** `legacy-reference/Resources/DATA/LEVELS/*.ccbi` (read-only)
 - **Output:** `WickedLittleDevilSwift/Resources/Levels/*.json` (schema `1.1.0`, 6.5 MB)
 - **Result:** 91 / 91 levels converted, cross-checked and verified. No failures, no warnings.
 
@@ -37,7 +37,7 @@ The two extra worlds are both real, reachable content:
   with its own background art and only 10 levels.
 
 Each `.ccbi` has a matching human-readable `.ccb` plist in
-`Wicked Little Devil/Resources/DATA/LEVEL BUILDER/` (91 of those too), which is
+`legacy-reference/Resources/DATA/LEVEL BUILDER/` (91 of those too), which is
 what makes the independent cross-check below possible.
 
 ## 2. Results

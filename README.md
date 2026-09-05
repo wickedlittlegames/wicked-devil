@@ -13,8 +13,7 @@ port that plays the same 91 levels from the same original art and level data.
 | `tools/ccbi-converter/` | Python converter that reads the original binary `.ccbi` levels and emits the JSON the app ships, plus verification scripts and a migration report. |
 | `tools/menu-assets/` | Scripts that build the menu asset catalogues from the original art. |
 | `Design Assets/` | Original source art: layered PSDs and media. Not built into anything. |
-| `Wicked Little Devil/` | The 2012 Objective-C sources and the original resource tree. Reference material — see below. |
-| `Wicked Little Devil.xcodeproj` | The 2012 Xcode project. No longer buildable; see below. |
+| `legacy-reference/` | The 2012 Objective-C sources and the original resource tree. Reference material, excluded from every build — see below and its own README. |
 | `docs/` | Notes produced during the rewrite, including the legacy asset audit. |
 
 ## Building
@@ -34,23 +33,20 @@ xcodebuild -project WickedLittleDevilSwift.xcodeproj \
 
 ## The 2012 project
 
-The original is kept for reference, not for building. It is the only
-specification of some original behaviour, and questions about the port have
-repeatedly been settled by reading it — bubble-grab semantics in `Enemy.m`,
-touch handling in `GameScene.m`, coordinate truncation in
-`CCNode+CCBRelativePositioning.m`.
+`legacy-reference/` holds the original sources and resource tree. It is kept for
+reference, not for building: the Xcode project, the vendored cocos2d/CCBReader
+libraries and the dead third-party SDKs (Parse, Facebook, Flurry, iRate,
+OpenUDID) have all been deleted, and nothing in the repo builds from it.
 
-Two things about it are worth knowing:
+It stays because it is the only specification of some original behaviour, and
+questions about the port have repeatedly been settled by reading it —
+bubble-grab semantics in `Enemy.m`, touch handling in `GameScene.m`, coordinate
+truncation in `CCNode+CCBRelativePositioning.m`.
 
-- **It no longer builds.** The Parse, Facebook, Flurry, iRate and OpenUDID
-  dependencies have been deleted (Parse's backend shut down in 2017 and the
-  bundled Facebook SDK is a 2013 build), and `project.pbxproj` still references
-  them. Progression in the rewrite is entirely local, via `WickedDevilCore`'s
-  `User` and `UserDefaultsUserDataStore`, so nothing was lost.
-- **`Resources/DATA/LEVELS/*.ccbi` is irreplaceable.** Those 91 binary files are
-  the authored source for every level in the game and the input to the
-  converter. Nothing regenerates them.
+**`legacy-reference/Resources/DATA/LEVELS/*.ccbi` is irreplaceable.** Those 91
+binary files are the authored source for every level in the game and the input
+to `tools/ccbi-converter/`. Nothing regenerates them.
 
 `docs/legacy-asset-audit.md` records which original assets the new app uses and
 which it does not, and should be re-run before anything under
-`Wicked Little Devil/Resources/` is removed.
+`legacy-reference/Resources/` is removed.

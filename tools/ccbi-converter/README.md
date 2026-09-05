@@ -4,7 +4,7 @@ Standalone Python 3 CLI for migrating Wicked Little Devil level data from compil
 
 ## What it does
 
-- Parses the bundled CocosBuilder binary format directly from `Wicked Little Devil/libs/CCBReader/CCBReader.m` semantics:
+- Parses the bundled CocosBuilder binary format directly from `the vendored CCBReader (deleted with the 2012 project; see git history)` semantics:
   - header + string cache
   - variable-length encoded ints
   - compact float encoding
@@ -27,7 +27,7 @@ From the repo root:
 
 ```bash
 python3 tools/ccbi-converter/convert_ccbi.py \
-  'Wicked Little Devil/Resources/DATA/LEVELS/world-1-level-*.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/world-1-level-*.ccbi' \
   --output-dir tools/ccbi-converter/output \
   --validate-with-ccb
 ```
@@ -36,9 +36,9 @@ Representative validation run:
 
 ```bash
 python3 tools/ccbi-converter/convert_ccbi.py \
-  'Wicked Little Devil/Resources/DATA/LEVELS/world-1-level-*.ccbi' \
-  'Wicked Little Devil/Resources/DATA/LEVELS/world-3-level-17.ccbi' \
-  'Wicked Little Devil/Resources/DATA/LEVELS/world-20-level-1.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/world-1-level-*.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/world-3-level-17.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/world-20-level-1.ccbi' \
   --output-dir tools/ccbi-converter/samples \
   --summary-file tools/ccbi-converter/samples/validation-summary.json \
   --validate-with-ccb
@@ -53,12 +53,12 @@ Regenerate all 91 of them, then cross-check and verify:
 # 1. Shipped game data — no `validation` block, so nothing build-time-only
 #    ends up in the app bundle.
 python3 tools/ccbi-converter/convert_ccbi.py \
-  'Wicked Little Devil/Resources/DATA/LEVELS/*.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/*.ccbi' \
   --output-dir WickedLittleDevilSwift/Resources/Levels
 
 # 2. Cross-check every decoded binary against its .ccb plist source.
 python3 tools/ccbi-converter/convert_ccbi.py \
-  'Wicked Little Devil/Resources/DATA/LEVELS/*.ccbi' \
+  'legacy-reference/Resources/DATA/LEVELS/*.ccbi' \
   --summary-only --validate-with-ccb \
   --summary-file tools/ccbi-converter/ccb-crosscheck.json
 
@@ -95,7 +95,7 @@ found or the file count did not match `--expected-count`.
 - Output coordinates are **resolved point coordinates**, not raw CCB percentages.
 - Default logical viewport is `320x480`, matching the non-iPhone-5 branch in game code.
 - Use `--viewport 320x568` if you want the taller-device resolution instead.
-- The converter does **not** modify anything under `Wicked Little Devil/`.
+- The converter does **not** modify anything under `legacy-reference/`.
 - Percent-relative positions and sizes are truncated **toward zero**, reproducing
   the `(int)` cast in `CCNode+CCBRelativePositioning.m`. Do not "improve" this to
   rounding: the original game's collision and landing behaviour is built on the
@@ -165,7 +165,7 @@ node are wrong.
 {
   "schemaVersion": "1.0.0",
   "source": {
-    "ccbi": "Wicked Little Devil/Resources/DATA/LEVELS/world-1-level-20.ccbi",
+    "ccbi": "legacy-reference/Resources/DATA/LEVELS/world-1-level-20.ccbi",
     "world": 1,
     "level": 20
   },
@@ -272,7 +272,7 @@ Tags are mapped from `Objects/Enemy.m`:
 
 ## Validation strategy
 
-The repo includes matching `.ccb` sources in `Wicked Little Devil/Resources/DATA/LEVEL BUILDER/`.
+The repo includes matching `.ccb` sources in `legacy-reference/Resources/DATA/LEVEL BUILDER/`.
 
 With `--validate-with-ccb`, the converter compares:
 

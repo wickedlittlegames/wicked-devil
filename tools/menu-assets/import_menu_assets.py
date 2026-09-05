@@ -6,7 +6,7 @@ The 2012 game shipped 1x art as `<name>.png` and retina art as either
 `.imageset` folders inside `Resources/MenuAssets.xcassets`, so SwiftUI can
 reference them with plain `Image("<name>")`.
 
-The original `Wicked Little Devil/` tree is read-only: nothing is written
+The original `legacy-reference/` tree is read-only: nothing is written
 back into it.
 
 Usage: python3 tools/menu-assets/import_menu_assets.py
@@ -18,11 +18,11 @@ import shutil
 import sys
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-ORIGINAL = os.path.join(REPO, "Wicked Little Devil", "Resources", "IMAGES")
+ORIGINAL = os.path.join(REPO, "legacy-reference", "Resources", "IMAGES")
 CATALOG = os.path.join(
     REPO, "WickedLittleDevilSwift", "Resources", "MenuAssets.xcassets"
 )
-FONT_SRC = os.path.join(REPO, "Wicked Little Devil", "Resources", "FONTS")
+FONT_SRC = os.path.join(REPO, "legacy-reference", "Resources", "FONTS")
 FONT_DST = os.path.join(REPO, "WickedLittleDevilSwift", "Resources", "Fonts")
 
 # Base names to import, grouped only for readability. `-iphone5` variants are

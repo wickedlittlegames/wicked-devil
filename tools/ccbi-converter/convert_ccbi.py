@@ -450,7 +450,7 @@ class AssetCatalog:
         self._load_sprite_plists()
 
     def _load_sprite_plists(self) -> None:
-        ingame_dir = self.repo_root / "Wicked Little Devil" / "Resources" / "IMAGES" / "Ingame"
+        ingame_dir = self.repo_root / "legacy-reference" / "Resources" / "IMAGES" / "Ingame"
         for plist_path in sorted(ingame_dir.glob("*.plist")):
             with plist_path.open("rb") as handle:
                 plist = plistlib.load(handle)
@@ -467,10 +467,10 @@ class AssetCatalog:
         sprite_name = Path(sprite_file).name
         if sprite_name in self.size_by_frame:
             return self.size_by_frame[sprite_name]
-        direct_path = self.repo_root / "Wicked Little Devil" / sprite_file
+        direct_path = self.repo_root / "legacy-reference" / sprite_file
         if direct_path.exists():
             return self.png_size(direct_path)
-        ingame_path = self.repo_root / "Wicked Little Devil" / "Resources" / "IMAGES" / "Ingame" / sprite_name
+        ingame_path = self.repo_root / "legacy-reference" / "Resources" / "IMAGES" / "Ingame" / sprite_name
         if ingame_path.exists():
             return self.png_size(ingame_path)
         return None
@@ -798,7 +798,7 @@ class LevelConverter:
             level_json["nodeTree"] = raw_tree_to_json(raw_root)
 
         if validate_with_ccb:
-            ccb_path = self.repo_root / "Wicked Little Devil" / "Resources" / "DATA" / "LEVEL BUILDER" / ccbi_path.with_suffix(".ccb").name
+            ccb_path = self.repo_root / "legacy-reference" / "Resources" / "DATA" / "LEVEL BUILDER" / ccbi_path.with_suffix(".ccb").name
             if ccb_path.exists():
                 with ccb_path.open("rb") as handle:
                     ccb_doc = plistlib.load(handle)

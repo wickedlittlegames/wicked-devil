@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "source": {
-    "ccbi": "Wicked Little Devil/Resources/DATA/LEVELS/world-2-level-16.ccbi",
+    "ccbi": "legacy-reference/Resources/DATA/LEVELS/world-2-level-16.ccbi",
     "world": 2,
     "level": 16
   },

@@ -1,6 +1,6 @@
 import Foundation
 
-/// Game-wide constants ported from `Wicked Little Devil/Config/GameConstants.h`.
+/// Game-wide constants ported from `legacy-reference/Config/GameConstants.h`.
 ///
 /// The original API tokens (`WDPHToken`, `WDPHSecret`, `WDPHGameID`) are
 /// deliberately dropped: they belonged to the retired PlayHaven integration.

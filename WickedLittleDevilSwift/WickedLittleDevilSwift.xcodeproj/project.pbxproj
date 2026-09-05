@@ -42,6 +42,7 @@
 		A314E4C474253D37431B1634 /* SpriteAtlas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5F1A367AC5E179651778F /* SpriteAtlas.swift */; };
 		A3F02427A30BE64A1EDA1A1F /* MenuHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8EF510B776FC9ADD9CA17 /* MenuHostView.swift */; };
 		A43F36124686A8C5DD49BAC6 /* MotionStreakNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761A043E37970CADE38D60B /* MotionStreakNode.swift */; };
+		AD46124CA8B3072809235E01 /* MusicTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A287995680AD1D325B8F5E8 /* MusicTrackTests.swift */; };
 		AD573D735B27A9EFE3EB93D5 /* MenuAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6D52849A50DE649D8C6A161 /* MenuAssets.xcassets */; };
 		B5E7B3FA6C8EBAEE751331E5 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83296EA1B89F06B4111C240B /* LevelSelectView.swift */; };
 		B6FAEF1336E20F32E7396873 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3978FBD567B134ED6855A9 /* GameOverView.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPreviewSupport.swift; sourceTree = "<group>"; };
 		07E8EF510B776FC9ADD9CA17 /* MenuHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHostView.swift; sourceTree = "<group>"; };
+		0A287995680AD1D325B8F5E8 /* MusicTrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTrackTests.swift; sourceTree = "<group>"; };
 		10728A09EAE2B15A43208432 /* HUDNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDNode.swift; sourceTree = "<group>"; };
 		139CCC70C06A4ED29764D7EC /* MenuCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCatalog.swift; sourceTree = "<group>"; };
 		178A976AFFC7111FFE4BD0AF /* ZOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOrder.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				18D9C1693EDCDF328864BCAE /* MenuBackgroundTests.swift */,
+				0A287995680AD1D325B8F5E8 /* MusicTrackTests.swift */,
 				74FB11C8938FD5441356B9B3 /* SpriteAtlasTests.swift */,
 			);
 			path = WickedLittleDevilSwiftTests;
@@ -399,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8147A8D054068F6B955865 /* MenuBackgroundTests.swift in Sources */,
+				AD46124CA8B3072809235E01 /* MusicTrackTests.swift in Sources */,
 				79D6F0A415CAE92F48143953 /* SpriteAtlasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

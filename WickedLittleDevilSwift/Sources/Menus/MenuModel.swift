@@ -96,6 +96,9 @@ final class MenuModel {
         deaths = user.deaths
         jumps = user.jumps
         isMuted = store.bool(forKey: User.Key.muted)
+        // The saved preference is the source of truth; push it to the audio
+        // layer so gameplay honours the menus' mute toggle too.
+        AudioEngine.shared.isMuted = isMuted
 
         ownedPowerups = Set(MenuCatalog.powerups.map(\.index).filter(user.ownsItem))
         ownedSpecialPowerups = Set(MenuCatalog.specialPowerups.map(\.index).filter(user.ownsSpecialItem))

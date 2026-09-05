@@ -660,7 +660,22 @@ final class GameScene: SKScene {
             AudioEngine.shared.playEffect(SoundEffect.playerHit)
         }
         AudioEngine.shared.stopMusic()
-        showMessage(didWin ? "LEVEL COMPLETE" : "GAME OVER")
+
+        // `GameLayer.m end:` reloaded the level after a beat rather than
+        // showing a results screen. The host view rebuilds the scene, so all
+        // that is needed here is that beat — long enough to register the death,
+        // short enough not to feel like a stall.
+        guard didWin else {
+            messageLabel?.removeFromParent()
+            messageLabel = nil
+            run(.sequence([
+                .wait(forDuration: 0.6),
+                .run { [weak self] in self?.onGameOver?(result) },
+            ]))
+            return
+        }
+
+        showMessage("LEVEL COMPLETE")
         onGameOver?(result)
     }
 

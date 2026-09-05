@@ -25,11 +25,16 @@ enum LevelCatalog {
         world == GameConstants.bonusWorld ? "bg-world-1" : "bg-world-\(world)"
     }
 
-    /// `GameScene.m`: world 20 is silent, the bonus world uses the menu track.
+    /// `GameScene.m` skipped starting music in world 20 because
+    /// `AdventureSelectScene.m` had already started the detective track and let
+    /// it carry into the level. The menus stop their music when a run begins,
+    /// so the detective levels name that track themselves.
+    ///
+    /// The bonus world uses the menu track.
     static func musicTrack(world: Int) -> String? {
         switch world {
-        case GameConstants.detectiveWorld: return nil
-        case GameConstants.bonusWorld: return "bg-main.aifc"
+        case GameConstants.detectiveWorld: return MusicTrack.detective
+        case GameConstants.bonusWorld: return MusicTrack.menu
         default: return "bg-loop\(world).aifc"
         }
     }

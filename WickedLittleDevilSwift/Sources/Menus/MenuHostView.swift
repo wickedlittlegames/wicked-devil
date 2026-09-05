@@ -18,10 +18,11 @@ struct MenuHostView: View {
 
     var body: some View {
         if MenuScreenGallery.isRequested {
-            MenuScreenGallery()
+            MenuScreenGallery().environment(model)
         } else {
             MenuRootView(model: model)
                 .environment(\.gameplayLauncher, .spriteKit(user: model.user))
+                .environment(model)
         }
     }
 }

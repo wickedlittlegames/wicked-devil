@@ -118,8 +118,6 @@ final class GameScene: SKScene {
         guard worldNode.parent == nil else { return }
 
         GameFont.register()
-        AudioEngine.shared.preloadEffects(SoundEffect.all)
-
         buildBackground()
         addChild(worldNode)
         worldNode.addChild(effectsNode)
@@ -137,6 +135,7 @@ final class GameScene: SKScene {
         spawnPlayer()
         applyLayout(for: view)
         syncNodes()
+        AudioEngine.shared.preloadEffects(SoundEffect.all)
         // `GameScene.m:186` kicked the fly-over off during setup, alongside the
         // tip card, before the Begin button was ever tapped.
         world.beginIntro()
@@ -270,7 +269,7 @@ final class GameScene: SKScene {
     }
 
     private func dismissTipCard() {
-        AudioEngine.shared.playEffect(SoundEffect.click)
+        run(.playSoundFileNamed(SoundEffect.click, waitForCompletion: false))
         tipCard?.removeFromParent()
         tipCard = nil
         startPrompt?.isHidden = false
@@ -408,7 +407,7 @@ final class GameScene: SKScene {
     /// layer through `GameplayHandoff`, which owns persistence; nothing is
     /// banked here, so leaving mid-run costs neither a death nor a score.
     private func perform(_ action: PauseMenuNode.Action) {
-        AudioEngine.shared.playEffect(SoundEffect.click)
+        run(.playSoundFileNamed(SoundEffect.click, waitForCompletion: false))
         switch action {
         case .resume:
             resumeAfterInterruption()
@@ -542,10 +541,10 @@ final class GameScene: SKScene {
             playJumpSound(platformID: platformID, boost: boost)
 
         case .platformBroke:
-            AudioEngine.shared.playEffect(SoundEffect.jumpBreakable, gain: 0.5)
+            AudioEngine.shared.playEffect(SoundEffect.jumpBreakable)
 
         case .platformsToggled:
-            AudioEngine.shared.playEffect(SoundEffect.click, gain: 0.5)
+            AudioEngine.shared.playEffect(SoundEffect.click)
 
         case let .levelFinished(_, didWin):
             beginFinish(didWin: didWin)
@@ -563,10 +562,10 @@ final class GameScene: SKScene {
             AudioEngine.shared.playEffect(SoundEffect.bubble)
 
         case .rocketFired:
-            AudioEngine.shared.playEffect(SoundEffect.boom, gain: 0.4)
+            AudioEngine.shared.playEffect(SoundEffect.boom)
 
         case .playerTeleported:
-            AudioEngine.shared.playEffect(SoundEffect.bubble, gain: 0.6)
+            AudioEngine.shared.playEffect(SoundEffect.bubble)
 
         case let .gameOver(didWin):
             endRun(didWin: didWin)
@@ -578,15 +577,15 @@ final class GameScene: SKScene {
         let kind = world.platforms.first { $0.id == platformID }?.kind
         switch kind {
         case .boost:
-            AudioEngine.shared.playEffect(SoundEffect.jumpBoost, gain: 0.5)
+            AudioEngine.shared.playEffect(SoundEffect.jumpBoost)
         case .breakable, .movingBreakable:
-            AudioEngine.shared.playEffect(SoundEffect.jumpBreakable, gain: 0.5)
+            AudioEngine.shared.playEffect(SoundEffect.jumpBreakable)
         case .goal:
             AudioEngine.shared.playEffect(SoundEffect.complete)
         default:
             // Anything with an unusual boost still reads as a "special" bounce.
             let effect = boost > 1.0 ? SoundEffect.jumpBoost : SoundEffect.jumpNormal
-            AudioEngine.shared.playEffect(effect, gain: 0.5)
+            AudioEngine.shared.playEffect(effect)
         }
     }
 
@@ -594,7 +593,7 @@ final class GameScene: SKScene {
         let position = collectableNodes[id]?.position
         switch kind {
         case .small:
-            AudioEngine.shared.playEffect(SoundEffect.collectSmall, gain: 0.2)
+            AudioEngine.shared.playSystemEffect(SystemSoundEffect.collectSoul)
         case .big:
             AudioEngine.shared.playEffect(SoundEffect.bigCollect(index: game.player.bigCollected))
             emit(ParticleEffect.bigCollectable, at: position)
@@ -651,13 +650,18 @@ final class GameScene: SKScene {
     private func endRun(didWin: Bool) {
         guard !hasEnded else { return }
         hasEnded = true
+        isInterrupted = false
+        worldNode.isPaused = false
+        pauseMenu?.removeFromParent()
+        pauseMenu = nil
 
+        let result = game.result
         if !game.player.isAlive {
             AudioEngine.shared.playEffect(SoundEffect.playerHit)
         }
         AudioEngine.shared.stopMusic()
         showMessage(didWin ? "LEVEL COMPLETE" : "GAME OVER")
-        onGameOver?(game.result)
+        onGameOver?(result)
     }
 
     private func showMessage(_ text: String) {

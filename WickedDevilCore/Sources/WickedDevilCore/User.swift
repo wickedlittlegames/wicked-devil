@@ -305,6 +305,46 @@ public final class User {
         return true
     }
 
+    /// Debug helper: unlocks the full local progression and economy state.
+    public func unlockEverything() {
+        collected = 999_999
+        worldProgress = GameConstants.currentWorldsPerGame
+        levelProgress = GameConstants.levelsPerWorld
+        unlockedDetective = true
+        powerup = 0
+        character = 0
+        boughtPowerups = true
+        boughtCharacter = true
+
+        for index in items.indices { items[index] = 1 }
+        for index in itemsSpecial.indices { itemsSpecial[index] = 1 }
+        for index in itemsCharacters.indices { itemsCharacters[index] = 1 }
+
+        for world in 0..<min(gameProgress.count, GameConstants.currentWorldsPerGame) {
+            for level in 0..<min(gameProgress[world].count, GameConstants.levelsPerWorld) {
+                gameProgress[world][level] = 1
+            }
+        }
+        if detectiveHighscores.indices.contains(0) {
+            for level in detectiveHighscores[0].indices {
+                detectiveHighscores[0][level] = max(detectiveHighscores[0][level], 1)
+            }
+        }
+        if detectiveSouls.indices.contains(0) {
+            for level in detectiveSouls[0].indices {
+                detectiveSouls[0][level] = max(detectiveSouls[0][level], 1)
+            }
+        }
+
+        store.set(items, forKey: Key.items)
+        store.set(itemsSpecial, forKey: Key.itemsSpecial)
+        store.set(itemsCharacters, forKey: Key.itemsCharacters)
+        store.set(gameProgress, forKey: Key.gameProgress)
+        store.set(detectiveHighscores, forKey: Key.detectiveHighscores)
+        store.set(detectiveSouls, forKey: Key.detectiveSouls)
+        sync()
+    }
+
     /// `User skipLevel` only advances while there is a world left to unlock.
     public var canSkipLevel: Bool {
         worldProgress != GameConstants.currentWorldsPerGame + 1

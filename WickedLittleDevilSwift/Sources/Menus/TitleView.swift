@@ -19,6 +19,7 @@ struct TitleView: View {
     let onStore: () -> Void
     let onStats: () -> Void
     let onBonusLevel: () -> Void
+    let onUnlockEverything: () -> Void
 
     @State private var showSecretDrawer = false
 
@@ -112,6 +113,9 @@ struct TitleView: View {
                 Button("Store", action: onStore).devilButton(.quiet)
                 Button("Stats", action: onStats).devilButton(.quiet)
             }
+
+            Button("Unlock Everything", action: onUnlockEverything)
+                .devilButton(.secondary)
         }
     }
 
@@ -136,11 +140,11 @@ struct TitleView: View {
 }
 
 #Preview("Title — in progress") {
-    TitleView(onPlay: {}, onAdventures: {}, onStore: {}, onStats: {}, onBonusLevel: {})
+    TitleView(onPlay: {}, onAdventures: {}, onStore: {}, onStats: {}, onBonusLevel: {}, onUnlockEverything: {})
         .environment(MenuPreview.inProgressModel())
 }
 
 #Preview("Title — fresh save") {
-    TitleView(onPlay: {}, onAdventures: {}, onStore: {}, onStats: {}, onBonusLevel: {})
+    TitleView(onPlay: {}, onAdventures: {}, onStore: {}, onStats: {}, onBonusLevel: {}, onUnlockEverything: {})
         .environment(MenuPreview.freshModel())
 }

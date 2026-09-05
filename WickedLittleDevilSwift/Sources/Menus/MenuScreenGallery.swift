@@ -31,7 +31,14 @@ struct MenuScreenGallery: View {
     private var entries: [Entry] {
         [
             Entry("title", "Title") {
-                TitleView(onPlay: {}, onAdventures: {}, onStore: {}, onStats: {}, onBonusLevel: {})
+                TitleView(
+                    onPlay: {},
+                    onAdventures: {},
+                    onStore: {},
+                    onStats: {},
+                    onBonusLevel: {},
+                    onUnlockEverything: {}
+                )
                     .environment(model)
             },
             Entry("worlds", "World select") {
@@ -76,6 +83,21 @@ struct MenuScreenGallery: View {
                         isNewHighScore: true,
                         achievements: [.thousandSouls],
                         nextLevel: GameLaunchRequest(world: 2, level: 8)
+                    ),
+                    onRetry: {},
+                    onNext: {},
+                    onMenu: {}
+                )
+                .environment(model)
+            },
+            Entry("gameover-loss", "Game over (loss)") {
+                GameOverView(
+                    run: FinishedRun(
+                        request: MenuPreview.sampleRequest,
+                        result: MenuPreview.sampleResult,
+                        isNewHighScore: false,
+                        achievements: [],
+                        nextLevel: nil
                     ),
                     onRetry: {},
                     onNext: {},

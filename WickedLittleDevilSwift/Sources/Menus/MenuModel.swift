@@ -413,4 +413,9 @@ final class MenuModel {
         user.reset()
         refresh()
     }
+
+    func unlockEverything() {
+        user.unlockEverything()
+        refresh()
+    }
 }

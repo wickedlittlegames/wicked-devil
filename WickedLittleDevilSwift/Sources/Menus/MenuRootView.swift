@@ -32,6 +32,8 @@ struct MenuRootView: View {
     @State private var activeRun: GameLaunchRequest?
     /// The finished run whose results are being shown.
     @State private var finishedRun: FinishedRun?
+    /// A result waiting to be shown after gameplay has fully dismissed.
+    @State private var pendingFinishedRun: FinishedRun?
 
     @Environment(\.gameplayLauncher) private var launcher
 
@@ -46,7 +48,10 @@ struct MenuRootView: View {
                 onAdventures: { path.append(.adventureSelect) },
                 onStore: { path.append(.storeHub) },
                 onStats: { path.append(.stats) },
-                onBonusLevel: { play(world: GameConstants.bonusWorld, level: GameConstants.bonusLevel) }
+                onBonusLevel: { play(world: GameConstants.bonusWorld, level: GameConstants.bonusLevel) },
+                onUnlockEverything: {
+                    model.unlockEverything()
+                }
             )
             .navigationDestination(for: MenuRoute.self, destination: destination)
         }
@@ -133,6 +138,7 @@ struct MenuRootView: View {
 
     private func play(request: GameLaunchRequest) {
         finishedRun = nil
+        pendingFinishedRun = nil
         // Let any presented cover dismiss before the next one goes up.
         DispatchQueue.main.async { activeRun = request }
     }
@@ -144,25 +150,31 @@ struct MenuRootView: View {
     ///   than showing the results screen, so we relaunch it as a restart.
     /// * a win — bank it and show the results.
     private func finish(request: GameLaunchRequest, result: GameResult?) {
-        activeRun = nil
+        DispatchQueue.main.async {
+            activeRun = nil
 
-        guard let result else { return }
+            guard let result else { return }
 
-        guard result.didWin else {
-            play(request: request.restarted())
-            return
+            guard result.didWin else {
+                play(request: request.restarted())
+                return
+            }
+
+            let isNewHighScore = model.isNewHighScore(result, pastScore: request.pastScore)
+            let achievements = model.record(result)
+            let run = FinishedRun(
+                request: request,
+                result: result,
+                isNewHighScore: isNewHighScore,
+                achievements: achievements,
+                nextLevel: model.nextLevel(after: request)
+            )
+            pendingFinishedRun = run
+            DispatchQueue.main.async {
+                finishedRun = pendingFinishedRun
+                pendingFinishedRun = nil
+            }
         }
-
-        let isNewHighScore = model.isNewHighScore(result, pastScore: request.pastScore)
-        let achievements = model.record(result)
-        let run = FinishedRun(
-            request: request,
-            result: result,
-            isNewHighScore: isNewHighScore,
-            achievements: achievements,
-            nextLevel: model.nextLevel(after: request)
-        )
-        DispatchQueue.main.async { finishedRun = run }
     }
 }
 

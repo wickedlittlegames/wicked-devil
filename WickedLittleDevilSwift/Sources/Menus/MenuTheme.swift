@@ -71,10 +71,14 @@ enum MenuColor {
 struct MenuBackground: View {
     let imageName: String?
     var dim: Double
+    /// `.fill` crops to cover the screen; `.fit` letterboxes so artwork with
+    /// baked-in lettering (the title screen's logo) is never clipped.
+    var contentMode: ContentMode
 
-    init(_ imageName: String?, dim: Double = 0.35) {
+    init(_ imageName: String?, dim: Double = 0.35, contentMode: ContentMode = .fill) {
         self.imageName = imageName
         self.dim = dim
+        self.contentMode = contentMode
     }
 
     var body: some View {
@@ -83,7 +87,7 @@ struct MenuBackground: View {
             if let imageName, UIImage(named: imageName) != nil {
                 Image(imageName)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: contentMode)
                     .opacity(1 - dim)
                     .accessibilityHidden(true)
             }

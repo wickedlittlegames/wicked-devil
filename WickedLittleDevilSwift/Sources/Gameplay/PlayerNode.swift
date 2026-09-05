@@ -45,14 +45,21 @@ final class PlayerNode: SKSpriteNode {
         func animate(_ prefix: String, timePerFrame: TimeInterval) -> SKAction? {
             let frames = atlas.animationFrames(prefix: prefix, count: 6)
             guard !frames.isEmpty else { return nil }
-            // `resize: true` reproduces cocos2d swapping the sprite frame (and
-            // therefore the content size) while keeping the 0.5/0.5 anchor.
-            return SKAction.animate(
-                with: frames.map(\.texture),
-                timePerFrame: timePerFrame,
-                resize: true,
-                restore: false
-            )
+            // cocos2d swapped the sprite frame *and* its content size each step
+            // while keeping the 0.5/0.5 anchor. `SKAction.animate(resize:)`
+            // can't be used for that because the textures are cut from the
+            // retina sheet, so it would size every frame in pixels rather than
+            // points; each step therefore applies the authored point size.
+            let steps = frames.flatMap { frame in
+                [
+                    SKAction.run { [weak self] in
+                        self?.texture = frame.texture
+                        self?.size = frame.size
+                    },
+                    SKAction.wait(forDuration: timePerFrame),
+                ]
+            }
+            return SKAction.sequence(steps)
         }
 
         animations[.jump] = animate("jump", timePerFrame: Timing.frame)

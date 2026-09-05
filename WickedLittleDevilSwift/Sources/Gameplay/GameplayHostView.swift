@@ -66,7 +66,13 @@ struct GameplayHostView: View {
         do {
             let level = try LevelCatalog.load(world: request.world, level: request.level)
             let player = Player(device: .standard)
-            if let raw = user?.character, let character = PlayerCharacter(rawValue: raw) {
+            // `GameScene.m` forced the detective in world 20, otherwise only
+            // honoured the bought character; everyone else gets the plain devil.
+            if request.world == 20 {
+                player.setupCharacter(.detective)
+            } else if user?.boughtCharacter == true,
+                      let raw = user?.character,
+                      let character = PlayerCharacter(rawValue: raw) {
                 player.setupCharacter(character)
             }
             if let powerup = user?.powerup {

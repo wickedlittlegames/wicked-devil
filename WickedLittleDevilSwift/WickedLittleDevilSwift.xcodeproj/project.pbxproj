@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A18494E8918FE15335A6FB3 /* MenuScreenGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */; };
 		148D0CCD7A3E68544132DA45 /* MenuRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */; };
 		178096F668D7EA457E3C499F /* GameFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9583668A0FF08B9000764 /* GameFont.swift */; };
 		1B3DDD7F0D77E3A4EBE073F9 /* WorldSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67AC06B55E06527A7A913 /* WorldSelectView.swift */; };
@@ -74,6 +75,7 @@
 		9AA8732A65561FC44CA5226D /* DetectiveLevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveLevelSelectView.swift; sourceTree = "<group>"; };
 		A1DD9F2C3E17163D8687C9B5 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		A77560BED8DE1EB77D62A19D /* MenuTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTheme.swift; sourceTree = "<group>"; };
+		AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenGallery.swift; sourceTree = "<group>"; };
 		B02ED96E4CDBF754C1D58B2E /* Art */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Art; path = Resources/Art; sourceTree = SOURCE_ROOT; };
 		B2FB79CE3E7A613B134D8A76 /* WickedDevilCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WickedDevilCore; path = ../WickedDevilCore; sourceTree = SOURCE_ROOT; };
 		BFD52A4E472F75DCE423D060 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				D32D5944BCD9D4051B227DC8 /* MenuModel.swift */,
 				04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */,
 				52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */,
+				AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */,
 				A77560BED8DE1EB77D62A19D /* MenuTheme.swift */,
 				41FA0BB889BE606952641DB4 /* ShopViews.swift */,
 				72798EA95217DE1D18711A8D /* StatsView.swift */,
@@ -300,6 +303,7 @@
 				1CF1A8C8A169B799A98CBE16 /* MenuModel.swift in Sources */,
 				94F1B61EF9A229CF63D6D6AF /* MenuPreviewSupport.swift in Sources */,
 				148D0CCD7A3E68544132DA45 /* MenuRootView.swift in Sources */,
+				0A18494E8918FE15335A6FB3 /* MenuScreenGallery.swift in Sources */,
 				D72F7032F015370CEDCF9D17 /* MenuTheme.swift in Sources */,
 				511BEDC5EFB8BBE37453173A /* ParticleFactory.swift in Sources */,
 				987C57F501ABA9793516691C /* PlayerNode.swift in Sources */,

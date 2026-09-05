@@ -24,7 +24,7 @@ struct TitleView: View {
 
     var body: some View {
         ZStack {
-            MenuBackground("bg-home-iphone5", dim: 0.2)
+            MenuBackground("bg-home-iphone5", dim: 0.12, contentMode: .fit)
 
             VStack(spacing: 0) {
                 header
@@ -61,18 +61,29 @@ struct TitleView: View {
         .padding(.top, 8)
     }
 
-    private var title: some View {
-        VStack(spacing: 2) {
-            Text("Wicked")
-                .font(.devilTitle(52))
-                .foregroundStyle(MenuColor.soul)
-            Text("Little Devil")
-                .font(.devilTitle(44))
-                .foregroundStyle(MenuColor.ember)
+    /// The original artwork has the logo baked into it, so the lettering is
+    /// only drawn when that art is missing. Either way this is the long-press
+    /// target that reveals the bonus level.
+    @ViewBuilder private var title: some View {
+        Group {
+            if UIImage(named: "bg-home-iphone5") != nil {
+                Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                VStack(spacing: 2) {
+                    Text("Wicked")
+                        .font(.devilTitle(52))
+                        .foregroundStyle(MenuColor.soul)
+                    Text("Little Devil")
+                        .font(.devilTitle(44))
+                        .foregroundStyle(MenuColor.ember)
+                }
+                .shadow(color: .black.opacity(0.8), radius: 8, y: 4)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
-        .shadow(color: .black.opacity(0.8), radius: 8, y: 4)
-        .multilineTextAlignment(.center)
-        .accessibilityElement(children: .combine)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel("Wicked Little Devil")
         .accessibilityAddTraits(.isHeader)
         .onLongPressGesture(minimumDuration: 1.2) {

@@ -108,6 +108,16 @@ final class GameScene: SKScene {
         if let track = LevelCatalog.musicTrack(world: game.world) {
             AudioEngine.shared.playMusic(track)
         }
+
+        if ProcessInfo.processInfo.environment["WLD_AUTOPLAY"] != nil {
+            run(SKAction.sequence([
+                SKAction.wait(forDuration: 0.5),
+                SKAction.run { [weak self] in
+                    guard let self else { return }
+                    self.startRun(at: CGPoint(x: 160, y: self.game.player.position.y))
+                },
+            ]))
+        }
     }
 
     private func buildBackground() {

@@ -1,12 +1,23 @@
 import SwiftUI
 import WickedDevilCore
 
-/// Launches straight into a playable level.
+/// The app's root.
 ///
-/// The menu workstream owns the real entry point; until it is wired up this
-/// drops the player into world 1 level 1 and continues (or replays) when a run
-/// ends, which is enough to exercise the whole gameplay loop.
+/// The menu layer owns the real entry point: `MenuHostView` presents the title
+/// screen and hands each chosen level to the SpriteKit scene through
+/// `GameplayHandoff`. `DirectLevelHarnessView` below is kept as a one-line
+/// swap for exercising the gameplay loop on its own.
 struct ContentView: View {
+    var body: some View {
+        MenuHostView()
+    }
+}
+
+/// Launches straight into a playable level, bypassing the menus.
+///
+/// Useful while iterating on gameplay: it drops the player into world 1 level 1
+/// and continues (or replays) when a run ends.
+struct DirectLevelHarnessView: View {
     @State private var request = GameLaunchRequest(world: 1, level: 1)
     @State private var runToken = 0
     @State private var user = User(store: UserDefaultsUserDataStore())

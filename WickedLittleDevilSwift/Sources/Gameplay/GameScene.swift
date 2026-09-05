@@ -131,6 +131,14 @@ final class GameScene: SKScene {
         if let track = LevelCatalog.musicTrack(world: game.world) {
             AudioEngine.shared.playMusic(track)
         }
+
+        // TEMP(layout-verification): auto-play for screenshots.
+        if ProcessInfo.processInfo.arguments.contains("-WLDAutoPlay") {
+            run(SKAction.sequence([
+                SKAction.wait(forDuration: 0.6),
+                SKAction.run { [weak self] in self?.startRun() },
+            ]))
+        }
     }
 
     override func willMove(from view: SKView) {
@@ -227,8 +235,9 @@ final class GameScene: SKScene {
         )
     }
 
-    /// Room for the Begin/Resume prompts above the home indicator.
-    private static let bottomPromptMargin: CGFloat = 60
+    /// The original parked the Begin menu at `ccp(320/2, 30)`; the safe-area
+    /// inset is added on top so it also clears the home indicator.
+    private static let bottomPromptMargin: CGFloat = 30
 
     private func spawnPlayer() {
         let node = PlayerNode(
@@ -311,7 +320,9 @@ final class GameScene: SKScene {
         guard game.isStarted, !game.isGameover, !hasEnded, !isInterrupted else { return }
         isInterrupted = true
         releaseSteering()
-        isPaused = true
+        // Freeze the world's running actions rather than the whole scene: a
+        // paused `SKScene` will not draw the prompt we are about to add.
+        worldNode.isPaused = true
         AudioEngine.shared.stopMusic()
         showPausePrompt()
     }
@@ -319,7 +330,7 @@ final class GameScene: SKScene {
     private func resumeAfterInterruption() {
         guard isInterrupted else { return }
         isInterrupted = false
-        isPaused = false
+        worldNode.isPaused = false
         // Neither the banked sub-step nor the frame delta spanning the pause is
         // real play time.
         world.resetStepAccumulator()
@@ -334,19 +345,30 @@ final class GameScene: SKScene {
 
     private func showPausePrompt() {
         guard pausePrompt == nil else { return }
+        let container = SKNode()
+        container.zPosition = ZOrder.overlay
+
+        let dim = SKSpriteNode(color: .black, size: size)
+        dim.alpha = 0.55
+        dim.name = "dim"
+        container.addChild(dim)
+
         let label = SKLabelNode(text: "TAP TO RESUME")
         label.fontName = GameFont.preferredName
         label.fontSize = 28
         label.fontColor = .white
         label.verticalAlignmentMode = .center
-        label.zPosition = ZOrder.overlay
-        cameraNode.addChild(label)
-        pausePrompt = label
+        container.addChild(label)
+
+        cameraNode.addChild(container)
+        pausePrompt = container
         layoutPausePrompt()
     }
 
     private func layoutPausePrompt() {
-        pausePrompt?.position = .zero
+        guard let pausePrompt else { return }
+        pausePrompt.position = .zero
+        (pausePrompt.childNode(withName: "dim") as? SKSpriteNode)?.size = size
     }
 
     // MARK: - Node synchronisation

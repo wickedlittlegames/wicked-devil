@@ -1,0 +1,22 @@
+{
+  "images": [
+    {
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "btn-unequip-all@1x.png"
+    },
+    {
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "btn-unequip-all@2x.png"
+    },
+    {
+      "idiom": "universal",
+      "scale": "3x"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

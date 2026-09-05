@@ -1,0 +1,3409 @@
+{
+  "schemaVersion": "1.1.0",
+  "source": {
+    "ccbi": "legacy-reference/Resources/DATA/LEVELS/world-4-level-11.ccbi",
+    "world": 4,
+    "level": 11
+  },
+  "coordinateSpace": {
+    "kind": "points",
+    "logicalViewport": {
+      "width": 320.0,
+      "height": 480.0
+    },
+    "notes": "Coordinates are resolved from CocosBuilder relative values into point-space using the chosen logical viewport."
+  },
+  "metadata": {
+    "theme": "land",
+    "backgroundImage": "bg-world-4.png",
+    "timeLimitSeconds": 30,
+    "topBoundaryY": 1415.0,
+    "nodeCount": 165,
+    "timelineNames": [
+      "Default Timeline"
+    ],
+    "autoPlaySequenceId": 0,
+    "playableCollectables": {
+      "small": 90,
+      "big": 3,
+      "halo": 1
+    }
+  },
+  "playerSpawn": {
+    "x": 160.0,
+    "y": 60.0
+  },
+  "goal": {
+    "requiresBigCollectables": 1,
+    "platformId": "platform-002",
+    "position": {
+      "x": 165.0,
+      "y": 1314.0
+    }
+  },
+  "platforms": [
+    {
+      "id": "platform-001",
+      "position": {
+        "x": 160.0,
+        "y": 34.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-002",
+      "position": {
+        "x": 165.0,
+        "y": 1314.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 255,
+        "g": 236,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 100,
+      "kind": "goal",
+      "behavior": {
+        "mode": "finish",
+        "requiresBigCollectables": 1,
+        "completionDelaySeconds": 1.0
+      }
+    },
+    {
+      "id": "platform-003",
+      "position": {
+        "x": 161.0,
+        "y": 94.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-004",
+      "position": {
+        "x": -212.0,
+        "y": 142.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-moving.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 255,
+        "g": 38,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 33,
+      "kind": "moving",
+      "behavior": {
+        "mode": "movingHorizontal",
+        "offset": {
+          "x": 100,
+          "y": 0
+        },
+        "durationSeconds": 2.0
+      }
+    },
+    {
+      "id": "platform-005",
+      "position": {
+        "x": -164.0,
+        "y": 62.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-moving.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 255,
+        "g": 38,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 3,
+      "kind": "moving",
+      "behavior": {
+        "mode": "movingHorizontal",
+        "offset": {
+          "x": -100,
+          "y": 0
+        },
+        "durationSeconds": 2.0
+      }
+    },
+    {
+      "id": "platform-006",
+      "position": {
+        "x": -180.0,
+        "y": 248.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-007",
+      "position": {
+        "x": -180.0,
+        "y": 327.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-008",
+      "position": {
+        "x": 164.0,
+        "y": 187.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-jump.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 72,
+        "g": 249,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 1,
+      "kind": "boost",
+      "behavior": {
+        "mode": "jumpBoost",
+        "jumpMultiplier": 1.95
+      }
+    },
+    {
+      "id": "platform-009",
+      "position": {
+        "x": -191.0,
+        "y": 396.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-broken.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 255,
+        "g": 165,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 6,
+      "kind": "breakable",
+      "behavior": {
+        "mode": "breakable",
+        "health": 1.0,
+        "fallDistance": 400,
+        "fallDurationSeconds": 0.5
+      }
+    },
+    {
+      "id": "platform-010",
+      "position": {
+        "x": 65.0,
+        "y": 156.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-011",
+      "position": {
+        "x": 407.0,
+        "y": 448.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 242,
+        "g": 113,
+        "b": 226
+      },
+      "opacity": 100,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 52,
+      "kind": "toggleTarget",
+      "behavior": {
+        "mode": "toggleTarget",
+        "group": 2,
+        "initiallyEnabled": false
+      }
+    },
+    {
+      "id": "platform-012",
+      "position": {
+        "x": 411.0,
+        "y": 399.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 242,
+        "g": 113,
+        "b": 226
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 51,
+      "kind": "toggleTarget",
+      "behavior": {
+        "mode": "toggleTarget",
+        "group": 1,
+        "initiallyEnabled": true
+      }
+    },
+    {
+      "id": "platform-013",
+      "position": {
+        "x": 415.0,
+        "y": 340.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 18.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-trigger.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "legacyTag": 5,
+      "kind": "switch",
+      "behavior": {
+        "mode": "toggleSwitch",
+        "controlsTags": [
+          51,
+          52
+        ]
+      }
+    },
+    {
+      "id": "platform-014",
+      "position": {
+        "x": 265.0,
+        "y": 156.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-015",
+      "position": {
+        "x": 65.0,
+        "y": 156.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-016",
+      "position": {
+        "x": 49.0,
+        "y": 492.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-jump.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 72,
+        "g": 249,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 1,
+      "kind": "boost",
+      "behavior": {
+        "mode": "jumpBoost",
+        "jumpMultiplier": 1.95
+      }
+    },
+    {
+      "id": "platform-017",
+      "position": {
+        "x": 264.0,
+        "y": 729.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "platform-jump.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 72,
+        "g": 249,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 1,
+      "kind": "boost",
+      "behavior": {
+        "mode": "jumpBoost",
+        "jumpMultiplier": 1.95
+      }
+    },
+    {
+      "id": "platform-018",
+      "position": {
+        "x": 48.0,
+        "y": 865.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-019",
+      "position": {
+        "x": 126.0,
+        "y": 932.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-020",
+      "position": {
+        "x": 50.0,
+        "y": 996.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-021",
+      "position": {
+        "x": 279.0,
+        "y": 1058.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-022",
+      "position": {
+        "x": 220.0,
+        "y": 1107.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-023",
+      "position": {
+        "x": 288.0,
+        "y": 1159.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-024",
+      "position": {
+        "x": 212.0,
+        "y": 1189.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-025",
+      "position": {
+        "x": 50.0,
+        "y": 1051.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-026",
+      "position": {
+        "x": 50.0,
+        "y": 1111.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-027",
+      "position": {
+        "x": 50.0,
+        "y": 1171.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-028",
+      "position": {
+        "x": 285.0,
+        "y": 1253.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-029",
+      "position": {
+        "x": 50.0,
+        "y": 1224.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-030",
+      "position": {
+        "x": 55.0,
+        "y": 1277.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    },
+    {
+      "id": "platform-031",
+      "position": {
+        "x": 217.0,
+        "y": 997.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 19.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": null,
+      "kind": "normal",
+      "behavior": {
+        "mode": "static"
+      }
+    }
+  ],
+  "collectables": [
+    {
+      "id": "collectable-001",
+      "position": {
+        "x": 165.0,
+        "y": 311.0
+      },
+      "size": {
+        "width": 36.0,
+        "height": 36.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-big-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "big",
+      "value": 1
+    },
+    {
+      "id": "collectable-002",
+      "position": {
+        "x": 591.0,
+        "y": -88.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-003",
+      "position": {
+        "x": 604.0,
+        "y": -88.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-004",
+      "position": {
+        "x": 591.0,
+        "y": -75.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-005",
+      "position": {
+        "x": 604.0,
+        "y": -75.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-006",
+      "position": {
+        "x": 591.0,
+        "y": -62.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-007",
+      "position": {
+        "x": 604.0,
+        "y": -62.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-008",
+      "position": {
+        "x": 591.0,
+        "y": -49.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-009",
+      "position": {
+        "x": 604.0,
+        "y": -49.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-010",
+      "position": {
+        "x": 38.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-011",
+      "position": {
+        "x": 51.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-012",
+      "position": {
+        "x": 64.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-013",
+      "position": {
+        "x": 77.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-014",
+      "position": {
+        "x": 90.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-015",
+      "position": {
+        "x": 90.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-016",
+      "position": {
+        "x": 77.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-017",
+      "position": {
+        "x": 64.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-018",
+      "position": {
+        "x": 51.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-019",
+      "position": {
+        "x": 38.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-020",
+      "position": {
+        "x": 439.0,
+        "y": 71.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-021",
+      "position": {
+        "x": 452.0,
+        "y": 71.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-022",
+      "position": {
+        "x": 439.0,
+        "y": 84.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-023",
+      "position": {
+        "x": 452.0,
+        "y": 84.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-024",
+      "position": {
+        "x": 439.0,
+        "y": 97.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-025",
+      "position": {
+        "x": 452.0,
+        "y": 97.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-026",
+      "position": {
+        "x": 439.0,
+        "y": 110.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-027",
+      "position": {
+        "x": 452.0,
+        "y": 110.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": false,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-028",
+      "position": {
+        "x": 159.0,
+        "y": 779.0
+      },
+      "size": {
+        "width": 36.0,
+        "height": 36.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-big-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "big",
+      "value": 1
+    },
+    {
+      "id": "collectable-029",
+      "position": {
+        "x": 288.0,
+        "y": 1217.0
+      },
+      "size": {
+        "width": 36.0,
+        "height": 36.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-big-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "big",
+      "value": 1
+    },
+    {
+      "id": "collectable-030",
+      "position": {
+        "x": 240.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-031",
+      "position": {
+        "x": 253.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-032",
+      "position": {
+        "x": 266.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-033",
+      "position": {
+        "x": 279.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-034",
+      "position": {
+        "x": 292.0,
+        "y": 181.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-035",
+      "position": {
+        "x": 292.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-036",
+      "position": {
+        "x": 279.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-037",
+      "position": {
+        "x": 266.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-038",
+      "position": {
+        "x": 253.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-039",
+      "position": {
+        "x": 240.0,
+        "y": 194.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-040",
+      "position": {
+        "x": 157.0,
+        "y": 215.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-041",
+      "position": {
+        "x": 170.0,
+        "y": 215.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-042",
+      "position": {
+        "x": 157.0,
+        "y": 228.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-043",
+      "position": {
+        "x": 170.0,
+        "y": 228.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-044",
+      "position": {
+        "x": 157.0,
+        "y": 241.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-045",
+      "position": {
+        "x": 170.0,
+        "y": 241.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-046",
+      "position": {
+        "x": 157.0,
+        "y": 254.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-047",
+      "position": {
+        "x": 170.0,
+        "y": 254.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-048",
+      "position": {
+        "x": 42.0,
+        "y": 520.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-049",
+      "position": {
+        "x": 55.0,
+        "y": 520.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-050",
+      "position": {
+        "x": 42.0,
+        "y": 533.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-051",
+      "position": {
+        "x": 55.0,
+        "y": 533.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-052",
+      "position": {
+        "x": 42.0,
+        "y": 546.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-053",
+      "position": {
+        "x": 55.0,
+        "y": 546.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-054",
+      "position": {
+        "x": 42.0,
+        "y": 559.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-055",
+      "position": {
+        "x": 55.0,
+        "y": 559.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-056",
+      "position": {
+        "x": 42.0,
+        "y": 583.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-057",
+      "position": {
+        "x": 55.0,
+        "y": 583.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-058",
+      "position": {
+        "x": 42.0,
+        "y": 596.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-059",
+      "position": {
+        "x": 55.0,
+        "y": 596.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-060",
+      "position": {
+        "x": 42.0,
+        "y": 609.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-061",
+      "position": {
+        "x": 55.0,
+        "y": 609.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-062",
+      "position": {
+        "x": 42.0,
+        "y": 622.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-063",
+      "position": {
+        "x": 55.0,
+        "y": 622.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-064",
+      "position": {
+        "x": 256.0,
+        "y": 756.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-065",
+      "position": {
+        "x": 269.0,
+        "y": 756.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-066",
+      "position": {
+        "x": 256.0,
+        "y": 769.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-067",
+      "position": {
+        "x": 269.0,
+        "y": 769.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-068",
+      "position": {
+        "x": 256.0,
+        "y": 782.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-069",
+      "position": {
+        "x": 269.0,
+        "y": 782.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-070",
+      "position": {
+        "x": 256.0,
+        "y": 795.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-071",
+      "position": {
+        "x": 269.0,
+        "y": 795.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-072",
+      "position": {
+        "x": 256.0,
+        "y": 821.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-073",
+      "position": {
+        "x": 269.0,
+        "y": 821.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-074",
+      "position": {
+        "x": 256.0,
+        "y": 834.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-075",
+      "position": {
+        "x": 269.0,
+        "y": 834.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-076",
+      "position": {
+        "x": 256.0,
+        "y": 847.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-077",
+      "position": {
+        "x": 269.0,
+        "y": 847.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-078",
+      "position": {
+        "x": 256.0,
+        "y": 860.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-079",
+      "position": {
+        "x": 269.0,
+        "y": 860.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-080",
+      "position": {
+        "x": 23.0,
+        "y": 1015.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-081",
+      "position": {
+        "x": 36.0,
+        "y": 1015.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-082",
+      "position": {
+        "x": 49.0,
+        "y": 1015.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-083",
+      "position": {
+        "x": 62.0,
+        "y": 1015.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-084",
+      "position": {
+        "x": 75.0,
+        "y": 1015.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-085",
+      "position": {
+        "x": 75.0,
+        "y": 1028.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-086",
+      "position": {
+        "x": 62.0,
+        "y": 1028.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-087",
+      "position": {
+        "x": 49.0,
+        "y": 1028.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-088",
+      "position": {
+        "x": 36.0,
+        "y": 1028.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-089",
+      "position": {
+        "x": 23.0,
+        "y": 1028.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-090",
+      "position": {
+        "x": 251.0,
+        "y": 1084.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-091",
+      "position": {
+        "x": 264.0,
+        "y": 1084.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-092",
+      "position": {
+        "x": 277.0,
+        "y": 1084.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-093",
+      "position": {
+        "x": 290.0,
+        "y": 1084.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-094",
+      "position": {
+        "x": 303.0,
+        "y": 1084.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-095",
+      "position": {
+        "x": 303.0,
+        "y": 1097.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-096",
+      "position": {
+        "x": 290.0,
+        "y": 1097.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-097",
+      "position": {
+        "x": 277.0,
+        "y": 1097.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-098",
+      "position": {
+        "x": 264.0,
+        "y": 1097.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-099",
+      "position": {
+        "x": 251.0,
+        "y": 1097.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-100",
+      "position": {
+        "x": 187.0,
+        "y": 1219.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-101",
+      "position": {
+        "x": 200.0,
+        "y": 1219.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-102",
+      "position": {
+        "x": 213.0,
+        "y": 1219.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-103",
+      "position": {
+        "x": 226.0,
+        "y": 1219.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-104",
+      "position": {
+        "x": 239.0,
+        "y": 1219.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-105",
+      "position": {
+        "x": 239.0,
+        "y": 1232.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-106",
+      "position": {
+        "x": 226.0,
+        "y": 1232.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-107",
+      "position": {
+        "x": 213.0,
+        "y": 1232.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-108",
+      "position": {
+        "x": 200.0,
+        "y": 1232.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-109",
+      "position": {
+        "x": 187.0,
+        "y": 1232.0
+      },
+      "size": {
+        "width": 15.0,
+        "height": 15.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-small-collectable.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "small",
+      "value": 1
+    },
+    {
+      "id": "collectable-110",
+      "position": {
+        "x": 50.0,
+        "y": 1246.0
+      },
+      "size": {
+        "width": 40.0,
+        "height": 16.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "halo.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "kind": "halo",
+      "value": 1
+    }
+  ],
+  "enemies": [
+    {
+      "id": "enemy-001",
+      "position": {
+        "x": 163.0,
+        "y": 196.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-002",
+      "position": {
+        "x": 265.0,
+        "y": 739.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-003",
+      "position": {
+        "x": 129.0,
+        "y": 1138.0
+      },
+      "size": {
+        "width": 23.0,
+        "height": 25.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-mine.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 2,
+      "kind": "mine",
+      "behavior": {
+        "mode": "contactExplode"
+      }
+    },
+    {
+      "id": "enemy-004",
+      "position": {
+        "x": 129.0,
+        "y": 1204.0
+      },
+      "size": {
+        "width": 23.0,
+        "height": 25.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-mine.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 2,
+      "kind": "mine",
+      "behavior": {
+        "mode": "contactExplode"
+      }
+    },
+    {
+      "id": "enemy-005",
+      "position": {
+        "x": 129.0,
+        "y": 1267.0
+      },
+      "size": {
+        "width": 23.0,
+        "height": 25.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-mine.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 2,
+      "kind": "mine",
+      "behavior": {
+        "mode": "contactExplode"
+      }
+    },
+    {
+      "id": "enemy-006",
+      "position": {
+        "x": 281.0,
+        "y": 1066.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-007",
+      "position": {
+        "x": 220.0,
+        "y": 1114.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-008",
+      "position": {
+        "x": 289.0,
+        "y": 1167.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-009",
+      "position": {
+        "x": 213.0,
+        "y": 1199.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    },
+    {
+      "id": "enemy-010",
+      "position": {
+        "x": 284.0,
+        "y": 1261.0
+      },
+      "size": {
+        "width": 49.0,
+        "height": 12.0
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "enemy-rocket-target.png",
+      "spriteSheet": null,
+      "tint": null,
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 4,
+      "kind": "rocketLauncher",
+      "behavior": {
+        "mode": "proximityTriggeredProjectile",
+        "triggerRadius": 30,
+        "projectileSpeed": 400,
+        "spawnX": 27,
+        "verticalOffset": 300,
+        "immunePowerup": 104
+      }
+    }
+  ],
+  "projectileSpawners": [
+    {
+      "id": "spawner-enemy-001",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-001",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 490.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-002",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-002",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1033.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-006",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-006",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1360.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-007",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-007",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1408.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-008",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-008",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1461.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-009",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-009",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1493.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    },
+    {
+      "id": "spawner-enemy-010",
+      "kind": "rocket",
+      "sourceEnemyId": "enemy-010",
+      "launchPosition": {
+        "x": 27.0,
+        "y": 1555.0
+      },
+      "projectileSpeed": 400,
+      "targeting": "cross-screen toward player lane"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "trigger-001",
+      "position": {
+        "x": 152.0,
+        "y": 1415.0
+      },
+      "size": {
+        "width": 448.489,
+        "height": 14.673
+      },
+      "rotationDegrees": 0.0,
+      "spriteFrame": "ingame-platform-normal.png",
+      "spriteSheet": "IngameSprites.plist",
+      "tint": {
+        "r": 255,
+        "g": 236,
+        "b": 0
+      },
+      "opacity": 255,
+      "visible": true,
+      "playable": true,
+      "legacyTag": 100,
+      "kind": "levelTopBoundary"
+    }
+  ],
+  "tips": [],
+  "diagnostics": {
+    "unknownNodes": [],
+    "rawRootClass": "GameLayer",
+    "parkedObjects": {
+      "platforms": 8,
+      "collectables": 16,
+      "enemies": 0,
+      "triggers": 0,
+      "tips": 0
+    },
+    "parkedObjectTotal": 24,
+    "timelineOverrides": []
+  }
+}

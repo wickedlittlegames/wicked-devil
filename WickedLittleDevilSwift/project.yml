@@ -1,0 +1,97 @@
+name: WickedLittleDevilSwift
+options:
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: '17.0'
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.wickedlittlewebsites.wickeddevil.swift
+    PRODUCT_NAME: WickedLittleDevilSwift
+    SWIFT_VERSION: '5.0'
+    IPHONEOS_DEPLOYMENT_TARGET: '17.0'
+    TARGETED_DEVICE_FAMILY: '1,2'
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: Wicked Little Devil
+    INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ''
+    CURRENT_PROJECT_VERSION: '1'
+    MARKETING_VERSION: '1.0'
+    ARCHS: arm64
+    SUPPORTED_PLATFORMS: 'iphoneos iphonesimulator'
+    SUPPORTS_MACCATALYST: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    CLANG_ENABLE_MODULES: YES
+    LD_RUNPATH_SEARCH_PATHS:
+      - $(inherited)
+      - '@executable_path/Frameworks'
+packages:
+  WickedDevilCore:
+    path: ../WickedDevilCore
+targets:
+  WickedLittleDevilSwift:
+    type: application
+    platform: iOS
+    deploymentTarget: '17.0'
+    dependencies:
+      - package: WickedDevilCore
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+      - path: Resources/MenuAssets.xcassets
+      - path: Resources/Fonts
+        type: folder
+      - path: Resources/Levels
+        type: folder
+      - path: Resources/Art
+        type: folder
+      - path: Resources/Audio
+        type: folder
+      - path: Resources/Particles
+        type: folder
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wickedlittlewebsites.wickeddevil.swift
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        # Portrait-only on both families, and full screen on iPad so Stage
+        # Manager and Split View cannot hand the scene an arbitrary aspect.
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone:
+          - UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+  WickedLittleDevilSwiftTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: '17.0'
+    sources:
+      - path: Tests/WickedLittleDevilSwiftTests
+    dependencies:
+      - target: WickedLittleDevilSwift
+    settings:
+      base:
+        # Hosted by the app so the tests see the real bundled art and levels.
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/WickedLittleDevilSwift.app/WickedLittleDevilSwift
+        BUNDLE_LOADER: $(TEST_HOST)
+        PRODUCT_BUNDLE_IDENTIFIER: com.wickedlittlewebsites.wickeddevil.swift.tests
+        # The shared base settings pin PRODUCT_NAME to the app, which would make
+        # both targets claim the same module name.
+        PRODUCT_NAME: WickedLittleDevilSwiftTests
+schemes:
+  WickedLittleDevilSwift:
+    build:
+      targets:
+        WickedLittleDevilSwift: all
+        WickedLittleDevilSwiftTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - WickedLittleDevilSwiftTests
+    archive:
+      config: Release

@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07C009E80A44F8B532670408 /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C207C6685A5140A8F4586621 /* PauseMenuNode.swift */; };
+		0A18494E8918FE15335A6FB3 /* MenuScreenGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */; };
+		148D0CCD7A3E68544132DA45 /* MenuRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */; };
+		178096F668D7EA457E3C499F /* GameFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9583668A0FF08B9000764 /* GameFont.swift */; };
+		18FE02C7714012AEC1A0726A /* GameplayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */; };
+		1B3DDD7F0D77E3A4EBE073F9 /* WorldSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67AC06B55E06527A7A913 /* WorldSelectView.swift */; };
+		1CF1A8C8A169B799A98CBE16 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D5944BCD9D4051B227DC8 /* MenuModel.swift */; };
+		223B5258C894F3AF752289A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232A0E7460072A0A1D821E4E /* ContentView.swift */; };
+		23C52FA80A36254A9E8C76EE /* ShopViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FA0BB889BE606952641DB4 /* ShopViews.swift */; };
+		2624B2BD29E11A19540184D5 /* MenuCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139CCC70C06A4ED29764D7EC /* MenuCatalog.swift */; };
+		27A031F97588D61063E5DE16 /* WickedLittleDevilSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4F1E24616CD55FE6047B4 /* WickedLittleDevilSwiftApp.swift */; };
+		29608717FC1C7C832D89EBEE /* LevelInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96C79FA54061C9260D8CB1 /* LevelInventory.swift */; };
+		2C723DCF18BF9AC65C511901 /* GameplayHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03C12A8FFC4013FE5925EE /* GameplayHostView.swift */; };
+		30E2C0DCAC92776365D75B20 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 4413A2AAD578A94FA774E1BE /* Levels */; };
+		36581CF4CB03B948C972C022 /* WickedDevilCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7BAD5355633EF255E48B16 /* WickedDevilCore */; };
+		383718E174F1091AA20A67C3 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = C3FAFF6BC6FF6F74C9255E82 /* Audio */; };
+		4863A453252C5EBBA3F53BA3 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DD9F2C3E17163D8687C9B5 /* TitleView.swift */; };
+		511BEDC5EFB8BBE37453173A /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565DF9CE714E520A2272F3F /* ParticleFactory.swift */; };
+		5BF806F0977E82191389BD10 /* ZOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A976AFFC7111FFE4BD0AF /* ZOrder.swift */; };
+		5DACFE122B9EFE6EC07FB0F8 /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10728A09EAE2B15A43208432 /* HUDNode.swift */; };
+		67C49842C8186C1B654BBCEC /* DetectiveLevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8732A65561FC44CA5226D /* DetectiveLevelSelectView.swift */; };
+		7008AF2DF553B0DA954A80CA /* LevelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */; };
+		79D6F0A415CAE92F48143953 /* SpriteAtlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB11C8938FD5441356B9B3 /* SpriteAtlasTests.swift */; };
+		7A03A0F2B84A13C920E6849A /* LevelTipNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CAC61D606862908C07C22 /* LevelTipNode.swift */; };
+		7E207D9F1B146A3D0ED08D4D /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26512A426F6ED1FB116CEEEB /* AudioEngine.swift */; };
+		80FDFE2DFF10B06F7C824178 /* AdventureSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A189A5A1DFD2E07170EE3 /* AdventureSelectView.swift */; };
+		8A45448E8596ECD1F83AD421 /* SafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */; };
+		8B5D3E1F4DCF7F46FE1D4B45 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 6243C08571B54D6BFE765554 /* Fonts */; };
+		93FB12C2D98F7F21D422837E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */; };
+		94F1B61EF9A229CF63D6D6AF /* MenuPreviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */; };
+		987C57F501ABA9793516691C /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD52A4E472F75DCE423D060 /* PlayerNode.swift */; };
+		9BAAC1282CDCE5CE17594DE0 /* Art in Resources */ = {isa = PBXBuildFile; fileRef = B02ED96E4CDBF754C1D58B2E /* Art */; };
+		A314E4C474253D37431B1634 /* SpriteAtlas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5F1A367AC5E179651778F /* SpriteAtlas.swift */; };
+		A3F02427A30BE64A1EDA1A1F /* MenuHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8EF510B776FC9ADD9CA17 /* MenuHostView.swift */; };
+		A43F36124686A8C5DD49BAC6 /* MotionStreakNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761A043E37970CADE38D60B /* MotionStreakNode.swift */; };
+		AD573D735B27A9EFE3EB93D5 /* MenuAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6D52849A50DE649D8C6A161 /* MenuAssets.xcassets */; };
+		B5E7B3FA6C8EBAEE751331E5 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83296EA1B89F06B4111C240B /* LevelSelectView.swift */; };
+		B6FAEF1336E20F32E7396873 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3978FBD567B134ED6855A9 /* GameOverView.swift */; };
+		C82D985DF2AD6EA559BF18F8 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72798EA95217DE1D18711A8D /* StatsView.swift */; };
+		D72F7032F015370CEDCF9D17 /* MenuTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77560BED8DE1EB77D62A19D /* MenuTheme.swift */; };
+		DABD2E4162564EC4F895F6B3 /* Particles in Resources */ = {isa = PBXBuildFile; fileRef = CCE921C9A8A8186E2964D560 /* Particles */; };
+		EA244D915659598E33B84E11 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CB9DD6C48902ADF488743F /* GameScene.swift */; };
+		EB890DD434D415A995238A68 /* GameplayHandoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B90EF704C610A6E6FED177 /* GameplayHandoff.swift */; };
+		F4FDB4451A94F827E6C88979 /* EntityNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC38C735EB38E7952F1392 /* EntityNodeFactory.swift */; };
+		FF8147A8D054068F6B955865 /* MenuBackgroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9C1693EDCDF328864BCAE /* MenuBackgroundTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B91BE80C3B8EC391728D57AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4458BDFE58C1053E9F7AEC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F82435D2D34C552E533AE98B;
+			remoteInfo = WickedLittleDevilSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPreviewSupport.swift; sourceTree = "<group>"; };
+		07E8EF510B776FC9ADD9CA17 /* MenuHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHostView.swift; sourceTree = "<group>"; };
+		10728A09EAE2B15A43208432 /* HUDNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDNode.swift; sourceTree = "<group>"; };
+		139CCC70C06A4ED29764D7EC /* MenuCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCatalog.swift; sourceTree = "<group>"; };
+		178A976AFFC7111FFE4BD0AF /* ZOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOrder.swift; sourceTree = "<group>"; };
+		18D9C1693EDCDF328864BCAE /* MenuBackgroundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBackgroundTests.swift; sourceTree = "<group>"; };
+		232A0E7460072A0A1D821E4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		26512A426F6ED1FB116CEEEB /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		27CB9DD6C48902ADF488743F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		3FC9F1323F511EAD8A05D2C0 /* WickedLittleDevilSwift.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WickedLittleDevilSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40B90EF704C610A6E6FED177 /* GameplayHandoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayHandoff.swift; sourceTree = "<group>"; };
+		41FA0BB889BE606952641DB4 /* ShopViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViews.swift; sourceTree = "<group>"; };
+		4413A2AAD578A94FA774E1BE /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Levels; path = Resources/Levels; sourceTree = SOURCE_ROOT; };
+		442CAC61D606862908C07C22 /* LevelTipNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTipNode.swift; sourceTree = "<group>"; };
+		52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRootView.swift; sourceTree = "<group>"; };
+		56B67AC06B55E06527A7A913 /* WorldSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldSelectView.swift; sourceTree = "<group>"; };
+		5761A043E37970CADE38D60B /* MotionStreakNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionStreakNode.swift; sourceTree = "<group>"; };
+		5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaInsets.swift; sourceTree = "<group>"; };
+		6243C08571B54D6BFE765554 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Resources/Fonts; sourceTree = SOURCE_ROOT; };
+		6565DF9CE714E520A2272F3F /* ParticleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
+		6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCatalog.swift; sourceTree = "<group>"; };
+		6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayLayout.swift; sourceTree = "<group>"; };
+		6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72798EA95217DE1D18711A8D /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		742A189A5A1DFD2E07170EE3 /* AdventureSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureSelectView.swift; sourceTree = "<group>"; };
+		74FB11C8938FD5441356B9B3 /* SpriteAtlasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteAtlasTests.swift; sourceTree = "<group>"; };
+		7AF5F1A367AC5E179651778F /* SpriteAtlas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteAtlas.swift; sourceTree = "<group>"; };
+		82C4F1E24616CD55FE6047B4 /* WickedLittleDevilSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WickedLittleDevilSwiftApp.swift; sourceTree = "<group>"; };
+		83296EA1B89F06B4111C240B /* LevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectView.swift; sourceTree = "<group>"; };
+		8B96C79FA54061C9260D8CB1 /* LevelInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInventory.swift; sourceTree = "<group>"; };
+		9AA8732A65561FC44CA5226D /* DetectiveLevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveLevelSelectView.swift; sourceTree = "<group>"; };
+		A1DD9F2C3E17163D8687C9B5 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		A77560BED8DE1EB77D62A19D /* MenuTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTheme.swift; sourceTree = "<group>"; };
+		AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenGallery.swift; sourceTree = "<group>"; };
+		B02ED96E4CDBF754C1D58B2E /* Art */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Art; path = Resources/Art; sourceTree = SOURCE_ROOT; };
+		B2FB79CE3E7A613B134D8A76 /* WickedDevilCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WickedDevilCore; path = ../WickedDevilCore; sourceTree = SOURCE_ROOT; };
+		BFD52A4E472F75DCE423D060 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
+		C207C6685A5140A8F4586621 /* PauseMenuNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenuNode.swift; sourceTree = "<group>"; };
+		C3FAFF6BC6FF6F74C9255E82 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = Resources/Audio; sourceTree = SOURCE_ROOT; };
+		CCE921C9A8A8186E2964D560 /* Particles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Particles; path = Resources/Particles; sourceTree = SOURCE_ROOT; };
+		D32D5944BCD9D4051B227DC8 /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
+		D46BBCE82B358E73829DD79B /* WickedLittleDevilSwiftTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WickedLittleDevilSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3978FBD567B134ED6855A9 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		EAA9583668A0FF08B9000764 /* GameFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFont.swift; sourceTree = "<group>"; };
+		EDCC38C735EB38E7952F1392 /* EntityNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNodeFactory.swift; sourceTree = "<group>"; };
+		F6D52849A50DE649D8C6A161 /* MenuAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MenuAssets.xcassets; sourceTree = "<group>"; };
+		FE03C12A8FFC4013FE5925EE /* GameplayHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayHostView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52127A3154A164C1DCF75472 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36581CF4CB03B948C972C022 /* WickedDevilCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2821D30D3F4011EE211AF241 /* Gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				EDCC38C735EB38E7952F1392 /* EntityNodeFactory.swift */,
+				FE03C12A8FFC4013FE5925EE /* GameplayHostView.swift */,
+				6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */,
+				27CB9DD6C48902ADF488743F /* GameScene.swift */,
+				10728A09EAE2B15A43208432 /* HUDNode.swift */,
+				6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */,
+				442CAC61D606862908C07C22 /* LevelTipNode.swift */,
+				5761A043E37970CADE38D60B /* MotionStreakNode.swift */,
+				C207C6685A5140A8F4586621 /* PauseMenuNode.swift */,
+				BFD52A4E472F75DCE423D060 /* PlayerNode.swift */,
+				5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */,
+			);
+			path = Gameplay;
+			sourceTree = "<group>";
+		};
+		404F58C66FEC27CB16E7CBC8 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				742A189A5A1DFD2E07170EE3 /* AdventureSelectView.swift */,
+				9AA8732A65561FC44CA5226D /* DetectiveLevelSelectView.swift */,
+				DB3978FBD567B134ED6855A9 /* GameOverView.swift */,
+				40B90EF704C610A6E6FED177 /* GameplayHandoff.swift */,
+				8B96C79FA54061C9260D8CB1 /* LevelInventory.swift */,
+				83296EA1B89F06B4111C240B /* LevelSelectView.swift */,
+				139CCC70C06A4ED29764D7EC /* MenuCatalog.swift */,
+				07E8EF510B776FC9ADD9CA17 /* MenuHostView.swift */,
+				D32D5944BCD9D4051B227DC8 /* MenuModel.swift */,
+				04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */,
+				52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */,
+				AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */,
+				A77560BED8DE1EB77D62A19D /* MenuTheme.swift */,
+				41FA0BB889BE606952641DB4 /* ShopViews.swift */,
+				72798EA95217DE1D18711A8D /* StatsView.swift */,
+				A1DD9F2C3E17163D8687C9B5 /* TitleView.swift */,
+				56B67AC06B55E06527A7A913 /* WorldSelectView.swift */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		46A54F502638D583C50ECD94 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B2FB79CE3E7A613B134D8A76 /* WickedDevilCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		A8CA9A312F51131820836FD2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B02ED96E4CDBF754C1D58B2E /* Art */,
+				6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */,
+				C3FAFF6BC6FF6F74C9255E82 /* Audio */,
+				6243C08571B54D6BFE765554 /* Fonts */,
+				4413A2AAD578A94FA774E1BE /* Levels */,
+				F6D52849A50DE649D8C6A161 /* MenuAssets.xcassets */,
+				CCE921C9A8A8186E2964D560 /* Particles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C0AB314F2EB19A75EBD72096 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DFD6AF89105AEBE528F1EA78 /* WickedLittleDevilSwiftTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		C767D2C21374114309599BAB = {
+			isa = PBXGroup;
+			children = (
+				46A54F502638D583C50ECD94 /* Packages */,
+				A8CA9A312F51131820836FD2 /* Resources */,
+				E6C1099FC5D0EC655AFC59EF /* Sources */,
+				C0AB314F2EB19A75EBD72096 /* Tests */,
+				CA10B1055992E2640FD21817 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA10B1055992E2640FD21817 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9F1323F511EAD8A05D2C0 /* WickedLittleDevilSwift.app */,
+				D46BBCE82B358E73829DD79B /* WickedLittleDevilSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFD6AF89105AEBE528F1EA78 /* WickedLittleDevilSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				18D9C1693EDCDF328864BCAE /* MenuBackgroundTests.swift */,
+				74FB11C8938FD5441356B9B3 /* SpriteAtlasTests.swift */,
+			);
+			path = WickedLittleDevilSwiftTests;
+			sourceTree = "<group>";
+		};
+		E6C1099FC5D0EC655AFC59EF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				232A0E7460072A0A1D821E4E /* ContentView.swift */,
+				82C4F1E24616CD55FE6047B4 /* WickedLittleDevilSwiftApp.swift */,
+				2821D30D3F4011EE211AF241 /* Gameplay */,
+				404F58C66FEC27CB16E7CBC8 /* Menus */,
+				FC9D073950B0439DF2228619 /* Rendering */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		FC9D073950B0439DF2228619 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				26512A426F6ED1FB116CEEEB /* AudioEngine.swift */,
+				EAA9583668A0FF08B9000764 /* GameFont.swift */,
+				6565DF9CE714E520A2272F3F /* ParticleFactory.swift */,
+				7AF5F1A367AC5E179651778F /* SpriteAtlas.swift */,
+				178A976AFFC7111FFE4BD0AF /* ZOrder.swift */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2250B91C76A75F08597C7B89 /* WickedLittleDevilSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DDBD54328F57167A51ADF1B /* Build configuration list for PBXNativeTarget "WickedLittleDevilSwiftTests" */;
+			buildPhases = (
+				3896FF4F23CB2E182E9548B7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84FF22A285DB11FEBABFBE62 /* PBXTargetDependency */,
+			);
+			name = WickedLittleDevilSwiftTests;
+			packageProductDependencies = (
+			);
+			productName = WickedLittleDevilSwiftTests;
+			productReference = D46BBCE82B358E73829DD79B /* WickedLittleDevilSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F82435D2D34C552E533AE98B /* WickedLittleDevilSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EF18AD4E26277E03C6A58BB /* Build configuration list for PBXNativeTarget "WickedLittleDevilSwift" */;
+			buildPhases = (
+				2C4D205218DBDC578B37DA1D /* Sources */,
+				962B275734F6CC28069E8FBF /* Resources */,
+				52127A3154A164C1DCF75472 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WickedLittleDevilSwift;
+			packageProductDependencies = (
+				9E7BAD5355633EF255E48B16 /* WickedDevilCore */,
+			);
+			productName = WickedLittleDevilSwift;
+			productReference = 3FC9F1323F511EAD8A05D2C0 /* WickedLittleDevilSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E4458BDFE58C1053E9F7AEC9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2250B91C76A75F08597C7B89 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F82435D2D34C552E533AE98B = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3946EF240CF85B96206D81F9 /* Build configuration list for PBXProject "WickedLittleDevilSwift" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C767D2C21374114309599BAB;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				977A91D37454830FAF27A491 /* XCLocalSwiftPackageReference "../WickedDevilCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CA10B1055992E2640FD21817 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F82435D2D34C552E533AE98B /* WickedLittleDevilSwift */,
+				2250B91C76A75F08597C7B89 /* WickedLittleDevilSwiftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		962B275734F6CC28069E8FBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BAAC1282CDCE5CE17594DE0 /* Art in Resources */,
+				93FB12C2D98F7F21D422837E /* Assets.xcassets in Resources */,
+				383718E174F1091AA20A67C3 /* Audio in Resources */,
+				8B5D3E1F4DCF7F46FE1D4B45 /* Fonts in Resources */,
+				30E2C0DCAC92776365D75B20 /* Levels in Resources */,
+				AD573D735B27A9EFE3EB93D5 /* MenuAssets.xcassets in Resources */,
+				DABD2E4162564EC4F895F6B3 /* Particles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C4D205218DBDC578B37DA1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80FDFE2DFF10B06F7C824178 /* AdventureSelectView.swift in Sources */,
+				7E207D9F1B146A3D0ED08D4D /* AudioEngine.swift in Sources */,
+				223B5258C894F3AF752289A3 /* ContentView.swift in Sources */,
+				67C49842C8186C1B654BBCEC /* DetectiveLevelSelectView.swift in Sources */,
+				F4FDB4451A94F827E6C88979 /* EntityNodeFactory.swift in Sources */,
+				178096F668D7EA457E3C499F /* GameFont.swift in Sources */,
+				B6FAEF1336E20F32E7396873 /* GameOverView.swift in Sources */,
+				EA244D915659598E33B84E11 /* GameScene.swift in Sources */,
+				EB890DD434D415A995238A68 /* GameplayHandoff.swift in Sources */,
+				2C723DCF18BF9AC65C511901 /* GameplayHostView.swift in Sources */,
+				18FE02C7714012AEC1A0726A /* GameplayLayout.swift in Sources */,
+				5DACFE122B9EFE6EC07FB0F8 /* HUDNode.swift in Sources */,
+				7008AF2DF553B0DA954A80CA /* LevelCatalog.swift in Sources */,
+				29608717FC1C7C832D89EBEE /* LevelInventory.swift in Sources */,
+				B5E7B3FA6C8EBAEE751331E5 /* LevelSelectView.swift in Sources */,
+				7A03A0F2B84A13C920E6849A /* LevelTipNode.swift in Sources */,
+				2624B2BD29E11A19540184D5 /* MenuCatalog.swift in Sources */,
+				A3F02427A30BE64A1EDA1A1F /* MenuHostView.swift in Sources */,
+				1CF1A8C8A169B799A98CBE16 /* MenuModel.swift in Sources */,
+				94F1B61EF9A229CF63D6D6AF /* MenuPreviewSupport.swift in Sources */,
+				148D0CCD7A3E68544132DA45 /* MenuRootView.swift in Sources */,
+				0A18494E8918FE15335A6FB3 /* MenuScreenGallery.swift in Sources */,
+				D72F7032F015370CEDCF9D17 /* MenuTheme.swift in Sources */,
+				A43F36124686A8C5DD49BAC6 /* MotionStreakNode.swift in Sources */,
+				511BEDC5EFB8BBE37453173A /* ParticleFactory.swift in Sources */,
+				07C009E80A44F8B532670408 /* PauseMenuNode.swift in Sources */,
+				987C57F501ABA9793516691C /* PlayerNode.swift in Sources */,
+				8A45448E8596ECD1F83AD421 /* SafeAreaInsets.swift in Sources */,
+				23C52FA80A36254A9E8C76EE /* ShopViews.swift in Sources */,
+				A314E4C474253D37431B1634 /* SpriteAtlas.swift in Sources */,
+				C82D985DF2AD6EA559BF18F8 /* StatsView.swift in Sources */,
+				4863A453252C5EBBA3F53BA3 /* TitleView.swift in Sources */,
+				27A031F97588D61063E5DE16 /* WickedLittleDevilSwiftApp.swift in Sources */,
+				1B3DDD7F0D77E3A4EBE073F9 /* WorldSelectView.swift in Sources */,
+				5BF806F0977E82191389BD10 /* ZOrder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3896FF4F23CB2E182E9548B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF8147A8D054068F6B955865 /* MenuBackgroundTests.swift in Sources */,
+				79D6F0A415CAE92F48143953 /* SpriteAtlasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84FF22A285DB11FEBABFBE62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F82435D2D34C552E533AE98B /* WickedLittleDevilSwift */;
+			targetProxy = B91BE80C3B8EC391728D57AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		099BACEDF02CAA12DC2EFD96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift.tests;
+				PRODUCT_NAME = WickedLittleDevilSwiftTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WickedLittleDevilSwift.app/WickedLittleDevilSwift";
+			};
+			name = Debug;
+		};
+		10C8F7F0774201DD84F29C5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2556C43453560718A3B13EC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift.tests;
+				PRODUCT_NAME = WickedLittleDevilSwiftTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WickedLittleDevilSwift.app/WickedLittleDevilSwift";
+			};
+			name = Release;
+		};
+		524D2C4BE4E69930F895C501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73E87C533816799233DD6BAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Wicked Little Devil";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift;
+				PRODUCT_NAME = WickedLittleDevilSwift;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B4465F4508D43843E2369D23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Wicked Little Devil";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wickedlittlewebsites.wickeddevil.swift;
+				PRODUCT_NAME = WickedLittleDevilSwift;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EF18AD4E26277E03C6A58BB /* Build configuration list for PBXNativeTarget "WickedLittleDevilSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524D2C4BE4E69930F895C501 /* Debug */,
+				10C8F7F0774201DD84F29C5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3946EF240CF85B96206D81F9 /* Build configuration list for PBXProject "WickedLittleDevilSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73E87C533816799233DD6BAB /* Debug */,
+				B4465F4508D43843E2369D23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6DDBD54328F57167A51ADF1B /* Build configuration list for PBXNativeTarget "WickedLittleDevilSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				099BACEDF02CAA12DC2EFD96 /* Debug */,
+				2556C43453560718A3B13EC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		977A91D37454830FAF27A491 /* XCLocalSwiftPackageReference "../WickedDevilCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../WickedDevilCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9E7BAD5355633EF255E48B16 /* WickedDevilCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WickedDevilCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E4458BDFE58C1053E9F7AEC9 /* Project object */;
+}

@@ -86,6 +86,9 @@ struct MenuScreenGallery: View {
             Entry("handoff", "Gameplay hand-off placeholder") {
                 GameplayPlaceholderView(request: MenuPreview.sampleRequest, finish: { _ in })
             },
+            Entry("inventory", "Level inventory (from bundle)") {
+                LevelInventoryReport()
+            },
         ]
     }
 
@@ -122,4 +125,58 @@ struct MenuScreenGallery: View {
 
 #Preview {
     MenuScreenGallery()
+}
+
+/// Shows what `LevelInventory.bundled` actually found, so the resource lookup
+/// can be checked on a real device rather than assumed.
+private struct LevelInventoryReport: View {
+    private let inventory = LevelInventory.bundled
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Level inventory")
+                .font(.devilTitle(30))
+
+            Text(LevelInventory.discoveredFromBundle.levelCounts.isEmpty
+                 ? "Bundle lookup found nothing — using the shipped fallback"
+                 : "Discovered \(LevelInventory.discoveredFromBundle.levelCounts.values.reduce(0, +)) level files in the bundle")
+                .font(.devilBody(16))
+                .foregroundStyle(MenuColor.mutedText)
+
+            MenuPanel {
+                VStack(alignment: .leading, spacing: 6) {
+                    ForEach(inventory.levelCounts.keys.sorted(), id: \.self) { world in
+                        HStack {
+                            Text("World \(world)").font(.devilBody(16))
+                            Spacer()
+                            Text("\(inventory.levelCount(world: world)) level\(inventory.levelCount(world: world) == 1 ? "" : "s")")
+                                .font(.devilBody(16))
+                                .foregroundStyle(MenuColor.mutedText)
+                        }
+                    }
+                    Divider().overlay(MenuColor.panelStroke)
+                    HStack {
+                        Text("Total").font(.devilBody(16))
+                        Spacer()
+                        Text("\(inventory.levelCounts.values.reduce(0, +))")
+                            .font(.devilBody(16))
+                            .foregroundStyle(MenuColor.soul)
+                    }
+                }
+            }
+
+            Text("Adventure worlds: \(inventory.adventureWorlds.map(String.init).joined(separator: ", "))")
+                .font(.devilCaption(14))
+                .foregroundStyle(MenuColor.mutedText)
+            Text("Bonus level present: \(inventory.hasBonusLevel ? "yes" : "no")")
+                .font(.devilCaption(14))
+                .foregroundStyle(MenuColor.mutedText)
+
+            Spacer()
+        }
+        .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .foregroundStyle(MenuColor.text)
+        .background { MenuBackground(nil) }
+    }
 }

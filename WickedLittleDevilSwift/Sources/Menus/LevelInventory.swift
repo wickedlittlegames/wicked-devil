@@ -39,10 +39,14 @@ struct LevelInventory: Sendable, Equatable {
         GameConstants.detectiveWorld: 10,
     ])
 
+    /// What the bundle lookup actually found, before the `shipped` fallback is
+    /// applied. Empty means the resource lookup failed.
+    static let discoveredFromBundle: LevelInventory = discoverFromBundle()
+
     /// Discovered from `Levels/world-<W>-level-<L>.json` in the app bundle,
     /// falling back to `shipped` when nothing is found (previews, tests).
     static let bundled: LevelInventory = {
-        let discovered = discoverFromBundle()
+        let discovered = discoveredFromBundle
         return discovered.levelCounts.isEmpty ? shipped : discovered
     }()
 

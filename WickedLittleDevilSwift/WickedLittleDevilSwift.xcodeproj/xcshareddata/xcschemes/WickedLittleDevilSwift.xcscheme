@@ -21,6 +21,20 @@
                ReferencedContainer = "container:WickedLittleDevilSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2250B91C76A75F08597C7B89"
+               BuildableName = "WickedLittleDevilSwiftTests.xctest"
+               BlueprintName = "WickedLittleDevilSwiftTests"
+               ReferencedContainer = "container:WickedLittleDevilSwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -39,7 +53,20 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2250B91C76A75F08597C7B89"
+               BuildableName = "WickedLittleDevilSwiftTests.xctest"
+               BlueprintName = "WickedLittleDevilSwiftTests"
+               ReferencedContainer = "container:WickedLittleDevilSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <CommandLineArguments>
+      </CommandLineArguments>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

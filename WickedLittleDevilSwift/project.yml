@@ -64,12 +64,34 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationPortraitUpsideDown
+  WickedLittleDevilSwiftTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: '17.0'
+    sources:
+      - path: Tests/WickedLittleDevilSwiftTests
+    dependencies:
+      - target: WickedLittleDevilSwift
+    settings:
+      base:
+        # Hosted by the app so the tests see the real bundled art and levels.
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/WickedLittleDevilSwift.app/WickedLittleDevilSwift
+        BUNDLE_LOADER: $(TEST_HOST)
+        PRODUCT_BUNDLE_IDENTIFIER: com.wickedlittlewebsites.wickeddevil.swift.tests
+        # The shared base settings pin PRODUCT_NAME to the app, which would make
+        # both targets claim the same module name.
+        PRODUCT_NAME: WickedLittleDevilSwiftTests
 schemes:
   WickedLittleDevilSwift:
     build:
       targets:
         WickedLittleDevilSwift: all
+        WickedLittleDevilSwiftTests: [test]
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - WickedLittleDevilSwiftTests
     archive:
       config: Release

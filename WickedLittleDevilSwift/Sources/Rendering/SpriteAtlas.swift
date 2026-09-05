@@ -1,4 +1,5 @@
 import CoreGraphics
+import os
 import SpriteKit
 import UIKit
 
@@ -55,6 +56,32 @@ final class SpriteAtlas {
         let atlas = load(name: name)
         cache[name] = atlas
         return atlas
+    }
+
+    /// Every spritesheet in the bundle, in a stable order.
+    ///
+    /// Sheets ship as a `<name>-hd.plist` / `<name>-hd.png` pair; the particle
+    /// and level plists have no `-hd` variant, so the suffix is enough to tell
+    /// them apart.
+    static let bundledSheetNames: [String] = {
+        AssetLocator.urls(forResourcesWithExtension: "plist")
+            .map { $0.deletingPathExtension().lastPathComponent }
+            .filter { $0.hasSuffix("-hd") }
+            .map { String($0.dropLast(3)) }
+            .sorted()
+    }()
+
+    /// Finds a frame in any bundled sheet other than `excluding`.
+    ///
+    /// This is the global `CCSpriteFrameCache` behaviour — see the note on
+    /// `SpriteLibrary.frame(named:sheet:)`.
+    static func searchAllSheets(for frameName: String, excluding: Set<String>) -> (atlas: SpriteAtlas, frame: Frame)? {
+        for sheetName in bundledSheetNames where !excluding.contains(sheetName) {
+            if let atlas = named(sheetName), let frame = atlas.frame(frameName) {
+                return (atlas, frame)
+            }
+        }
+        return nil
     }
 
     private static func load(name: String) -> SpriteAtlas? {
@@ -142,17 +169,54 @@ enum SpriteLibrary {
         return frame
     }
 
-    /// Resolves a level object's `spriteFrame`/`spriteSheet` pair, falling back
-    /// to a loose image of the same name.
+    /// Resolves a level object's `spriteFrame`/`spriteSheet` pair.
+    ///
+    /// The declared sheet is not always the one holding the frame. `CCBReader.m:415-423`
+    /// loaded whatever sheet the level named into the *shared*
+    /// `CCSpriteFrameCache` and then asked for the frame by name alone, so once
+    /// any sheet in the session had been loaded its frames resolved for every
+    /// node regardless of what that node declared. CocosBuilder let authors
+    /// leave a stale sheet on a node and the game never noticed.
+    ///
+    /// World 20 relies on exactly that: 410 of its `ingame-small-collectable-bw.png`
+    /// nodes name `IngameSprites.plist`, while the frame only exists in
+    /// `IngameSprites-bw`. A strict per-sheet lookup drew them magenta.
+    ///
+    /// So the declared sheet is tried first, then the rest of the bundle, and
+    /// only then a loose PNG. Falling back is logged: art that is genuinely
+    /// absent should still surface as a problem rather than be papered over.
     static func frame(named frameName: String, sheet: String?) -> SpriteAtlas.Frame? {
-        if let sheet, let atlas = SpriteAtlas.named(sheet.deletingPlistExtension),
-           let frame = atlas.frame(frameName) {
+        let declared = sheet?.deletingPlistExtension
+        if let declared, let atlas = SpriteAtlas.named(declared), let frame = atlas.frame(frameName) {
             return frame
         }
-        if let atlas = SpriteAtlas.named("IngameSprites"), let frame = atlas.frame(frameName) {
-            return frame
+
+        var tried: Set<String> = []
+        if let declared { tried.insert(declared) }
+
+        if let found = SpriteAtlas.searchAllSheets(for: frameName, excluding: tried) {
+            reportSheetMismatch(frame: frameName, declared: declared, found: found.atlas.name)
+            return found.frame
         }
+
         return image(named: frameName)
+    }
+
+    private static let log = Logger(subsystem: "com.wickedlittlewebsites.wickeddevil.swift",
+                                    category: "SpriteAtlas")
+    private static var reportedMismatches: Set<String> = []
+
+    /// Logs each distinct mismatch once — world 20 alone would otherwise emit
+    /// hundreds of identical lines per level.
+    private static func reportSheetMismatch(frame: String, declared: String?, found: String) {
+        let key = "\(declared ?? "-")|\(frame)"
+        guard reportedMismatches.insert(key).inserted else { return }
+        log.notice("""
+            Sprite frame \(frame, privacy: .public) is declared in \
+            \(declared ?? "no sheet", privacy: .public) but was found in \
+            \(found, privacy: .public); resolving it the way cocos2d's shared \
+            frame cache would.
+            """)
     }
 }
 
@@ -171,6 +235,16 @@ enum AssetLocator {
             }
         }
         return nil
+    }
+
+    /// Every bundled resource with the given extension, across the root and the
+    /// known folder references.
+    static func urls(forResourcesWithExtension ext: String) -> [URL] {
+        var found = Bundle.main.urls(forResourcesWithExtension: ext, subdirectory: nil) ?? []
+        for subdirectory in subdirectories {
+            found += Bundle.main.urls(forResourcesWithExtension: ext, subdirectory: subdirectory) ?? []
+        }
+        return found
     }
 
     static func plist(named name: String) -> [String: Any]? {

@@ -10,6 +10,7 @@
 		0A18494E8918FE15335A6FB3 /* MenuScreenGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07D483EA2121AF4E54A000 /* MenuScreenGallery.swift */; };
 		148D0CCD7A3E68544132DA45 /* MenuRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */; };
 		178096F668D7EA457E3C499F /* GameFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9583668A0FF08B9000764 /* GameFont.swift */; };
+		18FE02C7714012AEC1A0726A /* GameplayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */; };
 		1B3DDD7F0D77E3A4EBE073F9 /* WorldSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67AC06B55E06527A7A913 /* WorldSelectView.swift */; };
 		1CF1A8C8A169B799A98CBE16 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D5944BCD9D4051B227DC8 /* MenuModel.swift */; };
 		223B5258C894F3AF752289A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232A0E7460072A0A1D821E4E /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 		7008AF2DF553B0DA954A80CA /* LevelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */; };
 		7E207D9F1B146A3D0ED08D4D /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26512A426F6ED1FB116CEEEB /* AudioEngine.swift */; };
 		80FDFE2DFF10B06F7C824178 /* AdventureSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A189A5A1DFD2E07170EE3 /* AdventureSelectView.swift */; };
+		8A45448E8596ECD1F83AD421 /* SafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */; };
 		8B5D3E1F4DCF7F46FE1D4B45 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 6243C08571B54D6BFE765554 /* Fonts */; };
 		93FB12C2D98F7F21D422837E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */; };
 		94F1B61EF9A229CF63D6D6AF /* MenuPreviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5899C9C5D7310BE494FAF /* MenuPreviewSupport.swift */; };
@@ -62,9 +64,11 @@
 		4413A2AAD578A94FA774E1BE /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Levels; path = Resources/Levels; sourceTree = SOURCE_ROOT; };
 		52ADEF78EACA501E54BE27A0 /* MenuRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRootView.swift; sourceTree = "<group>"; };
 		56B67AC06B55E06527A7A913 /* WorldSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldSelectView.swift; sourceTree = "<group>"; };
+		5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaInsets.swift; sourceTree = "<group>"; };
 		6243C08571B54D6BFE765554 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Resources/Fonts; sourceTree = SOURCE_ROOT; };
 		6565DF9CE714E520A2272F3F /* ParticleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
 		6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCatalog.swift; sourceTree = "<group>"; };
+		6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayLayout.swift; sourceTree = "<group>"; };
 		6E7E31E99BB99B7FF37FA681 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72798EA95217DE1D18711A8D /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		742A189A5A1DFD2E07170EE3 /* AdventureSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureSelectView.swift; sourceTree = "<group>"; };
@@ -106,10 +110,12 @@
 			children = (
 				EDCC38C735EB38E7952F1392 /* EntityNodeFactory.swift */,
 				FE03C12A8FFC4013FE5925EE /* GameplayHostView.swift */,
+				6DA0EDDF5520703BA064DC89 /* GameplayLayout.swift */,
 				27CB9DD6C48902ADF488743F /* GameScene.swift */,
 				10728A09EAE2B15A43208432 /* HUDNode.swift */,
 				6B0F119B615183D29F1BD4A7 /* LevelCatalog.swift */,
 				BFD52A4E472F75DCE423D060 /* PlayerNode.swift */,
+				5E39F4CA24BA6CF407C325BE /* SafeAreaInsets.swift */,
 			);
 			path = Gameplay;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				EA244D915659598E33B84E11 /* GameScene.swift in Sources */,
 				EB890DD434D415A995238A68 /* GameplayHandoff.swift in Sources */,
 				2C723DCF18BF9AC65C511901 /* GameplayHostView.swift in Sources */,
+				18FE02C7714012AEC1A0726A /* GameplayLayout.swift in Sources */,
 				5DACFE122B9EFE6EC07FB0F8 /* HUDNode.swift in Sources */,
 				7008AF2DF553B0DA954A80CA /* LevelCatalog.swift in Sources */,
 				29608717FC1C7C832D89EBEE /* LevelInventory.swift in Sources */,
@@ -307,6 +314,7 @@
 				D72F7032F015370CEDCF9D17 /* MenuTheme.swift in Sources */,
 				511BEDC5EFB8BBE37453173A /* ParticleFactory.swift in Sources */,
 				987C57F501ABA9793516691C /* PlayerNode.swift in Sources */,
+				8A45448E8596ECD1F83AD421 /* SafeAreaInsets.swift in Sources */,
 				23C52FA80A36254A9E8C76EE /* ShopViews.swift in Sources */,
 				A314E4C474253D37431B1634 /* SpriteAtlas.swift in Sources */,
 				C82D985DF2AD6EA559BF18F8 /* StatsView.swift in Sources */,

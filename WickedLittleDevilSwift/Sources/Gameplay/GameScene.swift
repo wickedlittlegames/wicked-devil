@@ -14,9 +14,9 @@ final class GameScene: SKScene {
     // MARK: - Layout
 
     /// The point width every level was authored against.
-    static let designWidth: CGFloat = 320
+    static let designWidth = GameplayLayout.designWidth
     /// The point height the original device had, used to place the camera.
-    static let designHeight: CGFloat = 480
+    static let designHeight = GameplayLayout.designHeight
 
     // MARK: - Simulation
 
@@ -39,6 +39,7 @@ final class GameScene: SKScene {
     private var hud: HUDNode?
     private var playerNode: PlayerNode?
     private var startPrompt: SKNode?
+    private var pausePrompt: SKNode?
     private var messageLabel: SKLabelNode?
 
     private var platformNodes: [String: SKNode] = [:]
@@ -49,9 +50,22 @@ final class GameScene: SKScene {
     // MARK: - Frame state
 
     private var lastUpdateTime: TimeInterval = 0
+    private var lastSimulatedTime: TimeInterval = 0
     private var clockAccumulator: TimeInterval = 0
     private var isFinishing = false
     private var hasEnded = false
+    private var isInterrupted = false
+
+    /// The insets last used to lay the HUD out, so layout only redoes work when
+    /// they actually change.
+    private var appliedSafeAreaInsets = UIEdgeInsets(top: -1, left: -1, bottom: -1, right: -1)
+    private var appliedViewSize: CGSize = .zero
+
+    // MARK: - Input
+
+    /// The one touch steering the devil. Extra fingers are ignored outright
+    /// rather than fighting over the player's X.
+    private var steeringTouch: ObjectIdentifier?
     private var touchLocation: CGPoint?
 
     /// Called once the run is over so a host can show results or restart.
@@ -62,8 +76,15 @@ final class GameScene: SKScene {
     init(game: Game, level: Level, size: CGSize) {
         self.game = game
         self.level = level
-        self.world = GameWorld(game: game, level: level, device: .standard)
+        self.world = GameWorld(
+            game: game,
+            level: level,
+            device: .standard,
+            viewport: SizeF(width: Double(size.width), height: Double(size.height))
+        )
         super.init(size: size)
+        // The scene is sized to the view's exact aspect, so `aspectFill` neither
+        // crops nor letterboxes; it just scales the authored points to pixels.
         scaleMode = .aspectFill
         // The world is authored bottom-left origin, matching SpriteKit.
         anchorPoint = CGPoint(x: 0, y: 0)
@@ -98,16 +119,56 @@ final class GameScene: SKScene {
         camera = cameraNode
         addChild(cameraNode)
 
-        buildHUD(in: view)
+        buildHUD()
         buildStartPrompt()
+        observeInterruptions()
 
         spawnPlayer()
+        applyLayout(for: view)
         syncNodes()
         positionCamera()
 
         if let track = LevelCatalog.musicTrack(world: game.world) {
             AudioEngine.shared.playMusic(track)
         }
+    }
+
+    override func willMove(from view: SKView) {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // MARK: - Responsive layout
+
+    /// Re-derives the scene size and safe-area insets from the live view.
+    ///
+    /// `SKView` does not report final safe-area insets until it has been laid
+    /// out, and on iPad the view can be resized after the scene is built, so
+    /// this runs on every frame and only does work when something moved.
+    private func applyLayout(for view: SKView) {
+        let viewSize = view.bounds.size
+        guard viewSize.width > 0, viewSize.height > 0 else { return }
+
+        let insets = view.safeAreaInsets
+        guard viewSize != appliedViewSize || insets != appliedSafeAreaInsets else { return }
+        appliedViewSize = viewSize
+        appliedSafeAreaInsets = insets
+
+        let target = GameplayLayout.sceneSize(forViewSize: viewSize)
+        if abs(target.width - size.width) > 0.01 || abs(target.height - size.height) > 0.01 {
+            size = target
+            world.viewport = SizeF(width: Double(size.width), height: Double(size.height))
+        }
+
+        let ratio = GameplayLayout.scenePointsPerViewPoint(sceneSize: size, viewSize: viewSize)
+        let safeArea = SafeAreaInsets(
+            top: insets.top * ratio,
+            bottom: insets.bottom * ratio
+        )
+
+        resizeBackground()
+        hud?.layout(sceneSize: size, safeArea: safeArea)
+        layoutStartPrompt(safeArea: safeArea)
+        layoutPausePrompt()
     }
 
     private func buildBackground() {
@@ -117,19 +178,24 @@ final class GameScene: SKScene {
         guard let image = SpriteLibrary.image(named: LevelCatalog.backgroundImage(world: game.world))
         else { return }
         let node = SKSpriteNode(texture: image.texture)
-        // Cover the whole screen regardless of device aspect.
-        let scale = max(size.width / image.size.width, size.height / image.size.height)
-        node.size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
         node.zPosition = ZOrder.background
         cameraNode.addChild(node)
         backgroundNode = node
+        resizeBackground()
     }
 
-    private func buildHUD(in view: SKView) {
-        // Convert the view's top safe-area inset into scene points.
-        let pointsPerScenePoint = size.width / max(view.bounds.width, 1)
-        let topInset = view.safeAreaInsets.top * pointsPerScenePoint
-        let node = HUDNode(game: game, sceneSize: size, topInset: topInset)
+    /// Covers the whole scene regardless of aspect, so the surplus width an
+    /// iPad has either side of the 320pt play column is never bare black.
+    private func resizeBackground() {
+        guard let backgroundNode, let texture = backgroundNode.texture else { return }
+        let source = texture.size()
+        guard source.width > 0, source.height > 0 else { return }
+        let scale = max(size.width / source.width, size.height / source.height)
+        backgroundNode.size = CGSize(width: source.width * scale, height: source.height * scale)
+    }
+
+    private func buildHUD() {
+        let node = HUDNode(game: game)
         cameraNode.addChild(node)
         node.update(game: game)
         hud = node
@@ -142,7 +208,6 @@ final class GameScene: SKScene {
 
         if let image = SpriteLibrary.image(named: "Begin-Button") {
             let button = SKSpriteNode(texture: image.texture, size: image.size)
-            button.position = CGPoint(x: 0, y: -size.height / 2 + 60)
             container.addChild(button)
             button.run(SKAction.repeatForever(SKAction.sequence([
                 SKAction.fadeAlpha(to: 0.6, duration: 0.6),
@@ -153,6 +218,17 @@ final class GameScene: SKScene {
         cameraNode.addChild(container)
         startPrompt = container
     }
+
+    /// Keeps the Begin button clear of the home indicator.
+    private func layoutStartPrompt(safeArea: SafeAreaInsets) {
+        startPrompt?.position = CGPoint(
+            x: 0,
+            y: -size.height / 2 + safeArea.bottom + GameScene.bottomPromptMargin
+        )
+    }
+
+    /// Room for the Begin/Resume prompts above the home indicator.
+    private static let bottomPromptMargin: CGFloat = 60
 
     private func spawnPlayer() {
         let node = PlayerNode(
@@ -170,21 +246,29 @@ final class GameScene: SKScene {
     // MARK: - Frame loop
 
     override func update(_ currentTime: TimeInterval) {
+        if let view { applyLayout(for: view) }
+
         defer { lastUpdateTime = currentTime }
         guard lastUpdateTime > 0 else { return }
+        guard !isInterrupted else { return }
 
-        // Clamp so a backgrounded app cannot tunnel the player through a floor.
-        let deltaTime = min(currentTime - lastUpdateTime, 1.0 / 20.0)
-        guard deltaTime > 0 else { return }
+        let realDeltaTime = currentTime - lastUpdateTime
+        guard realDeltaTime > 0 else { return }
 
         if let touchLocation {
             world.setTouch(Vec2(x: Double(touchLocation.x), y: Double(touchLocation.y)))
         }
 
-        let events = world.update(deltaTime: deltaTime)
+        // `advance` re-quantises real time into the 1/60s steps the ported
+        // physics assumes, so the game runs at one speed on 60Hz and 120Hz
+        // panels alike and a hitch cannot leap the simulation forwards.
+        let events = world.advance(realDeltaTime: realDeltaTime)
         handle(events)
 
-        advanceClock(by: deltaTime)
+        // Drive the level clock off *simulated* time, so a stalled frame that
+        // only bought four steps does not also burn a full second of the limit.
+        advanceClock(by: world.elapsedTime - lastSimulatedTime)
+        lastSimulatedTime = world.elapsedTime
         syncNodes()
         positionCamera()
         hud?.update(game: game)
@@ -205,6 +289,64 @@ final class GameScene: SKScene {
             x: Self.designWidth / 2,
             y: CGFloat(world.cameraY) + size.height / 2
         )
+    }
+
+    // MARK: - Interruption
+
+    /// `AppDelegate applicationWillResignActive:` paused the director on an
+    /// incoming call. This does the same, but does *not* auto-resume: coming
+    /// back mid-fall with no finger on the glass is an unearned death, so the
+    /// player taps to restart the clock.
+    private func observeInterruptions() {
+        let centre = NotificationCenter.default
+        centre.addObserver(
+            self,
+            selector: #selector(handleWillResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+    }
+
+    @objc private func handleWillResignActive() {
+        guard game.isStarted, !game.isGameover, !hasEnded, !isInterrupted else { return }
+        isInterrupted = true
+        releaseSteering()
+        isPaused = true
+        AudioEngine.shared.stopMusic()
+        showPausePrompt()
+    }
+
+    private func resumeAfterInterruption() {
+        guard isInterrupted else { return }
+        isInterrupted = false
+        isPaused = false
+        // Neither the banked sub-step nor the frame delta spanning the pause is
+        // real play time.
+        world.resetStepAccumulator()
+        lastUpdateTime = 0
+        clockAccumulator = 0
+        pausePrompt?.removeFromParent()
+        pausePrompt = nil
+        if let track = LevelCatalog.musicTrack(world: game.world) {
+            AudioEngine.shared.playMusic(track)
+        }
+    }
+
+    private func showPausePrompt() {
+        guard pausePrompt == nil else { return }
+        let label = SKLabelNode(text: "TAP TO RESUME")
+        label.fontName = GameFont.preferredName
+        label.fontSize = 28
+        label.fontColor = .white
+        label.verticalAlignmentMode = .center
+        label.zPosition = ZOrder.overlay
+        cameraNode.addChild(label)
+        pausePrompt = label
+        layoutPausePrompt()
+    }
+
+    private func layoutPausePrompt() {
+        pausePrompt?.position = .zero
     }
 
     // MARK: - Node synchronisation
@@ -460,39 +602,86 @@ final class GameScene: SKScene {
 
     /// `GameScene ccTouchesMoved:` drove the player's x straight from the touch
     /// position; `control_player` clamped how fast it could follow.
+    ///
+    /// That absolute mapping is kept rather than switching to a relative drag,
+    /// because the scene is scaled so the play field is always exactly 320
+    /// authored points wide: a touch a third of the way across the glass still
+    /// asks for a third of the way across the field, on any device. What has
+    /// changed is the book-keeping around it — one steering finger, a request
+    /// clamped to the field, and no snap when the run begins.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let location = touch.location(in: worldNode)
-        touchLocation = location
-
-        if !game.isStarted {
-            startRun(at: location)
+        if isInterrupted {
+            resumeAfterInterruption()
             return
         }
+
+        guard let touch = touches.first(where: { $0.phase != .cancelled }) else { return }
+
+        // First finger down wins and keeps steering until it lifts; later
+        // fingers can still pop bubbles but never yank the devil sideways.
+        let isSteering: Bool
+        if steeringTouch == nil {
+            steeringTouch = ObjectIdentifier(touch)
+            isSteering = true
+        } else {
+            isSteering = ObjectIdentifier(touch) == steeringTouch
+        }
+
+        let location = touch.location(in: worldNode)
+
+        if !game.isStarted {
+            startRun()
+            return
+        }
+
+        if isSteering { touchLocation = location }
 
         // Tapping a floating bubble pops it.
         handle(world.handleTap(at: Vec2(x: Double(location.x), y: Double(location.y))))
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
+        guard let steeringTouch,
+              let touch = touches.first(where: { ObjectIdentifier($0) == steeringTouch })
+        else { return }
+        // A drag that runs off the edge of the glass keeps steering: the world
+        // clamps the request into the play field rather than dropping it.
         touchLocation = touch.location(in: worldNode)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchLocation = nil
+        endSteering(touches)
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endSteering(touches)
+    }
+
+    /// Only the steering finger lifting stops the devil; other fingers leaving
+    /// are irrelevant. The last requested X is held, matching the original,
+    /// where `game.touch` simply kept its value once you let go.
+    private func endSteering(_ touches: Set<UITouch>) {
+        guard let steeringTouch,
+              touches.contains(where: { ObjectIdentifier($0) == steeringTouch })
+        else { return }
+        releaseSteering()
+    }
+
+    private func releaseSteering() {
+        steeringTouch = nil
         touchLocation = nil
     }
 
-    private func startRun(at location: CGPoint) {
+    /// `GameScene tap_launch` set `game.touch = game.player.position`, so the
+    /// devil launched straight up instead of snapping across to wherever the
+    /// Begin button happened to be tapped.
+    private func startRun() {
         AudioEngine.shared.playEffect(SoundEffect.click)
         startPrompt?.removeFromParent()
         startPrompt = nil
+        releaseSteering()
         game.start()
-        world.setTouch(Vec2(x: Double(location.x), y: Double(location.y)))
+        world.setTouch(game.player.position)
         playerNode?.playJump(for: game.player)
     }
 }

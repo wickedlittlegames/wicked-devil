@@ -56,6 +56,9 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.wickedlittlewebsites.wickeddevil.swift
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        # Portrait-only on both families, and full screen on iPad so Stage
+        # Manager and Split View cannot hand the scene an arbitrary aspect.
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone:
           - UIInterfaceOrientationPortrait
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:

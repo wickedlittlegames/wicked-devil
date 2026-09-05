@@ -30,7 +30,11 @@ struct GameplayHostView: View {
             ZStack {
                 Color.black
                 if let scene {
-                    SpriteView(scene: scene, preferredFramesPerSecond: 60)
+                    // The simulation is fixed at 1/60s steps inside
+                    // `GameWorld.advance`, so rendering is free to run at the
+                    // display's native rate: 120Hz on ProMotion gives smoother
+                    // motion without touching game speed.
+                    SpriteView(scene: scene, preferredFramesPerSecond: 120)
                 } else if let loadError {
                     VStack(spacing: 12) {
                         Text("Could not load \(request.levelResourceName)")
@@ -51,17 +55,15 @@ struct GameplayHostView: View {
         .persistentSystemOverlays(.hidden)
     }
 
-    /// Levels were authored for a 320pt-wide screen. Keeping that width fixed
-    /// and deriving the height from the device aspect preserves the original
-    /// horizontal feel with no cropping; taller phones simply see further up
-    /// the level, which suits a vertical climber.
+    /// Levels were authored for a 320x480 point screen. The scene is scaled so
+    /// that box always fits exactly, and the device's surplus — height on a
+    /// phone, width on an iPad — becomes scenery. See `GameplayLayout`.
+    ///
+    /// The scene re-measures itself against the live `SKView` every frame, so
+    /// this only needs to be close enough to avoid a first-frame pop.
     private func build(for viewSize: CGSize) {
         guard scene == nil else { return }
-        let width = GameScene.designWidth
-        let aspect = viewSize.height > 0 && viewSize.width > 0
-            ? viewSize.height / viewSize.width
-            : GameScene.designHeight / GameScene.designWidth
-        let size = CGSize(width: width, height: (width * aspect).rounded())
+        let size = GameplayLayout.sceneSize(forViewSize: viewSize)
 
         do {
             let level = try LevelCatalog.load(world: request.world, level: request.level)

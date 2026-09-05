@@ -28,15 +28,29 @@ settings:
     LD_RUNPATH_SEARCH_PATHS:
       - $(inherited)
       - '@executable_path/Frameworks'
+packages:
+  WickedDevilCore:
+    path: ../WickedDevilCore
 targets:
   WickedLittleDevilSwift:
     type: application
     platform: iOS
     deploymentTarget: '17.0'
+    dependencies:
+      - package: WickedDevilCore
     sources:
       - path: Sources
       - path: Resources/Assets.xcassets
+      - path: Resources/MenuAssets.xcassets
+      - path: Resources/Fonts
+        type: folder
       - path: Resources/Levels
+        type: folder
+      - path: Resources/Art
+        type: folder
+      - path: Resources/Audio
+        type: folder
+      - path: Resources/Particles
         type: folder
     settings:
       base:

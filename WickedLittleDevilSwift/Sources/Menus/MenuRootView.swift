@@ -34,6 +34,10 @@ struct MenuRootView: View {
     @State private var finishedRun: FinishedRun?
     /// A result waiting to be shown after gameplay has fully dismissed.
     @State private var pendingFinishedRun: FinishedRun?
+    /// Bumped for every launch. Folded into the cover's identity so two runs of
+    /// the same level (which share a `GameLaunchRequest.id`) never reuse a
+    /// finished gameplay view.
+    @State private var runToken = 0
 
     @Environment(\.gameplayLauncher) private var launcher
 
@@ -63,6 +67,7 @@ struct MenuRootView: View {
                 finish(request: request, result: result)
             }
             .ignoresSafeArea()
+            .id("\(request.id)-\(runToken)")
         }
         .fullScreenCover(item: $finishedRun) { run in
             GameOverView(
@@ -139,6 +144,7 @@ struct MenuRootView: View {
     private func play(request: GameLaunchRequest) {
         finishedRun = nil
         pendingFinishedRun = nil
+        runToken += 1
         // Let any presented cover dismiss before the next one goes up.
         DispatchQueue.main.async { activeRun = request }
     }
@@ -146,8 +152,8 @@ struct MenuRootView: View {
     /// Called by the gameplay layer exactly once per run.
     ///
     /// * `nil` — the player quit; just return to the menus.
-    /// * a loss — `GameLayer.m end:` restarted the level after a beat rather
-    ///   than showing the results screen, so we relaunch it as a restart.
+    /// * a loss — a safety net only: `GameplayHostView` now replays the level
+    ///   in place, matching `GameLayer.m end:`, so losses should not arrive.
     /// * a win — bank it and show the results.
     private func finish(request: GameLaunchRequest, result: GameResult?) {
         DispatchQueue.main.async {

@@ -43,10 +43,13 @@ enum ParticleFactory {
         let maxParticles = max(number("maxParticles"), 1)
         let duration = number("duration")
         emitter.numParticlesToEmit = Int(maxParticles)
-        // cocos2d derived the emission rate from the particle lifetime, which is
-        // zero in these files, meaning "emit everything at once". A one-frame
-        // burst reproduces that.
-        let burstWindow = max(duration, 1.0 / 60.0)
+        // cocos2d set its emission rate to `totalParticles / particleLifespan`
+        // and emitted while `emitCounter > 1/rate`. A lifespan of zero makes
+        // that interval zero, so the whole system fires on the first frame
+        // regardless of `duration` — `duration` only bounds how long the
+        // emitter stays alive, and every burst effect here has a lifespan of
+        // zero. A one-frame window reproduces that.
+        let burstWindow = lifespan > 0 ? max(duration, 1.0 / 60.0) : 1.0 / 60.0
         emitter.particleBirthRate = maxParticles / burstWindow
 
         emitter.particlePosition = .zero
@@ -93,12 +96,62 @@ enum ParticleFactory {
                 / lifespanEstimate(lifespan, lifespanVariance)
         }
 
-        // cocos2d blend constants: GL_ONE (1) as the destination is additive.
-        if (plist["blendFuncDestination"] as? NSNumber)?.intValue == 1 {
-            emitter.particleBlendMode = .add
-        }
+        applyBlendMode(to: emitter, plist: plist, number: number)
 
         return emitter
+    }
+
+    /// cocos2d GL blend constants: 1 is `GL_ONE`, 770 `GL_SRC_ALPHA`, 771
+    /// `GL_ONE_MINUS_SRC_ALPHA`.
+    private enum GLBlend {
+        static let one = 1
+        static let oneMinusSrcAlpha = 771
+    }
+
+    /// Translates the plist's raw OpenGL blend factors.
+    ///
+    /// The interesting case is `CollectedBig.plist`, which authors *both*
+    /// factors as `GL_ONE_MINUS_SRC_ALPHA` together with `startColorAlpha 0`.
+    /// Read naively that is an invisible effect, and it is what we shipped: the
+    /// soul-jar burst did not render at all.
+    ///
+    /// It was not invisible in cocos2d. `CCParticleSystem.m:114` takes the
+    /// blend factors straight from the plist, and `setTexture:` only overrides
+    /// them when they still hold the defaults (`CCParticleSystem.m:624-634`),
+    /// which 771/771 does not. `CCParticleSystemQuad.m:339` then writes the
+    /// particle's alpha into the vertex colour without folding it into RGB. So
+    /// the hardware computed `src * (1 - 0) + dst * (1 - 0)` — both factors
+    /// resolve to one, which is *fully additive at full intensity*. Particle
+    /// Designer's preview would have shown exactly that, which is presumably
+    /// why the author left it.
+    ///
+    /// So: an inverted blend is additive, and the authored alpha is really the
+    /// inverse of the particle's coverage. `finishColorAlpha 0` with a variance
+    /// of 0.5 gives each particle an end alpha in -0.5...0.5; the negative half
+    /// clamped back to zero on the float-to-GLubyte conversion, so the burst
+    /// held roughly full brightness for its (very short, mean 0.16s) life and
+    /// popped out rather than fading. That is reproduced with a flat alpha and
+    /// no fade.
+    private static func applyBlendMode(
+        to emitter: SKEmitterNode,
+        plist: [String: Any],
+        number: (String) -> CGFloat
+    ) {
+        let source = (plist["blendFuncSource"] as? NSNumber)?.intValue ?? 0
+        let destination = (plist["blendFuncDestination"] as? NSNumber)?.intValue ?? 0
+
+        if destination == GLBlend.one {
+            emitter.particleBlendMode = .add
+            return
+        }
+
+        guard source == GLBlend.oneMinusSrcAlpha, destination == GLBlend.oneMinusSrcAlpha
+        else { return }
+
+        emitter.particleBlendMode = .add
+        emitter.particleAlpha = 1 - number("startColorAlpha")
+        emitter.particleAlphaRange = 0
+        emitter.particleAlphaSpeed = 0
     }
 
     /// The average life a particle ends up with, used to convert cocos2d's

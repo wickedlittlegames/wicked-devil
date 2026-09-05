@@ -5,3 +5,12 @@ Wicked Little Devil.xcodeproj/project.xcworkspace/xcuserdata/andygirvan.xcuserda
 
 *.
 .DS_Store
+
+# Xcode build artifacts
+DerivedData/
+build/
+*.xcuserdatad/
+xcuserdata/
+
+# Local verification scratch
+.menu-shots/

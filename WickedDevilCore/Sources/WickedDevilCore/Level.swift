@@ -19,6 +19,7 @@ public struct Level: Codable, Equatable, Sendable {
     public var projectileSpawners: [ProjectileSpawnerData]
     public var triggers: [TriggerData]
     public var tips: [TipData]
+    public var diagnostics: Diagnostics?
 
     public init(
         schemaVersion: String,
@@ -32,7 +33,8 @@ public struct Level: Codable, Equatable, Sendable {
         enemies: [EnemyData] = [],
         projectileSpawners: [ProjectileSpawnerData] = [],
         triggers: [TriggerData] = [],
-        tips: [TipData] = []
+        tips: [TipData] = [],
+        diagnostics: Diagnostics? = nil
     ) {
         self.schemaVersion = schemaVersion
         self.source = source
@@ -46,6 +48,7 @@ public struct Level: Codable, Equatable, Sendable {
         self.projectileSpawners = projectileSpawners
         self.triggers = triggers
         self.tips = tips
+        self.diagnostics = diagnostics
     }
 
     public init(from decoder: Decoder) throws {
@@ -62,6 +65,7 @@ public struct Level: Codable, Equatable, Sendable {
         projectileSpawners = try container.decodeIfPresent([ProjectileSpawnerData].self, forKey: .projectileSpawners) ?? []
         triggers = try container.decodeIfPresent([TriggerData].self, forKey: .triggers) ?? []
         tips = try container.decodeIfPresent([TipData].self, forKey: .tips) ?? []
+        diagnostics = try container.decodeIfPresent(Diagnostics.self, forKey: .diagnostics)
     }
 
     // MARK: - Nested models
@@ -98,6 +102,8 @@ public struct Level: Codable, Equatable, Sendable {
         public var nodeCount: Int?
         public var timelineNames: [String]?
         public var autoPlaySequenceId: Int?
+        /// Schema 1.1.0: pickup counts excluding parked (off-screen) objects.
+        public var playableCollectables: CollectableCounts?
 
         public init(
             theme: String,
@@ -106,7 +112,8 @@ public struct Level: Codable, Equatable, Sendable {
             topBoundaryY: Double,
             nodeCount: Int? = nil,
             timelineNames: [String]? = nil,
-            autoPlaySequenceId: Int? = nil
+            autoPlaySequenceId: Int? = nil,
+            playableCollectables: CollectableCounts? = nil
         ) {
             self.theme = theme
             self.backgroundImage = backgroundImage
@@ -115,7 +122,24 @@ public struct Level: Codable, Equatable, Sendable {
             self.nodeCount = nodeCount
             self.timelineNames = timelineNames
             self.autoPlaySequenceId = autoPlaySequenceId
+            self.playableCollectables = playableCollectables
         }
+    }
+
+    /// Schema 1.1.0 `metadata.playableCollectables`.
+    public struct CollectableCounts: Codable, Equatable, Sendable {
+        public var small: Int
+        public var big: Int
+        public var halo: Int
+    }
+
+    /// Schema 1.1.0 `diagnostics`.
+    public struct Diagnostics: Codable, Equatable, Sendable {
+        public var unknownNodes: [String]?
+        public var rawRootClass: String?
+        public var parkedObjects: [String: Int]?
+        public var parkedObjectTotal: Int?
+        public var timelineOverrides: [String]?
     }
 
     public struct Goal: Codable, Equatable, Sendable {
@@ -189,6 +213,9 @@ public struct Level: Codable, Equatable, Sendable {
         public var tint: Tint?
         public var opacity: Int?
         public var visible: Bool?
+        /// Schema 1.1.0: false for "parked" objects that sit off-screen and can
+        /// never be reached. Consumers should skip them.
+        public var playable: Bool?
         public var legacyTag: Int?
         public var kind: String
         public var behavior: Behavior?
@@ -204,6 +231,7 @@ public struct Level: Codable, Equatable, Sendable {
         public var tint: Tint?
         public var opacity: Int?
         public var visible: Bool?
+        public var playable: Bool?
         public var kind: String
         public var value: Int?
     }
@@ -218,6 +246,7 @@ public struct Level: Codable, Equatable, Sendable {
         public var tint: Tint?
         public var opacity: Int?
         public var visible: Bool?
+        public var playable: Bool?
         public var legacyTag: Int?
         public var kind: String
         public var behavior: Behavior?
@@ -242,6 +271,7 @@ public struct Level: Codable, Equatable, Sendable {
         public var tint: Tint?
         public var opacity: Int?
         public var visible: Bool?
+        public var playable: Bool?
         public var legacyTag: Int?
         public var kind: String
     }
@@ -252,11 +282,13 @@ public struct Level: Codable, Equatable, Sendable {
         public var size: SizeF
         public var spriteFrame: String?
         public var visible: Bool?
+        public var playable: Bool?
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, source, coordinateSpace, metadata, playerSpawn, goal
         case platforms, collectables, enemies, projectileSpawners, triggers, tips
+        case diagnostics
     }
 }
 
@@ -286,13 +318,20 @@ extension Level {
 
 extension Level {
     /// Builds the mutable runtime objects for this level.
-    public func makeEntities() -> LevelEntities {
-        LevelEntities(
-            platforms: platforms.map(Level.makePlatform),
-            collectables: collectables.map(Level.makeCollectable),
-            enemies: enemies.map(Level.makeEnemy),
-            triggers: triggers.map(Level.makeTrigger),
-            tips: tips.map(Level.makeTip)
+    ///
+    /// Schema 1.1.0 marks off-screen "parked" objects with `playable: false`.
+    /// They are real nodes in the source data but unreachable in play, so they
+    /// are skipped by default.
+    public func makeEntities(includingParked: Bool = false) -> LevelEntities {
+        func keep(_ playable: Bool?) -> Bool {
+            includingParked || (playable ?? true)
+        }
+        return LevelEntities(
+            platforms: platforms.filter { keep($0.playable) }.map(Level.makePlatform),
+            collectables: collectables.filter { keep($0.playable) }.map(Level.makeCollectable),
+            enemies: enemies.filter { keep($0.playable) }.map(Level.makeEnemy),
+            triggers: triggers.filter { keep($0.playable) }.map(Level.makeTrigger),
+            tips: tips.filter { keep($0.playable) }.map(Level.makeTip)
         )
     }
 

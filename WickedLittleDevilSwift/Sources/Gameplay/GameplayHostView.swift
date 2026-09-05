@@ -91,6 +91,15 @@ struct GameplayHostView: View {
             )
             let newScene = GameScene(game: game, level: level, size: size)
             newScene.onGameOver = { result in onFinish(result) }
+            // `UILayer tap_mainmenu` replaced the scene with the level select;
+            // the handoff's "quit without finishing" case does the same job and
+            // keeps persistence with the menu layer.
+            newScene.onQuit = { onFinish(nil) }
+            // `UILayer tap_reload` reloaded the scene with `isRestart:TRUE`.
+            // Reporting a losing result is exactly what a death does, and
+            // `MenuRootView.finish` relaunches the level from it. Nothing is
+            // banked: only wins are recorded.
+            newScene.onRestart = { onFinish(game.result) }
             scene = newScene
         } catch {
             loadError = error.localizedDescription

@@ -39,7 +39,9 @@ final class GameScene: SKScene {
     private var hud: HUDNode?
     private var playerNode: PlayerNode?
     private var startPrompt: SKNode?
-    private var pausePrompt: SKNode?
+    private var pauseMenu: PauseMenuNode?
+    private var tipCard: LevelTipNode?
+    private var streak: MotionStreakNode?
     private var messageLabel: SKLabelNode?
 
     private var platformNodes: [String: SKNode] = [:]
@@ -70,6 +72,13 @@ final class GameScene: SKScene {
 
     /// Called once the run is over so a host can show results or restart.
     var onGameOver: ((GameResult) -> Void)?
+
+    /// Called when the player asks to leave the level from the pause menu.
+    /// Nothing is banked: quitting mid-run is not a death.
+    var onQuit: (() -> Void)?
+
+    /// Called when the player asks to restart the level from the pause menu.
+    var onRestart: (() -> Void)?
 
     // MARK: - Init
 
@@ -121,11 +130,16 @@ final class GameScene: SKScene {
 
         buildHUD()
         buildStartPrompt()
+        buildStreak()
+        buildTipCard()
         observeInterruptions()
 
         spawnPlayer()
         applyLayout(for: view)
         syncNodes()
+        // `GameScene.m:186` kicked the fly-over off during setup, alongside the
+        // tip card, before the Begin button was ever tapped.
+        world.beginIntro()
         positionCamera()
 
         if let track = LevelCatalog.musicTrack(world: game.world) {
@@ -168,7 +182,8 @@ final class GameScene: SKScene {
         resizeBackground()
         hud?.layout(sceneSize: size, safeArea: safeArea)
         layoutStartPrompt(safeArea: safeArea)
-        layoutPausePrompt()
+        pauseMenu?.layout(sceneSize: size)
+        tipCard?.layout(sceneSize: size)
     }
 
     private func buildBackground() {
@@ -231,6 +246,36 @@ final class GameScene: SKScene {
     /// inset is added on top so it also clears the home indicator.
     private static let bottomPromptMargin: CGFloat = 30
 
+    /// The touch trail lives on the camera, not the world: `GameScene.m:201`
+    /// added the streak to the *scene*, so it stayed in screen space while the
+    /// level scrolled past underneath it.
+    private func buildStreak() {
+        let node = MotionStreakNode()
+        cameraNode.addChild(node)
+        streak = node
+    }
+
+    private func buildTipCard() {
+        guard let name = LevelTip.imageName(
+            world: game.world,
+            level: game.level,
+            isRestart: game.isRestart
+        ), let card = LevelTipNode(imageName: name) else { return }
+        cameraNode.addChild(card)
+        tipCard = card
+        // The Begin button hides behind the card. The original left both live,
+        // which meant you could start the level with the tip still on screen
+        // and play the whole thing behind it; that is plainly a bug.
+        startPrompt?.isHidden = true
+    }
+
+    private func dismissTipCard() {
+        AudioEngine.shared.playEffect(SoundEffect.click)
+        tipCard?.removeFromParent()
+        tipCard = nil
+        startPrompt?.isHidden = false
+    }
+
     private func spawnPlayer() {
         let node = PlayerNode(
             atlasName: game.player.animationAtlasName,
@@ -255,6 +300,14 @@ final class GameScene: SKScene {
 
         let realDeltaTime = currentTime - lastUpdateTime
         guard realDeltaTime > 0 else { return }
+
+        // The fly-over is a presentation tween, not simulation: it ran as a
+        // `CCAction` on real time and the world is not stepping yet anyway.
+        if game.isIntro {
+            world.advanceIntro(deltaTime: realDeltaTime)
+            positionCamera()
+            return
+        }
 
         if let touchLocation {
             world.setTouch(Vec2(x: Double(touchLocation.x), y: Double(touchLocation.y)))
@@ -292,12 +345,12 @@ final class GameScene: SKScene {
         )
     }
 
-    // MARK: - Interruption
+    // MARK: - Pause
 
     /// `AppDelegate applicationWillResignActive:` paused the director on an
     /// incoming call. This does the same, but does *not* auto-resume: coming
     /// back mid-fall with no finger on the glass is an unearned death, so the
-    /// player taps to restart the clock.
+    /// player has to dismiss the menu to restart the clock.
     private func observeInterruptions() {
         let centre = NotificationCenter.default
         centre.addObserver(
@@ -309,16 +362,24 @@ final class GameScene: SKScene {
     }
 
     @objc private func handleWillResignActive() {
+        pauseGame()
+    }
+
+    /// `UILayer tap_pause` — `[[CCDirector sharedDirector] pause]` plus
+    /// `pause_bg.visible = TRUE`.
+    private func pauseGame() {
         guard game.isStarted, !game.isGameover, !hasEnded, !isInterrupted else { return }
         isInterrupted = true
         releaseSteering()
+        streak?.reset()
         // Freeze the world's running actions rather than the whole scene: a
-        // paused `SKScene` will not draw the prompt we are about to add.
+        // paused `SKScene` will not draw the menu we are about to add.
         worldNode.isPaused = true
         AudioEngine.shared.stopMusic()
-        showPausePrompt()
+        showPauseMenu()
     }
 
+    /// `UILayer tap_unpause`.
     private func resumeAfterInterruption() {
         guard isInterrupted else { return }
         isInterrupted = false
@@ -328,39 +389,40 @@ final class GameScene: SKScene {
         world.resetStepAccumulator()
         lastUpdateTime = 0
         clockAccumulator = 0
-        pausePrompt?.removeFromParent()
-        pausePrompt = nil
+        pauseMenu?.removeFromParent()
+        pauseMenu = nil
         if let track = LevelCatalog.musicTrack(world: game.world) {
             AudioEngine.shared.playMusic(track)
         }
     }
 
-    private func showPausePrompt() {
-        guard pausePrompt == nil else { return }
-        let container = SKNode()
-        container.zPosition = ZOrder.overlay
-
-        let dim = SKSpriteNode(color: .black, size: size)
-        dim.alpha = 0.55
-        dim.name = "dim"
-        container.addChild(dim)
-
-        let label = SKLabelNode(text: "TAP TO RESUME")
-        label.fontName = GameFont.preferredName
-        label.fontSize = 28
-        label.fontColor = .white
-        label.verticalAlignmentMode = .center
-        container.addChild(label)
-
-        cameraNode.addChild(container)
-        pausePrompt = container
-        layoutPausePrompt()
+    private func showPauseMenu() {
+        guard pauseMenu == nil else { return }
+        let menu = PauseMenuNode(game: game)
+        cameraNode.addChild(menu)
+        pauseMenu = menu
+        menu.layout(sceneSize: size)
     }
 
-    private func layoutPausePrompt() {
-        guard let pausePrompt else { return }
-        pausePrompt.position = .zero
-        (pausePrompt.childNode(withName: "dim") as? SKSpriteNode)?.size = size
+    /// Routes a pause-menu choice. Restart and quit both hand back to the menu
+    /// layer through `GameplayHandoff`, which owns persistence; nothing is
+    /// banked here, so leaving mid-run costs neither a death nor a score.
+    private func perform(_ action: PauseMenuNode.Action) {
+        AudioEngine.shared.playEffect(SoundEffect.click)
+        switch action {
+        case .resume:
+            resumeAfterInterruption()
+        case .restart:
+            guard !hasEnded else { return }
+            hasEnded = true
+            AudioEngine.shared.stopMusic()
+            onRestart?()
+        case .quit:
+            guard !hasEnded else { return }
+            hasEnded = true
+            AudioEngine.shared.stopMusic()
+            onQuit?()
+        }
     }
 
     // MARK: - Node synchronisation
@@ -624,12 +686,36 @@ final class GameScene: SKScene {
     /// changed is the book-keeping around it — one steering finger, a request
     /// clamped to the field, and no snap when the run begins.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first(where: { $0.phase != .cancelled }) else { return }
+        let cameraPoint = touch.location(in: cameraNode)
+
+        // The pause menu swallows everything while it is up.
         if isInterrupted {
-            resumeAfterInterruption()
+            if let action = pauseMenu?.action(at: cameraPoint) { perform(action) }
             return
         }
 
-        guard let touch = touches.first(where: { $0.phase != .cancelled }) else { return }
+        // So does a tip card, which the original left non-blocking — see
+        // `buildTipCard`.
+        if let tipCard {
+            if tipCard.coversPoint(cameraPoint) { dismissTipCard() }
+            return
+        }
+
+        // `GameScene.m:265-270` — a touch during the intro killed the pan and
+        // snapped the camera home. Note `tap_launch` was guarded by
+        // `if ( !game.isIntro )`, so that same touch did *not* also start the
+        // run; it only skipped the fly-over.
+        if game.isIntro {
+            world.endIntro()
+            positionCamera()
+            return
+        }
+
+        if hud?.isPauseButton(at: cameraPoint) == true {
+            pauseGame()
+            return
+        }
 
         // First finger down wins and keeps steering until it lifts; later
         // fingers can still pop bubbles but never yank the devil sideways.
@@ -650,6 +736,16 @@ final class GameScene: SKScene {
 
         if isSteering { touchLocation = location }
 
+        // `GameScene.m:272-280` — the streak also snapped to a touch that was
+        // *not* steering: while the devil is floating in a bubble he is not
+        // controllable, and only the Bubble Pop upgrade makes that tap do
+        // anything, so the trail marks where you jabbed.
+        if game.player.floating,
+           !game.player.controllable,
+           game.user?.powerup == Powerup.bubblePop.rawValue {
+            streak?.extend(to: cameraPoint)
+        }
+
         // Landing a touch on a floating bubble pops it — but only with the
         // Bubble Pop upgrade equipped; the world enforces that.
         handle(world.handleTap(at: Vec2(x: Double(location.x), y: Double(location.y))))
@@ -662,6 +758,12 @@ final class GameScene: SKScene {
         // A drag that runs off the edge of the glass keeps steering: the world
         // clamps the request into the play field rather than dropping it.
         touchLocation = touch.location(in: worldNode)
+
+        // `GameScene.m:317-324` — `if ( game.player.controllable )`, i.e. only
+        // once the run is under way and the devil is answering the finger.
+        if game.player.controllable {
+            streak?.extend(to: touch.location(in: cameraNode))
+        }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -685,6 +787,10 @@ final class GameScene: SKScene {
     private func releaseSteering() {
         steeringTouch = nil
         touchLocation = nil
+        // Drop the stroke's anchor so the next touch does not whip a line
+        // across from wherever the last one ended, matching cocos2d's
+        // `startingPositionInitialized_` reset.
+        streak?.reset()
     }
 
     /// `GameScene tap_launch` set `game.touch = game.player.position`, so the

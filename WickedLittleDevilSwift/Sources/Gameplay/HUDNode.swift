@@ -22,6 +22,8 @@ final class HUDNode: SKNode {
     private let timeLabel = SKLabelNode()
     private var emptyIcons: [SKSpriteNode] = []
     private var bigCollectableIcons: [SKSpriteNode] = []
+    private let pauseButton = SKNode()
+    private var pauseHitArea = SKSpriteNode()
 
     /// Width of the 320pt design space the HUD is laid out against. The bar
     /// stays this wide even on an iPad, so it frames the play column rather
@@ -89,6 +91,41 @@ final class HUDNode: SKNode {
                 bigCollectableIcons.append(node)
             }
         }
+
+        buildPauseButton()
+    }
+
+    /// `UILayer.m:51-57` put two `CCMenuItemImage`s in the top right — one
+    /// reloading the level, one opening the pause overlay — at
+    /// `ccp(width - 48, height - 16)`.
+    ///
+    /// Only one button survives here. Both of the original's were live during
+    /// play, and an unguarded restart a thumb's width from the pause control is
+    /// a bad trade on a game about not dying; restart moves inside the menu
+    /// instead. The remaining button keeps its `btn-pause.png` artwork.
+    private func buildPauseButton() {
+        pauseButton.name = HUDNode.pauseButtonName
+        pauseButton.zPosition = 1
+
+        // The icon is 28x25 authored points, well under the 44pt minimum touch
+        // target, so an invisible pad carries the taps.
+        pauseHitArea = SKSpriteNode(color: .clear, size: CGSize(width: 48, height: 48))
+        pauseHitArea.name = HUDNode.pauseButtonName
+        pauseButton.addChild(pauseHitArea)
+
+        if let icon = SpriteLibrary.image(named: "btn-pause") {
+            let sprite = SKSpriteNode(texture: icon.texture, size: icon.size)
+            sprite.name = HUDNode.pauseButtonName
+            pauseButton.addChild(sprite)
+        }
+        addChild(pauseButton)
+    }
+
+    static let pauseButtonName = "hud.pause"
+
+    /// Whether a point in the HUD's coordinate space hits the pause button.
+    func isPauseButton(at point: CGPoint) -> Bool {
+        pauseButton.calculateAccumulatedFrame().contains(point)
     }
 
     /// Positions everything for the current scene size and safe area. Safe to
@@ -108,6 +145,13 @@ final class HUDNode: SKNode {
         for (index, node) in bigCollectableIcons.enumerated() {
             node.position = CGPoint(x: iconX(index), y: barY)
         }
+
+        // Tucked under the right end of the bar rather than on it: the bar's
+        // right-hand side already carries the souls and clock readouts.
+        pauseButton.position = CGPoint(
+            x: designWidth / 2 - 26,
+            y: barY - topBar.size.height / 2 - 24
+        )
     }
 
     private func iconX(_ index: Int) -> CGFloat {

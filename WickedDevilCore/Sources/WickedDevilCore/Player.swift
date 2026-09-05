@@ -147,6 +147,9 @@ public final class Player {
     public var character: PlayerCharacter?
     /// Sprite sheet the renderer should use, updated by `setupCharacter`.
     public private(set) var animationAtlasName: String
+    /// The powerup applied by `setupPowerup(_:)`; the world reads it for the
+    /// magnet radius and the platform-binding / dud-rocket rules.
+    public private(set) var equippedPowerup: Powerup
 
     public let device: DeviceProfile
 
@@ -184,6 +187,7 @@ public final class Player {
         self.animation = .none
         self.character = nil
         self.animationAtlasName = PlayerCharacter.defaultAtlasName
+        self.equippedPowerup = .none
     }
 
     /// Size of the devil sprite frames in `AnimDevil.plist`.
@@ -274,6 +278,7 @@ public final class Player {
     /// `Player setupPowerup:` — applies the equipped powerup's stat changes.
     /// Unknown IDs are ignored, matching the original `default: break`.
     public func setupPowerup(_ powerup: Powerup) {
+        equippedPowerup = powerup
         switch powerup {
         case .bouncyDevilI:
             jumpSpeed += 0.5

@@ -381,6 +381,74 @@ final class GameWorldTests: XCTestCase {
         XCTAssertEqual(world.cameraY, world.topBoundaryY - 480, accuracy: 1e-9)
     }
 
+    // MARK: - Intro fly-over
+
+    func testIntroPansFromTheTopOfTheLevelBackToThePlayer() {
+        let world = makeWorld(makeLevel(topBoundaryY: 1_680))
+        world.beginIntro()
+
+        XCTAssertTrue(world.game.isIntro)
+        // `time_for_anim = top/400`
+        XCTAssertEqual(world.introDuration, 1_680 / 400, accuracy: 1e-9)
+        // Opens on the top of the level...
+        XCTAssertEqual(world.cameraY, 1_680 - 480, accuracy: 1e-9)
+
+        // ...and lands back on the player, who has not moved.
+        world.advanceIntro(deltaTime: world.introDuration)
+        XCTAssertFalse(world.game.isIntro)
+        XCTAssertEqual(world.cameraY, 0, accuracy: 1e-9)
+    }
+
+    func testIntroEasesOutRatherThanMovingLinearly() {
+        let world = makeWorld(makeLevel(topBoundaryY: 1_680))
+        world.beginIntro()
+
+        world.advanceIntro(deltaTime: world.introDuration / 2)
+        // CCEaseSineOut is sin(t * pi/2), so it is already 70% of the way home
+        // at the halfway mark rather than 50%.
+        let start = 1_680.0 - 480
+        let expected = start + (0 - start) * sin(0.5 * .pi / 2)
+        XCTAssertEqual(world.cameraY, expected, accuracy: 1e-9)
+        XCTAssertLessThan(world.cameraY, start / 2)
+    }
+
+    func testIntroIsSkippedOnARestartAndCanBeSkippedByHand() {
+        let restartGame = Game(world: 1, level: 1, player: Player(), isRestart: true)
+        let restarted = GameWorld(game: restartGame, level: makeLevel(topBoundaryY: 1_680))
+        restarted.beginIntro()
+        XCTAssertFalse(restarted.game.isIntro)
+        XCTAssertEqual(restarted.cameraY, 0, accuracy: 1e-9)
+
+        let world = makeWorld(makeLevel(topBoundaryY: 1_680))
+        world.beginIntro()
+        world.advanceIntro(deltaTime: 0.2)
+        world.endIntro()
+        XCTAssertFalse(world.game.isIntro)
+        XCTAssertEqual(world.cameraY, 0, accuracy: 1e-9)
+    }
+
+    func testShortLevelsHaveNoIntroToPlay() {
+        // Nothing above the opening screen means nothing to fly over.
+        let world = makeWorld(makeLevel(topBoundaryY: 400))
+        world.beginIntro()
+        XCTAssertFalse(world.game.isIntro)
+    }
+
+    func testTheIntroDoesNotCullTheLevelItIsShowing() {
+        let level = makeLevel(
+            platforms: [platform("high", at: Vec2(x: 160, y: 1_500))],
+            topBoundaryY: 1_680
+        )
+        let world = makeWorld(level)
+        world.beginIntro()
+        world.game.isStarted = true
+
+        // With the camera parked at the top, this platform sits far below the
+        // bottom of the screen and would normally be despawned.
+        world.update(deltaTime: GameWorld.fixedTimeStep)
+        XCTAssertTrue(world.platforms[0].visible)
+    }
+
     // MARK: - Parked objects
 
     func testParkedObjectsNeverEnterTheSimulation() {

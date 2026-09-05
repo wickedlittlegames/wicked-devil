@@ -86,6 +86,13 @@ public enum GameConstants {
         return baseTimeLimitSeconds
     }
 
+    // MARK: - Intro fly-over (GameScene.m)
+
+    /// `float time_for_anim = top/400;` — the intro camera covers this many
+    /// authored points per second, so tall levels get a proportionally longer
+    /// establishing shot.
+    public static let introPointsPerSecond = 400.0
+
     // MARK: - World culling thresholds (GameLayer.m)
 
     /// Nodes below this Y (in layer space) are despawned.

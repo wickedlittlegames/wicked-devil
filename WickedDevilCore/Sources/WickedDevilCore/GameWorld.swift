@@ -126,6 +126,59 @@ public final class GameWorld {
         stepAccumulator = 0
     }
 
+    // MARK: - Intro fly-over
+
+    /// How long the intro pan lasts, in seconds. Zero when there is no intro.
+    public private(set) var introDuration: Double = 0
+
+    private var introElapsed: Double = 0
+
+    /// Where the camera starts the intro from.
+    ///
+    /// `GameScene.m:190` parked the container layer at `ccp(0,-top)`, i.e. with
+    /// the level's top boundary at the bottom of the screen, and eased it back
+    /// to `ccp(0,0)`. That literal offset would open on 480pt of empty space
+    /// *above* the level, because it stacked on top of the `CCFollow` the
+    /// gameplay layers were already running; `CCEaseSineOut` blew through it in
+    /// a fraction of a second. Starting at the camera ceiling instead opens on
+    /// the top of the level itself, which is what the pan was for.
+    public var introStartCameraY: Double { cameraCeilingY }
+
+    /// How far through the intro pan we are, 0...1.
+    public var introProgress: Double {
+        guard introDuration > 0 else { return 1 }
+        return min(1, max(0, introElapsed / introDuration))
+    }
+
+    /// `GameScene.m:186` — `if ( !game.isIntro && !restart )`, so the fly-over
+    /// runs once per fresh attempt and is skipped when the player is replaying
+    /// a level they just died on.
+    ///
+    /// Call this before the run starts; drive it with `advanceIntro(deltaTime:)`.
+    public func beginIntro() {
+        guard !game.isIntro, !game.isRestart, !game.isStarted else { return }
+        guard introStartCameraY > 0 else { return }
+        game.isIntro = true
+        introDuration = topBoundaryY / GameConstants.introPointsPerSecond
+        introElapsed = 0
+    }
+
+    /// Advances the intro pan. Unlike the simulation this runs on *real* time:
+    /// it was a `CCAction`, not part of the game loop.
+    public func advanceIntro(deltaTime: Double) {
+        guard game.isIntro, deltaTime.isFinite, deltaTime > 0 else { return }
+        introElapsed += deltaTime
+        if introElapsed >= introDuration { endIntro() }
+    }
+
+    /// `GameScene.m ccTouchesBegan:` — a touch during the intro killed the
+    /// action and snapped the camera home.
+    public func endIntro() {
+        guard game.isIntro else { return }
+        introElapsed = introDuration
+        game.isIntro = false
+    }
+
     // MARK: - Frame update
 
     /// Advances the simulation by one fixed step.
@@ -237,6 +290,9 @@ public final class GameWorld {
     /// (the layer scrolls down as the player climbs, so Y here is relative to
     /// the camera, not the level).
     private func cullOffscreenNodes() {
+        // `GameLayer update:` wrapped every cull in `if ( !game.isIntro )`, so
+        // the fly-over cannot despawn the level it is showing you.
+        guard !game.isIntro else { return }
         let cameraOffset = cameraY
 
         func layerY(_ worldY: Double) -> Double { worldY - cameraOffset }
@@ -287,11 +343,25 @@ public final class GameWorld {
     ///
     /// Keeping the bottom edge fixed also keeps `GameConstants.despawnY` and
     /// friends meaningful: they are offsets from the bottom of the screen.
+    ///
+    /// While the intro fly-over is running this is overridden by the tween; see
+    /// `beginIntro()`.
     public var cameraY: Double {
-        let anchored = player.position.y - cameraAnchorHeight
-        let ceiling = max(0, topBoundaryY - viewport.height)
-        return min(max(0, anchored), ceiling)
+        guard game.isIntro else { return followCameraY }
+        // `CCEaseSineOut update:` is `sinf(t * M_PI_2)`.
+        let eased = sin(introProgress * .pi / 2)
+        return introStartCameraY + (followCameraY - introStartCameraY) * eased
     }
+
+    /// The camera position `CCFollow` alone would produce.
+    private var followCameraY: Double {
+        let anchored = player.position.y - cameraAnchorHeight
+        return min(max(0, anchored), cameraCeilingY)
+    }
+
+    /// The highest the camera may scroll: any further and the screen would run
+    /// off the top of the authored level.
+    public var cameraCeilingY: Double { max(0, topBoundaryY - viewport.height) }
 
     /// How much world is kept below the player. Capped at the authored
     /// half-viewport so a *shorter*-than-authored screen still centres him.

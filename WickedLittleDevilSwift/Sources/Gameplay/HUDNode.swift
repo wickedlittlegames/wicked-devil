@@ -102,18 +102,23 @@ final class HUDNode: SKNode {
     /// Only one button survives here. Both of the original's were live during
     /// play, and an unguarded restart a thumb's width from the pause control is
     /// a bad trade on a game about not dying; restart moves inside the menu
-    /// instead. The remaining button keeps its `btn-pause.png` artwork.
+    /// instead.
+    ///
+    /// The one that survives is the original's pause control. Its two files are
+    /// misleadingly named: `btn-pause.png` draws a reload glyph and is wired to
+    /// `tap_reload`, while `btn-gameplay-menu.png` draws the word MENU and is
+    /// the one wired to `tap_pause`. We keep the artwork with the behaviour.
     private func buildPauseButton() {
         pauseButton.name = HUDNode.pauseButtonName
         pauseButton.zPosition = 1
 
-        // The icon is 28x25 authored points, well under the 44pt minimum touch
-        // target, so an invisible pad carries the taps.
-        pauseHitArea = SKSpriteNode(color: .clear, size: CGSize(width: 48, height: 48))
+        // The icon is well under the 44pt minimum touch target, so an invisible
+        // pad carries the taps.
+        pauseHitArea = SKSpriteNode(color: .clear, size: CGSize(width: 60, height: 48))
         pauseHitArea.name = HUDNode.pauseButtonName
         pauseButton.addChild(pauseHitArea)
 
-        if let icon = SpriteLibrary.image(named: "btn-pause") {
+        if let icon = SpriteLibrary.image(named: "btn-gameplay-menu") {
             let sprite = SKSpriteNode(texture: icon.texture, size: icon.size)
             sprite.name = HUDNode.pauseButtonName
             pauseButton.addChild(sprite)

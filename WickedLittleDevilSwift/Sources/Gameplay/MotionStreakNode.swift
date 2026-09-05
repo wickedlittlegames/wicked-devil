@@ -50,18 +50,24 @@ final class MotionStreakNode: SKNode {
     /// plants the anchor: cocos2d's `startingPositionInitialized_` guard meant
     /// the streak never drew a segment from wherever it happened to be last.
     func extend(to point: CGPoint) {
-        defer { lastPoint = point }
-        guard let from = lastPoint else { return }
+        guard let from = lastPoint else {
+            lastPoint = point
+            return
+        }
 
         let dx = point.x - from.x
         let dy = point.y - from.y
         let length = (dx * dx + dy * dy).squareRoot()
-        guard length >= Self.minimumSegment else {
-            lastPoint = from
-            return
-        }
+
+        // `CCMotionStreak.m:72-76` compares against `minSeg_` squared and simply
+        // *discards* a point that is too close, leaving the anchor where it was
+        // so the next accepted point spans the whole distance travelled. Moving
+        // the anchor here instead would drop the travel and break the stroke
+        // into dashes.
+        guard length >= Self.minimumSegment else { return }
 
         addSegment(from: from, dx: dx, dy: dy, length: length)
+        lastPoint = point
     }
 
     private func addSegment(from: CGPoint, dx: CGFloat, dy: CGFloat, length: CGFloat) {

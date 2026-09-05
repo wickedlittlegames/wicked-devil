@@ -171,10 +171,15 @@ public final class GameWorld {
         }
     }
 
-    /// How far the camera has scrolled. The original moved the whole layer down
-    /// once the player climbed past the middle of the screen.
+    /// How far the camera has scrolled.
+    ///
+    /// `GameScene` ran a `CCFollow` on the gameplay layers with a world boundary
+    /// of `(0, 0, 320, topBoundaryY)`, so the camera centres on the player but
+    /// stops at the bottom and top of the level.
     public var cameraY: Double {
-        max(0, player.position.y - device.viewportSize.height / 2)
+        let centred = player.position.y - device.viewportSize.height / 2
+        let ceiling = max(0, topBoundaryY - device.viewportSize.height)
+        return min(max(0, centred), ceiling)
     }
 
     // MARK: - Input

@@ -44,21 +44,98 @@ python3 tools/ccbi-converter/convert_ccbi.py \
   --validate-with-ccb
 ```
 
+### Regenerating the shipped level data
+
+The Swift app reads its levels from `WickedLittleDevilSwift/Resources/Levels/`.
+Regenerate all 91 of them, then cross-check and verify:
+
+```bash
+# 1. Shipped game data — no `validation` block, so nothing build-time-only
+#    ends up in the app bundle.
+python3 tools/ccbi-converter/convert_ccbi.py \
+  'Wicked Little Devil/Resources/DATA/LEVELS/*.ccbi' \
+  --output-dir WickedLittleDevilSwift/Resources/Levels
+
+# 2. Cross-check every decoded binary against its .ccb plist source.
+python3 tools/ccbi-converter/convert_ccbi.py \
+  'Wicked Little Devil/Resources/DATA/LEVELS/*.ccbi' \
+  --summary-only --validate-with-ccb \
+  --summary-file tools/ccbi-converter/ccb-crosscheck.json
+
+# 3. Verify the emitted JSON is structurally and semantically sane.
+python3 tools/ccbi-converter/verify_levels.py \
+  WickedLittleDevilSwift/Resources/Levels \
+  --expected-count 91 \
+  --report-file tools/ccbi-converter/verification-report.json
+```
+
+## Verifying converted levels
+
+`verify_levels.py` is the acceptance gate for converted level data. It exits
+non-zero if anything fails, so it is safe to wire into CI. For each level it
+checks that the JSON parses under strict rules (no `NaN`/`Infinity` literals),
+that every required key is present and correctly typed, that coordinates are
+plausible, that the level is winnable (a reachable finish platform plus at
+least one reachable `BigCollectable`), that `topBoundaryY` agrees with the
+tallest playable object, that `timeLimitSeconds` matches the legacy rule in
+`GameScene.m`, and that object kinds are all recognised. It also re-derives
+the parked-object and collectable counts and cross-checks them against the
+values the converter recorded, so the two tools cannot silently drift apart.
+
+```bash
+python3 tools/ccbi-converter/verify_levels.py WickedLittleDevilSwift/Resources/Levels \
+  --expected-count 91 --report-file tools/ccbi-converter/verification-report.json
+```
+
+Exit codes: `0` all levels pass, `1` at least one level failed, `2` no input
+found or the file count did not match `--expected-count`.
+
 ## Important assumptions
 
 - Output coordinates are **resolved point coordinates**, not raw CCB percentages.
 - Default logical viewport is `320x480`, matching the non-iPhone-5 branch in game code.
 - Use `--viewport 320x568` if you want the taller-device resolution instead.
 - The converter does **not** modify anything under `Wicked Little Devil/`.
+- Percent-relative positions and sizes are truncated **toward zero**, reproducing
+  the `(int)` cast in `CCNode+CCBRelativePositioning.m`. Do not "improve" this to
+  rounding: the original game's collision and landing behaviour is built on the
+  truncated values, and several levels use negative percentages where truncation
+  and flooring disagree.
+
+## Parked ("off-screen palette") objects
+
+Worlds 3 and 4 — and a handful of levels elsewhere — were authored from a
+CocosBuilder template that keeps a palette of spare objects parked outside the
+play area, typically one of each platform variant sitting off to the left or
+right and below the floor. They are real objects in the original data and the
+original game does load them, but they are unreachable: `GameScene.m` drives the
+player's `x` straight from the touch position, so the player is confined to
+`0...320`, and `GameLayer`'s update culls anything that falls far enough below
+the camera.
+
+Every gameplay object therefore carries a `playable` boolean:
+
+```
+playable = (x + width/2 > 0) && (x - width/2 < viewportWidth)
+```
+
+A horizontal test alone is enough to separate the two groups cleanly — every
+object below the floor is also horizontally off-screen, and the lowest playable
+object across all 91 levels sits at `y = 27.1`.
+
+Consumers should render and simulate only `playable` objects. The parked ones
+are retained so the JSON stays a faithful representation of the source data,
+and are summarised in `diagnostics.parkedObjects`.
 
 ## JSON schema
 
 Top-level shape:
 
-- `schemaVersion`
+- `schemaVersion` — currently `1.1.0`
 - `source` — source file + world/level numbers
 - `coordinateSpace` — resolved viewport metadata
-- `metadata` — theme/background/time-limit/level height
+- `metadata` — theme/background/time-limit/level height, plus
+  `playableCollectables` (`small`/`big`/`halo` counts excluding parked objects)
 - `playerSpawn` — derived from `PlayerLayer.m`
 - `goal` — finish platform summary
 - `platforms[]`
@@ -67,8 +144,20 @@ Top-level shape:
 - `projectileSpawners[]`
 - `triggers[]`
 - `tips[]`
-- `diagnostics` — unknown nodes / parser hints
+- `diagnostics` — unknown nodes / parser hints, plus `parkedObjects`,
+  `parkedObjectTotal` and `timelineOverrides`
 - optional `nodeTree` — raw parsed CCBI node graph
+
+Every entry in `platforms`, `collectables`, `enemies`, `triggers` and `tips`
+carries a `playable` flag (see above).
+
+`diagnostics.timelineOverrides` lists any autoplay-timeline keyframe at `t=0`
+whose value differs from the node's static property. `CCBReader` runs the
+autoplay sequence with `tweenDuration:0` immediately after load, so such a
+keyframe would silently override the static value the converter emitted. Across
+the shipped catalogue this list is empty on every level — it exists as a
+regression guard, and a non-empty list means the converted coordinates for that
+node are wrong.
 
 ### Example
 

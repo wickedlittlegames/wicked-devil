@@ -16,17 +16,44 @@ public final class GameWorld {
 
     public var player: Player { game.player }
     public let device: DeviceProfile
+
+    /// How much of the level is on screen, in authored points.
+    ///
+    /// The original only ever had two viewports (320x480 and 320x568) so it
+    /// could read them straight off `DeviceProfile`. Modern hardware is far
+    /// taller and, on iPad, wider, so the rendering layer measures its own
+    /// viewport and hands it in. It is clamped so it can never be *smaller*
+    /// than the authored viewport: levels assume you can always see the full
+    /// 320x480 design box.
+    public var viewport: SizeF {
+        get { storedViewport }
+        set { storedViewport = GameWorld.clampViewport(newValue, to: device) }
+    }
+
+    private var storedViewport: SizeF
+
+    private static func clampViewport(_ size: SizeF, to device: DeviceProfile) -> SizeF {
+        SizeF(
+            width: max(size.width, device.viewportSize.width),
+            height: max(size.height, device.viewportSize.height)
+        )
+    }
+
     /// Seconds elapsed since the run started; drives moving-platform tweens.
     public private(set) var elapsedTime: Double = 0
+
+    /// Left-over real time not yet consumed by a fixed simulation step.
+    private var stepAccumulator: Double = 0
 
     /// Cached spawn positions so moving nodes ping-pong around their origin.
     private var platformOrigins: [String: Vec2] = [:]
     private var enemyOrigins: [String: Vec2] = [:]
 
-    public init(game: Game, level: Level, device: DeviceProfile = .standard) {
+    public init(game: Game, level: Level, device: DeviceProfile = .standard, viewport: SizeF? = nil) {
         self.game = game
         self.level = level
         self.device = device
+        self.storedViewport = GameWorld.clampViewport(viewport ?? device.viewportSize, to: device)
 
         let entities = level.makeEntities()
         platforms = entities.platforms
@@ -45,9 +72,66 @@ public final class GameWorld {
     /// The topmost point of the level; the camera stops following here.
     public var topBoundaryY: Double { level.metadata.topBoundaryY }
 
+    // MARK: - Fixed timestep
+
+    /// The simulation step every ported physics number assumes.
+    ///
+    /// `Player move` integrates *per frame*, not per second: `velocity.y -=
+    /// gravity` then `position.y += velocity.y`, and `applyHorizontalControl`
+    /// clamps to `drag` points per frame. cocos2d ran that at 60Hz, so the whole
+    /// game is calibrated to a 1/60s step. Anything else changes the speed of
+    /// the game, which is why `advance(realDeltaTime:)` below re-quantises real
+    /// time into fixed steps instead of passing the raw frame delta through.
+    public static let fixedTimeStep = 1.0 / 60.0
+
+    /// The most fixed steps a single frame may run.
+    ///
+    /// Without this a long stall (the app returning from the background, a
+    /// debugger break) would try to catch up hundreds of steps at once, either
+    /// hanging the frame or — worse — teleporting the player far enough in one
+    /// go to tunnel straight through a platform. Four steps is one 15fps frame
+    /// of catch-up, which is generous for a real hitch and harmless otherwise.
+    public static let maxStepsPerFrame = 4
+
+    /// Advances the simulation by however many whole fixed steps `realDeltaTime`
+    /// has bought, and reports every event they produced.
+    ///
+    /// This is the entry point rendering should call. It makes the game run at
+    /// the same *speed* on a 60Hz phone, a 120Hz ProMotion phone and a device
+    /// dropping frames, and it can never advance the player by more than
+    /// `maxStepsPerFrame` sub-steps in one frame.
+    @discardableResult
+    public func advance(realDeltaTime: Double) -> [GameEvent] {
+        guard realDeltaTime.isFinite, realDeltaTime > 0 else { return [] }
+
+        let step = GameWorld.fixedTimeStep
+        stepAccumulator += realDeltaTime
+
+        // Drop anything beyond the catch-up budget rather than trying to
+        // simulate it: time is lost, but the player is never flung forwards.
+        let budget = step * Double(GameWorld.maxStepsPerFrame)
+        if stepAccumulator > budget { stepAccumulator = budget }
+
+        var events: [GameEvent] = []
+        while stepAccumulator >= step {
+            stepAccumulator -= step
+            events += update(deltaTime: step)
+        }
+        return events
+    }
+
+    /// Discards any banked partial step. Call this when resuming from a pause so
+    /// the first frame back does not inherit stale time.
+    public func resetStepAccumulator() {
+        stepAccumulator = 0
+    }
+
     // MARK: - Frame update
 
-    /// Advances the simulation by one frame.
+    /// Advances the simulation by one fixed step.
+    ///
+    /// Prefer `advance(realDeltaTime:)` from rendering code; this is the raw
+    /// step, exposed so tests can drive the simulation deterministically.
     ///
     /// Ordering matches `GameLayer update:`: horizontal control, player
     /// integration, moving nodes, platform landings, collectables, enemies,
@@ -171,22 +255,47 @@ public final class GameWorld {
         }
     }
 
-    /// How far the camera has scrolled.
+    /// How far the camera has scrolled, i.e. the world Y at the bottom edge of
+    /// the screen.
     ///
     /// `GameScene` ran a `CCFollow` on the gameplay layers with a world boundary
-    /// of `(0, 0, 320, topBoundaryY)`, so the camera centres on the player but
-    /// stops at the bottom and top of the level.
+    /// of `(0, 0, 320, topBoundaryY)`, so the camera centred on the player but
+    /// stopped at the bottom and top of the level.
+    ///
+    /// Modern screens are much taller than the 480pt the levels were authored
+    /// for. Rather than centring the player in that taller viewport — which
+    /// would show a lot of already-climbed level below him and shrink the
+    /// look-ahead the climb depends on — the surplus height all goes *above*
+    /// the player. He keeps exactly `cameraAnchorHeight` points of world
+    /// beneath him, the same as the original, so falls and threats from below
+    /// read identically; everything extra becomes look-ahead.
+    ///
+    /// Keeping the bottom edge fixed also keeps `GameConstants.despawnY` and
+    /// friends meaningful: they are offsets from the bottom of the screen.
     public var cameraY: Double {
-        let centred = player.position.y - device.viewportSize.height / 2
-        let ceiling = max(0, topBoundaryY - device.viewportSize.height)
-        return min(max(0, centred), ceiling)
+        let anchored = player.position.y - cameraAnchorHeight
+        let ceiling = max(0, topBoundaryY - viewport.height)
+        return min(max(0, anchored), ceiling)
+    }
+
+    /// How much world is kept below the player. Capped at the authored
+    /// half-viewport so a *shorter*-than-authored screen still centres him.
+    public var cameraAnchorHeight: Double {
+        min(device.viewportSize.height / 2, viewport.height / 2)
     }
 
     // MARK: - Input
 
-    /// The player drifts towards the last touch point each frame.
+    /// The horizontal band the level was authored in. The player is confined to
+    /// it, so on a viewport wider than 320pt (iPad) the surplus either side is
+    /// scenery, not playable space.
+    public var playFieldWidth: Double { device.viewportSize.width }
+
+    /// The player drifts towards the last touch point each frame. The X is
+    /// clamped into the play field so a drag that runs off the side of a wide
+    /// screen parks him at the edge rather than pulling him out of bounds.
     public func setTouch(_ point: Vec2) {
-        game.touch = point
+        game.touch = Vec2(x: min(max(0, point.x), playFieldWidth), y: point.y)
     }
 
     /// Tapping a floating bubble pops it.

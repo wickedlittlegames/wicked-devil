@@ -16,7 +16,10 @@ struct StatsView: View {
     var body: some View {
         MenuScreen(
             title: "Stats",
-            backgroundImage: "bg-stats-iphone5",
+            // `StatsScene.m:70` — the Stats screen reused the shop backdrop
+            // rather than having one of its own. There has never been a
+            // `bg-stats` asset, in this bundle or the original.
+            backgroundImage: "bg-store-iphone5",
             souls: model.souls,
             onBack: onBack
         ) {

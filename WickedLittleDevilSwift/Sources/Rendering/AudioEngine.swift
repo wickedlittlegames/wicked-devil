@@ -11,6 +11,10 @@ final class AudioEngine {
     }
 
     private var music: AVAudioPlayer?
+    /// The track currently loaded, so repeat requests for the same music (menu
+    /// navigation, returning from a run) let it keep playing instead of
+    /// restarting it from the top.
+    private(set) var currentTrack: String?
 
     private init() {
         let session = AVAudioSession.sharedInstance()
@@ -20,6 +24,7 @@ final class AudioEngine {
 
     func playMusic(_ name: String, loop: Bool = true) {
         guard !isMuted else { return }
+        guard currentTrack != name || music?.isPlaying != true else { return }
         let base = (name as NSString).deletingPathExtension
         let ext = (name as NSString).pathExtension.isEmpty ? "aifc" : (name as NSString).pathExtension
         guard let url = AssetLocator.url(forResource: base, withExtension: ext),
@@ -32,11 +37,13 @@ final class AudioEngine {
         player.prepareToPlay()
         player.play()
         music = player
+        currentTrack = name
     }
 
     func stopMusic() {
         music?.stop()
         music = nil
+        currentTrack = nil
     }
 
     func preloadEffects(_ names: [String]) {
@@ -93,6 +100,13 @@ enum SoundEffect {
         batHit, boom, bubble, playerHit, click,
         bigCollect(index: 1), bigCollect(index: 2), bigCollect(index: 3),
     ]
+}
+
+enum MusicTrack {
+    /// `StartScene.m` / `GameOverScene.m` — the menus' track.
+    static let menu = "bg-main.aifc"
+    /// `AdventureSelectScene.m` — the detective campaign's track.
+    static let detective = "detective-music.aifc"
 }
 
 enum SystemSoundEffect {

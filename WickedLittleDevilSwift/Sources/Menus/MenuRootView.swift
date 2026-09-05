@@ -62,6 +62,9 @@ struct MenuRootView: View {
         .environment(model)
         .tint(MenuColor.ember)
         .preferredColorScheme(.dark)
+        .onAppear(perform: updateMenuMusic)
+        .onChange(of: activeRun) { _, _ in updateMenuMusic() }
+        .onChange(of: model.isMuted) { _, _ in updateMenuMusic() }
         .fullScreenCover(item: $activeRun) { request in
             launcher.makeGameplayView(request) { result in
                 finish(request: request, result: result)
@@ -128,6 +131,21 @@ struct MenuRootView: View {
             SoulShopView(onBack: pop)
         case .stats:
             StatsView(onBack: pop)
+        }
+    }
+
+    // MARK: - Menu music
+
+    /// `StartScene.m` played `bg-main` behind the menus, and `GameOverScene.m`
+    /// brought it back after a run. The whole menu stack shares the one track,
+    /// so pushing and popping screens leaves it playing uninterrupted; a run
+    /// takes the music over and hands it back on the way out.
+    private func updateMenuMusic() {
+        guard activeRun == nil else { return }
+        if model.isMuted {
+            AudioEngine.shared.stopMusic()
+        } else {
+            AudioEngine.shared.playMusic(MusicTrack.menu)
         }
     }
 

@@ -131,14 +131,6 @@ final class GameScene: SKScene {
         if let track = LevelCatalog.musicTrack(world: game.world) {
             AudioEngine.shared.playMusic(track)
         }
-
-        // TEMP(layout-verification): auto-play for screenshots.
-        if ProcessInfo.processInfo.arguments.contains("-WLDAutoPlay") {
-            run(SKAction.sequence([
-                SKAction.wait(forDuration: 0.6),
-                SKAction.run { [weak self] in self?.startRun() },
-            ]))
-        }
     }
 
     override func willMove(from view: SKView) {
